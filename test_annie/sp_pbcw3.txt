@@ -20,8 +20,10 @@ CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_PBCW3`(p_date  varchar(300
 , p_filter_finding varchar(30)
 , p_filter_service_category  varchar(100)
 , p_filter_service_budget varchar(100)
+
  )
 begin
+declare p_bin_dep_cd varchar(20);
 
 declare flg_procedure_off int;
 declare intFoundPos integer;
@@ -45,7 +47,7 @@ declare x2 float;
 declare var_row_cnt_param int;
 declare var_row_cnt_cache int;
 declare unq_qry_id int;
-
+declare  var_calling_procedure int;
 declare age0 char(50);
 declare age1 char(50);
 declare age2 char(50);
@@ -60,17 +62,20 @@ declare gdr1 char(10);
 declare gdr2 char(10);
 declare gdr3 char(10);
 
-declare dep0 char(50);
-declare dep1 char(50);
-declare dep2 char(50);
-declare dep3 char(50);
 
-declare los0 char(50);
-declare los1 char(50);
-declare los2 char(50);
-declare los3 char(50);
-declare los4 char(50);
-declare los5 char(50);
+declare fpl0 char(50);
+declare fpl3 char(50);
+declare fpl4 char(50);
+declare fpl5 char(50);
+declare fpl6 char(50);
+declare fpl7 char(50);
+
+declare lpl0 char(50);
+declare lpl3 char(50);
+declare lpl4 char(50);
+declare lpl5 char(50);
+declare lpl6 char(50);
+declare lpl7 char(50);
 
 declare plc0 char(25);
 declare plc1 char(25);
@@ -111,18 +116,18 @@ declare eth11 char(100) ;
 declare eth12 char(100) ;
 
 --  DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
-
+set p_bin_dep_cd='1,2,3,0';
 set x1=rand();
 set x2=rand();
 
-
+set var_calling_procedure=12;
 
 /***  turn procedure on / off for loading data ***************************************/
 set flg_procedure_off =0;
 
 if  flg_procedure_off =0 then    
   
-    call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,dep0,dep1,dep2,dep3,los0,los1,los2,los3,los4,plc0,plc1,plc2,plc3,plc4,plc5,ihs0,ihs1,ihs2,ihs3,alg0,alg1,alg2,alg3,alg4,fnd0,fnd1,fnd2,fnd3,fnd4,eth0,eth1,eth2,eth3,eth4,eth5,eth6,eth7,eth8,eth9,eth10,eth11,eth12,12);
+call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fpl0,fpl3,fpl4,fpl5,fpl6,fpl7,lpl0,lpl3,lpl4,lpl5,lpl6,lpl7,plc0,plc1,plc2,plc3,plc4,plc5,ihs0,ihs1,ihs2,ihs3,alg0,alg1,alg2,alg3,alg4,fnd0,fnd1,fnd2,fnd3,fnd4,eth0,eth1,eth2,eth3,eth4,eth5,eth6,eth7,eth8,eth9,eth10,eth11,eth12,var_calling_procedure);
 
 
     DROP TEMPORARY TABLE IF EXISTS tbltmpValues;
@@ -182,9 +187,9 @@ if  flg_procedure_off =0 then
         where qry_id=1;
         
         select
-            pbcw3.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
+						qry_type
 						, date_type
+            ,pbcw3.cohort_entry_date as "Month"
 						, pbcw3.age_grouping_cd
 						, case pbcw3.age_grouping_cd
                                 when 0 then age0
@@ -196,7 +201,7 @@ if  flg_procedure_off =0 then
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcw3.cd_race as Ethnicity_Cd
+						, pbcw3.cd_race as ethnicity_cd
 						, case pbcw3.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -212,33 +217,35 @@ if  flg_procedure_off =0 then
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcw3.pk_gndr as Gender_Cd
+						, pbcw3.pk_gndr as gender_cd
 						, case pbcw3.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcw3.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw3.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcw3.init_cd_plcm_setng  
+						, case when pbcw3.init_cd_plcm_setng = 0 then fpl0
+                   when pbcw3.init_cd_plcm_setng = 3 then fpl3
+                   when pbcw3.init_cd_plcm_setng = 4 then fpl4
+                   when pbcw3.init_cd_plcm_setng = 5 then fpl5
+                   when pbcw3.init_cd_plcm_setng = 6 then fpl6
+                   when pbcw3.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcw3.long_cd_plcm_setng  
+						, case when pbcw3.long_cd_plcm_setng = 0 then lpl0
+                   when pbcw3.long_cd_plcm_setng = 3 then lpl3
+                   when pbcw3.long_cd_plcm_setng = 4 then lpl4
+                   when pbcw3.long_cd_plcm_setng = 5 then lpl5
+                   when pbcw3.long_cd_plcm_setng = 6 then lpl6
+                   when pbcw3.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcw3.county_cd
 						, ref_cnty.county as "County"
-						, pbcw3.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw3.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcw3.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcw3.bin_los_cd
-						, case pbcw3.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"
 						, pbcw3.bin_placement_cd
 						, case pbcw3.bin_placement_cd
                                 when 0 then plc0
@@ -275,18 +282,17 @@ if  flg_procedure_off =0 then
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcw3.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcw3.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw3.cd_budget_poc_frc   "Budget Cd"
+						, pbcw3.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , family_setting_dcfs_prcntg as "Family Setting (State Foster Home)"
             , family_setting_private_agency_prcntg as "Family Setting (Private Foster Home)"
             , relative_prcntg  as "Family Setting (Kin Placement)"
             , group_inst_care_prcntg as "Non-Family Setting"
             FROM cache_pbcw3_aggr  pbcw3
-            
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw3.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw3.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcw3.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcw3.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw3.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw3.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw3.cd_access_type
@@ -301,10 +307,10 @@ if  flg_procedure_off =0 then
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcw3.bin_los_cd asc
                     , pbcw3.bin_placement_cd asc
@@ -348,20 +354,22 @@ if  flg_procedure_off =0 then
                 , p_filter_finding 
                 , p_filter_service_category  
                 , p_filter_service_budget
+                , p_bin_dep_cd
                 , 0
-                , 0
+                , 0                
                 , p_mindate
                 , p_maxdate
-                , 12);
+                , var_calling_procedure);
                 
         update cache_pbcw3_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
         where qry_id=3;
         
         select
-            pbcw3.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
+
+						qry_type
 						, date_type
+            ,pbcw3.cohort_entry_date as "Month"
 						, pbcw3.age_grouping_cd
 						, case pbcw3.age_grouping_cd
                                 when 0 then age0
@@ -373,7 +381,7 @@ if  flg_procedure_off =0 then
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcw3.cd_race as Ethnicity_Cd
+						, pbcw3.cd_race as ethnicity_cd
 						, case pbcw3.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -389,33 +397,35 @@ if  flg_procedure_off =0 then
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcw3.pk_gndr as Gender_Cd
+						, pbcw3.pk_gndr as gender_cd
 						, case pbcw3.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcw3.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw3.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcw3.init_cd_plcm_setng  
+						, case when pbcw3.init_cd_plcm_setng = 0 then fpl0
+                   when pbcw3.init_cd_plcm_setng = 3 then fpl3
+                   when pbcw3.init_cd_plcm_setng = 4 then fpl4
+                   when pbcw3.init_cd_plcm_setng = 5 then fpl5
+                   when pbcw3.init_cd_plcm_setng = 6 then fpl6
+                   when pbcw3.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcw3.long_cd_plcm_setng  
+						, case when pbcw3.long_cd_plcm_setng = 0 then lpl0
+                   when pbcw3.long_cd_plcm_setng = 3 then lpl3
+                   when pbcw3.long_cd_plcm_setng = 4 then lpl4
+                   when pbcw3.long_cd_plcm_setng = 5 then lpl5
+                   when pbcw3.long_cd_plcm_setng = 6 then lpl6
+                   when pbcw3.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcw3.county_cd
 						, ref_cnty.county as "County"
-						, pbcw3.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw3.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcw3.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcw3.bin_los_cd
-						, case pbcw3.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"
 						, pbcw3.bin_placement_cd
 						, case pbcw3.bin_placement_cd
                                 when 0 then plc0
@@ -452,18 +462,17 @@ if  flg_procedure_off =0 then
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcw3.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcw3.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw3.cd_budget_poc_frc   "Budget Cd"
+						, pbcw3.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , family_setting_dcfs_prcntg as "Family Setting (State Foster Home)"
             , family_setting_private_agency_prcntg as "Family Setting (Private Foster Home)"
             , relative_prcntg  as "Family Setting (Kin Placement)"
             , group_inst_care_prcntg as "Non-Family Setting"
             FROM cache_pbcw3_aggr  pbcw3
-            
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw3.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw3.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcw3.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcw3.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw3.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw3.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw3.cd_access_type
@@ -481,10 +490,10 @@ if  flg_procedure_off =0 then
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcw3.bin_los_cd asc
                     , pbcw3.bin_placement_cd asc
@@ -529,20 +538,22 @@ if  flg_procedure_off =0 then
                 , p_filter_finding 
                 , p_filter_service_category  
                 , p_filter_service_budget
+                , p_bin_dep_cd
                 , 0
-                , 0
+                , 0                
                 , p_mindate
                 , p_maxdate
-                , 12);
+                , var_calling_procedure);
                 
         update cache_pbcw3_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
         where qry_id=2;
         
         select
-            pbcw3.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
+
+						qry_type
 						, date_type
+            ,pbcw3.cohort_entry_date as "Month"
 						, pbcw3.age_grouping_cd
 						, case pbcw3.age_grouping_cd
                                 when 0 then age0
@@ -554,7 +565,7 @@ if  flg_procedure_off =0 then
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcw3.cd_race as Ethnicity_Cd
+						, pbcw3.cd_race as ethnicity_cd
 						, case pbcw3.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -570,33 +581,35 @@ if  flg_procedure_off =0 then
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcw3.pk_gndr as Gender_Cd
+						, pbcw3.pk_gndr as gender_cd
 						, case pbcw3.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcw3.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw3.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcw3.init_cd_plcm_setng  
+						, case when pbcw3.init_cd_plcm_setng = 0 then fpl0
+                   when pbcw3.init_cd_plcm_setng = 3 then fpl3
+                   when pbcw3.init_cd_plcm_setng = 4 then fpl4
+                   when pbcw3.init_cd_plcm_setng = 5 then fpl5
+                   when pbcw3.init_cd_plcm_setng = 6 then fpl6
+                   when pbcw3.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcw3.long_cd_plcm_setng  
+						, case when pbcw3.long_cd_plcm_setng = 0 then lpl0
+                   when pbcw3.long_cd_plcm_setng = 3 then lpl3
+                   when pbcw3.long_cd_plcm_setng = 4 then lpl4
+                   when pbcw3.long_cd_plcm_setng = 5 then lpl5
+                   when pbcw3.long_cd_plcm_setng = 6 then lpl6
+                   when pbcw3.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcw3.county_cd
 						, ref_cnty.county as "County"
-						, pbcw3.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw3.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcw3.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcw3.bin_los_cd
-						, case pbcw3.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"
 						, pbcw3.bin_placement_cd
 						, case pbcw3.bin_placement_cd
                                 when 0 then plc0
@@ -633,17 +646,17 @@ if  flg_procedure_off =0 then
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcw3.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcw3.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw3.cd_budget_poc_frc   "Budget Cd"
+						, pbcw3.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , family_setting_dcfs_prcntg as "Family Setting (State Foster Home)"
             , family_setting_private_agency_prcntg as "Family Setting (Private Foster Home)"
             , relative_prcntg  as "Family Setting (Kin Placement)"
             , group_inst_care_prcntg as "Non-Family Setting"
             FROM cache_pbcw3_aggr  pbcw3
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw3.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw3.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcw3.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcw3.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw3.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw3.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw3.cd_access_type
@@ -657,10 +670,10 @@ if  flg_procedure_off =0 then
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcw3.bin_los_cd asc
                     , pbcw3.bin_placement_cd asc
@@ -705,20 +718,22 @@ if  flg_procedure_off =0 then
                 , p_filter_finding 
                 , p_filter_service_category  
                 , p_filter_service_budget
+                , p_bin_dep_cd
                 , 0
-                , 0
+                , 0                
                 , p_mindate
                 , p_maxdate
-                , 12);
+                , var_calling_procedure);
                 
         update cache_pbcw3_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
         where qry_id=7;
         
         select
-            pbcw3.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
+
+						qry_type
 						, date_type
+            ,pbcw3.cohort_entry_date as "Month"
 						, pbcw3.age_grouping_cd
 						, case pbcw3.age_grouping_cd
                                 when 0 then age0
@@ -730,7 +745,7 @@ if  flg_procedure_off =0 then
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcw3.cd_race as Ethnicity_Cd
+						, pbcw3.cd_race as ethnicity_cd
 						, case pbcw3.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -746,33 +761,35 @@ if  flg_procedure_off =0 then
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcw3.pk_gndr as Gender_Cd
+						, pbcw3.pk_gndr as gender_cd
 						, case pbcw3.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcw3.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw3.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcw3.init_cd_plcm_setng  
+						, case when pbcw3.init_cd_plcm_setng = 0 then fpl0
+                   when pbcw3.init_cd_plcm_setng = 3 then fpl3
+                   when pbcw3.init_cd_plcm_setng = 4 then fpl4
+                   when pbcw3.init_cd_plcm_setng = 5 then fpl5
+                   when pbcw3.init_cd_plcm_setng = 6 then fpl6
+                   when pbcw3.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcw3.long_cd_plcm_setng  
+						, case when pbcw3.long_cd_plcm_setng = 0 then lpl0
+                   when pbcw3.long_cd_plcm_setng = 3 then lpl3
+                   when pbcw3.long_cd_plcm_setng = 4 then lpl4
+                   when pbcw3.long_cd_plcm_setng = 5 then lpl5
+                   when pbcw3.long_cd_plcm_setng = 6 then lpl6
+                   when pbcw3.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcw3.county_cd
 						, ref_cnty.county as "County"
-						, pbcw3.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw3.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcw3.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcw3.bin_los_cd
-						, case pbcw3.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"
 						, pbcw3.bin_placement_cd
 						, case pbcw3.bin_placement_cd
                                 when 0 then plc0
@@ -809,18 +826,17 @@ if  flg_procedure_off =0 then
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcw3.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcw3.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw3.cd_budget_poc_frc   "Budget Cd"
+						, pbcw3.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , family_setting_dcfs_prcntg as "Family Setting (State Foster Home)"
             , family_setting_private_agency_prcntg as "Family Setting (Private Foster Home)"
             , relative_prcntg  as "Family Setting (Kin Placement)"
             , group_inst_care_prcntg as "Non-Family Setting"
             FROM cache_pbcw3_aggr  pbcw3
-            
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw3.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw3.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcw3.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcw3.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw3.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw3.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw3.cd_access_type
@@ -842,10 +858,10 @@ if  flg_procedure_off =0 then
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcw3.bin_los_cd asc
                     , pbcw3.bin_placement_cd asc
@@ -889,20 +905,22 @@ if  flg_procedure_off =0 then
                 , p_filter_finding 
                 , p_filter_service_category  
                 , p_filter_service_budget
+                , p_bin_dep_cd
                 , 0
-                , 0
+                , 0                
                 , p_mindate
                 , p_maxdate
-                , 12);
+                , var_calling_procedure);
                 
         update cache_pbcw3_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
         where qry_id=4;
         
         select
-            pbcw3.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
+
+						qry_type
 						, date_type
+,            pbcw3.cohort_entry_date as "Month"
 						, pbcw3.age_grouping_cd
 						, case pbcw3.age_grouping_cd
                                 when 0 then age0
@@ -914,7 +932,7 @@ if  flg_procedure_off =0 then
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcw3.cd_race as Ethnicity_Cd
+						, pbcw3.cd_race as ethnicity_cd
 						, case pbcw3.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -930,33 +948,35 @@ if  flg_procedure_off =0 then
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcw3.pk_gndr as Gender_Cd
+						, pbcw3.pk_gndr as gender_cd
 						, case pbcw3.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcw3.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw3.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcw3.init_cd_plcm_setng  
+						, case when pbcw3.init_cd_plcm_setng = 0 then fpl0
+                   when pbcw3.init_cd_plcm_setng = 3 then fpl3
+                   when pbcw3.init_cd_plcm_setng = 4 then fpl4
+                   when pbcw3.init_cd_plcm_setng = 5 then fpl5
+                   when pbcw3.init_cd_plcm_setng = 6 then fpl6
+                   when pbcw3.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcw3.long_cd_plcm_setng  
+						, case when pbcw3.long_cd_plcm_setng = 0 then lpl0
+                   when pbcw3.long_cd_plcm_setng = 3 then lpl3
+                   when pbcw3.long_cd_plcm_setng = 4 then lpl4
+                   when pbcw3.long_cd_plcm_setng = 5 then lpl5
+                   when pbcw3.long_cd_plcm_setng = 6 then lpl6
+                   when pbcw3.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcw3.county_cd
 						, ref_cnty.county as "County"
-						, pbcw3.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw3.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcw3.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcw3.bin_los_cd
-						, case pbcw3.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"
 						, pbcw3.bin_placement_cd
 						, case pbcw3.bin_placement_cd
                                 when 0 then plc0
@@ -993,18 +1013,17 @@ if  flg_procedure_off =0 then
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcw3.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcw3.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw3.cd_budget_poc_frc   "Budget Cd"
+						, pbcw3.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , family_setting_dcfs_prcntg as "Family Setting (State Foster Home)"
             , family_setting_private_agency_prcntg as "Family Setting (Private Foster Home)"
             , relative_prcntg  as "Family Setting (Kin Placement)"
             , group_inst_care_prcntg as "Non-Family Setting"
             FROM cache_pbcw3_aggr  pbcw3
-            
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw3.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw3.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcw3.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcw3.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw3.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw3.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw3.cd_access_type
@@ -1018,10 +1037,10 @@ if  flg_procedure_off =0 then
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcw3.bin_los_cd asc
                     , pbcw3.bin_placement_cd asc
@@ -1066,20 +1085,22 @@ if  flg_procedure_off =0 then
                 , p_filter_finding 
                 , p_filter_service_category  
                 , p_filter_service_budget
+                , p_bin_dep_cd
                 , 0
-                , 0
+                , 0                
                 , p_mindate
                 , p_maxdate
-                , 12);
+                , var_calling_procedure);
                 
         update cache_pbcw3_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
         where qry_id=5;
         
         select
-            pbcw3.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
+            
+						qry_type
 						, date_type
+,pbcw3.cohort_entry_date as "Month"
 						, pbcw3.age_grouping_cd
 						, case pbcw3.age_grouping_cd
                                 when 0 then age0
@@ -1091,7 +1112,7 @@ if  flg_procedure_off =0 then
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcw3.cd_race as Ethnicity_Cd
+						, pbcw3.cd_race as ethnicity_cd
 						, case pbcw3.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -1107,33 +1128,35 @@ if  flg_procedure_off =0 then
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcw3.pk_gndr as Gender_Cd
+						, pbcw3.pk_gndr as gender_cd
 						, case pbcw3.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcw3.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw3.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcw3.init_cd_plcm_setng  
+						, case when pbcw3.init_cd_plcm_setng = 0 then fpl0
+                   when pbcw3.init_cd_plcm_setng = 3 then fpl3
+                   when pbcw3.init_cd_plcm_setng = 4 then fpl4
+                   when pbcw3.init_cd_plcm_setng = 5 then fpl5
+                   when pbcw3.init_cd_plcm_setng = 6 then fpl6
+                   when pbcw3.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcw3.long_cd_plcm_setng  
+						, case when pbcw3.long_cd_plcm_setng = 0 then lpl0
+                   when pbcw3.long_cd_plcm_setng = 3 then lpl3
+                   when pbcw3.long_cd_plcm_setng = 4 then lpl4
+                   when pbcw3.long_cd_plcm_setng = 5 then lpl5
+                   when pbcw3.long_cd_plcm_setng = 6 then lpl6
+                   when pbcw3.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcw3.county_cd
 						, ref_cnty.county as "County"
-						, pbcw3.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw3.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcw3.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcw3.bin_los_cd
-						, case pbcw3.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"
 						, pbcw3.bin_placement_cd
 						, case pbcw3.bin_placement_cd
                                 when 0 then plc0
@@ -1170,18 +1193,18 @@ if  flg_procedure_off =0 then
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcw3.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcw3.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw3.cd_budget_poc_frc   "Budget Cd"
+						, pbcw3.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , family_setting_dcfs_prcntg as "Family Setting (State Foster Home)"
             , family_setting_private_agency_prcntg as "Family Setting (Private Foster Home)"
             , relative_prcntg  as "Family Setting (Kin Placement)"
             , group_inst_care_prcntg as "Non-Family Setting"
             FROM cache_pbcw3_aggr  pbcw3
-            
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw3.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw3.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcw3.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcw3.bin_los_cd
+
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw3.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw3.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw3.cd_access_type
@@ -1196,10 +1219,10 @@ if  flg_procedure_off =0 then
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcw3.bin_los_cd asc
                     , pbcw3.bin_placement_cd asc
@@ -1243,20 +1266,21 @@ if  flg_procedure_off =0 then
                 , p_filter_finding 
                 , p_filter_service_category  
                 , p_filter_service_budget
+                , p_bin_dep_cd
                 , 0
-                , 0
+                , 0                
                 , p_mindate
                 , p_maxdate
-                , 12);
+                , var_calling_procedure);
                 
         update cache_pbcw3_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
         where qry_id=6;
         
         select
-            pbcw3.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
+     					qry_type
 						, date_type
+,pbcw3.cohort_entry_date as "Month"
 						, pbcw3.age_grouping_cd
 						, case pbcw3.age_grouping_cd
                                 when 0 then age0
@@ -1268,7 +1292,7 @@ if  flg_procedure_off =0 then
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcw3.cd_race as Ethnicity_Cd
+						, pbcw3.cd_race as ethnicity_cd
 						, case pbcw3.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -1284,33 +1308,35 @@ if  flg_procedure_off =0 then
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcw3.pk_gndr as Gender_Cd
+						, pbcw3.pk_gndr as gender_cd
 						, case pbcw3.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcw3.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw3.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcw3.init_cd_plcm_setng  
+						, case when pbcw3.init_cd_plcm_setng = 0 then fpl0
+                   when pbcw3.init_cd_plcm_setng = 3 then fpl3
+                   when pbcw3.init_cd_plcm_setng = 4 then fpl4
+                   when pbcw3.init_cd_plcm_setng = 5 then fpl5
+                   when pbcw3.init_cd_plcm_setng = 6 then fpl6
+                   when pbcw3.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcw3.long_cd_plcm_setng  
+						, case when pbcw3.long_cd_plcm_setng = 0 then lpl0
+                   when pbcw3.long_cd_plcm_setng = 3 then lpl3
+                   when pbcw3.long_cd_plcm_setng = 4 then lpl4
+                   when pbcw3.long_cd_plcm_setng = 5 then lpl5
+                   when pbcw3.long_cd_plcm_setng = 6 then lpl6
+                   when pbcw3.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcw3.county_cd
 						, ref_cnty.county as "County"
-						, pbcw3.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw3.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcw3.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcw3.bin_los_cd
-						, case pbcw3.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"
 						, pbcw3.bin_placement_cd
 						, case pbcw3.bin_placement_cd
                                 when 0 then plc0
@@ -1347,18 +1373,18 @@ if  flg_procedure_off =0 then
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcw3.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcw3.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw3.cd_budget_poc_frc   "Budget Cd"
+						, pbcw3.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , family_setting_dcfs_prcntg as "Family Setting (State Foster Home)"
             , family_setting_private_agency_prcntg as "Family Setting (Private Foster Home)"
             , relative_prcntg  as "Family Setting (Kin Placement)"
             , group_inst_care_prcntg as "Non-Family Setting"
             FROM cache_pbcw3_aggr  pbcw3
-            
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw3.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw3.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcw3.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcw3.bin_los_cd
+
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw3.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw3.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw3.cd_access_type
@@ -1373,10 +1399,10 @@ if  flg_procedure_off =0 then
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcw3.bin_los_cd asc
                     , pbcw3.bin_placement_cd asc
@@ -1420,20 +1446,22 @@ if  flg_procedure_off =0 then
                 , p_filter_finding 
                 , p_filter_service_category  
                 , p_filter_service_budget
+                , p_bin_dep_cd
                 , 0
-                , 0
+                , 0                
                 , p_mindate
                 , p_maxdate
-                , 12);
+                , var_calling_procedure);
                 
         update cache_pbcw3_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
         where qry_id=8;
         
         select
-            pbcw3.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
+            
+						qry_type
 						, date_type
+,pbcw3.cohort_entry_date as "Month"
 						, pbcw3.age_grouping_cd
 						, case pbcw3.age_grouping_cd
                                 when 0 then age0
@@ -1445,7 +1473,7 @@ if  flg_procedure_off =0 then
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcw3.cd_race as Ethnicity_Cd
+						, pbcw3.cd_race as ethnicity_cd
 						, case pbcw3.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -1461,33 +1489,35 @@ if  flg_procedure_off =0 then
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcw3.pk_gndr as Gender_Cd
+						, pbcw3.pk_gndr as gender_cd
 						, case pbcw3.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcw3.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw3.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcw3.init_cd_plcm_setng  
+						, case when pbcw3.init_cd_plcm_setng = 0 then fpl0
+                   when pbcw3.init_cd_plcm_setng = 3 then fpl3
+                   when pbcw3.init_cd_plcm_setng = 4 then fpl4
+                   when pbcw3.init_cd_plcm_setng = 5 then fpl5
+                   when pbcw3.init_cd_plcm_setng = 6 then fpl6
+                   when pbcw3.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcw3.long_cd_plcm_setng  
+						, case when pbcw3.long_cd_plcm_setng = 0 then lpl0
+                   when pbcw3.long_cd_plcm_setng = 3 then lpl3
+                   when pbcw3.long_cd_plcm_setng = 4 then lpl4
+                   when pbcw3.long_cd_plcm_setng = 5 then lpl5
+                   when pbcw3.long_cd_plcm_setng = 6 then lpl6
+                   when pbcw3.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcw3.county_cd
 						, ref_cnty.county as "County"
-						, pbcw3.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw3.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcw3.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcw3.bin_los_cd
-						, case pbcw3.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"
 						, pbcw3.bin_placement_cd
 						, case pbcw3.bin_placement_cd
                                 when 0 then plc0
@@ -1524,18 +1554,18 @@ if  flg_procedure_off =0 then
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcw3.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcw3.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw3.cd_budget_poc_frc   "Budget Cd"
+						, pbcw3.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , family_setting_dcfs_prcntg as "Family Setting (State Foster Home)"
             , family_setting_private_agency_prcntg as "Family Setting (Private Foster Home)"
             , relative_prcntg  as "Family Setting (Kin Placement)"
             , group_inst_care_prcntg as "Non-Family Setting"
             FROM cache_pbcw3_aggr  pbcw3
-            
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw3.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw3.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcw3.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcw3.bin_los_cd
+
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw3.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw3.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw3.cd_access_type
@@ -1549,10 +1579,10 @@ if  flg_procedure_off =0 then
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcw3.bin_los_cd asc
                     , pbcw3.bin_placement_cd asc
@@ -1596,20 +1626,22 @@ if  flg_procedure_off =0 then
                 , p_filter_finding 
                 , p_filter_service_category  
                 , p_filter_service_budget
+                , p_bin_dep_cd
                 , 0
-                , 0
+                , 0                
                 , p_mindate
                 , p_maxdate
-                , 12);
+                , var_calling_procedure);
                 
         update cache_pbcw3_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
         where qry_id=9;
         
         select
-            pbcw3.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
+            
+						qry_type
 						, date_type
+,pbcw3.cohort_entry_date as "Month"
 						, pbcw3.age_grouping_cd
 						, case pbcw3.age_grouping_cd
                                 when 0 then age0
@@ -1621,7 +1653,7 @@ if  flg_procedure_off =0 then
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcw3.cd_race as Ethnicity_Cd
+						, pbcw3.cd_race as ethnicity_cd
 						, case pbcw3.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -1637,33 +1669,35 @@ if  flg_procedure_off =0 then
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcw3.pk_gndr as Gender_Cd
+						, pbcw3.pk_gndr as gender_cd
 						, case pbcw3.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcw3.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw3.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcw3.init_cd_plcm_setng  
+						, case when pbcw3.init_cd_plcm_setng = 0 then fpl0
+                   when pbcw3.init_cd_plcm_setng = 3 then fpl3
+                   when pbcw3.init_cd_plcm_setng = 4 then fpl4
+                   when pbcw3.init_cd_plcm_setng = 5 then fpl5
+                   when pbcw3.init_cd_plcm_setng = 6 then fpl6
+                   when pbcw3.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcw3.long_cd_plcm_setng  
+						, case when pbcw3.long_cd_plcm_setng = 0 then lpl0
+                   when pbcw3.long_cd_plcm_setng = 3 then lpl3
+                   when pbcw3.long_cd_plcm_setng = 4 then lpl4
+                   when pbcw3.long_cd_plcm_setng = 5 then lpl5
+                   when pbcw3.long_cd_plcm_setng = 6 then lpl6
+                   when pbcw3.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcw3.county_cd
 						, ref_cnty.county as "County"
-						, pbcw3.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw3.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcw3.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcw3.bin_los_cd
-						, case pbcw3.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"
 						, pbcw3.bin_placement_cd
 						, case pbcw3.bin_placement_cd
                                 when 0 then plc0
@@ -1700,18 +1734,18 @@ if  flg_procedure_off =0 then
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcw3.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcw3.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw3.cd_budget_poc_frc   "Budget Cd"
+						, pbcw3.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , family_setting_dcfs_prcntg as "Family Setting (State Foster Home)"
             , family_setting_private_agency_prcntg as "Family Setting (Private Foster Home)"
             , relative_prcntg  as "Family Setting (Kin Placement)"
             , group_inst_care_prcntg as "Non-Family Setting"
             FROM cache_pbcw3_aggr  pbcw3
-            
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw3.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw3.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcw3.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcw3.bin_los_cd
+
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw3.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw3.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw3.cd_access_type
@@ -1725,10 +1759,10 @@ if  flg_procedure_off =0 then
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcw3.bin_los_cd asc
                     , pbcw3.bin_placement_cd asc
@@ -1772,20 +1806,22 @@ if  flg_procedure_off =0 then
                 , p_filter_finding 
                 , p_filter_service_category  
                 , p_filter_service_budget
+                , p_bin_dep_cd
                 , 0
-                , 0
+                , 0                
                 , p_mindate
                 , p_maxdate
-                , 12);
+                , var_calling_procedure);
                 
         update cache_pbcw3_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
         where qry_id=10;
         
         select
-            pbcw3.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
+            
+						qry_type
 						, date_type
+,pbcw3.cohort_entry_date as "Month"
 						, pbcw3.age_grouping_cd
 						, case pbcw3.age_grouping_cd
                                 when 0 then age0
@@ -1797,7 +1833,7 @@ if  flg_procedure_off =0 then
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcw3.cd_race as Ethnicity_Cd
+						, pbcw3.cd_race as ethnicity_cd
 						, case pbcw3.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -1813,33 +1849,35 @@ if  flg_procedure_off =0 then
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcw3.pk_gndr as Gender_Cd
+						, pbcw3.pk_gndr as gender_cd
 						, case pbcw3.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcw3.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw3.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcw3.init_cd_plcm_setng  
+						, case when pbcw3.init_cd_plcm_setng = 0 then fpl0
+                   when pbcw3.init_cd_plcm_setng = 3 then fpl3
+                   when pbcw3.init_cd_plcm_setng = 4 then fpl4
+                   when pbcw3.init_cd_plcm_setng = 5 then fpl5
+                   when pbcw3.init_cd_plcm_setng = 6 then fpl6
+                   when pbcw3.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcw3.long_cd_plcm_setng  
+						, case when pbcw3.long_cd_plcm_setng = 0 then lpl0
+                   when pbcw3.long_cd_plcm_setng = 3 then lpl3
+                   when pbcw3.long_cd_plcm_setng = 4 then lpl4
+                   when pbcw3.long_cd_plcm_setng = 5 then lpl5
+                   when pbcw3.long_cd_plcm_setng = 6 then lpl6
+                   when pbcw3.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcw3.county_cd
 						, ref_cnty.county as "County"
-						, pbcw3.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw3.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcw3.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcw3.bin_los_cd
-						, case pbcw3.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"
 						, pbcw3.bin_placement_cd
 						, case pbcw3.bin_placement_cd
                                 when 0 then plc0
@@ -1876,18 +1914,18 @@ if  flg_procedure_off =0 then
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcw3.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcw3.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw3.cd_budget_poc_frc   "Budget Cd"
+						, pbcw3.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , family_setting_dcfs_prcntg as "Family Setting (State Foster Home)"
             , family_setting_private_agency_prcntg as "Family Setting (Private Foster Home)"
             , relative_prcntg  as "Family Setting (Kin Placement)"
             , group_inst_care_prcntg as "Non-Family Setting"
             FROM cache_pbcw3_aggr  pbcw3
-            
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw3.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw3.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcw3.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcw3.bin_los_cd
+
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw3.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw3.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw3.cd_access_type
@@ -1901,10 +1939,10 @@ if  flg_procedure_off =0 then
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcw3.bin_los_cd asc
                     , pbcw3.bin_placement_cd asc
@@ -1948,20 +1986,22 @@ if  flg_procedure_off =0 then
                 , p_filter_finding 
                 , p_filter_service_category  
                 , p_filter_service_budget
+                , p_bin_dep_cd
                 , 0
-                , 0
+                , 0                
                 , p_mindate
                 , p_maxdate
-                , 12);
+                , var_calling_procedure);
                 
         update cache_pbcw3_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
         where qry_id=11;
         
         select
-            pbcw3.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
+
+						qry_type
 						, date_type
+            ,pbcw3.cohort_entry_date as "Month"
 						, pbcw3.age_grouping_cd
 						, case pbcw3.age_grouping_cd
                                 when 0 then age0
@@ -1973,7 +2013,7 @@ if  flg_procedure_off =0 then
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcw3.cd_race as Ethnicity_Cd
+						, pbcw3.cd_race as ethnicity_cd
 						, case pbcw3.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -1989,33 +2029,35 @@ if  flg_procedure_off =0 then
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcw3.pk_gndr as Gender_Cd
+						, pbcw3.pk_gndr as gender_cd
 						, case pbcw3.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcw3.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw3.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcw3.init_cd_plcm_setng  
+						, case when pbcw3.init_cd_plcm_setng = 0 then fpl0
+                   when pbcw3.init_cd_plcm_setng = 3 then fpl3
+                   when pbcw3.init_cd_plcm_setng = 4 then fpl4
+                   when pbcw3.init_cd_plcm_setng = 5 then fpl5
+                   when pbcw3.init_cd_plcm_setng = 6 then fpl6
+                   when pbcw3.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcw3.long_cd_plcm_setng  
+						, case when pbcw3.long_cd_plcm_setng = 0 then lpl0
+                   when pbcw3.long_cd_plcm_setng = 3 then lpl3
+                   when pbcw3.long_cd_plcm_setng = 4 then lpl4
+                   when pbcw3.long_cd_plcm_setng = 5 then lpl5
+                   when pbcw3.long_cd_plcm_setng = 6 then lpl6
+                   when pbcw3.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcw3.county_cd
 						, ref_cnty.county as "County"
-						, pbcw3.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw3.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcw3.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcw3.bin_los_cd
-						, case pbcw3.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"
 						, pbcw3.bin_placement_cd
 						, case pbcw3.bin_placement_cd
                                 when 0 then plc0
@@ -2052,18 +2094,18 @@ if  flg_procedure_off =0 then
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcw3.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcw3.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw3.cd_budget_poc_frc   "Budget Cd"
+						, pbcw3.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , family_setting_dcfs_prcntg as "Family Setting (State Foster Home)"
             , family_setting_private_agency_prcntg as "Family Setting (Private Foster Home)"
             , relative_prcntg  as "Family Setting (Kin Placement)"
             , group_inst_care_prcntg as "Non-Family Setting"
             FROM cache_pbcw3_aggr  pbcw3
-            
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw3.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw3.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcw3.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcw3.bin_los_cd
+
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw3.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw3.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw3.cd_access_type
@@ -2077,10 +2119,10 @@ if  flg_procedure_off =0 then
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcw3.bin_los_cd asc
                     , pbcw3.bin_placement_cd asc
@@ -2123,20 +2165,22 @@ if  flg_procedure_off =0 then
                 , p_filter_finding 
                 , p_filter_service_category  
                 , p_filter_service_budget
+                , p_bin_dep_cd
                 , 0
-                , 0
+                , 0                
                 , p_mindate
                 , p_maxdate
-                , 12);
+                , var_calling_procedure);
                 
         update cache_pbcw3_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
         where qry_id=12;
         
         select
-            pbcw3.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
+            
+						qry_type
 						, date_type
+,pbcw3.cohort_entry_date as "Month"
 						, pbcw3.age_grouping_cd
 						, case pbcw3.age_grouping_cd
                                 when 0 then age0
@@ -2148,7 +2192,7 @@ if  flg_procedure_off =0 then
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcw3.cd_race as Ethnicity_Cd
+						, pbcw3.cd_race as ethnicity_cd
 						, case pbcw3.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -2164,33 +2208,35 @@ if  flg_procedure_off =0 then
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcw3.pk_gndr as Gender_Cd
+						, pbcw3.pk_gndr as gender_cd
 						, case pbcw3.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcw3.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw3.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcw3.init_cd_plcm_setng  
+						, case when pbcw3.init_cd_plcm_setng = 0 then fpl0
+                   when pbcw3.init_cd_plcm_setng = 3 then fpl3
+                   when pbcw3.init_cd_plcm_setng = 4 then fpl4
+                   when pbcw3.init_cd_plcm_setng = 5 then fpl5
+                   when pbcw3.init_cd_plcm_setng = 6 then fpl6
+                   when pbcw3.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcw3.long_cd_plcm_setng  
+						, case when pbcw3.long_cd_plcm_setng = 0 then lpl0
+                   when pbcw3.long_cd_plcm_setng = 3 then lpl3
+                   when pbcw3.long_cd_plcm_setng = 4 then lpl4
+                   when pbcw3.long_cd_plcm_setng = 5 then lpl5
+                   when pbcw3.long_cd_plcm_setng = 6 then lpl6
+                   when pbcw3.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcw3.county_cd
 						, ref_cnty.county as "County"
-						, pbcw3.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw3.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcw3.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcw3.bin_los_cd
-						, case pbcw3.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"
 						, pbcw3.bin_placement_cd
 						, case pbcw3.bin_placement_cd
                                 when 0 then plc0
@@ -2227,18 +2273,18 @@ if  flg_procedure_off =0 then
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcw3.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcw3.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw3.cd_budget_poc_frc   "Budget Cd"
+						, pbcw3.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , family_setting_dcfs_prcntg as "Family Setting (State Foster Home)"
             , family_setting_private_agency_prcntg as "Family Setting (Private Foster Home)"
             , relative_prcntg  as "Family Setting (Kin Placement)"
             , group_inst_care_prcntg as "Non-Family Setting"
             FROM cache_pbcw3_aggr  pbcw3
-            
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw3.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw3.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcw3.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcw3.bin_los_cd
+
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw3.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw3.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw3.cd_access_type
@@ -2252,10 +2298,10 @@ if  flg_procedure_off =0 then
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcw3.bin_los_cd asc
                     , pbcw3.bin_placement_cd asc
@@ -2298,20 +2344,22 @@ if  flg_procedure_off =0 then
                 , p_filter_finding 
                 , p_filter_service_category  
                 , p_filter_service_budget
+                , p_bin_dep_cd
                 , 0
-                , 0
+                , 0                
                 , p_mindate
                 , p_maxdate
-                , 12);
+                , var_calling_procedure);
                 
         update cache_pbcw3_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
         where qry_id=13;
         
         select
-            pbcw3.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
+            
+						qry_type
 						, date_type
+,pbcw3.cohort_entry_date as "Month"
 						, pbcw3.age_grouping_cd
 						, case pbcw3.age_grouping_cd
                                 when 0 then age0
@@ -2323,7 +2371,7 @@ if  flg_procedure_off =0 then
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcw3.cd_race as Ethnicity_Cd
+						, pbcw3.cd_race as ethnicity_cd
 						, case pbcw3.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -2339,33 +2387,35 @@ if  flg_procedure_off =0 then
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcw3.pk_gndr as Gender_Cd
+						, pbcw3.pk_gndr as gender_cd
 						, case pbcw3.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcw3.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw3.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcw3.init_cd_plcm_setng  
+						, case when pbcw3.init_cd_plcm_setng = 0 then fpl0
+                   when pbcw3.init_cd_plcm_setng = 3 then fpl3
+                   when pbcw3.init_cd_plcm_setng = 4 then fpl4
+                   when pbcw3.init_cd_plcm_setng = 5 then fpl5
+                   when pbcw3.init_cd_plcm_setng = 6 then fpl6
+                   when pbcw3.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcw3.long_cd_plcm_setng  
+						, case when pbcw3.long_cd_plcm_setng = 0 then lpl0
+                   when pbcw3.long_cd_plcm_setng = 3 then lpl3
+                   when pbcw3.long_cd_plcm_setng = 4 then lpl4
+                   when pbcw3.long_cd_plcm_setng = 5 then lpl5
+                   when pbcw3.long_cd_plcm_setng = 6 then lpl6
+                   when pbcw3.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcw3.county_cd
 						, ref_cnty.county as "County"
-						, pbcw3.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw3.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcw3.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcw3.bin_los_cd
-						, case pbcw3.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"
 						, pbcw3.bin_placement_cd
 						, case pbcw3.bin_placement_cd
                                 when 0 then plc0
@@ -2402,18 +2452,18 @@ if  flg_procedure_off =0 then
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcw3.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcw3.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw3.cd_budget_poc_frc   "Budget Cd"
+						, pbcw3.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , family_setting_dcfs_prcntg as "Family Setting (State Foster Home)"
             , family_setting_private_agency_prcntg as "Family Setting (Private Foster Home)"
             , relative_prcntg  as "Family Setting (Kin Placement)"
             , group_inst_care_prcntg as "Non-Family Setting"
             FROM cache_pbcw3_aggr  pbcw3
-            
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw3.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw3.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcw3.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcw3.bin_los_cd
+
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw3.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw3.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw3.cd_access_type
@@ -2427,10 +2477,10 @@ if  flg_procedure_off =0 then
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcw3.bin_los_cd asc
                     , pbcw3.bin_placement_cd asc
@@ -2473,20 +2523,22 @@ elseif (trim(p_bin_placement_cd)='0'
                 , p_filter_finding 
                 , p_filter_service_category  
                 , p_filter_service_budget
+                , p_bin_dep_cd
                 , 0
-                , 0
+                , 0                
                 , p_mindate
                 , p_maxdate
-                , 12);
+                , var_calling_procedure);
                 
         update cache_pbcw3_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
         where qry_id=14;
         
         select
-            pbcw3.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
+            
+						qry_type
 						, date_type
+,pbcw3.cohort_entry_date as "Month"
 						, pbcw3.age_grouping_cd
 						, case pbcw3.age_grouping_cd
                                 when 0 then age0
@@ -2498,7 +2550,7 @@ elseif (trim(p_bin_placement_cd)='0'
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcw3.cd_race as Ethnicity_Cd
+						, pbcw3.cd_race as ethnicity_cd
 						, case pbcw3.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -2514,33 +2566,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcw3.pk_gndr as Gender_Cd
+						, pbcw3.pk_gndr as gender_cd
 						, case pbcw3.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcw3.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw3.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcw3.init_cd_plcm_setng  
+						, case when pbcw3.init_cd_plcm_setng = 0 then fpl0
+                   when pbcw3.init_cd_plcm_setng = 3 then fpl3
+                   when pbcw3.init_cd_plcm_setng = 4 then fpl4
+                   when pbcw3.init_cd_plcm_setng = 5 then fpl5
+                   when pbcw3.init_cd_plcm_setng = 6 then fpl6
+                   when pbcw3.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcw3.long_cd_plcm_setng  
+						, case when pbcw3.long_cd_plcm_setng = 0 then lpl0
+                   when pbcw3.long_cd_plcm_setng = 3 then lpl3
+                   when pbcw3.long_cd_plcm_setng = 4 then lpl4
+                   when pbcw3.long_cd_plcm_setng = 5 then lpl5
+                   when pbcw3.long_cd_plcm_setng = 6 then lpl6
+                   when pbcw3.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcw3.county_cd
 						, ref_cnty.county as "County"
-						, pbcw3.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw3.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcw3.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcw3.bin_los_cd
-						, case pbcw3.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"
 						, pbcw3.bin_placement_cd
 						, case pbcw3.bin_placement_cd
                                 when 0 then plc0
@@ -2577,18 +2631,18 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcw3.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcw3.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw3.cd_budget_poc_frc   "Budget Cd"
+						, pbcw3.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , family_setting_dcfs_prcntg as "Family Setting (State Foster Home)"
             , family_setting_private_agency_prcntg as "Family Setting (Private Foster Home)"
             , relative_prcntg  as "Family Setting (Kin Placement)"
             , group_inst_care_prcntg as "Non-Family Setting"
             FROM cache_pbcw3_aggr  pbcw3
-            
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw3.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw3.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcw3.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcw3.bin_los_cd
+
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw3.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw3.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw3.cd_access_type
@@ -2602,10 +2656,10 @@ elseif (trim(p_bin_placement_cd)='0'
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcw3.bin_los_cd asc
                     , pbcw3.bin_placement_cd asc
@@ -2648,20 +2702,22 @@ elseif (trim(p_bin_placement_cd)='0'
                 , p_filter_finding 
                 , p_filter_service_category  
                 , p_filter_service_budget
+                , p_bin_dep_cd
                 , 0
-                , 0
+                , 0                
                 , p_mindate
                 , p_maxdate
-                , 12);
+                , var_calling_procedure);
                 
         update cache_pbcw3_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
         where qry_id=15;
         
         select
-            pbcw3.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
+            
+						qry_type
 						, date_type
+,pbcw3.cohort_entry_date as "Month"
 						, pbcw3.age_grouping_cd
 						, case pbcw3.age_grouping_cd
                                 when 0 then age0
@@ -2673,7 +2729,7 @@ elseif (trim(p_bin_placement_cd)='0'
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcw3.cd_race as Ethnicity_Cd
+						, pbcw3.cd_race as ethnicity_cd
 						, case pbcw3.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -2689,33 +2745,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcw3.pk_gndr as Gender_Cd
+						, pbcw3.pk_gndr as gender_cd
 						, case pbcw3.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcw3.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw3.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcw3.init_cd_plcm_setng  
+						, case when pbcw3.init_cd_plcm_setng = 0 then fpl0
+                   when pbcw3.init_cd_plcm_setng = 3 then fpl3
+                   when pbcw3.init_cd_plcm_setng = 4 then fpl4
+                   when pbcw3.init_cd_plcm_setng = 5 then fpl5
+                   when pbcw3.init_cd_plcm_setng = 6 then fpl6
+                   when pbcw3.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcw3.long_cd_plcm_setng  
+						, case when pbcw3.long_cd_plcm_setng = 0 then lpl0
+                   when pbcw3.long_cd_plcm_setng = 3 then lpl3
+                   when pbcw3.long_cd_plcm_setng = 4 then lpl4
+                   when pbcw3.long_cd_plcm_setng = 5 then lpl5
+                   when pbcw3.long_cd_plcm_setng = 6 then lpl6
+                   when pbcw3.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcw3.county_cd
 						, ref_cnty.county as "County"
-						, pbcw3.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw3.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcw3.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcw3.bin_los_cd
-						, case pbcw3.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"
 						, pbcw3.bin_placement_cd
 						, case pbcw3.bin_placement_cd
                                 when 0 then plc0
@@ -2752,18 +2810,18 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcw3.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcw3.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw3.cd_budget_poc_frc   "Budget Cd"
+						, pbcw3.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , family_setting_dcfs_prcntg as "Family Setting (State Foster Home)"
             , family_setting_private_agency_prcntg as "Family Setting (Private Foster Home)"
             , relative_prcntg  as "Family Setting (Kin Placement)"
             , group_inst_care_prcntg as "Non-Family Setting"
             FROM cache_pbcw3_aggr  pbcw3
-            
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw3.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw3.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcw3.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcw3.bin_los_cd
+
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw3.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw3.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw3.cd_access_type
@@ -2780,10 +2838,10 @@ elseif (trim(p_bin_placement_cd)='0'
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcw3.bin_los_cd asc
                     , pbcw3.bin_placement_cd asc
@@ -2826,20 +2884,22 @@ elseif (trim(p_bin_placement_cd)='0'
                 , p_filter_finding 
                 , p_filter_service_category  
                 , p_filter_service_budget
+                , p_bin_dep_cd
                 , 0
-                , 0
+                , 0                
                 , p_mindate
                 , p_maxdate
-                , 12);
+                , var_calling_procedure);
                 
        update cache_pbcw3_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
         where qry_id=16;
         
         select
-            pbcw3.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
+
+						qry_type
 						, date_type
+,pbcw3.cohort_entry_date as "Month"
 						, pbcw3.age_grouping_cd
 						, case pbcw3.age_grouping_cd
                                 when 0 then age0
@@ -2851,7 +2911,7 @@ elseif (trim(p_bin_placement_cd)='0'
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcw3.cd_race as Ethnicity_Cd
+						, pbcw3.cd_race as ethnicity_cd
 						, case pbcw3.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -2867,33 +2927,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcw3.pk_gndr as Gender_Cd
+						, pbcw3.pk_gndr as gender_cd
 						, case pbcw3.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcw3.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw3.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcw3.init_cd_plcm_setng  
+						, case when pbcw3.init_cd_plcm_setng = 0 then fpl0
+                   when pbcw3.init_cd_plcm_setng = 3 then fpl3
+                   when pbcw3.init_cd_plcm_setng = 4 then fpl4
+                   when pbcw3.init_cd_plcm_setng = 5 then fpl5
+                   when pbcw3.init_cd_plcm_setng = 6 then fpl6
+                   when pbcw3.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcw3.long_cd_plcm_setng  
+						, case when pbcw3.long_cd_plcm_setng = 0 then lpl0
+                   when pbcw3.long_cd_plcm_setng = 3 then lpl3
+                   when pbcw3.long_cd_plcm_setng = 4 then lpl4
+                   when pbcw3.long_cd_plcm_setng = 5 then lpl5
+                   when pbcw3.long_cd_plcm_setng = 6 then lpl6
+                   when pbcw3.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcw3.county_cd
 						, ref_cnty.county as "County"
-						, pbcw3.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw3.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcw3.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcw3.bin_los_cd
-						, case pbcw3.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"
 						, pbcw3.bin_placement_cd
 						, case pbcw3.bin_placement_cd
                                 when 0 then plc0
@@ -2930,17 +2992,18 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcw3.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcw3.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw3.cd_budget_poc_frc   "Budget Cd"
+						, pbcw3.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , family_setting_dcfs_prcntg as "Family Setting (State Foster Home)"
             , family_setting_private_agency_prcntg as "Family Setting (Private Foster Home)"
             , relative_prcntg  as "Family Setting (Kin Placement)"
             , group_inst_care_prcntg as "Non-Family Setting"
             FROM cache_pbcw3_aggr  pbcw3
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw3.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw3.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcw3.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcw3.bin_los_cd
+
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw3.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw3.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw3.cd_access_type
@@ -2954,10 +3017,10 @@ elseif (trim(p_bin_placement_cd)='0'
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcw3.bin_los_cd asc
                     , pbcw3.bin_placement_cd asc
@@ -2987,11 +3050,12 @@ else
                 , p_filter_finding 
                 , p_filter_service_category  
                 , p_filter_service_budget
+                , p_bin_dep_cd
                 , 0
                 , 1
                 , p_mindate
                 , p_maxdate
-                , 12);
+                , var_calling_procedure);
                 
   
     set p_qry_id=(
@@ -3686,9 +3750,11 @@ if  var_row_cnt_param <> var_row_cnt_cache then
            ,cohort_begin_year
            ,int_hash_key)
 
-		SELECT    prtl_pbcw3.qry_type
+		SELECT   
+				 prtl_pbcw3.cohort_begin_date
+				, prtl_pbcw3.qry_type
 				, prtl_pbcw3.date_type 
-				, prtl_pbcw3.cohort_begin_date
+
 				, mtch.int_param_key
 				, prtl_pbcw3.bin_dep_cd
 				, 0
@@ -4100,9 +4166,10 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 						where ck.in_cache=0; 
 end if; -- all not in cache
             select
-            pbcw3.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
+
+						qry_type
 						, date_type
+            ,pbcw3.cohort_entry_date as "Month"
 						, pbcw3.age_grouping_cd
 						, case pbcw3.age_grouping_cd
                                 when 0 then age0
@@ -4114,7 +4181,7 @@ end if; -- all not in cache
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcw3.cd_race as Ethnicity_Cd
+						, pbcw3.cd_race as ethnicity_cd
 						, case pbcw3.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -4130,33 +4197,35 @@ end if; -- all not in cache
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcw3.pk_gndr as Gender_Cd
+						, pbcw3.pk_gndr as gender_cd
 						, case pbcw3.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcw3.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw3.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcw3.init_cd_plcm_setng  
+						, case when pbcw3.init_cd_plcm_setng = 0 then fpl0
+                   when pbcw3.init_cd_plcm_setng = 3 then fpl3
+                   when pbcw3.init_cd_plcm_setng = 4 then fpl4
+                   when pbcw3.init_cd_plcm_setng = 5 then fpl5
+                   when pbcw3.init_cd_plcm_setng = 6 then fpl6
+                   when pbcw3.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcw3.long_cd_plcm_setng  
+						, case when pbcw3.long_cd_plcm_setng = 0 then lpl0
+                   when pbcw3.long_cd_plcm_setng = 3 then lpl3
+                   when pbcw3.long_cd_plcm_setng = 4 then lpl4
+                   when pbcw3.long_cd_plcm_setng = 5 then lpl5
+                   when pbcw3.long_cd_plcm_setng = 6 then lpl6
+                   when pbcw3.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcw3.county_cd
 						, ref_cnty.county as "County"
-						, pbcw3.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw3.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcw3.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcw3.bin_los_cd
-						, case pbcw3.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"
 						, pbcw3.bin_placement_cd
 						, case pbcw3.bin_placement_cd
                                 when 0 then plc0
@@ -4193,9 +4262,9 @@ end if; -- all not in cache
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcw3.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcw3.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw3.cd_budget_poc_frc   "Budget Cd"
+						, pbcw3.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , family_setting_dcfs_prcntg as "Family Setting (State Foster Home)"
             , family_setting_private_agency_prcntg as "Family Setting (Private Foster Home)"
@@ -4203,8 +4272,8 @@ end if; -- all not in cache
             , group_inst_care_prcntg as "Non-Family Setting"
             FROM cache_pbcw3_aggr  pbcw3
             join cachekeys ck on ck.qry_id=pbcw3.qry_id and ck.int_hash_key=pbcw3.int_hash_key
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw3.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw3.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcw3.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcw3.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw3.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw3.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw3.cd_access_type
@@ -4217,10 +4286,10 @@ end if; -- all not in cache
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcw3.bin_los_cd asc
                     , pbcw3.bin_placement_cd asc

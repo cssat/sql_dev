@@ -20,6 +20,7 @@ CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_PBCP5`(p_date  varchar(300
 , p_filter_finding varchar(30)
 , p_filter_service_category  varchar(100)
 , p_filter_service_budget varchar(100)
+, p_bin_dep_cd varchar(20)
  )
 begin
 
@@ -31,7 +32,7 @@ declare strValues varchar(3000);
 declare intVal integer;		
 declare intincAll integer;
 
-declare p_calling_procedure int;
+declare var_calling_procedure int;
 
 declare p_qry_id bigint;
 declare p_mindate datetime;
@@ -60,17 +61,20 @@ declare gdr1 char(10);
 declare gdr2 char(10);
 declare gdr3 char(10);
 
-declare dep0 char(50);
-declare dep1 char(50);
-declare dep2 char(50);
-declare dep3 char(50);
 
-declare los0 char(50);
-declare los1 char(50);
-declare los2 char(50);
-declare los3 char(50);
-declare los4 char(50);
-declare los5 char(50);
+declare fpl0 char(50);
+declare fpl3 char(50);
+declare fpl4 char(50);
+declare fpl5 char(50);
+declare fpl6 char(50);
+declare fpl7 char(50);
+
+declare lpl0 char(50);
+declare lpl3 char(50);
+declare lpl4 char(50);
+declare lpl5 char(50);
+declare lpl6 char(50);
+declare lpl7 char(50);
 
 declare plc0 char(25);
 declare plc1 char(25);
@@ -115,9 +119,10 @@ declare eth12 char(100) ;
 set x1=rand();
 set x2=rand();
 
-set p_calling_procedure = 9;
+set var_calling_procedure = 9;
 
-call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,dep0,dep1,dep2,dep3,los0,los1,los2,los3,los4,plc0,plc1,plc2,plc3,plc4,plc5,ihs0,ihs1,ihs2,ihs3,alg0,alg1,alg2,alg3,alg4,fnd0,fnd1,fnd2,fnd3,fnd4,eth0,eth1,eth2,eth3,eth4,eth5,eth6,eth7,eth8,eth9,eth10,eth11,eth12,p_calling_procedure);
+call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fpl0,fpl3,fpl4,fpl5,fpl6,fpl7,lpl0,lpl3,lpl4,lpl5,lpl6,lpl7,plc0,plc1,plc2,plc3,plc4,plc5,ihs0,ihs1,ihs2,ihs3,alg0,alg1,alg2,alg3,alg4,fnd0,fnd1,fnd2,fnd3,fnd4,eth0,eth1,eth2,eth3,eth4,eth5,eth6,eth7,eth8,eth9,eth10,eth11,eth12,var_calling_procedure);
+
 
 /***  turn procedure on / off for loading data ***************************************/
 set flg_procedure_off =0;
@@ -128,41 +133,47 @@ if  flg_procedure_off =0 then
         create temporary table tbltmpValues (strVal varchar(10));
 
 
-        DROP TEMPORARY TABLE IF EXISTS tbldt;
-        create temporary table tbldt(match_date datetime );
-        alter table tbldt add primary key(match_date);
- 
-    
-        --  dates
-        set strValues=p_date;
-        set 	intFoundPos =instr(strValues,','); 
-        while intFoundPos <>0 do
-                set strElement=SUBSTRING(strValues, 1, intFoundPos-1); 
-                SET strValues = RIGHT(strValues,length(strValues)-intFoundPos);
-            
-                insert into tbltmpValues (strVal) values (strElement);
-                set intFoundPos=instr(strValues,',');
-        end while;
-
-        if strValues <> ''  then
-                INSERT Into tbltmpValues(strVal) values (strValues);
-        end if;
-        
-        insert into tbldt (match_date)
-        select distinct cast(strVal as datetime) from tbltmpValues;
-     
-     
---  set dates 
-    
-    select min_date_any ,max_date_all 
-    into p_minmonthstart,p_maxmonthstart  
-    FROM ref_lookup_max_date where id=19;
-    select min(match_date),max(match_date) 
-    into p_mindate,p_maxdate from tbldt;
+--       DROP TEMPORARY TABLE IF EXISTS tbldt;
+--         create temporary table tbldt(match_date datetime );
+--         alter table tbldt add primary key(match_date);
+--  
+--     
+--         --  dates
+--         set strValues=p_date;
+--         set 	intFoundPos =instr(strValues,','); 
+--         while intFoundPos <>0 do
+--                 set strElement=SUBSTRING(strValues, 1, intFoundPos-1); 
+--                 SET strValues = RIGHT(strValues,length(strValues)-intFoundPos);
+--             
+--                 insert into tbltmpValues (strVal) values (strElement);
+--                 set intFoundPos=instr(strValues,',');
+--         end while;
+-- 
+--         if strValues <> ''  then
+--                 INSERT Into tbltmpValues(strVal) values (strValues);
+--         end if;
+--         
+--         insert into tbldt (match_date)
+--         select distinct cast(strVal as datetime) from tbltmpValues;
+--      
+--      
+-- --  set dates 
+--     
+--     select min_date_any ,max_date_all 
+--     into p_minmonthstart,p_maxmonthstart  
+--     FROM ref_lookup_max_date where id=19;
+--     select min(match_date),max(match_date) 
+--     into p_mindate,p_maxdate from tbldt;
+-- 
   
+     select min_date_any ,max_date_any 
+    into p_minmonthstart,p_maxmonthstart  
+    FROM ref_lookup_max_date where id=var_calling_procedure;
+    select p_minmonthstart,p_maxmonthstart 
+    into p_mindate,p_maxdate ;   
     
-    
-    if  (trim(p_bin_placement_cd)='0' 
+    if  (trim(p_bin_dep_cd)='0' 
+	and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -197,7 +208,7 @@ if  flg_procedure_off =0 then
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcp5.cd_race as Ethnicity_Cd
+						, pbcp5.cd_race as ethnicity_cd
 						, case pbcp5.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -213,33 +224,35 @@ if  flg_procedure_off =0 then
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcp5.pk_gndr as Gender_Cd
+						, pbcp5.pk_gndr as gender_cd
 						, case pbcp5.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcp5.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcp5.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcp5.init_cd_plcm_setng  		
+						, case when pbcp5.init_cd_plcm_setng = 0 then fpl0
+                   when pbcp5.init_cd_plcm_setng = 3 then fpl3
+                   when pbcp5.init_cd_plcm_setng = 4 then fpl4
+                   when pbcp5.init_cd_plcm_setng = 5 then fpl5
+                   when pbcp5.init_cd_plcm_setng = 6 then fpl6
+                   when pbcp5.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcp5.long_cd_plcm_setng  
+						, case when pbcp5.long_cd_plcm_setng = 0 then lpl0
+                   when pbcp5.long_cd_plcm_setng = 3 then lpl3
+                   when pbcp5.long_cd_plcm_setng = 4 then lpl4
+                   when pbcp5.long_cd_plcm_setng = 5 then lpl5
+                   when pbcp5.long_cd_plcm_setng = 6 then lpl6
+                   when pbcp5.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcp5.county_cd
 						, ref_cnty.county as "County"
-						, pbcp5.bin_dep_cd as  "Dependency Cd"
-						, case  pbcp5.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcp5.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcp5.bin_los_cd
-						, case pbcp5.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"                               
 						, pbcp5.bin_placement_cd
 						, case pbcp5.bin_placement_cd
                                 when 0 then plc0
@@ -276,50 +289,35 @@ if  flg_procedure_off =0 then
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcp5.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcp5.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcp5.cd_budget_poc_frc   "Budget Cd"
+						, pbcp5.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , pbcp5.cd_discharge_type
 						, toe.type_of_exit_desc as "Discharge Type"
-            , M3
-            , M6
-            , M9
-            , M12
-            , M15
-            , M18
-            , M21
-            , M24
-            , M27
-            , M30
-            , M33
-            , M36
-            , M39
-            , M42
-            , M45
-            , M48
+				, reentry_within_month as "Month"
+				, reentry_rate as "Reentry Percent"
             FROM cache_pbcp5_aggr  pbcp5
             join ref_lookup_type_of_exit toe on toe.type_of_exit=pbcp5.cd_discharge_type
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcp5.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcp5.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcp5.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcp5.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcp5.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcp5.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcp5.cd_access_type
              join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcp5.cd_budget_poc_frc
             where pbcp5.qry_id=1
-            and  pbcp5.int_hash_key=100000000000000000000
-            and pbcp5.cohort_entry_date 
-            between p_mindate and p_maxdate
+            and  pbcp5.int_hash_key=1000000000000000000000
+            -- and pbcp5.cohort_entry_date between p_mindate and p_maxdate
             order by   pbcp5.bin_dep_cd asc
             ,qry_type
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcp5.bin_los_cd asc
                     , pbcp5.bin_placement_cd asc
@@ -330,10 +328,11 @@ if  flg_procedure_off =0 then
                     , pbcp5.cd_finding
                     , pbcp5.cd_subctgry_poc_frc
                     , pbcp5.cd_budget_poc_frc
-            ,pbcp5.cd_discharge_type asc;
-             
+            ,pbcp5.reentry_within_month asc
+,pbcp5.cd_discharge_type asc;
 --  ethnicity only      
-elseif (trim(p_bin_placement_cd)='0' 
+elseif  (trim(p_bin_dep_cd)='0' 
+	and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -369,7 +368,7 @@ elseif (trim(p_bin_placement_cd)='0'
                 , 0
                 , p_mindate
                 , p_maxdate
-                , p_calling_procedure);
+                , var_calling_procedure);
                 
         update cache_pbcp5_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
@@ -390,7 +389,7 @@ elseif (trim(p_bin_placement_cd)='0'
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcp5.cd_race as Ethnicity_Cd
+						, pbcp5.cd_race as ethnicity_cd
 						, case pbcp5.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -406,33 +405,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcp5.pk_gndr as Gender_Cd
+						, pbcp5.pk_gndr as gender_cd
 						, case pbcp5.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcp5.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcp5.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcp5.init_cd_plcm_setng  
+						, case when pbcp5.init_cd_plcm_setng = 0 then fpl0
+                   when pbcp5.init_cd_plcm_setng = 3 then fpl3
+                   when pbcp5.init_cd_plcm_setng = 4 then fpl4
+                   when pbcp5.init_cd_plcm_setng = 5 then fpl5
+                   when pbcp5.init_cd_plcm_setng = 6 then fpl6
+                   when pbcp5.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcp5.long_cd_plcm_setng  
+						, case when pbcp5.long_cd_plcm_setng = 0 then lpl0
+                   when pbcp5.long_cd_plcm_setng = 3 then lpl3
+                   when pbcp5.long_cd_plcm_setng = 4 then lpl4
+                   when pbcp5.long_cd_plcm_setng = 5 then lpl5
+                   when pbcp5.long_cd_plcm_setng = 6 then lpl6
+                   when pbcp5.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcp5.county_cd
 						, ref_cnty.county as "County"
-						, pbcp5.bin_dep_cd as  "Dependency Cd"
-						, case  pbcp5.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcp5.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcp5.bin_los_cd
-						, case pbcp5.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"                               
 						, pbcp5.bin_placement_cd
 						, case pbcp5.bin_placement_cd
                                 when 0 then plc0
@@ -469,32 +470,18 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcp5.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcp5.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcp5.cd_budget_poc_frc   "Budget Cd"
+						, pbcp5.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , pbcp5.cd_discharge_type
 						, toe.type_of_exit_desc as "Discharge Type"
-            , M3
-            , M6
-            , M9
-            , M12
-            , M15
-            , M18
-            , M21
-            , M24
-            , M27
-            , M30
-            , M33
-            , M36
-            , M39
-            , M42
-            , M45
-            , M48
+				, reentry_within_month as "Month"
+				, reentry_rate as "Reentry Percent"
             FROM cache_pbcp5_aggr  pbcp5
             join ref_lookup_type_of_exit toe on toe.type_of_exit=pbcp5.cd_discharge_type
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcp5.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcp5.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcp5.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcp5.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcp5.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcp5.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcp5.cd_access_type
@@ -502,20 +489,20 @@ elseif (trim(p_bin_placement_cd)='0'
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcp5.cd_budget_poc_frc
             where pbcp5.qry_id in (1,3)
             and  pbcp5.int_hash_key in
-                (100000000000000000000,100100000000000000000,100200000000000000000,100300000000000000000,100400000000000000000,
-100500000000000000000,100600000000000000000,100800000000000000000,100900000000000000000,101000000000000000000,
-101100000000000000000,101200000000000000000)
+                (1000000000000000000000,1001000000000000000000,1002000000000000000000,1003000000000000000000
+                ,1004000000000000000000,1005000000000000000000,1006000000000000000000
+                ,1008000000000000000000,1009000000000000000000,1010000000000000000000
+                ,1011000000000000000000,1012000000000000000000)
             and pbcp5.cd_race in (select distinct cd_race from tbleth)
-            and pbcp5.cohort_entry_date 
-            between p_mindate and p_maxdate
+--            and pbcp5.cohort_entry_date between p_mindate and p_maxdate
             order by  pbcp5.bin_dep_cd asc,qry_type
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcp5.bin_los_cd asc
                     , pbcp5.bin_placement_cd asc
@@ -526,9 +513,11 @@ elseif (trim(p_bin_placement_cd)='0'
                     , pbcp5.cd_finding
                     , pbcp5.cd_subctgry_poc_frc
                     , pbcp5.cd_budget_poc_frc
-            ,pbcp5.cd_discharge_type asc;
+            ,pbcp5.reentry_within_month asc
+						,pbcp5.cd_discharge_type asc;
  --  age only
- elseif (trim(p_bin_placement_cd)='0' 
+ elseif  (trim(p_bin_dep_cd)='0' 
+	and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -564,7 +553,7 @@ elseif (trim(p_bin_placement_cd)='0'
                 , 0
                 , p_mindate
                 , p_maxdate
-                , p_calling_procedure);
+                , var_calling_procedure);
                 
         update cache_pbcp5_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
@@ -585,7 +574,7 @@ elseif (trim(p_bin_placement_cd)='0'
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcp5.cd_race as Ethnicity_Cd
+						, pbcp5.cd_race as ethnicity_cd
 						, case pbcp5.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -601,33 +590,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcp5.pk_gndr as Gender_Cd
+						, pbcp5.pk_gndr as gender_cd
 						, case pbcp5.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcp5.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcp5.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcp5.init_cd_plcm_setng  
+, case when pbcp5.init_cd_plcm_setng = 0 then fpl0
+                   when pbcp5.init_cd_plcm_setng = 3 then fpl3
+                   when pbcp5.init_cd_plcm_setng = 4 then fpl4
+                   when pbcp5.init_cd_plcm_setng = 5 then fpl5
+                   when pbcp5.init_cd_plcm_setng = 6 then fpl6
+                   when pbcp5.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcp5.long_cd_plcm_setng  
+						, case when pbcp5.long_cd_plcm_setng = 0 then lpl0
+                   when pbcp5.long_cd_plcm_setng = 3 then lpl3
+                   when pbcp5.long_cd_plcm_setng = 4 then lpl4
+                   when pbcp5.long_cd_plcm_setng = 5 then lpl5
+                   when pbcp5.long_cd_plcm_setng = 6 then lpl6
+                   when pbcp5.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcp5.county_cd
 						, ref_cnty.county as "County"
-						, pbcp5.bin_dep_cd as  "Dependency Cd"
-						, case  pbcp5.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcp5.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcp5.bin_los_cd
-						, case pbcp5.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"                               
 						, pbcp5.bin_placement_cd
 						, case pbcp5.bin_placement_cd
                                 when 0 then plc0
@@ -664,49 +655,36 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcp5.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcp5.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcp5.cd_budget_poc_frc   "Budget Cd"
+						, pbcp5.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , pbcp5.cd_discharge_type
 						, toe.type_of_exit_desc as "Discharge Type"
-            , M3
-            , M6
-            , M9
-            , M12
-            , M15
-            , M18
-            , M21
-            , M24
-            , M27
-            , M30
-            , M33
-            , M36
-            , M39
-            , M42
-            , M45
-            , M48
+				, reentry_within_month as "Month"
+				, reentry_rate as "Reentry Percent"
             FROM cache_pbcp5_aggr  pbcp5
             join ref_lookup_type_of_exit toe on toe.type_of_exit=pbcp5.cd_discharge_type
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcp5.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcp5.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcp5.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcp5.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcp5.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcp5.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcp5.cd_access_type
              join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcp5.cd_budget_poc_frc
             where pbcp5.qry_id in (1,2)
-            and pbcp5.int_hash_key in (100000000000000000000,110000000000000000000,120000000000000000000,130000000000000000000,140000000000000000000,150000000000000000000,160000000000000000000,170000000000000000000)
+            and pbcp5.int_hash_key in  (1000000000000000000000,1100000000000000000000, 1200000000000000000000
+                    ,1300000000000000000000, 1400000000000000000000, 1500000000000000000000, 1600000000000000000000, 1700000000000000000000)
             and pbcp5.age_grouping_cd in (select distinct age_grouping_cd from tblage)
-             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
+           --  and pbcp5.cohort_entry_date between p_mindate and p_maxdate
             order by pbcp5.bin_dep_cd asc,qry_type
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcp5.bin_los_cd asc
                     , pbcp5.bin_placement_cd asc
@@ -717,9 +695,11 @@ elseif (trim(p_bin_placement_cd)='0'
                     , pbcp5.cd_finding
                     , pbcp5.cd_subctgry_poc_frc
                     , pbcp5.cd_budget_poc_frc
-            ,pbcp5.cd_discharge_type asc;
+            ,pbcp5.reentry_within_month asc
+,pbcp5.cd_discharge_type asc;
   --  county only         
-     elseif (trim(p_bin_placement_cd)='0' 
+     elseif  (trim(p_bin_dep_cd)='0' 
+	and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -755,7 +735,7 @@ elseif (trim(p_bin_placement_cd)='0'
                 , 0
                 , p_mindate
                 , p_maxdate
-                , p_calling_procedure);
+                , var_calling_procedure);
                 
         update cache_pbcp5_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
@@ -776,7 +756,7 @@ elseif (trim(p_bin_placement_cd)='0'
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcp5.cd_race as Ethnicity_Cd
+						, pbcp5.cd_race as ethnicity_cd
 						, case pbcp5.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -792,33 +772,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcp5.pk_gndr as Gender_Cd
+						, pbcp5.pk_gndr as gender_cd
 						, case pbcp5.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcp5.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcp5.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcp5.init_cd_plcm_setng  
+, case when pbcp5.init_cd_plcm_setng = 0 then fpl0
+                   when pbcp5.init_cd_plcm_setng = 3 then fpl3
+                   when pbcp5.init_cd_plcm_setng = 4 then fpl4
+                   when pbcp5.init_cd_plcm_setng = 5 then fpl5
+                   when pbcp5.init_cd_plcm_setng = 6 then fpl6
+                   when pbcp5.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcp5.long_cd_plcm_setng  
+						, case when pbcp5.long_cd_plcm_setng = 0 then lpl0
+                   when pbcp5.long_cd_plcm_setng = 3 then lpl3
+                   when pbcp5.long_cd_plcm_setng = 4 then lpl4
+                   when pbcp5.long_cd_plcm_setng = 5 then lpl5
+                   when pbcp5.long_cd_plcm_setng = 6 then lpl6
+                   when pbcp5.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcp5.county_cd
 						, ref_cnty.county as "County"
-						, pbcp5.bin_dep_cd as  "Dependency Cd"
-						, case  pbcp5.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcp5.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcp5.bin_los_cd
-						, case pbcp5.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"                               
 						, pbcp5.bin_placement_cd
 						, case pbcp5.bin_placement_cd
                                 when 0 then plc0
@@ -855,32 +837,19 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcp5.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcp5.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcp5.cd_budget_poc_frc   "Budget Cd"
+						, pbcp5.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , pbcp5.cd_discharge_type
 						, toe.type_of_exit_desc as "Discharge Type"
-            , M3
-            , M6
-            , M9
-            , M12
-            , M15
-            , M18
-            , M21
-            , M24
-            , M27
-            , M30
-            , M33
-            , M36
-            , M39
-            , M42
-            , M45
-            , M48
+				, reentry_within_month as "Month"
+				, reentry_rate as "Reentry Percent"
             FROM cache_pbcp5_aggr  pbcp5
             join ref_lookup_type_of_exit toe on toe.type_of_exit=pbcp5.cd_discharge_type
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcp5.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcp5.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcp5.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcp5.bin_los_cd
+
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcp5.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcp5.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcp5.cd_access_type
@@ -888,24 +857,25 @@ elseif (trim(p_bin_placement_cd)='0'
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcp5.cd_budget_poc_frc
             where pbcp5.qry_id in (1,7)
             and pbcp5.int_hash_key in 
-            (100000000000000000000,100000001000000000000,100000002000000000000,100000003000000000000,100000004000000000000,
-100000005000000000000,100000006000000000000,100000007000000000000,100000008000000000000,100000009000000000000,
-100000010000000000000,100000011000000000000,100000012000000000000,100000013000000000000,100000014000000000000,
-100000015000000000000,100000016000000000000,100000017000000000000,100000018000000000000,100000019000000000000,
-100000020000000000000,100000021000000000000,100000022000000000000,10000009000000000000,100000024000000000000,
-100000025000000000000,100000026000000000000,100000027000000000000,100000028000000000000,100000029000000000000,
-100000030000000000000,100000031000000000000,100000032000000000000,100000033000000000000,100000034000000000000,
-100000035000000000000,100000036000000000000,100000037000000000000,100000038000000000000,100000039000000000000)
+                        (1000000000000000000000,1000000010000000000000,1000000020000000000000,1000000030000000000000,
+1000000040000000000000,
+1000000050000000000000,1000000060000000000000,1000000070000000000000,1000000080000000000000,1000000090000000000000,
+1000000100000000000000,1000000110000000000000,1000000120000000000000,1000000130000000000000,1000000140000000000000,
+1000000150000000000000,1000000160000000000000,1000000170000000000000,1000000180000000000000,1000000190000000000000,
+1000000200000000000000,1000000210000000000000,1000000220000000000000,1000000230000000000000,1000000240000000000000,
+1000000250000000000000,1000000260000000000000,1000000270000000000000,1000000280000000000000,1000000290000000000000,
+1000000300000000000000,1000000310000000000000,1000000320000000000000,1000000330000000000000,1000000340000000000000,
+1000000350000000000000,1000000360000000000000,1000000370000000000000,1000000380000000000000,1000000390000000000000)
             and pbcp5.county_cd in (select distinct cd_cnty from tblcnty)
-             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
+--             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
             order by pbcp5.bin_dep_cd asc,qry_type
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcp5.bin_los_cd asc
                     , pbcp5.bin_placement_cd asc
@@ -916,9 +886,11 @@ elseif (trim(p_bin_placement_cd)='0'
                     , pbcp5.cd_finding
                     , pbcp5.cd_subctgry_poc_frc
                     , pbcp5.cd_budget_poc_frc
-            ,pbcp5.cd_discharge_type asc;           
+            ,pbcp5.reentry_within_month asc
+,pbcp5.cd_discharge_type asc;           
  --  gender only
- elseif (trim(p_bin_placement_cd)='0' 
+ elseif  (trim(p_bin_dep_cd)='0' 
+	and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -954,7 +926,7 @@ elseif (trim(p_bin_placement_cd)='0'
                 , 0
                 , p_mindate
                 , p_maxdate
-                , p_calling_procedure);
+                , var_calling_procedure);
                 
         update cache_pbcp5_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
@@ -975,7 +947,7 @@ elseif (trim(p_bin_placement_cd)='0'
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcp5.cd_race as Ethnicity_Cd
+						, pbcp5.cd_race as ethnicity_cd
 						, case pbcp5.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -991,33 +963,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcp5.pk_gndr as Gender_Cd
+						, pbcp5.pk_gndr as gender_cd
 						, case pbcp5.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcp5.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcp5.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcp5.init_cd_plcm_setng  
+, case when pbcp5.init_cd_plcm_setng = 0 then fpl0
+                   when pbcp5.init_cd_plcm_setng = 3 then fpl3
+                   when pbcp5.init_cd_plcm_setng = 4 then fpl4
+                   when pbcp5.init_cd_plcm_setng = 5 then fpl5
+                   when pbcp5.init_cd_plcm_setng = 6 then fpl6
+                   when pbcp5.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcp5.long_cd_plcm_setng  
+						, case when pbcp5.long_cd_plcm_setng = 0 then lpl0
+                   when pbcp5.long_cd_plcm_setng = 3 then lpl3
+                   when pbcp5.long_cd_plcm_setng = 4 then lpl4
+                   when pbcp5.long_cd_plcm_setng = 5 then lpl5
+                   when pbcp5.long_cd_plcm_setng = 6 then lpl6
+                   when pbcp5.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcp5.county_cd
 						, ref_cnty.county as "County"
-						, pbcp5.bin_dep_cd as  "Dependency Cd"
-						, case  pbcp5.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcp5.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcp5.bin_los_cd
-						, case pbcp5.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"                               
 						, pbcp5.bin_placement_cd
 						, case pbcp5.bin_placement_cd
                                 when 0 then plc0
@@ -1054,49 +1028,36 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcp5.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcp5.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcp5.cd_budget_poc_frc   "Budget Cd"
+						, pbcp5.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , pbcp5.cd_discharge_type
 						, toe.type_of_exit_desc as "Discharge Type"
-            , M3
-            , M6
-            , M9
-            , M12
-            , M15
-            , M18
-            , M21
-            , M24
-            , M27
-            , M30
-            , M33
-            , M36
-            , M39
-            , M42
-            , M45
-            , M48
+				, reentry_within_month as "Month"
+				, reentry_rate as "Reentry Percent"
             FROM cache_pbcp5_aggr  pbcp5
             join ref_lookup_type_of_exit toe on toe.type_of_exit=pbcp5.cd_discharge_type
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcp5.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcp5.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcp5.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcp5.bin_los_cd
+
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcp5.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcp5.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcp5.cd_access_type
              join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcp5.cd_budget_poc_frc
             where pbcp5.qry_id in (1,4)
-            and pbcp5.int_hash_key in (100000000000000000000,100010000000000000000,100020000000000000000)
+            and pbcp5.int_hash_key in (1000000000000000000000,1000100000000000000000,1000200000000000000000)
             and pbcp5.pk_gndr in (select distinct pk_gndr from tblgdr)
-            and pbcp5.cohort_entry_date between p_mindate and p_maxdate
+--            and pbcp5.cohort_entry_date between p_mindate and p_maxdate
             order by pbcp5.bin_dep_cd asc,qry_type
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcp5.bin_los_cd asc
                     , pbcp5.bin_placement_cd asc
@@ -1107,10 +1068,12 @@ elseif (trim(p_bin_placement_cd)='0'
                     , pbcp5.cd_finding
                     , pbcp5.cd_subctgry_poc_frc
                     , pbcp5.cd_budget_poc_frc
-            ,pbcp5.cd_discharge_type asc; 
+            ,pbcp5.reentry_within_month asc
+,pbcp5.cd_discharge_type asc; 
  
  --  initial placement setting only
- elseif (trim(p_bin_placement_cd)='0' 
+ elseif  (trim(p_bin_dep_cd)='0' 
+	and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -1146,7 +1109,7 @@ elseif (trim(p_bin_placement_cd)='0'
                 , 0
                 , p_mindate
                 , p_maxdate
-                , p_calling_procedure);
+                , var_calling_procedure);
                 
         update cache_pbcp5_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
@@ -1167,7 +1130,7 @@ elseif (trim(p_bin_placement_cd)='0'
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcp5.cd_race as Ethnicity_Cd
+						, pbcp5.cd_race as ethnicity_cd
 						, case pbcp5.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -1183,33 +1146,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcp5.pk_gndr as Gender_Cd
+						, pbcp5.pk_gndr as gender_cd
 						, case pbcp5.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcp5.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcp5.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcp5.init_cd_plcm_setng  
+            , case when pbcp5.init_cd_plcm_setng = 0 then fpl0
+                   when pbcp5.init_cd_plcm_setng = 3 then fpl3
+                   when pbcp5.init_cd_plcm_setng = 4 then fpl4
+                   when pbcp5.init_cd_plcm_setng = 5 then fpl5
+                   when pbcp5.init_cd_plcm_setng = 6 then fpl6
+                   when pbcp5.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcp5.long_cd_plcm_setng  
+						, case when pbcp5.long_cd_plcm_setng = 0 then lpl0
+                   when pbcp5.long_cd_plcm_setng = 3 then lpl3
+                   when pbcp5.long_cd_plcm_setng = 4 then lpl4
+                   when pbcp5.long_cd_plcm_setng = 5 then lpl5
+                   when pbcp5.long_cd_plcm_setng = 6 then lpl6
+                   when pbcp5.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcp5.county_cd
 						, ref_cnty.county as "County"
-						, pbcp5.bin_dep_cd as  "Dependency Cd"
-						, case  pbcp5.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcp5.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcp5.bin_los_cd
-						, case pbcp5.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"                               
 						, pbcp5.bin_placement_cd
 						, case pbcp5.bin_placement_cd
                                 when 0 then plc0
@@ -1246,50 +1211,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcp5.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcp5.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcp5.cd_budget_poc_frc   "Budget Cd"
+						, pbcp5.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , pbcp5.cd_discharge_type
 						, toe.type_of_exit_desc as "Discharge Type"
-            , M3
-            , M6
-            , M9
-            , M12
-            , M15
-            , M18
-            , M21
-            , M24
-            , M27
-            , M30
-            , M33
-            , M36
-            , M39
-            , M42
-            , M45
-            , M48
+				, reentry_within_month as "Month"
+				, reentry_rate as "Reentry Percent"
             FROM cache_pbcp5_aggr  pbcp5
             join ref_lookup_type_of_exit toe on toe.type_of_exit=pbcp5.cd_discharge_type
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcp5.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcp5.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcp5.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcp5.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcp5.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcp5.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcp5.cd_access_type
             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcp5.cd_budget_poc_frc
             where pbcp5.qry_id in (1,5)
-            and pbcp5.int_hash_key in (100000000000000000000,100003000000000000000,100004000000000000000,
-                        100005000000000000000,100006000000000000000,100007000000000000000)
+            and pbcp5.int_hash_key in (1000000000000000000000,1000030000000000000000,1000040000000000000000,1000050000000000000000,1000060000000000000000,1000070000000000000000)
             and pbcp5.init_cd_plcm_setng in (select distinct cd_plcm_setng from tblfpl)
-             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
+--             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
             order by pbcp5.bin_dep_cd asc,qry_type
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcp5.bin_los_cd asc
                     , pbcp5.bin_placement_cd asc
@@ -1300,9 +1250,11 @@ elseif (trim(p_bin_placement_cd)='0'
                     , pbcp5.cd_finding
                     , pbcp5.cd_subctgry_poc_frc
                     , pbcp5.cd_budget_poc_frc
-            ,pbcp5.cd_discharge_type asc;   
+            ,pbcp5.reentry_within_month asc
+,pbcp5.cd_discharge_type asc;   
  --  longest placement setting only            
-     elseif (trim(p_bin_placement_cd)='0' 
+     elseif  (trim(p_bin_dep_cd)='0' 
+	and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -1338,7 +1290,7 @@ elseif (trim(p_bin_placement_cd)='0'
                 , 0
                 , p_mindate
                 , p_maxdate
-                , p_calling_procedure);
+                , var_calling_procedure);
                 
         update cache_pbcp5_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
@@ -1359,7 +1311,7 @@ elseif (trim(p_bin_placement_cd)='0'
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcp5.cd_race as Ethnicity_Cd
+						, pbcp5.cd_race as ethnicity_cd
 						, case pbcp5.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -1375,33 +1327,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcp5.pk_gndr as Gender_Cd
+						, pbcp5.pk_gndr as gender_cd
 						, case pbcp5.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcp5.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcp5.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcp5.init_cd_plcm_setng  
+, case when pbcp5.init_cd_plcm_setng = 0 then fpl0
+                   when pbcp5.init_cd_plcm_setng = 3 then fpl3
+                   when pbcp5.init_cd_plcm_setng = 4 then fpl4
+                   when pbcp5.init_cd_plcm_setng = 5 then fpl5
+                   when pbcp5.init_cd_plcm_setng = 6 then fpl6
+                   when pbcp5.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcp5.long_cd_plcm_setng  
+						, case when pbcp5.long_cd_plcm_setng = 0 then lpl0
+                   when pbcp5.long_cd_plcm_setng = 3 then lpl3
+                   when pbcp5.long_cd_plcm_setng = 4 then lpl4
+                   when pbcp5.long_cd_plcm_setng = 5 then lpl5
+                   when pbcp5.long_cd_plcm_setng = 6 then lpl6
+                   when pbcp5.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcp5.county_cd
 						, ref_cnty.county as "County"
-						, pbcp5.bin_dep_cd as  "Dependency Cd"
-						, case  pbcp5.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcp5.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcp5.bin_los_cd
-						, case pbcp5.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"                               
 						, pbcp5.bin_placement_cd
 						, case pbcp5.bin_placement_cd
                                 when 0 then plc0
@@ -1438,50 +1392,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcp5.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcp5.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcp5.cd_budget_poc_frc   "Budget Cd"
+						, pbcp5.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , pbcp5.cd_discharge_type
 						, toe.type_of_exit_desc as "Discharge Type"
-            , M3
-            , M6
-            , M9
-            , M12
-            , M15
-            , M18
-            , M21
-            , M24
-            , M27
-            , M30
-            , M33
-            , M36
-            , M39
-            , M42
-            , M45
-            , M48
+				, reentry_within_month as "Month"
+				, reentry_rate as "Reentry Percent"
             FROM cache_pbcp5_aggr  pbcp5
             join ref_lookup_type_of_exit toe on toe.type_of_exit=pbcp5.cd_discharge_type
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcp5.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcp5.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcp5.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcp5.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcp5.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcp5.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcp5.cd_access_type
             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcp5.cd_budget_poc_frc
             where pbcp5.qry_id in (1,6)
-            and   pbcp5.int_hash_key in (100000000000000000000,100000300000000000000,100000400000000000000,
-                        100000500000000000000,100000600000000000000,100000700000000000000)
+            and   pbcp5.int_hash_key in (1000000000000000000000,1000003000000000000000,1000004000000000000000,1000005000000000000000,1000006000000000000000,1000007000000000000000)
             and pbcp5.long_cd_plcm_setng in (select distinct cd_plcm_setng from tbllpl)
-             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
+--             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
             order by pbcp5.bin_dep_cd asc,qry_type
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcp5.bin_los_cd asc
                     , pbcp5.bin_placement_cd asc
@@ -1492,9 +1431,11 @@ elseif (trim(p_bin_placement_cd)='0'
                     , pbcp5.cd_finding
                     , pbcp5.cd_subctgry_poc_frc
                     , pbcp5.cd_budget_poc_frc
-            ,pbcp5.cd_discharge_type asc;   
+            ,pbcp5.reentry_within_month asc
+,pbcp5.cd_discharge_type asc;   
 --  LOS only            
-     elseif (trim(p_bin_placement_cd)='0' 
+     elseif  (trim(p_bin_dep_cd)='0' 
+	and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -1530,7 +1471,7 @@ elseif (trim(p_bin_placement_cd)='0'
                 , 0
                 , p_mindate
                 , p_maxdate
-                , p_calling_procedure);
+                , var_calling_procedure);
                 
         update cache_pbcp5_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
@@ -1551,7 +1492,7 @@ elseif (trim(p_bin_placement_cd)='0'
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcp5.cd_race as Ethnicity_Cd
+						, pbcp5.cd_race as ethnicity_cd
 						, case pbcp5.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -1567,33 +1508,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcp5.pk_gndr as Gender_Cd
+						, pbcp5.pk_gndr as gender_cd
 						, case pbcp5.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcp5.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcp5.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcp5.init_cd_plcm_setng  
+, case when pbcp5.init_cd_plcm_setng = 0 then fpl0
+                   when pbcp5.init_cd_plcm_setng = 3 then fpl3
+                   when pbcp5.init_cd_plcm_setng = 4 then fpl4
+                   when pbcp5.init_cd_plcm_setng = 5 then fpl5
+                   when pbcp5.init_cd_plcm_setng = 6 then fpl6
+                   when pbcp5.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcp5.long_cd_plcm_setng  
+						, case when pbcp5.long_cd_plcm_setng = 0 then lpl0
+                   when pbcp5.long_cd_plcm_setng = 3 then lpl3
+                   when pbcp5.long_cd_plcm_setng = 4 then lpl4
+                   when pbcp5.long_cd_plcm_setng = 5 then lpl5
+                   when pbcp5.long_cd_plcm_setng = 6 then lpl6
+                   when pbcp5.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcp5.county_cd
 						, ref_cnty.county as "County"
-						, pbcp5.bin_dep_cd as  "Dependency Cd"
-						, case  pbcp5.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcp5.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcp5.bin_los_cd
-						, case pbcp5.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"                               
 						, pbcp5.bin_placement_cd
 						, case pbcp5.bin_placement_cd
                                 when 0 then plc0
@@ -1630,49 +1573,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcp5.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcp5.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcp5.cd_budget_poc_frc   "Budget Cd"
+						, pbcp5.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , pbcp5.cd_discharge_type
 						, toe.type_of_exit_desc as "Discharge Type"
-            , M3
-            , M6
-            , M9
-            , M12
-            , M15
-            , M18
-            , M21
-            , M24
-            , M27
-            , M30
-            , M33
-            , M36
-            , M39
-            , M42
-            , M45
-            , M48
+				, reentry_within_month as "Month"
+				, reentry_rate as "Reentry Percent"
             FROM cache_pbcp5_aggr  pbcp5
             join ref_lookup_type_of_exit toe on toe.type_of_exit=pbcp5.cd_discharge_type
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcp5.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcp5.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcp5.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcp5.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcp5.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcp5.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcp5.cd_access_type
             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcp5.cd_budget_poc_frc
             where pbcp5.qry_id in (1,8)
-            and pbcp5.int_hash_key in (100000000000000000000,100000000100000000000,100000000200000000000,100000000300000000000,100000000400000000000)
+            and pbcp5.int_hash_key in (1000000000000000000000,1000000000100000000000,1000000000200000000000,1000000000300000000000,1000000000400000000000)
             and pbcp5.bin_los_cd in (select distinct bin_los_cd from tbllos)
-             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
+--             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
             order by pbcp5.bin_dep_cd asc,qry_type
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcp5.bin_los_cd asc
                     , pbcp5.bin_placement_cd asc
@@ -1683,9 +1612,11 @@ elseif (trim(p_bin_placement_cd)='0'
                     , pbcp5.cd_finding
                     , pbcp5.cd_subctgry_poc_frc
                     , pbcp5.cd_budget_poc_frc
-            ,pbcp5.cd_discharge_type asc;      
+            ,pbcp5.reentry_within_month asc
+,pbcp5.cd_discharge_type asc;      
 --  nbr placement only            
-   elseif (trim(p_bin_placement_cd)<>'0' 
+   elseif  (trim(p_bin_dep_cd)='0' 
+	and trim(p_bin_placement_cd)<>'0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -1721,7 +1652,7 @@ elseif (trim(p_bin_placement_cd)='0'
                 , 0
                 , p_mindate
                 , p_maxdate
-                , p_calling_procedure);
+                , var_calling_procedure);
                 
         update cache_pbcp5_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
@@ -1742,7 +1673,7 @@ elseif (trim(p_bin_placement_cd)='0'
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcp5.cd_race as Ethnicity_Cd
+						, pbcp5.cd_race as ethnicity_cd
 						, case pbcp5.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -1758,33 +1689,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcp5.pk_gndr as Gender_Cd
+						, pbcp5.pk_gndr as gender_cd
 						, case pbcp5.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcp5.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcp5.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcp5.init_cd_plcm_setng  
+, case when pbcp5.init_cd_plcm_setng = 0 then fpl0
+                   when pbcp5.init_cd_plcm_setng = 3 then fpl3
+                   when pbcp5.init_cd_plcm_setng = 4 then fpl4
+                   when pbcp5.init_cd_plcm_setng = 5 then fpl5
+                   when pbcp5.init_cd_plcm_setng = 6 then fpl6
+                   when pbcp5.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcp5.long_cd_plcm_setng  
+						, case when pbcp5.long_cd_plcm_setng = 0 then lpl0
+                   when pbcp5.long_cd_plcm_setng = 3 then lpl3
+                   when pbcp5.long_cd_plcm_setng = 4 then lpl4
+                   when pbcp5.long_cd_plcm_setng = 5 then lpl5
+                   when pbcp5.long_cd_plcm_setng = 6 then lpl6
+                   when pbcp5.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcp5.county_cd
 						, ref_cnty.county as "County"
-						, pbcp5.bin_dep_cd as  "Dependency Cd"
-						, case  pbcp5.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcp5.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcp5.bin_los_cd
-						, case pbcp5.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"                               
 						, pbcp5.bin_placement_cd
 						, case pbcp5.bin_placement_cd
                                 when 0 then plc0
@@ -1821,49 +1754,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcp5.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcp5.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcp5.cd_budget_poc_frc   "Budget Cd"
+						, pbcp5.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , pbcp5.cd_discharge_type
 						, toe.type_of_exit_desc as "Discharge Type"
-            , M3
-            , M6
-            , M9
-            , M12
-            , M15
-            , M18
-            , M21
-            , M24
-            , M27
-            , M30
-            , M33
-            , M36
-            , M39
-            , M42
-            , M45
-            , M48
+				, reentry_within_month as "Month"
+				, reentry_rate as "Reentry Percent"
             FROM cache_pbcp5_aggr  pbcp5
             join ref_lookup_type_of_exit toe on toe.type_of_exit=pbcp5.cd_discharge_type
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcp5.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcp5.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcp5.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcp5.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcp5.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcp5.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcp5.cd_access_type
             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcp5.cd_budget_poc_frc
             where pbcp5.qry_id in (1,9)
-            and pbcp5.int_hash_key in (100000000000000000000,100000000010000000000,100000000020000000000,100000000030000000000,100000000040000000000,100000000050000000000)
+            and pbcp5.int_hash_key in (1000000000000000000000,1000000000010000000000,1000000000020000000000,1000000000030000000000,1000000000040000000000,1000000000050000000000)
             and pbcp5.bin_placement_cd in (select distinct bin_placement_cd from tblnbrplc)
-             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
+--             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
  order by pbcp5.bin_dep_cd asc,qry_type
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcp5.bin_los_cd asc
                     , pbcp5.bin_placement_cd asc
@@ -1874,9 +1793,11 @@ elseif (trim(p_bin_placement_cd)='0'
                     , pbcp5.cd_finding
                     , pbcp5.cd_subctgry_poc_frc
                     , pbcp5.cd_budget_poc_frc
-            ,pbcp5.cd_discharge_type asc;   
+            ,pbcp5.reentry_within_month asc
+,pbcp5.cd_discharge_type asc;   
 --  ihs only            
-   elseif (trim(p_bin_placement_cd)='0' 
+   elseif  (trim(p_bin_dep_cd)='0' 
+	and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)<>'0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -1912,7 +1833,7 @@ elseif (trim(p_bin_placement_cd)='0'
                 , 0
                 , p_mindate
                 , p_maxdate
-                , p_calling_procedure);
+                , var_calling_procedure);
                 
         update cache_pbcp5_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
@@ -1933,7 +1854,7 @@ elseif (trim(p_bin_placement_cd)='0'
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcp5.cd_race as Ethnicity_Cd
+						, pbcp5.cd_race as ethnicity_cd
 						, case pbcp5.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -1949,33 +1870,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcp5.pk_gndr as Gender_Cd
+						, pbcp5.pk_gndr as gender_cd
 						, case pbcp5.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcp5.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcp5.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcp5.init_cd_plcm_setng  
+, case when pbcp5.init_cd_plcm_setng = 0 then fpl0
+                   when pbcp5.init_cd_plcm_setng = 3 then fpl3
+                   when pbcp5.init_cd_plcm_setng = 4 then fpl4
+                   when pbcp5.init_cd_plcm_setng = 5 then fpl5
+                   when pbcp5.init_cd_plcm_setng = 6 then fpl6
+                   when pbcp5.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcp5.long_cd_plcm_setng  
+						, case when pbcp5.long_cd_plcm_setng = 0 then lpl0
+                   when pbcp5.long_cd_plcm_setng = 3 then lpl3
+                   when pbcp5.long_cd_plcm_setng = 4 then lpl4
+                   when pbcp5.long_cd_plcm_setng = 5 then lpl5
+                   when pbcp5.long_cd_plcm_setng = 6 then lpl6
+                   when pbcp5.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcp5.county_cd
 						, ref_cnty.county as "County"
-						, pbcp5.bin_dep_cd as  "Dependency Cd"
-						, case  pbcp5.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcp5.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcp5.bin_los_cd
-						, case pbcp5.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"                               
 						, pbcp5.bin_placement_cd
 						, case pbcp5.bin_placement_cd
                                 when 0 then plc0
@@ -2012,49 +1935,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcp5.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcp5.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcp5.cd_budget_poc_frc   "Budget Cd"
+						, pbcp5.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , pbcp5.cd_discharge_type
 						, toe.type_of_exit_desc as "Discharge Type"
-            , M3
-            , M6
-            , M9
-            , M12
-            , M15
-            , M18
-            , M21
-            , M24
-            , M27
-            , M30
-            , M33
-            , M36
-            , M39
-            , M42
-            , M45
-            , M48
+				, reentry_within_month as "Month"
+				, reentry_rate as "Reentry Percent"
             FROM cache_pbcp5_aggr  pbcp5
             join ref_lookup_type_of_exit toe on toe.type_of_exit=pbcp5.cd_discharge_type
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcp5.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcp5.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcp5.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcp5.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcp5.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcp5.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcp5.cd_access_type
             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcp5.cd_budget_poc_frc
             where pbcp5.qry_id in (1,10)
-            and pbcp5.int_hash_key in (100000000000000000000,100000000001000000000,100000000002000000000,100000000003000000000)
+            and pbcp5.int_hash_key in (1000000000000000000000,1000000000001000000000,1000000000002000000000,1000000000003000000000)
             and pbcp5.bin_ihs_svc_cd in (select distinct bin_ihs_svc_cd from tblihs)
-             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
+--             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
   order by pbcp5.bin_dep_cd asc,qry_type
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcp5.bin_los_cd asc
                     , pbcp5.bin_placement_cd asc
@@ -2065,9 +1974,11 @@ elseif (trim(p_bin_placement_cd)='0'
                     , pbcp5.cd_finding
                     , pbcp5.cd_subctgry_poc_frc
                     , pbcp5.cd_budget_poc_frc
-            ,pbcp5.cd_discharge_type asc;   
+            ,pbcp5.reentry_within_month asc
+,pbcp5.cd_discharge_type asc;   
 --  reporter type only            
-   elseif (trim(p_bin_placement_cd)='0' 
+   elseif  (trim(p_bin_dep_cd)='0' 
+	and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)<>'0' 
    					and trim(p_filter_access_type)='0' 
@@ -2103,7 +2014,7 @@ elseif (trim(p_bin_placement_cd)='0'
                 , 0
                 , p_mindate
                 , p_maxdate
-                , p_calling_procedure);
+                , var_calling_procedure);
                 
         update cache_pbcp5_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
@@ -2124,7 +2035,7 @@ elseif (trim(p_bin_placement_cd)='0'
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcp5.cd_race as Ethnicity_Cd
+						, pbcp5.cd_race as ethnicity_cd
 						, case pbcp5.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -2140,33 +2051,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcp5.pk_gndr as Gender_Cd
+						, pbcp5.pk_gndr as gender_cd
 						, case pbcp5.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcp5.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcp5.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcp5.init_cd_plcm_setng  
+, case when pbcp5.init_cd_plcm_setng = 0 then fpl0
+                   when pbcp5.init_cd_plcm_setng = 3 then fpl3
+                   when pbcp5.init_cd_plcm_setng = 4 then fpl4
+                   when pbcp5.init_cd_plcm_setng = 5 then fpl5
+                   when pbcp5.init_cd_plcm_setng = 6 then fpl6
+                   when pbcp5.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcp5.long_cd_plcm_setng  
+						, case when pbcp5.long_cd_plcm_setng = 0 then lpl0
+                   when pbcp5.long_cd_plcm_setng = 3 then lpl3
+                   when pbcp5.long_cd_plcm_setng = 4 then lpl4
+                   when pbcp5.long_cd_plcm_setng = 5 then lpl5
+                   when pbcp5.long_cd_plcm_setng = 6 then lpl6
+                   when pbcp5.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcp5.county_cd
 						, ref_cnty.county as "County"
-						, pbcp5.bin_dep_cd as  "Dependency Cd"
-						, case  pbcp5.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcp5.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcp5.bin_los_cd
-						, case pbcp5.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"                               
 						, pbcp5.bin_placement_cd
 						, case pbcp5.bin_placement_cd
                                 when 0 then plc0
@@ -2203,49 +2116,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcp5.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcp5.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcp5.cd_budget_poc_frc   "Budget Cd"
+						, pbcp5.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , pbcp5.cd_discharge_type
 						, toe.type_of_exit_desc as "Discharge Type"
-            , M3
-            , M6
-            , M9
-            , M12
-            , M15
-            , M18
-            , M21
-            , M24
-            , M27
-            , M30
-            , M33
-            , M36
-            , M39
-            , M42
-            , M45
-            , M48
+				, reentry_within_month as "Month"
+				, reentry_rate as "Reentry Percent"
             FROM cache_pbcp5_aggr  pbcp5
             join ref_lookup_type_of_exit toe on toe.type_of_exit=pbcp5.cd_discharge_type
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcp5.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcp5.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcp5.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcp5.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcp5.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcp5.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcp5.cd_access_type
             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcp5.cd_budget_poc_frc
             where pbcp5.qry_id in (1,11)
-            and pbcp5.int_hash_key in (100000000000000000000,100000000000050000000,100000000000060000000,100000000000070000000,100000000000080000000,100000000000090000000,100000000000110000000,100000000000120000000,100000000000130000000,100000000000140000000)
+            and pbcp5.int_hash_key in (1000000000000000000000,1000000000000050000000,1000000000000060000000,1000000000000070000000,1000000000000080000000,1000000000000090000000,1000000000000110000000,1000000000000120000000,1000000000000130000000,1000000000000140000000)
             and pbcp5.cd_reporter_type in (select distinct cd_reporter_type from tblrpt)
-             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
+--             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
             order by pbcp5.bin_dep_cd asc,qry_type
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcp5.bin_los_cd asc
                     , pbcp5.bin_placement_cd asc
@@ -2256,8 +2155,10 @@ elseif (trim(p_bin_placement_cd)='0'
                     , pbcp5.cd_finding
                     , pbcp5.cd_subctgry_poc_frc
                     , pbcp5.cd_budget_poc_frc
-            ,pbcp5.cd_discharge_type asc; 
-   elseif (trim(p_bin_placement_cd)='0' 
+            ,pbcp5.reentry_within_month asc
+,pbcp5.cd_discharge_type asc; 
+   elseif  (trim(p_bin_dep_cd)='0' 
+	and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)<>'0' 
@@ -2293,7 +2194,7 @@ elseif (trim(p_bin_placement_cd)='0'
                 , 0
                 , p_mindate
                 , p_maxdate
-                , p_calling_procedure);
+                , var_calling_procedure);
                 
         update cache_pbcp5_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
@@ -2314,7 +2215,7 @@ elseif (trim(p_bin_placement_cd)='0'
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcp5.cd_race as Ethnicity_Cd
+						, pbcp5.cd_race as ethnicity_cd
 						, case pbcp5.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -2330,33 +2231,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcp5.pk_gndr as Gender_Cd
+						, pbcp5.pk_gndr as gender_cd
 						, case pbcp5.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcp5.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcp5.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcp5.init_cd_plcm_setng  
+, case when pbcp5.init_cd_plcm_setng = 0 then fpl0
+                   when pbcp5.init_cd_plcm_setng = 3 then fpl3
+                   when pbcp5.init_cd_plcm_setng = 4 then fpl4
+                   when pbcp5.init_cd_plcm_setng = 5 then fpl5
+                   when pbcp5.init_cd_plcm_setng = 6 then fpl6
+                   when pbcp5.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcp5.long_cd_plcm_setng  
+						, case when pbcp5.long_cd_plcm_setng = 0 then lpl0
+                   when pbcp5.long_cd_plcm_setng = 3 then lpl3
+                   when pbcp5.long_cd_plcm_setng = 4 then lpl4
+                   when pbcp5.long_cd_plcm_setng = 5 then lpl5
+                   when pbcp5.long_cd_plcm_setng = 6 then lpl6
+                   when pbcp5.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcp5.county_cd
 						, ref_cnty.county as "County"
-						, pbcp5.bin_dep_cd as  "Dependency Cd"
-						, case  pbcp5.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcp5.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcp5.bin_los_cd
-						, case pbcp5.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"                               
 						, pbcp5.bin_placement_cd
 						, case pbcp5.bin_placement_cd
                                 when 0 then plc0
@@ -2393,49 +2296,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcp5.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcp5.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcp5.cd_budget_poc_frc   "Budget Cd"
+						, pbcp5.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , pbcp5.cd_discharge_type
 						, toe.type_of_exit_desc as "Discharge Type"
-            , M3
-            , M6
-            , M9
-            , M12
-            , M15
-            , M18
-            , M21
-            , M24
-            , M27
-            , M30
-            , M33
-            , M36
-            , M39
-            , M42
-            , M45
-            , M48
+				, reentry_within_month as "Month"
+				, reentry_rate as "Reentry Percent"
             FROM cache_pbcp5_aggr  pbcp5
             join ref_lookup_type_of_exit toe on toe.type_of_exit=pbcp5.cd_discharge_type
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcp5.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcp5.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcp5.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcp5.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcp5.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcp5.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcp5.cd_access_type
             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcp5.cd_budget_poc_frc
             where pbcp5.qry_id in (1,12)
-            and pbcp5.int_hash_key in (100000000000000000000,100000000000001000000)
+            and pbcp5.int_hash_key in(1000000000000000000000,1000000000000001000000)
             and pbcp5.cd_access_type in (select distinct cd_access_type from tblacc)
-             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
+--             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
             order by pbcp5.bin_dep_cd asc,qry_type
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcp5.bin_los_cd asc
                     , pbcp5.bin_placement_cd asc
@@ -2446,8 +2335,10 @@ elseif (trim(p_bin_placement_cd)='0'
                     , pbcp5.cd_finding
                     , pbcp5.cd_subctgry_poc_frc
                     , pbcp5.cd_budget_poc_frc
-            ,pbcp5.cd_discharge_type asc; -- allegation only            
- elseif (trim(p_bin_placement_cd)='0' 
+            ,pbcp5.reentry_within_month asc
+,pbcp5.cd_discharge_type asc; -- allegation only            
+ elseif  (trim(p_bin_dep_cd)='0' 
+	and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -2483,7 +2374,7 @@ elseif (trim(p_bin_placement_cd)='0'
                 , 0
                 , p_mindate
                 , p_maxdate
-                , p_calling_procedure);
+                , var_calling_procedure);
                 
         update cache_pbcp5_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
@@ -2504,7 +2395,7 @@ elseif (trim(p_bin_placement_cd)='0'
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcp5.cd_race as Ethnicity_Cd
+						, pbcp5.cd_race as ethnicity_cd
 						, case pbcp5.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -2520,33 +2411,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcp5.pk_gndr as Gender_Cd
+						, pbcp5.pk_gndr as gender_cd
 						, case pbcp5.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcp5.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcp5.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcp5.init_cd_plcm_setng  
+, case when pbcp5.init_cd_plcm_setng = 0 then fpl0
+                   when pbcp5.init_cd_plcm_setng = 3 then fpl3
+                   when pbcp5.init_cd_plcm_setng = 4 then fpl4
+                   when pbcp5.init_cd_plcm_setng = 5 then fpl5
+                   when pbcp5.init_cd_plcm_setng = 6 then fpl6
+                   when pbcp5.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcp5.long_cd_plcm_setng  
+						, case when pbcp5.long_cd_plcm_setng = 0 then lpl0
+                   when pbcp5.long_cd_plcm_setng = 3 then lpl3
+                   when pbcp5.long_cd_plcm_setng = 4 then lpl4
+                   when pbcp5.long_cd_plcm_setng = 5 then lpl5
+                   when pbcp5.long_cd_plcm_setng = 6 then lpl6
+                   when pbcp5.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcp5.county_cd
 						, ref_cnty.county as "County"
-						, pbcp5.bin_dep_cd as  "Dependency Cd"
-						, case  pbcp5.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcp5.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcp5.bin_los_cd
-						, case pbcp5.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"                               
 						, pbcp5.bin_placement_cd
 						, case pbcp5.bin_placement_cd
                                 when 0 then plc0
@@ -2583,49 +2476,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcp5.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcp5.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcp5.cd_budget_poc_frc   "Budget Cd"
+						, pbcp5.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , pbcp5.cd_discharge_type
 						, toe.type_of_exit_desc as "Discharge Type"
-            , M3
-            , M6
-            , M9
-            , M12
-            , M15
-            , M18
-            , M21
-            , M24
-            , M27
-            , M30
-            , M33
-            , M36
-            , M39
-            , M42
-            , M45
-            , M48
+				, reentry_within_month as "Month"
+				, reentry_rate as "Reentry Percent"
             FROM cache_pbcp5_aggr  pbcp5
             join ref_lookup_type_of_exit toe on toe.type_of_exit=pbcp5.cd_discharge_type
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcp5.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcp5.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcp5.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcp5.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcp5.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcp5.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcp5.cd_access_type
             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcp5.cd_budget_poc_frc
             where pbcp5.qry_id in (1,13)
-            and pbcp5.int_hash_key in (100000000000000000000,100000000000000100000,100000000000000200000,100000000000000300000,100000000000000400000)
+            and pbcp5.int_hash_key in (1000000000000000000000,1000000000000000100000,1000000000000000200000,1000000000000000300000,1000000000000000400000)
             and pbcp5.cd_allegation in (select distinct cd_allegation from tblalg)
-             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
+--             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
             order by pbcp5.bin_dep_cd asc,qry_type
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcp5.bin_los_cd asc
                     , pbcp5.bin_placement_cd asc
@@ -2636,8 +2515,10 @@ elseif (trim(p_bin_placement_cd)='0'
                     , pbcp5.cd_finding
                     , pbcp5.cd_subctgry_poc_frc
                     , pbcp5.cd_budget_poc_frc
-            ,pbcp5.cd_discharge_type asc;   
-elseif (trim(p_bin_placement_cd)='0' 
+            ,pbcp5.reentry_within_month asc
+,pbcp5.cd_discharge_type asc;   
+elseif  (trim(p_bin_dep_cd)='0' 
+	and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -2673,7 +2554,7 @@ elseif (trim(p_bin_placement_cd)='0'
                 , 0
                 , p_mindate
                 , p_maxdate
-                , p_calling_procedure);
+                , var_calling_procedure);
                 
         update cache_pbcp5_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
@@ -2694,7 +2575,7 @@ elseif (trim(p_bin_placement_cd)='0'
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcp5.cd_race as Ethnicity_Cd
+						, pbcp5.cd_race as ethnicity_cd
 						, case pbcp5.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -2710,33 +2591,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcp5.pk_gndr as Gender_Cd
+						, pbcp5.pk_gndr as gender_cd
 						, case pbcp5.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcp5.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcp5.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcp5.init_cd_plcm_setng  
+, case when pbcp5.init_cd_plcm_setng = 0 then fpl0
+                   when pbcp5.init_cd_plcm_setng = 3 then fpl3
+                   when pbcp5.init_cd_plcm_setng = 4 then fpl4
+                   when pbcp5.init_cd_plcm_setng = 5 then fpl5
+                   when pbcp5.init_cd_plcm_setng = 6 then fpl6
+                   when pbcp5.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcp5.long_cd_plcm_setng  
+						, case when pbcp5.long_cd_plcm_setng = 0 then lpl0
+                   when pbcp5.long_cd_plcm_setng = 3 then lpl3
+                   when pbcp5.long_cd_plcm_setng = 4 then lpl4
+                   when pbcp5.long_cd_plcm_setng = 5 then lpl5
+                   when pbcp5.long_cd_plcm_setng = 6 then lpl6
+                   when pbcp5.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcp5.county_cd
 						, ref_cnty.county as "County"
-						, pbcp5.bin_dep_cd as  "Dependency Cd"
-						, case  pbcp5.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcp5.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcp5.bin_los_cd
-						, case pbcp5.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"                               
 						, pbcp5.bin_placement_cd
 						, case pbcp5.bin_placement_cd
                                 when 0 then plc0
@@ -2773,49 +2656,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcp5.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcp5.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcp5.cd_budget_poc_frc   "Budget Cd"
+						, pbcp5.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , pbcp5.cd_discharge_type
 						, toe.type_of_exit_desc as "Discharge Type"
-            , M3
-            , M6
-            , M9
-            , M12
-            , M15
-            , M18
-            , M21
-            , M24
-            , M27
-            , M30
-            , M33
-            , M36
-            , M39
-            , M42
-            , M45
-            , M48
+				, reentry_within_month as "Month"
+				, reentry_rate as "Reentry Percent"
             FROM cache_pbcp5_aggr  pbcp5
             join ref_lookup_type_of_exit toe on toe.type_of_exit=pbcp5.cd_discharge_type
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcp5.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcp5.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcp5.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcp5.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcp5.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcp5.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcp5.cd_access_type
             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcp5.cd_budget_poc_frc
             where pbcp5.qry_id in (1,14)
-            and pbcp5.int_hash_key in (100000000000000000000,100000000000000010000,100000000000000020000,100000000000000030000,100000000000000040000)
+            and pbcp5.int_hash_key in (1000000000000000000000,1000000000000000010000,1000000000000000020000,1000000000000000030000,1000000000000000040000)
             and pbcp5.cd_finding in (select distinct cd_finding from tblfnd)
-             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
+--             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
             order by pbcp5.bin_dep_cd asc,qry_type
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcp5.bin_los_cd asc
                     , pbcp5.bin_placement_cd asc
@@ -2826,8 +2695,10 @@ elseif (trim(p_bin_placement_cd)='0'
                     , pbcp5.cd_finding
                     , pbcp5.cd_subctgry_poc_frc
                     , pbcp5.cd_budget_poc_frc
-            ,pbcp5.cd_discharge_type asc;     
-elseif (trim(p_bin_placement_cd)='0' 
+            ,pbcp5.reentry_within_month asc
+,pbcp5.cd_discharge_type asc;     
+elseif  (trim(p_bin_dep_cd)='0' 
+	and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -2863,7 +2734,7 @@ elseif (trim(p_bin_placement_cd)='0'
                 , 0
                 , p_mindate
                 , p_maxdate
-                , p_calling_procedure);
+                , var_calling_procedure);
                 
         update cache_pbcp5_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
@@ -2884,7 +2755,7 @@ elseif (trim(p_bin_placement_cd)='0'
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcp5.cd_race as Ethnicity_Cd
+						, pbcp5.cd_race as ethnicity_cd
 						, case pbcp5.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -2900,33 +2771,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcp5.pk_gndr as Gender_Cd
+						, pbcp5.pk_gndr as gender_cd
 						, case pbcp5.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcp5.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcp5.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcp5.init_cd_plcm_setng  
+, case when pbcp5.init_cd_plcm_setng = 0 then fpl0
+                   when pbcp5.init_cd_plcm_setng = 3 then fpl3
+                   when pbcp5.init_cd_plcm_setng = 4 then fpl4
+                   when pbcp5.init_cd_plcm_setng = 5 then fpl5
+                   when pbcp5.init_cd_plcm_setng = 6 then fpl6
+                   when pbcp5.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcp5.long_cd_plcm_setng  
+						, case when pbcp5.long_cd_plcm_setng = 0 then lpl0
+                   when pbcp5.long_cd_plcm_setng = 3 then lpl3
+                   when pbcp5.long_cd_plcm_setng = 4 then lpl4
+                   when pbcp5.long_cd_plcm_setng = 5 then lpl5
+                   when pbcp5.long_cd_plcm_setng = 6 then lpl6
+                   when pbcp5.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcp5.county_cd
 						, ref_cnty.county as "County"
-						, pbcp5.bin_dep_cd as  "Dependency Cd"
-						, case  pbcp5.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcp5.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcp5.bin_los_cd
-						, case pbcp5.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"                               
 						, pbcp5.bin_placement_cd
 						, case pbcp5.bin_placement_cd
                                 when 0 then plc0
@@ -2963,52 +2836,40 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcp5.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcp5.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcp5.cd_budget_poc_frc   "Budget Cd"
+						, pbcp5.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , pbcp5.cd_discharge_type
 						, toe.type_of_exit_desc as "Discharge Type"
-            , M3
-            , M6
-            , M9
-            , M12
-            , M15
-            , M18
-            , M21
-            , M24
-            , M27
-            , M30
-            , M33
-            , M36
-            , M39
-            , M42
-            , M45
-            , M48
+				, reentry_within_month as "Month"
+				, reentry_rate as "Reentry Percent"
             FROM cache_pbcp5_aggr  pbcp5
             join ref_lookup_type_of_exit toe on toe.type_of_exit=pbcp5.cd_discharge_type
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcp5.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcp5.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcp5.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcp5.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcp5.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcp5.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcp5.cd_access_type
              join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcp5.cd_budget_poc_frc
             where pbcp5.qry_id in (1,15)
-            and pbcp5.int_hash_key in (100000000000000000100,100000000000000000200,100000000000000000300,100000000000000000400,100000000000000000500,
-100000000000000000600,100000000000000000700,100000000000000000800,100000000000000000900,100000000000000001000,
-100000000000000001100,100000000000000001200,100000000000000001300,100000000000000001400,100000000000000001500,
-100000000000000001600,100000000000000000000)
+            and pbcp5.int_hash_key in (1000000000000000000000,1000000000000000000100,1000000000000000000200,
+1000000000000000000300,1000000000000000000400,1000000000000000000500,
+1000000000000000000600,1000000000000000000700,1000000000000000000800,
+1000000000000000000900,1000000000000000001000,1000000000000000001100,
+1000000000000000001200,1000000000000000001300,1000000000000000001400,
+1000000000000000001500,1000000000000000001600)
             and pbcp5.cd_subctgry_poc_frc in (select distinct cd_subctgry_poc_frc from tblsrvc)
-             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
+--             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
             order by pbcp5.bin_dep_cd asc,qry_type
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcp5.bin_los_cd asc
                     , pbcp5.bin_placement_cd asc
@@ -3019,8 +2880,10 @@ elseif (trim(p_bin_placement_cd)='0'
                     , pbcp5.cd_finding
                     , pbcp5.cd_subctgry_poc_frc
                     , pbcp5.cd_budget_poc_frc
-            ,pbcp5.cd_discharge_type asc;  
-elseif (trim(p_bin_placement_cd)='0' 
+            ,pbcp5.reentry_within_month asc
+,pbcp5.cd_discharge_type asc;  
+elseif  (trim(p_bin_dep_cd)='0' 
+	and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -3056,7 +2919,7 @@ elseif (trim(p_bin_placement_cd)='0'
                 , 0
                 , p_mindate
                 , p_maxdate
-                , p_calling_procedure);
+                , var_calling_procedure);
                 
        update cache_pbcp5_params
         set cnt_qry=cnt_qry + 1,last_run_date=now()
@@ -3077,7 +2940,7 @@ elseif (trim(p_bin_placement_cd)='0'
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcp5.cd_race as Ethnicity_Cd
+						, pbcp5.cd_race as ethnicity_cd
 						, case pbcp5.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -3093,33 +2956,35 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcp5.pk_gndr as Gender_Cd
+						, pbcp5.pk_gndr as gender_cd
 						, case pbcp5.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcp5.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcp5.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcp5.init_cd_plcm_setng  
+, case when pbcp5.init_cd_plcm_setng = 0 then fpl0
+                   when pbcp5.init_cd_plcm_setng = 3 then fpl3
+                   when pbcp5.init_cd_plcm_setng = 4 then fpl4
+                   when pbcp5.init_cd_plcm_setng = 5 then fpl5
+                   when pbcp5.init_cd_plcm_setng = 6 then fpl6
+                   when pbcp5.init_cd_plcm_setng = 7 then fpl7
+              end as  "Initial Placement"
+						, pbcp5.long_cd_plcm_setng  
+						, case when pbcp5.long_cd_plcm_setng = 0 then lpl0
+                   when pbcp5.long_cd_plcm_setng = 3 then lpl3
+                   when pbcp5.long_cd_plcm_setng = 4 then lpl4
+                   when pbcp5.long_cd_plcm_setng = 5 then lpl5
+                   when pbcp5.long_cd_plcm_setng = 6 then lpl6
+                   when pbcp5.long_cd_plcm_setng = 7 then lpl7
+              end as  "Longest Placement"
 						, pbcp5.county_cd
 						, ref_cnty.county as "County"
-						, pbcp5.bin_dep_cd as  "Dependency Cd"
-						, case  pbcp5.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcp5.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcp5.bin_los_cd
-						, case pbcp5.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"                               
 						, pbcp5.bin_placement_cd
 						, case pbcp5.bin_placement_cd
                                 when 0 then plc0
@@ -3156,49 +3021,36 @@ elseif (trim(p_bin_placement_cd)='0'
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcp5.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcp5.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcp5.cd_budget_poc_frc   "Budget Cd"
+						, pbcp5.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , pbcp5.cd_discharge_type
 						, toe.type_of_exit_desc as "Discharge Type"
-            , M3
-            , M6
-            , M9
-            , M12
-            , M15
-            , M18
-            , M21
-            , M24
-            , M27
-            , M30
-            , M33
-            , M36
-            , M39
-            , M42
-            , M45
-            , M48
+				, reentry_within_month as "Month"
+				, reentry_rate as "Reentry Percent"
             FROM cache_pbcp5_aggr  pbcp5
             join ref_lookup_type_of_exit toe on toe.type_of_exit=pbcp5.cd_discharge_type
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcp5.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcp5.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcp5.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcp5.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcp5.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcp5.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcp5.cd_access_type
              join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcp5.cd_budget_poc_frc
             where pbcp5.qry_id in (1,16)
-            and pbcp5.int_hash_key in (100000000000000000012,100000000000000000000,100000000000000000014,100000000000000000015,100000000000000000016,100000000000000000018,100000000000000000019,100000000000000000099)
+            and pbcp5.int_hash_key in (1000000000000000000000,1000000000000000000012,1000000000000000000014,1000000000000000000015,1000000000000000000016,
+1000000000000000000018,1000000000000000000019,1000000000000000000099)
             and pbcp5.cd_budget_poc_frc in (select distinct cd_budget_poc_frc from tblbudg)
-             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
+--             and pbcp5.cohort_entry_date between p_mindate and p_maxdate
             order by pbcp5.bin_dep_cd asc,qry_type
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcp5.bin_los_cd asc
                     , pbcp5.bin_placement_cd asc
@@ -3209,11 +3061,11 @@ elseif (trim(p_bin_placement_cd)='0'
                     , pbcp5.cd_finding
                     , pbcp5.cd_subctgry_poc_frc
                     , pbcp5.cd_budget_poc_frc
-            ,pbcp5.cd_discharge_type asc;   
+            ,pbcp5.reentry_within_month asc
+,pbcp5.cd_discharge_type asc;   
 else    -- not all zeroes
   start transaction;
-  
-  call load_ooh_parameters(p_date
+    call load_ooh_parameters(p_date
                 ,  p_age_grouping_cd 
                 ,  p_ethnicity_cd 
                 ,  p_gender_cd 
@@ -3229,11 +3081,12 @@ else    -- not all zeroes
                 , p_filter_finding 
                 , p_filter_service_category  
                 , p_filter_service_budget
+                , p_bin_dep_cd
                 , 0
                 , 1
                 , p_mindate
                 , p_maxdate
-                , p_calling_procedure);
+                , var_calling_procedure);
                 
   
     set p_qry_id=(
@@ -3254,8 +3107,9 @@ else    -- not all zeroes
                 and filter_finding=left(p_filter_finding,30)
                 and filter_srvc_type=left(p_filter_service_category,50)
                 and filter_budget=left(p_filter_service_budget,50)
-                and min_start_date<=p_mindate
-                and max_start_date >=p_maxdate
+                and bin_dep_cd=left(p_bin_dep_cd,20)
+--                and min_start_date<=p_mindate
+--                and max_start_date >=p_maxdate
            order by qry_ID  limit 1);
            
     if p_qry_id is null  then
@@ -3277,6 +3131,7 @@ else    -- not all zeroes
                     ,filter_finding
                     ,filter_srvc_type
                     ,filter_budget
+                    ,bin_dep_cd
                     ,min_start_date
                     ,max_start_date
                     ,cnt_qry
@@ -3299,6 +3154,7 @@ else    -- not all zeroes
                     ,p_filter_finding
                     ,p_filter_service_category
                     ,p_filter_service_budget
+                    ,p_bin_dep_cd
                     ,p_minmonthstart
                     ,p_maxmonthstart
                     ,1
@@ -3317,6 +3173,7 @@ else    -- not all zeroes
   create temporary table cachekeys 
   (int_hash_key decimal(22,0)
   ,int_param_key bigint
+  ,bin_dep_cd int
   ,bin_los_cd int
   ,bin_placement_cd int
   ,bin_ihs_svc_cd int
@@ -3329,7 +3186,8 @@ else    -- not all zeroes
   ,in_cache int
   ,qry_id int) engine=memory;
   insert into cachekeys
-  select	cast((int_param_key * power(10.0,12) ) as decimal(22,0)) + 
+  select	cast((int_param_key * power(10.0,13) ) as decimal(22,0)) + 
+                    cast((bin_dep_cd * power(10.0,12) )as decimal(22,0)) +   		
                     cast((bin_los_cd * power(10.0,11) )as decimal(22,0)) + 
                     cast((bin_placement_cd * power(10.0,10) )as decimal(22,0)) + 
                    cast( (bin_ihs_svc_cd * power(10.0,9) ) as decimal(22,0)) + 
@@ -3339,6 +3197,7 @@ else    -- not all zeroes
                    cast( (cd_finding * power(10.0,4)) as decimal(22,0)) + 
                     cast((cd_subctgry_poc_frc * power(10,2)) + cd_budget_poc_frc as decimal(22,0)) as  int_hash_key
                      ,int_param_key
+                     ,bin_dep_cd
                      ,bin_los_cd
                      ,bin_placement_cd
                      ,bin_ihs_svc_cd
@@ -3351,6 +3210,7 @@ else    -- not all zeroes
                      ,0 as in_cache
                      ,coalesce(p_qry_id,@qry_id) as qry_id
 				from (select distinct int_param_key from tblprmlocdem) prm
+				cross join (select distinct bin_dep_cd from tbldep) dep
 				cross join (select distinct bin_los_cd from tbllos) los
 				cross join (select distinct bin_placement_cd from tblnbrplc) plc
 				cross join (select distinct bin_ihs_svc_cd from tblihs) ihs
@@ -3363,7 +3223,7 @@ else    -- not all zeroes
    
 create  index idx_int_hash_key on cachekeys(int_hash_key,in_cache);
 create index idx_qryid_params on cachekeys(qry_id,int_hash_key);
-create index idx_params on cachekeys(int_param_key
+create index idx_params on cachekeys(int_param_key,bin_dep_cd
 ,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type
 ,cd_access_type,cd_allegation	,cd_finding
 ,cd_budget_poc_frc
@@ -3385,8 +3245,7 @@ create index idx_params on cachekeys(int_param_key
         select  
             pocm.cohort_exit_year
             ,pocm.date_type
-            ,pocm.qry_type
-            ,pocm.bin_dep_cd';
+            ,pocm.qry_type';
 	if NOT(trim(p_age_grouping_cd) ='0' 
             and trim(p_gender_cd) ='0'
             and trim(p_ethnicity_cd)='0'
@@ -3398,6 +3257,12 @@ create index idx_params on cachekeys(int_param_key
         else
 			set @myqry=concat(@myqry,', 100000000 as int_param_key');
         end if;
+
+        if trim(p_bin_dep_cd)='0' then
+        set @myqry=concat(@myqry,', 0 as bin_dep_cd');
+        else
+        set @myqry=concat(@myqry,', dep.bin_dep_cd');
+        end if;        
         if trim(p_bin_los_cd)='0' then
         set @myqry=concat(@myqry,', 0 as bin_los_cd');
         else
@@ -3441,10 +3306,10 @@ create index idx_params on cachekeys(int_param_key
         end if;	        
         if trim(p_filter_service_budget) ='0' then
         set @myqry=concat(@myqry,', 0 as cd_budget_poc_frc
-						,cast(sum(prsn_cnt) * 1.0000 as decimal(9,4))  as tot_episodes');
+						,cast(sum(cohort_count) * 1.0000 as decimal(9,4))  as tot_episodes');
         else
         set @myqry=concat(@myqry,', bud.cd_budget_poc_frc 
-						,cast(sum(prsn_cnt) * 1.0000 as decimal(9,4))  as tot_episodes');
+						,cast(sum(cohort_count) * 1.0000 as decimal(9,4))  as tot_episodes');
         end if;	
 		if NOT(trim(p_age_grouping_cd) ='0' 
             and trim(p_gender_cd) ='0'
@@ -3453,12 +3318,16 @@ create index idx_params on cachekeys(int_param_key
             and trim(p_long_cd_plcm_setng)='0' 
             and trim(p_county_cd) = '0'  )  then
 			set @myqry=concat(@myqry,'
-            ,cast((mtch.int_param_key * power(10.0,12) ) as decimal(22,0))');
+            ,cast((mtch.int_param_key * power(10.0,13) ) as decimal(22,0))');
 		else
 			set @myqry=concat(@myqry,'
-            ,cast((100000000 * power(10.0,12) ) as decimal(22,0))');
+            ,cast((100000000 * power(10.0,13) ) as decimal(22,0))');
 		end if;
-		if trim(p_bin_los_cd)<>'0' then
+		if trim(p_bin_dep_cd)<>'0' then
+			set @myqry=concat(@myqry,' 
+            + cast((dep.bin_dep_cd * power(10.0,12) )as decimal(22,0)) ');
+        end if;
+       if trim(p_bin_los_cd)<>'0' then
 			set @myqry=concat(@myqry,' 
             + cast((los.bin_los_cd * power(10.0,11) )as decimal(22,0)) ');
         end if;
@@ -3508,9 +3377,13 @@ create index idx_params on cachekeys(int_param_key
             on mtch.int_match_param_key=pocm.int_match_param_key 
             and mtch.cd_race_census in (select cd_race from tbleth)');
 		end if;
+		if trim(p_bin_dep_cd)<>'0' then
+			set @myqry=concat(@myqry,char(13),'
+			join tbldep dep on pocm.bin_dep_cd=dep.match_code');
+        end if;		
 		if trim(p_bin_los_cd)<>'0' then
 			set @myqry=concat(@myqry,char(13),'
-			join tbllos los on pocm.bin_los_cd=los.match_code');
+			join tbllos los on pocm.max_bin_los_cd=los.match_code');
         end if;
         if trim(p_bin_placement_cd)<>'0' then
 		    set @myqry=concat(@myqry,char(13),'
@@ -3549,8 +3422,7 @@ create index idx_params on cachekeys(int_param_key
         between DATE ',char(39),p_minmonthstart,char(39),' and DATE ',char(39),p_maxmonthstart,char(39),'
 		group by pocm.cohort_exit_year
             ,pocm.date_type
-            ,pocm.qry_type
-            ,pocm.bin_dep_cd');
+            ,pocm.qry_type');
 		if NOT(trim(p_age_grouping_cd) ='0' 
             and trim(p_gender_cd) ='0'
             and trim(p_ethnicity_cd)='0'
@@ -3560,6 +3432,10 @@ create index idx_params on cachekeys(int_param_key
 			set @myqry=concat(@myqry,'
 				,mtch.int_param_key');
 		end if;
+		if trim(p_bin_dep_cd)<>'0' then
+			set @myqry=concat(@myqry,'
+				,dep.bin_dep_cd');
+        end if;
 		if trim(p_bin_los_cd)<>'0' then
 			set @myqry=concat(@myqry,'
 				,los.bin_los_cd');
@@ -3626,22 +3502,8 @@ create index idx_params on cachekeys(int_param_key
 								,init_cd_plcm_setng
 								,long_cd_plcm_setng
 								,county_cd
-								, M3 
-								, M6
-								, M9
-								, M12
-								, M15
-								, M18
-								, M21
-								, M24
-								, M27
-								, M30
-								, M33
-								, M36
-								, M39
-								, M42
-								, M45
-								, M48
+                ,reentry_within_month
+                ,reentry_rate
 								,min_start_date
 								,max_start_date
 								,x1
@@ -3665,8 +3527,11 @@ create index idx_params on cachekeys(int_param_key
        else
             set @incl=concat(@incl,', 100000000 as int_param_key');
     end if;
-    set @incl=concat(@incl,char(13),
-            ', pbcp5.bin_dep_cd');
+        if trim(p_bin_dep_cd)='0' then
+        set @incl=concat(@incl,', 0 as bin_dep_cd');
+        else
+        set @incl=concat(@incl,', dep.bin_dep_cd');
+        end if;
         if trim(p_bin_los_cd)='0' then
         set @incl=concat(@incl,', 0 as bin_los_cd');
         else
@@ -3736,22 +3601,9 @@ create index idx_params on cachekeys(int_param_key
         ,0');
     end if;
     set @incl=concat(@incl,'
-        , (sum(pbcp5.ret_to_care_M3 )/(tot_episodes.tot_episodes*1.0000)) * 100 as M3 
-        , (sum(pbcp5.ret_to_care_M6 )/(tot_episodes.tot_episodes*1.0000)) * 100 as M6
-        , (sum(pbcp5.ret_to_care_M9 )/(tot_episodes.tot_episodes*1.0000)) * 100 as M9
-        , (sum(pbcp5.ret_to_care_M12 )/(tot_episodes.tot_episodes*1.0000)) * 100 as M12
-        , (sum(pbcp5.ret_to_care_M15 )/(tot_episodes.tot_episodes*1.0000)) * 100 as M15
-        , (sum(pbcp5.ret_to_care_M18 )/(tot_episodes.tot_episodes*1.0000)) * 100 as M18
-        , (sum(pbcp5.ret_to_care_M21 )/(tot_episodes.tot_episodes*1.0000)) * 100 as M21
-        , (sum(pbcp5.ret_to_care_M24 )/(tot_episodes.tot_episodes*1.0000)) * 100 as M24
-        , (sum(pbcp5.ret_to_care_M27 )/(tot_episodes.tot_episodes*1.0000)) * 100 as M27
-        , (sum(pbcp5.ret_to_care_M30 )/(tot_episodes.tot_episodes*1.0000)) * 100 as M30
-        , (sum(pbcp5.ret_to_care_M33 )/(tot_episodes.tot_episodes*1.0000)) * 100 as M33
-        , (sum(pbcp5.ret_to_care_M36 )/(tot_episodes.tot_episodes*1.0000)) * 100 as M36
-        , (sum(pbcp5.ret_to_care_M39 )/(tot_episodes.tot_episodes*1.0000)) * 100 as M39
-        , (sum(pbcp5.ret_to_care_M42) /(tot_episodes.tot_episodes*1.0000)) * 100 as M42
-        , (sum(pbcp5.ret_to_care_M45 )/(tot_episodes.tot_episodes*1.0000)) * 100 as M45
-        , (sum(pbcp5.ret_to_care_M48 )/(tot_episodes.tot_episodes*1.0000)) * 100 as M48');
+        ,mnth as "Month"
+        , (sum(pbcp5.discharge_count )/(tot_episodes.tot_episodes*1.0000)) * 100  
+        ');
     set @incl=concat(@incl,char(13),', DATE',char(39), p_minmonthstart,char(39));
     set @incl=concat(@incl,char(13),', DATE',char(39), p_maxmonthstart,char(39));
     set @incl=concat(@incl,char(13),', ',char(39), x1,char(39));
@@ -3773,9 +3625,13 @@ create index idx_params on cachekeys(int_param_key
             on mtch.int_match_param_key=pbcp5.int_match_param_key 
             and mtch.cd_race_census in (select cd_race from tbleth)');
 		end if;
+				if trim(p_bin_dep_cd)<>'0' then
+			set @incl=concat(@incl,char(13),'
+			join tbldep dep on pbcp5.bin_dep_cd=dep.match_code');
+        end if;
 		if trim(p_bin_los_cd)<>'0' then
 			set @incl=concat(@incl,char(13),'
-			join tbllos los on pbcp5.bin_los_cd=los.match_code');
+			join tbllos los on pbcp5.max_bin_los_cd=los.match_code');
         end if;
         if trim(p_bin_placement_cd)<>'0' then
 		    set @incl=concat(@incl,char(13),'
@@ -3820,11 +3676,15 @@ create index idx_params on cachekeys(int_param_key
             and trim(p_long_cd_plcm_setng)='0' 
             and trim(p_county_cd) = '0'  )  then
 			set @incl=concat(@incl,'
-            cast((mtch.int_param_key * power(10.0,12) ) as decimal(22,0))');
+            cast((mtch.int_param_key * power(10.0,13) ) as decimal(22,0))');
 		else
 			set @incl=concat(@incl,'
-            cast((100000000 * power(10.0,12) ) as decimal(22,0))');
+            cast((100000000 * power(10.0,13) ) as decimal(22,0))');
 		end if;
+		if trim(p_bin_dep_cd)<>'0' then
+			set @incl=concat(@incl,' 
+            + cast((dep.bin_dep_cd * power(10.0,12) )as decimal(22,0)) ');
+        end if;
 		if trim(p_bin_los_cd)<>'0' then
 			set @incl=concat(@incl,' 
             + cast((los.bin_los_cd * power(10.0,11) )as decimal(22,0)) ');
@@ -3866,7 +3726,6 @@ create index idx_params on cachekeys(int_param_key
     and tot_episodes.cohort_exit_year=pbcp5.cohort_exit_year
     and tot_episodes.qry_type=pbcp5.qry_type
     and tot_episodes.date_type=pbcp5.date_type
-    and tot_episodes.bin_dep_cd=pbcp5.bin_dep_cd
     join (select distinct int_hash_key,qry_id,in_cache from cachekeys)
     che on  che.int_hash_key = ');
     	if NOT(trim(p_age_grouping_cd) ='0' 
@@ -3876,11 +3735,15 @@ create index idx_params on cachekeys(int_param_key
             and trim(p_long_cd_plcm_setng)='0' 
             and trim(p_county_cd) = '0'  )  then
 			set @incl=concat(@incl,'
-            cast((mtch.int_param_key * power(10.0,12) ) as decimal(22,0))');
+            cast((mtch.int_param_key * power(10.0,13) ) as decimal(22,0))');
 		else
 			set @incl=concat(@incl,'
-            cast((100000000 * power(10.0,12) ) as decimal(22,0))');
+            cast((100000000 * power(10.0,13) ) as decimal(22,0))');
 		end if;
+		if trim(p_bin_dep_cd)<>'0' then
+			set @incl=concat(@incl,' 
+            + cast((dep.bin_dep_cd * power(10.0,12) )as decimal(22,0)) ');
+        end if;		
 		if trim(p_bin_los_cd)<>'0' then
 			set @incl=concat(@incl,' 
             + cast((los.bin_los_cd * power(10.0,11) )as decimal(22,0)) ');
@@ -3920,13 +3783,14 @@ create index idx_params on cachekeys(int_param_key
         end if;	
     set @incl=concat(@incl,'  and che.in_cache=0');
 set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year 
-        between DATE ',char(39),p_minmonthstart,char(39),' and DATE ',char(39),p_maxmonthstart,char(39));    set @incl=concat(@incl,char(13),'
+        between DATE ',char(39),p_minmonthstart,char(39),' and DATE ',char(39),p_maxmonthstart,char(39));    
+        set @incl=concat(@incl,char(13),'
 							group by  pbcp5.qry_type
 									,pbcp5.date_type 
 									,pbcp5.cohort_exit_year
 									,pbcp5.cd_discharge_type
-                  ,pbcp5.bin_dep_cd
-									,year(pbcp5.cohort_exit_year)');
+									,year(pbcp5.cohort_exit_year)
+                  ,mnth');
      	if NOT(trim(p_age_grouping_cd) ='0' 
             and trim(p_gender_cd) ='0'
             and trim(p_ethnicity_cd)='0'
@@ -3942,6 +3806,11 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
         ,mtch.long_cd_plcm_setng
         ,mtch.county_cd');
 		end if;
+
+		if trim(p_bin_dep_cd)<>'0' then
+			set @incl=concat(@incl,'
+				,dep.bin_dep_cd');
+        end if;		
 		if trim(p_bin_los_cd)<>'0' then
 			set @incl=concat(@incl,'
 				,los.bin_los_cd');
@@ -3981,7 +3850,8 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
         end if;	
        set @incl=concat(@incl,' 
         , tot_episodes.tot_episodes;');  
---   select @incl;
+drop temporary table if exists mycode;
+create temporary table  mycode as select @incl;
 
         PREPARE stmt FROM @incl;
         EXECUTE stmt;
@@ -3989,6 +3859,7 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
   
         INSERT IGNORE INTO cache_qry_param_pbcp5
 								   (int_param_key
+								   ,bin_dep_cd
 								   ,bin_los_cd
 								   ,bin_placement_cd
 								   ,bin_ihs_svc_cd
@@ -4007,6 +3878,7 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
 								   ,qry_id
 								   ,int_hash_key)
 						select ck.int_param_key
+										,bin_dep_cd
 								   ,bin_los_cd
 								   ,bin_placement_cd
 								   ,bin_ihs_svc_cd
@@ -4031,144 +3903,131 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
         end if; --  all rows not in cache              
      commit;   
             select    					  
-              pbcp5.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
-						, date_type
-						, pbcp5.age_grouping_cd
-						, case pbcp5.age_grouping_cd
-                                when 0 then age0
-                                when 1 then age1
-                                when 2 then age2
-                                when 3 then age3
-                                when 4 then age4
-                                when 5 then age5
-                                when 6 then age6
-                                when 7 then age7
-                end as "Age Grouping"
-						, pbcp5.cd_race as Ethnicity_Cd
-						, case pbcp5.cd_race
-                   when 0 then eth0
-                   when 1 then eth1
-                   when 2 then eth2
-                   when 3 then eth3
-                   when 4 then eth4
-                   when 5 then eth5
-                   when 6 then eth6
-                   when 7 then eth7
-                   when 8 then eth8
-                   when 9 then eth9
-                   when 10 then eth10
-                   when 11 then eth11
-                   when 12 then eth12
-                   end as  "Race/Ethnicity" 
-						, pbcp5.pk_gndr as Gender_Cd
-						, case pbcp5.pk_gndr
-                                when 0 then gdr0
-                                when 1 then gdr1
-                                when 2 then gdr2
-                                when 3 then gdr3
-                              end as "Gender" 
-						, pbcp5.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcp5.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
-						, pbcp5.county_cd
-						, ref_cnty.county as "County"
-						, pbcp5.bin_dep_cd as  "Dependency Cd"
-						, case  pbcp5.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
-						, pbcp5.bin_los_cd
-						, case pbcp5.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
-						, pbcp5.bin_placement_cd
-						, case pbcp5.bin_placement_cd
-                                when 0 then plc0
-                                when 1 then plc1
-                                when 2 then plc2
-                                when 3 then plc3
-                                when 4 then plc4
-                                when 5 then plc5
-                              end   as "Placement Count Desc"
-						, pbcp5.bin_ihs_svc_cd
-						, case pbcp5.bin_ihs_svc_cd
-                                when 0 then ihs0
-                                when 1 then ihs1
-                                when 2 then ihs2
-                                when 3 then ihs3
-                              end as "In-Home Service Desc"
-						, pbcp5.cd_reporter_type
-						, ref_rpt.tx_reporter_type as "Reporter Desc"
-						, pbcp5.cd_access_type
-						, ref_acc.tx_access_type as "Access type desc"
-						, pbcp5.cd_allegation
-						, case pbcp5.cd_allegation
-                   when 0 then alg0
-                   when 1 then alg1
-                   when 2 then alg2
-                   when 3 then alg3
-                   when 4 then alg4
-                end as "Allegation" 
-						, pbcp5.cd_finding
-						, case pbcp5.cd_finding
-                   when 0 then fnd0
-                   when 1 then fnd1
-                   when 2 then fnd2
-                   when 3 then fnd3
-                   when 4 then fnd4
-                end as "Finding"
-						, pbcp5.cd_subctgry_poc_frc as "Service Type Cd"
-						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcp5.cd_budget_poc_frc   "Budget Cd"
-						, ref_bud.tx_budget_poc_frc  "Budget"
-            , pbcp5.cd_discharge_type
-						, toe.type_of_exit_desc as "Discharge Type"
-            , M3
-            , M6
-            , M9
-            , M12
-            , M15
-            , M18
-            , M21
-            , M24
-            , M27
-            , M30
-            , M33
-            , M36
-            , M39
-            , M42
-            , M45
-            , M48
+                  pbcp5.cohort_entry_date as "Cohort Entry Date"
+                            , qry_type
+                            , date_type
+                            , pbcp5.age_grouping_cd
+                            , case pbcp5.age_grouping_cd
+                                    when 0 then age0
+                                    when 1 then age1
+                                    when 2 then age2
+                                    when 3 then age3
+                                    when 4 then age4
+                                    when 5 then age5
+                                    when 6 then age6
+                                    when 7 then age7
+                    end as "Age Grouping"
+                            , pbcp5.cd_race as ethnicity_cd
+                            , case pbcp5.cd_race
+                       when 0 then eth0
+                       when 1 then eth1
+                       when 2 then eth2
+                       when 3 then eth3
+                       when 4 then eth4
+                       when 5 then eth5
+                       when 6 then eth6
+                       when 7 then eth7
+                       when 8 then eth8
+                       when 9 then eth9
+                       when 10 then eth10
+                       when 11 then eth11
+                       when 12 then eth12
+                       end as  "Race/Ethnicity" 
+                            , pbcp5.pk_gndr as gender_cd
+                            , case pbcp5.pk_gndr
+                                    when 0 then gdr0
+                                    when 1 then gdr1
+                                    when 2 then gdr2
+                                    when 3 then gdr3
+                                  end as "Gender" 
+                            , pbcp5.init_cd_plcm_setng  
+                            , case when pbcp5.init_cd_plcm_setng = 0 then fpl0
+                                when pbcp5.init_cd_plcm_setng = 3 then fpl3
+                                when pbcp5.init_cd_plcm_setng = 4 then fpl4
+                                when pbcp5.init_cd_plcm_setng = 5 then fpl5
+                                when pbcp5.init_cd_plcm_setng = 6 then fpl6
+                                when pbcp5.init_cd_plcm_setng = 7 then fpl7
+                            end as  "Initial Placement"
+                            , pbcp5.long_cd_plcm_setng  
+                            , case when pbcp5.long_cd_plcm_setng = 0 then lpl0
+                                when pbcp5.long_cd_plcm_setng = 3 then lpl3
+                                when pbcp5.long_cd_plcm_setng = 4 then lpl4
+                                when pbcp5.long_cd_plcm_setng = 5 then lpl5
+                                when pbcp5.long_cd_plcm_setng = 6 then lpl6
+                                when pbcp5.long_cd_plcm_setng = 7 then lpl7
+                            end as  "Longest Placement"
+                            , pbcp5.county_cd
+                            , ref_cnty.county as "County"
+                            , pbcp5.bin_dep_cd as  "dependency_cd"
+                            , ref_dep.bin_dep_desc as "Dependency"
+                            , pbcp5.bin_los_cd
+                            , ref_los.bin_los_desc as "Length of Service Desc"                               
+                            , pbcp5.bin_placement_cd
+                            , case pbcp5.bin_placement_cd
+                                    when 0 then plc0
+                                    when 1 then plc1
+                                    when 2 then plc2
+                                    when 3 then plc3
+                                    when 4 then plc4
+                                    when 5 then plc5
+                                  end   as "Placement Count Desc"
+                            , pbcp5.bin_ihs_svc_cd
+                            , case pbcp5.bin_ihs_svc_cd
+                                    when 0 then ihs0
+                                    when 1 then ihs1
+                                    when 2 then ihs2
+                                    when 3 then ihs3
+                                  end as "In-Home Service Desc"
+                            , pbcp5.cd_reporter_type
+                            , ref_rpt.tx_reporter_type as "Reporter Desc"
+                            , pbcp5.cd_access_type
+                            , ref_acc.tx_access_type as "Access type desc"
+                            , pbcp5.cd_allegation
+                            , case pbcp5.cd_allegation
+                       when 0 then alg0
+                       when 1 then alg1
+                       when 2 then alg2
+                       when 3 then alg3
+                       when 4 then alg4
+                    end as "Allegation" 
+                            , pbcp5.cd_finding
+                            , case pbcp5.cd_finding
+                       when 0 then fnd0
+                       when 1 then fnd1
+                       when 2 then fnd2
+                       when 3 then fnd3
+                       when 4 then fnd4
+                    end as "Finding"
+                            , pbcp5.cd_subctgry_poc_frc as "service_type_cd"
+                            , ref_srv.tx_subctgry_poc_frc as "Service Type"
+                            , pbcp5.cd_budget_poc_frc   "budget_cd"
+                            , ref_bud.tx_budget_poc_frc  "Budget"
+                , pbcp5.cd_discharge_type
+                            , toe.type_of_exit_desc as "Discharge Type"
+                , reentry_within_month as "Month"
+                , reentry_rate as "Reentry Percent"
             from cache_pbcp5_aggr pbcp5 
             join cachekeys ck on ck.int_hash_key=pbcp5.int_hash_key
-            and ck.qry_id=pbcp5.qry_id
-           join ref_lookup_type_of_exit toe on toe.type_of_exit=pbcp5.cd_discharge_type
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcp5.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcp5.long_cd_plcm_setng
+                and ck.qry_id=pbcp5.qry_id
+            join ref_lookup_type_of_exit toe on toe.type_of_exit=pbcp5.cd_discharge_type
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcp5.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcp5.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcp5.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcp5.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcp5.cd_access_type
-             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
+            join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcp5.cd_budget_poc_frc
-            where pbcp5.cohort_entry_date 
-            between p_mindate and p_maxdate
+ --           where pbcp5.cohort_entry_date between p_mindate and p_maxdate
             order by 
                 pbcp5.bin_dep_cd asc
                 ,qry_type
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcp5.bin_los_cd asc
                     , pbcp5.bin_placement_cd asc
@@ -4179,6 +4038,7 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
                     , pbcp5.cd_finding
                     , pbcp5.cd_subctgry_poc_frc
                     , pbcp5.cd_budget_poc_frc
+            ,pbcp5.reentry_within_month asc
             ,pbcp5.cd_discharge_type asc;
          end if; -- end all zeroes
     end if; -- stored procedure on

@@ -22,6 +22,8 @@ CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_PBCW4`(p_date  varchar(300
 , p_filter_service_budget varchar(100)
  )
 begin
+declare p_bin_dep_cd varchar(20);
+
 
 declare flg_procedure_off int;
 declare intFoundPos integer;
@@ -36,7 +38,7 @@ declare p_mindate datetime;
 declare p_maxdate datetime;
 declare p_minmonthstart datetime;
 declare p_maxmonthstart datetime;
-
+declare var_calling_procedure int;
 
 
 declare x1 float;
@@ -60,17 +62,20 @@ declare gdr1 char(10);
 declare gdr2 char(10);
 declare gdr3 char(10);
 
-declare dep0 char(50);
-declare dep1 char(50);
-declare dep2 char(50);
-declare dep3 char(50);
 
-declare los0 char(50);
-declare los1 char(50);
-declare los2 char(50);
-declare los3 char(50);
-declare los4 char(50);
-declare los5 char(50);
+declare fpl0 char(50);
+declare fpl3 char(50);
+declare fpl4 char(50);
+declare fpl5 char(50);
+declare fpl6 char(50);
+declare fpl7 char(50);
+
+declare lpl0 char(50);
+declare lpl3 char(50);
+declare lpl4 char(50);
+declare lpl5 char(50);
+declare lpl6 char(50);
+declare lpl7 char(50);
 
 declare plc0 char(25);
 declare plc1 char(25);
@@ -120,48 +125,56 @@ set x2=rand();
 /***  turn procedure on / off for loading data ***************************************/
 set flg_procedure_off =0;
 
-if  flg_procedure_off =0 then    
-  
-    call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,dep0,dep1,dep2,dep3,los0,los1,los2,los3,los4,plc0,plc1,plc2,plc3,plc4,plc5,ihs0,ihs1,ihs2,ihs3,alg0,alg1,alg2,alg3,alg4,fnd0,fnd1,fnd2,fnd3,fnd4,eth0,eth1,eth2,eth3,eth4,eth5,eth6,eth7,eth8,eth9,eth10,eth11,eth12,13);
+if  flg_procedure_off =0 then   
+    set p_bin_dep_cd='1,2,3,0';
+
+    set var_calling_procedure=13;
+call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fpl0,fpl3,fpl4,fpl5,fpl6,fpl7,lpl0,lpl3,lpl4,lpl5,lpl6,lpl7,plc0,plc1,plc2,plc3,plc4,plc5,ihs0,ihs1,ihs2,ihs3,alg0,alg1,alg2,alg3,alg4,fnd0,fnd1,fnd2,fnd3,fnd4,eth0,eth1,eth2,eth3,eth4,eth5,eth6,eth7,eth8,eth9,eth10,eth11,eth12,var_calling_procedure);
 
 
     DROP TEMPORARY TABLE IF EXISTS tbltmpValues;
         create temporary table tbltmpValues (strVal varchar(10));
 
 
-        DROP TEMPORARY TABLE IF EXISTS tbldt;
-        create temporary table tbldt(match_date datetime );
-        alter table tbldt add primary key(match_date);
- 
-    
-        --  dates
-        set strValues=p_date;
-        set 	intFoundPos =instr(strValues,','); 
-        while intFoundPos <>0 do
-                set strElement=SUBSTRING(strValues, 1, intFoundPos-1); 
-                SET strValues = RIGHT(strValues,length(strValues)-intFoundPos);
-            
-                insert into tbltmpValues (strVal) values (strElement);
-                set intFoundPos=instr(strValues,',');
-        end while;
-
-        if strValues <> ''  then
-                INSERT Into tbltmpValues(strVal) values (strValues);
-        end if;
-        
-        insert into tbldt (match_date)
-        select distinct cast(strVal as datetime) from tbltmpValues;
+--         DROP TEMPORARY TABLE IF EXISTS tbldt;
+--         create temporary table tbldt(match_date datetime );
+--         alter table tbldt add primary key(match_date);
+--  
+--     
+--         --  dates
+--         set strValues=p_date;
+--         set 	intFoundPos =instr(strValues,','); 
+--         while intFoundPos <>0 do
+--                 set strElement=SUBSTRING(strValues, 1, intFoundPos-1); 
+--                 SET strValues = RIGHT(strValues,length(strValues)-intFoundPos);
+--             
+--                 insert into tbltmpValues (strVal) values (strElement);
+--                 set intFoundPos=instr(strValues,',');
+--         end while;
+-- 
+--         if strValues <> ''  then
+--                 INSERT Into tbltmpValues(strVal) values (strValues);
+--         end if;
+--         
+--         insert into tbldt (match_date)
+--         select distinct cast(strVal as datetime) from tbltmpValues;
      
      
 --  set dates 
     
-    select min_date_any ,max_date_all 
-    into p_minmonthstart,p_maxmonthstart  
-    FROM ref_lookup_max_date where id=12;
-    select min(match_date),max(match_date) 
-    into p_mindate,p_maxdate from tbldt;
+--     select min_date_any ,max_date_all 
+--     into p_minmonthstart,p_maxmonthstart  
+--     FROM ref_lookup_max_date where id=12;
+--     select min(match_date),max(match_date) 
+--     into p_mindate,p_maxdate from tbldt;
 
-       if  (trim(p_bin_placement_cd)='0' 
+     select min_date_any ,max_date_any 
+    into p_minmonthstart,p_maxmonthstart  
+    FROM ref_lookup_max_date where id=var_calling_procedure;
+    select p_minmonthstart,p_maxmonthstart 
+    into p_mindate,p_maxdate ;  
+   
+ if  (trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -175,344 +188,8 @@ if  flg_procedure_off =0 then
             and trim(p_ethnicity_cd)='0'
             and trim(p_init_cd_plcm_setng)='0' 
             and trim(p_long_cd_plcm_setng)='0' 
-            and trim(p_county_cd) = '0'  )   then
-    --   all zeroes
-        update cache_pbcw4_params
-        set cnt_qry=cnt_qry + 1,last_run_date=now()
-        where qry_id=1;
-        
-        select
-            pbcw4.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
-						, date_type
-						, pbcw4.age_grouping_cd
-						, case pbcw4.age_grouping_cd
-                                when 0 then age0
-                                when 1 then age1
-                                when 2 then age2
-                                when 3 then age3
-                                when 4 then age4
-                                when 5 then age5
-                                when 6 then age6
-                                when 7 then age7
-                end as "Age Grouping"
-						, pbcw4.cd_race as Ethnicity_Cd
-						, case pbcw4.cd_race
-                   when 0 then eth0
-                   when 1 then eth1
-                   when 2 then eth2
-                   when 3 then eth3
-                   when 4 then eth4
-                   when 5 then eth5
-                   when 6 then eth6
-                   when 7 then eth7
-                   when 8 then eth8
-                   when 9 then eth9
-                   when 10 then eth10
-                   when 11 then eth11
-                   when 12 then eth12
-                   end as  "Race/Ethnicity" 
-						, pbcw4.pk_gndr as Gender_Cd
-						, case pbcw4.pk_gndr
-                                when 0 then gdr0
-                                when 1 then gdr1
-                                when 2 then gdr2
-                                when 3 then gdr3
-                              end as "Gender" 
-						, pbcw4.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw4.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
-						, pbcw4.county_cd
-						, ref_cnty.county as "County"
-						, pbcw4.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw4.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
-						, pbcw4.bin_los_cd
-						, case pbcw4.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
-						, pbcw4.bin_placement_cd
-						, case pbcw4.bin_placement_cd
-                                when 0 then plc0
-                                when 1 then plc1
-                                when 2 then plc2
-                                when 3 then plc3
-                                when 4 then plc4
-                                when 5 then plc5
-                              end   as "Placement Count Desc"
-						, pbcw4.bin_ihs_svc_cd
-						, case pbcw4.bin_ihs_svc_cd
-                                when 0 then ihs0
-                                when 1 then ihs1
-                                when 2 then ihs2
-                                when 3 then ihs3
-                              end as "In-Home Service Desc"
-						, pbcw4.cd_reporter_type
-						, ref_rpt.tx_reporter_type as "Reporter Desc"
-						, pbcw4.cd_access_type
-						, ref_acc.tx_access_type as "Access type desc"
-						, pbcw4.cd_allegation
-						, case pbcw4.cd_allegation
-                   when 0 then alg0
-                   when 1 then alg1
-                   when 2 then alg2
-                   when 3 then alg3
-                   when 4 then alg4
-                end as "Allegation" 
-						, pbcw4.cd_finding
-						, case pbcw4.cd_finding
-                   when 0 then fnd0
-                   when 1 then fnd1
-                   when 2 then fnd2
-                   when 3 then fnd3
-                   when 4 then fnd4
-                end as "Finding"
-						, pbcw4.cd_subctgry_poc_frc as "Service Type Cd"
-						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw4.cd_budget_poc_frc   "Budget Cd"
-						, ref_bud.tx_budget_poc_frc  "Budget"
-            , kincare
-            , case when kincare=1 then 'With Kin' else 'All including Kin' end as "Placement Type"
-            , pbcw4.bin_sibling_group_size
-            , ref_sib.Sibling_Group_Name "Sibling Group Size"
-            , all_together  as All_Together
-            , some_together as Some_Together
-            , none_together as None_Together
-            , round(cnt_cohort + 2 * sqrt(-2 * log(pbcw4.x1)) 
-                                        * cos(2*pi()*pbcw4.x2),0) as "Number in Cohort"            
-    FROM cache_pbcw4_aggr  pbcw4
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw4.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw4.long_cd_plcm_setng
-            join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw4.county_cd
-            join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw4.cd_reporter_type
-            join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw4.cd_access_type
-             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
-            join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
-            join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
-            where pbcw4.qry_id=1
-            and  pbcw4.int_hash_key=100000000000000000000
-            and pbcw4.cohort_entry_date 
-            between p_mindate and p_maxdate
-            order by   kincare asc,
-                pbcw4.bin_dep_cd asc
-                ,qry_type
-                ,date_type
-                ,Cohort_Entry_date asc
-                ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
-                    ,county_cd asc
-                    , pbcw4.bin_los_cd asc
-                    , pbcw4.bin_placement_cd asc
-                    , pbcw4.bin_ihs_svc_cd asc
-                    , pbcw4.cd_reporter_type
-                    , pbcw4.cd_access_type
-                    , pbcw4.cd_allegation
-                    , pbcw4.cd_finding
-                    , pbcw4.cd_subctgry_poc_frc
-                    , pbcw4.cd_budget_poc_frc
-                    , pbcw4.bin_sibling_group_size
-           ;
-elseif  (trim(p_bin_placement_cd)='0' 
-   					and trim(p_bin_ihs_svc_cd)='0' 
-   					and trim(p_cd_reporter_type)='0' 
-   					and trim(p_filter_access_type)='0' 
-   					and trim(p_filter_allegation)='0' 
-            and trim(p_filter_finding)='0' 
-            and trim(p_bin_los_cd)='0'
-            and trim(p_filter_service_budget) ='0' 
-            and trim(p_filter_service_category)='0'
-            and trim(p_age_grouping_cd) ='0' 
-            and trim(p_gender_cd) ='0'
-            and trim(p_ethnicity_cd)<>'0'
-            and trim(p_init_cd_plcm_setng)='0' 
-            and trim(p_long_cd_plcm_setng)='0' 
-            and trim(p_county_cd) = '0'  )   then
-            
-       call load_ooh_parameters(p_date
-                ,  p_age_grouping_cd 
-                ,  p_ethnicity_cd 
-                ,  p_gender_cd 
-                ,  p_init_cd_plcm_setng 
-                ,  p_long_cd_plcm_setng 
-                ,  p_county_cd 
-                ,  p_bin_los_cd 
-                ,  p_bin_placement_cd 
-                ,  p_bin_ihs_svc_cd 
-                ,  p_cd_reporter_type 
-                ,  p_filter_access_type 
-                ,  p_filter_allegation  
-                , p_filter_finding 
-                , p_filter_service_category  
-                , p_filter_service_budget
-                , 0
-                , 0
-                , p_mindate
-                , p_maxdate
-                , 13);         
-            
-    --   all zeroes
-        update cache_pbcw4_params
-        set cnt_qry=cnt_qry + 1,last_run_date=now()
-        where qry_id=3;
-        
-        select
-            pbcw4.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
-						, date_type
-						, pbcw4.age_grouping_cd
-						, case pbcw4.age_grouping_cd
-                                when 0 then age0
-                                when 1 then age1
-                                when 2 then age2
-                                when 3 then age3
-                                when 4 then age4
-                                when 5 then age5
-                                when 6 then age6
-                                when 7 then age7
-                end as "Age Grouping"
-						, pbcw4.cd_race as Ethnicity_Cd
-						, case pbcw4.cd_race
-                   when 0 then eth0
-                   when 1 then eth1
-                   when 2 then eth2
-                   when 3 then eth3
-                   when 4 then eth4
-                   when 5 then eth5
-                   when 6 then eth6
-                   when 7 then eth7
-                   when 8 then eth8
-                   when 9 then eth9
-                   when 10 then eth10
-                   when 11 then eth11
-                   when 12 then eth12
-                   end as  "Race/Ethnicity" 
-						, pbcw4.pk_gndr as Gender_Cd
-						, case pbcw4.pk_gndr
-                                when 0 then gdr0
-                                when 1 then gdr1
-                                when 2 then gdr2
-                                when 3 then gdr3
-                              end as "Gender" 
-						, pbcw4.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw4.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
-						, pbcw4.county_cd
-						, ref_cnty.county as "County"
-						, pbcw4.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw4.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
-						, pbcw4.bin_los_cd
-						, case pbcw4.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
-						, pbcw4.bin_placement_cd
-						, case pbcw4.bin_placement_cd
-                                when 0 then plc0
-                                when 1 then plc1
-                                when 2 then plc2
-                                when 3 then plc3
-                                when 4 then plc4
-                                when 5 then plc5
-                              end   as "Placement Count Desc"
-						, pbcw4.bin_ihs_svc_cd
-						, case pbcw4.bin_ihs_svc_cd
-                                when 0 then ihs0
-                                when 1 then ihs1
-                                when 2 then ihs2
-                                when 3 then ihs3
-                              end as "In-Home Service Desc"
-						, pbcw4.cd_reporter_type
-						, ref_rpt.tx_reporter_type as "Reporter Desc"
-						, pbcw4.cd_access_type
-						, ref_acc.tx_access_type as "Access type desc"
-						, pbcw4.cd_allegation
-						, case pbcw4.cd_allegation
-                   when 0 then alg0
-                   when 1 then alg1
-                   when 2 then alg2
-                   when 3 then alg3
-                   when 4 then alg4
-                end as "Allegation" 
-						, pbcw4.cd_finding
-						, case pbcw4.cd_finding
-                   when 0 then fnd0
-                   when 1 then fnd1
-                   when 2 then fnd2
-                   when 3 then fnd3
-                   when 4 then fnd4
-                end as "Finding"
-						, pbcw4.cd_subctgry_poc_frc as "Service Type Cd"
-						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw4.cd_budget_poc_frc   "Budget Cd"
-						, ref_bud.tx_budget_poc_frc  "Budget"
-            , kincare
-            , case when kincare=1 then 'With Kin' else 'All including Kin' end as "Placement Type"
-            , pbcw4.bin_sibling_group_size
-            , ref_sib.Sibling_Group_Name "Sibling Group Size"
-            , all_together  as All_Together
-            , some_together as Some_Together
-            , none_together as None_Together
-            , round(cnt_cohort + 2 * sqrt(-2 * log(pbcw4.x1)) 
-                                        * cos(2*pi()*pbcw4.x2),0) as "Number in Cohort"      
-FROM cache_pbcw4_aggr  pbcw4
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw4.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw4.long_cd_plcm_setng
-            join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw4.county_cd
-            join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw4.cd_reporter_type
-            join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw4.cd_access_type
-             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
-            join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
-            join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
-            where pbcw4.qry_id in (1,3)
-            and  pbcw4.int_hash_key in
-                (100000000000000000000,100100000000000000000,100200000000000000000,100300000000000000000,100400000000000000000,
-100500000000000000000,100600000000000000000,100800000000000000000,100900000000000000000,101000000000000000000,
-101100000000000000000,101200000000000000000)
-            and pbcw4.cd_race in (select distinct cd_race from tbleth)
-            and pbcw4.cohort_entry_date 
-            between p_mindate and p_maxdate
-            order by   kincare asc,
-                pbcw4.bin_dep_cd asc
-                ,qry_type
-                ,date_type
-                ,Cohort_Entry_date asc
-                ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
-                    ,county_cd asc
-                    , pbcw4.bin_los_cd asc
-                    , pbcw4.bin_placement_cd asc
-                    , pbcw4.bin_ihs_svc_cd asc
-                    , pbcw4.cd_reporter_type
-                    , pbcw4.cd_access_type
-                    , pbcw4.cd_allegation
-                    , pbcw4.cd_finding
-                    , pbcw4.cd_subctgry_poc_frc
-                    , pbcw4.cd_budget_poc_frc
-                    , pbcw4.bin_sibling_group_size;
- --  age only
- elseif (trim(p_bin_placement_cd)='0' 
+            and trim(p_county_cd) = '0'  )  
+    OR  (trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -526,178 +203,8 @@ FROM cache_pbcw4_aggr  pbcw4
             and trim(p_ethnicity_cd)='0'
             and trim(p_init_cd_plcm_setng)='0' 
             and trim(p_long_cd_plcm_setng)='0' 
-            and trim(p_county_cd) = '0'  )   then
-
-    call load_ooh_parameters(p_date
-                ,  p_age_grouping_cd 
-                ,  p_ethnicity_cd 
-                ,  p_gender_cd 
-                ,  p_init_cd_plcm_setng 
-                ,  p_long_cd_plcm_setng 
-                ,  p_county_cd 
-                ,  p_bin_los_cd 
-                ,  p_bin_placement_cd 
-                ,  p_bin_ihs_svc_cd 
-                ,  p_cd_reporter_type 
-                ,  p_filter_access_type 
-                ,  p_filter_allegation  
-                , p_filter_finding 
-                , p_filter_service_category  
-                , p_filter_service_budget
-                , 0
-                , 0
-                , p_mindate
-                , p_maxdate
-                , 13);
-                
-        update cache_pbcw4_params
-        set cnt_qry=cnt_qry + 1,last_run_date=now()
-        where qry_id=2;
-        
-        select
-            pbcw4.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
-						, date_type
-						, pbcw4.age_grouping_cd
-						, case pbcw4.age_grouping_cd
-                                when 0 then age0
-                                when 1 then age1
-                                when 2 then age2
-                                when 3 then age3
-                                when 4 then age4
-                                when 5 then age5
-                                when 6 then age6
-                                when 7 then age7
-                end as "Age Grouping"
-						, pbcw4.cd_race as Ethnicity_Cd
-						, case pbcw4.cd_race
-                   when 0 then eth0
-                   when 1 then eth1
-                   when 2 then eth2
-                   when 3 then eth3
-                   when 4 then eth4
-                   when 5 then eth5
-                   when 6 then eth6
-                   when 7 then eth7
-                   when 8 then eth8
-                   when 9 then eth9
-                   when 10 then eth10
-                   when 11 then eth11
-                   when 12 then eth12
-                   end as  "Race/Ethnicity" 
-						, pbcw4.pk_gndr as Gender_Cd
-						, case pbcw4.pk_gndr
-                                when 0 then gdr0
-                                when 1 then gdr1
-                                when 2 then gdr2
-                                when 3 then gdr3
-                              end as "Gender" 
-						, pbcw4.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw4.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
-						, pbcw4.county_cd
-						, ref_cnty.county as "County"
-						, pbcw4.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw4.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
-						, pbcw4.bin_los_cd
-						, case pbcw4.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
-						, pbcw4.bin_placement_cd
-						, case pbcw4.bin_placement_cd
-                                when 0 then plc0
-                                when 1 then plc1
-                                when 2 then plc2
-                                when 3 then plc3
-                                when 4 then plc4
-                                when 5 then plc5
-                              end   as "Placement Count Desc"
-						, pbcw4.bin_ihs_svc_cd
-						, case pbcw4.bin_ihs_svc_cd
-                                when 0 then ihs0
-                                when 1 then ihs1
-                                when 2 then ihs2
-                                when 3 then ihs3
-                              end as "In-Home Service Desc"
-						, pbcw4.cd_reporter_type
-						, ref_rpt.tx_reporter_type as "Reporter Desc"
-						, pbcw4.cd_access_type
-						, ref_acc.tx_access_type as "Access type desc"
-						, pbcw4.cd_allegation
-						, case pbcw4.cd_allegation
-                   when 0 then alg0
-                   when 1 then alg1
-                   when 2 then alg2
-                   when 3 then alg3
-                   when 4 then alg4
-                end as "Allegation" 
-						, pbcw4.cd_finding
-						, case pbcw4.cd_finding
-                   when 0 then fnd0
-                   when 1 then fnd1
-                   when 2 then fnd2
-                   when 3 then fnd3
-                   when 4 then fnd4
-                end as "Finding"
-						, pbcw4.cd_subctgry_poc_frc as "Service Type Cd"
-						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw4.cd_budget_poc_frc   "Budget Cd"
-						, ref_bud.tx_budget_poc_frc  "Budget"
-            , kincare
-            , case when kincare=1 then 'With Kin' else 'All including Kin' end as "Placement Type"
-            , pbcw4.bin_sibling_group_size
-            , ref_sib.Sibling_Group_Name "Sibling Group Size"
-            , all_together  as All_Together
-            , some_together as Some_Together
-            , none_together as None_Together
-            , round(cnt_cohort + 2 * sqrt(-2 * log(pbcw4.x1)) 
-                                        * cos(2*pi()*pbcw4.x2),0) as "Number in Cohort"                  
-    FROM cache_pbcw4_aggr  pbcw4
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw4.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw4.long_cd_plcm_setng
-            join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw4.county_cd
-            join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw4.cd_reporter_type
-            join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw4.cd_access_type
-             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
-                        join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
-            join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
-            where pbcw4.qry_id in (1,2)
-            and pbcw4.int_hash_key in (100000000000000000000,110000000000000000000,120000000000000000000,130000000000000000000,140000000000000000000,150000000000000000000,160000000000000000000,170000000000000000000)
-            and pbcw4.age_grouping_cd in (select distinct age_grouping_cd from tblage)
-             and pbcw4.cohort_entry_date between p_mindate and p_maxdate
-            order by kincare asc,
-                pbcw4.bin_dep_cd asc
-                ,qry_type
-                ,date_type
-                ,Cohort_Entry_date asc
-                ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
-                    ,county_cd asc
-                    , pbcw4.bin_los_cd asc
-                    , pbcw4.bin_placement_cd asc
-                    , pbcw4.bin_ihs_svc_cd asc
-                    , pbcw4.cd_reporter_type
-                    , pbcw4.cd_access_type
-                    , pbcw4.cd_allegation
-                    , pbcw4.cd_finding
-                    , pbcw4.cd_subctgry_poc_frc
-                    , pbcw4.cd_budget_poc_frc
-                    , pbcw4.bin_sibling_group_size
-            ;
-  --  county only         
-     elseif (trim(p_bin_placement_cd)='0' 
+            and trim(p_county_cd) = '0'  )  
+    OR (trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -706,190 +213,13 @@ FROM cache_pbcw4_aggr  pbcw4
             and trim(p_bin_los_cd)='0'
             and trim(p_filter_service_budget) ='0' 
             and trim(p_filter_service_category)='0'
-            and trim(p_age_grouping_cd) ='0' 
+            and trim(p_age_grouping_cd) ='0'
             and trim(p_gender_cd) ='0'
-            and trim(p_ethnicity_cd)='0'
+            and trim(p_ethnicity_cd)  <>'0' 
             and trim(p_init_cd_plcm_setng)='0' 
             and trim(p_long_cd_plcm_setng)='0' 
-            and trim(p_county_cd) <>'0'  )   then
-
-    call load_ooh_parameters(p_date
-                ,  p_age_grouping_cd 
-                ,  p_ethnicity_cd 
-                ,  p_gender_cd 
-                ,  p_init_cd_plcm_setng 
-                ,  p_long_cd_plcm_setng 
-                ,  p_county_cd 
-                ,  p_bin_los_cd 
-                ,  p_bin_placement_cd 
-                ,  p_bin_ihs_svc_cd 
-                ,  p_cd_reporter_type 
-                ,  p_filter_access_type 
-                ,  p_filter_allegation  
-                , p_filter_finding 
-                , p_filter_service_category  
-                , p_filter_service_budget
-                , 0
-                , 0
-                , p_mindate
-                , p_maxdate
-                , 13);
-                
-        update cache_pbcw4_params
-        set cnt_qry=cnt_qry + 1,last_run_date=now()
-        where qry_id=7;
-        
-        select
-            pbcw4.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
-						, date_type
-						, pbcw4.age_grouping_cd
-						, case pbcw4.age_grouping_cd
-                                when 0 then age0
-                                when 1 then age1
-                                when 2 then age2
-                                when 3 then age3
-                                when 4 then age4
-                                when 5 then age5
-                                when 6 then age6
-                                when 7 then age7
-                end as "Age Grouping"
-						, pbcw4.cd_race as Ethnicity_Cd
-						, case pbcw4.cd_race
-                   when 0 then eth0
-                   when 1 then eth1
-                   when 2 then eth2
-                   when 3 then eth3
-                   when 4 then eth4
-                   when 5 then eth5
-                   when 6 then eth6
-                   when 7 then eth7
-                   when 8 then eth8
-                   when 9 then eth9
-                   when 10 then eth10
-                   when 11 then eth11
-                   when 12 then eth12
-                   end as  "Race/Ethnicity" 
-						, pbcw4.pk_gndr as Gender_Cd
-						, case pbcw4.pk_gndr
-                                when 0 then gdr0
-                                when 1 then gdr1
-                                when 2 then gdr2
-                                when 3 then gdr3
-                              end as "Gender" 
-						, pbcw4.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw4.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
-						, pbcw4.county_cd
-						, ref_cnty.county as "County"
-						, pbcw4.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw4.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
-						, pbcw4.bin_los_cd
-						, case pbcw4.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
-						, pbcw4.bin_placement_cd
-						, case pbcw4.bin_placement_cd
-                                when 0 then plc0
-                                when 1 then plc1
-                                when 2 then plc2
-                                when 3 then plc3
-                                when 4 then plc4
-                                when 5 then plc5
-                              end   as "Placement Count Desc"
-						, pbcw4.bin_ihs_svc_cd
-						, case pbcw4.bin_ihs_svc_cd
-                                when 0 then ihs0
-                                when 1 then ihs1
-                                when 2 then ihs2
-                                when 3 then ihs3
-                              end as "In-Home Service Desc"
-						, pbcw4.cd_reporter_type
-						, ref_rpt.tx_reporter_type as "Reporter Desc"
-						, pbcw4.cd_access_type
-						, ref_acc.tx_access_type as "Access type desc"
-						, pbcw4.cd_allegation
-						, case pbcw4.cd_allegation
-                   when 0 then alg0
-                   when 1 then alg1
-                   when 2 then alg2
-                   when 3 then alg3
-                   when 4 then alg4
-                end as "Allegation" 
-						, pbcw4.cd_finding
-						, case pbcw4.cd_finding
-                   when 0 then fnd0
-                   when 1 then fnd1
-                   when 2 then fnd2
-                   when 3 then fnd3
-                   when 4 then fnd4
-                end as "Finding"
-						, pbcw4.cd_subctgry_poc_frc as "Service Type Cd"
-						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw4.cd_budget_poc_frc   "Budget Cd"
-						, ref_bud.tx_budget_poc_frc  "Budget"
-            , kincare
-            , case when kincare=1 then 'With Kin' else 'All including Kin' end as "Placement Type"
-            , pbcw4.bin_sibling_group_size
-            , ref_sib.Sibling_Group_Name "Sibling Group Size"
-            , all_together  as All_Together
-            , some_together as Some_Together
-            , none_together as None_Together
-            , round(cnt_cohort + 2 * sqrt(-2 * log(pbcw4.x1)) 
-                                        * cos(2*pi()*pbcw4.x2),0) as "Number in Cohort"                  
-            FROM cache_pbcw4_aggr  pbcw4
-             join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw4.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw4.long_cd_plcm_setng
-            join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw4.county_cd
-            join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw4.cd_reporter_type
-            join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw4.cd_access_type
-             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
-                        join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
-            join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
-            where pbcw4.qry_id in (1,7)
-            and pbcw4.int_hash_key in 
-            (100000000000000000000,100000001000000000000,100000002000000000000,100000003000000000000,100000004000000000000,
-100000005000000000000,100000006000000000000,100000007000000000000,100000008000000000000,100000009000000000000,
-100000010000000000000,100000011000000000000,100000012000000000000,100000013000000000000,100000014000000000000,
-100000015000000000000,100000016000000000000,100000017000000000000,100000018000000000000,100000019000000000000,
-100000020000000000000,100000021000000000000,100000022000000000000,10000009000000000000,100000024000000000000,
-100000025000000000000,100000026000000000000,100000027000000000000,100000028000000000000,100000029000000000000,
-100000030000000000000,100000031000000000000,100000032000000000000,100000033000000000000,100000034000000000000,
-100000035000000000000,100000036000000000000,100000037000000000000,100000038000000000000,100000039000000000000)
-            and pbcw4.county_cd in (select distinct cd_cnty from tblcnty)
-             and pbcw4.cohort_entry_date between p_mindate and p_maxdate
-            order by kincare asc,
-                pbcw4.bin_dep_cd asc
-                ,qry_type
-                ,date_type
-                ,Cohort_Entry_date asc
-                ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
-                    ,county_cd asc
-                    , pbcw4.bin_los_cd asc
-                    , pbcw4.bin_placement_cd asc
-                    , pbcw4.bin_ihs_svc_cd asc
-                    , pbcw4.cd_reporter_type
-                    , pbcw4.cd_access_type
-                    , pbcw4.cd_allegation
-                    , pbcw4.cd_finding
-                    , pbcw4.cd_subctgry_poc_frc
-                    , pbcw4.cd_budget_poc_frc
-                    , pbcw4.bin_sibling_group_size;          
- --  gender only
- elseif (trim(p_bin_placement_cd)='0' 
+            and trim(p_county_cd) = '0'  )  
+    OR (trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -898,183 +228,13 @@ FROM cache_pbcw4_aggr  pbcw4
             and trim(p_bin_los_cd)='0'
             and trim(p_filter_service_budget) ='0' 
             and trim(p_filter_service_category)='0'
-            and trim(p_age_grouping_cd) ='0' 
-            and trim(p_gender_cd)<>'0'
-            and trim(p_ethnicity_cd)='0'
+            and trim(p_age_grouping_cd) ='0'
+            and trim(p_gender_cd) <>'0'
+            and trim(p_ethnicity_cd)  ='0' 
             and trim(p_init_cd_plcm_setng)='0' 
             and trim(p_long_cd_plcm_setng)='0' 
-            and trim(p_county_cd) ='0'  )   then
-
-    call load_ooh_parameters(p_date
-                ,  p_age_grouping_cd 
-                ,  p_ethnicity_cd 
-                ,  p_gender_cd 
-                ,  p_init_cd_plcm_setng 
-                ,  p_long_cd_plcm_setng 
-                ,  p_county_cd 
-                ,  p_bin_los_cd 
-                ,  p_bin_placement_cd 
-                ,  p_bin_ihs_svc_cd 
-                ,  p_cd_reporter_type 
-                ,  p_filter_access_type 
-                ,  p_filter_allegation  
-                , p_filter_finding 
-                , p_filter_service_category  
-                , p_filter_service_budget
-                , 0
-                , 0
-                , p_mindate
-                , p_maxdate
-                , 13);
-                
-        update cache_pbcw4_params
-        set cnt_qry=cnt_qry + 1,last_run_date=now()
-        where qry_id=4;
-        
-        select
-            pbcw4.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
-						, date_type
-						, pbcw4.age_grouping_cd
-						, case pbcw4.age_grouping_cd
-                                when 0 then age0
-                                when 1 then age1
-                                when 2 then age2
-                                when 3 then age3
-                                when 4 then age4
-                                when 5 then age5
-                                when 6 then age6
-                                when 7 then age7
-                end as "Age Grouping"
-						, pbcw4.cd_race as Ethnicity_Cd
-						, case pbcw4.cd_race
-                   when 0 then eth0
-                   when 1 then eth1
-                   when 2 then eth2
-                   when 3 then eth3
-                   when 4 then eth4
-                   when 5 then eth5
-                   when 6 then eth6
-                   when 7 then eth7
-                   when 8 then eth8
-                   when 9 then eth9
-                   when 10 then eth10
-                   when 11 then eth11
-                   when 12 then eth12
-                   end as  "Race/Ethnicity" 
-						, pbcw4.pk_gndr as Gender_Cd
-						, case pbcw4.pk_gndr
-                                when 0 then gdr0
-                                when 1 then gdr1
-                                when 2 then gdr2
-                                when 3 then gdr3
-                              end as "Gender" 
-						, pbcw4.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw4.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
-						, pbcw4.county_cd
-						, ref_cnty.county as "County"
-						, pbcw4.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw4.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
-						, pbcw4.bin_los_cd
-						, case pbcw4.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
-						, pbcw4.bin_placement_cd
-						, case pbcw4.bin_placement_cd
-                                when 0 then plc0
-                                when 1 then plc1
-                                when 2 then plc2
-                                when 3 then plc3
-                                when 4 then plc4
-                                when 5 then plc5
-                              end   as "Placement Count Desc"
-						, pbcw4.bin_ihs_svc_cd
-						, case pbcw4.bin_ihs_svc_cd
-                                when 0 then ihs0
-                                when 1 then ihs1
-                                when 2 then ihs2
-                                when 3 then ihs3
-                              end as "In-Home Service Desc"
-						, pbcw4.cd_reporter_type
-						, ref_rpt.tx_reporter_type as "Reporter Desc"
-						, pbcw4.cd_access_type
-						, ref_acc.tx_access_type as "Access type desc"
-						, pbcw4.cd_allegation
-						, case pbcw4.cd_allegation
-                   when 0 then alg0
-                   when 1 then alg1
-                   when 2 then alg2
-                   when 3 then alg3
-                   when 4 then alg4
-                end as "Allegation" 
-						, pbcw4.cd_finding
-						, case pbcw4.cd_finding
-                   when 0 then fnd0
-                   when 1 then fnd1
-                   when 2 then fnd2
-                   when 3 then fnd3
-                   when 4 then fnd4
-                end as "Finding"
-						, pbcw4.cd_subctgry_poc_frc as "Service Type Cd"
-						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw4.cd_budget_poc_frc   "Budget Cd"
-						, ref_bud.tx_budget_poc_frc  "Budget"
-            , kincare
-            , case when kincare=1 then 'With Kin' else 'All including Kin' end as "Placement Type"
-            , pbcw4.bin_sibling_group_size
-            , ref_sib.Sibling_Group_Name "Sibling Group Size"
-            , all_together  as All_Together
-            , some_together as Some_Together
-            , none_together as None_Together
-            , round(cnt_cohort + 2 * sqrt(-2 * log(pbcw4.x1)) 
-                                        * cos(2*pi()*pbcw4.x2),0) as "Number in Cohort"      
-            FROM cache_pbcw4_aggr  pbcw4
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw4.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw4.long_cd_plcm_setng
-            join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw4.county_cd
-            join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw4.cd_reporter_type
-            join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw4.cd_access_type
-             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
-                        join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
-            join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
-            where pbcw4.qry_id in (1,4)
-            and pbcw4.int_hash_key in (100000000000000000000,100010000000000000000,100020000000000000000)
-            and pbcw4.pk_gndr in (select distinct pk_gndr from tblgdr)
-            and pbcw4.cohort_entry_date between p_mindate and p_maxdate
-            order by kincare asc,
-                pbcw4.bin_dep_cd asc
-                ,qry_type
-                ,date_type
-                ,Cohort_Entry_date asc
-                ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
-                    ,county_cd asc
-                    , pbcw4.bin_los_cd asc
-                    , pbcw4.bin_placement_cd asc
-                    , pbcw4.bin_ihs_svc_cd asc
-                    , pbcw4.cd_reporter_type
-                    , pbcw4.cd_access_type
-                    , pbcw4.cd_allegation
-                    , pbcw4.cd_finding
-                    , pbcw4.cd_subctgry_poc_frc
-                    , pbcw4.cd_budget_poc_frc
-                    , pbcw4.bin_sibling_group_size;
- 
- --  initial placement setting only
- elseif (trim(p_bin_placement_cd)='0' 
+            and trim(p_county_cd) = '0'  )  
+    OR (trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -1083,183 +243,13 @@ FROM cache_pbcw4_aggr  pbcw4
             and trim(p_bin_los_cd)='0'
             and trim(p_filter_service_budget) ='0' 
             and trim(p_filter_service_category)='0'
-            and trim(p_age_grouping_cd) ='0' 
-            and trim(p_gender_cd)='0'
-            and trim(p_ethnicity_cd)='0'
+            and trim(p_age_grouping_cd) ='0'
+            and trim(p_gender_cd) ='0'
+            and trim(p_ethnicity_cd)  ='0' 
             and trim(p_init_cd_plcm_setng)<>'0' 
             and trim(p_long_cd_plcm_setng)='0' 
-            and trim(p_county_cd) ='0'  )   then
-
-    call load_ooh_parameters(p_date
-                ,  p_age_grouping_cd 
-                ,  p_ethnicity_cd 
-                ,  p_gender_cd 
-                ,  p_init_cd_plcm_setng 
-                ,  p_long_cd_plcm_setng 
-                ,  p_county_cd 
-                ,  p_bin_los_cd 
-                ,  p_bin_placement_cd 
-                ,  p_bin_ihs_svc_cd 
-                ,  p_cd_reporter_type 
-                ,  p_filter_access_type 
-                ,  p_filter_allegation  
-                , p_filter_finding 
-                , p_filter_service_category  
-                , p_filter_service_budget
-                , 0
-                , 0
-                , p_mindate
-                , p_maxdate
-                , 13);
-                
-        update cache_pbcw4_params
-        set cnt_qry=cnt_qry + 1,last_run_date=now()
-        where qry_id=5;
-        
-        select
-            pbcw4.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
-						, date_type
-						, pbcw4.age_grouping_cd
-						, case pbcw4.age_grouping_cd
-                                when 0 then age0
-                                when 1 then age1
-                                when 2 then age2
-                                when 3 then age3
-                                when 4 then age4
-                                when 5 then age5
-                                when 6 then age6
-                                when 7 then age7
-                end as "Age Grouping"
-						, pbcw4.cd_race as Ethnicity_Cd
-						, case pbcw4.cd_race
-                   when 0 then eth0
-                   when 1 then eth1
-                   when 2 then eth2
-                   when 3 then eth3
-                   when 4 then eth4
-                   when 5 then eth5
-                   when 6 then eth6
-                   when 7 then eth7
-                   when 8 then eth8
-                   when 9 then eth9
-                   when 10 then eth10
-                   when 11 then eth11
-                   when 12 then eth12
-                   end as  "Race/Ethnicity" 
-						, pbcw4.pk_gndr as Gender_Cd
-						, case pbcw4.pk_gndr
-                                when 0 then gdr0
-                                when 1 then gdr1
-                                when 2 then gdr2
-                                when 3 then gdr3
-                              end as "Gender" 
-						, pbcw4.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw4.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
-						, pbcw4.county_cd
-						, ref_cnty.county as "County"
-						, pbcw4.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw4.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
-						, pbcw4.bin_los_cd
-						, case pbcw4.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
-						, pbcw4.bin_placement_cd
-						, case pbcw4.bin_placement_cd
-                                when 0 then plc0
-                                when 1 then plc1
-                                when 2 then plc2
-                                when 3 then plc3
-                                when 4 then plc4
-                                when 5 then plc5
-                              end   as "Placement Count Desc"
-						, pbcw4.bin_ihs_svc_cd
-						, case pbcw4.bin_ihs_svc_cd
-                                when 0 then ihs0
-                                when 1 then ihs1
-                                when 2 then ihs2
-                                when 3 then ihs3
-                              end as "In-Home Service Desc"
-						, pbcw4.cd_reporter_type
-						, ref_rpt.tx_reporter_type as "Reporter Desc"
-						, pbcw4.cd_access_type
-						, ref_acc.tx_access_type as "Access type desc"
-						, pbcw4.cd_allegation
-						, case pbcw4.cd_allegation
-                   when 0 then alg0
-                   when 1 then alg1
-                   when 2 then alg2
-                   when 3 then alg3
-                   when 4 then alg4
-                end as "Allegation" 
-						, pbcw4.cd_finding
-						, case pbcw4.cd_finding
-                   when 0 then fnd0
-                   when 1 then fnd1
-                   when 2 then fnd2
-                   when 3 then fnd3
-                   when 4 then fnd4
-                end as "Finding"
-						, pbcw4.cd_subctgry_poc_frc as "Service Type Cd"
-						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw4.cd_budget_poc_frc   "Budget Cd"
-						, ref_bud.tx_budget_poc_frc  "Budget"
-            , kincare
-            , case when kincare=1 then 'With Kin' else 'All including Kin' end as "Placement Type"
-            , pbcw4.bin_sibling_group_size
-            , ref_sib.Sibling_Group_Name "Sibling Group Size"
-            , all_together  as All_Together
-            , some_together as Some_Together
-            , none_together as None_Together
-            , round(cnt_cohort + 2 * sqrt(-2 * log(pbcw4.x1)) 
-                                        * cos(2*pi()*pbcw4.x2),0) as "Number in Cohort"      
-            FROM cache_pbcw4_aggr  pbcw4
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw4.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw4.long_cd_plcm_setng
-            join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw4.county_cd
-            join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw4.cd_reporter_type
-            join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw4.cd_access_type
-            join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
-                        join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
-            join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
-            where pbcw4.qry_id in (1,5)
-            and pbcw4.int_hash_key in (100000000000000000000,100003000000000000000,100004000000000000000,
-                        100005000000000000000,100006000000000000000,100007000000000000000)
-            and pbcw4.init_cd_plcm_setng in (select distinct cd_plcm_setng from tblfpl)
-             and pbcw4.cohort_entry_date between p_mindate and p_maxdate
-            order by kincare asc,
-                pbcw4.bin_dep_cd asc
-                ,qry_type
-                ,date_type
-                ,Cohort_Entry_date asc
-                ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
-                    ,county_cd asc
-                    , pbcw4.bin_los_cd asc
-                    , pbcw4.bin_placement_cd asc
-                    , pbcw4.bin_ihs_svc_cd asc
-                    , pbcw4.cd_reporter_type
-                    , pbcw4.cd_access_type
-                    , pbcw4.cd_allegation
-                    , pbcw4.cd_finding
-                    , pbcw4.cd_subctgry_poc_frc
-                    , pbcw4.cd_budget_poc_frc
-                    , pbcw4.bin_sibling_group_size;  
- --  longest placement setting only            
-     elseif (trim(p_bin_placement_cd)='0' 
+            and trim(p_county_cd) = '0'  ) 
+    OR  (trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -1268,183 +258,28 @@ FROM cache_pbcw4_aggr  pbcw4
             and trim(p_bin_los_cd)='0'
             and trim(p_filter_service_budget) ='0' 
             and trim(p_filter_service_category)='0'
-            and trim(p_age_grouping_cd) ='0' 
-            and trim(p_gender_cd)='0'
-            and trim(p_ethnicity_cd)='0'
+            and trim(p_age_grouping_cd) ='0'
+            and trim(p_gender_cd) ='0'
+            and trim(p_ethnicity_cd)  ='0' 
             and trim(p_init_cd_plcm_setng)='0' 
             and trim(p_long_cd_plcm_setng)<>'0' 
-            and trim(p_county_cd) ='0'  )   then
-
-    call load_ooh_parameters(p_date
-                ,  p_age_grouping_cd 
-                ,  p_ethnicity_cd 
-                ,  p_gender_cd 
-                ,  p_init_cd_plcm_setng 
-                ,  p_long_cd_plcm_setng 
-                ,  p_county_cd 
-                ,  p_bin_los_cd 
-                ,  p_bin_placement_cd 
-                ,  p_bin_ihs_svc_cd 
-                ,  p_cd_reporter_type 
-                ,  p_filter_access_type 
-                ,  p_filter_allegation  
-                , p_filter_finding 
-                , p_filter_service_category  
-                , p_filter_service_budget
-                , 0
-                , 0
-                , p_mindate
-                , p_maxdate
-                , 13);
-                
-        update cache_pbcw4_params
-        set cnt_qry=cnt_qry + 1,last_run_date=now()
-        where qry_id=6;
-        
-        select
-            pbcw4.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
-						, date_type
-						, pbcw4.age_grouping_cd
-						, case pbcw4.age_grouping_cd
-                                when 0 then age0
-                                when 1 then age1
-                                when 2 then age2
-                                when 3 then age3
-                                when 4 then age4
-                                when 5 then age5
-                                when 6 then age6
-                                when 7 then age7
-                end as "Age Grouping"
-						, pbcw4.cd_race as Ethnicity_Cd
-						, case pbcw4.cd_race
-                   when 0 then eth0
-                   when 1 then eth1
-                   when 2 then eth2
-                   when 3 then eth3
-                   when 4 then eth4
-                   when 5 then eth5
-                   when 6 then eth6
-                   when 7 then eth7
-                   when 8 then eth8
-                   when 9 then eth9
-                   when 10 then eth10
-                   when 11 then eth11
-                   when 12 then eth12
-                   end as  "Race/Ethnicity" 
-						, pbcw4.pk_gndr as Gender_Cd
-						, case pbcw4.pk_gndr
-                                when 0 then gdr0
-                                when 1 then gdr1
-                                when 2 then gdr2
-                                when 3 then gdr3
-                              end as "Gender" 
-						, pbcw4.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw4.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
-						, pbcw4.county_cd
-						, ref_cnty.county as "County"
-						, pbcw4.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw4.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
-						, pbcw4.bin_los_cd
-						, case pbcw4.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
-						, pbcw4.bin_placement_cd
-						, case pbcw4.bin_placement_cd
-                                when 0 then plc0
-                                when 1 then plc1
-                                when 2 then plc2
-                                when 3 then plc3
-                                when 4 then plc4
-                                when 5 then plc5
-                              end   as "Placement Count Desc"
-						, pbcw4.bin_ihs_svc_cd
-						, case pbcw4.bin_ihs_svc_cd
-                                when 0 then ihs0
-                                when 1 then ihs1
-                                when 2 then ihs2
-                                when 3 then ihs3
-                              end as "In-Home Service Desc"
-						, pbcw4.cd_reporter_type
-						, ref_rpt.tx_reporter_type as "Reporter Desc"
-						, pbcw4.cd_access_type
-						, ref_acc.tx_access_type as "Access type desc"
-						, pbcw4.cd_allegation
-						, case pbcw4.cd_allegation
-                   when 0 then alg0
-                   when 1 then alg1
-                   when 2 then alg2
-                   when 3 then alg3
-                   when 4 then alg4
-                end as "Allegation" 
-						, pbcw4.cd_finding
-						, case pbcw4.cd_finding
-                   when 0 then fnd0
-                   when 1 then fnd1
-                   when 2 then fnd2
-                   when 3 then fnd3
-                   when 4 then fnd4
-                end as "Finding"
-						, pbcw4.cd_subctgry_poc_frc as "Service Type Cd"
-						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw4.cd_budget_poc_frc   "Budget Cd"
-						, ref_bud.tx_budget_poc_frc  "Budget"
-            , kincare
-            , case when kincare=1 then 'With Kin' else 'All including Kin' end as "Placement Type"
-            , pbcw4.bin_sibling_group_size
-            , ref_sib.Sibling_Group_Name "Sibling Group Size"
-            , all_together  as All_Together
-            , some_together as Some_Together
-            , none_together as None_Together
-            , round(cnt_cohort + 2 * sqrt(-2 * log(pbcw4.x1)) 
-                                        * cos(2*pi()*pbcw4.x2),0) as "Number in Cohort"      
-            FROM cache_pbcw4_aggr  pbcw4
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw4.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw4.long_cd_plcm_setng
-            join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw4.county_cd
-            join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw4.cd_reporter_type
-            join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw4.cd_access_type
-            join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
-                        join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
-            join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
-           where pbcw4.qry_id in (1,6)
-            and   pbcw4.int_hash_key in (100000000000000000000,100000300000000000000,100000400000000000000,
-                        100000500000000000000,100000600000000000000,100000700000000000000)
-            and pbcw4.long_cd_plcm_setng in (select distinct cd_plcm_setng from tbllpl)
-             and pbcw4.cohort_entry_date between p_mindate and p_maxdate
-            order by kincare asc,
-                pbcw4.bin_dep_cd asc
-                ,qry_type
-                ,date_type
-                ,Cohort_Entry_date asc
-                ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
-                    ,county_cd asc
-                    , pbcw4.bin_los_cd asc
-                    , pbcw4.bin_placement_cd asc
-                    , pbcw4.bin_ihs_svc_cd asc
-                    , pbcw4.cd_reporter_type
-                    , pbcw4.cd_access_type
-                    , pbcw4.cd_allegation
-                    , pbcw4.cd_finding
-                    , pbcw4.cd_subctgry_poc_frc
-                    , pbcw4.cd_budget_poc_frc
-                    , pbcw4.bin_sibling_group_size;  
---  LOS only            
-     elseif (trim(p_bin_placement_cd)='0' 
+            and trim(p_county_cd) = '0'  )  
+    OR  (trim(p_bin_placement_cd)='0' 
+   					and trim(p_bin_ihs_svc_cd)='0' 
+   					and trim(p_cd_reporter_type)='0' 
+   					and trim(p_filter_access_type)='0' 
+   					and trim(p_filter_allegation)='0' 
+            and trim(p_filter_finding)='0' 
+            and trim(p_bin_los_cd)='0'
+            and trim(p_filter_service_budget) ='0' 
+            and trim(p_filter_service_category)='0'
+            and trim(p_age_grouping_cd) ='0'
+            and trim(p_gender_cd) ='0'
+            and trim(p_ethnicity_cd)  ='0' 
+            and trim(p_init_cd_plcm_setng)='0' 
+            and trim(p_long_cd_plcm_setng)='0' 
+            and trim(p_county_cd) <> '0'  )  
+    OR  (trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -1453,182 +288,13 @@ FROM cache_pbcw4_aggr  pbcw4
             and trim(p_bin_los_cd)<>'0'
             and trim(p_filter_service_budget) ='0' 
             and trim(p_filter_service_category)='0'
-            and trim(p_age_grouping_cd) ='0' 
-            and trim(p_gender_cd)='0'
-            and trim(p_ethnicity_cd)='0'
+            and trim(p_age_grouping_cd) ='0'
+            and trim(p_gender_cd) ='0'
+            and trim(p_ethnicity_cd)  ='0' 
             and trim(p_init_cd_plcm_setng)='0' 
             and trim(p_long_cd_plcm_setng)='0' 
-            and trim(p_county_cd) ='0'  )   then
-
-    call load_ooh_parameters(p_date
-                ,  p_age_grouping_cd 
-                ,  p_ethnicity_cd 
-                ,  p_gender_cd 
-                ,  p_init_cd_plcm_setng 
-                ,  p_long_cd_plcm_setng 
-                ,  p_county_cd 
-                ,  p_bin_los_cd 
-                ,  p_bin_placement_cd 
-                ,  p_bin_ihs_svc_cd 
-                ,  p_cd_reporter_type 
-                ,  p_filter_access_type 
-                ,  p_filter_allegation  
-                , p_filter_finding 
-                , p_filter_service_category  
-                , p_filter_service_budget
-                , 0
-                , 0
-                , p_mindate
-                , p_maxdate
-                , 13);
-                
-        update cache_pbcw4_params
-        set cnt_qry=cnt_qry + 1,last_run_date=now()
-        where qry_id=8;
-        
-        select
-            pbcw4.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
-						, date_type
-						, pbcw4.age_grouping_cd
-						, case pbcw4.age_grouping_cd
-                                when 0 then age0
-                                when 1 then age1
-                                when 2 then age2
-                                when 3 then age3
-                                when 4 then age4
-                                when 5 then age5
-                                when 6 then age6
-                                when 7 then age7
-                end as "Age Grouping"
-						, pbcw4.cd_race as Ethnicity_Cd
-						, case pbcw4.cd_race
-                   when 0 then eth0
-                   when 1 then eth1
-                   when 2 then eth2
-                   when 3 then eth3
-                   when 4 then eth4
-                   when 5 then eth5
-                   when 6 then eth6
-                   when 7 then eth7
-                   when 8 then eth8
-                   when 9 then eth9
-                   when 10 then eth10
-                   when 11 then eth11
-                   when 12 then eth12
-                   end as  "Race/Ethnicity" 
-						, pbcw4.pk_gndr as Gender_Cd
-						, case pbcw4.pk_gndr
-                                when 0 then gdr0
-                                when 1 then gdr1
-                                when 2 then gdr2
-                                when 3 then gdr3
-                              end as "Gender" 
-						, pbcw4.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw4.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
-						, pbcw4.county_cd
-						, ref_cnty.county as "County"
-						, pbcw4.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw4.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
-						, pbcw4.bin_los_cd
-						, case pbcw4.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
-						, pbcw4.bin_placement_cd
-						, case pbcw4.bin_placement_cd
-                                when 0 then plc0
-                                when 1 then plc1
-                                when 2 then plc2
-                                when 3 then plc3
-                                when 4 then plc4
-                                when 5 then plc5
-                              end   as "Placement Count Desc"
-						, pbcw4.bin_ihs_svc_cd
-						, case pbcw4.bin_ihs_svc_cd
-                                when 0 then ihs0
-                                when 1 then ihs1
-                                when 2 then ihs2
-                                when 3 then ihs3
-                              end as "In-Home Service Desc"
-						, pbcw4.cd_reporter_type
-						, ref_rpt.tx_reporter_type as "Reporter Desc"
-						, pbcw4.cd_access_type
-						, ref_acc.tx_access_type as "Access type desc"
-						, pbcw4.cd_allegation
-						, case pbcw4.cd_allegation
-                   when 0 then alg0
-                   when 1 then alg1
-                   when 2 then alg2
-                   when 3 then alg3
-                   when 4 then alg4
-                end as "Allegation" 
-						, pbcw4.cd_finding
-						, case pbcw4.cd_finding
-                   when 0 then fnd0
-                   when 1 then fnd1
-                   when 2 then fnd2
-                   when 3 then fnd3
-                   when 4 then fnd4
-                end as "Finding"
-						, pbcw4.cd_subctgry_poc_frc as "Service Type Cd"
-						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw4.cd_budget_poc_frc   "Budget Cd"
-						, ref_bud.tx_budget_poc_frc  "Budget"
-            , kincare
-            , case when kincare=1 then 'With Kin' else 'All including Kin' end as "Placement Type"
-            , pbcw4.bin_sibling_group_size
-            , ref_sib.Sibling_Group_Name "Sibling Group Size"
-            , all_together  as All_Together
-            , some_together as Some_Together
-            , none_together as None_Together
-            , round(cnt_cohort + 2 * sqrt(-2 * log(pbcw4.x1)) 
-                                        * cos(2*pi()*pbcw4.x2),0) as "Number in Cohort"      
-            FROM cache_pbcw4_aggr  pbcw4
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw4.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw4.long_cd_plcm_setng
-            join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw4.county_cd
-            join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw4.cd_reporter_type
-            join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw4.cd_access_type
-            join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
-                        join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
-            join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
-           where pbcw4.qry_id in (1,8)
-            and pbcw4.int_hash_key in (100000000000000000000,100000000100000000000,100000000200000000000,100000000300000000000,100000000400000000000)
-            and pbcw4.bin_los_cd in (select distinct bin_los_cd from tbllos)
-             and pbcw4.cohort_entry_date between p_mindate and p_maxdate
-            order by kincare asc,
-                pbcw4.bin_dep_cd asc
-                ,qry_type
-                ,date_type
-                ,Cohort_Entry_date asc
-                ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
-                    ,county_cd asc
-                    , pbcw4.bin_los_cd asc
-                    , pbcw4.bin_placement_cd asc
-                    , pbcw4.bin_ihs_svc_cd asc
-                    , pbcw4.cd_reporter_type
-                    , pbcw4.cd_access_type
-                    , pbcw4.cd_allegation
-                    , pbcw4.cd_finding
-                    , pbcw4.cd_subctgry_poc_frc
-                    , pbcw4.cd_budget_poc_frc
-                    , pbcw4.bin_sibling_group_size;     
---  nbr placement only            
-   elseif (trim(p_bin_placement_cd)<>'0' 
+            and trim(p_county_cd) = '0'  )  
+    OR  (trim(p_bin_placement_cd)<>'0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -1637,182 +303,13 @@ FROM cache_pbcw4_aggr  pbcw4
             and trim(p_bin_los_cd)='0'
             and trim(p_filter_service_budget) ='0' 
             and trim(p_filter_service_category)='0'
-            and trim(p_age_grouping_cd) ='0' 
-            and trim(p_gender_cd)='0'
-            and trim(p_ethnicity_cd)='0'
+            and trim(p_age_grouping_cd) ='0'
+            and trim(p_gender_cd) ='0'
+            and trim(p_ethnicity_cd)  ='0' 
             and trim(p_init_cd_plcm_setng)='0' 
             and trim(p_long_cd_plcm_setng)='0' 
-            and trim(p_county_cd) ='0'  )   then
-
-    call load_ooh_parameters(p_date
-                ,  p_age_grouping_cd 
-                ,  p_ethnicity_cd 
-                ,  p_gender_cd 
-                ,  p_init_cd_plcm_setng 
-                ,  p_long_cd_plcm_setng 
-                ,  p_county_cd 
-                ,  p_bin_los_cd 
-                ,  p_bin_placement_cd 
-                ,  p_bin_ihs_svc_cd 
-                ,  p_cd_reporter_type 
-                ,  p_filter_access_type 
-                ,  p_filter_allegation  
-                , p_filter_finding 
-                , p_filter_service_category  
-                , p_filter_service_budget
-                , 0
-                , 0
-                , p_mindate
-                , p_maxdate
-                , 13);
-                
-        update cache_pbcw4_params
-        set cnt_qry=cnt_qry + 1,last_run_date=now()
-        where qry_id=9;
-        
-        select
-            pbcw4.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
-						, date_type
-						, pbcw4.age_grouping_cd
-						, case pbcw4.age_grouping_cd
-                                when 0 then age0
-                                when 1 then age1
-                                when 2 then age2
-                                when 3 then age3
-                                when 4 then age4
-                                when 5 then age5
-                                when 6 then age6
-                                when 7 then age7
-                end as "Age Grouping"
-						, pbcw4.cd_race as Ethnicity_Cd
-						, case pbcw4.cd_race
-                   when 0 then eth0
-                   when 1 then eth1
-                   when 2 then eth2
-                   when 3 then eth3
-                   when 4 then eth4
-                   when 5 then eth5
-                   when 6 then eth6
-                   when 7 then eth7
-                   when 8 then eth8
-                   when 9 then eth9
-                   when 10 then eth10
-                   when 11 then eth11
-                   when 12 then eth12
-                   end as  "Race/Ethnicity" 
-						, pbcw4.pk_gndr as Gender_Cd
-						, case pbcw4.pk_gndr
-                                when 0 then gdr0
-                                when 1 then gdr1
-                                when 2 then gdr2
-                                when 3 then gdr3
-                              end as "Gender" 
-						, pbcw4.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw4.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
-						, pbcw4.county_cd
-						, ref_cnty.county as "County"
-						, pbcw4.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw4.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
-						, pbcw4.bin_los_cd
-						, case pbcw4.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
-						, pbcw4.bin_placement_cd
-						, case pbcw4.bin_placement_cd
-                                when 0 then plc0
-                                when 1 then plc1
-                                when 2 then plc2
-                                when 3 then plc3
-                                when 4 then plc4
-                                when 5 then plc5
-                              end   as "Placement Count Desc"
-						, pbcw4.bin_ihs_svc_cd
-						, case pbcw4.bin_ihs_svc_cd
-                                when 0 then ihs0
-                                when 1 then ihs1
-                                when 2 then ihs2
-                                when 3 then ihs3
-                              end as "In-Home Service Desc"
-						, pbcw4.cd_reporter_type
-						, ref_rpt.tx_reporter_type as "Reporter Desc"
-						, pbcw4.cd_access_type
-						, ref_acc.tx_access_type as "Access type desc"
-						, pbcw4.cd_allegation
-						, case pbcw4.cd_allegation
-                   when 0 then alg0
-                   when 1 then alg1
-                   when 2 then alg2
-                   when 3 then alg3
-                   when 4 then alg4
-                end as "Allegation" 
-						, pbcw4.cd_finding
-						, case pbcw4.cd_finding
-                   when 0 then fnd0
-                   when 1 then fnd1
-                   when 2 then fnd2
-                   when 3 then fnd3
-                   when 4 then fnd4
-                end as "Finding"
-						, pbcw4.cd_subctgry_poc_frc as "Service Type Cd"
-						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw4.cd_budget_poc_frc   "Budget Cd"
-						, ref_bud.tx_budget_poc_frc  "Budget"
-            , kincare
-            , case when kincare=1 then 'With Kin' else 'All including Kin' end as "Placement Type"
-            , pbcw4.bin_sibling_group_size
-            , ref_sib.Sibling_Group_Name "Sibling Group Size"
-            , all_together  as All_Together
-            , some_together as Some_Together
-            , none_together as None_Together
-            , round(cnt_cohort + 2 * sqrt(-2 * log(pbcw4.x1)) 
-                                        * cos(2*pi()*pbcw4.x2),0) as "Number in Cohort"      
-            FROM cache_pbcw4_aggr  pbcw4
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw4.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw4.long_cd_plcm_setng
-            join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw4.county_cd
-            join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw4.cd_reporter_type
-            join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw4.cd_access_type
-            join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
-                        join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
-            join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
-            where pbcw4.qry_id in (1,9)
-            and pbcw4.int_hash_key in (100000000000000000000,100000000010000000000,100000000020000000000,100000000030000000000,100000000040000000000,100000000050000000000)
-            and pbcw4.bin_placement_cd in (select distinct bin_placement_cd from tblnbrplc)
-             and pbcw4.cohort_entry_date between p_mindate and p_maxdate
- order by kincare asc,
-                pbcw4.bin_dep_cd asc
-                ,qry_type
-                ,date_type
-                ,Cohort_Entry_date asc
-                ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
-                    ,county_cd asc
-                    , pbcw4.bin_los_cd asc
-                    , pbcw4.bin_placement_cd asc
-                    , pbcw4.bin_ihs_svc_cd asc
-                    , pbcw4.cd_reporter_type
-                    , pbcw4.cd_access_type
-                    , pbcw4.cd_allegation
-                    , pbcw4.cd_finding
-                    , pbcw4.cd_subctgry_poc_frc
-                    , pbcw4.cd_budget_poc_frc
-                    , pbcw4.bin_sibling_group_size;  
---  ihs only            
-   elseif (trim(p_bin_placement_cd)='0' 
+            and trim(p_county_cd) = '0' )  
+    OR  (trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)<>'0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -1821,182 +318,13 @@ FROM cache_pbcw4_aggr  pbcw4
             and trim(p_bin_los_cd)='0'
             and trim(p_filter_service_budget) ='0' 
             and trim(p_filter_service_category)='0'
-            and trim(p_age_grouping_cd) ='0' 
-            and trim(p_gender_cd)='0'
-            and trim(p_ethnicity_cd)='0'
+            and trim(p_age_grouping_cd) ='0'
+            and trim(p_gender_cd) ='0'
+            and trim(p_ethnicity_cd)  ='0' 
             and trim(p_init_cd_plcm_setng)='0' 
             and trim(p_long_cd_plcm_setng)='0' 
-            and trim(p_county_cd) ='0'  )   then
-
-    call load_ooh_parameters(p_date
-                ,  p_age_grouping_cd 
-                ,  p_ethnicity_cd 
-                ,  p_gender_cd 
-                ,  p_init_cd_plcm_setng 
-                ,  p_long_cd_plcm_setng 
-                ,  p_county_cd 
-                ,  p_bin_los_cd 
-                ,  p_bin_placement_cd 
-                ,  p_bin_ihs_svc_cd 
-                ,  p_cd_reporter_type 
-                ,  p_filter_access_type 
-                ,  p_filter_allegation  
-                , p_filter_finding 
-                , p_filter_service_category  
-                , p_filter_service_budget
-                , 0
-                , 0
-                , p_mindate
-                , p_maxdate
-                , 13);
-                
-        update cache_pbcw4_params
-        set cnt_qry=cnt_qry + 1,last_run_date=now()
-        where qry_id=10;
-        
-        select
-            pbcw4.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
-						, date_type
-						, pbcw4.age_grouping_cd
-						, case pbcw4.age_grouping_cd
-                                when 0 then age0
-                                when 1 then age1
-                                when 2 then age2
-                                when 3 then age3
-                                when 4 then age4
-                                when 5 then age5
-                                when 6 then age6
-                                when 7 then age7
-                end as "Age Grouping"
-						, pbcw4.cd_race as Ethnicity_Cd
-						, case pbcw4.cd_race
-                   when 0 then eth0
-                   when 1 then eth1
-                   when 2 then eth2
-                   when 3 then eth3
-                   when 4 then eth4
-                   when 5 then eth5
-                   when 6 then eth6
-                   when 7 then eth7
-                   when 8 then eth8
-                   when 9 then eth9
-                   when 10 then eth10
-                   when 11 then eth11
-                   when 12 then eth12
-                   end as  "Race/Ethnicity" 
-						, pbcw4.pk_gndr as Gender_Cd
-						, case pbcw4.pk_gndr
-                                when 0 then gdr0
-                                when 1 then gdr1
-                                when 2 then gdr2
-                                when 3 then gdr3
-                              end as "Gender" 
-						, pbcw4.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw4.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
-						, pbcw4.county_cd
-						, ref_cnty.county as "County"
-						, pbcw4.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw4.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
-						, pbcw4.bin_los_cd
-						, case pbcw4.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
-						, pbcw4.bin_placement_cd
-						, case pbcw4.bin_placement_cd
-                                when 0 then plc0
-                                when 1 then plc1
-                                when 2 then plc2
-                                when 3 then plc3
-                                when 4 then plc4
-                                when 5 then plc5
-                              end   as "Placement Count Desc"
-						, pbcw4.bin_ihs_svc_cd
-						, case pbcw4.bin_ihs_svc_cd
-                                when 0 then ihs0
-                                when 1 then ihs1
-                                when 2 then ihs2
-                                when 3 then ihs3
-                              end as "In-Home Service Desc"
-						, pbcw4.cd_reporter_type
-						, ref_rpt.tx_reporter_type as "Reporter Desc"
-						, pbcw4.cd_access_type
-						, ref_acc.tx_access_type as "Access type desc"
-						, pbcw4.cd_allegation
-						, case pbcw4.cd_allegation
-                   when 0 then alg0
-                   when 1 then alg1
-                   when 2 then alg2
-                   when 3 then alg3
-                   when 4 then alg4
-                end as "Allegation" 
-						, pbcw4.cd_finding
-						, case pbcw4.cd_finding
-                   when 0 then fnd0
-                   when 1 then fnd1
-                   when 2 then fnd2
-                   when 3 then fnd3
-                   when 4 then fnd4
-                end as "Finding"
-						, pbcw4.cd_subctgry_poc_frc as "Service Type Cd"
-						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw4.cd_budget_poc_frc   "Budget Cd"
-						, ref_bud.tx_budget_poc_frc  "Budget"
-            , kincare
-            , case when kincare=1 then 'With Kin' else 'All including Kin' end as "Placement Type"
-            , pbcw4.bin_sibling_group_size
-            , ref_sib.Sibling_Group_Name "Sibling Group Size"
-            , all_together  as All_Together
-            , some_together as Some_Together
-            , none_together as None_Together
-            , round(cnt_cohort + 2 * sqrt(-2 * log(pbcw4.x1)) 
-                                        * cos(2*pi()*pbcw4.x2),0) as "Number in Cohort"      
-            FROM cache_pbcw4_aggr  pbcw4
-             join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw4.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw4.long_cd_plcm_setng
-            join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw4.county_cd
-            join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw4.cd_reporter_type
-            join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw4.cd_access_type
-            join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
-                        join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
-            join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
-            where pbcw4.qry_id in (1,10)
-            and pbcw4.int_hash_key in (100000000000000000000,100000000001000000000,100000000002000000000,100000000003000000000)
-            and pbcw4.bin_ihs_svc_cd in (select distinct bin_ihs_svc_cd from tblihs)
-             and pbcw4.cohort_entry_date between p_mindate and p_maxdate
-  order by kincare asc,
-                pbcw4.bin_dep_cd asc
-                ,qry_type
-                ,date_type
-                ,Cohort_Entry_date asc
-                ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
-                    ,county_cd asc
-                    , pbcw4.bin_los_cd asc
-                    , pbcw4.bin_placement_cd asc
-                    , pbcw4.bin_ihs_svc_cd asc
-                    , pbcw4.cd_reporter_type
-                    , pbcw4.cd_access_type
-                    , pbcw4.cd_allegation
-                    , pbcw4.cd_finding
-                    , pbcw4.cd_subctgry_poc_frc
-                    , pbcw4.cd_budget_poc_frc
-                    , pbcw4.bin_sibling_group_size;  
---  reporter type only            
-   elseif (trim(p_bin_placement_cd)='0' 
+            and trim(p_county_cd) = '0'  )  
+    OR  (trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)<>'0' 
    					and trim(p_filter_access_type)='0' 
@@ -2005,181 +333,13 @@ FROM cache_pbcw4_aggr  pbcw4
             and trim(p_bin_los_cd)='0'
             and trim(p_filter_service_budget) ='0' 
             and trim(p_filter_service_category)='0'
-            and trim(p_age_grouping_cd) ='0' 
-            and trim(p_gender_cd)='0'
-            and trim(p_ethnicity_cd)='0'
+            and trim(p_age_grouping_cd) ='0'
+            and trim(p_gender_cd) ='0'
+            and trim(p_ethnicity_cd)  ='0' 
             and trim(p_init_cd_plcm_setng)='0' 
             and trim(p_long_cd_plcm_setng)='0' 
-            and trim(p_county_cd) ='0'  )   then
-
-    call load_ooh_parameters(p_date
-                ,  p_age_grouping_cd 
-                ,  p_ethnicity_cd 
-                ,  p_gender_cd 
-                ,  p_init_cd_plcm_setng 
-                ,  p_long_cd_plcm_setng 
-                ,  p_county_cd 
-                ,  p_bin_los_cd 
-                ,  p_bin_placement_cd 
-                ,  p_bin_ihs_svc_cd 
-                ,  p_cd_reporter_type 
-                ,  p_filter_access_type 
-                ,  p_filter_allegation  
-                , p_filter_finding 
-                , p_filter_service_category  
-                , p_filter_service_budget
-                , 0
-                , 0
-                , p_mindate
-                , p_maxdate
-                , 13);
-                
-        update cache_pbcw4_params
-        set cnt_qry=cnt_qry + 1,last_run_date=now()
-        where qry_id=11;
-        
-        select
-            pbcw4.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
-						, date_type
-						, pbcw4.age_grouping_cd
-						, case pbcw4.age_grouping_cd
-                                when 0 then age0
-                                when 1 then age1
-                                when 2 then age2
-                                when 3 then age3
-                                when 4 then age4
-                                when 5 then age5
-                                when 6 then age6
-                                when 7 then age7
-                end as "Age Grouping"
-						, pbcw4.cd_race as Ethnicity_Cd
-						, case pbcw4.cd_race
-                   when 0 then eth0
-                   when 1 then eth1
-                   when 2 then eth2
-                   when 3 then eth3
-                   when 4 then eth4
-                   when 5 then eth5
-                   when 6 then eth6
-                   when 7 then eth7
-                   when 8 then eth8
-                   when 9 then eth9
-                   when 10 then eth10
-                   when 11 then eth11
-                   when 12 then eth12
-                   end as  "Race/Ethnicity" 
-						, pbcw4.pk_gndr as Gender_Cd
-						, case pbcw4.pk_gndr
-                                when 0 then gdr0
-                                when 1 then gdr1
-                                when 2 then gdr2
-                                when 3 then gdr3
-                              end as "Gender" 
-						, pbcw4.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw4.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
-						, pbcw4.county_cd
-						, ref_cnty.county as "County"
-						, pbcw4.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw4.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
-						, pbcw4.bin_los_cd
-						, case pbcw4.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
-						, pbcw4.bin_placement_cd
-						, case pbcw4.bin_placement_cd
-                                when 0 then plc0
-                                when 1 then plc1
-                                when 2 then plc2
-                                when 3 then plc3
-                                when 4 then plc4
-                                when 5 then plc5
-                              end   as "Placement Count Desc"
-						, pbcw4.bin_ihs_svc_cd
-						, case pbcw4.bin_ihs_svc_cd
-                                when 0 then ihs0
-                                when 1 then ihs1
-                                when 2 then ihs2
-                                when 3 then ihs3
-                              end as "In-Home Service Desc"
-						, pbcw4.cd_reporter_type
-						, ref_rpt.tx_reporter_type as "Reporter Desc"
-						, pbcw4.cd_access_type
-						, ref_acc.tx_access_type as "Access type desc"
-						, pbcw4.cd_allegation
-						, case pbcw4.cd_allegation
-                   when 0 then alg0
-                   when 1 then alg1
-                   when 2 then alg2
-                   when 3 then alg3
-                   when 4 then alg4
-                end as "Allegation" 
-						, pbcw4.cd_finding
-						, case pbcw4.cd_finding
-                   when 0 then fnd0
-                   when 1 then fnd1
-                   when 2 then fnd2
-                   when 3 then fnd3
-                   when 4 then fnd4
-                end as "Finding"
-						, pbcw4.cd_subctgry_poc_frc as "Service Type Cd"
-						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw4.cd_budget_poc_frc   "Budget Cd"
-						, ref_bud.tx_budget_poc_frc  "Budget"
-            , kincare
-            , case when kincare=1 then 'With Kin' else 'All including Kin' end as "Placement Type"
-            , pbcw4.bin_sibling_group_size
-            , ref_sib.Sibling_Group_Name "Sibling Group Size"
-            , all_together  as All_Together
-            , some_together as Some_Together
-            , none_together as None_Together
-            , round(cnt_cohort + 2 * sqrt(-2 * log(pbcw4.x1)) 
-                                        * cos(2*pi()*pbcw4.x2),0) as "Number in Cohort"      
-            FROM cache_pbcw4_aggr  pbcw4
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw4.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw4.long_cd_plcm_setng
-            join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw4.county_cd
-            join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw4.cd_reporter_type
-            join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw4.cd_access_type
-            join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
-                        join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
-            join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
-           where pbcw4.qry_id in (1,11)
-            and pbcw4.int_hash_key in (100000000000000000000,100000000000050000000,100000000000060000000,100000000000070000000,100000000000080000000,100000000000090000000,100000000000110000000,100000000000120000000,100000000000130000000,100000000000140000000)
-            and pbcw4.cd_reporter_type in (select distinct cd_reporter_type from tblrpt)
-             and pbcw4.cohort_entry_date between p_mindate and p_maxdate
-            order by kincare asc,
-                pbcw4.bin_dep_cd asc
-                ,qry_type
-                ,date_type
-                ,Cohort_Entry_date asc
-                ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
-                    ,county_cd asc
-                    , pbcw4.bin_los_cd asc
-                    , pbcw4.bin_placement_cd asc
-                    , pbcw4.bin_ihs_svc_cd asc
-                    , pbcw4.cd_reporter_type
-                    , pbcw4.cd_access_type
-                    , pbcw4.cd_allegation
-                    , pbcw4.cd_finding
-                    , pbcw4.cd_subctgry_poc_frc
-                    , pbcw4.cd_budget_poc_frc
-                    , pbcw4.bin_sibling_group_size;
-   elseif (trim(p_bin_placement_cd)='0' 
+            and trim(p_county_cd) = '0'  )  
+    OR  (trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)<>'0' 
@@ -2188,181 +348,13 @@ FROM cache_pbcw4_aggr  pbcw4
             and trim(p_bin_los_cd)='0'
             and trim(p_filter_service_budget) ='0' 
             and trim(p_filter_service_category)='0'
-            and trim(p_age_grouping_cd) ='0' 
-            and trim(p_gender_cd)='0'
-            and trim(p_ethnicity_cd)='0'
+            and trim(p_age_grouping_cd) ='0'
+            and trim(p_gender_cd) ='0'
+            and trim(p_ethnicity_cd)  ='0' 
             and trim(p_init_cd_plcm_setng)='0' 
             and trim(p_long_cd_plcm_setng)='0' 
-            and trim(p_county_cd) ='0'  )   then
-
-    call load_ooh_parameters(p_date
-                ,  p_age_grouping_cd 
-                ,  p_ethnicity_cd 
-                ,  p_gender_cd 
-                ,  p_init_cd_plcm_setng 
-                ,  p_long_cd_plcm_setng 
-                ,  p_county_cd 
-                ,  p_bin_los_cd 
-                ,  p_bin_placement_cd 
-                ,  p_bin_ihs_svc_cd 
-                ,  p_cd_reporter_type 
-                ,  p_filter_access_type 
-                ,  p_filter_allegation  
-                , p_filter_finding 
-                , p_filter_service_category  
-                , p_filter_service_budget
-                , 0
-                , 0
-                , p_mindate
-                , p_maxdate
-                , 13);
-                
-        update cache_pbcw4_params
-        set cnt_qry=cnt_qry + 1,last_run_date=now()
-        where qry_id=12;
-        
-        select
-            pbcw4.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
-						, date_type
-						, pbcw4.age_grouping_cd
-						, case pbcw4.age_grouping_cd
-                                when 0 then age0
-                                when 1 then age1
-                                when 2 then age2
-                                when 3 then age3
-                                when 4 then age4
-                                when 5 then age5
-                                when 6 then age6
-                                when 7 then age7
-                end as "Age Grouping"
-						, pbcw4.cd_race as Ethnicity_Cd
-						, case pbcw4.cd_race
-                   when 0 then eth0
-                   when 1 then eth1
-                   when 2 then eth2
-                   when 3 then eth3
-                   when 4 then eth4
-                   when 5 then eth5
-                   when 6 then eth6
-                   when 7 then eth7
-                   when 8 then eth8
-                   when 9 then eth9
-                   when 10 then eth10
-                   when 11 then eth11
-                   when 12 then eth12
-                   end as  "Race/Ethnicity" 
-						, pbcw4.pk_gndr as Gender_Cd
-						, case pbcw4.pk_gndr
-                                when 0 then gdr0
-                                when 1 then gdr1
-                                when 2 then gdr2
-                                when 3 then gdr3
-                              end as "Gender" 
-						, pbcw4.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw4.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
-						, pbcw4.county_cd
-						, ref_cnty.county as "County"
-						, pbcw4.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw4.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
-						, pbcw4.bin_los_cd
-						, case pbcw4.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
-						, pbcw4.bin_placement_cd
-						, case pbcw4.bin_placement_cd
-                                when 0 then plc0
-                                when 1 then plc1
-                                when 2 then plc2
-                                when 3 then plc3
-                                when 4 then plc4
-                                when 5 then plc5
-                              end   as "Placement Count Desc"
-						, pbcw4.bin_ihs_svc_cd
-						, case pbcw4.bin_ihs_svc_cd
-                                when 0 then ihs0
-                                when 1 then ihs1
-                                when 2 then ihs2
-                                when 3 then ihs3
-                              end as "In-Home Service Desc"
-						, pbcw4.cd_reporter_type
-						, ref_rpt.tx_reporter_type as "Reporter Desc"
-						, pbcw4.cd_access_type
-						, ref_acc.tx_access_type as "Access type desc"
-						, pbcw4.cd_allegation
-						, case pbcw4.cd_allegation
-                   when 0 then alg0
-                   when 1 then alg1
-                   when 2 then alg2
-                   when 3 then alg3
-                   when 4 then alg4
-                end as "Allegation" 
-						, pbcw4.cd_finding
-						, case pbcw4.cd_finding
-                   when 0 then fnd0
-                   when 1 then fnd1
-                   when 2 then fnd2
-                   when 3 then fnd3
-                   when 4 then fnd4
-                end as "Finding"
-						, pbcw4.cd_subctgry_poc_frc as "Service Type Cd"
-						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw4.cd_budget_poc_frc   "Budget Cd"
-						, ref_bud.tx_budget_poc_frc  "Budget"
-            , kincare
-            , case when kincare=1 then 'With Kin' else 'All including Kin' end as "Placement Type"
-            , pbcw4.bin_sibling_group_size
-            , ref_sib.Sibling_Group_Name "Sibling Group Size"
-            , all_together  as All_Together
-            , some_together as Some_Together
-            , none_together as None_Together
-            , round(cnt_cohort + 2 * sqrt(-2 * log(pbcw4.x1)) 
-                                        * cos(2*pi()*pbcw4.x2),0) as "Number in Cohort"      
-            FROM cache_pbcw4_aggr  pbcw4
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw4.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw4.long_cd_plcm_setng
-            join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw4.county_cd
-            join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw4.cd_reporter_type
-            join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw4.cd_access_type
-            join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
-                        join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
-            join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
-            where pbcw4.qry_id in (1,12)
-            and pbcw4.int_hash_key in (100000000000000000000,100000000000001000000)
-            and pbcw4.cd_access_type in (select distinct cd_access_type from tblacc)
-             and pbcw4.cohort_entry_date between p_mindate and p_maxdate
-            order by kincare asc,
-                pbcw4.bin_dep_cd asc
-                ,qry_type
-                ,date_type
-                ,Cohort_Entry_date asc
-                ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
-                    ,county_cd asc
-                    , pbcw4.bin_los_cd asc
-                    , pbcw4.bin_placement_cd asc
-                    , pbcw4.bin_ihs_svc_cd asc
-                    , pbcw4.cd_reporter_type
-                    , pbcw4.cd_access_type
-                    , pbcw4.cd_allegation
-                    , pbcw4.cd_finding
-                    , pbcw4.cd_subctgry_poc_frc
-                    , pbcw4.cd_budget_poc_frc
-                    , pbcw4.bin_sibling_group_size;-- allegation only            
- elseif (trim(p_bin_placement_cd)='0' 
+            and trim(p_county_cd) = '0'  )   
+    OR (trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -2371,181 +363,13 @@ FROM cache_pbcw4_aggr  pbcw4
             and trim(p_bin_los_cd)='0'
             and trim(p_filter_service_budget) ='0' 
             and trim(p_filter_service_category)='0'
-            and trim(p_age_grouping_cd) ='0' 
-            and trim(p_gender_cd)='0'
-            and trim(p_ethnicity_cd)='0'
+            and trim(p_age_grouping_cd) ='0'
+            and trim(p_gender_cd) ='0'
+            and trim(p_ethnicity_cd)  ='0' 
             and trim(p_init_cd_plcm_setng)='0' 
             and trim(p_long_cd_plcm_setng)='0' 
-            and trim(p_county_cd) ='0'  )   then
-
-    call load_ooh_parameters(p_date
-                ,  p_age_grouping_cd 
-                ,  p_ethnicity_cd 
-                ,  p_gender_cd 
-                ,  p_init_cd_plcm_setng 
-                ,  p_long_cd_plcm_setng 
-                ,  p_county_cd 
-                ,  p_bin_los_cd 
-                ,  p_bin_placement_cd 
-                ,  p_bin_ihs_svc_cd 
-                ,  p_cd_reporter_type 
-                ,  p_filter_access_type 
-                ,  p_filter_allegation  
-                , p_filter_finding 
-                , p_filter_service_category  
-                , p_filter_service_budget
-                , 0
-                , 0
-                , p_mindate
-                , p_maxdate
-                , 13);
-                
-        update cache_pbcw4_params
-        set cnt_qry=cnt_qry + 1,last_run_date=now()
-        where qry_id=13;
-        
-        select
-            pbcw4.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
-						, date_type
-						, pbcw4.age_grouping_cd
-						, case pbcw4.age_grouping_cd
-                                when 0 then age0
-                                when 1 then age1
-                                when 2 then age2
-                                when 3 then age3
-                                when 4 then age4
-                                when 5 then age5
-                                when 6 then age6
-                                when 7 then age7
-                end as "Age Grouping"
-						, pbcw4.cd_race as Ethnicity_Cd
-						, case pbcw4.cd_race
-                   when 0 then eth0
-                   when 1 then eth1
-                   when 2 then eth2
-                   when 3 then eth3
-                   when 4 then eth4
-                   when 5 then eth5
-                   when 6 then eth6
-                   when 7 then eth7
-                   when 8 then eth8
-                   when 9 then eth9
-                   when 10 then eth10
-                   when 11 then eth11
-                   when 12 then eth12
-                   end as  "Race/Ethnicity" 
-						, pbcw4.pk_gndr as Gender_Cd
-						, case pbcw4.pk_gndr
-                                when 0 then gdr0
-                                when 1 then gdr1
-                                when 2 then gdr2
-                                when 3 then gdr3
-                              end as "Gender" 
-						, pbcw4.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw4.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
-						, pbcw4.county_cd
-						, ref_cnty.county as "County"
-						, pbcw4.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw4.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
-						, pbcw4.bin_los_cd
-						, case pbcw4.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
-						, pbcw4.bin_placement_cd
-						, case pbcw4.bin_placement_cd
-                                when 0 then plc0
-                                when 1 then plc1
-                                when 2 then plc2
-                                when 3 then plc3
-                                when 4 then plc4
-                                when 5 then plc5
-                              end   as "Placement Count Desc"
-						, pbcw4.bin_ihs_svc_cd
-						, case pbcw4.bin_ihs_svc_cd
-                                when 0 then ihs0
-                                when 1 then ihs1
-                                when 2 then ihs2
-                                when 3 then ihs3
-                              end as "In-Home Service Desc"
-						, pbcw4.cd_reporter_type
-						, ref_rpt.tx_reporter_type as "Reporter Desc"
-						, pbcw4.cd_access_type
-						, ref_acc.tx_access_type as "Access type desc"
-						, pbcw4.cd_allegation
-						, case pbcw4.cd_allegation
-                   when 0 then alg0
-                   when 1 then alg1
-                   when 2 then alg2
-                   when 3 then alg3
-                   when 4 then alg4
-                end as "Allegation" 
-						, pbcw4.cd_finding
-						, case pbcw4.cd_finding
-                   when 0 then fnd0
-                   when 1 then fnd1
-                   when 2 then fnd2
-                   when 3 then fnd3
-                   when 4 then fnd4
-                end as "Finding"
-						, pbcw4.cd_subctgry_poc_frc as "Service Type Cd"
-						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw4.cd_budget_poc_frc   "Budget Cd"
-						, ref_bud.tx_budget_poc_frc  "Budget"
-            , kincare
-            , case when kincare=1 then 'With Kin' else 'All including Kin' end as "Placement Type"
-            , pbcw4.bin_sibling_group_size
-            , ref_sib.Sibling_Group_Name "Sibling Group Size"
-            , all_together  as All_Together
-            , some_together as Some_Together
-            , none_together as None_Together
-            , round(cnt_cohort + 2 * sqrt(-2 * log(pbcw4.x1)) 
-                                        * cos(2*pi()*pbcw4.x2),0) as "Number in Cohort"      
-            FROM cache_pbcw4_aggr  pbcw4
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw4.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw4.long_cd_plcm_setng
-            join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw4.county_cd
-            join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw4.cd_reporter_type
-            join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw4.cd_access_type
-            join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
-                        join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
-            join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
-           where pbcw4.qry_id in (1,13)
-            and pbcw4.int_hash_key in (100000000000000000000,100000000000000100000,100000000000000200000,100000000000000300000,100000000000000400000)
-            and pbcw4.cd_allegation in (select distinct cd_allegation from tblalg)
-             and pbcw4.cohort_entry_date between p_mindate and p_maxdate
-            order by kincare asc,
-                pbcw4.bin_dep_cd asc
-                ,qry_type
-                ,date_type
-                ,Cohort_Entry_date asc
-                ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
-                    ,county_cd asc
-                    , pbcw4.bin_los_cd asc
-                    , pbcw4.bin_placement_cd asc
-                    , pbcw4.bin_ihs_svc_cd asc
-                    , pbcw4.cd_reporter_type
-                    , pbcw4.cd_access_type
-                    , pbcw4.cd_allegation
-                    , pbcw4.cd_finding
-                    , pbcw4.cd_subctgry_poc_frc
-                    , pbcw4.cd_budget_poc_frc
-                    , pbcw4.bin_sibling_group_size;  
-elseif (trim(p_bin_placement_cd)='0' 
+            and trim(p_county_cd) = '0'  )  
+    OR (trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -2554,181 +378,13 @@ elseif (trim(p_bin_placement_cd)='0'
             and trim(p_bin_los_cd)='0'
             and trim(p_filter_service_budget) ='0' 
             and trim(p_filter_service_category)='0'
-            and trim(p_age_grouping_cd) ='0' 
-            and trim(p_gender_cd)='0'
-            and trim(p_ethnicity_cd)='0'
+            and trim(p_age_grouping_cd) ='0'
+            and trim(p_gender_cd) ='0'
+            and trim(p_ethnicity_cd)  ='0' 
             and trim(p_init_cd_plcm_setng)='0' 
             and trim(p_long_cd_plcm_setng)='0' 
-            and trim(p_county_cd) ='0'  )   then
-
-    call load_ooh_parameters(p_date
-                ,  p_age_grouping_cd 
-                ,  p_ethnicity_cd 
-                ,  p_gender_cd 
-                ,  p_init_cd_plcm_setng 
-                ,  p_long_cd_plcm_setng 
-                ,  p_county_cd 
-                ,  p_bin_los_cd 
-                ,  p_bin_placement_cd 
-                ,  p_bin_ihs_svc_cd 
-                ,  p_cd_reporter_type 
-                ,  p_filter_access_type 
-                ,  p_filter_allegation  
-                , p_filter_finding 
-                , p_filter_service_category  
-                , p_filter_service_budget
-                , 0
-                , 0
-                , p_mindate
-                , p_maxdate
-                , 13);
-                
-        update cache_pbcw4_params
-        set cnt_qry=cnt_qry + 1,last_run_date=now()
-        where qry_id=14;
-        
-        select
-            pbcw4.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
-						, date_type
-						, pbcw4.age_grouping_cd
-						, case pbcw4.age_grouping_cd
-                                when 0 then age0
-                                when 1 then age1
-                                when 2 then age2
-                                when 3 then age3
-                                when 4 then age4
-                                when 5 then age5
-                                when 6 then age6
-                                when 7 then age7
-                end as "Age Grouping"
-						, pbcw4.cd_race as Ethnicity_Cd
-						, case pbcw4.cd_race
-                   when 0 then eth0
-                   when 1 then eth1
-                   when 2 then eth2
-                   when 3 then eth3
-                   when 4 then eth4
-                   when 5 then eth5
-                   when 6 then eth6
-                   when 7 then eth7
-                   when 8 then eth8
-                   when 9 then eth9
-                   when 10 then eth10
-                   when 11 then eth11
-                   when 12 then eth12
-                   end as  "Race/Ethnicity" 
-						, pbcw4.pk_gndr as Gender_Cd
-						, case pbcw4.pk_gndr
-                                when 0 then gdr0
-                                when 1 then gdr1
-                                when 2 then gdr2
-                                when 3 then gdr3
-                              end as "Gender" 
-						, pbcw4.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw4.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
-						, pbcw4.county_cd
-						, ref_cnty.county as "County"
-						, pbcw4.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw4.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
-						, pbcw4.bin_los_cd
-						, case pbcw4.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
-						, pbcw4.bin_placement_cd
-						, case pbcw4.bin_placement_cd
-                                when 0 then plc0
-                                when 1 then plc1
-                                when 2 then plc2
-                                when 3 then plc3
-                                when 4 then plc4
-                                when 5 then plc5
-                              end   as "Placement Count Desc"
-						, pbcw4.bin_ihs_svc_cd
-						, case pbcw4.bin_ihs_svc_cd
-                                when 0 then ihs0
-                                when 1 then ihs1
-                                when 2 then ihs2
-                                when 3 then ihs3
-                              end as "In-Home Service Desc"
-						, pbcw4.cd_reporter_type
-						, ref_rpt.tx_reporter_type as "Reporter Desc"
-						, pbcw4.cd_access_type
-						, ref_acc.tx_access_type as "Access type desc"
-						, pbcw4.cd_allegation
-						, case pbcw4.cd_allegation
-                   when 0 then alg0
-                   when 1 then alg1
-                   when 2 then alg2
-                   when 3 then alg3
-                   when 4 then alg4
-                end as "Allegation" 
-						, pbcw4.cd_finding
-						, case pbcw4.cd_finding
-                   when 0 then fnd0
-                   when 1 then fnd1
-                   when 2 then fnd2
-                   when 3 then fnd3
-                   when 4 then fnd4
-                end as "Finding"
-						, pbcw4.cd_subctgry_poc_frc as "Service Type Cd"
-						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw4.cd_budget_poc_frc   "Budget Cd"
-						, ref_bud.tx_budget_poc_frc  "Budget"
-            , kincare
-            , case when kincare=1 then 'With Kin' else 'All including Kin' end as "Placement Type"
-            , pbcw4.bin_sibling_group_size
-            , ref_sib.Sibling_Group_Name "Sibling Group Size"
-            , all_together  as All_Together
-            , some_together as Some_Together
-            , none_together as None_Together
-            , round(cnt_cohort + 2 * sqrt(-2 * log(pbcw4.x1)) 
-                                        * cos(2*pi()*pbcw4.x2),0) as "Number in Cohort"      
-            FROM cache_pbcw4_aggr  pbcw4
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw4.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw4.long_cd_plcm_setng
-            join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw4.county_cd
-            join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw4.cd_reporter_type
-            join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw4.cd_access_type
-            join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
-                        join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
-            join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
-           where pbcw4.qry_id in (1,14)
-            and pbcw4.int_hash_key in (100000000000000000000,100000000000000010000,100000000000000020000,100000000000000030000,100000000000000040000)
-            and pbcw4.cd_finding in (select distinct cd_finding from tblfnd)
-             and pbcw4.cohort_entry_date between p_mindate and p_maxdate
-            order by kincare asc,
-                pbcw4.bin_dep_cd asc
-                ,qry_type
-                ,date_type
-                ,Cohort_Entry_date asc
-                ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
-                    ,county_cd asc
-                    , pbcw4.bin_los_cd asc
-                    , pbcw4.bin_placement_cd asc
-                    , pbcw4.bin_ihs_svc_cd asc
-                    , pbcw4.cd_reporter_type
-                    , pbcw4.cd_access_type
-                    , pbcw4.cd_allegation
-                    , pbcw4.cd_finding
-                    , pbcw4.cd_subctgry_poc_frc
-                    , pbcw4.cd_budget_poc_frc
-                    , pbcw4.bin_sibling_group_size;    
-elseif (trim(p_bin_placement_cd)='0' 
+            and trim(p_county_cd) = '0'  )  
+    OR  (trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -2737,184 +393,13 @@ elseif (trim(p_bin_placement_cd)='0'
             and trim(p_bin_los_cd)='0'
             and trim(p_filter_service_budget) ='0' 
             and trim(p_filter_service_category)<>'0'
-            and trim(p_age_grouping_cd) ='0' 
-            and trim(p_gender_cd)='0'
-            and trim(p_ethnicity_cd)='0'
+            and trim(p_age_grouping_cd) ='0'
+            and trim(p_gender_cd) ='0'
+            and trim(p_ethnicity_cd)  ='0' 
             and trim(p_init_cd_plcm_setng)='0' 
             and trim(p_long_cd_plcm_setng)='0' 
-            and trim(p_county_cd) ='0'  )   then
-
-    call load_ooh_parameters(p_date
-                ,  p_age_grouping_cd 
-                ,  p_ethnicity_cd 
-                ,  p_gender_cd 
-                ,  p_init_cd_plcm_setng 
-                ,  p_long_cd_plcm_setng 
-                ,  p_county_cd 
-                ,  p_bin_los_cd 
-                ,  p_bin_placement_cd 
-                ,  p_bin_ihs_svc_cd 
-                ,  p_cd_reporter_type 
-                ,  p_filter_access_type 
-                ,  p_filter_allegation  
-                , p_filter_finding 
-                , p_filter_service_category  
-                , p_filter_service_budget
-                , 0
-                , 0
-                , p_mindate
-                , p_maxdate
-                , 13);
-                
-        update cache_pbcw4_params
-        set cnt_qry=cnt_qry + 1,last_run_date=now()
-        where qry_id=15;
-        
-        select
-            pbcw4.cohort_entry_date as "Cohort Entry Date"
-						, qry_type
-						, date_type
-						, pbcw4.age_grouping_cd
-						, case pbcw4.age_grouping_cd
-                                when 0 then age0
-                                when 1 then age1
-                                when 2 then age2
-                                when 3 then age3
-                                when 4 then age4
-                                when 5 then age5
-                                when 6 then age6
-                                when 7 then age7
-                end as "Age Grouping"
-						, pbcw4.cd_race as Ethnicity_Cd
-						, case pbcw4.cd_race
-                   when 0 then eth0
-                   when 1 then eth1
-                   when 2 then eth2
-                   when 3 then eth3
-                   when 4 then eth4
-                   when 5 then eth5
-                   when 6 then eth6
-                   when 7 then eth7
-                   when 8 then eth8
-                   when 9 then eth9
-                   when 10 then eth10
-                   when 11 then eth11
-                   when 12 then eth12
-                   end as  "Race/Ethnicity" 
-						, pbcw4.pk_gndr as Gender_Cd
-						, case pbcw4.pk_gndr
-                                when 0 then gdr0
-                                when 1 then gdr1
-                                when 2 then gdr2
-                                when 3 then gdr3
-                              end as "Gender" 
-						, pbcw4.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw4.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
-						, pbcw4.county_cd
-						, ref_cnty.county as "County"
-						, pbcw4.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw4.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
-						, pbcw4.bin_los_cd
-						, case pbcw4.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
-						, pbcw4.bin_placement_cd
-						, case pbcw4.bin_placement_cd
-                                when 0 then plc0
-                                when 1 then plc1
-                                when 2 then plc2
-                                when 3 then plc3
-                                when 4 then plc4
-                                when 5 then plc5
-                              end   as "Placement Count Desc"
-						, pbcw4.bin_ihs_svc_cd
-						, case pbcw4.bin_ihs_svc_cd
-                                when 0 then ihs0
-                                when 1 then ihs1
-                                when 2 then ihs2
-                                when 3 then ihs3
-                              end as "In-Home Service Desc"
-						, pbcw4.cd_reporter_type
-						, ref_rpt.tx_reporter_type as "Reporter Desc"
-						, pbcw4.cd_access_type
-						, ref_acc.tx_access_type as "Access type desc"
-						, pbcw4.cd_allegation
-						, case pbcw4.cd_allegation
-                   when 0 then alg0
-                   when 1 then alg1
-                   when 2 then alg2
-                   when 3 then alg3
-                   when 4 then alg4
-                end as "Allegation" 
-						, pbcw4.cd_finding
-						, case pbcw4.cd_finding
-                   when 0 then fnd0
-                   when 1 then fnd1
-                   when 2 then fnd2
-                   when 3 then fnd3
-                   when 4 then fnd4
-                end as "Finding"
-						, pbcw4.cd_subctgry_poc_frc as "Service Type Cd"
-						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw4.cd_budget_poc_frc   "Budget Cd"
-						, ref_bud.tx_budget_poc_frc  "Budget"
-            , kincare
-            , case when kincare=1 then 'With Kin' else 'All including Kin' end as "Placement Type"
-            , pbcw4.bin_sibling_group_size
-            , ref_sib.Sibling_Group_Name "Sibling Group Size"
-            , all_together  as All_Together
-            , some_together as Some_Together
-            , none_together as None_Together
-             , round(cnt_cohort + 2 * sqrt(-2 * log(pbcw4.x1)) 
-                                        * cos(2*pi()*pbcw4.x2),0) as "Number in Cohort"      
-            FROM cache_pbcw4_aggr  pbcw4
-             join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw4.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw4.long_cd_plcm_setng
-            join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw4.county_cd
-            join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw4.cd_reporter_type
-            join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw4.cd_access_type
-            join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
-            join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
-            join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
-            where pbcw4.qry_id in (1,15)
-            and pbcw4.int_hash_key in (100000000000000000100,100000000000000000200,100000000000000000300,100000000000000000400,100000000000000000500,
-100000000000000000600,100000000000000000700,100000000000000000800,100000000000000000900,100000000000000001000,
-100000000000000001100,100000000000000001200,100000000000000001300,100000000000000001400,100000000000000001500,
-100000000000000001600,100000000000000000000)
-            and pbcw4.cd_subctgry_poc_frc in (select distinct cd_subctgry_poc_frc from tblsrvc)
-             and pbcw4.cohort_entry_date between p_mindate and p_maxdate
-            order by kincare asc,
-                pbcw4.bin_dep_cd asc
-                ,qry_type
-                ,date_type
-                ,Cohort_Entry_date asc
-                ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
-                    ,county_cd asc
-                    , pbcw4.bin_los_cd asc
-                    , pbcw4.bin_placement_cd asc
-                    , pbcw4.bin_ihs_svc_cd asc
-                    , pbcw4.cd_reporter_type
-                    , pbcw4.cd_access_type
-                    , pbcw4.cd_allegation
-                    , pbcw4.cd_finding
-                    , pbcw4.cd_subctgry_poc_frc
-                    , pbcw4.cd_budget_poc_frc
-                    , pbcw4.bin_sibling_group_size; 
-elseif (trim(p_bin_placement_cd)='0' 
+            and trim(p_county_cd) = '0'  )  
+    OR  (trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -2923,14 +408,87 @@ elseif (trim(p_bin_placement_cd)='0'
             and trim(p_bin_los_cd)='0'
             and trim(p_filter_service_budget) <>'0' 
             and trim(p_filter_service_category)='0'
-            and trim(p_age_grouping_cd) ='0' 
-            and trim(p_gender_cd)='0'
-            and trim(p_ethnicity_cd)='0'
+            and trim(p_age_grouping_cd) ='0'
+            and trim(p_gender_cd) ='0'
+            and trim(p_ethnicity_cd)  ='0' 
             and trim(p_init_cd_plcm_setng)='0' 
             and trim(p_long_cd_plcm_setng)='0' 
-            and trim(p_county_cd) ='0'  )   then
+            and trim(p_county_cd) = '0'  )  then 
+        set @incl='update cache_pbcw4_params
+        set cnt_qry=cnt_qry + 1,last_run_date=now()
+        where qry_id=';
+   
 
-    call load_ooh_parameters(p_date
+    if  (trim(p_bin_placement_cd)='0' 
+                        and trim(p_bin_ihs_svc_cd)='0' 
+                        and trim(p_cd_reporter_type)='0' 
+                        and trim(p_filter_access_type)='0' 
+                        and trim(p_filter_allegation)='0' 
+                and trim(p_filter_finding)='0' 
+                and trim(p_bin_los_cd)='0'
+                and trim(p_filter_service_budget) ='0' 
+                and trim(p_filter_service_category)='0'
+                and trim(p_age_grouping_cd) ='0' 
+                and trim(p_gender_cd) ='0'
+                and trim(p_ethnicity_cd)='0'
+                and trim(p_init_cd_plcm_setng)='0' 
+                and trim(p_long_cd_plcm_setng)='0' 
+                and trim(p_county_cd) = '0'  )   then 
+        set @incl=concat(@incl,'1' );
+    elseif   trim(p_age_grouping_cd) <>'0' then 
+        set @incl=concat(@incl,'2' );
+    elseif  trim(p_ethnicity_cd)  <>'0' then 
+        set @incl=concat(@incl,'3'  );
+    elseif  trim(p_gender_cd) <>'0' then 
+        set @incl=concat(@incl,'4'      );
+    elseif  trim(p_init_cd_plcm_setng)<>'0'  then 
+        set @incl=concat(@incl,'5') ;
+    elseif   trim(p_long_cd_plcm_setng)<>'0'  then 
+        set @incl=concat(@incl,'6') ;     
+    elseif  trim(p_county_cd) <> '0'    then 
+        set @incl=concat(@incl,'7')  ;      
+    elseif  trim(p_bin_los_cd)<>'0' then 
+        set @incl=concat(@incl,'8');       
+    elseif  trim(p_bin_placement_cd)<>'0' then 
+        set @incl=concat(@incl,'9');      
+    elseif trim(p_bin_ihs_svc_cd)<>'0'  then 
+        set @incl=concat(@incl,'10' ) ;
+    elseif  trim(p_cd_reporter_type)<>'0' then 
+        set @incl=concat(@incl,'11' ) ;
+    elseif trim(p_filter_access_type)<>'0'  then 
+        set @incl=concat(@incl, '12'   )  ;          
+    elseif  trim(p_filter_allegation)<>'0'  then 
+        set @incl=concat(@incl,  '13'    ) ;  
+    elseif  trim(p_filter_finding)<>'0'  then 
+        set @incl=concat(@incl,   '14'      )  ;
+    elseif trim(p_filter_service_category)<>'0' then 
+        set @incl=concat(@incl, '15'     );        
+    elseif  trim(p_filter_service_budget) <>'0'  then 
+        set @incl=concat(@incl, '16' ) ;                
+    end if  ;
+          
+        
+        PREPARE stmt FROM @incl;
+        EXECUTE stmt;
+        DEALLOCATE PREPARE stmt;  
+ if  NOT (trim(p_bin_placement_cd)='0' 
+                        and trim(p_bin_ihs_svc_cd)='0' 
+                        and trim(p_cd_reporter_type)='0' 
+                        and trim(p_filter_access_type)='0' 
+                        and trim(p_filter_allegation)='0' 
+                and trim(p_filter_finding)='0' 
+                and trim(p_bin_los_cd)='0'
+                and trim(p_filter_service_budget) ='0' 
+                and trim(p_filter_service_category)='0'
+                and trim(p_age_grouping_cd) ='0' 
+                and trim(p_gender_cd) ='0'
+                and trim(p_ethnicity_cd)='0'
+                and trim(p_init_cd_plcm_setng)='0' 
+                and trim(p_long_cd_plcm_setng)='0' 
+                and trim(p_county_cd) = '0'  )   then  
+                   
+                   
+call load_ooh_parameters(p_date
                 ,  p_age_grouping_cd 
                 ,  p_ethnicity_cd 
                 ,  p_gender_cd 
@@ -2946,89 +504,91 @@ elseif (trim(p_bin_placement_cd)='0'
                 , p_filter_finding 
                 , p_filter_service_category  
                 , p_filter_service_budget
+                , p_bin_dep_cd
                 , 0
                 , 0
                 , p_mindate
                 , p_maxdate
-                , 13);
+                , var_calling_procedure);
                 
-       update cache_pbcw4_params
-        set cnt_qry=cnt_qry + 1,last_run_date=now()
-        where qry_id=16;
-        
-        select
+end if;
+set @incl='select
             pbcw4.cohort_entry_date as "Cohort Entry Date"
 						, qry_type
 						, date_type
 						, pbcw4.age_grouping_cd
 						, case pbcw4.age_grouping_cd
-                                when 0 then age0
-                                when 1 then age1
-                                when 2 then age2
-                                when 3 then age3
-                                when 4 then age4
-                                when 5 then age5
-                                when 6 then age6
-                                when 7 then age7
+                                when 0 then ';
+                                
+set @incl=concat(@incl,char(39),age0,char(39),char(13),'
+                                when 1 then ',char(39),age1,char(39),'
+                                when 2 then ',char(39),age2,char(39),'
+                                when 3 then ',char(39),age3,char(39),'
+                                when 4 then ',char(39),age4,char(39),'
+                                when 5 then ',char(39),age5,char(39),'
+                                when 6 then ',char(39),age6,char(39),'
+                                when 7 then ',char(39),age7,char(39),'
                 end as "Age Grouping"
-						, pbcw4.cd_race as Ethnicity_Cd
+						, pbcw4.cd_race as ethnicity_cd
 						, case pbcw4.cd_race
-                   when 0 then eth0
-                   when 1 then eth1
-                   when 2 then eth2
-                   when 3 then eth3
-                   when 4 then eth4
-                   when 5 then eth5
-                   when 6 then eth6
-                   when 7 then eth7
-                   when 8 then eth8
-                   when 9 then eth9
-                   when 10 then eth10
-                   when 11 then eth11
-                   when 12 then eth12
+                   when 0 then ',char(39),eth0,char(39),'
+                   when 1 then ',char(39),eth1,char(39),'
+                   when 2 then ',char(39),eth2,char(39),'
+                   when 3 then ',char(39),eth3,char(39),'
+                   when 4 then ',char(39),eth4,char(39),'
+                   when 5 then ',char(39),eth5,char(39),'
+                   when 6 then ',char(39),eth6,char(39),'
+                   when 7 then ',char(39),eth7,char(39),'
+                   when 8 then ',char(39),eth8,char(39),'
+                   when 9 then ',char(39),eth9,char(39),'
+                   when 10 then ',char(39),eth10,char(39),'
+                   when 11 then ',char(39),eth11,char(39),'
+                   when 12 then ',char(39),eth12,char(39),'
                    end as  "Race/Ethnicity" 
-						, pbcw4.pk_gndr as Gender_Cd
+						, pbcw4.pk_gndr as gender_cd
 						, case pbcw4.pk_gndr
-                                when 0 then gdr0
-                                when 1 then gdr1
-                                when 2 then gdr2
-                                when 3 then gdr3
+                                when 0 then ',char(39),gdr0,char(39),'
+                                when 1 then ',char(39),gdr1,char(39),'
+                                when 2 then ',char(39),gdr2,char(39),'
+                                when 3 then ',char(39),gdr3,char(39),'
                               end as "Gender" 
-						, pbcw4.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw4.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+						, pbcw4.init_cd_plcm_setng  
+            , case when pbcw4.init_cd_plcm_setng = 0 then  ',char(39),fpl0,char(39),'
+                    when pbcw4.init_cd_plcm_setng = 3 then ',char(39),fpl3,char(39),'
+                    when pbcw4.init_cd_plcm_setng = 4 then ',char(39),fpl4,char(39),'
+                    when pbcw4.init_cd_plcm_setng = 5 then ',char(39),fpl5,char(39),'
+                    when pbcw4.init_cd_plcm_setng = 6 then ',char(39),fpl6,char(39),'
+                    when pbcw4.init_cd_plcm_setng = 7 then ',char(39),fpl7,char(39),'
+                end as  "Initial Placement"
+            , pbcw4.long_cd_plcm_setng  
+            , case when pbcw4.long_cd_plcm_setng = 0 then ',char(39),lpl0,char(39),'
+                    when pbcw4.long_cd_plcm_setng = 3 then ',char(39),lpl3,char(39),'
+                    when pbcw4.long_cd_plcm_setng = 4 then ',char(39),lpl4,char(39),'
+                    when pbcw4.long_cd_plcm_setng = 5 then ',char(39),lpl5,char(39),'
+                    when pbcw4.long_cd_plcm_setng = 6 then ',char(39),lpl6,char(39),'
+                    when pbcw4.long_cd_plcm_setng = 7 then ',char(39),lpl7,char(39),'
+                end as  "Longest Placement"
 						, pbcw4.county_cd
 						, ref_cnty.county as "County"
-						, pbcw4.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw4.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcw4.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcw4.bin_los_cd
-						, case pbcw4.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"
 						, pbcw4.bin_placement_cd
 						, case pbcw4.bin_placement_cd
-                                when 0 then plc0
-                                when 1 then plc1
-                                when 2 then plc2
-                                when 3 then plc3
-                                when 4 then plc4
-                                when 5 then plc5
+                                when 0 then ',char(39),plc0,char(39),'
+                                when 1 then ',char(39),plc1,char(39),'
+                                when 2 then ',char(39),plc2,char(39),'
+                                when 3 then ',char(39),plc3,char(39),'
+                                when 4 then ',char(39),plc4,char(39),'
+                                when 5 then ',char(39),plc5,char(39),'
                               end   as "Placement Count Desc"
 						, pbcw4.bin_ihs_svc_cd
 						, case pbcw4.bin_ihs_svc_cd
-                                when 0 then ihs0
-                                when 1 then ihs1
-                                when 2 then ihs2
-                                when 3 then ihs3
+                                when 0 then ',char(39),ihs0,char(39),'
+                                when 1 then ',char(39),ihs1,char(39),'
+                                when 2 then ',char(39),ihs2,char(39),'
+                                when 3 then ',char(39),ihs3,char(39),'
                               end as "In-Home Service Desc"
 						, pbcw4.cd_reporter_type
 						, ref_rpt.tx_reporter_type as "Reporter Desc"
@@ -3036,56 +596,200 @@ elseif (trim(p_bin_placement_cd)='0'
 						, ref_acc.tx_access_type as "Access type desc"
 						, pbcw4.cd_allegation
 						, case pbcw4.cd_allegation
-                   when 0 then alg0
-                   when 1 then alg1
-                   when 2 then alg2
-                   when 3 then alg3
-                   when 4 then alg4
+                   when 0 then ',char(39),alg0,char(39),'
+                   when 1 then ',char(39),alg1,char(39),'
+                   when 2 then ',char(39),alg2,char(39),'
+                   when 3 then ',char(39),alg3,char(39),'
+                   when 4 then ',char(39),alg4,char(39),'
                 end as "Allegation" 
 						, pbcw4.cd_finding
 						, case pbcw4.cd_finding
-                   when 0 then fnd0
-                   when 1 then fnd1
-                   when 2 then fnd2
-                   when 3 then fnd3
-                   when 4 then fnd4
+                   when 0 then ',char(39),fnd0,char(39),'
+                   when 1 then ',char(39),fnd1,char(39),'
+                   when 2 then ',char(39),fnd2,char(39),'
+                   when 3 then ',char(39),fnd3,char(39),'
+                   when 4 then ',char(39),fnd4,char(39),'
                 end as "Finding"
-						, pbcw4.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcw4.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw4.cd_budget_poc_frc   "Budget Cd"
+						, pbcw4.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , kincare
-            , case when kincare=1 then 'With Kin' else 'All including Kin' end as "Placement Type"
+            , case when kincare=1 then');
+            set @incl=concat(@incl,char(39),'With Kin',char(39),' else ',char(39),'All including Kin' ,char(39),' end as "Placement Type"
             , pbcw4.bin_sibling_group_size
             , ref_sib.Sibling_Group_Name "Sibling Group Size"
             , all_together  as All_Together
             , some_together as Some_Together
             , none_together as None_Together
             , round(cnt_cohort + 2 * sqrt(-2 * log(pbcw4.x1)) 
-                                        * cos(2*pi()*pbcw4.x2),0) as "Number in Cohort"                  
-            FROM cache_pbcw4_aggr  pbcw4
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw4.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw4.long_cd_plcm_setng
+                                        * cos(2*pi()*pbcw4.x2),0) as "Number in Cohort"            
+    FROM cache_pbcw4_aggr  pbcw4
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcw4.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcw4.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw4.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw4.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw4.cd_access_type
-            join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
+             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
             join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
-            where pbcw4.qry_id in (1,16)
-            and pbcw4.int_hash_key in (100000000000000000012,100000000000000000000,100000000000000000014,100000000000000000015,100000000000000000016,100000000000000000018,100000000000000000019,100000000000000000099)
-            and pbcw4.cd_budget_poc_frc in (select distinct cd_budget_poc_frc from tblbudg)
-             and pbcw4.cohort_entry_date between p_mindate and p_maxdate
-            order by kincare asc,
+            where pbcw4.qry_id');
+
+ if  (trim(p_bin_placement_cd)='0' 
+                        and trim(p_bin_ihs_svc_cd)='0' 
+                        and trim(p_cd_reporter_type)='0' 
+                        and trim(p_filter_access_type)='0' 
+                        and trim(p_filter_allegation)='0' 
+                and trim(p_filter_finding)='0' 
+                and trim(p_bin_los_cd)='0'
+                and trim(p_filter_service_budget) ='0' 
+                and trim(p_filter_service_category)='0'
+                and trim(p_age_grouping_cd) ='0' 
+                and trim(p_gender_cd) ='0'
+                and trim(p_ethnicity_cd)='0'
+                and trim(p_init_cd_plcm_setng)='0' 
+                and trim(p_long_cd_plcm_setng)='0' 
+                and trim(p_county_cd) = '0'  )   then 
+            set @incl=concat(@incl,'=1' );
+        elseif   trim(p_age_grouping_cd) <>'0' then 
+            set @incl=concat(@incl,char(32),'in (1,2)' );
+        elseif  trim(p_ethnicity_cd)  <>'0' then 
+            set @incl=concat(@incl,' in (1,3)' );
+        elseif  trim(p_gender_cd) <>'0' then 
+            set @incl=concat(@incl,' in (1,4)' );
+        elseif  trim(p_init_cd_plcm_setng)<>'0'  then 
+            set @incl=concat(@incl,' in (1,5)' );
+        elseif   trim(p_long_cd_plcm_setng)<>'0'  then 
+            set @incl=concat(@incl,' in (1,6)' );  
+        elseif  trim(p_county_cd) <> '0'    then 
+            set @incl=concat(@incl,' in (1,7)' );     
+        elseif  trim(p_bin_los_cd)<>'0' then 
+            set @incl=concat(@incl,' in (1,8)' );   
+        elseif  trim(p_bin_placement_cd)<>'0' then 
+            set @incl=concat(@incl,' in (1,9)' );
+        elseif trim(p_bin_ihs_svc_cd)<>'0'  then 
+            set @incl=concat(@incl,' in (1,10)' );
+        elseif  trim(p_cd_reporter_type)<>'0' then 
+            set @incl=concat(@incl,' in (1,11)' );
+        elseif trim(p_filter_access_type)<>'0'  then 
+            set @incl=concat(@incl, ' in (1,12)' );        
+        elseif  trim(p_filter_allegation)<>'0'  then 
+            set @incl=concat(@incl, ' in (1,13)' );
+        elseif  trim(p_filter_finding)<>'0'  then 
+            set @incl=concat(@incl,' in (1,14)' );
+        elseif trim(p_filter_service_category)<>'0' then 
+            set @incl=concat(@incl, ' in (1,15)' ); 
+        elseif  trim(p_filter_service_budget) <>'0'  then 
+            set @incl=concat(@incl, ' in (1,16)' );      
+        end if  ; 
+        
+        set @incl=concat(@incl,'
+            and  pbcw4.int_hash_key');
+              if  (trim(p_bin_placement_cd)='0' 
+                and trim(p_bin_ihs_svc_cd)='0' 
+                and trim(p_cd_reporter_type)='0' 
+                and trim(p_filter_access_type)='0' 
+                and trim(p_filter_allegation)='0' 
+                and trim(p_filter_finding)='0' 
+                and trim(p_bin_los_cd)='0'
+                and trim(p_filter_service_budget) ='0' 
+                and trim(p_filter_service_category)='0'
+                and trim(p_age_grouping_cd) ='0' 
+                and trim(p_gender_cd) ='0'
+                and trim(p_ethnicity_cd)='0'
+                and trim(p_init_cd_plcm_setng)='0' 
+                and trim(p_long_cd_plcm_setng)='0' 
+                and trim(p_county_cd) = '0'  )   then 
+            set @incl=concat(@incl,'=100000000000000000000' );
+       elseif  trim(p_age_grouping_cd) <>'0'  then 
+                set @incl=concat(@incl,' in (100000000000000000000,110000000000000000000,
+120000000000000000000,130000000000000000000,140000000000000000000,
+150000000000000000000,160000000000000000000,170000000000000000000)' );
+        elseif trim(p_ethnicity_cd)  <>'0'  then 
+                 set @incl=concat(@incl,' in (100000000000000000000,100100000000000000000,100200000000000000000,100300000000000000000,100400000000000000000,100500000000000000000,100600000000000000000,100800000000000000000,100900000000000000000,101000000000000000000,101100000000000000000,101200000000000000000 )');
+        elseif trim(p_gender_cd) <>'0' then 
+                 set @incl=concat(@incl,' in (100000000000000000000,100010000000000000000,100020000000000000000)'      );
+        elseif trim(p_init_cd_plcm_setng)<>'0' then 
+                set @incl=concat(@incl,' in (100000000000000000000,100003000000000000000,100004000000000000000,100005000000000000000,100006000000000000000,100007000000000000000)') ;
+        elseif trim(p_long_cd_plcm_setng)<>'0' then 
+                 set @incl=concat(@incl,' in (100000000000000000000,100000300000000000000,100000400000000000000,100000500000000000000,100000600000000000000,100000700000000000000)') ;     
+        elseif  trim(p_county_cd) <> '0'   then 
+                 set @incl=concat(@incl,' in (100000000000000000000,100000001000000000000,100000002000000000000,100000003000000000000,
+100000004000000000000,100000005000000000000,100000006000000000000,100000007000000000000,
+100000008000000000000,100000009000000000000,100000010000000000000,100000011000000000000,
+100000012000000000000,100000013000000000000,100000014000000000000,100000015000000000000,
+100000016000000000000,100000017000000000000,100000018000000000000,100000019000000000000,
+100000020000000000000,100000021000000000000,100000022000000000000,100000023000000000000,
+100000024000000000000,100000025000000000000,100000026000000000000,100000027000000000000,
+100000028000000000000,100000029000000000000,100000030000000000000,100000031000000000000,
+100000032000000000000,100000033000000000000,100000034000000000000,100000035000000000000,
+100000036000000000000,100000037000000000000,100000038000000000000,100000039000000000000)')  ;      
+        elseif  trim(p_bin_los_cd)<>'0' then 
+                 set @incl=concat(@incl,' in (100000000000000000000,100000000100000000000,100000000200000000000,100000000300000000000,100000000400000000000)');       
+        elseif  trim(p_bin_placement_cd)<>'0' then 
+                set @incl=concat(@incl,' in (100000000000000000000,100000000010000000000,100000000020000000000,100000000030000000000,100000000040000000000,100000000050000000000)');      
+        elseif  trim(p_bin_ihs_svc_cd)<>'0'then 
+            set @incl=concat(@incl,'  in (100000000000000000000,100000000001000000000,100000000002000000000,100000000003000000000)' ) ;
+        elseif  trim(p_cd_reporter_type)<>'0' then 
+            set @incl=concat(@incl,' in (100000000000000000000,100000000000050000000,100000000000060000000,100000000000070000000,100000000000080000000,100000000000090000000,100000000000110000000,100000000000120000000,100000000000130000000,100000000000140000000)' ) ;
+        elseif trim(p_filter_access_type)<>'0' then 
+            set @incl=concat(@incl, ' in (100000000000000000000,100000000000001000000)'   )  ;          
+        elseif trim(p_filter_allegation)<>'0' then 
+            set @incl=concat(@incl,  '  in (100000000000000000000,100000000000000100000,100000000000000200000,100000000000000300000,100000000000000400000)'    ) ;  
+        elseif  trim(p_filter_finding)<>'0' then 
+            set @incl=concat(@incl,   '  in (100000000000000000000,100000000000000010000,100000000000000020000,100000000000000030000,100000000000000040000)'      )  ;
+        elseif  trim(p_filter_service_category)<>'0'then 
+            set @incl=concat(@incl, '  in (100000000000000000000,100000000000000000100,100000000000000000200,100000000000000000300,100000000000000000400,100000000000000000500,
+100000000000000000600,100000000000000000700,100000000000000000800,100000000000000000900,100000000000000001000,100000000000000001100,
+100000000000000001200,100000000000000001300,100000000000000001400,100000000000000001500,100000000000000001600)'     );        
+        elseif  trim(p_filter_service_budget) <>'0' then 
+            set @incl=concat(@incl, ' in (100000000000000000000,100000000000000000012,100000000000000000014,100000000000000000015,100000000000000000016,100000000000000000018,100000000000000000019,100000000000000000099)' ) ;                
+        end if  ;  
+        set @incl=concat(@incl,char(13));
+        if   trim(p_age_grouping_cd) <>'0' then 
+            set @incl=concat(@incl,char(32),'and pbcw4.age_grouping_cd in (select distinct age_grouping_cd from tblage)' );
+        elseif  trim(p_ethnicity_cd)  <>'0' then 
+            set @incl=concat(@incl,char(32),'and pbcw4.cd_race in (select distinct cd_race from tbleth)' );
+        elseif  trim(p_gender_cd) <>'0' then 
+            set @incl=concat(@incl,char(32),'and pbcw4.pk_gndr in (select distinct pk_gndr from tblgdr)' );
+        elseif  trim(p_init_cd_plcm_setng)<>'0'  then 
+            set @incl=concat(@incl,char(32),'and pbcw4.init_cd_plcm_setng in (select distinct cd_plcm_setng from tblfpl)' );
+        elseif   trim(p_long_cd_plcm_setng)<>'0'  then 
+            set @incl=concat(@incl,char(32),'and pbcw4.long_cd_plcm_setng in (select distinct cd_plcm_setng from tbllpl)' );
+        elseif  trim(p_county_cd) <> '0'    then 
+            set @incl=concat(@incl,char(32),'and pbcw4.county_cd in (select distinct cd_cnty from tblcnty)' );
+        elseif  trim(p_bin_los_cd)<>'0' then 
+            set @incl=concat(@incl,char(32),'and pbcw4.bin_los_cd in (select distinct bin_los_cd from tbllos)' );
+        elseif  trim(p_bin_placement_cd)<>'0' then 
+            set @incl=concat(@incl,char(32),'and pbcw4.bin_placement_cd in (select distinct bin_placement_cd from tblnbrplc)' );
+        elseif trim(p_bin_ihs_svc_cd)<>'0'  then 
+            set @incl=concat(@incl,char(32),'and pbcw4.bin_ihs_svc_cd in (select distinct bin_ihs_svc_cd from tblihs)' );
+        elseif  trim(p_cd_reporter_type)<>'0' then 
+            set @incl=concat(@incl,char(32),'and pbcw4.cd_reporter_type in (select distinct cd_reporter_type from tblrpt)' );
+        elseif trim(p_filter_access_type)<>'0'  then 
+            set @incl=concat(@incl,char(32),'and pbcw4.cd_access_type in (select distinct cd_access_type from tblacc)' );
+        elseif  trim(p_filter_allegation)<>'0'  then 
+            set @incl=concat(@incl,char(32),'and pbcw4.cd_allegation in (select distinct cd_allegation from tblalg)' );
+        elseif  trim(p_filter_finding)<>'0'  then 
+            set @incl=concat(@incl,char(32),'and pbcw4.cd_finding in (select distinct cd_finding from tblfnd)' );
+        elseif trim(p_filter_service_category)<>'0' then 
+            set @incl=concat(@incl,char(32),'and pbcw4.cd_subctgry_poc_frc in (select distinct cd_subctgry_poc_frc from tblsrvc)' );
+        elseif  trim(p_filter_service_budget) <>'0'  then 
+            set @incl=concat(@incl,char(32),'and pbcw4.cd_budget_poc_frc in (select distinct cd_budget_poc_frc from tblbudg)' );
+        end if  ; 
+        set @incl=concat(@incl,char(13),'
+            and pbcw4.cohort_entry_date 
+            between ',char(39),p_mindate,char(39),' and ',char(39),p_maxdate,char(39),'
+            order by   kincare asc,
                 pbcw4.bin_dep_cd asc
                 ,qry_type
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcw4.bin_los_cd asc
                     , pbcw4.bin_placement_cd asc
@@ -3096,9 +800,17 @@ elseif (trim(p_bin_placement_cd)='0'
                     , pbcw4.cd_finding
                     , pbcw4.cd_subctgry_poc_frc
                     , pbcw4.cd_budget_poc_frc
-                    , pbcw4.bin_sibling_group_size;                     
-else 
- start transaction;
+                    , pbcw4.bin_sibling_group_size;');
+                    
+        drop temporary table if exists mycode;
+        create temporary table mycode as select @incl;
+
+        PREPARE stmt FROM @incl;
+        EXECUTE stmt;
+        DEALLOCATE PREPARE stmt;                      
+        
+ else
+start transaction;
   
   call load_ooh_parameters(p_date
                 ,  p_age_grouping_cd 
@@ -3116,11 +828,12 @@ else
                 , p_filter_finding 
                 , p_filter_service_category  
                 , p_filter_service_budget
+                , p_bin_dep_cd
                 , 0
                 , 1
                 , p_mindate
                 , p_maxdate
-                , 13);
+                , var_calling_procedure);
 
 set p_qry_id=(
             select qry_id 
@@ -3389,6 +1102,7 @@ select sum(in_cache),count(*) ,count(distinct qry_id)
 				set @incl=concat(@incl, ',',char(39),@qry_id,char(39));
 				set @incl=concat(@incl, ',year(prtl_pbcw4.pit_date)
 				,int_hash_key
+        , sum(total)
 			FROM prtl_pbcw4  
 				join tblprmlocdem mtch on mtch.int_match_param_key=prtl_pbcw4.int_match_param_key 
 				and mtch.cd_race_census in (select distinct cd_race from tbleth)');
@@ -3410,7 +1124,7 @@ select sum(in_cache),count(*) ,count(distinct qry_id)
 				set @incl=concat(@incl, ',',char(39),@qry_id,char(39));
 				set @incl=concat(@incl, ',year(prtl_pbcw4.pit_date)
 				,int_hash_key
-        , (sum(total)
+        , sum(total)
 			FROM prtl_pbcw4  ');
         end if;
         if trim(p_bin_los_cd)<>'0' then
@@ -3584,7 +1298,7 @@ select sum(in_cache),count(*) ,count(distinct qry_id)
         end if;                   
         set @incl=concat(@incl,'
 					, che.int_hash_key');
---        select @incl;
+        select @incl;
         PREPARE stmt FROM @incl;
         EXECUTE stmt;
         DEALLOCATE PREPARE stmt;
@@ -3644,7 +1358,7 @@ select sum(in_cache),count(*) ,count(distinct qry_id)
                                 when 6 then age6
                                 when 7 then age7
                 end as "Age Grouping"
-						, pbcw4.cd_race as Ethnicity_Cd
+						, pbcw4.cd_race as ethnicity_cd
 						, case pbcw4.cd_race
                    when 0 then eth0
                    when 1 then eth1
@@ -3660,33 +1374,34 @@ select sum(in_cache),count(*) ,count(distinct qry_id)
                    when 11 then eth11
                    when 12 then eth12
                    end as  "Race/Ethnicity" 
-						, pbcw4.pk_gndr as Gender_Cd
+						, pbcw4.pk_gndr as gender_cd
 						, case pbcw4.pk_gndr
                                 when 0 then gdr0
                                 when 1 then gdr1
                                 when 2 then gdr2
                                 when 3 then gdr3
                               end as "Gender" 
-						, pbcw4.init_cd_plcm_setng as init_plcmnt_Cd
-						, ref_fpl.placement as  "Initial Placement"
-						, pbcw4.long_cd_plcm_setng as long_plcmnt_cd
-						, ref_lpl.placement as  "Longest Placement"
+            , case when pbcw4.init_cd_plcm_setng = 0 then fpl0
+                    when pbcw4.init_cd_plcm_setng = 3 then fpl3
+                    when pbcw4.init_cd_plcm_setng = 4 then fpl4
+                    when pbcw4.init_cd_plcm_setng = 5 then fpl5
+                    when pbcw4.init_cd_plcm_setng = 6 then fpl6
+                    when pbcw4.init_cd_plcm_setng = 7 then fpl7
+                end as  "Initial Placement"
+            , pbcw4.long_cd_plcm_setng  
+            , case when pbcw4.long_cd_plcm_setng = 0 then lpl0
+                    when pbcw4.long_cd_plcm_setng = 3 then lpl3
+                    when pbcw4.long_cd_plcm_setng = 4 then lpl4
+                    when pbcw4.long_cd_plcm_setng = 5 then lpl5
+                    when pbcw4.long_cd_plcm_setng = 6 then lpl6
+                    when pbcw4.long_cd_plcm_setng = 7 then lpl7
+                end as  "Longest Placement"
 						, pbcw4.county_cd
 						, ref_cnty.county as "County"
-						, pbcw4.bin_dep_cd as  "Dependency Cd"
-						, case  pbcw4.bin_dep_cd 
-                                when 0 then dep0
-                                when 1 then dep1
-                                when 2 then dep2
-                                when 3 then dep3
-                            end as "Dependency"
+						, pbcw4.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
 						, pbcw4.bin_los_cd
-						, case pbcw4.bin_los_cd 
-                                when 0 then los0
-                                when 1 then los1
-                                when 2 then los2
-                                when 3 then los3
-                                when 4 then los4 end as "Length of Service Desc"
+						, ref_los.bin_los_desc as "Length of Service Desc"
 						, pbcw4.bin_placement_cd
 						, case pbcw4.bin_placement_cd
                                 when 0 then plc0
@@ -3723,9 +1438,9 @@ select sum(in_cache),count(*) ,count(distinct qry_id)
                    when 3 then fnd3
                    when 4 then fnd4
                 end as "Finding"
-						, pbcw4.cd_subctgry_poc_frc as "Service Type Cd"
+						, pbcw4.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw4.cd_budget_poc_frc   "Budget Cd"
+						, pbcw4.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , kincare
             , case when kincare=1 then 'With Kin' else 'All including Kin' end as "Placement Type"
@@ -3738,8 +1453,10 @@ select sum(in_cache),count(*) ,count(distinct qry_id)
                                         * cos(2*pi()*pbcw4.x2),0) as "Number in Cohort"
             FROM cache_pbcw4_aggr  pbcw4
             join cachekeys ck on ck.qry_id=pbcw4.qry_id and ck.int_hash_key=pbcw4.int_hash_key
-            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw4.init_cd_plcm_setng
-            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw4.long_cd_plcm_setng
+            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcw4.bin_dep_cd
+            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcw4.bin_los_cd
+--            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw4.init_cd_plcm_setng
+--            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw4.long_cd_plcm_setng
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw4.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw4.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw4.cd_access_type
@@ -3753,10 +1470,10 @@ select sum(in_cache),count(*) ,count(distinct qry_id)
                 ,date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
-                    ,Gender_Cd asc
-                    ,Ethnicity_Cd asc
-                    ,init_plcmnt_Cd asc
-                    ,long_plcmnt_Cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
                     ,county_cd asc
                     , pbcw4.bin_los_cd asc
                     , pbcw4.bin_placement_cd asc
@@ -3768,6 +1485,6 @@ select sum(in_cache),count(*) ,count(distinct qry_id)
                     , pbcw4.cd_subctgry_poc_frc
                     , pbcw4.cd_budget_poc_frc
                     , pbcw4.bin_sibling_group_size;  
-        end if; -- not all zero
-end if; -- turn procedure off
+    end if; -- not all 1 variable cache
+ end if; -- turn procedure off
 END
