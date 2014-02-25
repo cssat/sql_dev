@@ -1,0 +1,154 @@
+CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `assign_desc`(OUT  age0 char(50),
+out age1 char(50),
+out age2 char(50),
+out age3 char(50),
+out age4 char(50),
+out age5 char(50),
+out age6 char(50),
+out age7 char(50),
+
+
+
+out gdr0 char(10),
+out gdr1 char(10),
+out gdr2 char(10),
+out gdr3 char(10),
+
+
+out fpl0 char(50),
+out fpl3 char(50),
+out fpl4 char(50),
+out fpl5 char(50),
+out fpl6 char(50),
+out fpl7 char(50),
+
+out lpl0 char(50),
+out lpl3 char(50),
+out lpl4 char(50),
+out lpl5 char(50),
+out lpl6 char(50),
+out lpl7 char(50),
+
+out plc0 char(25),
+out plc1 char(25),
+out plc2 char(25),
+out plc3 char(25),
+out plc4 char(25),
+out plc5 char(25),
+
+
+
+out ihs0 char(50),
+out ihs1 char(50),
+out ihs2 char(50),
+out ihs3 char(50),
+
+out alg0  char(50),
+out alg1  char(50),
+out alg2  char(50),
+out alg3  char(50),
+out alg4  char(50),
+
+out fnd0  char(50),
+out fnd1  char(50),
+out fnd2  char(50),
+out fnd3  char(50),
+out fnd4  char(50),
+
+out eth0  char(100) ,
+out eth1  char(100) ,
+out eth2  char(100) ,
+out eth3  char(100) ,
+out eth4  char(100) ,
+out eth5  char(100) ,
+out eth6  char(100) ,
+out eth7  char(100) ,
+out eth8  char(100) ,
+out eth9  char(100) ,
+out eth10 char(100) ,
+out eth11 char(100) ,
+out eth12 char(100) ,
+p_calling_procedure int
+
+)
+BEGIN
+select age_grouping into age0 from ref_lookup_age_census where age_grouping_cd=0;
+if p_calling_procedure in (19,20) then
+select age_grouping into age1 from ref_lookup_age_census where age_grouping_cd=1;
+select age_grouping into age2 from ref_lookup_age_census where age_grouping_cd=2;
+select age_grouping into age3 from ref_lookup_age_census where age_grouping_cd=3;
+select age_grouping into age4 from ref_lookup_age_census where age_grouping_cd=4;
+else
+select distinct cdc_census_mix_age_tx into age1 from age_dim where cdc_census_mix_age_cd=1;
+select distinct cdc_census_mix_age_tx into age2 from age_dim where cdc_census_mix_age_cd=2;
+select distinct cdc_census_mix_age_tx into age3 from age_dim where cdc_census_mix_age_cd=3;
+select distinct cdc_census_mix_age_tx into age4 from age_dim where cdc_census_mix_age_cd=4;
+select distinct cdc_census_mix_age_tx into age5 from age_dim where cdc_census_mix_age_cd=5;
+select distinct cdc_census_mix_age_tx into age6 from age_dim where cdc_census_mix_age_cd=6;
+select distinct cdc_census_mix_age_tx into age7 from age_dim where cdc_census_mix_age_cd=7;
+
+end if;
+select gender_desc into gdr0 from ref_lookup_gender where pk_gndr=0;
+select gender_desc into gdr1 from ref_lookup_gender where pk_gndr=1;
+select gender_desc into gdr2 from ref_lookup_gender where pk_gndr=2;
+select gender_desc into gdr3 from ref_lookup_gender where pk_gndr=3;
+
+select placement into fpl0  from ref_lookup_placement where placement_cd=0;
+select placement into fpl3  from ref_lookup_placement where placement_cd=3;
+select placement into fpl4  from ref_lookup_placement where placement_cd=4;
+select placement into fpl5  from ref_lookup_placement where placement_cd=5;
+select placement into fpl6  from ref_lookup_placement where placement_cd=6;
+select placement into fpl7  from ref_lookup_placement where placement_cd=7;
+
+set lpl0=fpl0;
+set lpl3=fpl3;
+set lpl4=fpl4;
+set lpl5=fpl5;
+set lpl6=fpl6;
+set lpl7=fpl7;
+
+
+select bin_placement_desc into plc0  from ref_filter_nbr_placement where bin_placement_cd=0;
+select bin_placement_desc into plc1  from ref_filter_nbr_placement where bin_placement_cd=1;
+select bin_placement_desc into plc2  from ref_filter_nbr_placement where bin_placement_cd=2;
+select bin_placement_desc into plc3  from ref_filter_nbr_placement where bin_placement_cd=3;
+select bin_placement_desc into plc4  from ref_filter_nbr_placement where bin_placement_cd=4;
+select bin_placement_desc into plc5  from ref_filter_nbr_placement where bin_placement_cd=5;
+
+                        
+                         
+select bin_ihs_svc_tx into ihs0 from ref_filter_ihs_services where bin_ihs_svc_cd=0;        
+select bin_ihs_svc_tx into ihs1 from ref_filter_ihs_services where bin_ihs_svc_cd=1;
+select bin_ihs_svc_tx into ihs2 from ref_filter_ihs_services where bin_ihs_svc_cd=2;
+select bin_ihs_svc_tx into ihs3 from ref_filter_ihs_services where bin_ihs_svc_cd=3;
+
+
+select tx_allegation into alg0  from ref_filter_allegation where cd_allegation=0;
+select tx_allegation into alg1  from ref_filter_allegation where cd_allegation=1;
+select tx_allegation into alg2  from ref_filter_allegation where cd_allegation=2;
+select tx_allegation into alg3  from ref_filter_allegation where cd_allegation=3;
+select tx_allegation into alg4  from ref_filter_allegation where cd_allegation=4;
+
+select tx_finding into fnd0  from ref_filter_finding where cd_finding=0;
+select tx_finding into fnd1  from ref_filter_finding where cd_finding=1;
+select tx_finding into fnd2  from ref_filter_finding where cd_finding=2;
+select tx_finding into fnd3  from ref_filter_finding where cd_finding=3;
+select tx_finding into fnd4  from ref_filter_finding where cd_finding=4;
+
+select tx_race_census into eth0   from ref_lookup_ethnicity_census where cd_race_census=0 ;
+select tx_race_census into eth1   from ref_lookup_ethnicity_census where cd_race_census=1 ;
+select tx_race_census into eth2   from ref_lookup_ethnicity_census where cd_race_census=2 ;
+select tx_race_census into eth3   from ref_lookup_ethnicity_census where cd_race_census=3 ;
+select tx_race_census into eth4   from ref_lookup_ethnicity_census where cd_race_census=4 ;
+select tx_race_census into eth5   from ref_lookup_ethnicity_census where cd_race_census=5 ;
+select tx_race_census into eth6   from ref_lookup_ethnicity_census where cd_race_census=6 ;
+select tx_race_census into eth7   from ref_lookup_ethnicity_census where cd_race_census=7 ;
+select tx_race_census into eth8   from ref_lookup_ethnicity_census where cd_race_census=8 ;
+select tx_race_census into eth9   from ref_lookup_ethnicity_census where cd_race_census=9 ;
+select tx_race_census into eth10  from ref_lookup_ethnicity_census where cd_race_census=10;
+select tx_race_census into eth11  from ref_lookup_ethnicity_census where cd_race_census=11;
+select tx_race_census into eth12  from ref_lookup_ethnicity_census where cd_race_census=12;
+
+
+
+END

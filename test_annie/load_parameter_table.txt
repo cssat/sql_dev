@@ -1,0 +1,1 @@
+CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `load_parameter_table`(fullstr varchar(500)) BEGIN       DECLARE a INT Default 0 ;       DECLARE str VARCHAR(255);       truncate table tbltmpValues;       simple_loop: LOOP          SET a=a+1;          S...
