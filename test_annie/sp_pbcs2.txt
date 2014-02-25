@@ -1,0 +1,709 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_PBCS2`(p_date varchar(3000)
+,  p_age_grouping_cd varchar(30)
+,  p_ethnicity_cd varchar(30)
+,  p_cd_office varchar(250) 
+,  p_cd_reporter_type varchar(100) 
+,  p_filter_access_type varchar(30) 
+,  p_filter_allegation  varchar(30)
+, p_filter_finding varchar(30))
+begin
+ -- procedure begins here
+    declare intfoundpos integer;
+    declare strElement varchar(3000);
+    declare strValues varchar(3000);
+    declare intVal integer;		
+    declare intincAll integer;
+    declare p_mindate datetime;
+    declare p_maxdate datetime;
+    declare p_maxmonthstart datetime;
+    declare p_minmonthstart datetime;
+    declare p_qry_id bigint;
+    declare var_county_grp varchar(200);
+    declare var_county_grp2 varchar(200);
+    declare var_office varchar(500);
+    declare var_qry_cnt int;
+    declare x1 float;
+    declare x2 float;
+    declare jitval float;
+    declare  flg_procedure_off int;
+    declare var_row_cnt_param int;
+    declare var_row_cnt_cache int;
+      declare alg0 char(50);
+    declare alg1 char(50);
+    declare alg2 char(50);
+    declare alg3 char(50);
+    declare alg4 char(50);
+
+    declare fnd0 char(50);
+    declare fnd1 char(50);
+    declare fnd2 char(50);
+    declare fnd3 char(50);
+    declare fnd4 char(50);
+    declare eth0  char(100) ;
+    declare eth1  char(100) ;
+    declare eth2  char(100) ;
+    declare eth3  char(100) ;
+    declare eth4  char(100) ;
+    declare eth5  char(100) ;
+    declare eth6  char(100) ;
+    declare eth7  char(100) ;
+    declare eth8  char(100) ;
+    declare eth9  char(100) ;
+    declare eth10 char(100) ;
+    declare eth11 char(100) ;
+    declare eth12 char(100) ;  
+--    DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+    
+    set flg_procedure_off =0;
+    
+    if  flg_procedure_off =0 then    
+            set x1=rand();
+            set x2=rand();
+            
+    --        set jitval= 2 * sqrt(-2 * log(x1)) * cos(2*pi()*x2);
+
+call assign_desc_poc2 (alg0,alg1,alg2,alg3,alg4,fnd0,fnd1,fnd2,fnd3,fnd4,eth0,eth1,eth2,eth3,eth4,eth5,eth6,eth7,eth8,eth9,eth10,eth11,eth12,6);
+
+       DROP TEMPORARY TABLE IF EXISTS tbltmpValues;
+        create temporary table tbltmpValues (strVal varchar(10));
+
+
+        DROP TEMPORARY TABLE IF EXISTS tbldt;
+        create temporary table tbldt(match_date datetime );
+        alter table tbldt add primary key(match_date);
+ 
+    
+        --  dates
+        set strValues=p_date;
+        set 	intFoundPos =instr(strValues,','); 
+        while intFoundPos <>0 do
+                set strElement=SUBSTRING(strValues, 1, intFoundPos-1); 
+                SET strValues = RIGHT(strValues,length(strValues)-intFoundPos);
+            
+                insert into tbltmpValues (strVal) values (strElement);
+                set intFoundPos=instr(strValues,',');
+        end while;
+
+        if strValues <> ''  then
+                INSERT Into tbltmpValues(strVal) values (strValues);
+        end if;
+        
+        insert into tbldt (match_date)
+        select distinct cast(strVal as datetime) from tbltmpValues;
+   --  set dates 
+        
+        select min_date_any ,max_date_all into p_minmonthstart,p_maxmonthstart  
+        FROM ref_lookup_max_date where id=18;
+        select min(match_date),max(match_date) into p_mindate,p_maxdate from tbldt;
+
+
+    call load_poc2ab_parameters(p_age_grouping_cd 
+        ,  p_ethnicity_cd 
+        ,  p_cd_office 
+        ,  p_cd_reporter_type 
+        ,  p_filter_access_type 
+        ,  p_filter_allegation  
+        , p_filter_finding );
+        
+        
+        
+        
+  select qry_id into p_qry_id from cache_pbcs2_params
+        where age_grouping_cd=left(p_age_grouping_cd,20)
+            and cd_race_census=left(p_ethnicity_cd,30) 
+            and cd_office=	left(p_cd_office,250)   
+            and cd_reporter_type=left(p_cd_reporter_type,100)
+            and filter_access_type=left(p_filter_access_type,30)
+            and filter_allegation=left(p_filter_allegation,30)
+            and filter_finding=left(p_filter_finding,30)
+            and min_start_date<=p_minmonthstart
+            and max_start_date >=p_maxmonthstart
+        limit 1; 
+            
+            
+  if p_qry_id is null then      
+  
+			INSERT INTO cache_pbcs2_params
+  			(qry_id
+			 , age_grouping_cd
+  			,cd_race_census
+  			,cd_office
+  			,cd_reporter_type
+  			,filter_access_type
+  			,filter_allegation
+  			,filter_finding
+  			,min_start_date
+  			,max_start_date
+  			,cnt_qry
+  			,last_run_date)
+
+    select 
+        (select @qry_ID:=(max(qry_ID) + 1)  from cache_pbcs2_params)
+  			,p_age_grouping_cd
+  			,p_ethnicity_cd
+  			,p_cd_office
+  			,p_cd_reporter_type
+  			,p_filter_access_type
+  			,p_filter_allegation
+  			,p_filter_finding
+  			,p_minmonthstart
+  			,p_maxmonthstart
+  			,1
+        ,now();
+else
+    update cache_pbcs2_params
+    set cnt_qry=cnt_qry + 1,last_run_date=now()
+            where qry_id=p_qry_id;
+end if;
+
+drop temporary table if exists cachekeys;
+ create temporary table cachekeys(int_hash_key decimal(12,0)
+    ,int_param_key int
+    
+					 ,cd_reporter_type int
+					 ,cd_access_type int
+					 ,cd_allegation int
+					 ,cd_finding int
+					 ,in_cache int
+					 ,qry_id int,primary key (int_hash_key)
+            ,key (qry_id,int_hash_key)
+            , key (int_hash_key,in_cache)
+            , key (int_param_key,cd_reporter_type,cd_access_type,cd_allegation	
+            ,cd_finding,in_cache)) ENGINE=MEMORY;
+ 
+insert into cachekeys
+		   select cast(cast((int_param_key  * power(10,5)) as decimal(12,0))
+			+ cast((rpt.cd_reporter_type  * power(10,3)) as decimal(12,0))
+			+  cast((acc.cd_access_type  * power(10,2)) as decimal(12,0))
+			+  cast((alg.cd_allegation  * power(10,1)) as decimal(12,0))
+			+ cast(fnd.cd_finding as decimal(12,0)) as decimal(12,0)) as int_hash_key
+					 ,int_param_key
+					 ,cd_reporter_type
+					 ,cd_access_type
+					 ,cd_allegation
+					 ,cd_finding
+					 ,0 as in_cache
+					 ,coalesce(p_qry_id,@qry_id) as qry_id
+				from (select distinct int_param_key from tblprmlocdem) prm
+				cross join (select distinct cd_reporter_type from tblrpt) rpt
+				cross join (select distinct cd_access_type from tblacc) acc
+				cross join (select distinct cd_allegation from tblalg) alg
+				cross join (select distinct cd_finding from tblfnd) fnd;
+
+
+	
+
+				
+			update cachekeys cache join cache_qry_param_pbcs2 pbcs2
+			set in_cache=1,cache.qry_id=pbcs2.qry_id
+			where pbcs2.int_hash_key=cache.int_hash_key;
+			
+	
+			select count(*), sum(in_cache) 
+        into var_row_cnt_param,var_row_cnt_cache
+        from cachekeys;
+
+	if var_row_cnt_param <> var_row_cnt_cache then
+
+  drop temporary table if exists q_total;
+   set @incl='
+        create temporary table q_total engine=memory as
+    select s2.cohort_begin_date
+        ,s2.date_type
+        ,s2.qry_type';
+        if NOT (p_age_grouping_cd = '0' 
+            and p_ethnicity_cd = '0' 
+            and p_cd_office = '0' ) then
+            set    @incl= concat(@incl,char(13),'
+            , mtch.int_param_key ');
+        else
+            set @incl=concat(@incl,char(13),', 1000000 as int_param_key');
+        end if;     
+        if trim(p_cd_reporter_type)='0' then
+        set @incl=concat(@incl,char(13),', 0 as cd_reporter_type');
+        else
+        set @incl=concat(@incl,char(13),', rpt.cd_reporter_type');
+        end if;	
+        if trim(p_filter_access_type)='0' then
+        set @incl=concat(@incl,char(13),', 0 as cd_access_type');
+        else
+        set @incl=concat(@incl,char(13),', acc.cd_access_type');
+        end if;					
+
+        if trim(p_filter_allegation)= '0' then
+        set @incl=concat(@incl,char(13),', 0 as cd_allegation');
+        else
+        set @incl=concat(@incl,char(13),', alg.cd_allegation');
+        end if;	       
+        if trim(p_filter_finding)='0' then
+        set @incl=concat(@incl,char(13),', 0 as cd_finding');
+        else
+        set @incl=concat(@incl,char(13),', fnd.cd_finding');
+        end if;	        
+        if NOT (p_age_grouping_cd = '0' 
+            and p_ethnicity_cd = '0' 
+            and p_cd_office = '0' ) then
+         set    @incl= concat(@incl,char(13),'
+             , cast(( mtch.int_param_key *  power(10.0,5)) as decimal(12,0))  ');
+        else
+            set @incl=concat(@incl,char(13),', cast((1000000 * power(10.0,10) ) as decimal(12,0))');
+        end if;
+       if trim(p_cd_reporter_type)<>'0' then
+	        set @incl=concat(@incl,'
+            + cast((rpt.cd_reporter_type * power(10.0,3)) as decimal(12,0)) ');
+        end if;					
+       if trim(p_filter_access_type)<>'0' then
+	        set @incl=concat(@incl,' 
+            + cast((acc.cd_access_type * power(10.0,2)) as decimal(12,0))');
+        end if;					
+
+        if trim(p_filter_allegation) <> '0' then
+	        set @incl=concat(@incl,' 
+            + cast( (alg.cd_allegation * power(10.0,1)) as decimal(12,0))');
+        end if;	       
+        if trim(p_filter_finding) <> '0' then
+	        set @incl=concat(@incl,'
+            + cast( (fnd.cd_finding * power(10.0,0)) as decimal(12,0))');
+        end if;	        
+
+     set @incl=concat(@incl,'as int_hash_key');
+     set @incl=concat(@incl,char(13),'
+      ,sum(cnt_case) as total_families
+  FROM prtl_pbcs2 s2');
+   if NOT (p_age_grouping_cd = '0' 
+            and p_ethnicity_cd = '0' 
+            and p_cd_office = '0' ) then
+         set    @incl= concat(@incl,char(13),'
+  	join tblprmlocdem mtch on mtch.int_match_param_key=s2.int_match_param_key 
+		and  mtch.cd_race_census in (select distinct cd_race from tbleth)');
+    end if;
+        if trim(p_cd_reporter_type)<>'0' then
+	        set @incl=concat(@incl,char(13),'
+			join tblrpt rpt on rpt.match_code=s2.cd_reporter_type');
+        end if;					
+        if trim(p_filter_access_type)<>'0' then
+	        set @incl=concat(@incl,char(13),'
+			join tblacc acc on acc.match_code=s2.filter_access_type');
+        end if;					
+
+        if trim(p_filter_allegation) <> '0' then
+	        set @incl=concat(@incl,char(13),'
+			join tblalg alg on alg.match_code=s2.filter_allegation');
+        end if;	       
+        if trim(p_filter_finding) <> '0' then
+	        set @incl=concat(@incl,char(13),'
+			join tblfnd fnd on fnd.match_code=s2.filter_finding');
+        end if;	        
+    set @incl=concat(@incl,char(13),'join cachekeys ck on 
+         ck.int_hash_key=');
+     if NOT (p_age_grouping_cd = '0' 
+            and p_ethnicity_cd = '0' 
+            and p_cd_office = '0' ) then
+         set    @incl= concat(@incl,char(13),'
+             cast(( mtch.int_param_key *  power(10.0,5)) as decimal(12,0))  ');
+        else
+            set @incl=concat(@incl,char(13),'cast((1000000 * power(10.0,10) ) as decimal(12,0))');
+        end if;
+       if trim(p_cd_reporter_type)<>'0' then
+	        set @incl=concat(@incl,'
+            + cast((rpt.cd_reporter_type * power(10.0,3)) as decimal(12,0)) ');
+        end if;					
+       if trim(p_filter_access_type)<>'0' then
+	        set @incl=concat(@incl,' 
+            + cast((acc.cd_access_type * power(10.0,2)) as decimal(12,0))');
+        end if;					
+
+        if trim(p_filter_allegation) <> '0' then
+	        set @incl=concat(@incl,' 
+            + cast( (alg.cd_allegation * power(10.0,1)) as decimal(12,0))');
+        end if;	       
+        if trim(p_filter_finding) <> '0' then
+	        set @incl=concat(@incl,'
+            + cast( (fnd.cd_finding * power(10.0,0)) as decimal(12,0))');
+        end if;
+        set @incl=concat(@incl,char(13),' and ck.in_cache=0');
+        set @incl=concat(@incl,char(13),'
+        where cohortrefcount=1
+        group by s2.cohort_begin_date
+      ,s2.date_type
+      ,s2.qry_type');
+        if NOT (p_age_grouping_cd = '0' 
+            and p_ethnicity_cd = '0' 
+            and p_cd_office = '0' ) then
+         set    @incl= concat(@incl,char(13),'
+            , mtch.int_param_key');
+        end if;
+        if trim(p_cd_reporter_type)<>'0' then
+	        set @incl=concat(@incl,char(13),'
+			, rpt.cd_reporter_type');
+        end if;					
+        if trim(p_filter_access_type)<>'0' then
+	        set @incl=concat(@incl,char(13),'
+			, acc.cd_access_type');
+        end if;					
+
+        if trim(p_filter_allegation) <> '0' then
+	        set @incl=concat(@incl,char(13),'
+			, alg.cd_allegation');
+        end if;	       
+        if trim(p_filter_finding) <> '0' then
+	        set @incl=concat(@incl,char(13),'
+			, fnd.cd_finding');
+        end if;	        
+      
+         if NOT (p_age_grouping_cd = '0' 
+            and p_ethnicity_cd = '0' 
+            and p_cd_office = '0' ) then
+         set    @incl= concat(@incl,char(13),'
+                                    , mtch.cd_sib_age_grp 
+                                    , mtch.cd_race_census
+                                    , mtch.cd_office');  
+         end if;
+        set @incl=concat(@incl,';',char(13));
+        
+        PREPARE stmt FROM @incl;
+        EXECUTE stmt;
+        DEALLOCATE PREPARE stmt;
+        
+        create index idx_params on q_total (cohort_begin_date,date_type,qry_type,int_param_key);
+        create index idx_other_params on q_total (cohort_begin_date,date_type,qry_type,cd_reporter_type,cd_access_type,cd_allegation,cd_finding);
+        
+       set @incl='        
+        insert IGNORE into cache_pbcs2_aggr 
+            ( qry_type
+                ,date_type
+                ,start_date
+                ,int_param_key
+                ,cd_reporter_type
+                ,cd_access_type
+                ,cd_allegation
+                ,cd_finding
+                ,cd_sib_age_grp
+                ,cd_race
+                ,cd_office
+                ,month
+                ,among_first_cmpt_rereferred
+                ,min_start_date
+                ,max_start_date
+                ,x1
+                ,x2
+                ,insert_date
+                ,int_hash_key
+                ,qry_id
+                ,start_year)
+
+           SELECT    
+              prtl_pbcs2.qry_type
+            , prtl_pbcs2.date_type 
+            , prtl_pbcs2.cohort_begin_date';
+            
+        if NOT (p_age_grouping_cd = '0' 
+            and p_ethnicity_cd = '0' 
+            and p_cd_office = '0' ) then
+         set    @incl= concat(@incl,char(13),'
+            , mtch.int_param_key ');
+        else
+            set @incl=concat(@incl,char(13),'1000000');
+        end if;
+        if p_cd_reporter_type = '0' then
+            set @incl=concat(@incl,char(13),', 0');
+        else
+            set @incl=concat(@incl,char(13),', rpt.cd_reporter_type');
+        end if;
+        if p_filter_access_type = '0' then
+             set @incl=concat(@incl,char(13),', 0');       
+        else
+            set @incl=concat(@incl,char(13),', acc.cd_access_type');
+        end if;        
+        if p_filter_allegation = '0' then
+             set @incl=concat(@incl,char(13),', 0');       
+        else
+            set @incl=concat(@incl,char(13),', alg.cd_allegation');
+        end if;  
+        if p_filter_finding = '0' then
+             set @incl=concat(@incl,char(13),', 0');       
+        else
+            set @incl=concat(@incl,char(13),', fnd.cd_finding');
+        end if;     
+        if NOT (p_age_grouping_cd = '0' 
+            and p_ethnicity_cd = '0' 
+            and p_cd_office = '0' ) then
+            set @incl=concat(@incl,char(13),'
+            , mtch.cd_sib_age_grp 
+            , mtch.cd_race_census
+            , mtch.cd_office');
+        else
+             set @incl=concat(@incl,char(13),'
+             0,0,0');
+        end if;
+
+        set @incl=concat(@incl,char(13),', n.nbr
+        , sum(cnt_case)/(q.total_families * 1.0000 ) * 100
+        ');
+    set @incl=concat(@incl,char(13),', DATE',char(39), p_minmonthstart,char(39));
+		set @incl=concat(@incl,char(13),', DATE',char(39), p_maxmonthstart,char(39));
+		set @incl=concat(@incl,char(13),', ',char(39), x1,char(39));
+		set @incl=concat(@incl,char(13),', ',char(39), x2,char(39));    
+		set @incl=concat(@incl,char(13),', DATE',char(39), now() ,char(39),' as insert_date');           
+       set @incl=concat(@incl,char(13),',cast((');
+        if NOT (p_age_grouping_cd = '0' 
+            and p_ethnicity_cd = '0' 
+            and p_cd_office = '0' ) then
+            set @incl=concat(@incl,'mtch.int_param_key');
+        else
+            set @incl=concat(@incl,'1000000');
+        end if;
+        set @incl=concat(@incl,' * power(10.0,5)) as decimal(12,0))
+			+ cast((');
+       if p_cd_reporter_type = '0' then
+            set @incl=concat(@incl,char(13),' 0');
+        else
+            set @incl=concat(@incl,char(13),' rpt.cd_reporter_type');
+        end if;
+        set @incl=concat(@incl,'  * power(10.0,3)) as decimal(12,0))
+			+  cast((');
+        if p_filter_access_type = '0' then
+             set @incl=concat(@incl,char(13),' 0');       
+        else
+            set @incl=concat(@incl,char(13),' acc.cd_access_type');
+        end if;   
+        set @incl=concat(@incl,'   * power(10.0,2)) as decimal(12,0))
+			+  cast((');
+        if p_filter_allegation = '0' then
+             set @incl=concat(@incl,char(13),' 0');       
+        else
+            set @incl=concat(@incl,char(13),' alg.cd_allegation');
+        end if;  
+        set @incl=concat(@incl,' * power(10.0,1)) as decimal(12,0))',char(13),'+ ');
+        if p_filter_finding = '0' then
+             set @incl=concat(@incl,char(13),' 0');       
+        else
+            set @incl=concat(@incl,char(13),' fnd.cd_finding');
+        end if;     
+        set @incl=concat(@incl,char(13),', ',char(39), @qry_id,char(39),char(13),'
+            , year(prtl_pbcs2.cohort_begin_date)
+        FROM prtl_pbcs2  ');
+          if NOT (p_age_grouping_cd = '0' 
+            and p_ethnicity_cd = '0' 
+            and p_cd_office = '0' ) then
+			set @incl=concat(@incl,char(13),
+			'join tblprmlocdem mtch 
+            on mtch.int_match_param_key=prtl_pbcs2.int_match_param_key 
+            and mtch.cd_race_census in (select cd_race from tbleth)');
+        end if;
+        if trim(p_cd_reporter_type)<>'0' then
+	        set @incl=concat(@incl,char(13),'
+			join tblrpt rpt on rpt.match_code=prtl_pbcs2.cd_reporter_type');
+        end if;					
+        if trim(p_filter_access_type)<>'0' then
+	        set @incl=concat(@incl,char(13),'
+			join tblacc acc on acc.match_code=prtl_pbcs2.filter_access_type');
+        end if;					
+
+        if trim(p_filter_allegation) <> '0' then
+	        set @incl=concat(@incl,char(13),'
+			join tblalg alg on alg.match_code=prtl_pbcs2.filter_allegation');
+        end if;	       
+        if trim(p_filter_finding) <> '0' then
+	        set @incl=concat(@incl,char(13),'
+			join tblfnd fnd on fnd.match_code=prtl_pbcs2.filter_finding');
+        end if;	
+    
+    set @incl=concat(@incl,char(13),'join (select number * 3 as nbr from numbers where number between 1 and 16 ) n on n.nbr >= nxt_ref_within_min_month');
+    
+    
+    set @incl=concat(@incl,char(13),'
+    join cachekeys ck on ck.int_hash_key=cast((');
+            if NOT (p_age_grouping_cd = '0' 
+            and p_ethnicity_cd = '0' 
+            and p_cd_office = '0' ) then
+            set @incl=concat(@incl,'mtch.int_param_key');
+        else
+            set @incl=concat(@incl,'1000000');
+        end if;
+        set @incl=concat(@incl,' * power(10.0,5)) as decimal(12,0))
+			+ cast((');
+       if p_cd_reporter_type = '0' then
+            set @incl=concat(@incl,char(13),' 0');
+        else
+            set @incl=concat(@incl,char(13),' rpt.cd_reporter_type');
+        end if;
+        set @incl=concat(@incl,'  * power(10.0,3)) as decimal(12,0))
+			+  cast((');
+        if p_filter_access_type = '0' then
+             set @incl=concat(@incl,char(13),' 0');       
+        else
+            set @incl=concat(@incl,char(13),' acc.cd_access_type');
+        end if;   
+        set @incl=concat(@incl,'   * power(10.0,2)) as decimal(12,0))
+			+  cast((');
+        if p_filter_allegation = '0' then
+             set @incl=concat(@incl,char(13),' 0');       
+        else
+            set @incl=concat(@incl,char(13),' alg.cd_allegation');
+        end if;  
+        set @incl=concat(@incl,' * power(10.0,1)) as decimal(12,0))',char(13),'+ ');
+        if p_filter_finding = '0' then
+             set @incl=concat(@incl,char(13),' 0');       
+        else
+            set @incl=concat(@incl,char(13),' fnd.cd_finding');
+        end if;  
+        set @incl=concat(@incl,char(13), ' and ck.in_cache=0');
+         set @incl= concat(@incl,char(13),' join q_total q on 
+       q.cohort_begin_date =prtl_pbcs2.cohort_begin_date
+	and q.date_type =prtl_pbcs2.date_type
+	and q.qry_type =prtl_pbcs2.qry_type
+  and q.int_hash_key=cast((');
+          if NOT (p_age_grouping_cd = '0' 
+            and p_ethnicity_cd = '0' 
+            and p_cd_office = '0' ) then
+            set @incl=concat(@incl,'mtch.int_param_key');
+        else
+            set @incl=concat(@incl,'1000000');
+        end if;
+        set @incl=concat(@incl,' * power(10.0,5)) as decimal(12,0))
+			+ cast((');
+       if p_cd_reporter_type = '0' then
+            set @incl=concat(@incl,char(13),' 0');
+        else
+            set @incl=concat(@incl,char(13),' rpt.cd_reporter_type');
+        end if;
+        set @incl=concat(@incl,'  * power(10.0,3)) as decimal(12,0))
+			+  cast((');
+        if p_filter_access_type = '0' then
+             set @incl=concat(@incl,char(13),' 0');       
+        else
+            set @incl=concat(@incl,char(13),' acc.cd_access_type');
+        end if;   
+        set @incl=concat(@incl,'   * power(10.0,2)) as decimal(12,0))
+			+  cast((');
+        if p_filter_allegation = '0' then
+             set @incl=concat(@incl,char(13),' 0');       
+        else
+            set @incl=concat(@incl,char(13),' alg.cd_allegation');
+        end if;  
+        set @incl=concat(@incl,' * power(10.0,1)) as decimal(12,0))',char(13),'+ ');
+        if p_filter_finding = '0' then
+             set @incl=concat(@incl,char(13),' 0');       
+        else
+            set @incl=concat(@incl,char(13),' fnd.cd_finding');
+        end if;     
+      
+           
+        set @incl=concat(@incl,char(13),'where prtl_pbcs2.cohortrefcount=1 
+        and prtl_pbcs2.nxt_ref_within_min_month is not null
+        group by prtl_pbcs2.qry_type
+								, prtl_pbcs2.date_type 
+								, prtl_pbcs2.cohort_begin_date
+              , n.nbr');
+          if NOT (p_age_grouping_cd = '0' 
+            and p_ethnicity_cd = '0' 
+            and p_cd_office = '0' ) then    
+            set @incl=concat(@incl,char(13),'
+                ,mtch.int_param_key
+                ,mtch.cd_sib_age_grp 
+                ,mtch.cd_race_census
+                ,mtch.cd_office');
+            end if;
+              if trim(p_cd_reporter_type)<>'0' then
+	        set @incl=concat(@incl,char(13),'   
+                , rpt.cd_reporter_type');
+            end if;
+           if trim(p_filter_access_type)<>'0' then
+	        set @incl=concat(@incl,char(13),'     
+                , acc.cd_access_type');
+         end if;
+           if trim(p_filter_allegation) <> '0' then
+	        set @incl=concat(@incl,char(13),'
+                , alg.cd_allegation');
+         end if;
+           if trim(p_filter_finding) <> '0' then
+	        set @incl=concat(@incl,char(13),'
+                , fnd.cd_finding;');
+            end if;  
+         
+        
+        PREPARE stmt FROM @incl;
+        EXECUTE stmt;
+        DEALLOCATE PREPARE stmt;
+        			
+        insert into cache_qry_param_pbcs2
+						(int_param_key
+						,cd_sib_age_grp
+						,cd_race
+						,cd_office
+						,cd_reporter_type
+						,cd_access_type
+						,cd_allegation
+						,cd_finding
+						,qry_id
+						,int_hash_key)
+		
+						select 
+						ck.int_param_key
+						,cd_sib_age_grp
+						,cd_race_census
+						,cd_office
+						,cd_reporter_type
+						,cd_access_type
+						,cd_allegation
+						,cd_finding
+						,ck.qry_id
+						,ck.int_hash_key
+						from cachekeys ck
+						join (select distinct int_param_key
+											, cd_sib_age_grp 
+											, cd_race_census
+											, cd_office
+											from tblprmlocdem) q on q.int_param_key=ck.int_param_key
+						where ck.in_cache=0;
+        
+    end if; -- not in cache
+
+			SELECT  
+								pbcs2.qry_type   
+								, pbcs2.date_type
+								, pbcs2.start_date  as "Year"
+								, pbcs2.cd_sib_age_grp as  "Age_Grouping_Cd"
+								, ref_age.tx_sib_age_grp as "Age Grouping"
+								, pbcs2.cd_race  as "Ethnicity_Cd"
+								, case pbcs2.cd_race  when 0   then eth0  when 1   then eth1  when 2   then eth2  when 3   then eth3  when 4   then eth4  when 5   then eth5  when 6   then eth6  when 7   then eth7  when 8   then eth8  when 9   then eth9  when 10  then eth10 when 11  then eth11 when 12  then eth12 end as "Race/Ethnicity" 
+								, pbcs2.cd_office as "Office_Cd"
+								, ref_ofc.tx_office as "Office"
+								, pbcs2.cd_reporter_type
+								, ref_rpt.tx_reporter_type as "Reporter Desc"
+								, pbcs2.cd_access_type
+								, ref_acc.tx_access_type as "Access type desc"
+								, pbcs2.cd_allegation
+								, case pbcs2.cd_allegation  when 0  then alg0 when 1  then alg1 when 2  then alg2 when 3  then alg3 when 4  then alg4 end as "Allegation"
+								, pbcs2.cd_finding
+              , case pbcs2.cd_finding  when 0  then fnd0 when 1  then fnd1 when 2  then fnd2 when 3  then fnd3 when 4  then fnd4 end as "Finding"								
+              , pbcs2.month as "Months"
+								, among_first_cmpt_rereferred as "Among first referrals, percent that are re-referred"
+        from cache_pbcs2_aggr pbcs2
+		 					join cachekeys ck on ck.int_hash_key=pbcs2.int_hash_key
+							and pbcs2.qry_id=ck.qry_id
+								join ref_lookup_sib_age_grp ref_age on ref_age.cd_sib_age_grp=pbcs2.cd_sib_age_grp
+						join ref_lookup_office_collapse ref_ofc on ref_ofc.cd_office=pbcs2.cd_office
+						join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcs2.cd_reporter_type
+						join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcs2.cd_access_type
+						order by pbcs2.qry_type   
+								, pbcs2.date_type
+								, pbcs2.start_date
+								, pbcs2.cd_sib_age_grp
+								, pbcs2.cd_race
+								, pbcs2.cd_office 
+								, pbcs2.cd_access_type
+								, pbcs2.cd_reporter_type
+								, pbcs2.cd_allegation
+								, pbcs2.cd_finding
+								, pbcs2.month;
+		
+    end if; -- turn procedure off
+end
