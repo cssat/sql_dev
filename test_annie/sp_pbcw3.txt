@@ -20,10 +20,10 @@ CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_PBCW3`(p_date  varchar(300
 , p_filter_finding varchar(30)
 , p_filter_service_category  varchar(100)
 , p_filter_service_budget varchar(100)
-
+, p_bin_dep_cd varchar(20)
  )
 begin
-declare p_bin_dep_cd varchar(20);
+
 
 declare flg_procedure_off int;
 declare intFoundPos integer;
@@ -166,7 +166,8 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
     select min(match_date),max(match_date) 
     into p_mindate,p_maxdate from tbldt;
    
-       if  (trim(p_bin_placement_cd)='0' 
+       if  (trim(p_bin_dep_cd)='0' 
+            and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -299,7 +300,7 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
              join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw3.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw3.cd_budget_poc_frc
             where pbcw3.qry_id=1
-            and  pbcw3.int_hash_key=100000000000000000000
+            and  pbcw3.int_hash_key=1000000000000000000000
             and pbcw3.cohort_entry_date 
             between p_mindate and p_maxdate
             order by   pbcw3.bin_dep_cd asc
@@ -322,7 +323,7 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
                     , pbcw3.cd_subctgry_poc_frc
                     , pbcw3.cd_budget_poc_frc
            ;
-      elseif (trim(p_bin_placement_cd)='0' 
+      elseif (trim(p_bin_dep_cd)='0' and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -480,9 +481,10 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw3.cd_budget_poc_frc
             where pbcw3.qry_id in (1,3)
             and  pbcw3.int_hash_key in
-                (100000000000000000000,100100000000000000000,100200000000000000000,100300000000000000000,100400000000000000000,
-100500000000000000000,100600000000000000000,100800000000000000000,100900000000000000000,101000000000000000000,
-101100000000000000000,101200000000000000000)
+                (1000000000000000000000,1001000000000000000000,1002000000000000000000,1003000000000000000000
+                ,1004000000000000000000,1005000000000000000000,1006000000000000000000
+                ,1008000000000000000000,1009000000000000000000,1010000000000000000000
+                ,1011000000000000000000,1012000000000000000000)
             and pbcw3.cd_race in (select distinct cd_race from tbleth)
             and pbcw3.cohort_entry_date 
             between p_mindate and p_maxdate
@@ -506,7 +508,7 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
                     , pbcw3.cd_budget_poc_frc
             ;
  --  age only
- elseif (trim(p_bin_placement_cd)='0' 
+ elseif (trim(p_bin_dep_cd)='0' and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -663,7 +665,8 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
              join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw3.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw3.cd_budget_poc_frc
             where pbcw3.qry_id in (1,2)
-            and pbcw3.int_hash_key in (100000000000000000000,110000000000000000000,120000000000000000000,130000000000000000000,140000000000000000000,150000000000000000000,160000000000000000000,170000000000000000000)
+            and pbcw3.int_hash_key in (1000000000000000000000,1100000000000000000000, 1200000000000000000000
+                    , 1300000000000000000000, 1400000000000000000000, 1500000000000000000000, 1600000000000000000000, 1700000000000000000000)
             and pbcw3.age_grouping_cd in (select distinct age_grouping_cd from tblage)
              and pbcw3.cohort_entry_date between p_mindate and p_maxdate
             order by pbcw3.bin_dep_cd asc,qry_type
@@ -686,7 +689,7 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
                     , pbcw3.cd_budget_poc_frc
             ;
   --  county only         
-     elseif (trim(p_bin_placement_cd)='0' 
+     elseif (trim(p_bin_dep_cd)='0' and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -844,14 +847,15 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw3.cd_budget_poc_frc
             where pbcw3.qry_id in (1,7)
             and pbcw3.int_hash_key in 
-            (100000000000000000000,100000001000000000000,100000002000000000000,100000003000000000000,100000004000000000000,
-100000005000000000000,100000006000000000000,100000007000000000000,100000008000000000000,100000009000000000000,
-100000010000000000000,100000011000000000000,100000012000000000000,100000013000000000000,100000014000000000000,
-100000015000000000000,100000016000000000000,100000017000000000000,100000018000000000000,100000019000000000000,
-100000020000000000000,100000021000000000000,100000022000000000000,10000009000000000000,100000024000000000000,
-100000025000000000000,100000026000000000000,100000027000000000000,100000028000000000000,100000029000000000000,
-100000030000000000000,100000031000000000000,100000032000000000000,100000033000000000000,100000034000000000000,
-100000035000000000000,100000036000000000000,100000037000000000000,100000038000000000000,100000039000000000000)
+            (1000000000000000000000,1000000010000000000000,1000000020000000000000,1000000030000000000000,1000000040000000000000,
+1000000050000000000000,1000000060000000000000,1000000070000000000000,1000000080000000000000,1000000090000000000000,
+1000000100000000000000,1000000110000000000000,1000000120000000000000,1000000130000000000000,1000000140000000000000,
+1000000150000000000000,1000000160000000000000,1000000170000000000000,1000000180000000000000,1000000190000000000000,
+1000000200000000000000,1000000210000000000000,1000000220000000000000,1000000230000000000000,1000000240000000000000,
+1000000250000000000000,1000000260000000000000,1000000270000000000000,1000000280000000000000,1000000290000000000000,
+1000000300000000000000,1000000310000000000000,1000000320000000000000,1000000330000000000000,1000000340000000000000,
+1000000350000000000000,1000000360000000000000,1000000370000000000000,1000000380000000000000,1000000390000000000000)
+            and outcomes.county_cd in (select distinct cd_cnty from tblcnty)
             and pbcw3.county_cd in (select distinct cd_cnty from tblcnty)
              and pbcw3.cohort_entry_date between p_mindate and p_maxdate
             order by pbcw3.bin_dep_cd asc,qry_type
@@ -873,7 +877,7 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
                     , pbcw3.cd_subctgry_poc_frc
                     , pbcw3.cd_budget_poc_frc;          
  --  gender only
- elseif (trim(p_bin_placement_cd)='0' 
+ elseif (trim(p_bin_dep_cd)='0' and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -1030,7 +1034,7 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
              join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw3.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw3.cd_budget_poc_frc
             where pbcw3.qry_id in (1,4)
-            and pbcw3.int_hash_key in (100000000000000000000,100010000000000000000,100020000000000000000)
+            and pbcw3.int_hash_key in (1000000000000000000000,1000100000000000000000,1000200000000000000000)
             and pbcw3.pk_gndr in (select distinct pk_gndr from tblgdr)
             and pbcw3.cohort_entry_date between p_mindate and p_maxdate
             order by pbcw3.bin_dep_cd asc,qry_type
@@ -1053,7 +1057,7 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
                     , pbcw3.cd_budget_poc_frc;
  
  --  initial placement setting only
- elseif (trim(p_bin_placement_cd)='0' 
+ elseif (trim(p_bin_dep_cd)='0' and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -1211,8 +1215,8 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw3.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw3.cd_budget_poc_frc
             where pbcw3.qry_id in (1,5)
-            and pbcw3.int_hash_key in (100000000000000000000,100003000000000000000,100004000000000000000,
-                        100005000000000000000,100006000000000000000,100007000000000000000)
+            and pbcw3.int_hash_key in (1000000000000000000000,1000030000000000000000,1000040000000000000000,1000050000000000000000,
+1000060000000000000000,1000070000000000000000)
             and pbcw3.init_cd_plcm_setng in (select distinct cd_plcm_setng from tblfpl)
              and pbcw3.cohort_entry_date between p_mindate and p_maxdate
             order by pbcw3.bin_dep_cd asc,qry_type
@@ -1234,7 +1238,7 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
                     , pbcw3.cd_subctgry_poc_frc
                     , pbcw3.cd_budget_poc_frc;  
  --  longest placement setting only            
-     elseif (trim(p_bin_placement_cd)='0' 
+     elseif (trim(p_bin_dep_cd)='0' and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -1391,8 +1395,7 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw3.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw3.cd_budget_poc_frc
             where pbcw3.qry_id in (1,6)
-            and   pbcw3.int_hash_key in (100000000000000000000,100000300000000000000,100000400000000000000,
-                        100000500000000000000,100000600000000000000,100000700000000000000)
+            and   pbcw3.int_hash_key in (1000000000000000000000,1000003000000000000000,1000004000000000000000,1000005000000000000000,1000006000000000000000,1000007000000000000000)
             and pbcw3.long_cd_plcm_setng in (select distinct cd_plcm_setng from tbllpl)
              and pbcw3.cohort_entry_date between p_mindate and p_maxdate
             order by pbcw3.bin_dep_cd asc,qry_type
@@ -1414,7 +1417,7 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
                     , pbcw3.cd_subctgry_poc_frc
                     , pbcw3.cd_budget_poc_frc;  
 --  LOS only            
-     elseif (trim(p_bin_placement_cd)='0' 
+     elseif (trim(p_bin_dep_cd)='0' and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -1572,7 +1575,7 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw3.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw3.cd_budget_poc_frc
             where pbcw3.qry_id in (1,8)
-            and pbcw3.int_hash_key in (100000000000000000000,100000000100000000000,100000000200000000000,100000000300000000000,100000000400000000000)
+            and pbcw3.int_hash_key in (1000000000000000000000,1000000000100000000000,1000000000200000000000,1000000000300000000000,1000000000400000000000)
             and pbcw3.bin_los_cd in (select distinct bin_los_cd from tbllos)
              and pbcw3.cohort_entry_date between p_mindate and p_maxdate
             order by pbcw3.bin_dep_cd asc,qry_type
@@ -1594,7 +1597,7 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
                     , pbcw3.cd_subctgry_poc_frc
                     , pbcw3.cd_budget_poc_frc;     
 --  nbr placement only            
-   elseif (trim(p_bin_placement_cd)<>'0' 
+   elseif (trim(p_bin_dep_cd)='0' and trim(p_bin_placement_cd)<>'0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -1752,7 +1755,7 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw3.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw3.cd_budget_poc_frc
             where pbcw3.qry_id in (1,9)
-            and pbcw3.int_hash_key in (100000000000000000000,100000000010000000000,100000000020000000000,100000000030000000000,100000000040000000000,100000000050000000000)
+            and pbcw3.int_hash_key in (1000000000000000000000,1000000000010000000000,1000000000020000000000,1000000000030000000000,1000000000040000000000,1000000000050000000000)
             and pbcw3.bin_placement_cd in (select distinct bin_placement_cd from tblnbrplc)
              and pbcw3.cohort_entry_date between p_mindate and p_maxdate
  order by pbcw3.bin_dep_cd asc,qry_type
@@ -1774,7 +1777,7 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
                     , pbcw3.cd_subctgry_poc_frc
                     , pbcw3.cd_budget_poc_frc;  
 --  ihs only            
-   elseif (trim(p_bin_placement_cd)='0' 
+   elseif (trim(p_bin_dep_cd)='0' and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)<>'0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -1932,7 +1935,7 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw3.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw3.cd_budget_poc_frc
             where pbcw3.qry_id in (1,10)
-            and pbcw3.int_hash_key in (100000000000000000000,100000000001000000000,100000000002000000000,100000000003000000000)
+            and pbcw3.int_hash_key in (1000000000000000000000,1000000000001000000000,1000000000002000000000,1000000000003000000000)
             and pbcw3.bin_ihs_svc_cd in (select distinct bin_ihs_svc_cd from tblihs)
              and pbcw3.cohort_entry_date between p_mindate and p_maxdate
   order by pbcw3.bin_dep_cd asc,qry_type
@@ -1954,7 +1957,7 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
                     , pbcw3.cd_subctgry_poc_frc
                     , pbcw3.cd_budget_poc_frc;  
 --  reporter type only            
-   elseif (trim(p_bin_placement_cd)='0' 
+   elseif (trim(p_bin_dep_cd)='0' and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)<>'0' 
    					and trim(p_filter_access_type)='0' 
@@ -2112,7 +2115,7 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw3.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw3.cd_budget_poc_frc
             where pbcw3.qry_id in (1,11)
-            and pbcw3.int_hash_key in (100000000000000000000,100000000000050000000,100000000000060000000,100000000000070000000,100000000000080000000,100000000000090000000,100000000000110000000,100000000000120000000,100000000000130000000,100000000000140000000)
+            and pbcw3.int_hash_key in (1000000000000000000000,1000000000000050000000,1000000000000060000000,1000000000000070000000,1000000000000080000000,1000000000000090000000,1000000000000110000000,1000000000000120000000,1000000000000130000000,1000000000000140000000)
             and pbcw3.cd_reporter_type in (select distinct cd_reporter_type from tblrpt)
              and pbcw3.cohort_entry_date between p_mindate and p_maxdate
             order by pbcw3.bin_dep_cd asc,qry_type
@@ -2133,7 +2136,7 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
                     , pbcw3.cd_finding
                     , pbcw3.cd_subctgry_poc_frc
                     , pbcw3.cd_budget_poc_frc;
-   elseif (trim(p_bin_placement_cd)='0' 
+   elseif (trim(p_bin_dep_cd)='0' and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)<>'0' 
@@ -2291,7 +2294,7 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw3.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw3.cd_budget_poc_frc
             where pbcw3.qry_id in (1,12)
-            and pbcw3.int_hash_key in (100000000000000000000,100000000000001000000)
+            and pbcw3.int_hash_key in  (1000000000000000000000,1000000000000001000000)
             and pbcw3.cd_access_type in (select distinct cd_access_type from tblacc)
              and pbcw3.cohort_entry_date between p_mindate and p_maxdate
             order by pbcw3.bin_dep_cd asc,qry_type
@@ -2312,7 +2315,7 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
                     , pbcw3.cd_finding
                     , pbcw3.cd_subctgry_poc_frc
                     , pbcw3.cd_budget_poc_frc;-- allegation only            
- elseif (trim(p_bin_placement_cd)='0' 
+ elseif (trim(p_bin_dep_cd)='0' and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -2470,7 +2473,7 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw3.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw3.cd_budget_poc_frc
             where pbcw3.qry_id in (1,13)
-            and pbcw3.int_hash_key in (100000000000000000000,100000000000000100000,100000000000000200000,100000000000000300000,100000000000000400000)
+            and pbcw3.int_hash_key in (1000000000000000000000,1000000000000000100000,1000000000000000200000,1000000000000000300000,1000000000000000400000)
             and pbcw3.cd_allegation in (select distinct cd_allegation from tblalg)
              and pbcw3.cohort_entry_date between p_mindate and p_maxdate
             order by pbcw3.bin_dep_cd asc,qry_type
@@ -2491,7 +2494,7 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
                     , pbcw3.cd_finding
                     , pbcw3.cd_subctgry_poc_frc
                     , pbcw3.cd_budget_poc_frc;  
-elseif (trim(p_bin_placement_cd)='0' 
+elseif (trim(p_bin_dep_cd)='0' and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -2649,7 +2652,7 @@ elseif (trim(p_bin_placement_cd)='0'
             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw3.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw3.cd_budget_poc_frc
             where pbcw3.qry_id in (1,14)
-            and pbcw3.int_hash_key in (100000000000000000000,100000000000000010000,100000000000000020000,100000000000000030000,100000000000000040000)
+            and pbcw3.int_hash_key in (1000000000000000000000,1000000000000000010000,1000000000000000020000,1000000000000000030000,1000000000000000040000)
             and pbcw3.cd_finding in (select distinct cd_finding from tblfnd)
              and pbcw3.cohort_entry_date between p_mindate and p_maxdate
             order by pbcw3.bin_dep_cd asc,qry_type
@@ -2670,7 +2673,7 @@ elseif (trim(p_bin_placement_cd)='0'
                     , pbcw3.cd_finding
                     , pbcw3.cd_subctgry_poc_frc
                     , pbcw3.cd_budget_poc_frc;    
-elseif (trim(p_bin_placement_cd)='0' 
+elseif (trim(p_bin_dep_cd)='0' and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -2828,10 +2831,12 @@ elseif (trim(p_bin_placement_cd)='0'
              join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw3.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw3.cd_budget_poc_frc
             where pbcw3.qry_id in (1,15)
-            and pbcw3.int_hash_key in (100000000000000000100,100000000000000000200,100000000000000000300,100000000000000000400,100000000000000000500,
-100000000000000000600,100000000000000000700,100000000000000000800,100000000000000000900,100000000000000001000,
-100000000000000001100,100000000000000001200,100000000000000001300,100000000000000001400,100000000000000001500,
-100000000000000001600,100000000000000000000)
+            and pbcw3.int_hash_key in (1000000000000000000000,1000000000000000000100,1000000000000000000200,
+1000000000000000000300,1000000000000000000400,1000000000000000000500,
+1000000000000000000600,1000000000000000000700,1000000000000000000800,
+1000000000000000000900,1000000000000000001000,1000000000000000001100,
+1000000000000000001200,1000000000000000001300,1000000000000000001400,
+1000000000000000001500,1000000000000000001600)
             and pbcw3.cd_subctgry_poc_frc in (select distinct cd_subctgry_poc_frc from tblsrvc)
              and pbcw3.cohort_entry_date between p_mindate and p_maxdate
             order by pbcw3.bin_dep_cd asc,qry_type
@@ -2852,7 +2857,7 @@ elseif (trim(p_bin_placement_cd)='0'
                     , pbcw3.cd_finding
                     , pbcw3.cd_subctgry_poc_frc
                     , pbcw3.cd_budget_poc_frc; 
-elseif (trim(p_bin_placement_cd)='0' 
+elseif (trim(p_bin_dep_cd)='0' and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -3010,7 +3015,8 @@ elseif (trim(p_bin_placement_cd)='0'
              join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw3.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw3.cd_budget_poc_frc
             where pbcw3.qry_id in (1,16)
-            and pbcw3.int_hash_key in (100000000000000000012,100000000000000000000,100000000000000000014,100000000000000000015,100000000000000000016,100000000000000000018,100000000000000000019,100000000000000000099)
+            and pbcw3.int_hash_key in (1000000000000000000000,1000000000000000000012,1000000000000000000014,1000000000000000000015,1000000000000000000016,
+1000000000000000000018,1000000000000000000019,1000000000000000000099)
             and pbcw3.cd_budget_poc_frc in (select distinct cd_budget_poc_frc from tblbudg)
              and pbcw3.cohort_entry_date between p_mindate and p_maxdate
             order by pbcw3.bin_dep_cd asc,qry_type
@@ -3076,6 +3082,7 @@ else
                 and filter_finding=left(p_filter_finding,30)
                 and filter_srvc_type=left(p_filter_service_category,50)
                 and filter_budget=left(p_filter_service_budget,50)
+                and bin_dep_cd=left(p_bin_dep_cd,20)
                 and min_start_date<=p_mindate
                 and max_start_date >=p_maxdate
            order by qry_ID  limit 1);
@@ -3099,6 +3106,7 @@ else
                     ,filter_finding
                     ,filter_srvc_type
                     ,filter_budget
+                    ,bin_dep_cd
                     ,min_start_date
                     ,max_start_date
                     ,cnt_qry
@@ -3121,6 +3129,7 @@ else
                     ,p_filter_finding
                     ,p_filter_service_category
                     ,p_filter_service_budget
+                    ,p_bin_dep_cd
                     ,p_minmonthstart
                     ,p_maxmonthstart
                     ,1
@@ -3139,6 +3148,7 @@ else
   create temporary table cachekeys 
   (int_hash_key decimal(22,0)
   ,int_param_key bigint
+  ,bin_dep_cd int
   ,bin_los_cd int
   ,bin_placement_cd int
   ,bin_ihs_svc_cd int
@@ -3151,7 +3161,8 @@ else
   ,in_cache int
   ,qry_id int) engine=memory;
   insert into cachekeys
-  select	cast((int_param_key * power(10.0,12) ) as decimal(22,0)) + 
+  select	cast((int_param_key * power(10.0,13) ) as decimal(22,0)) + 
+                cast((bin_dep_cd * power(10.0,12) )as decimal(22,0)) + 
                     cast((bin_los_cd * power(10.0,11) )as decimal(22,0)) + 
                     cast((bin_placement_cd * power(10.0,10) )as decimal(22,0)) + 
                    cast( (bin_ihs_svc_cd * power(10.0,9) ) as decimal(22,0)) + 
@@ -3161,6 +3172,7 @@ else
                    cast( (cd_finding * power(10.0,4)) as decimal(22,0)) + 
                     cast((cd_subctgry_poc_frc * power(10,2)) + cd_budget_poc_frc as decimal(22,0)) as  int_hash_key
                      ,int_param_key
+                     ,bin_dep_cd
                      ,bin_los_cd
                      ,bin_placement_cd
                      ,bin_ihs_svc_cd
@@ -3173,6 +3185,7 @@ else
                      ,0 as in_cache
                      ,coalesce(p_qry_id,@qry_id) as qry_id
 				from (select distinct int_param_key from tblprmlocdem) prm
+        cross join (select distinct bin_dep_cd from tbldep) dep
 				cross join (select distinct bin_los_cd from tbllos) los
 				cross join (select distinct bin_placement_cd from tblnbrplc) plc
 				cross join (select distinct bin_ihs_svc_cd from tblihs) ihs
@@ -3185,7 +3198,7 @@ else
    
 create  index idx_int_hash_key on cachekeys(int_hash_key,in_cache);
 create index idx_qryid_params on cachekeys(qry_id,int_hash_key);
-create index idx_params on cachekeys(int_param_key
+create index idx_params on cachekeys(int_param_key,bin_dep_cd
 ,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type
 ,cd_access_type,cd_allegation	,cd_finding
 ,cd_budget_poc_frc
@@ -3204,7 +3217,7 @@ create index idx_params on cachekeys(int_param_key
 if  var_row_cnt_param <> var_row_cnt_cache then
                drop temporary table if exists tot_episodes ;  
                
-  if  (trim(p_bin_placement_cd)='0' 
+  if  (trim(p_bin_dep_cd)='0' and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -3258,7 +3271,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 				, prtl_pbcw3.date_type 
 				, prtl_pbcw3.cohort_begin_date
 				, mtch.int_param_key
-				, prtl_pbcw3.bin_dep_cd
+				, 0
 				, 0
 				, 0
 				, 0
@@ -3290,6 +3303,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 				join tblprmlocdem mtch on mtch.int_match_param_key=prtl_pbcw3.int_match_param_key 
 				and mtch.cd_race_census in (select distinct cd_race from tbleth)
 				join cachekeys che on che.int_param_key = mtch.int_param_key
+                    and che.bin_dep_cd=0
 									and che.bin_ihs_svc_cd=0
 									and che.bin_los_cd=0
 									and che.bin_placement_cd=0
@@ -3312,9 +3326,8 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 					,mtch.init_cd_plcm_setng
 					,mtch.long_cd_plcm_setng
 					,mtch.county_cd
-					, prtl_pbcw3.bin_dep_cd
 					, che.int_hash_key
-			order by  prtl_pbcw3.bin_dep_cd,prtl_pbcw3.qry_type
+			order by  prtl_pbcw3.qry_type
 					,prtl_pbcw3.date_type 
 					,prtl_pbcw3.cohort_begin_date
 					,year(prtl_pbcw3.cohort_begin_date)
@@ -3325,7 +3338,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 					,mtch.init_cd_plcm_setng
 					,mtch.long_cd_plcm_setng
 					,mtch.county_cd ;      
-  elseif  (trim(p_bin_placement_cd)='0' 
+  elseif  (trim(p_bin_dep_cd)='0' and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -3379,7 +3392,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 				, prtl_pbcw3.date_type 
 				, prtl_pbcw3.cohort_begin_date
 				, mtch.int_param_key
-				, prtl_pbcw3.bin_dep_cd
+				, 0
 				, los.bin_los_cd
 				, 0
 				, 0
@@ -3421,6 +3434,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 									and che.cd_access_type=0
 									and che.cd_budget_poc_frc=0
 									and che.cd_subctgry_poc_frc=0
+                  and che.bin_dep_cd=0
 									and che.in_cache=0
 			where prtl_pbcw3.cohort_begin_date between p_minmonthstart and p_maxmonthstart 
 			group by  prtl_pbcw3.qry_type
@@ -3434,10 +3448,9 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 					,mtch.init_cd_plcm_setng
 					,mtch.long_cd_plcm_setng
 					,mtch.county_cd
-					, prtl_pbcw3.bin_dep_cd
           , los.bin_los_cd
 					, che.int_hash_key
-			order by  prtl_pbcw3.bin_dep_cd,prtl_pbcw3.qry_type
+			order by  prtl_pbcw3.qry_type
 					,prtl_pbcw3.date_type 
 					,prtl_pbcw3.cohort_begin_date
 					,year(prtl_pbcw3.cohort_begin_date)
@@ -3449,7 +3462,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 					,mtch.long_cd_plcm_setng
 					,mtch.county_cd
           , los.bin_los_cd;    
-  elseif  (trim(p_bin_placement_cd)<>'0' 
+  elseif  (trim(p_bin_dep_cd)='0' and trim(p_bin_placement_cd)<>'0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -3503,7 +3516,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 				, prtl_pbcw3.date_type 
 				, prtl_pbcw3.cohort_begin_date
 				, mtch.int_param_key
-				, prtl_pbcw3.bin_dep_cd
+				, 0
 				, los.bin_los_cd
 				, plc.bin_placement_cd
 				, 0
@@ -3537,6 +3550,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
         join tbllos los on prtl_pbcw3.bin_los_cd=los.match_code
         join tblnbrplc plc on plc.match_code=prtl_pbcw3.bin_placement_cd
 				join cachekeys che on che.int_param_key = mtch.int_param_key
+                  and che.bin_dep_cd=0
 									and che.bin_ihs_svc_cd=0
 									and che.bin_los_cd=los.bin_los_cd
 									and che.bin_placement_cd=plc.bin_placement_cd
@@ -3559,11 +3573,10 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 					,mtch.init_cd_plcm_setng
 					,mtch.long_cd_plcm_setng
 					,mtch.county_cd
-					, prtl_pbcw3.bin_dep_cd
           , los.bin_los_cd
           , plc.bin_placement_cd
 					, che.int_hash_key
-			order by  prtl_pbcw3.bin_dep_cd,prtl_pbcw3.qry_type
+			order by  prtl_pbcw3.qry_type
 					,prtl_pbcw3.date_type 
 					,prtl_pbcw3.cohort_begin_date
 					,year(prtl_pbcw3.cohort_begin_date)
@@ -3576,7 +3589,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 					,mtch.county_cd 
           , los.bin_los_cd
           , plc.bin_placement_cd;    
-  elseif  (trim(p_bin_placement_cd)='0' 
+  elseif  (trim(p_bin_dep_cd)='0' and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -3630,7 +3643,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 				, prtl_pbcw3.date_type 
 				, prtl_pbcw3.cohort_begin_date
 				, mtch.int_param_key
-				, prtl_pbcw3.bin_dep_cd
+				, 0
 				, 0
 				, 0
 				, 0
@@ -3663,6 +3676,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 				and mtch.cd_race_census in (select distinct cd_race from tbleth)
         join tblalg alg on alg.match_code=prtl_pbcw3.filter_allegation
 				join cachekeys che on che.int_param_key = mtch.int_param_key
+                  and che.bin_dep_cd=0
 									and che.bin_ihs_svc_cd=0
 									and che.bin_los_cd=0
 									and che.bin_placement_cd=0
@@ -3685,10 +3699,9 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 					,mtch.init_cd_plcm_setng
 					,mtch.long_cd_plcm_setng
 					,mtch.county_cd
-					, prtl_pbcw3.bin_dep_cd
           , alg.cd_allegation
 					, che.int_hash_key
-			order by  prtl_pbcw3.bin_dep_cd,prtl_pbcw3.qry_type
+			order by  prtl_pbcw3.qry_type
 					,prtl_pbcw3.date_type 
 					,prtl_pbcw3.cohort_begin_date
 					,year(prtl_pbcw3.cohort_begin_date)
@@ -3700,7 +3713,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 					,mtch.long_cd_plcm_setng
 					,mtch.county_cd 
           , alg.cd_allegation;  
-  elseif  (trim(p_bin_placement_cd)='0' 
+  elseif  (trim(p_bin_dep_cd)='0' and trim(p_bin_placement_cd)='0' 
    					and trim(p_bin_ihs_svc_cd)='0' 
    					and trim(p_cd_reporter_type)='0' 
    					and trim(p_filter_access_type)='0' 
@@ -3754,9 +3767,8 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 				 prtl_pbcw3.cohort_begin_date
 				, prtl_pbcw3.qry_type
 				, prtl_pbcw3.date_type 
-
 				, mtch.int_param_key
-				, prtl_pbcw3.bin_dep_cd
+				, 0
 				, 0
 				, 0
 				, 0
@@ -3788,7 +3800,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 				join tblprmlocdem mtch on mtch.int_match_param_key=prtl_pbcw3.int_match_param_key 
 				and mtch.cd_race_census in (select distinct cd_race from tbleth)
         join tblfnd fnd on fnd.match_code=prtl_pbcw3.filter_finding
-				join cachekeys che on che.int_hash_key = cast((mtch.int_param_key * power(10.0,12) ) as decimal(22,0)) + 
+				join cachekeys che on che.int_hash_key = cast((mtch.int_param_key * power(10.0,13) ) as decimal(22,0)) + 
                       cast( (fnd.cd_finding * power(10.0,4)) as decimal(22,0))
 									and che.in_cache=0
 			where prtl_pbcw3.cohort_begin_date between p_minmonthstart and p_maxmonthstart 
@@ -3803,10 +3815,9 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 					,mtch.init_cd_plcm_setng
 					,mtch.long_cd_plcm_setng
 					,mtch.county_cd
-					, prtl_pbcw3.bin_dep_cd
           , fnd.cd_finding
 					, che.int_hash_key
-			order by  prtl_pbcw3.bin_dep_cd,prtl_pbcw3.qry_type
+			order by  prtl_pbcw3.qry_type
 					,prtl_pbcw3.date_type 
 					,prtl_pbcw3.cohort_begin_date
 					,year(prtl_pbcw3.cohort_begin_date)
@@ -3863,9 +3874,14 @@ if  var_row_cnt_param <> var_row_cnt_cache then
             and trim(p_init_cd_plcm_setng)='0' 
             and trim(p_long_cd_plcm_setng)='0' 
             and trim(p_county_cd) = '0'  )  then
-        set @incl=concat(@myqry,', mtch.int_param_key, prtl_pbcw3.bin_dep_cd');
+        set @incl=concat(@myqry,', mtch.int_param_key');
         else
-        set @incl=concat(@myqry,', 100000000, prtl_pbcw3.bin_dep_cd');
+        set @incl=concat(@myqry,', 100000000,');
+        end if;
+        if trim(p_bin_dep_cd)='0' then
+        set @incl=concat(@incl,', 0');
+        else
+        set @incl=concat(@incl,', dep.bin_dep_cd');
         end if;
         if trim(p_bin_los_cd)='0' then
         set @incl=concat(@incl,', 0');
@@ -3962,6 +3978,9 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 				,int_hash_key
 			FROM prtl_pbcw3  ');
         end if;
+        if trim(p_bin_dep_cd)<>'0' then
+        set @incl=concat(@incl,' join tbldep dep on prtl_pbcw3.bin_dep_cd=dep.match_code');
+        end if;        
         if trim(p_bin_los_cd)<>'0' then
         set @incl=concat(@incl,' join tbllos los on prtl_pbcw3.bin_los_cd=los.match_code');
         end if;
@@ -3996,13 +4015,21 @@ if  var_row_cnt_param <> var_row_cnt_cache then
             and trim(p_long_cd_plcm_setng)='0' 
             and trim(p_county_cd) = '0'  )  then
             set @incl=concat(@incl,'      
-            join cachekeys che on che.int_param_key = mtch.int_param_key
-									and che.bin_los_cd=');
+            join cachekeys che on che.int_param_key = mtch.int_param_key');
+
         else
          set @incl=concat(@incl,'      
-            join cachekeys che on che.int_param_key = 100000000
-									and che.bin_los_cd=');
+            join cachekeys che on che.int_param_key = 100000000');
         end if;
+         set @incl=concat(@incl,'	
+                and che.bin_dep_cd=');
+        if trim(p_bin_dep_cd)<>'0' then
+            set @incl=concat(@incl,' dep.bin_dep_cd');
+        else
+            set @incl=concat(@incl,' 0');
+        end if;       
+        set @incl=concat(@incl,'	
+                and che.bin_los_cd=');
         if trim(p_bin_los_cd)<>'0' then
             set @incl=concat(@incl,' los.bin_los_cd');
         else
@@ -4087,8 +4114,9 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 					,mtch.long_cd_plcm_setng
 					,mtch.county_cd');
          end if;
-         set @incl=concat(@incl,'
-					, prtl_pbcw3.bin_dep_cd');
+          if trim(p_bin_dep_cd)<>'0' then
+            set @incl=concat(@incl,', dep.bin_dep_cd');
+        end if;        
          if trim(p_bin_los_cd)<>'0' then
             set @incl=concat(@incl,', los.bin_los_cd');
         end if;
@@ -4126,6 +4154,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 	 end if; -- int_match_param_key not all zeroe
           INSERT IGNORE INTO cache_qry_param_pbcw3
 								   (int_param_key
+                    ,bin_dep_cd
 								   ,bin_los_cd
 								   ,bin_placement_cd
 								   ,bin_ihs_svc_cd
@@ -4144,6 +4173,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 								   ,qry_id
 								   ,int_hash_key)
 						select ck.int_param_key
+                    ,bin_dep_cd
 								   ,bin_los_cd
 								   ,bin_placement_cd
 								   ,bin_ihs_svc_cd
