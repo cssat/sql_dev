@@ -100,26 +100,26 @@ BEGIN
        
         
         DROP TEMPORARY TABLE IF EXISTS tblacc;
-        create temporary table tblacc(cd_access_type int,filter_access_type decimal(18,0),match_code decimal(18,0),primary key (cd_access_type,match_code));
+        create temporary table tblacc(cd_access_type int,match_code decimal(18,0),primary key (cd_access_type,match_code));
         create index idx_access_type on tblacc(match_code);
         create index idx_access_type3 on tblacc(cd_access_type);
 
         DROP TEMPORARY TABLE IF EXISTS tblalg;
-        create temporary table tblalg(cd_allegation int,filter_allegation decimal(18,0),match_code decimal(18,0),primary key(match_code,cd_allegation));
+        create temporary table tblalg(cd_allegation int,match_code decimal(18,0),primary key(match_code,cd_allegation));
         create index idx_algtn on tblalg(match_code);
         create index idx_algtn2 on tblalg(cd_allegation);
 
         DROP TEMPORARY TABLE IF EXISTS tblfnd;
-        create temporary table tblfnd(cd_finding int,filter_finding decimal(18,0),match_code decimal(18,0),primary key(match_code,cd_finding));
+        create temporary table tblfnd(cd_finding int,match_code decimal(18,0),primary key(match_code,cd_finding));
         create index idx_finding on tblfnd(match_code);
         create index idx_find2 on tblfnd(cd_finding);
 
         DROP TEMPORARY TABLE IF EXISTS tblsrvc;
-        create temporary table tblsrvc(cd_subctgry_poc_frc int,filter_srvc_type decimal(18,0),match_code decimal(18,0),primary key(cd_subctgry_poc_frc,match_code));
+        create temporary table tblsrvc(cd_subctgry_poc_frc int,match_code decimal(18,0),primary key(cd_subctgry_poc_frc,match_code));
         create index idx_srvc on tblsrvc(match_code);
 
         DROP TEMPORARY TABLE IF EXISTS tblbudg;
-        create temporary table tblbudg(cd_budget_poc_frc int,filter_budget decimal(18,0),match_code decimal(18,0),primary key(cd_budget_poc_frc,match_code));
+        create temporary table tblbudg(cd_budget_poc_frc int,match_code decimal(18,0),primary key(cd_budget_poc_frc,match_code));
        
         DROP TEMPORARY TABLE IF EXISTS tbldep;
         create temporary table tbldep(bin_dep_cd int,match_code int,primary key(bin_dep_cd,match_code));
@@ -436,20 +436,20 @@ BEGIN
     call load_parameter_table(p_filter_access_type);
             
             
-    insert into tblacc(cd_access_type,filter_access_type,match_code)
-    select flt.cd_access_type,flt.filter_access_type,flt.filter_access_type
+    insert into tblacc(cd_access_type,match_code)
+    select flt.cd_access_type,flt.filter_access_type
     from ref_filter_access_type flt
     join tbltmpValues on cast(strVal as signed)=flt.cd_access_type
     where tbltmpValues.strVal <> '0';
  
     set intincAll= (select cast(strVal as unsigned) from tbltmpValues where strVal= '0');
      if intincAll=0 then
-        insert into tblacc(cd_access_type,filter_access_type,match_code)
-        select 0,flt.filter_access_type,flt.filter_access_type
+        insert into tblacc(cd_access_type,match_code)
+        select 0,flt.filter_access_type
         from ref_filter_access_type flt
         where flt.cd_access_type <>0
         union
-        select 0,100000,100000 ;
+        select 0,100000 ;
     end if;
 
 
@@ -459,8 +459,8 @@ BEGIN
     --   ALLEGATIONS
     call load_parameter_table(p_filter_allegation);
             
-     insert into tblalg(cd_allegation,filter_allegation,match_code)
-     select cd_allegation,filter_allegation ,filter_allegation
+     insert into tblalg(cd_allegation,match_code)
+     select cd_allegation,filter_allegation
      from ref_match_allegation
      join tbltmpValues on cast(strVal as signed)=ref_match_allegation.cd_allegation
      where tbltmpValues.strVal <> '0';
@@ -469,12 +469,12 @@ BEGIN
     set intincAll = (select cast(strVal as signed)  from tbltmpValues where strVal='0' limit 0,1);         
     
     if intincAll=0 then
-        insert into tblalg(cd_allegation,filter_allegation,match_code)
-        select distinct 0,filter_allegation,filter_allegation
+        insert into tblalg(cd_allegation,match_code)
+        select distinct 0,filter_allegation
         from ref_match_allegation
         where cd_allegation<>0
         union
-        select distinct 0,power(10,4),power(10,4);
+        select distinct 0,power(10,4);
     
     end if;
 
@@ -484,8 +484,8 @@ BEGIN
     --   FINDINGS
     call load_parameter_table(p_filter_finding);
              
-     insert into tblfnd(cd_finding,filter_finding,match_code)
-     select cd_finding,filter_finding ,filter_finding
+     insert into tblfnd(cd_finding,match_code)
+     select cd_finding,filter_finding
      from ref_match_finding
      join tbltmpValues on cast(strVal as signed)=ref_match_finding.cd_finding
      where ref_match_finding.cd_finding<>0;
@@ -494,12 +494,12 @@ BEGIN
     set intincAll = (select cast(strVal as signed)  from tbltmpValues where strVal='0' limit 0,1);         
     
     if intincAll=0 then
-        insert into tblfnd(cd_finding,filter_finding,match_code)
-        select distinct 0,filter_finding,filter_finding
+        insert into tblfnd(cd_finding,match_code)
+        select distinct 0,filter_finding
         from ref_match_finding
         where cd_finding<>0
         union
-        select distinct 0,power(10,4),power(10,4);
+        select distinct 0,power(10,4);
     
     end if;
   
@@ -510,8 +510,8 @@ BEGIN
     call load_parameter_table(p_filter_service_category);
   
             
-     insert into tblsrvc(cd_subctgry_poc_frc,filter_srvc_type,match_code)
-     select cd_subctgry_poc_fr,filter_srvc_type ,filter_srvc_type
+     insert into tblsrvc(cd_subctgry_poc_frc,match_code)
+     select cd_subctgry_poc_fr,filter_srvc_type
      from ref_match_srvc_type_category
      join tbltmpValues on cast(strVal as signed)=ref_match_srvc_type_category.cd_subctgry_poc_fr
      where tbltmpValues.strVal <> '0';
@@ -520,12 +520,12 @@ BEGIN
     set intincAll = (select cast(strVal as signed)  from tbltmpValues where strVal='0' limit 0,1);         
     
     if intincAll=0 then
-        insert into tblsrvc(cd_subctgry_poc_frc,filter_srvc_type,match_code)
-        select distinct 0,filter_srvc_type,filter_srvc_type
+        insert into tblsrvc(cd_subctgry_poc_frc,match_code)
+        select distinct 0,filter_srvc_type
         from ref_match_srvc_type_category
         where cd_subctgry_poc_fr<>0
         union
-        select 0,10000000000000000,10000000000000000;
+        select 0,10000000000000000;
     
     end if;
         
@@ -536,8 +536,8 @@ BEGIN
      call load_parameter_table(p_filter_service_budget);
     
       
-    insert into tblbudg(cd_budget_poc_frc,filter_budget,match_code)
-     select cd_budget_poc_frc,filter_service_budget ,filter_service_budget
+    insert into tblbudg(cd_budget_poc_frc,match_code)
+     select cd_budget_poc_frc,filter_service_budget
      from ref_match_srvc_type_budget
      join tbltmpValues on cast(strVal as signed)=ref_match_srvc_type_budget.cd_budget_poc_frc
      where tbltmpValues.strVal <> '0';
@@ -546,11 +546,11 @@ BEGIN
     set intincAll = (select cast(strVal as signed)  from tbltmpValues where strVal='0' limit 0,1);         
     
     if intincAll=0 then
-        insert into tblbudg(cd_budget_poc_frc,filter_budget,match_code)
-        select distinct 0,filter_service_budget,filter_service_budget
+        insert into tblbudg(cd_budget_poc_frc,match_code)
+        select distinct 0,filter_service_budget
         from ref_match_srvc_type_budget
         where cd_budget_poc_frc<>0
-       union select 0,10000000,10000000;
+       union select 0,10000000;
     
     end if;
     DROP TEMPORARY TABLE IF EXISTS tblbudg2;
