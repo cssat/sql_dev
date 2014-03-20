@@ -2,13 +2,26 @@ alter procedure base.prod_update_rptPlacement_after_basetables
 as
 
 		
-		
+
 		update base.rptPlacement_Events
 		set id_placement_fact = pf.id_placement_fact
 		from placement_fact pf
 		where pf.ID_REMOVAL_EPISODE_FACT=rptPlacement_Events.ID_REMOVAL_EPISODE_FACT
 		and pf.ID_CALENDAR_DIM_BEGIN=rptPlacement_Events.id_calendar_dim_begin
-		and pf.ID_CALENDAR_DIM_END=rptPlacement_Events.id_calendar_dim_end;
+		and pf.ID_CALENDAR_DIM_END=rptPlacement_Events.id_calendar_dim_end
+		and pf.ID_EPSD=rptPlacement_Events.id_epsd;
+
+
+		update evt
+		set  derived_county = (case when isnull( case when ld.CD_CNTY not between 1 and 39 then null else ld.cd_cnty end,wd.CD_CNTY)=0 then -99 else isnull( case when ld.CD_CNTY not between 1 and 39 then null else ld.cd_cnty end,wd.CD_CNTY) end)
+		from base.rptplacement_events  evt
+		join PLACEMENT_FACT pf on pf.ID_PLACEMENT_FACT=evt.id_placement_fact
+		--  join PROVIDER_DIM pd on pf.ID_PROVIDER_DIM_CAREGIVER =pd.ID_PROVIDER_DIM
+		join LOCATION_DIM ld on ld.ID_LOCATION_DIM=pf.ID_LOCATION_DIM_PLACEMENT
+		join LOCATION_DIM wd on wd.ID_LOCATION_DIM=pf.ID_LOCATION_DIM_WORKER
+	
+		
+
 		
 		update base.rptPlacement_Events
 		set cd_end_rsn = prd.cd_end_rsn
@@ -30,17 +43,17 @@ as
 		where rptPlacement_events.id_placement_fact=pf.ID_PLACEMENT_FACT
 
 		update base.rptPlacement_Events
-		set id_plcmnt_evnt=case when CA_CD_PLCM_SETNG=1 then 1
-										when CA_CD_PLCM_SETNG in (6,8) then 2
-										when CA_CD_PLCM_SETNG=2 then 3
-										when CA_CD_PLCM_SETNG in (4,7,14,16) then 4
-										when CA_CD_PLCM_SETNG in (3,9) then 5
-										when CA_CD_PLCM_SETNG=5 then 6
-										when CA_CD_PLCM_SETNG =17 then 8
-										when CA_CD_PLCM_SETNG in (10,11) then 9
-										when CA_CD_PLCM_SETNG in (12,13) then 10
-										when CA_CD_PLCM_SETNG =15 then 11
-										when CA_CD_PLCM_SETNG =18 then 13
+		set id_plcmnt_evnt=case when cd_plcm_setng=1 then 1
+										when cd_plcm_setng in (6,8) then 2
+										when cd_plcm_setng=2 then 3
+										when cd_plcm_setng in (4,7,14,16) then 4
+										when cd_plcm_setng in (3,9) then 5
+										when cd_plcm_setng=5 then 6
+										when cd_plcm_setng =17 then 8
+										when cd_plcm_setng in (10,11) then 9
+										when cd_plcm_setng in (12,13) then 10
+										when cd_plcm_setng =15 then 11
+										when cd_plcm_setng =18 then 13
 									end 
 
 					update R
@@ -103,7 +116,7 @@ as
 
 				
 					update R
-					set cd_plcmnt_evnt=plc.cd_plcmnt_evnt,cd_plcm_setng=plc.cd_plcm_setng
+					set cd_plcmnt_evnt=plc.cd_plcmnt_evnt,prtl_cd_plcm_setng=plc.cd_plcm_setng
 					from base.rptPlacement_Events r
 					,dbo.ref_lookup_placement_event plc 
 					where R.id_plcmnt_evnt=plc.id_plcmnt_evnt
@@ -149,7 +162,7 @@ as
 
 
 		update rpt
-		set [long_cd_plcm_setng] = cd_plcm_setng
+		set [long_cd_plcm_setng] = prtl_cd_plcm_setng
 		from base.rptPlacement  rpt
 		join base.rptPlacement_Events pe on pe.id_placement_fact=rpt.longest_id_placement_fact
 
@@ -161,7 +174,7 @@ as
 			from base.rptPlacement_Events ) q on q.id_removal_episode_fact=rpt.id_removal_episode_fact and q.row_num=1
 
 		update rpt
-		set  [init_cd_plcm_setng]= cd_plcm_setng
+		set  [init_cd_plcm_setng]= prtl_cd_plcm_setng
 		from base.rptPlacement  rpt
 		join base.rptPlacement_Events pe on pe.id_placement_fact=rpt.initial_id_placement_fact
 
