@@ -1,3 +1,9 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
 CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `load_ooh_parameters`(  p_date varchar(3000)
 ,  p_age_grouping_cd varchar(30)
 ,  p_ethnicity_cd varchar(30)
