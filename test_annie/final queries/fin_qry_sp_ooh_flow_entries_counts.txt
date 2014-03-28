@@ -1,0 +1,77 @@
+      SELECT    
+              prtl_poc1ab_entries.qry_type
+            , prtl_poc1ab_entries.date_type 
+            , prtl_poc1ab_entries.start_date
+            , mtch.int_param_key
+            , dep.bin_dep_cd
+            , los.bin_los_cd
+            , plc.bin_placement_cd
+            , ihs.bin_ihs_svc_cd
+            , rpt.cd_reporter_type
+            , acc.cd_access_type
+            , alg.cd_allegation
+            , fnd.cd_finding
+            , srv.cd_subctgry_poc_frc
+            , bud.cd_budget_poc_frc 
+            , mtch.age_grouping_cd 
+            , mtch.cd_race_census
+            , mtch.pk_gndr
+            , mtch.init_cd_plcm_setng
+            , mtch.long_cd_plcm_setng
+            , mtch.county_cd
+            , coalesce(sum(prtl_poc1ab_entries.cnt_entries),0) as cnt_entries
+            , p_minmonthstart
+            , p_maxmonthstart
+            , x1
+            , x2
+            , qry_id
+            , prtl_poc1ab_entries.start_year
+            ,cast((mtch.int_param_key * power(10.0,13) ) as decimal(22,0))
+            + cast((dep.bin_dep_cd * power(10.0,12)) as decimal(22,0))
+            + cast((los.bin_los_cd * power(10.0,11) )as decimal(22,0)) 
+            + cast((plc.bin_placement_cd * power(10.0,10) )as decimal(22,0))
+            + cast( (ihs.bin_ihs_svc_cd * power(10.0,9) ) as decimal(22,0))
+            + cast((rpt.cd_reporter_type * power(10.0,7) ) as decimal(22,0))
+            + cast((acc.cd_access_type * power(10.0,6)) as decimal(22,0))
+            + cast( (alg.cd_allegation * power(10.0,5)) as decimal(22,0))
+            + cast( (fnd.cd_finding * power(10.0,4)) as decimal(22,0))
+            + cast((srv.cd_subctgry_poc_frc * power(10,2)) as decimal(22,0))
+            +  bud.cd_budget_poc_frc 
+  			FROM prtl_poc1ab_entries prtl_poc1ab_entries 
+				join tblprmlocdem mtch 
+            on mtch.int_match_param_key=prtl_poc1ab_entries.int_match_param_key 
+            and mtch.cd_race_census in (select cd_race from tbleth)
+			join tbldep dep on dep.match_code=prtl_poc1ab_entries.bin_dep_cd
+			join tbllos los on los.match_code=prtl_poc1ab_entries.max_bin_los_cd
+			join tblnbrplc plc on plc.match_code=prtl_poc1ab_entries.bin_placement_cd
+			join tblihs ihs on ihs.match_code=prtl_poc1ab_entries.bin_ihs_svc_cd
+			join tblrpt rpt on rpt.match_code=prtl_poc1ab_entries.cd_reporter_type
+			join tblacc acc on acc.match_code=prtl_poc1ab_entries.filter_access_type
+			join tblalg alg on alg.match_code=prtl_poc1ab_entries.filter_allegation
+			join tblfnd fnd on fnd.match_code=prtl_poc1ab_entries.filter_finding
+			join tblsrvc srv on srv.match_code=prtl_poc1ab_entries.filter_service_category
+			join tblbudg bud on bud.match_code=prtl_poc1ab_entries.filter_service_budget 
+			  where prtl_poc1ab_entries.start_date 
+        between p_minmonthstart and p_maxmonthstart
+         			group by  prtl_poc1ab_entries.qry_type
+  					, prtl_poc1ab_entries.date_type 
+  					, prtl_poc1ab_entries.start_date
+					, mtch.int_param_key
+  					, mtch.age_grouping_cd 
+  					, mtch.pk_gndr
+  					, mtch.cd_race_census
+  					, mtch.init_cd_plcm_setng
+  					, mtch.long_cd_plcm_setng
+  					, mtch.county_cd
+				,dep.bin_dep_cd
+				,los.bin_los_cd
+			, plc.bin_placement_cd
+			, ihs.bin_ihs_svc_cd
+			, rpt.cd_reporter_type
+			, acc.cd_access_type
+      , alg.cd_allegation
+			, fnd.cd_finding
+			, srv.cd_subctgry_poc_frc
+			, bud.cd_budget_poc_frc
+
+            

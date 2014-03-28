@@ -1,0 +1,53 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `create_prtl_poc1ab_ram_table`()
+BEGIN
+drop table if exists prtl_poc1ab_ram;
+create table prtl_poc1ab_ram   (
+int_match_param_key bigint,
+max_bin_los_cd int,
+bin_placement_cd int,
+bin_ihs_svc_cd int,
+cd_reporter_type int,
+--  fl_cps_invs,
+filter_access_type decimal(18,0),
+filter_allegation decimal(18,0),
+filter_finding decimal(18,0),
+filter_service_category decimal(18,0),
+filter_service_budget decimal(18,0),
+qry_type int,
+date_type int,
+start_date datetime,
+bin_dep_cd int,
+cnt_start_date int,
+start_year int,
+key(int_match_param_key)) engine = memory;
+
+insert into prtl_poc1ab_ram
+select int_match_param_key,
+max_bin_los_cd,
+bin_placement_cd,
+bin_ihs_svc_cd,
+cd_reporter_type,
+--  fl_cps_invs,
+filter_access_type,
+filter_allegation,
+filter_finding,
+filter_service_category,
+filter_service_budget,
+qry_type,
+date_type,
+start_date,
+bin_dep_cd,
+cnt_start_date,
+start_year 
+from prtl_poc1ab;
+
+  
+  
+   
+END
