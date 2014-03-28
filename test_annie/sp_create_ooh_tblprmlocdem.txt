@@ -1,0 +1,184 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_create_ooh_tblprmlocdem`(p_age_grouping_cd varchar(30)
+,  p_ethnicity_cd varchar(30)
+,  p_gender_cd varchar(10)
+,  p_init_cd_plcm_setng varchar(30)
+,  p_long_cd_plcm_setng varchar(30) 
+,  p_county_cd varchar(200) 
+, p_calling_procedure int)
+BEGIN
+    drop temporary table if exists tblprmlocdem ;
+       create temporary table tblprmlocdem(int_param_key int not null
+       								,int_match_param_key int not null
+								,age_grouping_cd int not null
+								,pk_gndr int not null
+								,cd_race_census int not null
+								,init_cd_plcm_setng int  not null
+								,long_cd_plcm_setng int  not null
+								,county_cd int not null
+								,match_age_grouping_cd int not null
+								,match_pk_gdnr int not null
+								,match_cd_race_census int not null
+								,match_cd_hispanic_latino_origin int not null                                
+								,match_init_cd_plcm_setng int not null
+								,match_long_cd_plcm_setng int not null
+								,match_county_cd int not null
+								,primary key (int_match_param_key,int_param_key)) engine=memory;
+       
+       
+    if p_calling_procedure in (19,20,24,25,26) then
+            
+            insert  into tblprmlocdem(
+							int_param_key
+							,age_grouping_cd
+							,cd_race_census
+							,pk_gndr
+							,init_cd_plcm_setng
+							,long_cd_plcm_setng
+							,county_cd
+							,int_match_param_key
+							,match_age_grouping_cd
+							,match_cd_race_census
+							,match_cd_hispanic_latino_origin
+							,match_pk_gdnr
+							,match_init_cd_plcm_setng
+							,match_long_cd_plcm_setng
+							,match_county_cd)
+select  
+
+								 cast(power(10.0,8) + 
+										(power(10.0,7) * coalesce(age.age_grouping_cd,0)) + 
+											(power(10.0,5) * coalesce(eth.cd_race,7)) +
+												(power(10.0,4) * coalesce(gdr.pk_gndr,5)) + 
+														(power(10.0,3) * fpl.init_cd_plcm_setng) +
+															(power(10.0,2) * lpl.long_cd_plcm_setng) + 
+																(power(10.0,0) * cnty.cd_cnty )
+																as decimal(9,0)) as int_param_key
+								, age.age_grouping_cd 
+								, eth.cd_race as cd_race_census
+								, gdr.pk_gndr
+								, fpl.init_cd_plcm_setng
+								, lpl.long_cd_plcm_setng
+								, cnty.cd_cnty as county_cd
+								, cast(power(10.0,8) + 
+										(power(10.0,7) * coalesce(age.match_code,0)) + 
+											(power(10.0,6) * coalesce(eth.match_code,7)) +
+												(power(10.0,5) * coalesce(eth.cd_origin,5)) + 
+													(power(10.0,4) * coalesce(gdr.match_code,3)) + 
+														(power(10.0,3) * fpl.match_code) +
+															(power(10.0,2) * lpl.match_code) + 
+																(power(10.0,0) * (case when coalesce(cnty.match_code,-99) 
+																		 between 1 and 39 then cnty.match_code else 99   end))
+																as decimal(9,0)) as int_match_param_key
+								, age.match_code as match_age_grouping_cd 
+								, eth.match_code as match_cd_race_census
+								, eth.cd_origin as match_census_hispanic_latino_origin_cd
+								, gdr.match_code as match_pk_gndr
+								, fpl.match_code as match_init_cd_plcm_setng
+								, lpl.match_code as match_longest_cd_plcm_setng
+								, cnty.match_code as match_county_cd
+					from prm_age_census age 
+					cross join prm_eth_census eth
+					cross join prm_gndr gdr
+					cross join prm_fpl fpl
+					cross join prm_lpl lpl
+					cross join prm_cnty cnty
+        where find_in_set(age.age_grouping_cd,p_age_grouping_cd) > 0
+        and find_in_set(eth.cd_race,p_ethnicity_cd) > 0
+        and find_in_set(gdr.pk_gndr,p_gender_cd)>0
+        and find_in_set(fpl.init_cd_plcm_setng,p_init_cd_plcm_setng)>0
+        and find_in_set(lpl.long_cd_plcm_setng,p_long_cd_plcm_setng) > 0
+        and find_in_set(cnty.cd_cnty,p_county_cd) > 0
+        ; 
+   else
+              insert  into tblprmlocdem(
+							int_param_key
+							,age_grouping_cd
+							,cd_race_census
+							,pk_gndr
+							,init_cd_plcm_setng
+							,long_cd_plcm_setng
+							,county_cd
+							,int_match_param_key
+							,match_age_grouping_cd
+							,match_cd_race_census
+							,match_cd_hispanic_latino_origin
+							,match_pk_gdnr
+							,match_init_cd_plcm_setng
+							,match_long_cd_plcm_setng
+							,match_county_cd)
+select  
+
+								 cast(power(10.0,8) + 
+										(power(10.0,7) * coalesce(age.age_grouping_cd,0)) + 
+											(power(10.0,5) * coalesce(eth.cd_race,7)) +
+												(power(10.0,4) * coalesce(gdr.pk_gndr,5)) + 
+														(power(10.0,3) * fpl.init_cd_plcm_setng) +
+															(power(10.0,2) * lpl.long_cd_plcm_setng) + 
+																(power(10.0,0) * cnty.cd_cnty )
+																as decimal(9,0)) as int_param_key
+								, age.age_grouping_cd 
+								, eth.cd_race as cd_race_census
+								, gdr.pk_gndr
+								, fpl.init_cd_plcm_setng
+								, lpl.long_cd_plcm_setng
+								, cnty.cd_cnty as county_cd
+								, cast(power(10.0,8) + 
+										(power(10.0,7) * coalesce(age.match_code,0)) + 
+											(power(10.0,6) * coalesce(eth.match_code,7)) +
+												(power(10.0,5) * coalesce(eth.cd_origin,5)) + 
+													(power(10.0,4) * coalesce(gdr.match_code,3)) + 
+														(power(10.0,3) * fpl.match_code) +
+															(power(10.0,2) * lpl.match_code) + 
+																(power(10.0,0) * ((case when coalesce(cnty.match_code,-99) 
+																		 between 1 and 39 then cnty.match_code else 99   end)))
+																as decimal(9,0)) as int_match_param_key
+								, age.match_code as match_age_grouping_cd 
+								, eth.match_code as match_cd_race_census
+								, eth.cd_origin as match_census_hispanic_latino_origin_cd
+								, gdr.match_code as match_pk_gndr
+								, fpl.match_code as match_init_cd_plcm_setng
+								, lpl.match_code as match_longest_cd_plcm_setng
+								, cnty.match_code as match_county_cd
+					from prm_age_cdc_census_mix age 
+					cross join prm_eth_census eth
+					cross join prm_gndr gdr
+					cross join prm_fpl fpl
+					cross join prm_lpl lpl
+					cross join prm_cnty cnty
+        where find_in_set(age.age_grouping_cd,p_age_grouping_cd) > 0
+        and find_in_set(eth.cd_race,p_ethnicity_cd) > 0
+        and find_in_set(gdr.pk_gndr,p_gender_cd)>0
+        and find_in_set(fpl.init_cd_plcm_setng,p_init_cd_plcm_setng)>0
+        and find_in_set(lpl.long_cd_plcm_setng,p_long_cd_plcm_setng) > 0
+        and find_in_set(cnty.cd_cnty,p_county_cd) > 0;
+  
+   end if;
+   
+   
+   
+   create index idx_int_match_param_key_demog_fields on tblprmlocdem(
+						int_match_param_key
+						,age_grouping_cd
+						,cd_race_census
+						,pk_gndr
+						,init_cd_plcm_setng
+						,long_cd_plcm_setng
+						,county_cd);
+                        
+           create index idx_int_match_param_key_only on tblprmlocdem(int_match_param_key);      
+
+					create index idx_int_match_cd_race_census on tblprmlocdem(
+						cd_race_census
+						);
+
+					create index idx_age_grouping_cd on tblprmlocdem(
+						age_grouping_cd
+						);
+ 
+END
