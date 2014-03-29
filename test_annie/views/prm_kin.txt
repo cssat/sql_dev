@@ -1,0 +1,1 @@
+CREATE ALGORITHM=UNDEFINED DEFINER=`test_annie`@`localhost` SQL SECURITY DEFINER VIEW `prm_kin` AS select 1 AS `kincare`,1 AS `match_code` union select 0 AS `0`,0 AS `0` union select 0 AS `0`,1 AS `1`

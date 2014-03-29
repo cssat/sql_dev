@@ -1,0 +1,349 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_ooh_load_param_tbls`(  p_date varchar(3000)
+,  p_age_grouping_cd varchar(30)
+,  p_ethnicity_cd varchar(30)
+,  p_gender_cd varchar(10)
+,  p_init_cd_plcm_setng varchar(30)
+,  p_long_cd_plcm_setng varchar(30) 
+,  p_county_cd varchar(200) 
+,  p_bin_los_cd varchar(30) 
+,  p_bin_placement_cd varchar(30) 
+,  p_bin_ihs_svc_cd varchar(30) 
+,  p_cd_reporter_type varchar(100) 
+,  p_filter_access_type varchar(30) 
+,  p_filter_allegation  varchar(30)
+, p_filter_finding varchar(30)
+, p_filter_service_category  varchar(100)
+, p_filter_service_budget varchar(100)
+, p_bin_dep_cd varchar(20)
+,p_is_perCapita int
+,p_load_paramkey_tbl int
+,p_mindate datetime
+,p_maxdate datetime
+,p_calling_procedure int
+)
+BEGIN
+     
+    declare intFoundPos integer;
+
+    declare strElement varchar(3000);
+    declare strValues varchar(3000);
+    declare intVal integer;		
+    declare intincAll integer;
+
+        DROP TEMPORARY TABLE IF EXISTS tbltmpValues;
+        create temporary table tbltmpValues (strVal varchar(10));
+
+         
+        -- create and load parameter tables
+        DROP TEMPORARY TABLE IF EXISTS tblage;
+        create temporary table tblage(age_grouping_cd int
+        ,age_grouping char(50)
+        ,match_code int,primary key (match_code,age_grouping_cd)
+            ,key idx_age_match(match_code));
+
+        
+        DROP TEMPORARY TABLE IF EXISTS tbleth;  
+        create TEMPORARY table tbleth(cd_race int,cd_origin int,match_code int
+        ,key idx_eth_match(match_code,cd_origin,cd_race) );
+        
+        
+        
+        DROP TEMPORARY TABLE IF EXISTS tblgdr;
+        create temporary table tblgdr(pk_gndr int,match_code int
+        ,primary key(match_code,pk_gndr),key idx_gndr_match(match_code),key idx_pk_gndr(pk_gndr));
+   
+
+        DROP TEMPORARY TABLE IF EXISTS tblfpl;
+        create temporary table  tblfpl(cd_plcm_setng int,match_code int,primary key(cd_plcm_setng,match_code)
+            ,key idx_fpl_match2(match_code),key idx_fpl_match(cd_plcm_setng));
+
+        
+        DROP TEMPORARY TABLE IF EXISTS tbllpl;
+        create temporary table  tbllpl(cd_plcm_setng int,match_code int
+                ,primary key (cd_plcm_setng,match_code)
+                ,key idx_lpl_match2(match_code));
+        
+       
+        DROP TEMPORARY TABLE IF EXISTS tblcnty;
+        create TEMPORARY table tblcnty(
+                              cd_cnty int
+                            , match_code int
+                            , primary key(match_code,cd_cnty)
+                            , key idx_cnty_match2(match_code)
+                            , key idx_cnty_match(cd_cnty));
+        
+
+      
+
+        DROP TEMPORARY TABLE IF EXISTS tbllos;
+        create temporary table tbllos(bin_los_cd int,match_code int
+        ,primary key(bin_los_cd,match_code));
+        create index idx_los_cd on tbllos(match_code);
+
+        DROP TEMPORARY TABLE IF EXISTS  tblnbrplc;
+        create temporary table tblnbrplc(bin_placement_cd int,match_code int,primary key(bin_placement_cd,match_code));
+        create index idx_nbrplcm on tblnbrplc(match_code);
+
+
+        DROP TEMPORARY TABLE IF EXISTS tblihs;
+        create temporary table tblihs(bin_ihs_svc_cd int,match_code int,primary key(bin_ihs_svc_cd,match_code),key(match_code));
+        
+        
+        DROP TEMPORARY TABLE IF EXISTS tblrpt;
+        create temporary table tblrpt(cd_reporter_type int,match_code int,primary key(cd_reporter_type,match_code),key(match_code));
+       
+        
+        DROP TEMPORARY TABLE IF EXISTS tblacc;
+        create temporary table tblacc(cd_access_type int,match_code decimal(18,0),primary key (cd_access_type,match_code));
+        create index idx_access_type on tblacc(match_code);
+        create index idx_access_type3 on tblacc(cd_access_type);
+
+        DROP TEMPORARY TABLE IF EXISTS tblalg;
+        create temporary table tblalg(cd_allegation int,match_code decimal(18,0),primary key(match_code,cd_allegation));
+        create index idx_algtn on tblalg(match_code);
+        create index idx_algtn2 on tblalg(cd_allegation);
+
+        DROP TEMPORARY TABLE IF EXISTS tblfnd;
+        create temporary table tblfnd(cd_finding int,match_code decimal(18,0),primary key(match_code,cd_finding));
+        create index idx_finding on tblfnd(match_code);
+        create index idx_find2 on tblfnd(cd_finding);
+
+        DROP TEMPORARY TABLE IF EXISTS tblsrvc;
+        create temporary table tblsrvc(cd_subctgry_poc_frc int,match_code decimal(18,0),primary key(cd_subctgry_poc_frc,match_code));
+        create index idx_srvc on tblsrvc(match_code);
+
+        DROP TEMPORARY TABLE IF EXISTS tblbudg;
+        create temporary table tblbudg(cd_budget_poc_frc int,match_code decimal(18,0),primary key(cd_budget_poc_frc,match_code));
+       
+        DROP TEMPORARY TABLE IF EXISTS tbldep;
+        create temporary table tbldep(bin_dep_cd int,match_code int,primary key(bin_dep_cd,match_code));
+
+
+        if p_calling_procedure = 13 then
+        
+            DROP TEMPORARY TABLE IF EXISTS tblsib;
+            create temporary table tblsib(
+            bin_sibling_group_size int,match_code int
+            ,nbr_sibling_desc varchar(50)
+            ,primary key (bin_sibling_group_size,match_code));
+            
+           insert into tblsib
+           select * from prm_sib;
+            
+            
+              DROP TEMPORARY TABLE IF EXISTS tblkin;
+            create temporary table tblkin(kincare int,match_code int);
+            insert into tblkin(kincare,match_code)
+            select * from prm_kin;
+        end if;
+      
+-- age
+
+    if p_calling_procedure in (19,20,24,25,26) then
+        insert into tblage(age_grouping_cd,match_code)
+        select * from prm_age_census where find_in_set(age_grouping_cd,p_age_grouping_cd)>0;
+    else
+        insert into tblage(age_grouping_cd,match_code)
+        select * from prm_age_cdc_census_mix where find_in_set(age_grouping_cd,p_age_grouping_cd)>0;
+    end if;
+
+
+--    DROP TEMPORARY TABLE IF EXISTS tblage2;
+--    create temporary table tblage2 engine=memory as select distinct age_grouping_cd from tblage;
+    
+        
+    --  race/ethnicity
+    insert into tbleth(cd_race,cd_origin,match_code)
+    select * from prm_eth_census
+    where find_in_set(cd_race,p_ethnicity_cd)>0;
+
+
+--    DROP TEMPORARY TABLE IF EXISTS tbleth2;
+--    create temporary table tbleth2 engine=memory as select distinct cd_race from tbleth;
+
+--  gender
+    insert into tblgdr(PK_GNDR,match_code)
+    select * from prm_gndr
+    where find_in_set(pk_gndr,p_gender_cd)>0;        
+   
+
+
+        
+--   DROP TEMPORARY TABLE IF EXISTS tblgdr2;
+--    create temporary table tblgdr2 engine=memory as select distinct pk_gndr from tblgdr;     
+    
+     --  initial placement   
+    insert into tblfpl(cd_plcm_setng,match_code)
+    select * from prm_fpl
+    where find_in_set(init_cd_plcm_setng,p_init_cd_plcm_setng)>0;
+    
+         
+ --   DROP TEMPORARY TABLE IF EXISTS tblfpl2;
+ --   create temporary table tblfpl2 engine=memory as select distinct cd_plcm_setng from tblfpl;         
+
+
+    -- last placement
+    insert into tbllpl(cd_plcm_setng,match_code)
+    select * from prm_lpl
+    where find_in_set(long_cd_plcm_setng,p_long_cd_plcm_setng)>0;
+
+        
+         
+    
+--  DROP TEMPORARY TABLE IF EXISTS tbllpl2;
+--    create temporary table tbllpl2 engine=memory as select distinct cd_plcm_setng from tbllpl; 
+        
+--  county cd
+--    call load_parameter_table(p_county_cd);
+     insert into tblcnty(cd_cnty,match_code)
+    select * from prm_cnty where find_in_set(cd_cnty, p_county_cd)>0;
+    
+--    DROP TEMPORARY TABLE IF EXISTS tblcnty2;
+--    create temporary table tblcnty2 engine=memory as select distinct cd_cnty from tblcnty;  
+
+ -- LOS 
+    
+    if p_calling_procedure in (12,13) then
+        insert into tbllos(bin_los_cd,match_code)
+        select * from prm_los_bin_los_cd
+        where find_in_set(bin_los_cd,p_bin_los_cd)>0;
+
+    else
+         insert into tbllos(bin_los_cd,match_code)
+        select * from prm_los_max_bin_los_cd
+        where find_in_set(bin_los_cd,p_bin_los_cd)>0;
+    
+    end if;
+ --   DROP TEMPORARY TABLE IF EXISTS tbllos2;
+ --   create temporary table tbllos2 engine=memory as select distinct bin_los_cd from tbllos;
+ 
+ -- Nbr of placements
+     insert into tblnbrplc(bin_placement_cd,match_code)
+    select * from prm_plc
+    where find_in_set(bin_placement_cd,p_bin_placement_cd)>0;
+         
+            
+ --   DROP TEMPORARY TABLE IF EXISTS tblnbrplc2;
+ --   create temporary table tblnbrplc2  engine=memory as select distinct bin_placement_cd from tblnbrplc;              
+ 
+ -- IHS
+     insert into tblihs(bin_ihs_svc_cd,match_code)
+    select * from prm_ihs
+    where find_in_set(bin_ihs_svc_cd,p_bin_ihs_svc_cd)>0;
+           
+                
+ --   DROP TEMPORARY TABLE IF EXISTS tblihs2;
+ --   create temporary table tblihs2 ENGINE=memory as select distinct bin_ihs_svc_cd from tblihs;   
+--  REPORTER FILTER
+    insert into tblrpt(cd_reporter_type,match_code)
+    select * from prm_rpt
+    where find_in_set(cd_reporter_type,p_cd_reporter_type)>0;
+         
+            
+--    DROP TEMPORARY TABLE IF EXISTS tblrpt2;
+--    create temporary table tblrpt2 engine=memory as select distinct cd_reporter_type from tblrpt;    
+    
+--   access_type
+    insert into tblacc(cd_access_type,match_code)
+    select * from prm_acc
+    where find_in_set(cd_access_type,p_filter_access_type)>0;
+
+
+--    DROP TEMPORARY TABLE IF EXISTS tblacc2;
+--    create temporary table tblacc2 engine=memory as select distinct cd_access_type from tblacc;    
+
+    --   ALLEGATIONS
+    insert into tblalg(cd_allegation,match_code)
+    select * from prm_alg
+    where find_in_set(cd_allegation,p_filter_allegation)>0;
+
+--    DROP TEMPORARY TABLE IF EXISTS tblalg2;
+--    create temporary table tblalg2 engine=memory as  select distinct cd_allegation from tblalg;    
+    
+    --   FINDINGS
+          
+    insert into tblfnd(cd_finding,match_code)
+    select * from prm_fnd
+    where find_in_set(cd_finding,p_filter_finding)>0;
+  
+--    DROP TEMPORARY TABLE IF EXISTS tblfnd2;
+--    create temporary table tblfnd2 engine=memory as select distinct cd_finding from tblfnd;    
+
+    --  services 
+      insert into tblsrvc(cd_subctgry_poc_frc,match_code)
+     select * from prm_srvc
+     where find_in_set(cd_subctgry_poc_frc,p_filter_service_category)>0;
+
+ --    DROP TEMPORARY TABLE IF EXISTS tblsrvc2;
+ --   create temporary table tblsrvc2 engine=memory as select distinct cd_subctgry_poc_frc from tblsrvc;    
+       
+    --  budget 
+    insert into tblbudg(cd_budget_poc_frc,match_code)
+    select * from prm_budg
+    where find_in_set(cd_budget_poc_frc,p_filter_service_budget)>0;
+ --   DROP TEMPORARY TABLE IF EXISTS tblbudg2;
+ --   create temporary table tblbudg2 engine=memory as select distinct cd_budget_poc_frc from tblbudg;      
+    
+    
+--  dependency
+  insert into tbldep(bin_dep_cd,match_code)
+  select * from prm_dep
+  where find_in_set(bin_dep_cd,p_bin_dep_cd)>0;
+     
+     
+  
+  if p_load_paramkey_tbl=1 then
+   call sp_create_ooh_tblprmlocdem(p_age_grouping_cd 
+        ,  p_ethnicity_cd 
+        ,  p_gender_cd 
+        ,  p_init_cd_plcm_setng 
+        ,  p_long_cd_plcm_setng 
+        ,  p_county_cd 
+        , p_calling_procedure);
+            
+end if;
+
+if p_is_perCapita = 1 then
+ DROP TEMPORARY TABLE IF EXISTS  tblpop_proj;
+        DROP TEMPORARY TABLE IF EXISTS tblethcen;  
+        create TEMPORARY table tblethcen(cd_race int,match_code int,key idx_ethcen_match(match_code,cd_race));
+		
+		
+		        insert into tblethcen(cd_race,match_code)
+        select distinct 
+             cd_race
+            ,match_code
+        from tbleth
+        where cd_race between 0 and 8;
+        
+        insert into tblethcen(cd_race,match_code)
+        select distinct cd_race,cd_race
+        from tbleth
+        where cd_race >=9;
+
+        -- select measurement_year,age.age_grouping_cd,eth.cd_race,gdr.pk_gndr,cnty.cd_cnty,sum(pop_cnt)
+        DROP TEMPORARY TABLE IF EXISTS  tblpop_proj;
+        create TEMPORARY table tblpop_proj engine=memory as 
+        select measurement_year,age.age_grouping_cd,eth.cd_race,gdr.pk_gndr,cnty.cd_cnty as county_cd,sum(pop_cnt) as pop_cnt
+        from ref_lookup_census_population cns
+        join tblage age on age.match_code=cns.age_grouping_cd
+        join tblethcen eth on eth.match_code=cns.cd_race
+        join tblgdr gdr on gdr.match_code=cns.pk_gndr
+        join tblcnty cnty on cnty.match_code=cns.county_cd
+        where measurement_year between year(p_mindate) and year(p_maxdate)
+        group by measurement_year,age.age_grouping_cd
+        ,eth.cd_race,gdr.pk_gndr,cnty.cd_cnty;
+        
+         create index  `idx_age_eth_gdr_cty_year` on tblpop_proj(measurement_year,age_grouping_cd,cd_race,pk_gndr,county_cd);
+        
+        
+end if;
+    
+
+end
