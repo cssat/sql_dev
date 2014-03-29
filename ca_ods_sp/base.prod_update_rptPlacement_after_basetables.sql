@@ -1,10 +1,23 @@
 alter procedure base.prod_update_rptPlacement_after_basetables
 as
 
-		
+		update base.rptPlacement_Events
+		set end_date='9999-12-31'
+		where end_date is null;
+
+		update base.rptPlacement_Events
+		set discharge_dt='9999-12-31'
+		where discharge_dt is null;
+
+		update base.rptPlacement
+		set discharge_dt='9999-12-31'
+		where discharge_dt is null;
+
+
 
 		update base.rptPlacement_Events
 		set id_placement_fact = pf.id_placement_fact
+			,id_provider_dim_caregiver=pf.ID_PROVIDER_DIM_CAREGIVER
 		from placement_fact pf
 		where pf.ID_REMOVAL_EPISODE_FACT=rptPlacement_Events.ID_REMOVAL_EPISODE_FACT
 		and pf.ID_CALENDAR_DIM_BEGIN=rptPlacement_Events.id_calendar_dim_begin
