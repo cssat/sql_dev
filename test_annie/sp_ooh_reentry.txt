@@ -286,7 +286,7 @@ if  flg_procedure_off =0 then
                 from cachekeys;
 
   if  var_row_cnt_param <> var_row_cnt_cache then
-   call load_ooh_parameters(p_date
+   call sp_ooh_load_param_tbls(p_date
                 ,  p_age_grouping_cd 
                 ,  p_ethnicity_cd 
                 ,  p_gender_cd 

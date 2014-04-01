@@ -30,11 +30,11 @@ BEGIN
 
 if var_calling_procedure in (19,20,24,25,26) then
  insert into tblprm (int_param_key)
-  select cast(power(10.0,8) + (age_grouping_cd * power(10.0,7))
-+ (cd_race * power(10.0,5))
-+ (pk_gndr* power(10.0,4))
-+ (init_cd_plcm_setng * power(10.0,3))
-+ (long_cd_plcm_setng * power(10.0,2))
+  select cast(@int_param_key + (age_grouping_cd * cast(@mult_age_grouping_cd/@mult_int_param_key as unsigned)) 
++ (cd_race * cast(@mult_cd_race_census/@mult_int_param_key as unsigned))
++ (pk_gndr* cast(@mult_pk_gndr/@mult_int_param_key as unsigned))
++ (init_cd_plcm_setng * cast(@mult_init_cd_plcm_setng/@mult_int_param_key as unsigned))
++ (long_cd_plcm_setng * cast(@mult_long_cd_plcm_setng/@mult_int_param_key as unsigned))
 + cd_cnty as unsigned) int_param_key
 from (select distinct age_grouping_cd from ref_lookup_age_census where find_in_set(age_grouping_cd,p_age_grouping_cd)>0)age
         cross join (select cd_race_census as cd_race from ref_lookup_ethnicity_census where find_in_set(cd_race_census,p_ethnicity_cd) > 0) eth
@@ -46,12 +46,18 @@ from (select distinct age_grouping_cd from ref_lookup_age_census where find_in_s
 else
   
       insert into tblprm (int_param_key)
-      select cast(power(10.0,8) + (age_grouping_cd * power(10.0,7))
-        + (cd_race * power(10.0,5))
-        + (pk_gndr* power(10.0,4))
-        + (init_cd_plcm_setng * power(10.0,3))
-        + (long_cd_plcm_setng * power(10.0,2))
-        + cd_cnty as unsigned) int_param_key
+-- select       select cast(power(10.0,8) + (age_grouping_cd * power(10.0,7))
+--         + (cd_race * power(10.0,5))
+--         + (pk_gndr* power(10.0,4))
+--         + (init_cd_plcm_setng * power(10.0,3))
+--         + (long_cd_plcm_setng * power(10.0,2))
+--         + cd_cnty as unsigned) int_param_key
+  select cast(@int_param_key + (age_grouping_cd * cast(@mult_age_grouping_cd/@mult_int_param_key as unsigned)) 
++ (cd_race * cast(@mult_cd_race_census/@mult_int_param_key as unsigned))
++ (pk_gndr* cast(@mult_pk_gndr/@mult_int_param_key as unsigned))
++ (init_cd_plcm_setng * cast(@mult_init_cd_plcm_setng/@mult_int_param_key as unsigned))
++ (long_cd_plcm_setng * cast(@mult_long_cd_plcm_setng/@mult_int_param_key as unsigned))
++ cd_cnty as unsigned) int_param_key
         from (select distinct age_grouping_cd from ref_lookup_age_cdc_census_mix where find_in_set(age_grouping_cd,p_age_grouping_cd)>0)age
         cross join (select cd_race_census as cd_race from ref_lookup_ethnicity_census where find_in_set(cd_race_census,p_ethnicity_cd) > 0) eth
         cross join (select distinct pk_gndr from ref_lookup_gender where find_in_set(pk_gndr,p_gender_cd) > 0) gdr
@@ -59,7 +65,8 @@ else
         cross join (select distinct placement_cd as long_cd_plcm_setng from ref_lookup_placement where find_in_set(placement_cd,p_long_cd_plcm_setng) > 0) lpl
         cross join (select distinct County_Cd as cd_cnty from ref_lookup_county_all where find_in_set(county_cd,p_county_cd) > 0) cnty;
  end if;
-        
+  
+  
  drop temporary table if exists cachekeys ;
   create temporary table cachekeys 
   (int_hash_key decimal(22,0)
@@ -76,18 +83,21 @@ else
   ,cd_budget_poc_frc int
   ,in_cache int
   ,qry_id int) engine=memory;
+  
+  call sp_ooh_assign_param_multiplier;
+  
   insert into cachekeys
-  select		cast(cast((int_param_key	* power(10.0,13)) as decimal(22,0))  + 
-								cast((bin_dep_cd	* power(10.0,12)) as decimal(22,0))  +
-								cast((bin_los_cd	* power(10.0,11)) as decimal(22,0))  +
-								cast((bin_placement_cd	* power(10.0,10)) as decimal(22,0))  +
-								cast((bin_ihs_svc_cd	* power(10.0,9)) as decimal(22,0))  +
-								cast((cd_reporter_type	* power(10.0,7)) as decimal(22,0))  +
-								cast((cd_access_type	* power(10.0,6)) as decimal(22,0))  +
-								cast((cd_allegation	* power(10.0,5)) as decimal(22,0))  +
-								cast((cd_finding	* power(10.0,4)) as decimal(22,0))  +
-								cast((cd_subctgry_poc_frc	* power(10.0,2)) as decimal(22,0))  +
-								(cd_budget_poc_frc	* power(10.0,0)) as decimal(22,0)) as int_hash_key
+  select		    (cast(int_param_key	as decimal(22,0)) * @mult_int_param_key + 
+								cast(bin_dep_cd	 as decimal(22,0)) * @mult_bin_dep_cd  +
+								cast(bin_los_cd	 as decimal(22,0)) * @mult_bin_los_cd +
+								cast(bin_placement_cd	 as decimal(22,0)) * @mult_bin_placement_cd +
+								cast(bin_ihs_svc_cd	 as decimal(22,0)) * @mult_bin_ihs_svc_cd +
+								cast(cd_reporter_type	 as decimal(22,0)) * @mult_cd_reporter_type +
+								cast(cd_access_type	 as decimal(22,0)) * @mult_cd_access_type +
+								cast(cd_allegation	 as decimal(22,0))  * @mult_cd_allegation +
+								cast(cd_finding	as decimal(22,0))  *  @mult_cd_finding +
+								cast(cd_subctgry_poc_frc	 as decimal(22,0))  * @mult_cd_subctgry_poc_frc +
+								cast(cd_budget_poc_frc	 as decimal(22,0)) * @mult_cd_budget_poc_frc)  as int_hash_key
 								 ,int_param_key
 								 ,bin_dep_cd
                      ,bin_los_cd
@@ -116,6 +126,7 @@ else
    
     create  index idx_int_hash_key on cachekeys(int_hash_key,in_cache);
     create index idx_qryid_params on cachekeys(qry_id,int_hash_key);
+ --   create index idx_3 on cachekeys(int_hash_key,in_cache,qry_id);
     create index idx_params on cachekeys(int_param_key,bin_dep_cd
     ,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type
     ,cd_access_type,cd_allegation	,cd_finding

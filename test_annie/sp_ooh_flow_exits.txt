@@ -48,72 +48,7 @@ declare x2 float;
 declare var_row_cnt_param int;
 declare var_row_cnt_cache int;
 declare cnt_hardcoded_qryid int;
-declare age0 char(50);
-declare age1 char(50);
-declare age2 char(50);
-declare age3 char(50);
-declare age4 char(50);
-declare age5 char(50);
-declare age6 char(50);
-declare age7 char(50);
 
-declare gdr0 char(10);
-declare gdr1 char(10);
-declare gdr2 char(10);
-declare gdr3 char(10);
-
-
-declare fpl0 char(50);
-declare fpl3 char(50);
-declare fpl4 char(50);
-declare fpl5 char(50);
-declare fpl6 char(50);
-declare fpl7 char(50);
-
-declare lpl0 char(50);
-declare lpl3 char(50);
-declare lpl4 char(50);
-declare lpl5 char(50);
-declare lpl6 char(50);
-declare lpl7 char(50);
-
-declare plc0 char(25);
-declare plc1 char(25);
-declare plc2 char(25);
-declare plc3 char(25);
-declare plc4 char(25);
-declare plc5 char(25);
-
-
-declare ihs0 char(50);
-declare ihs1 char(50);
-declare ihs2 char(50);
-declare ihs3 char(50);
-
-declare alg0 char(50);
-declare alg1 char(50);
-declare alg2 char(50);
-declare alg3 char(50);
-declare alg4 char(50);
-
-declare fnd0 char(50);
-declare fnd1 char(50);
-declare fnd2 char(50);
-declare fnd3 char(50);
-declare fnd4 char(50);
-declare eth0  char(100) ;
-declare eth1  char(100) ;
-declare eth2  char(100) ;
-declare eth3  char(100) ;
-declare eth4  char(100) ;
-declare eth5  char(100) ;
-declare eth6  char(100) ;
-declare eth7  char(100) ;
-declare eth8  char(100) ;
-declare eth9  char(100) ;
-declare eth10 char(100) ;
-declare eth11 char(100) ;
-declare eth12 char(100) ;
 
 declare var_calling_procedure int;
 set var_calling_procedure=25;
@@ -125,7 +60,6 @@ set var_calling_procedure=25;
 set x1=rand();
 set x2=rand();
 
-call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fpl0,fpl3,fpl4,fpl5,fpl6,fpl7,lpl0,lpl3,lpl4,lpl5,lpl6,lpl7,plc0,plc1,plc2,plc3,plc4,plc5,ihs0,ihs1,ihs2,ihs3,alg0,alg1,alg2,alg3,alg4,fnd0,fnd1,fnd2,fnd3,fnd4,eth0,eth1,eth2,eth3,eth4,eth5,eth6,eth7,eth8,eth9,eth10,eth11,eth12,var_calling_procedure);
 
 
 
@@ -134,6 +68,7 @@ set flg_procedure_off =0;
 if  flg_procedure_off =0 then    
 
      
+call sp_ooh_assign_desc (var_calling_procedure);
 --  set dates 
     
     select min_date_any ,max_date_all 
@@ -648,89 +583,89 @@ if NOT(trim(p_age_grouping_cd) ='0'
         
 end if; -- not all rows exist in cache
        
-           select            
-                            poc1ab.qry_type   "qry_type_poc1_first_unique"
-                            , poc1ab.date_type
-                            , poc1ab.start_date  as "Month"
-                            , poc1ab.age_grouping_cd  
-                            , case poc1ab.age_grouping_cd
-                                when 0 then age0
-                                when 1 then age1
-                                when 2 then age2
-                                when 3 then age3
-                                when 4 then age4
-                              end as "Age Grouping"
-                            , poc1ab.pk_gndr  as "gender_cd"
-                            , case poc1ab.pk_gndr
-                                when 0 then gdr0
-                                when 1 then gdr1
-                                when 2 then gdr2
-                                when 3 then gdr3
-                              end as "Gender" 
-                            , poc1ab.cd_race  as "ethnicity_cd"
-                            , case poc1ab.cd_race  when 0   then eth0  when 1   then eth1  when 2   then eth2  when 3   then eth3  when 4   then eth4  when 5   then eth5  when 6   then eth6  when 7   then eth7  when 8   then eth8  when 9   then eth9  when 10  then eth10 when 11  then eth11 when 12  then eth12 end as "Race/Ethnicity" 
-                            , poc1ab.init_cd_plcm_setng  
-                            , case when poc1ab.init_cd_plcm_setng = 0 then fpl0
-                                    when poc1ab.init_cd_plcm_setng = 3 then fpl3
-                                   when poc1ab.init_cd_plcm_setng = 4 then fpl4
-                                   when poc1ab.init_cd_plcm_setng = 5 then fpl5
-                                   when poc1ab.init_cd_plcm_setng = 6 then fpl6
-                                   when poc1ab.init_cd_plcm_setng = 7 then fpl7
-                              end as  "Initial Placement"
-                            , poc1ab.long_cd_plcm_setng  
-                            , case when poc1ab.long_cd_plcm_setng = 0 then lpl0
-                                   when poc1ab.long_cd_plcm_setng = 3 then lpl3
-                                   when poc1ab.long_cd_plcm_setng = 4 then lpl4
-                                   when poc1ab.long_cd_plcm_setng = 5 then lpl5
-                                   when poc1ab.long_cd_plcm_setng = 6 then lpl6
-                                   when poc1ab.long_cd_plcm_setng = 7 then lpl7
-                              end as  "Longest Placement"
-                            , poc1ab.county_cd
-                            , ref_cnty.county as "County"
-                            , poc1ab.bin_dep_cd as  "dependency_cd"
-                            , ref_dep.bin_dep_desc as "Dependency"
-                            , poc1ab.bin_los_cd
-                            , ref_los.bin_los_desc as "Length of Service Desc"                                
-                            , poc1ab.bin_placement_cd
-                            , case poc1ab.bin_placement_cd
-                                when 0 then plc0
-                                when 1 then plc1
-                                when 2 then plc2
-                                when 3 then plc3
-                                when 4 then plc4
-                                when 5 then plc5
-                              end as "Placement Count Desc"
-                            , poc1ab.bin_ihs_svc_cd
-                            , case poc1ab.bin_ihs_svc_cd
-                                when 0 then ihs0
-                                when 1 then ihs1
-                                when 2 then ihs2
-                                when 3 then ihs3
-                              end as "In-Home Service Desc"
-                            , poc1ab.cd_reporter_type
-                            , ref_rpt.tx_reporter_type as "Reporter Desc"
-                            , poc1ab.cd_access_type
-                            , ref_acc.tx_access_type as "Access type desc"
-                            , poc1ab.cd_allegation
-                            , case poc1ab.cd_allegation  when 0  then alg0 when 1  then alg1 when 2  then alg2 when 3  then alg3 when 4  then alg4 end as "Allegation"
-                            , poc1ab.cd_finding
-                            , case poc1ab.cd_finding  when 0  then fnd0 when 1  then fnd1 when 2  then fnd2 when 3  then fnd3 when 4  then fnd4 end as "Finding"
-                            , poc1ab.cd_subctgry_poc_frc as "service_type_cd"
-                            , ref_srv.tx_subctgry_poc_frc as "Service Type"
-                            , poc1ab.cd_budget_poc_frc as "budget_cd"
-                            , ref_bud.tx_budget_poc_frc as "Budget"  
-                            , poc1ab.cd_discharge_type 
-                            , dsch.discharge_type as "Outcome"
-                             ,  case when (cnt_exits) > 0 /* jitter all above 0 */ 
-                                    then 
-                                        case when (round(cnt_exits + 2 * sqrt(-2 * log(poc1ab.x1)) 
-                                        * cos(2*pi()*poc1ab.x2),0) ) <1
-                                        then 1
-                                        else round(cnt_exits + 2 * sqrt(-2 * log(poc1ab.x1)) * cos(2*pi()*poc1ab.x2),0)
-                                        end
-                                    else (cnt_exits) 
-                                end as "Number of Exits"  
-         from cache_poc1ab_exits_aggr poc1ab
+      select            
+                poc1ab.qry_type   "qry_type_poc1_first_unique"
+                , poc1ab.date_type
+                , poc1ab.start_date  as "Month"
+                , poc1ab.age_grouping_cd  
+                , case poc1ab.age_grouping_cd
+                    when 0 then @age0
+                    when 1 then @age1
+                    when 2 then @age2
+                    when 3 then @age3
+                    when 4 then @age4
+                  end as "Age Grouping"
+                , poc1ab.pk_gndr  as "gender_cd"
+                , case poc1ab.pk_gndr
+                    when 0 then @gdr0
+                    when 1 then @gdr1
+                    when 2 then @gdr2
+                    when 3 then @gdr3
+                  end as "Gender" 
+                , poc1ab.cd_race  as "ethnicity_cd"
+                , case poc1ab.cd_race  when 0   then @eth0  when 1   then @eth1  when 2   then @eth2  when 3   then @eth3  when 4   then @eth4  when 5   then @eth5  when 6   then @eth6  when 7   then @eth7  when 8   then @eth8  when 9   then @eth9  when 10  then @eth10 when 11  then @eth11 when 12  then @eth12 end as "Race/Ethnicity" 
+                , poc1ab.init_cd_plcm_setng  
+                , case when poc1ab.init_cd_plcm_setng = 0 then @fpl0
+                        when poc1ab.init_cd_plcm_setng = 3 then @fpl3
+                       when poc1ab.init_cd_plcm_setng = 4 then @fpl4
+                       when poc1ab.init_cd_plcm_setng = 5 then @fpl5
+                       when poc1ab.init_cd_plcm_setng = 6 then @fpl6
+                       when poc1ab.init_cd_plcm_setng = 7 then @fpl7
+                  end as  "Initial Placement"
+                , poc1ab.long_cd_plcm_setng  
+                , case when poc1ab.long_cd_plcm_setng = 0 then @lpl0
+                       when poc1ab.long_cd_plcm_setng = 3 then @lpl3
+                       when poc1ab.long_cd_plcm_setng = 4 then @lpl4
+                       when poc1ab.long_cd_plcm_setng = 5 then @lpl5
+                       when poc1ab.long_cd_plcm_setng = 6 then @lpl6
+                       when poc1ab.long_cd_plcm_setng = 7 then @lpl7
+                  end as  "Longest Placement"
+                , poc1ab.county_cd
+                , ref_cnty.county as "County"
+                , poc1ab.bin_dep_cd as  "dependency_cd"
+                , ref_dep.bin_dep_desc as "Dependency"
+                , poc1ab.bin_los_cd
+                , ref_los.bin_los_desc as "Length of Service Desc"                                
+                , poc1ab.bin_placement_cd
+                , case poc1ab.bin_placement_cd
+                    when 0 then @plc0
+                    when 1 then @plc1
+                    when 2 then @plc2
+                    when 3 then @plc3
+                    when 4 then @plc4
+                    when 5 then @plc5
+                  end as "Placement Count Desc"
+                , poc1ab.bin_ihs_svc_cd
+                , case poc1ab.bin_ihs_svc_cd
+                    when 0 then @ihs0
+                    when 1 then @ihs1
+                    when 2 then @ihs2
+                    when 3 then @ihs3
+                  end as "In-Home Service Desc"
+                , poc1ab.cd_reporter_type
+                , ref_rpt.tx_reporter_type as "Reporter Desc"
+                , poc1ab.cd_access_type
+                , ref_acc.tx_access_type as "Access type desc"
+                , poc1ab.cd_allegation
+                , case poc1ab.cd_allegation  when 0  then @alg0 when 1  then @alg1 when 2  then @alg2 when 3  then @alg3 when 4  then @alg4 end as "Allegation"
+                , poc1ab.cd_finding
+                , case poc1ab.cd_finding  when 0  then @fnd0 when 1  then @fnd1 when 2  then @fnd2 when 3  then @fnd3 when 4  then @fnd4 end as "Finding"
+                , poc1ab.cd_subctgry_poc_frc as "service_type_cd"
+                , ref_srv.tx_subctgry_poc_frc as "Service Type"
+                , poc1ab.cd_budget_poc_frc as "budget_cd"
+                , ref_bud.tx_budget_poc_frc as "Budget"  
+                , poc1ab.cd_discharge_type 
+                , dsch.discharge_type as "Outcome"
+                 ,  case when (cnt_exits) > 0 /* jitter all above 0 */ 
+                        then 
+                            case when (round(cnt_exits + 2 * sqrt(-2 * log(poc1ab.x1)) 
+                            * cos(2*pi()*poc1ab.x2),0) ) <1
+                            then 1
+                            else round(cnt_exits + 2 * sqrt(-2 * log(poc1ab.x1)) * cos(2*pi()*poc1ab.x2),0)
+                            end
+                        else (cnt_exits) 
+                    end as "Number of Exits"  
+        from cache_poc1ab_exits_aggr poc1ab
         join cachekeys ck on ck.qry_id=poc1ab.qry_id
         and ck.int_hash_key=poc1ab.int_hash_key
 --            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=poc1ab.init_cd_plcm_setng

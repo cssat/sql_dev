@@ -115,13 +115,14 @@ declare eth10 char(100) ;
 declare eth11 char(100) ;
 declare eth12 char(100) ;
 
-declare leading_digit_int_param_key int;
 
 declare var_calling_procedure int;
+
+--  initialize variables
 set var_calling_procedure=19;
 
+call sp_ooh_assign_param_multiplier;
 
---  DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
 
 
 set x1=rand();
@@ -142,10 +143,6 @@ if  flg_procedure_off =0 then
     select p_minmonthstart,p_maxmonthstart 
     into p_mindate,p_maxdate ;
   
-    
-    select leading_digit into leading_digit_int_param_key from ref_leading_digit_int_param_key;
-
-        
     
     select qry_id into p_qry_id
     from cache_poc1ab_entries_params
@@ -280,6 +277,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
         , p_maxdate
         , var_calling_procedure);
         
+        call sp_ooh_assign_param_multiplier;
         
        set @incl='insert IGNORE into cache_poc1ab_entries_aggr
 			   ( qry_type
@@ -326,7 +324,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
             , mtch.int_param_key');
 		else
 			set @incl=concat(@incl,char(13),'
-            , leading_digit_int_param_key');
+            , ',@int_param_key);
 		end if;
 		 if trim(p_bin_dep_cd)='0' then
         set @incl=concat(@incl,char(13),', 0 as bin_dep_cd');
@@ -417,51 +415,51 @@ if  var_row_cnt_param <> var_row_cnt_cache then
             and trim(p_long_cd_plcm_setng)='0' 
             and trim(p_county_cd) = '0'  )  then
 			set @incl=concat(@incl,'
-            ,cast((mtch.int_param_key * power(10.0,13) ) as decimal(22,0))');
+            ,(cast(mtch.int_param_key  as decimal(22,0)) * ',@mult_int_param_key,' )');
 		else
 			set @incl=concat(@incl,'
-            ,cast((leading_digit_int_param_key * power(10.0,13) ) as decimal(22,0))');
+            ,(cast(',@mult_int_param_key,' as decimal(22,0))');
 		end if;
 		if trim(p_bin_dep_cd)<>'0' then
 			set @incl=concat(@incl,'
-						+ cast((dep.bin_dep_cd * power(10.0,12)) as decimal(22,0))');
+						+ (cast(dep.bin_dep_cd  as decimal(22,0)) * ',@mult_bin_dep_cd,') ');
 		end if;
 		if trim(p_bin_los_cd)<>'0' then
 			set @incl=concat(@incl,' 
-            + cast((los.bin_los_cd * power(10.0,11) )as decimal(22,0)) ');
+            + (cast(los.bin_los_cd  as decimal(22,0)) * ',@mult_bin_los_cd,') ');
         end if;
         if trim(p_bin_placement_cd)<>'0' then
 		    set @incl=concat(@incl,' 
-            + cast((plc.bin_placement_cd * power(10.0,10) )as decimal(22,0))');
+            + (cast(plc.bin_placement_cd  as decimal(22,0)) * ',@mult_bin_placement_cd,') ');
         end if;   
         if trim(p_bin_ihs_svc_cd)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast( (ihs.bin_ihs_svc_cd * power(10.0,9) ) as decimal(22,0))');
+            + (cast (ihs.bin_ihs_svc_cd   as decimal(22,0)) * ',@mult_bin_ihs_svc_cd,') ');
         end if;
         if trim(p_cd_reporter_type)<>'0' then
 	        set @incl=concat(@incl,'
-            + cast((rpt.cd_reporter_type * power(10.0,7) ) as decimal(22,0)) ');
+            + (cast(rpt.cd_reporter_type  as decimal(22,0)) * ',@mult_cd_reporter_type,') ');
         end if;					
         if trim(p_filter_access_type)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast((acc.cd_access_type * power(10.0,6)) as decimal(22,0))');
+            + (cast(acc.cd_access_type  as decimal(22,0)) * ',@mult_cd_access_type,') ');
         end if;					
 
         if trim(p_filter_allegation) <> '0' then
 	        set @incl=concat(@incl,' 
-            + cast( (alg.cd_allegation * power(10.0,5)) as decimal(22,0))');
+            + ( cast(alg.cd_allegation  as decimal(22,0)) * ',@mult_cd_allegation,') ');
         end if;	       
         if trim(p_filter_finding) <> '0' then
 	        set @incl=concat(@incl,'
-            + cast( (fnd.cd_finding * power(10.0,4)) as decimal(22,0))');
+            + ( cast(fnd.cd_finding  as decimal(22,0)) * ',@mult_cd_finding,') ');
         end if;	        
         if trim(p_filter_service_category) <> '0' then
 	        set @incl=concat(@incl,'
-            + cast((srv.cd_subctgry_poc_frc * power(10,2)) as decimal(22,0))');
-        end if;	        
+            + (cast(srv.cd_subctgry_poc_frc  as decimal(22,0)) * ',@mult_cd_subctgry_poc_frc,') ');
+        end if;	       
         if trim(p_filter_service_budget) <> '0' then
 	        set @incl=concat(@incl,'
-            +  bud.cd_budget_poc_frc ');
+            +  bud.cd_budget_poc_frc  as decimal(22,0)) * ',@mult_cd_budget_poc_frc,') ');
         end if;	
 		set @incl=concat(@incl,char(13),'
   			FROM prtl_poc1ab_entries prtl_poc1ab_entries  ');
