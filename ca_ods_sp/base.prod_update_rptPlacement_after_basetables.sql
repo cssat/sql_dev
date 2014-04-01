@@ -14,7 +14,6 @@ as
 		where discharge_dt is null;
 
 
-
 		update base.rptPlacement_Events
 		set id_placement_fact = pf.id_placement_fact
 			,id_provider_dim_caregiver=pf.ID_PROVIDER_DIM_CAREGIVER
