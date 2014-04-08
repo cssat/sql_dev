@@ -25,12 +25,7 @@ BEGIN
 
  
 declare flg_procedure_off int;
-declare intFoundPos integer;
 
-declare strElement varchar(3000);
-declare strValues varchar(3000);
-declare intVal integer;		
-declare intincAll integer;
 
 
 declare p_qry_id bigint;
@@ -48,7 +43,7 @@ declare var_row_cnt_cache int;
 
 
 declare var_calling_procedure int;
-set var_calling_procedure=19;
+set var_calling_procedure=20;
 
 
 --  DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
@@ -63,42 +58,18 @@ set x2=rand();
 /***  turn procedure on / off for loading data ***************************************/
 set flg_procedure_off =0;
 if  flg_procedure_off =0 then    
+
     call sp_ooh_assign_desc(var_calling_procedure);  
-    DROP TEMPORARY TABLE IF EXISTS tbltmpValues;
-        create temporary table tbltmpValues (strVal varchar(10));
 
-
-        DROP TEMPORARY TABLE IF EXISTS tbldt;
-        create temporary table tbldt(match_date datetime );
-        alter table tbldt add primary key(match_date);
- 
     
-        --  dates
-        set strValues=p_date;
-        set 	intFoundPos =instr(strValues,','); 
-        while intFoundPos <>0 do
-                set strElement=SUBSTRING(strValues, 1, intFoundPos-1); 
-                SET strValues = RIGHT(strValues,length(strValues)-intFoundPos);
-            
-                insert into tbltmpValues (strVal) values (strElement);
-                set intFoundPos=instr(strValues,',');
-        end while;
-
-        if strValues <> ''  then
-                INSERT Into tbltmpValues(strVal) values (strValues);
-        end if;
-        
-        insert into tbldt (match_date)
-        select distinct cast(strVal as datetime) from tbltmpValues;
-     
      
 --  set dates 
     
     select min_date_any ,max_date_all 
     into p_minmonthstart,p_maxmonthstart  
-    FROM ref_lookup_max_date where id=20;
-    select min(match_date),max(match_date) 
-    into p_mindate,p_maxdate from tbldt;
+    FROM ref_lookup_max_date where id=var_calling_procedure;
+    select p_minmonthstart,p_maxmonthstart 
+    into p_mindate,p_maxdate;
   
     
  
@@ -597,7 +568,7 @@ if NOT(trim(p_age_grouping_cd) ='0'
         
 end if; -- not all rows exist in cache
          select            
-                            poc1ab.qry_type   "qry_type_poc1_first_unique"
+                            poc1ab.qry_type   "qry_type_first_all"
                             , poc1ab.date_type
                             , poc1ab.start_date  as "Month"
                             , poc1ab.age_grouping_cd  

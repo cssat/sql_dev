@@ -28,6 +28,9 @@ BEGIN
     create temporary table tblprm
     (int_param_key int,primary key(int_param_key) )engine=memory;
 
+
+call sp_ooh_assign_param_multiplier;
+
 if var_calling_procedure in (19,20,24,25,26) then
  insert into tblprm (int_param_key)
   select cast(@int_param_key + (age_grouping_cd * cast(@mult_age_grouping_cd/@mult_int_param_key as unsigned)) 

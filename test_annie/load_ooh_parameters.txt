@@ -181,7 +181,8 @@ BEGIN
         left join  ref_lookup_age_census qAll
                 on qAll.age_grouping_cd=0
         where  ref_lookup_age_census.age_grouping_cd between 1 and 4
-        and '0' in (select strVal from tbltmpValues);
+        and exists(select * from tbltmpValues where strVal = '0');
+
             
     else
     
@@ -197,7 +198,8 @@ BEGIN
                 ,age_dim.cdc_census_mix_age_cd
         from age_dim 
         where  age_dim.cdc_census_mix_age_cd between 1 and 7
-        and '0' in (select strVal from tbltmpValues);
+        and exists(select * from tbltmpValues where strVal = '0');
+
     
     
     end if;
@@ -239,7 +241,8 @@ BEGIN
     join ref_xwalk_race_origin xwlk 
     on xwlk.cd_race_census =ref_lookup_ethnicity.cd_race_census
     left join ref_lookup_ethnicity_census  qAll on qAll.cd_race_census=0
-    where '0' in (select strVal from tbltmpValues);
+    where exists(select * from tbltmpValues where strVal = '0');
+
 
     DROP TEMPORARY TABLE IF EXISTS tbleth2;
     create temporary table tbleth2 engine=memory as select distinct cd_race from tbleth;
@@ -261,7 +264,7 @@ BEGIN
             ,ref_lookup_gender.PK_GNDR
         from ref_lookup_gender
         where  ref_lookup_gender.PK_GNDR >0
-        and '0' in (select strVal from tbltmpValues);        
+        and exists(select * from tbltmpValues where strVal = '0');        
    
 
 
@@ -286,7 +289,7 @@ BEGIN
             ,ref_lookup_placement.placement_cd
     from ref_lookup_placement
     where  ref_lookup_placement.placement_cd<>0
-    and '0' in (select strVal from tbltmpValues);        
+    and exists(select * from tbltmpValues where strVal = '0');        
          
     DROP TEMPORARY TABLE IF EXISTS tblfpl2;
     create temporary table tblfpl2 engine=memory as select distinct cd_plcm_setng from tblfpl;         
@@ -310,7 +313,7 @@ BEGIN
             ,ref_lookup_placement.placement_cd
     from ref_lookup_placement
     where ref_lookup_placement.placement_cd <>0
-     and '0' in (select strVal from tbltmpValues);     
+    and exists(select * from tbltmpValues where strVal = '0');
         
          
     
@@ -336,7 +339,7 @@ BEGIN
             ,ref_lookup_county_all.County_Cd
     from ref_lookup_county_all
      left join ref_lookup_county_all qAll on qAll.County_Cd=0
-    where  '0' in (select strVal from tbltmpValues) 
+    where exists(select * from tbltmpValues where strVal = '0')
     and (ref_lookup_county_all.County_Cd between 1 and 39 
             or ref_lookup_county_all.County_Cd=-99);  
 
@@ -361,7 +364,7 @@ BEGIN
         select distinct 0,los.bin_los_cd
         from ref_filter_los los
         where los.bin_los_cd<>0
-        and '0' in (select strVal from tbltmpValues);
+        and exists(select * from tbltmpValues where strVal = '0');
 
     else
          insert into tbllos(bin_los_cd,match_code)
@@ -387,7 +390,7 @@ BEGIN
     select 0,flt.bin_placement_cd
     from ref_filter_nbr_placement flt
     where flt.bin_placement_cd<>0
-    and '0' in (select strVal from tbltmpValues);
+    and exists(select * from tbltmpValues where strVal = '0');
          
             
     DROP TEMPORARY TABLE IF EXISTS tblnbrplc2;
@@ -407,7 +410,7 @@ BEGIN
     select 0,flt.bin_ihs_svc_cd
     from ref_filter_ihs_services flt
     where flt.bin_ihs_svc_cd<>0
-    and '0' in (select strVal from tbltmpValues);
+    and exists(select * from tbltmpValues where strVal = '0');
            
                 
     DROP TEMPORARY TABLE IF EXISTS tblihs2;
@@ -426,7 +429,7 @@ BEGIN
     select 0,flt.cd_reporter_type
     from ref_filter_reporter_type flt
     where flt.cd_reporter_type <> 0
-    and '0' in (select strVal from tbltmpValues);
+    and exists(select * from tbltmpValues where strVal = '0');
          
             
     DROP TEMPORARY TABLE IF EXISTS tblrpt2;
@@ -611,8 +614,8 @@ call load_parameter_table(p_bin_dep_cd);
                             and lpl.match_code=ooh.match_long_cd_plcm_setng
                     join tblcnty cnty on cnty.cd_cnty=ooh.county_cd
                             and cnty.match_code=ooh.match_county_cd
-                            and ooh.match_county_cd not in (40,999)
-                    where ooh.fl_in_tbl_child_episodes = 1;
+                            and ooh.match_county_cd not in (40,999);
+                   
 
             
        create index idx_int_match_cd_race_census2 on tblprmlocdem(
@@ -680,8 +683,7 @@ call load_parameter_table(p_bin_dep_cd);
 							,match_long_cd_plcm_setng
 							,match_county_cd)
 
-					select   Q.*
-					from (select  
+					select  
 
 								 cast(power(10.0,8) + 
 										(power(10.0,7) * coalesce(age.age_grouping_cd,0)) + 
@@ -720,7 +722,7 @@ call load_parameter_table(p_bin_dep_cd);
 					cross join tblfpl fpl
 					cross join tbllpl lpl
 					cross join tblcnty cnty 
-					) q ;
+					;
 	   
 	   
 	

@@ -1,0 +1,333 @@
+
+TRUNCATE TABLE test_annie.cache_outcomes_aggr
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_outcomes_aggr.txt'
+INTO TABLE test_annie.cache_outcomes_aggr
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+(qry_type,date_type,cohort_entry_date,cd_discharge_type,int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc,age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,mnth,rate,min_start_date,max_start_date,x1,x2,insert_date,qry_id,start_year,int_hash_key)
+
+
+TRUNCATE TABLE test_annie.cache_outcomes_params
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_outcomes_params.txt'
+INTO TABLE test_annie.cache_outcomes_params
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+(qry_ID,age_grouping_cd,cd_race_census,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,filter_access_type,filter_allegation,filter_finding,filter_srvc_type,filter_budget,bin_dep_cd,min_start_date,max_start_date,cnt_qry,last_run_date)
+
+
+TRUNCATE TABLE test_annie.cache_pbcp5_aggr
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_pbcp5_aggr.txt'
+INTO TABLE test_annie.cache_pbcp5_aggr
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+(qry_type,date_type,cohort_entry_date,cd_discharge_type,int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc,reentry_within_month,reentry_rate,age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,min_start_date,max_start_date,x1,x2,insert_date,qry_id,start_year,int_hash_key)
+
+
+TRUNCATE TABLE test_annie.cache_pbcp5_params
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_pbcp5_params.txt'
+INTO TABLE test_annie.cache_pbcp5_params
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+(qry_ID,age_grouping_cd,cd_race_census,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,filter_access_type,filter_allegation,filter_finding,filter_srvc_type,filter_budget,bin_dep_cd,min_start_date,max_start_date,cnt_qry,last_run_date)
+
+
+TRUNCATE TABLE test_annie.cache_pbcs2_aggr
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_pbcs2_aggr.txt'
+INTO TABLE test_annie.cache_pbcs2_aggr
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_type,date_type,start_date,int_param_key,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_sib_age_grp,cd_race,cd_office,month,among_first_cmpt_rereferred,min_start_date,max_start_date,x1,x2,insert_date,int_hash_key,qry_id,start_year)
+
+TRUNCATE TABLE test_annie.cache_pbcs2_params
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_pbcs2_params.txt'
+INTO TABLE test_annie.cache_pbcs2_params
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_ID,age_grouping_cd,cd_race_census,cd_office,cd_reporter_type,filter_access_type,filter_allegation,filter_finding,min_start_date,max_start_date,cnt_qry,last_run_date)
+
+TRUNCATE TABLE test_annie.cache_pbcs3_aggr
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_pbcs3_aggr.txt'
+INTO TABLE test_annie.cache_pbcs3_aggr
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_type,date_type,start_date,int_param_key,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_service_type,cd_budget_type,cd_sib_age_grp,cd_race_census,cd_office_collapse,month,placed,not_placed,min_start_date,max_start_date,x1,x2,insert_date,qry_id,start_year,int_hash_key)
+
+TRUNCATE TABLE test_annie.cache_pbcs3_params
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_pbcs3_params.txt'
+INTO TABLE test_annie.cache_pbcs3_params
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_ID,cd_sib_age_grp,cd_race_census,cd_office,cd_reporter_type,bin_ihs_svc_cd,filter_access_type,filter_allegation,filter_finding,filter_srvc_type,filter_budget,min_start_date,max_start_date,cnt_qry,last_run_date)
+
+TRUNCATE TABLE test_annie.cache_pbcw3_aggr
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_pbcw3_aggr.txt'
+INTO TABLE test_annie.cache_pbcw3_aggr
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_type,date_type,cohort_entry_date,int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc,age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,family_setting_dcfs_prcntg,family_setting_private_agency_prcntg,relative_prcntg,group_inst_care_prcntg,min_start_date,max_start_date,x1,x2,insert_date,qry_id,cohort_begin_year,int_hash_key)
+
+TRUNCATE TABLE test_annie.cache_pbcw3_params
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_pbcw3_params.txt'
+INTO TABLE test_annie.cache_pbcw3_params
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_ID,age_grouping_cd,cd_race_census,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,filter_access_type,filter_allegation,filter_finding,filter_srvc_type,filter_budget,bin_dep_cd,min_start_date,max_start_date,cnt_qry,last_run_date)
+
+TRUNCATE TABLE test_annie.cache_pbcw4_aggr
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_pbcw4_aggr.txt'
+INTO TABLE test_annie.cache_pbcw4_aggr
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_type,date_type,cohort_entry_date,int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc,age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,kincare,bin_sibling_group_size,all_together,some_together,none_together,min_start_date,max_start_date,x1,x2,insert_date,qry_id,cohort_begin_year,int_hash_key,cnt_cohort)
+
+TRUNCATE TABLE test_annie.cache_pbcw4_aggr_default
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_pbcw4_aggr_default.txt'
+INTO TABLE test_annie.cache_pbcw4_aggr_default
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_type,date_type,cohort_entry_date,int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc,age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,kincare,bin_sibling_group_size,all_together,some_together,none_together,min_start_date,max_start_date,x1,x2,insert_date,qry_id,cohort_begin_year,int_hash_key,cnt_cohort)
+
+TRUNCATE TABLE test_annie.cache_pbcw4_params
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_pbcw4_params.txt'
+INTO TABLE test_annie.cache_pbcw4_params
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_ID,age_grouping_cd,cd_race_census,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,filter_access_type,filter_allegation,filter_finding,filter_srvc_type,filter_budget,bin_dep_cd,min_start_date,max_start_date,cnt_qry,last_run_date)
+
+TRUNCATE TABLE test_annie.cache_poc1ab_aggr
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_poc1ab_aggr.txt'
+INTO TABLE test_annie.cache_poc1ab_aggr
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_type,date_type,start_date,int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc,custody_id,age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,cnt_start_date,min_start_date,max_start_date,x1,x2,insert_date,int_hash_key,qry_id,start_year,fl_include_perCapita)
+
+TRUNCATE TABLE test_annie.cache_poc1ab_entries_aggr
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_poc1ab_entries_aggr.txt'
+INTO TABLE test_annie.cache_poc1ab_entries_aggr
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_type,date_type,start_date,int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc,custody_id,age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,cnt_entries,min_start_date,max_start_date,x1,x2,insert_date,int_hash_key,qry_id,start_year,fl_include_perCapita)
+
+TRUNCATE TABLE test_annie.cache_poc1ab_entries_params
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_poc1ab_entries_params.txt'
+INTO TABLE test_annie.cache_poc1ab_entries_params
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_ID,age_grouping_cd,cd_race_census,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,filter_access_type,filter_allegation,filter_finding,filter_srvc_type,filter_budget,bin_dep_cd,min_start_date,max_start_date,cnt_qry,last_run_date)
+
+TRUNCATE TABLE test_annie.cache_poc1ab_exits_aggr
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_poc1ab_exits_aggr.txt'
+INTO TABLE test_annie.cache_poc1ab_exits_aggr
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_type,date_type,start_date,int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc,custody_id,age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,min_start_date,max_start_date,x1,x2,insert_date,int_hash_key,cd_discharge_type,cnt_exits,qry_id,start_year,fl_include_perCapita)
+
+TRUNCATE TABLE test_annie.cache_poc1ab_exits_params
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_poc1ab_exits_params.txt'
+INTO TABLE test_annie.cache_poc1ab_exits_params
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_ID,age_grouping_cd,cd_race_census,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,filter_access_type,filter_allegation,filter_finding,filter_srvc_type,filter_budget,bin_dep_cd,min_start_date,max_start_date,cnt_qry,last_run_date)
+
+TRUNCATE TABLE test_annie.cache_poc1ab_params
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_poc1ab_params.txt'
+INTO TABLE test_annie.cache_poc1ab_params
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_ID,age_grouping_cd,cd_race_census,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,filter_access_type,filter_allegation,filter_finding,filter_srvc_type,filter_budget,bin_dep_cd,min_start_date,max_start_date,cnt_qry,last_run_date)
+
+TRUNCATE TABLE test_annie.cache_poc2ab_aggr
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_poc2ab_aggr.txt'
+INTO TABLE test_annie.cache_poc2ab_aggr
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_type,date_type,start_date,int_param_key,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_sib_age_grp,cd_race,cd_office,cnt_start_date,cnt_opened,cnt_closed,min_start_date,max_start_date,x1,x2,insert_date,int_all_param_key,qry_id,start_year)
+
+TRUNCATE TABLE test_annie.cache_poc2ab_params
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_poc2ab_params.txt'
+INTO TABLE test_annie.cache_poc2ab_params
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_ID,age_grouping_cd,cd_race_census,cd_office,cd_reporter_type,filter_access_type,filter_allegation,filter_finding,min_start_date,max_start_date,cnt_qry,last_run_date)
+
+TRUNCATE TABLE test_annie.cache_poc3ab_aggr
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_poc3ab_aggr.txt'
+INTO TABLE test_annie.cache_poc3ab_aggr
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_type,date_type,start_date,int_param_key,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_service_type,cd_budget_type,cd_sib_age_grp,cd_race_census,cd_office_collapse,cnt_start_date,cnt_opened,cnt_closed,min_start_date,max_start_date,x1,x2,insert_date,qry_id,start_year,int_hash_key)
+
+TRUNCATE TABLE test_annie.cache_poc3ab_params
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_poc3ab_params.txt'
+INTO TABLE test_annie.cache_poc3ab_params
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_ID,cd_sib_age_grp,cd_race_census,cd_office,cd_reporter_type,bin_ihs_svc_cd,filter_access_type,filter_allegation,filter_finding,filter_srvc_type,filter_budget,min_start_date,max_start_date,cnt_qry,last_run_date)
+
+TRUNCATE TABLE test_annie.cache_qry_param_outcomes
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_qry_param_outcomes.txt'
+INTO TABLE test_annie.cache_qry_param_outcomes
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc,age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,qry_id,int_hash_key)
+
+TRUNCATE TABLE test_annie.cache_qry_param_pbcp5
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_qry_param_pbcp5.txt'
+INTO TABLE test_annie.cache_qry_param_pbcp5
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc,age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,qry_id,int_hash_key)
+
+TRUNCATE TABLE test_annie.cache_qry_param_pbcs2
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_qry_param_pbcs2.txt'
+INTO TABLE test_annie.cache_qry_param_pbcs2
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (int_param_key,cd_sib_age_grp,cd_race,cd_office,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,qry_id,int_hash_key)
+
+TRUNCATE TABLE test_annie.cache_qry_param_pbcs3
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_qry_param_pbcs3.txt'
+INTO TABLE test_annie.cache_qry_param_pbcs3
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (int_param_key,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc,age_grouping_cd,cd_race,cd_office,qry_id,int_hash_key)
+
+TRUNCATE TABLE test_annie.cache_qry_param_pbcw3
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_qry_param_pbcw3.txt'
+INTO TABLE test_annie.cache_qry_param_pbcw3
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc,age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,qry_id,int_hash_key)
+
+TRUNCATE TABLE test_annie.cache_qry_param_pbcw4
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_qry_param_pbcw4.txt'
+INTO TABLE test_annie.cache_qry_param_pbcw4
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc,age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,qry_id,int_hash_key)
+
+TRUNCATE TABLE test_annie.cache_qry_param_poc1ab
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_qry_param_poc1ab.txt'
+INTO TABLE test_annie.cache_qry_param_poc1ab
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc,age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,qry_id,int_hash_key)
+
+TRUNCATE TABLE test_annie.cache_qry_param_poc1ab_entries
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_qry_param_poc1ab_entries.txt'
+INTO TABLE test_annie.cache_qry_param_poc1ab_entries
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc,age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,qry_id,int_hash_key)
+
+TRUNCATE TABLE test_annie.cache_qry_param_poc1ab_exits
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_qry_param_poc1ab_exits.txt'
+INTO TABLE test_annie.cache_qry_param_poc1ab_exits
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc,age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,qry_id,int_hash_key)
+
+TRUNCATE TABLE test_annie.cache_qry_param_poc2ab
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_qry_param_poc2ab.txt'
+INTO TABLE test_annie.cache_qry_param_poc2ab
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (int_param_key,cd_sib_age_grp,cd_race,cd_office,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,qry_id,int_all_param_key)
+
+TRUNCATE TABLE test_annie.cache_qry_param_poc3ab
+LOAD DATA LOCAL INFILE '/data/pocweb/cache_qry_param_poc3ab.txt'
+INTO TABLE test_annie.cache_qry_param_poc3ab
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (int_param_key,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc,cd_sib_age_grp,cd_race,cd_office,qry_id,int_hash_key)
+
+TRUNCATE TABLE test_annie.prtl_labels
+LOAD DATA LOCAL INFILE '/data/pocweb/prtl_labels.txt'
+INTO TABLE test_annie.prtl_labels
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (Label_ID,Heading,Subheading,Measurement_Dropdown,Chart_Display,Element,Label_Name)
+
+TRUNCATE TABLE test_annie.prtl_outcomes
+LOAD DATA LOCAL INFILE '/data/pocweb/prtl_outcomes.txt'
+INTO TABLE test_annie.prtl_outcomes
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (cohort_entry_date,date_type,qry_type,cd_discharge_type,age_grouping_cd,pk_gndr,cd_race_census,census_Hispanic_Latino_Origin_cd,init_cd_plcm_setng,long_cd_plcm_setng,removal_county_cd,int_match_param_key,bin_dep_cd,max_bin_los_cd,bin_placement_cd,cd_reporter_type,bin_ihs_svc_cd,filter_access_type,filter_allegation,filter_finding,filter_service_type,filter_budget_type,mnth,discharge_count,cohort_count)
+
+TRUNCATE TABLE test_annie.prtl_pbcp5
+LOAD DATA LOCAL INFILE '/data/pocweb/prtl_pbcp5.txt'
+INTO TABLE test_annie.prtl_pbcp5
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (cohort_exit_year,date_type,qry_type,cd_discharge_type,age_grouping_cd,pk_gndr,cd_race_census,census_hispanic_latino_origin_cd,init_cd_plcm_setng,long_cd_plcm_setng,Removal_County_Cd,int_match_param_key,bin_dep_cd,max_bin_los_cd,bin_placement_cd,cd_reporter_type,bin_ihs_svc_cd,filter_access_type,filter_allegation,filter_finding,filter_service_type,filter_budget_type,mnth,discharge_count,cohort_count)
+
+TRUNCATE TABLE test_annie.prtl_pbcs2
+LOAD DATA LOCAL INFILE '/data/pocweb/prtl_pbcs2.txt'
+INTO TABLE test_annie.prtl_pbcs2
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (cohort_begin_date,date_type,qry_type,int_match_param_key,cd_sib_age_grp,cd_race_census,census_hispanic_latino_origin_cd,cd_office_collapse,filter_access_type,filter_allegation,filter_finding,cd_reporter_type,bin_ihs_svc_cd,initref,initfndref,cohortrefcount,cohortfndrefcount,case_founded_recurrence,case_repeat_referral,cnt_case,nxt_ref_within_min_month)
+
+TRUNCATE TABLE test_annie.prtl_pbcs3
+LOAD DATA LOCAL INFILE '/data/pocweb/prtl_pbcs3.txt'
+INTO TABLE test_annie.prtl_pbcs3
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (cohort_begin_date,date_type,qry_type,cd_race_census,census_hispanic_latino_origin_cd,cd_office_collapse,cd_sib_age_grp,int_match_param_key,cd_reporter_type,bin_ihs_svc_cd,filter_access_type,fl_cps_invs,fl_alternate_intervention,fl_frs,fl_risk_only,fl_cfws,filter_allegation,fl_any_legal,fl_phys_abuse,fl_sexual_abuse,fl_neglect,filter_finding,fl_founded_any_legal,fl_founded_phys_abuse,fl_founded_sexual_abuse,fl_founded_neglect,fl_family_focused_services,fl_child_care,fl_therapeutic_services,fl_family_home_placements,fl_behavioral_rehabiliation_services,fl_other_therapeutic_living_situations,fl_specialty_adolescent_services,fl_respite,fl_transportation,fl_adoption_support,filter_service_type,fl_budget_C12,fl_budget_C14,fl_budget_C15,fl_budget_C16,fl_budget_C18,fl_budget_C19,fl_uncat_svc,filter_budget_type,min_placed_within_month,cnt_case)
+
+TRUNCATE TABLE test_annie.prtl_pbcw3
+LOAD DATA LOCAL INFILE '/data/pocweb/prtl_pbcw3.txt'
+INTO TABLE test_annie.prtl_pbcw3
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (cohort_begin_date,date_type,qry_type,age_grouping_cd,pk_gndr,cd_race_census,census_hispanic_latino_origin_cd,init_cd_plcm_setng,long_cd_plcm_setng,Removal_County_Cd,int_match_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,cd_reporter_type,bin_ihs_svc_cd,filter_access_type,filter_allegation,filter_finding,filter_service_type,filter_budget_type,family_setting_cnt,family_setting_DCFS_cnt,family_setting_private_agency_cnt,relative_care,group_inst_care_cnt,total)
+
+TRUNCATE TABLE test_annie.prtl_pbcw4
+LOAD DATA LOCAL INFILE '/data/pocweb/prtl_pbcw4.txt'
+INTO TABLE test_annie.prtl_pbcw4
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (pit_date,date_type,qry_type,age_grouping_cd,pk_gndr,cd_race_census,census_hispanic_latino_origin_cd,init_cd_plcm_setng,long_cd_plcm_setng,removal_county_cd,int_match_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,cd_reporter_type,bin_ihs_svc_cd,filter_access_type,filter_allegation,filter_finding,filter_service_type,filter_budget_type,kincare,bin_sibling_group_size,all_sib_together,some_sib_together,no_sib_together,total)
+
+TRUNCATE TABLE test_annie.prtl_poc1ab
+LOAD DATA LOCAL INFILE '/data/pocweb/prtl_poc1ab.txt'
+INTO TABLE test_annie.prtl_poc1ab
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_type,date_type,start_date,bin_dep_cd,max_bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,age_grouping_cd,cd_race,census_hispanic_latino_origin_cd,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,int_match_param_key,filter_access_type,filter_allegation,filter_finding,filter_service_category,filter_service_budget,cnt_start_date,start_year)
+
+TRUNCATE TABLE test_annie.prtl_poc1ab_entries
+LOAD DATA LOCAL INFILE '/data/pocweb/prtl_poc1ab_entries.txt'
+INTO TABLE test_annie.prtl_poc1ab_entries
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_type,date_type,start_date,bin_dep_cd,max_bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,age_grouping_cd,cd_race,census_hispanic_latino_origin_cd,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,int_match_param_key,filter_access_type,filter_allegation,filter_finding,filter_service_category,filter_service_budget,cnt_entries,start_year)
+
+TRUNCATE TABLE test_annie.prtl_poc1ab_exits
+LOAD DATA LOCAL INFILE '/data/pocweb/prtl_poc1ab_exits.txt'
+INTO TABLE test_annie.prtl_poc1ab_exits
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_type,date_type,start_date,bin_dep_cd,max_bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,age_grouping_cd,cd_race,census_hispanic_latino_origin_cd,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,int_match_param_key,filter_access_type,filter_allegation,filter_finding,filter_service_category,filter_service_budget,cd_discharge_type,cnt_exits,start_year)
+
+TRUNCATE TABLE test_annie.prtl_poc1ab_ram
+LOAD DATA LOCAL INFILE '/data/pocweb/prtl_poc1ab_ram.txt'
+INTO TABLE test_annie.prtl_poc1ab_ram
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (int_match_param_key,max_bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,filter_access_type,filter_allegation,filter_finding,filter_service_category,filter_service_budget,qry_type,date_type,start_date,bin_dep_cd,cnt_start_date,start_year)
+
+TRUNCATE TABLE test_annie.prtl_poc2ab
+LOAD DATA LOCAL INFILE '/data/pocweb/prtl_poc2ab.txt'
+INTO TABLE test_annie.prtl_poc2ab
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_type,date_type,start_date,start_year,int_match_param_key,cd_reporter_type,fl_cps_invs,filter_access_type,filter_allegation,filter_finding,fl_phys_abuse,fl_sexual_abuse,fl_neglect,fl_any_legal,fl_founded_phys_abuse,fl_founded_sexual_abuse,fl_founded_neglect,fl_found_any_legal,cd_sib_age_group,cd_race_census,census_hispanic_latino_origin_cd,pk_gndr,cd_office,cnt_start_date,cnt_opened,cnt_closed)
+
+TRUNCATE TABLE test_annie.prtl_poc3ab
+LOAD DATA LOCAL INFILE '/data/pocweb/prtl_poc3ab.txt'
+INTO TABLE test_annie.prtl_poc3ab
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+ (qry_type,date_type,start_date,start_year,int_match_param_key,bin_ihs_svc_cd,cd_reporter_type,fl_cps_invs,filter_access_type,filter_allegation,filter_finding,filter_service_type,filter_budget_type,fl_phys_abuse,fl_sexual_abuse,fl_neglect,fl_any_legal,fl_founded_phys_abuse,fl_founded_sexual_abuse,fl_founded_neglect,fl_found_any_legal,fl_family_focused_services,fl_child_care,fl_therapeutic_services,fl_family_home_placements,fl_behavioral_rehabiliation_services,fl_other_therapeutic_living_situations,fl_specialty_adolescent_services,fl_respite,fl_transportation,fl_adoption_support,fl_budget_C12,fl_budget_C14,fl_budget_C15,fl_budget_C16,fl_budget_C18,fl_budget_C19,fl_uncat_svc,cd_sib_age_group,cd_race_census,census_hispanic_latino_origin_cd,cd_office,cnt_start_date,cnt_opened,cnt_closed)

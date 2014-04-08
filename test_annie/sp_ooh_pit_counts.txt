@@ -573,7 +573,7 @@ if NOT(trim(p_age_grouping_cd) ='0'
 end if; -- not all rows exist in cache
        
            select            
-                            poc1ab.qry_type   "qry_type_poc1"
+                            poc1ab.qry_type   "qry_type_first_all"
                             , poc1ab.date_type
                             , poc1ab.start_date  as "Month"
                             , poc1ab.age_grouping_cd  
