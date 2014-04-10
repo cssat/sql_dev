@@ -124,7 +124,7 @@ FROM base.rptPlacement P
 LEFT JOIN ( 
 	SELECT 
 		*
-		,RANK() OVER(PARTITION BY id_removal_episode_fact ORDER BY begin_date ASC, COALESCE(end_date, '12/31/9999') ASC) [PlacementOrderAsc]
+		,ROW_NUMBER() OVER(PARTITION BY id_removal_episode_fact ORDER BY begin_date ASC, COALESCE(end_date, '12/31/9999') ASC) [PlacementOrderAsc]
 	FROM base.rptPlacement_Events
 ) FP ON 
 	FP.id_removal_episode_fact = P.id_removal_episode_fact
