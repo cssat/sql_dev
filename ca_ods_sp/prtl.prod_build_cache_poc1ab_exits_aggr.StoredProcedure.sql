@@ -8,7 +8,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-create procedure [prtl].[prod_build_cache_poc1ab_exits_aggr](@permission_key datetime)
+alter procedure [prtl].[prod_build_cache_poc1ab_exits_aggr](@permission_key datetime)
 as
 if @permission_key = (select cutoff_date from ref_Last_DW_Transfer )
 begin
@@ -78,7 +78,7 @@ begin
 					  ,@bin_dep_cd=bin_dep_cd
 				FROM #params
 				where qry_ID=@loop
-
+						if @age_grouping_cd='1,2,3,4,5,6,7' set @age_grouping_cd='1,2,3,4';
 
  
 				exec prtl.sp_cache_poc1ab_exits_insert_only

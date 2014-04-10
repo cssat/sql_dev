@@ -113,7 +113,8 @@ begin
 			from prtl.ooh_dcfs_eps eps
 			join base.rptPlacement_Events evt on evt.id_removal_episode_fact=eps.id_removal_episode_fact
 			join #month m on  evt.begin_date < m.[month]
-				and evt.end_date >=m.[month];
+				and evt.end_date >=m.[month]
+				and eps.removal_dt< m.[month]  ;
 				
 			insert into #kids
 			select 
@@ -188,7 +189,8 @@ begin
 			from prtl.ooh_dcfs_eps eps
 			join base.rptPlacement_Events evt on evt.id_removal_episode_fact=eps.id_removal_episode_fact
 			join #year m on  evt.begin_date < m.[year]
-				and evt.end_date >=m.[year];
+				and evt.end_date >=m.[year]
+				and eps.removal_dt < m.[YEAR]
 --  first only
 		insert into #kids
 			select 
@@ -382,18 +384,14 @@ begin
 			,count(pe.id_placement_fact) over (partition by pe.id_removal_episode_fact order by pe.begin_date,pe.end_date asc) as cnt_plc
 			,max(los.bin_los_cd) over (partition by pe.id_placement_fact order by pe.begin_date ) [max_bin_los_cd]
 		 from  base.rptPlacement_Events pe  
-		 join (select distinct id_placement_fact,point_in_time_date,dur_days from #kids) k on k.id_placement_fact=pe.id_placement_fact
-		 join ref_filter_los los on k.dur_days between los.dur_days_from and los.dur_days_thru
+		  join (select distinct id_placement_fact,point_in_time_date,dur_days from #kids) k on k.id_placement_fact=pe.id_placement_fact
+		join ref_filter_los los on k.dur_days between los.dur_days_from and los.dur_days_thru
 				-- order by id_removal_episode_fact
 		 ) q on q.id_placement_fact=kids.id_placement_fact
 		 and q.id_removal_episode_fact=kids.id_removal_episode_fact
-		  join ref_filter_nbr_placement plc on q.cnt_plc between plc.nbr_placement_from and plc.nbr_placement_thru
+		  left join ref_filter_nbr_placement plc on q.cnt_plc between plc.nbr_placement_from and plc.nbr_placement_thru
 		  and plc.bin_placement_cd <> 0
-		
-		--select date_type,qry_type,point_in_time_date,id_prsn_child,count(*)
-		-- from #kids 
-		-- group by date_type,qry_type,point_in_time_date,id_prsn_child
-		-- having count(*) > 1
+
 		
 		
 		-- 
@@ -569,6 +567,15 @@ begin
            ,[fl_out_trial_return_home]	from #kids;
 
 			drop table #kids;
+
+			update statistics prtl.ooh_point_in_time_child;
+
+		update prtl.prtl_tables_last_update
+	  set last_build_date=getdate()
+	  ,row_count=(select count(*) from prtl.ooh_point_in_time_child)
+		where tbl_id=46
+	
+
 		end
 	else
 		begin
