@@ -53,6 +53,11 @@ begin
 		
 		truncate table prtl.cache_poc1ab_exits_params;
 
+		update #params
+		set age_grouping_cd='1,2,3,4,5,6'
+		where age_grouping_cd <> '0'
+
+
 		set @loop =1 
 
 		while @loop <=@max_qry_id
