@@ -1,0 +1,3280 @@
+﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="94d7046e-f760-4de3-ac0a-06466a6d2057" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>POC Cube</ID>
+  <Name>POC Cube</Name>
+  <CreatedTimestamp>0001-01-01T08:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T08:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="40" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-12099" scrolltop="-440" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="75" x="34978" y="21061" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="Fact.rptPlacement" left="7127" top="11100" logicalid="18" controlid="1" masterid="0" hint1="0" hint2="0" width="4842" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="00080000ea12000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_Cube_rptPlacement_Fact" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="Dim.Calendar" left="14369" top="7400" logicalid="19" controlid="2" masterid="0" hint1="0" hint2="0" width="7435" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000800000b1d000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_Cube_CALENDAR_DIM" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline" left="11669" top="11650" logicalid="20" controlid="3" masterid="0" hint1="0" hint2="0" width="3000" height="850" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="15856113" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[Cube_rptPlacement_Fact-Cube_CALENDAR_DIM]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="2" destid="1" sourceattachpoint="42" destattachpoint="21" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="14369" y="12100" />
+              <point x="13169" y="12100" />
+              <point x="13169" y="11950" />
+              <point x="11969" y="11950" />
+            </connector>
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline" left="11669" top="11100" logicalid="21" controlid="4" masterid="0" hint1="0" hint2="0" width="3000" height="850" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="15856113" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[Cube_rptPlacement_Fact-Cube_CALENDAR_DIM1]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="2" destid="1" sourceattachpoint="40" destattachpoint="19" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="14369" y="11550" />
+              <point x="13169" y="11550" />
+              <point x="13169" y="11400" />
+              <point x="11969" y="11400" />
+            </connector>
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="Dim.Location" left="11860" top="0" logicalid="22" controlid="5" masterid="0" hint1="0" hint2="0" width="3704" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="00080000780e000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_Cube_LOCATION_DIM" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline" left="9798" top="4501" logicalid="23" controlid="6" masterid="0" hint1="0" hint2="0" width="4314" height="6899" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="15856113" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[Cube_rptPlacement_Fact-Cube_LOCATION_DIM]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="5" destid="1" sourceattachpoint="7" destattachpoint="10" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="13712" y="5000" />
+              <point x="13712" y="8050" />
+              <point x="10098" y="8050" />
+              <point x="10098" y="11100" />
+            </connector>
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="Dim.People" left="3533" top="0" logicalid="24" controlid="7" masterid="0" hint1="0" hint2="0" width="5927" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000800002717000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_Cube_PEOPLE_DIM" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline" left="7598" top="4501" logicalid="25" controlid="8" masterid="0" hint1="0" hint2="0" width="1498" height="6899" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="15856113" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[Cube_rptPlacement_Fact-Cube_PEOPLE_DIM]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="7" destid="1" sourceattachpoint="19" destattachpoint="2" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="8696" y="5000" />
+              <point x="8696" y="8050" />
+              <point x="7898" y="8050" />
+              <point x="7898" y="11100" />
+            </connector>
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline" left="7048" top="4501" logicalid="26" controlid="9" masterid="0" hint1="0" hint2="0" width="1498" height="6899" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="15856113" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[Cube_rptPlacement_Fact-Cube_PEOPLE_DIM1]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="7" destid="1" sourceattachpoint="17" destattachpoint="0" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="8146" y="5000" />
+              <point x="8146" y="8050" />
+              <point x="7348" y="8050" />
+              <point x="7348" y="11100" />
+            </connector>
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="Dim.Provider" left="14369" top="14800" logicalid="27" controlid="10" masterid="0" hint1="0" hint2="0" width="8070" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="00080000861f000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_Cube_PROVIDER_DIM" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline" left="11669" top="14950" logicalid="28" controlid="11" masterid="0" hint1="0" hint2="0" width="3000" height="2750" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="15856113" linestyle="0" linerender="2" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[Cube_rptPlacement_Fact-Cube_PROVIDER_DIM]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="10" destid="1" sourceattachpoint="38" destattachpoint="33" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="14369" y="17300" />
+              <point x="13169" y="17300" />
+              <point x="13169" y="15250" />
+              <point x="11969" y="15250" />
+            </connector>
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="Dim.Worker" left="2303" top="22200" logicalid="29" controlid="12" masterid="0" hint1="0" hint2="0" width="5318" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="00080000c614000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_Cube_WORKER_DIM" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline" left="6763" top="15800" logicalid="30" controlid="13" masterid="0" hint1="0" hint2="0" width="1435" height="6900" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="15856113" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[Cube_rptPlacement_Fact-Cube_WORKER_DIM]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="12" destid="1" sourceattachpoint="16" destattachpoint="3" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="7162" y="22200" />
+              <point x="7162" y="19150" />
+              <point x="7898" y="19150" />
+              <point x="7898" y="16100" />
+            </connector>
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline" left="6213" top="15800" logicalid="31" controlid="14" masterid="0" hint1="0" hint2="0" width="1435" height="6900" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="15856113" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[Cube_rptPlacement_Fact-Cube_WORKER_DIM1]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="12" destid="1" sourceattachpoint="14" destattachpoint="1" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="6612" y="22200" />
+              <point x="6612" y="19150" />
+              <point x="7348" y="19150" />
+              <point x="7348" y="16100" />
+            </connector>
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline" left="8148" top="4501" logicalid="32" controlid="15" masterid="0" hint1="0" hint2="0" width="948" height="6899" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="15856113" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[Cube_rptPlacement_Fact-Cube_PEOPLE_DIM2]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="7" destid="1" sourceattachpoint="19" destattachpoint="4" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="8696" y="5000" />
+              <point x="8696" y="8050" />
+              <point x="8448" y="8050" />
+              <point x="8448" y="11100" />
+            </connector>
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="Dim.Age" left="0" top="11100" logicalid="33" controlid="16" masterid="0" hint1="0" hint2="0" width="4727" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000800007712000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_Cube_age_dim" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline" left="4427" top="11001" logicalid="34" controlid="17" masterid="0" hint1="0" hint2="0" width="3000" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="15856113" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[Cube_rptPlacement_Fact-Cube_age_dim]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="16" destid="1" sourceattachpoint="19" destattachpoint="18" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="4727" y="11400" />
+              <point x="7127" y="11400" />
+            </connector>
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="Dim.rptPlacement" left="10021" top="22200" logicalid="36" controlid="19" masterid="0" hint1="0" hint2="0" width="6773" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="00080000751a000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_Cube_rptPlacement_Dim" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline" left="10898" top="15800" logicalid="38" controlid="21" masterid="0" hint1="0" hint2="0" width="2909" height="6900" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="15856113" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[Cube_rptPlacement_Fact-Cube_rptPlacement_Dim]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="19" destid="1" sourceattachpoint="10" destattachpoint="15" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="13407" y="22200" />
+              <point x="13407" y="19150" />
+              <point x="11198" y="19150" />
+              <point x="11198" y="16100" />
+            </connector>
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline" left="4427" top="11551" logicalid="39" controlid="22" masterid="0" hint1="0" hint2="0" width="3000" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="15856113" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[Cube_rptPlacement_Fact-Cube_age_dim1]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="16" destid="1" sourceattachpoint="21" destattachpoint="20" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="4727" y="11950" />
+              <point x="7127" y="11950" />
+            </connector>
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-12099</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>-440</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>75</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T08:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Dimensions>
+    <Dimension dwd:design-time-name="621ea5fa-cb4f-4818-a383-b2668d7da5ba">
+      <ID>Age At Exit Mos</ID>
+      <Name>Age At Exit</Name>
+      <DimensionID>Age Dimension</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="0dabf1fb-6cb7-4ff3-9164-40e4e5e7fe7b">
+          <AttributeID>Age Mo</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="29a033de-17f9-4616-b0fb-f92a5ac86a2c">
+          <AttributeID>Age Yr</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6fa1e3b2-7842-4d9c-8736-5ce8446d4a6d">
+          <AttributeID>Census Child Group Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="ebd0fdf4-5462-44cf-bf0d-712ba4826403">
+          <AttributeID>Census 20 Group Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="2284e206-2814-45bb-afe8-07ad0675d4c7">
+          <AttributeID>Census All Group Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="4212c5e4-4f8a-4e95-a73a-12be95886b2f">
+          <AttributeID>Developmental Age Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="59e4a9d6-3dd9-47f8-9d99-52b0b3b67a59">
+          <AttributeID>School Age Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="d72bf7de-010f-4f9a-a8b2-9e98aec687d3">
+          <AttributeID>Cdc Age Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="fda72f3b-a70d-49cf-bea5-c1910242e60b">
+          <AttributeID>Cdc Census Mix Age Cd</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="59dd9cfe-49ca-4cab-8caf-5cc776127db1">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="73479ed6-23a6-4c0f-a26d-2443b3a642e9">
+          <HierarchyID>Hierarchy 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="7880d3ba-d29e-4929-b2e7-ae5038878655">
+          <HierarchyID>Hierarchy 2</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="e5a7eedb-23d4-4ccb-b96a-aeeb20efae22">
+          <HierarchyID>Hierarchy 3</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="7b0ac290-aeb5-4723-8683-691117dd6c27">
+          <HierarchyID>Hierarchy 4</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="0c5120fb-1b13-4191-8713-5a8ee7a9794b">
+          <HierarchyID>Hierarchy 5</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="3e9f21f9-913e-424e-9af5-d4f39c4e78a6">
+          <HierarchyID>Hierarchy 6</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="a19c476b-64c9-46bb-85fe-4a59743e322f">
+          <HierarchyID>Hierarchy 7</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="0e49f247-4072-43e0-87e4-4c0b61777141">
+          <HierarchyID>Hierarchy 8</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="361e3de9-95a0-4f6d-9bd0-67a2463a40a7">
+      <ID>Age At Removal Mos</ID>
+      <Name>Age At Removal</Name>
+      <DimensionID>Age Dimension</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="113cf4ae-56e7-4e04-b3b8-a74cfb226849">
+          <AttributeID>Age Mo</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a23b81c9-cd89-4003-ab15-20df00c7055f">
+          <AttributeID>Age Yr</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="ad41b8aa-4494-43cc-a20e-4ef9e237f12a">
+          <AttributeID>Census Child Group Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="8e54752c-f5cb-47b8-8960-3805bdfa3aa1">
+          <AttributeID>Census 20 Group Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="4407856b-a627-4676-af5a-f0ef6abf6885">
+          <AttributeID>Census All Group Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="50feecc5-dc36-4778-b264-2b00cf42c4af">
+          <AttributeID>Developmental Age Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="9c5f13db-4eba-400e-bd39-85cb6026108c">
+          <AttributeID>School Age Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="d35b3cf9-5404-48ca-8ec5-c721a09640cc">
+          <AttributeID>Cdc Age Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="2afaf59e-029d-4f38-b53d-7396aa58bad2">
+          <AttributeID>Cdc Census Mix Age Cd</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="b9d4831b-df29-4caf-93e8-90123848970b">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="fc26e8fa-d057-4c71-af57-d2a5de19ab32">
+          <HierarchyID>Hierarchy 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="4ce5b63d-5466-4e72-8b0d-e51855686eb3">
+          <HierarchyID>Hierarchy 2</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="8aa5ec79-716b-4f05-9461-cbe5f520ce4a">
+          <HierarchyID>Hierarchy 3</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="ce6cd886-d7a7-415e-9ce2-ddb82e1bee90">
+          <HierarchyID>Hierarchy 4</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="c07e7f1f-60b4-46f9-86db-5ddf1a6bba8f">
+          <HierarchyID>Hierarchy 5</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="19355550-e598-4abd-afb3-354ace5857c6">
+          <HierarchyID>Hierarchy 6</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="3da3c788-6515-4b08-8ecc-1b8cf180e5ac">
+          <HierarchyID>Hierarchy 7</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="5f5f626f-e12a-4518-9956-f8b01b9e3e9c">
+          <HierarchyID>Hierarchy 8</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="c95e2580-5e47-482f-bc5f-66145fa14e29">
+      <ID>Id Calendar Dim Afcars End</ID>
+      <Name>AFCARS End</Name>
+      <DimensionID>Calendar Dimension</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="261e9c67-5c34-491d-b892-72599d1770d5">
+          <AttributeID>ID CALENDAR DIM</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="14a4725e-9488-4ea0-afec-8074bb7f2cb6">
+          <AttributeID>CALENDAR DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="714f9394-3722-450c-a497-51788e203796">
+          <AttributeID>YEAR YYYY</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="5c359c64-5ee6-4537-a896-a3ba4d023286">
+          <AttributeID>MONTH MM</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f12fe333-d449-413f-9577-6451cb8ef638">
+          <AttributeID>DAY DD</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f40d2e9c-b84e-4a29-9029-4b2c984d7a16">
+          <AttributeID>YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="664a4f10-0896-4694-8315-0016643f579a">
+          <AttributeID>YEAR START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="7751d82f-6574-4c44-803d-6ccb1a1225c4">
+          <AttributeID>QUARTER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="716ee8e6-e7c6-4ae9-87bb-ab313ff1792b">
+          <AttributeID>QUARTER START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="63f07e05-450c-45c0-88be-854a472e24ec">
+          <AttributeID>MONTH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c010cc65-f058-4870-9dc6-1ae9772fb3b2">
+          <AttributeID>MONTH START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3ee20b51-dbc9-4d27-a13e-ed7a5a89949e">
+          <AttributeID>WEEK</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="8b87fc2d-4f8c-4cc3-9fee-813d3e7bde96">
+          <AttributeID>WEEK START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="cf24d38a-c438-4da0-9a39-2100b8c52588">
+          <AttributeID>DAY OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="2372e112-f6e7-47e6-8fec-c8ec880f2ef2">
+          <AttributeID>DAY OF QUARTER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="b92d5d59-b701-43eb-aec4-8b0348a54781">
+          <AttributeID>DAY OF MONTH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="fdfb9f81-c923-492f-a56f-d806d3540806">
+          <AttributeID>DAY OF WEEK</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="7031a2bc-a5df-4273-a942-717923c3b94c">
+          <AttributeID>WEEK OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="4d444833-1345-4b29-854c-5f063c6c17d1">
+          <AttributeID>MONTH OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f168e275-c338-492f-a90e-abf2cb999247">
+          <AttributeID>MONTH OF QUARTER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c42e6053-fb06-4ba0-9c28-9255ed20ac65">
+          <AttributeID>QUARTER OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="d90d67f3-0afb-4ddb-b2c2-739f5b8075f5">
+          <AttributeID>FEDERAL FISCAL YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="5a82a346-a5ec-4ee7-b602-f5604a3d809c">
+          <AttributeID>FEDERAL FISCAL YEAR START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a660914d-baaf-472d-aefe-529a35926896">
+          <AttributeID>FEDERAL FISCAL QUARTER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="db056486-1d2f-4946-83fa-13f8ef016c55">
+          <AttributeID>FEDERAL FISCAL QUARTER START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="9b5c4a34-b5fe-4942-971a-7fc9c9b76ec2">
+          <AttributeID>FEDERAL FISCAL MONTH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f1a35f0c-1200-47d8-8e70-28e7b7240e9f">
+          <AttributeID>FEDERAL FISCAL MONTH START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="47e5f0e5-0033-4dff-9c52-5f99d1342a00">
+          <AttributeID>FEDERAL FISCAL WEEK</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="4f0bf9d0-9699-4bd7-b6ba-00b621542cbc">
+          <AttributeID>FEDERAL FISCAL WEEK START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="70377c91-bde9-46be-81f1-184796a9f3c4">
+          <AttributeID>FEDERAL FISCAL DAY</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="2a82565c-ccc7-458b-91d8-97da7190d022">
+          <AttributeID>FEDERAL FISCAL DAY DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a564240d-d7d9-494b-b040-f9653b4b7d9d">
+          <AttributeID>FEDERAL FISCAL DAY OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="fdebb3f3-e8b9-41f1-9fc8-31a15836541a">
+          <AttributeID>FEDERAL FISCAL DAY OF QUARTER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a4b65221-8052-48fb-b877-405bf8ec93ff">
+          <AttributeID>FEDERAL FISCAL DAY OF MONTH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="734b73bc-3d83-4af5-9ed4-dec1c21c432b">
+          <AttributeID>FEDERAL FISCAL DAY OF WEEK</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c43ac3f0-9dd6-4863-a46b-43434cc1729b">
+          <AttributeID>FEDERAL FISCAL WEEK OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="deb37e6b-c7bd-43d1-8db7-4f44e196e855">
+          <AttributeID>FEDERAL FISCAL MONTH OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="26817632-8730-4af0-828e-e939872431fb">
+          <AttributeID>FEDERAL FISCAL MONTH OF QUARTER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="346de9e0-51ee-4f5d-97e6-24a3b0e7c6c3">
+          <AttributeID>FEDERAL FISCAL QUARTER OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f0c74dbf-f697-483c-ab8f-05b5eda47765">
+          <AttributeID>STATE FISCAL YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="b94567a9-5538-4f28-a7fb-26991b11b37c">
+          <AttributeID>STATE FISCAL YEAR START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6ab0ba95-0ef9-492b-ae6c-bedc02eba135">
+          <AttributeID>STATE FISCAL QUARTER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="818b383a-39bd-426d-b875-669f62e8e89b">
+          <AttributeID>STATE FISCAL QUARTER START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a2876a1c-1f0b-425e-a9bc-02ea60354c0e">
+          <AttributeID>STATE FISCAL MONTH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="5e3f3a6b-2473-466a-bdce-e12135511c0f">
+          <AttributeID>STATE FISCAL MONTH START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="22f3ff01-94bc-4f8f-aa8a-919e01283140">
+          <AttributeID>STATE FISCAL WEEK</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="e132934d-9866-486f-99e3-d71f259a4857">
+          <AttributeID>STATE FISCAL WEEK START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6e1cd6ff-e7f0-4a39-abf2-d6482f8c8ddd">
+          <AttributeID>STATE FISCAL DAY</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="8734425e-e4da-44eb-af07-02a589314360">
+          <AttributeID>STATE FISCAL DAY DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c7ce4856-b728-425b-9479-c1e90d2d56a8">
+          <AttributeID>STATE FISCAL DAY OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="287e5aae-e53a-48af-9d4a-85dfeecc9ee3">
+          <AttributeID>STATE FISCAL DAY OF QUARTER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="122b4f74-b893-4f89-bd22-672298f0dc1b">
+          <AttributeID>STATE FISCAL DAY OF MONTH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="98677ed3-1a94-47b1-bb5b-56e30db039a4">
+          <AttributeID>STATE FISCAL DAY OF WEEK</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="77947dd1-d362-4c74-9579-174f2436fcb1">
+          <AttributeID>STATE FISCAL WEEK OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a4cd8145-54f8-4f75-bd35-1cb88064de63">
+          <AttributeID>STATE FISCAL MONTH OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="519cc72a-0540-4b10-8b1f-3599cd119dcf">
+          <AttributeID>STATE FISCAL MONTH OF QUARTER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="de51b9cd-0c53-41eb-8a95-e1655e0bbca1">
+          <AttributeID>STATE FISCAL QUARTER OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="bb7d8855-1066-47d0-a5cc-8f9d9e518699">
+          <AttributeID>STATE HOLIDAY FLAG</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3ad2d053-4114-464c-8115-b59a9c1012e6">
+          <AttributeID>WORKDAY FLAG</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="4718ecda-1afd-4c4b-bb26-c1124713e494">
+          <AttributeID>DST FLAG</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="b7306586-fce0-4a78-9405-b3aa17f7cd41">
+          <AttributeID>MONTH END FLAG</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="95051a0d-a919-4fdb-a2d4-fcc794923e18">
+          <AttributeID>CALENDAR DATE YYYY MM DD</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c7ae83b5-2e9d-4f07-9a76-f8331cebf904">
+          <AttributeID>CALENDAR DATE MM DD YYYY</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="a7383cce-641c-4533-8ee7-c59982099cae">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="be51ad24-64a1-41c6-99fd-5cc90831d9e0">
+          <HierarchyID>Hierarchy 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="a87dfe38-50d3-4999-8950-2569787d2a58">
+          <HierarchyID>Hierarchy 2</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="ecd47d29-dabe-4215-9324-cefe22b662bd">
+          <HierarchyID>Hierarchy 3</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="975279f6-ccef-405b-845e-75aece9d5681">
+          <HierarchyID>Hierarchy 4</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="2a968498-68f6-487f-81f6-4506e70716ca">
+          <HierarchyID>Hierarchy 5</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="5c4d7b18-8d36-4978-88cb-6bd3389c356f">
+      <ID>Id Calendar Dim Begin</ID>
+      <Name>Begin</Name>
+      <DimensionID>Calendar Dimension</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="8c6a60f4-2318-4623-ae3c-582d09d811d0">
+          <AttributeID>ID CALENDAR DIM</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="474b693f-a62a-48ae-9f32-fe288d15723f">
+          <AttributeID>CALENDAR DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="cfd7daec-f2de-42ef-ae73-d62d9b232512">
+          <AttributeID>YEAR YYYY</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="7bbbe689-581a-46bd-bc29-ba1c7b8fc677">
+          <AttributeID>MONTH MM</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="516f9d98-0ff5-466e-9048-2bca791a541f">
+          <AttributeID>DAY DD</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f325677f-2ab9-4a61-8c92-99568a202b93">
+          <AttributeID>YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="75063c6d-7a28-4e5a-9776-61afd021363e">
+          <AttributeID>YEAR START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="887b1768-a0cd-4c79-b6c3-40a1ac0672f9">
+          <AttributeID>QUARTER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a6721d0d-92fc-4420-92c1-a822fc451e77">
+          <AttributeID>QUARTER START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="58a567c2-7147-492a-bd85-e9327c4be28b">
+          <AttributeID>MONTH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="db1ed3bf-4c4f-4fdb-ac4f-0a55dedd58e8">
+          <AttributeID>MONTH START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="4eae480d-8667-404a-9385-52305fcd130d">
+          <AttributeID>WEEK</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="0a478a47-5b69-4c0e-81e4-7459d88b0566">
+          <AttributeID>WEEK START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3eeaf9e3-b785-4ba8-b536-5879958d3050">
+          <AttributeID>DAY OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="49825b7e-aced-409f-bab5-2ae258376560">
+          <AttributeID>DAY OF QUARTER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6e7ba350-1021-451a-b499-0cea446e6a77">
+          <AttributeID>DAY OF MONTH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="57fc119d-5f71-40c4-83e8-34173beb324e">
+          <AttributeID>DAY OF WEEK</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="39475e31-bedc-4a1a-817f-b2ab4fef4bf1">
+          <AttributeID>WEEK OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6ba9d870-796d-4eb6-87a1-93da7c0cc849">
+          <AttributeID>MONTH OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="866ed7c7-f93b-4664-818a-9260004d1f65">
+          <AttributeID>MONTH OF QUARTER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="765b3613-d883-4b97-b105-5e09defa4c08">
+          <AttributeID>QUARTER OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="bc0a60d8-93d2-48ab-bb97-6922afa44881">
+          <AttributeID>FEDERAL FISCAL YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="389416a9-58ca-4c40-8fce-8fb10391ffeb">
+          <AttributeID>FEDERAL FISCAL YEAR START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c69a6906-d9a8-47cd-a7ce-439090cd85ba">
+          <AttributeID>FEDERAL FISCAL QUARTER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6b8f6025-0efa-4ae4-8247-71b50eab77c9">
+          <AttributeID>FEDERAL FISCAL QUARTER START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="d45999db-58b2-4c1c-a9b0-f74159c4eed2">
+          <AttributeID>FEDERAL FISCAL MONTH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c100dc3a-5811-4abd-b418-4b8dd664116e">
+          <AttributeID>FEDERAL FISCAL MONTH START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="13a1f0c1-906f-49b7-a6f7-6cbf1187f5bc">
+          <AttributeID>FEDERAL FISCAL WEEK</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="478e9272-daa2-485b-9dd4-ccff74f41223">
+          <AttributeID>FEDERAL FISCAL WEEK START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="b3a99e33-eefc-4107-9679-60f5c0fa029b">
+          <AttributeID>FEDERAL FISCAL DAY</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="2d406e26-b8ef-4539-8c3c-f6ec98c472bc">
+          <AttributeID>FEDERAL FISCAL DAY DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="e106b185-72b3-4135-a92c-e8a9b2909cf3">
+          <AttributeID>FEDERAL FISCAL DAY OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="11ca238a-d583-47b9-bd1c-77fe36a05d34">
+          <AttributeID>FEDERAL FISCAL DAY OF QUARTER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="9a0ad301-ad21-4c49-a311-7eabe0f2bd90">
+          <AttributeID>FEDERAL FISCAL DAY OF MONTH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="055e1e0b-6b72-4f53-a6e3-c6940fdb3be3">
+          <AttributeID>FEDERAL FISCAL DAY OF WEEK</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f5d8ff31-cd2e-4737-9d6d-a0af069f8890">
+          <AttributeID>FEDERAL FISCAL WEEK OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="32cb2277-0a0a-4a0e-994d-6a88291f8638">
+          <AttributeID>FEDERAL FISCAL MONTH OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="62956173-1da9-4346-bed6-6775cf83e890">
+          <AttributeID>FEDERAL FISCAL MONTH OF QUARTER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="093eab87-365b-41d4-a630-cffbc83f2e00">
+          <AttributeID>FEDERAL FISCAL QUARTER OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="8dc6a2ba-f936-4786-a242-b4243beae981">
+          <AttributeID>STATE FISCAL YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="fe445da1-1f8b-4ac7-828d-d05c200512f1">
+          <AttributeID>STATE FISCAL YEAR START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="592f4aa6-0684-40d7-8b43-c10250ed8d52">
+          <AttributeID>STATE FISCAL QUARTER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f4b41a17-5e97-48c3-910d-3f00b38e64f0">
+          <AttributeID>STATE FISCAL QUARTER START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="132fe85e-0d50-4ea4-a221-5e7df2d012cd">
+          <AttributeID>STATE FISCAL MONTH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3943b29a-a0b0-4d03-bed2-af29b93f9210">
+          <AttributeID>STATE FISCAL MONTH START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="021be2ac-c147-4e74-8462-ac8cac658b5a">
+          <AttributeID>STATE FISCAL WEEK</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="25d51a79-3aaf-4e6c-8220-69fd422595e2">
+          <AttributeID>STATE FISCAL WEEK START DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="295b1936-575e-443c-9550-97de7716e651">
+          <AttributeID>STATE FISCAL DAY</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6308a5a6-9bae-4990-a348-da553e313b0e">
+          <AttributeID>STATE FISCAL DAY DATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="78d77cd7-411c-4b5a-9197-4be412005f61">
+          <AttributeID>STATE FISCAL DAY OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="dd28aa93-423c-4d23-a7dd-e7155382958e">
+          <AttributeID>STATE FISCAL DAY OF QUARTER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="025e3d50-5ac5-4bcb-b796-154113ff4e64">
+          <AttributeID>STATE FISCAL DAY OF MONTH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="e0aa2cc6-2d4f-4fa2-a40b-fddc7b15a6e7">
+          <AttributeID>STATE FISCAL DAY OF WEEK</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="55655985-e182-44dc-8940-c9ec7f42e8ac">
+          <AttributeID>STATE FISCAL WEEK OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="8e8b99c1-6d71-41aa-8e8c-be59e4d24bf5">
+          <AttributeID>STATE FISCAL MONTH OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="311d15e8-0fc8-4115-a75c-76b1e255c4e1">
+          <AttributeID>STATE FISCAL MONTH OF QUARTER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="5b243288-d0bc-42a1-a398-46adc7b537a9">
+          <AttributeID>STATE FISCAL QUARTER OF YEAR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="21258bc2-8f5f-4ed6-b5c2-587a1c1f0f32">
+          <AttributeID>STATE HOLIDAY FLAG</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="02a069ef-78a0-4dcc-8064-6b86dad942af">
+          <AttributeID>WORKDAY FLAG</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6e133368-5a67-4163-ad1a-8ffcff5a4912">
+          <AttributeID>DST FLAG</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f6534a65-62e3-4914-a234-9c6d6857be2b">
+          <AttributeID>MONTH END FLAG</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3c17dda6-b40f-408f-b256-c8d0ba26168c">
+          <AttributeID>CALENDAR DATE YYYY MM DD</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="de68e9a8-e825-4863-bf50-790527521b1e">
+          <AttributeID>CALENDAR DATE MM DD YYYY</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="d8c101d2-5f54-479b-b4c9-3f266ac289e4">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="c24ae049-8854-4646-af7f-d38f03f01105">
+          <HierarchyID>Hierarchy 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="0c474945-7cd9-4dc0-98b9-96b516c117f3">
+          <HierarchyID>Hierarchy 2</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="b4020274-4b06-4a64-9c5d-4d23e509816a">
+          <HierarchyID>Hierarchy 3</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="aa3ca0f2-b6b9-41ed-bad1-034d1bb240d5">
+          <HierarchyID>Hierarchy 4</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="f4ce7f4b-a288-4e89-bc3d-761d9ebb141c">
+          <HierarchyID>Hierarchy 5</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="e18b0f27-15ee-48ff-952c-9cb47ed091c6">
+      <ID>Location Dimension</ID>
+      <Name>Location Dimension</Name>
+      <DimensionID>Location Dimension</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="7a204b8f-468c-449a-b63f-d49c86128550">
+          <AttributeID>ID LOCATION DIM</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c2e7e08d-34a7-4dd6-9617-dd7e7ed55445">
+          <AttributeID>CD CNTY</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="69a4d112-4d27-465d-9b2b-ad72ff0aca10">
+          <AttributeID>CD LCTN</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="564aae3b-d804-466d-a5fc-1775e8076eb1">
+          <AttributeID>CD OFFICE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="5f8d9b94-00a6-4eea-8818-bd590dc8c4f1">
+          <AttributeID>CD REGION</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="b3c1de73-0eb9-4d1f-ac1b-83c820e5e72b">
+          <AttributeID>CD UNIT</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="ac9bf40c-c76b-4cba-b622-8dd6f7a57512">
+          <AttributeID>CD ACTIVE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="87cd0576-ce08-4bd3-87d2-a3d065bd39af">
+          <AttributeID>CD RGN</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="d2d5af61-87c8-4942-8510-294b1bbcc984">
+          <AttributeID>CD STATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="9ba5ce6a-f41d-4af9-9d49-c30be46bb2bd">
+          <AttributeID>CD ZIP</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="4dc527af-170b-4888-af70-4a03c379f77b">
+          <AttributeID>Zip 5</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="37286edb-7699-4826-82b3-3aed97b9e0ee">
+          <AttributeID>CD CITY TYPE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="9688a822-1108-4cfb-bd28-960e2152fccc">
+          <AttributeID>Old Region Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="9177c137-197b-4b68-b5dd-7fab5ecc9284">
+          <AttributeID>Court Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c270cbfb-6d5c-41da-a223-db9517655d0b">
+          <AttributeID>Cd Office Collapse</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="253dedcd-e419-416d-92a5-e494cc08cd23">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="98e05762-0655-4fce-8641-0e299b66ef47">
+          <HierarchyID>Hierarchy 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="0754b733-15c7-4628-a161-8c8546f0fe27">
+          <HierarchyID>Hierarchy 2</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="3e4519fd-59e5-4040-84d4-a47aa07718d0">
+          <HierarchyID>Hierarchy 3</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="6894d909-8932-4e29-a4ab-57687e4312d4">
+          <HierarchyID>Hierarchy 4</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="9214b422-0865-47a1-933a-074e0d9e69c2">
+      <ID>Child</ID>
+      <Name>Child</Name>
+      <DimensionID>People Dimension</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="84dbd4ad-b577-4ef9-9be8-35e7da3defc7">
+          <AttributeID>ID PEOPLE DIM</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="48577e7f-bb5f-4c31-bb07-e7fb21ab6df2">
+          <AttributeID>ID PRSN</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="47d3d737-9430-468c-b03f-64ba579e76ae">
+          <AttributeID>TX BRAAM RACE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f560300b-a988-4f8a-816d-77f0e29667c7">
+          <AttributeID>CD CMBN ETHN</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="677762e8-9fb4-452f-bd98-95bc4927c087">
+          <AttributeID>CD CTZN</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="4f8d1a16-81f2-403d-a37e-eb7753c465d7">
+          <AttributeID>CD GNDR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="dc12a0c5-e021-48cf-9ac3-af15b0d7d986">
+          <AttributeID>CD HSPNC</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="698a9023-dcec-4488-9e89-7d1153c74372">
+          <AttributeID>CD LICWAC</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="ee8d2f97-3afb-4ff2-b2ca-4a83653d7ef9">
+          <AttributeID>CD LNG PRFR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="ade2539a-1010-4f85-92ac-0c3c3f3d2411">
+          <AttributeID>CD LNG SECONDARY</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6399e311-33db-4c7b-8da4-ba9a31ba31a6">
+          <AttributeID>CD LTD ENGLISH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="9ae9d863-b6b8-4fd9-afff-7a92f9de2ecc">
+          <AttributeID>CD MRTL STAT</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="bd688dff-965b-4ac2-869b-6a4af922de91">
+          <AttributeID>TX MULTIRACE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3e4dd205-72c0-488f-8052-a3ffaf6a6cd0">
+          <AttributeID>CD RACE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6467a297-1471-4ce5-a281-76bdfe7fefd8">
+          <AttributeID>CD RACE FIVE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="9171d4e0-7bc6-45ea-a2a8-9725e67556ad">
+          <AttributeID>CD RACE FOUR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="2eb7a134-ce73-4aaf-896e-88880b06158f">
+          <AttributeID>CD RACE THREE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3646aeed-af48-46e8-b540-eaf072e227d9">
+          <AttributeID>CD RACE TWO</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="95b9fe85-0945-44cf-aaab-5b9aa8b8de08">
+          <AttributeID>CD RLGN</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="e485c6e5-bceb-4316-8719-f711bca86b97">
+          <AttributeID>CD STATE RSDNT</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1b155535-c3c3-4b4c-b7b0-659ba37e26d7">
+          <AttributeID>FL ADOPTION MATCH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1cee06f1-1090-49be-836f-a9e66ac4c172">
+          <AttributeID>FL DANGER TO WORKER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c6d90026-a4f1-43ea-a4b1-e26564addf91">
+          <AttributeID>FL DECEASED</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="10e42002-35c4-45a7-8b19-f3d735b261a5">
+          <AttributeID>FL DT BIRTH ESTIMATED</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="77ee49b3-8727-491b-a60f-383f305deb7f">
+          <AttributeID>FL EMOTION DSTRBD</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="92135790-9850-4c0c-b89f-f4774f3dcda5">
+          <AttributeID>FL ICW INVOLVEMENT</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="b53bb7ef-8f88-40f1-b3cd-f3e24b2455a2">
+          <AttributeID>FL MNTAL RETARDATN</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="91176419-e8c5-4506-8366-619aabd902c1">
+          <AttributeID>FL OTHR SPC CARE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="201e4afc-b218-446d-aae5-40724677fb75">
+          <AttributeID>FL PHYS DISABLED</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1c51d25e-b5d5-4646-a6ef-c4023ada74c2">
+          <AttributeID>FL PRSN MALTREATER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f04eb7d7-176f-4c96-a9c9-3f211f3f155f">
+          <AttributeID>FL SEX AGGRESIVE YOUTH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="ea9339c3-58e5-4a4e-8ce8-7ef7d9161ef3">
+          <AttributeID>FL TEEN PARENT</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="4d0da3b4-2b96-4bd2-a100-41c0eddcf4be">
+          <AttributeID>FL VIS HEARING IMPR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="2e5473db-2f95-418b-b3f7-8108d43d524b">
+          <AttributeID>DT BIRTH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="d76bb826-92f0-400f-8657-b19e32389502">
+          <AttributeID>DT DEATH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="dd662410-3f27-4cec-8523-d948415de2cf">
+          <AttributeID>DT LICWAC DETERMINATION</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="69f28490-45e7-4238-8168-1bc91814decd">
+          <AttributeID>FL DELETED</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="551a1618-b7a6-435b-b8a7-1c4b13ed7524">
+          <AttributeID>FL EXPUNGED</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="0431ebcc-d4ae-44aa-9ea8-028b4d5660c5">
+          <AttributeID>Cd Race Census</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1c5479ec-80d6-4618-8729-02e25521c156">
+          <AttributeID>Census Hispanic Latino Origin Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a82facf7-aa7e-4dd6-8aa0-0468382e7924">
+          <AttributeID>TX SSI SSA STATUS</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="81d5fc4d-9e79-4e2d-995a-4ef207f5300f">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="8ccef7c2-8281-4c7d-b2ca-2cb36a5e7334">
+          <HierarchyID>Hierarchy 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="9983b3c3-797b-4f90-b0f2-1a9047d71fa0">
+          <HierarchyID>Hierarchy 2</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="0071632f-6139-45af-a1dc-cae522975f2f">
+          <HierarchyID>Hierarchy 3</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="c1bb661b-5ac4-4f0d-9905-faa984b5a4db">
+          <HierarchyID>Hierarchy 4</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="f83218ab-9e72-4d50-b5f3-7478a7162a0b">
+          <HierarchyID>Hierarchy 5</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="69797ffc-2b10-42cd-8d95-a12ccd5e1433">
+          <HierarchyID>Hierarchy 6</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="525b2691-e199-4c42-b0e2-e1a810931bc8">
+          <HierarchyID>Hierarchy 7</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="6227a242-33e4-4ee6-91d8-657e4ac2dd07">
+          <HierarchyID>Hierarchy 8</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="e9fe450f-777f-439d-a8d1-64737843f1db">
+          <HierarchyID>Hierarchy 9</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="cf7ab97a-326d-4f3a-b048-0fec3a1d5ce3">
+          <HierarchyID>Hierarchy 10</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="680f1bd0-fb1d-414d-a9c0-912961535a89">
+          <HierarchyID>Hierarchy 11</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="8e2ce1db-d00e-4897-b83a-16068fa9cb61">
+          <HierarchyID>Hierarchy 12</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="9f016e57-b005-49c7-8a57-79f25a1fbd41">
+          <HierarchyID>Hierarchy 13</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="85c9cac3-0745-4224-bb6a-3524af7fd31f">
+          <HierarchyID>Hierarchy 14</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="d44e2956-064a-46ea-9187-b1758693f94b">
+          <HierarchyID>Hierarchy 15</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="5d45b775-fa7d-4fbd-b414-359b4769a207">
+          <HierarchyID>Hierarchy 16</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="3c1b8c0a-3b1e-490c-a0bb-2fa1710dd7ca">
+          <HierarchyID>Hierarchy 17</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="8a16416e-bd6a-4f04-b007-ce07a64a1117">
+          <HierarchyID>Hierarchy 18</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="1e98e3f2-e3a5-4f36-90b6-3b368cec2ace">
+          <HierarchyID>Hierarchy 19</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="9e74677a-be0a-4ac8-9194-8e43b6a9a993">
+          <HierarchyID>Hierarchy 20</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="033e5344-b0b3-4df4-9fa7-28f5694ec262">
+          <HierarchyID>Hierarchy 21</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="1401d107-3cec-4dac-89db-fdfdb88ecaa1">
+          <HierarchyID>Hierarchy 22</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="6f58ea75-787a-48eb-80ae-cedcea901629">
+          <HierarchyID>Hierarchy 23</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="4beb8e92-ae79-43e7-8b99-288b521a5b3f">
+          <HierarchyID>Hierarchy 24</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="38da4f45-dc35-4767-ad73-83d610fce91c">
+          <HierarchyID>Hierarchy 25</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="670c7a3b-4999-488e-89ec-771ae3237607">
+          <HierarchyID>Hierarchy 26</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="b3bdeae8-ce71-4599-aa58-36c2762a4625">
+          <HierarchyID>Hierarchy 27</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="366d8766-82e9-4b15-8cf7-ea336164d1ac">
+          <HierarchyID>Hierarchy 28</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="7e3f180d-8d79-4e6c-a868-28cc858f865b">
+          <HierarchyID>Hierarchy 29</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="ad8001ce-d480-4d3c-a497-2ec145bde4c7">
+          <HierarchyID>Hierarchy 30</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="69c072b7-6871-4ca7-8ede-0f404f509c75">
+          <HierarchyID>Hierarchy 31</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="08f439ca-4408-4150-8661-3223180ff250">
+          <HierarchyID>Hierarchy 32</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="10765efa-2ad9-4ebd-b8b0-a75c7cd2e59e">
+          <HierarchyID>Hierarchy 33</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="86f0b0f4-6015-4e6d-a869-5ef8c409b681">
+          <HierarchyID>Hierarchy 34</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="c17380f3-fc88-4b05-89e4-64538e211796">
+          <HierarchyID>Hierarchy 35</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="5a38b6a1-85c4-468e-9516-005b497b18e4">
+      <ID>Dad</ID>
+      <Name>Dad</Name>
+      <DimensionID>People Dimension</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="c83ffb11-1eec-405d-84ee-4f249c789a91">
+          <AttributeID>ID PEOPLE DIM</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="ea9d2dfe-d7f4-40de-bf6a-bc7b03faf24e">
+          <AttributeID>ID PRSN</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1ae9b9de-ce13-49a2-b84a-f76396439dd4">
+          <AttributeID>TX BRAAM RACE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="e36e8387-abe9-4823-8e90-4b6ceca82cb5">
+          <AttributeID>CD CMBN ETHN</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="07f4c2ba-edcb-4089-b32c-0061298f21b5">
+          <AttributeID>CD CTZN</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="de4053ff-419b-4499-8061-a8a838de09d2">
+          <AttributeID>CD GNDR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="9f643609-38c2-4e4c-8776-853382afa9ec">
+          <AttributeID>CD HSPNC</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="59df3e43-00aa-4da7-b3d1-c8c8edab4b77">
+          <AttributeID>CD LICWAC</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="562fd2a2-a081-4286-a2c5-3109e29b1306">
+          <AttributeID>CD LNG PRFR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="aa662e69-3ffe-419f-a1c7-18d19b42662d">
+          <AttributeID>CD LNG SECONDARY</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c744124e-f314-4806-9d89-42aeee7134d8">
+          <AttributeID>CD LTD ENGLISH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="752f65a5-89cd-4f46-9e84-32bc67f5f25c">
+          <AttributeID>CD MRTL STAT</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="24f5c0a6-641c-4b2a-ab6a-887383bbaf34">
+          <AttributeID>TX MULTIRACE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="206cdb6c-4336-44bf-9cc7-088bed10a747">
+          <AttributeID>CD RACE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="28c378b4-8b2c-4010-8c05-00873c6051e5">
+          <AttributeID>CD RACE FIVE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="dcf19bd2-5707-4e40-a97a-956a12dc252e">
+          <AttributeID>CD RACE FOUR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="5cb0f0af-be83-4627-be27-f76d541075a1">
+          <AttributeID>CD RACE THREE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="50c8c40e-0f06-40da-8bcc-a686b0854f76">
+          <AttributeID>CD RACE TWO</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="8f0afed8-d7de-46a9-8cf5-e28136b96544">
+          <AttributeID>CD RLGN</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="7f18561e-ee46-437a-b8a1-8d2a5b4a593f">
+          <AttributeID>CD STATE RSDNT</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3870c4f4-db70-401b-83f5-3910413698ae">
+          <AttributeID>FL ADOPTION MATCH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="545f3856-39e5-4cb6-8dc2-9f7171bd6a5f">
+          <AttributeID>FL DANGER TO WORKER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="afc36a34-83b0-411b-be46-4c3b63c50fdf">
+          <AttributeID>FL DECEASED</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="8db201dd-f8a2-4baf-bbd9-0c25d177349a">
+          <AttributeID>FL DT BIRTH ESTIMATED</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="0d7fc9d9-1a70-447d-a027-5a495517b774">
+          <AttributeID>FL EMOTION DSTRBD</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="55232438-32fc-4854-b0b1-ca26e1742d36">
+          <AttributeID>FL ICW INVOLVEMENT</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1ca3509c-5dfe-4e11-a454-771c944d07e9">
+          <AttributeID>FL MNTAL RETARDATN</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6efafcfd-f4a0-4a83-aa06-0e8d731470e9">
+          <AttributeID>FL OTHR SPC CARE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="299ff3c4-d9e6-40fe-a06a-4bb1b7b8bf81">
+          <AttributeID>FL PHYS DISABLED</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="0b6a5742-2be3-47c1-b50d-740a3d4a3d0d">
+          <AttributeID>FL PRSN MALTREATER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="235674d7-630b-44ab-aeed-2c2fd0d26488">
+          <AttributeID>FL SEX AGGRESIVE YOUTH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3a7438ba-702e-4c89-99c1-233631f715df">
+          <AttributeID>FL TEEN PARENT</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="d67fea61-2503-4e9a-b762-0c261b5ea124">
+          <AttributeID>FL VIS HEARING IMPR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="52350810-47d2-4036-bd25-3f2968fa4e4f">
+          <AttributeID>DT BIRTH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="ce68bfd7-2e83-43da-90fb-3414b821f682">
+          <AttributeID>DT DEATH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c88dad0c-2523-4822-8a7b-e3eb1a3ba6aa">
+          <AttributeID>DT LICWAC DETERMINATION</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="cbb08998-4137-4358-9ca1-95d305854c1d">
+          <AttributeID>FL DELETED</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c83aec41-b3d8-4c6b-a7d7-293e3a6077d1">
+          <AttributeID>FL EXPUNGED</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="be670477-0f2d-4def-b50d-3fcbcab24821">
+          <AttributeID>Cd Race Census</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="926aef61-5a2b-447c-8331-33cdecef6b03">
+          <AttributeID>Census Hispanic Latino Origin Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="7b0267c2-a429-48f6-9fd4-f9d2b7a7f6f6">
+          <AttributeID>TX SSI SSA STATUS</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="a8ed2ea2-f084-4600-b8d2-7530868dc3aa">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="562fd1e2-e963-479a-9ce1-c3fe69a69a33">
+          <HierarchyID>Hierarchy 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="23395cdc-9606-4586-9c5a-525d3aa0e795">
+          <HierarchyID>Hierarchy 2</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="d84805b1-3a5e-40db-be53-f2f00f4e6f16">
+          <HierarchyID>Hierarchy 3</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="1c580466-5d56-426f-b70f-f30f849d2920">
+          <HierarchyID>Hierarchy 4</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="fd564e74-6a9a-45e5-879d-dda2c25e624b">
+          <HierarchyID>Hierarchy 5</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="46f427b2-d82c-43ca-ad07-c8cd2c5cbffa">
+          <HierarchyID>Hierarchy 6</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="d84da75c-b537-484e-b5d6-5f82d1a73201">
+          <HierarchyID>Hierarchy 7</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="f2c4e61e-201d-43bf-8f4b-b51125bc9428">
+          <HierarchyID>Hierarchy 8</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="753fa6bf-9c3e-40a5-979a-e3b1fc7f37d3">
+          <HierarchyID>Hierarchy 9</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="8857d9fc-0cc9-4738-92b7-ab64705308ca">
+          <HierarchyID>Hierarchy 10</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="fa878232-4b3c-4b6b-b578-47e91a1ac439">
+          <HierarchyID>Hierarchy 11</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="0fc1fb50-6a51-4400-b04d-d5a29fffdba2">
+          <HierarchyID>Hierarchy 12</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="c8957a80-67f0-4627-9787-3470ecb32128">
+          <HierarchyID>Hierarchy 13</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="2dff472c-d1a7-410a-bcff-3d689b111bb1">
+          <HierarchyID>Hierarchy 14</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="91c6ea3a-d63a-4b79-a616-4f0521f2c026">
+          <HierarchyID>Hierarchy 15</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="c6ea19c3-f741-4a9e-8e0c-99516396d4dc">
+          <HierarchyID>Hierarchy 16</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="424f664e-c9b4-4d95-bc86-91bf187a86c5">
+          <HierarchyID>Hierarchy 17</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="0174fba8-8abc-48a7-ab40-66e4ebae5c2e">
+          <HierarchyID>Hierarchy 18</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="a395f5ec-9dbd-4fd8-b676-d5bda3efcf17">
+          <HierarchyID>Hierarchy 19</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="dca5c533-fb05-4417-b1f1-9e4fc61da58c">
+          <HierarchyID>Hierarchy 20</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="b78664fd-9109-4d53-9a6d-a89ba47eda39">
+          <HierarchyID>Hierarchy 21</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="73deccbf-c1e7-470c-9f98-2695ce801a11">
+          <HierarchyID>Hierarchy 22</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="b7b2ed00-1e10-4de9-a047-c0ace032720a">
+          <HierarchyID>Hierarchy 23</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="ae4af30a-b3ac-4fd8-b0b0-592794b92db6">
+          <HierarchyID>Hierarchy 24</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="71fe71a8-dc94-4594-b511-38117d78b6aa">
+          <HierarchyID>Hierarchy 25</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="5b276d64-098e-405c-9dab-8f23b863aef2">
+          <HierarchyID>Hierarchy 26</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="9746ee15-725c-4d3a-8701-319690d9c1a7">
+          <HierarchyID>Hierarchy 27</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="955c1c32-4fd6-428b-9e0b-88f00d2daf54">
+          <HierarchyID>Hierarchy 28</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="0f4e470f-be7d-4841-ab72-502cf01ffb40">
+          <HierarchyID>Hierarchy 29</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="d149157b-c25c-4958-bd6f-53b413725d6f">
+          <HierarchyID>Hierarchy 30</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="7490293e-03ed-4ff6-81d6-f017d20a7fd2">
+          <HierarchyID>Hierarchy 31</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="7fc045db-4924-4fd8-b002-1e508674ca8c">
+          <HierarchyID>Hierarchy 32</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="04d99d83-24ad-457f-bedc-c646607b488f">
+          <HierarchyID>Hierarchy 33</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="435d5def-4a1a-4627-a3b8-ae5e210f921e">
+          <HierarchyID>Hierarchy 34</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="d7e4c77b-1949-4f57-9c19-056fa861a70b">
+          <HierarchyID>Hierarchy 35</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="9a9f7c75-ede0-481b-9026-434fd8361bae">
+      <ID>Mom</ID>
+      <Name>Mom</Name>
+      <DimensionID>People Dimension</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="e8ad2442-e3fe-4be4-b470-35d32c4bf6c2">
+          <AttributeID>ID PEOPLE DIM</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a567731b-3f4b-438c-a434-9d611ecb354f">
+          <AttributeID>ID PRSN</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="e77addfc-c5b7-4029-b304-fe52ac8141a8">
+          <AttributeID>TX BRAAM RACE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="bd64a204-91a5-4367-84a6-b67801fc0414">
+          <AttributeID>CD CMBN ETHN</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="eb956740-c260-4e36-a27a-6483855e24ea">
+          <AttributeID>CD CTZN</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1a8ce84b-6067-48d2-9048-ec45177b5878">
+          <AttributeID>CD GNDR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="dbe1d325-9eb0-4061-8410-6acb081adf5c">
+          <AttributeID>CD HSPNC</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="fc6328e1-3685-4b26-a5fa-645de2018689">
+          <AttributeID>CD LICWAC</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="ad652058-cf20-4ece-9446-ba90c9fd62e2">
+          <AttributeID>CD LNG PRFR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="88fa0447-5612-49d1-80ab-98e77a59149e">
+          <AttributeID>CD LNG SECONDARY</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c901b58b-8869-41b3-9451-33fda24cc260">
+          <AttributeID>CD LTD ENGLISH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="bc814f4d-1f15-4ed1-b316-fa22dca4062d">
+          <AttributeID>CD MRTL STAT</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6227560d-5c40-40cf-9f75-623357a75dd1">
+          <AttributeID>TX MULTIRACE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6159760b-07dd-4374-acd6-5013633a8319">
+          <AttributeID>CD RACE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="debacad0-dd83-4057-9b8a-5eb88cd20939">
+          <AttributeID>CD RACE FIVE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="58cb75b8-2d1d-42ad-84a1-7dd9cc7b4990">
+          <AttributeID>CD RACE FOUR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="5db231bb-1c53-4bf0-b2c8-bdf63283c557">
+          <AttributeID>CD RACE THREE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="38233903-af48-4406-89cf-85d5a202c8f8">
+          <AttributeID>CD RACE TWO</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a229fdc5-267a-4038-bec7-e97a11c265cb">
+          <AttributeID>CD RLGN</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="4088b844-5fea-48e0-8e16-344b2a790943">
+          <AttributeID>CD STATE RSDNT</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="53479477-317f-45e0-8ca2-e6516ada9e5d">
+          <AttributeID>FL ADOPTION MATCH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="664c9ed8-81e1-4624-a73e-4f2207ad83ea">
+          <AttributeID>FL DANGER TO WORKER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="82b45f4d-e445-4b7c-9d15-21a328ee2dda">
+          <AttributeID>FL DECEASED</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="eb76b434-af6f-4dc1-9986-48210cd4beb2">
+          <AttributeID>FL DT BIRTH ESTIMATED</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="b1cdb941-7001-4f33-825a-e75b9aa5543d">
+          <AttributeID>FL EMOTION DSTRBD</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="8fed9b8b-cddd-4206-94b4-dedc196e25cd">
+          <AttributeID>FL ICW INVOLVEMENT</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="5a0ae1d1-cbee-48d9-ae96-eb5766c6816d">
+          <AttributeID>FL MNTAL RETARDATN</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1133c4dc-079e-4229-a1ac-0a3436d0576a">
+          <AttributeID>FL OTHR SPC CARE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="74e80027-9bb2-48d2-940a-662f3bab875e">
+          <AttributeID>FL PHYS DISABLED</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="fd2f6d38-f7be-43f8-a8ef-33a4e9051841">
+          <AttributeID>FL PRSN MALTREATER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="5cae27f9-5bfa-4f4f-ad6a-35c9e1397ebe">
+          <AttributeID>FL SEX AGGRESIVE YOUTH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="0f364afa-df58-4962-8e08-b7102d90fb9e">
+          <AttributeID>FL TEEN PARENT</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="dd39ed76-9df3-41f1-a636-7f5a31bdb5dd">
+          <AttributeID>FL VIS HEARING IMPR</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="95dc7aca-cd16-4a4e-bb76-8f542a195420">
+          <AttributeID>DT BIRTH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="54117b2e-8a39-475f-b913-e91390a1438b">
+          <AttributeID>DT DEATH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="cb2105b4-ae20-4ee0-a765-0584cb7ba725">
+          <AttributeID>DT LICWAC DETERMINATION</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="fc540f93-3f73-4cc3-b6e5-9cc0154365e3">
+          <AttributeID>FL DELETED</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3e43fc5e-dfd1-4c83-aa6e-2f1ec3dc2856">
+          <AttributeID>FL EXPUNGED</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="64d1c6fb-45b9-4ba1-831c-5e02ea04ce29">
+          <AttributeID>Cd Race Census</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="29df20a0-bdf6-4534-93ea-8d90d2782906">
+          <AttributeID>Census Hispanic Latino Origin Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="dd7fb107-eda3-4ec6-8f79-e1cc2ce1748a">
+          <AttributeID>TX SSI SSA STATUS</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="fd167122-0e91-4cde-8a06-b55b08c170d1">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="b2459f90-c4df-4ed1-8ff9-353b053f9160">
+          <HierarchyID>Hierarchy 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="095de422-95df-42d9-a3c2-e679d13fa44c">
+          <HierarchyID>Hierarchy 2</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="684f3542-727f-4f56-97a5-9c035da9ab48">
+          <HierarchyID>Hierarchy 3</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="c3700b80-a0c0-4c32-8b0f-13575edace26">
+          <HierarchyID>Hierarchy 4</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="33fc6dc6-e8e1-4e41-a41f-7cf21763ea90">
+          <HierarchyID>Hierarchy 5</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="2028b91f-4572-4129-8bdb-7e8020d649ab">
+          <HierarchyID>Hierarchy 6</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="ba799c8b-f06c-4715-901f-9551d2a192dd">
+          <HierarchyID>Hierarchy 7</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="375db41e-b6d7-417c-a29b-be2b38e0226d">
+          <HierarchyID>Hierarchy 8</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="99da05eb-f7a8-4ff5-b364-1a20cc3b1b3c">
+          <HierarchyID>Hierarchy 9</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="59e6d53c-619a-42c4-ade5-089747ba72e5">
+          <HierarchyID>Hierarchy 10</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="ef31d5a0-19c0-4711-aad7-5a6607e21ac2">
+          <HierarchyID>Hierarchy 11</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="c99d231a-347b-4885-a136-0f0d2c0ae6b9">
+          <HierarchyID>Hierarchy 12</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="c47b0a5a-cb57-47d1-ae78-255f07be5285">
+          <HierarchyID>Hierarchy 13</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="4d225871-f387-40ff-9a63-e2cecf489bcd">
+          <HierarchyID>Hierarchy 14</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="d5395a63-dbab-4929-b940-9703be6e09df">
+          <HierarchyID>Hierarchy 15</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="b3d545ca-f4c2-4984-a83e-33d4bef43e67">
+          <HierarchyID>Hierarchy 16</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="b174c2bf-8bf5-4209-8885-77f2ac9b1070">
+          <HierarchyID>Hierarchy 17</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="68e38c4f-aa49-4595-a884-a83a8fd75856">
+          <HierarchyID>Hierarchy 18</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="c77544f9-8258-4e49-be60-01ef99df5bbc">
+          <HierarchyID>Hierarchy 19</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="e493aae5-9357-4659-84f9-ca87a6e5ad8e">
+          <HierarchyID>Hierarchy 20</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="b0594896-4f5e-4668-8681-4b422e07cd85">
+          <HierarchyID>Hierarchy 21</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="197d973d-fb86-40a8-a538-43c92ab1c54c">
+          <HierarchyID>Hierarchy 22</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="7f753cc2-b6a4-4658-b119-937a39575e5c">
+          <HierarchyID>Hierarchy 23</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="3154b576-05fa-464c-a105-31bc1df70164">
+          <HierarchyID>Hierarchy 24</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="004f2a09-0418-40e1-b1a9-aca36fbe78d1">
+          <HierarchyID>Hierarchy 25</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="6e604aff-8d5d-4dde-bb58-9b137e93ffd2">
+          <HierarchyID>Hierarchy 26</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="c7926fe3-95d9-44f5-9958-a7309ec00a6c">
+          <HierarchyID>Hierarchy 27</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="95ad28fc-d971-4e10-9fed-997dd7a7b7d5">
+          <HierarchyID>Hierarchy 28</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="f37e7043-ab0d-4ed3-9b29-ca2d751db28e">
+          <HierarchyID>Hierarchy 29</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="953a6364-6ebf-470f-ba9a-996d5d9e9336">
+          <HierarchyID>Hierarchy 30</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="cd5255e3-cff7-4948-ac7e-df79bee378c5">
+          <HierarchyID>Hierarchy 31</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="017339c2-22a5-4829-8dbb-879c08dbc0d1">
+          <HierarchyID>Hierarchy 32</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="146550b8-6be7-4f84-b1c9-f9c158ee1726">
+          <HierarchyID>Hierarchy 33</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="cafe3dcc-6fb5-4d1e-b7ea-591f6ada0851">
+          <HierarchyID>Hierarchy 34</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="54779bbe-3a89-4542-a253-ad0c5640859e">
+          <HierarchyID>Hierarchy 35</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="d7ecdda8-e38e-4fe5-aa46-fbd91b2873d1">
+      <ID>Provider Dimension</ID>
+      <Name>Provider Dimension</Name>
+      <DimensionID>Provider Dimension</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="ac620a4e-60a4-4f4e-8471-72e8d668aebb">
+          <AttributeID>ID PROVIDER DIM</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="e9184856-86a2-4379-9567-b223acd43853">
+          <AttributeID>CD MAIL COUNTY</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="9b1de2b8-e4a3-4ea6-ac9b-94d7f38e50b9">
+          <AttributeID>TX MAIL STATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="38410b59-6591-4b41-859c-a589bd87fda2">
+          <AttributeID>TX MAIL ZIP</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="2d23222d-91ce-43a4-a492-5192c2b908a7">
+          <AttributeID>CD PHYS COUNTY</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a28daedd-7df0-4580-af9e-c6b79cb6683d">
+          <AttributeID>TX PHYS STATE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="4547578f-e431-4214-b3cf-0cc3eb816bb9">
+          <AttributeID>TX PHYS ZIP</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a2cb090a-f6cf-454d-9dc2-2bdb471669c1">
+          <AttributeID>Phys Zip 5</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="d92ee56a-cfa9-4040-ae1c-b8d0c61975ca">
+          <AttributeID>CD PROVIDER TYPE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="30a4f793-4874-49f6-9149-a318fc76c282">
+          <AttributeID>CD REGION</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="cf4d7c99-4876-4cf2-a43d-3fa77edfd14d">
+          <AttributeID>CD SSPS STATUS</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="7edbdeb9-5ec7-4f54-bc63-2e6ca2d3d229">
+          <AttributeID>CD STAT</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="e58b3d27-1af0-4a87-8924-45bb1068e010">
+          <AttributeID>CD TRIBAL AFLTN</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1c2bd676-6481-4649-9d0a-7b2c7eb386ba">
+          <AttributeID>FL 24 HOUR CARE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="ee58ff10-3c13-4d25-9a90-882fe1e8e101">
+          <AttributeID>FL ABUSES ANIMALS</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="ad6b9de0-e118-4fc6-8482-4d71562b6666">
+          <AttributeID>FL ADA NEEDS</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f0fb87a5-4070-4fd8-b857-1464cb105e3e">
+          <AttributeID>FL ADJUDICATED CRIMINAL</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="8c40e207-836b-4b3f-8a03-4b2ec69d264c">
+          <AttributeID>FL AFFILIATED WITH GANGS</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="edb9d54a-6d09-44cc-a0f2-26e6bd31e340">
+          <AttributeID>FL AUTISTIC</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="71832863-d5fc-482a-b2df-ea5edd30f3de">
+          <AttributeID>FL BEFORE AFTER SCHOOL ONLY</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3a2f0f95-472d-45ad-83d5-ccdc587bb98a">
+          <AttributeID>FL DEVELOPMENTAL DELAY</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="08286e11-8990-4d0d-b1d1-380439556e99">
+          <AttributeID>FL DIABETIC</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c94f8c2d-e393-4333-a292-7150780c02d8">
+          <AttributeID>FL DIAGNOSED MENTAL HEALTH CONDITION</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="590f4860-b9d7-4427-af21-9e2162aa1c70">
+          <AttributeID>FL DIAGNOSED WITH FETAL ALCOHOL SYNDROME</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="58a3d62a-425b-4f9f-9649-fd9e88b8c85e">
+          <AttributeID>FL DRUG AFFECTED</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="97d1a9e9-1388-4efc-a512-acca81fd5230">
+          <AttributeID>FL EATING DISORDER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6b9315b5-cff6-4881-8a53-ec418c7828b8">
+          <AttributeID>FL ENCOPRETIC</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="406e56fb-2ef2-49e7-ab71-57e0f3844571">
+          <AttributeID>FL ENURESIS</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="206cebef-1a7d-49af-a257-63f519c4347e">
+          <AttributeID>FL EVENING</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="98437523-1830-4b65-81c1-699279b85787">
+          <AttributeID>FL FEMALE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="ef20461b-b044-4e40-b023-2ee464c3e760">
+          <AttributeID>FL FIRE SETTER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c9a0784a-d859-4c58-a48e-f49efb7f0441">
+          <AttributeID>FL HEARING IMPAIRED</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="5b574c75-9eba-4fa8-8f9a-bc8b87b6181e">
+          <AttributeID>FL HIV POSITIVE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="698cf9c9-07fc-42bf-b5c9-7b44ca40c814">
+          <AttributeID>FL IV DRUG USER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a40358fa-5ed2-445a-8f01-fcfb69e25b65">
+          <AttributeID>FL IVE TRIBAL AGREEMENT</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="81e12388-7761-4eb1-b11b-52fd5b2a57eb">
+          <AttributeID>FL IVE TRIBAL AGRMT IN PLC</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="0141e497-e228-4006-a863-8594ec367497">
+          <AttributeID>FL LEARNING DISABILITIES</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="aaca9b62-a5b4-4d5a-8249-fd2bfea74041">
+          <AttributeID>FL LIFE SKILLS TRAINING</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c7a587e1-2dca-4563-990f-91fe4d641326">
+          <AttributeID>FL MALE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f97b4430-9a74-4fe4-984f-ac7b8b51c846">
+          <AttributeID>FL MASTURBATES IN PUBLIC</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="36578726-6ede-4dc5-a615-5e08d802e774">
+          <AttributeID>FL MEDICALLY FRAGILE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="84c96ae5-4e0f-463a-abd4-792aab5ca7fb">
+          <AttributeID>FL NAA ACCREDITED</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="90c1a5a0-fc07-4fa8-a244-e1f351812a1d">
+          <AttributeID>FL NAEYC ACCREDITED</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="170d71c8-d0b9-499b-92bc-7a24e000872c">
+          <AttributeID>FL NAFCC ACCREDITED</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="0622927a-e9bb-4392-a052-8112ca8886fc">
+          <AttributeID>FL OPEN</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="b9c109b2-5996-45c5-9a6b-05888e9baf48">
+          <AttributeID>FL PARENT AGENCY</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3fc537c6-9746-4956-8ae5-214334e38431">
+          <AttributeID>FL PHYSICALLY AGGRESSIVE YOUTH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="ca7efc9a-8cf8-403c-8db4-65bf751ac8e3">
+          <AttributeID>FL PHYSICALLY ASSAULTIVE YOUTH PAY</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="4209f046-ad97-4b9a-a7ba-3e522c525867">
+          <AttributeID>FL PROPERTY DESTRUCTION</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="d8047c41-64fd-4534-b458-b679529aadf7">
+          <AttributeID>FL PSYCHIATRIC HOSPITALIZATION HISTORY</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="5a8f0b5c-3905-4974-9f0f-9832dd8d9e8b">
+          <AttributeID>FL RELATIVE CAREGIVER</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="2b563764-3bde-433d-9d93-3796f60ea4d6">
+          <AttributeID>FL REQUIRES MEDICATION</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="30a68688-bb78-4d13-80a6-49a7b1e1de23">
+          <AttributeID>FL REQUIRES SPECIAL DIET</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="36e434ac-80b4-438e-91f8-6151432023e4">
+          <AttributeID>FL RESIDENTIAL TREATMENT HISTORY</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="b106d356-73aa-4016-b0a5-4a0d39aec88b">
+          <AttributeID>FL RUNAWAY HISTORY</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="9044953e-439c-4697-a360-0633f1877956">
+          <AttributeID>FL SELF ABUSIVE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f2bcecdb-5546-42ad-9660-9190715b0bce">
+          <AttributeID>FL SEXUALLY ABUSED</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="df417d0f-b974-46a4-9636-ed67268c328e">
+          <AttributeID>FL SEXUALLY ACTIVE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f501772f-21bc-4c4d-a97a-2bed0beda9f8">
+          <AttributeID>FL SEXUALLY AGGRESSIVE YOUTH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="da769c63-30df-4fde-a20e-e2fba7460b64">
+          <AttributeID>FL SEXUALLY AGGRESSIVE YOUTH SAY</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="92877682-e97f-4359-802d-35fd2df4fc58">
+          <AttributeID>FL SEXUALLY REACTIVE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="52b721bb-ec25-42f0-8204-f2fc1959c4a4">
+          <AttributeID>FL SIBLING GROUP</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="31824169-4763-466e-b6ee-763cf38e37bf">
+          <AttributeID>FL SIGNIFICANT ASTHMA OR ALLERGIES</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="520a0a8d-8dbb-49d1-8aa2-00061f3d40c1">
+          <AttributeID>FL SPECIAL NEEDS CHILDREN</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3e74d3f4-0f44-4d6e-803f-d3874200d570">
+          <AttributeID>FL SPECIALIZED MEDICAL CERTIFICATION</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="bdcd94d9-84a9-49cc-8ff9-371976db187b">
+          <AttributeID>FL SUICIDAL THREAT ATTEMPT</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6068f2a7-dd4c-43d8-a6ef-ea2871d30d1e">
+          <AttributeID>FL TREATMENT FOSTER HOME TRAINING</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="2b4ffcdb-af22-44d5-87f9-307f3a1f9ac5">
+          <AttributeID>FL TUTORING</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="367b75f6-6390-4c9f-bf20-6e59f18aa5c5">
+          <AttributeID>FL VISUALLY IMPAIRED</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c65d074d-8114-4f25-ba46-f6c4919dbba7">
+          <AttributeID>FL WEEKEND CARE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1b267822-2264-4733-b5d8-65f29da5770d">
+          <AttributeID>DT ADDR LAST VERIFIED</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="0d4f4646-2f88-4200-8a6d-bf77349babce">
+          <AttributeID>DT IVE TRIBAL AGREEMENT EFFECTIVE</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3bcd58d3-8006-4454-bcde-40335f331079">
+          <AttributeID>ID PRVD ORG</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="1659d9db-e5cb-475e-b0a7-201cac577ba6">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="6ae3ba5a-fbe3-40db-8f39-29ba7e721c6d">
+          <HierarchyID>Hierarchy 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="74172664-85bb-43ff-a0ad-46ed9f1b3a81">
+          <HierarchyID>Hierarchy 2</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="ba8d2013-cccd-4c5c-91bb-261902886038">
+          <HierarchyID>Hierarchy 3</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="3da70378-9a7e-4273-9151-bb3481afb763">
+          <HierarchyID>Hierarchy 4</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="f036384d-0eaa-40c8-979f-bce6e96476e2">
+          <HierarchyID>Hierarchy 5</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="abec435a-3792-4022-9d98-b07508de9870">
+          <HierarchyID>Hierarchy 6</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="d896c4a4-9b80-42f4-be62-9164519f463a">
+          <HierarchyID>Hierarchy 7</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="f683b236-58e4-4d77-aeb5-1fbc6fc6b673">
+          <HierarchyID>Hierarchy 8</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="5450d0ef-7aed-471b-8bd4-90ab74bb92fe">
+          <HierarchyID>Hierarchy 9</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="b6839e17-214b-4d44-83c6-44cf1d56ccb7">
+          <HierarchyID>Hierarchy 10</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="f5d03076-39a2-401c-99a2-bc41399a924a">
+          <HierarchyID>Hierarchy 11</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="939adf8f-1624-46d3-bd0b-c0183cdc2982">
+          <HierarchyID>Hierarchy 12</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="29846929-456a-4f38-8092-604b50943062">
+          <HierarchyID>Hierarchy 13</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="792572a4-0faf-4a12-84b8-d045ea41b7ea">
+          <HierarchyID>Hierarchy 14</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="66d84b96-ab89-4b4d-a328-501e6b6804be">
+          <HierarchyID>Hierarchy 15</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="57fe33d2-04f3-47e5-88a6-dee60c8324ed">
+          <HierarchyID>Hierarchy 16</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="55f6bdcf-4f34-4d14-940c-0b7b96f1252d">
+          <HierarchyID>Hierarchy 17</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="5cce8b5c-91b8-4314-9efa-2650001b2337">
+          <HierarchyID>Hierarchy 18</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="20ba5ee5-6d4b-4056-950b-2c9aabf0ad9e">
+          <HierarchyID>Hierarchy 19</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="d0de97c8-4216-470d-b2c7-128b942e06c0">
+          <HierarchyID>Hierarchy 20</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="e51936cb-649b-42f4-a32c-771625fe06ed">
+          <HierarchyID>Hierarchy 21</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="ad010a66-db31-4185-99ea-d1bd5072e9c6">
+          <HierarchyID>Hierarchy 22</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="2148965c-e8fe-40a7-875f-2241195bf710">
+          <HierarchyID>Hierarchy 23</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="e77b4481-79ae-498f-8ea2-12dbe8bbbcfc">
+          <HierarchyID>Hierarchy 24</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="f8c98e13-3b2c-4af8-945c-709e8be54141">
+          <HierarchyID>Hierarchy 25</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="722868b3-ccd7-4e25-8175-8b7ec898655d">
+          <HierarchyID>Hierarchy 26</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="4935a540-7e23-4aa2-a060-fde097ca98bb">
+          <HierarchyID>Hierarchy 27</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="6995341f-a468-4e91-bc77-8d24cc520e56">
+          <HierarchyID>Hierarchy 28</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="73fbcd7a-5aa6-4da3-bfe2-930500aeb10c">
+          <HierarchyID>Hierarchy 29</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="21af00b1-a373-4d04-ae44-a6a656ab8e2f">
+          <HierarchyID>Hierarchy 30</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="a89cf168-66e7-4780-996b-64b2116f587e">
+          <HierarchyID>Hierarchy 31</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="3c42944f-a9b9-475b-8606-c62084994cf9">
+          <HierarchyID>Hierarchy 32</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="b1720ba3-4002-4f4d-ad3c-8615853bc16c">
+          <HierarchyID>Hierarchy 33</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="00772957-e697-4964-9068-dbc5d12cb5d0">
+          <HierarchyID>Hierarchy 34</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="7582d4b7-4f66-4199-a3f6-260b5851be60">
+          <HierarchyID>Hierarchy 35</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="12eca0f8-fa08-4aff-a525-7bdbdafe050a">
+          <HierarchyID>Hierarchy 36</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="34d98bdf-0d68-45a1-a492-ba87ac85ff2b">
+          <HierarchyID>Hierarchy 37</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="c9494331-4911-48d0-976b-54089e2c6585">
+          <HierarchyID>Hierarchy 38</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="01e11ef7-67e2-46b7-a5e9-1b816fe2cc08">
+          <HierarchyID>Hierarchy 39</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="1cb0be34-2587-4092-8b28-cfa5a68d16c7">
+          <HierarchyID>Hierarchy 40</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="4c987cbb-0a17-4682-ae66-ee98060609eb">
+          <HierarchyID>Hierarchy 41</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="37078943-3069-49df-b950-41216af60ecc">
+          <HierarchyID>Hierarchy 42</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="dc17494e-42dc-4037-82dd-7750bcf04539">
+          <HierarchyID>Hierarchy 43</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="9fd0d6dd-0207-41f3-ac57-a35ca5384d9a">
+          <HierarchyID>Hierarchy 44</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="3ec12d52-49f2-4b41-87fa-987f54c37dfe">
+          <HierarchyID>Hierarchy 45</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="57449848-9de1-4e4c-af8a-5a05839244ed">
+          <HierarchyID>Hierarchy 46</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="f97b2c45-38d3-4d0e-9600-cb49ba45aa19">
+          <HierarchyID>Hierarchy 47</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="6b9e9cd5-c9f1-4ec0-adc8-0e596aafef97">
+          <HierarchyID>Hierarchy 48</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="f36c7b60-bd5c-46cf-b943-287e607dc386">
+          <HierarchyID>Hierarchy 49</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="4c512977-e4a0-48b3-a11a-6e7d6324e641">
+          <HierarchyID>Hierarchy 50</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="1e76da37-411b-4bad-987c-e26f1b1918c3">
+          <HierarchyID>Hierarchy 51</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="a1a29c00-d314-432f-964d-eba8ba321ce1">
+          <HierarchyID>Hierarchy 52</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="ac8c590b-1e64-4210-9ddc-a5b0d57ffb3f">
+          <HierarchyID>Hierarchy 53</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="7f085dba-d73a-4848-9428-218975d6071b">
+          <HierarchyID>Hierarchy 54</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="204885bb-11e9-4fe2-81a9-6b1246507f06">
+          <HierarchyID>Hierarchy 55</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="561f09c9-d5c4-44bc-8fc2-de94a9504883">
+          <HierarchyID>Hierarchy 56</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="2c527ffc-78e7-4b89-9a74-90925e32d980">
+          <HierarchyID>Hierarchy 57</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="9735fe3d-1da8-4977-9bd7-d1e6ba1a812b">
+          <HierarchyID>Hierarchy 58</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="5c7abbb3-43a8-416d-9cf4-c341fdb7be3a">
+          <HierarchyID>Hierarchy 59</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="8109c208-28e1-4ff0-a7be-b01b53a46672">
+          <HierarchyID>Hierarchy 60</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="028a20aa-f5a4-4213-8139-8674f1382d72">
+          <HierarchyID>Hierarchy 61</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="91c115d3-0ddc-4a19-abc0-a22ae2986140">
+          <HierarchyID>Hierarchy 62</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="9f6eff64-6f1c-4f4e-b804-aee72750cbc5">
+          <HierarchyID>Hierarchy 63</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="5abdddae-8cd6-4c2f-a776-f0ec17397347">
+          <HierarchyID>Hierarchy 64</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="6b84cd52-fd09-4a7d-bcf3-8cffde76078d">
+          <HierarchyID>Hierarchy 65</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="21cfe413-1bb3-4dd1-974d-705a83190869">
+          <HierarchyID>Hierarchy 66</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="ae650ce5-141f-4334-9c62-ca9b65133c3f">
+          <HierarchyID>Hierarchy 67</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="77f32e2e-cf93-4137-bc80-67bc5bda8078">
+          <HierarchyID>Hierarchy 68</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="6de5848f-f54e-40f4-8c01-9b2352c19759">
+      <ID>rptPlacement Dimension</ID>
+      <Name>rptPlacement Dimension</Name>
+      <DimensionID>rptPlacement Dimension</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="97c5da0b-0b46-4d7d-ae17-203bb34b134c">
+          <AttributeID>Child</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="7c0445eb-2de3-493d-ba73-d4451d46fa6d">
+          <AttributeID>Cd Region</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="ce841668-7361-436f-823c-a87238580b72">
+          <AttributeID>Cd Office</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f8072708-b303-4bf1-92e2-b87fafd35f01">
+          <AttributeID>Cd County</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="74348447-88ae-4091-b552-65d5732ca6db">
+          <AttributeID>Cd Epsd Type</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a1cb0dd0-35c9-400d-91cb-1232fe72472f">
+          <AttributeID>18bday</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1d16e0c9-679f-417c-8095-5402912b3b3b">
+          <AttributeID>Child Age</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="9b39139a-ad8b-4c94-81ea-6befaf0cf369">
+          <AttributeID>Cd Rel</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="80f39c71-ec82-44bd-a845-d9ea2d431ac4">
+          <AttributeID>Current Setting</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="951c2b8f-da3f-4ee0-a62b-11a4687ebea3">
+          <AttributeID>Placement Worker Region Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="33f6ce4a-0e0f-4747-af39-7a507a3e089f">
+          <AttributeID>Placement Worker Office Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="32b7e6f9-6e7b-445f-aa7d-64a882bbfc2a">
+          <AttributeID>Placement Worker County Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="d52798a4-106d-48f7-950a-5b511ec2e342">
+          <AttributeID>Placement Worker Unit</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="36aac6e5-e8d5-4e49-b643-c245281b8802">
+          <AttributeID>Placement Workerint Level</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="315137eb-2eb7-4015-8af3-db8cee20506a">
+          <AttributeID>Cd Cnty</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1272a885-cf20-4f36-bbde-d4a3b7124ec0">
+          <AttributeID>Cd Primary Ppln</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="0af7d821-4a1f-4848-aa2c-a4e615b16591">
+          <AttributeID>Cd Alt Ppln</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="d5648012-e9b9-49de-a55f-56766956cfe8">
+          <AttributeID>Cd Hspnc</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="af84d4d8-ec6a-464b-b781-d6e655d1388a">
+          <AttributeID>Cd Rmvl Mnr</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="53668448-6780-4c55-893a-b5d2b30e2634">
+          <AttributeID>Cd Placement Care Auth</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="962d21a7-cada-4000-8b15-284202e801ff">
+          <AttributeID>Orig Cd Plcm Dsch Rsn</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="9b811a3e-d508-4f18-8f0a-e4de874a90e8">
+          <AttributeID>Child Eps Rank</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a1f4bf72-4073-4844-a306-337437f84534">
+          <AttributeID>Cd Race Census</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6e077881-6812-4689-a629-04b821aa157f">
+          <AttributeID>Census Hispanic Latino Origin Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="86e3d139-6442-4818-a4f9-4142abc232cf">
+          <AttributeID>Cd Discharge Type</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="4641f2a4-9223-4905-b874-a23dbe57cfe2">
+          <AttributeID>Max Bin Los Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="618a0194-abb0-4495-859a-c6d3b7d76818">
+          <AttributeID>Bin Dep Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="e510c245-58af-4ee5-a99b-3f814524ec79">
+          <AttributeID>Bin Ihs Svc Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="9d4de515-abe4-4f59-b814-4ccc4ce55903">
+          <AttributeID>Exit Within Month Mult3</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="9095f400-d8a8-44d4-a5ec-65f0558c7b45">
+          <AttributeID>Nxt Reentry Within Min Month Mult3</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="099972c9-1097-458d-acbf-e1bcef1746e4">
+          <AttributeID>Bin Placement Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="e3e1283d-fe1f-4743-80f7-8adeee57b912">
+          <AttributeID>Init Cd Plcm Setng</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="d6a2ff70-d4a0-4cf3-ae3b-f84bfa94a176">
+          <AttributeID>Worker Unit</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c2fc5272-c75f-4485-a806-40e434a3dd7b">
+          <AttributeID>Cd Worker Region</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="26ef349d-48e1-4ad7-9fec-e2fe78a13f24">
+          <AttributeID>Cd Worker Office</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="50235e1d-4e25-4233-8cf9-e34b3b0264b3">
+          <AttributeID>Cd Worker County</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="12d8c954-5133-4adc-a338-4a9f6bee5899">
+          <AttributeID>Fl Abandonment</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="87c76b47-0122-4f6d-b2f1-dc62a3c342a1">
+          <AttributeID>Fl Caretaker Inability Cope</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="d8f95cf8-e256-4349-adbd-a20f482104dc">
+          <AttributeID>Fl Child Abuse Alcohol</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3db57357-5a3d-419c-9642-44030a3146c3">
+          <AttributeID>Fl Child Abuses Drug</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1177490e-1a7a-4aa4-a73e-19b0e5747ca2">
+          <AttributeID>Fl Child Behavior Problems</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="5913675a-03fd-48eb-bc17-8621d479555c">
+          <AttributeID>Fl Inadequate Housng</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="d3820408-6c28-427b-827c-d6a691277cf8">
+          <AttributeID>Fl Neglect</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="0ff51a2a-f79d-46c3-9716-50bbc598d95e">
+          <AttributeID>Fl Parent Abuse Alcohol</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6d5fd30c-8d1b-440e-91c7-410478c56b7b">
+          <AttributeID>Fl Parent Death</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="43874726-b3ba-4c30-9f8e-6af192a24d41">
+          <AttributeID>Fl Parent Drug Abuse</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="31514e5d-4fa7-4b05-aaec-77d20e1efa1b">
+          <AttributeID>Fl Parent Incarceration</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="d9014378-a827-4da5-9756-f0ea52a944fe">
+          <AttributeID>Fl Physical Abuse</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6682f241-9942-4252-ab46-0dd7744c666a">
+          <AttributeID>Fl Sex Abuse</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f9b8d42a-6690-4d3c-a54c-4de52a0fc8cb">
+          <AttributeID>Fl Relinquishment</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6cacf628-3c3e-4a90-b8a7-4272f5d3e84d">
+          <AttributeID>Fl Child Clinically Diagnosed</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="138327eb-4fda-42a6-aa82-56d84c9949cd">
+          <AttributeID>Fl Dep Exist</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="5f5394f3-dcb3-4d36-bbfb-1f29005414b9">
+          <AttributeID>Next Reentry Date</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="55fa6b54-790e-43e5-9009-90d12618b3fb">
+          <AttributeID>Dependency Dt</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="5a54d50d-ff66-4556-9143-fe4d96a888ea">
+          <AttributeID>Tx Tribe Name</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="609e8142-a121-4766-a8b1-f5ab0840df0a">
+          <AttributeID>Town</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="82809d67-413f-4721-887a-bb11481cba2a">
+          <AttributeID>Zip</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a4e59deb-26ed-42d5-b8f9-a1f7c2af0a2a">
+          <AttributeID>Staddress Type</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="7b8c1c1d-cd28-4ece-884d-3ed94be10785">
+          <AttributeID>State</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6271dcc2-7f81-4b4b-ad14-1b26d3e578c7">
+          <AttributeID>Placement Workerint Reason</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="e84032be-8d64-4880-8575-84e13cc25632">
+          <AttributeID>Trh</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="98b6a23a-a3bc-4a99-80fa-a218540a6c17">
+          <AttributeID>Exit</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a9492c22-5226-4909-a8b4-e3012a204aac">
+          <AttributeID>Exit Reason</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="15c6a226-3ac5-4c3c-ae5b-e6a24e5a612e">
+          <AttributeID>Tx Lgl Stat</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="63697be6-f611-41e4-a8ff-30c45a3f3ee3">
+          <AttributeID>Tx Plcm Dsch Rsn</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3090fbce-ac0d-4d9d-b3d5-d4eac1480ee5">
+          <AttributeID>Tx Dsch Rsn</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3368ed94-51d2-4201-9935-60be77b688d6">
+          <AttributeID>Removal</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="391b46c5-66c9-4bd3-bc77-047311199496">
+          <AttributeID>Tx Subctgry</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="96238600-b86d-44f4-b4f4-0f45a2e30a80">
+          <AttributeID>Setting</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1466ff85-90c5-4bfc-b1f9-e6e68de7a0f1">
+          <AttributeID>Tx Braam Race</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1a2ae8a2-da53-4221-ad21-3d1e1d04b1ca">
+          <AttributeID>Birthdate</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="62105ac7-c019-4d25-8ec7-c57950ef19ac">
+          <AttributeID>Discharge Dt</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="080315d9-6b81-401c-a973-8e2534308eef">
+          <AttributeID>Latest Plcmnt Dt</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3f1da8a2-239b-4420-9571-9419031ad9ff">
+          <AttributeID>Latest Plcmnt End Dt</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="633b6609-6dad-43b5-a998-170427c18bb6">
+          <AttributeID>Last End Rsn</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="74386a01-e2a4-4bc1-942c-b8e6ac26c969">
+          <AttributeID>Episode Los Grp</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="652af92d-ea9e-4453-8692-ca1ff5f4e81f">
+          <AttributeID>Placement Los Grp</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="eb154b2b-216b-4f38-842f-7c769b3a1363">
+          <AttributeID>Cd Gndr</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="ca932458-83b5-409c-9070-c6aeab78f27b">
+          <AttributeID>Current Service</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="7a3584fc-d86d-40ca-914b-8319956fa674">
+          <AttributeID>Multi Race Mask</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="74b38685-8630-4622-a50b-15b3f10eb06e">
+          <AttributeID>Cd Office Collapse</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="acf6ba01-c112-41b1-8e83-41c12aff65cd">
+          <AttributeID>Court Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="9ae5162f-dada-4bfe-900b-2cff963e9e71">
+          <AttributeID>Cd Worker Office Collapse</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="2917ff03-5838-4462-a79a-8a2def484b29">
+          <AttributeID>Cd Worker Court</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="0dbeb8ba-1eaa-4c50-b33a-d7aab9ff7093">
+          <AttributeID>Placement Worker Office Collapse Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="4fab7c24-008b-46d1-be08-8c78e4545ed9">
+          <AttributeID>Placement Worker Court Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="37c99903-dd12-4669-a26f-c9d56c8d61cb">
+          <AttributeID>Cd Old Region</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="954b1e15-44d2-4644-a2fe-2c61728a5686">
+          <AttributeID>Cd Worker Old Region</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="69c0af37-91ac-48b1-b0ad-1c64ae4cdaeb">
+          <AttributeID>Placement Worker Old Region</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3c910bbc-2c69-4a5a-afe9-3b6c544b1ada">
+          <AttributeID>Id Removal Episode Fact</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f3c338a3-9f12-4a86-8679-60c9177cf72f">
+          <AttributeID>Discharge Dt Force 18</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="21fcd871-5c48-41dd-8818-afdad7c4f243">
+          <AttributeID>Exit County Cd</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="d1eb90f8-9498-48b1-98bd-e5fc37b4096f">
+          <AttributeID>Long Cd Plcm Setng</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="67c59a9d-709a-4bb7-915e-05ab4de7eba6">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="245481c1-34a2-46f4-b53b-6d47c7661d00">
+          <HierarchyID>Hierarchy 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="7f449dd1-52fb-417e-b940-65df11ac9a72">
+          <HierarchyID>Hierarchy 2</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="f8d0ca22-846a-4268-b61c-f0e312cedc77">
+          <HierarchyID>Hierarchy 3</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="87717bb8-021e-4fee-9e34-fd086dfe477b">
+          <HierarchyID>Hierarchy 4</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="db534e5e-959d-4f23-9e7c-a219e29b7a63">
+          <HierarchyID>Hierarchy 5</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="3e9b8e5c-5f3c-413d-ad1d-f53af15033c7">
+          <HierarchyID>Hierarchy 6</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="737fc22b-f216-495f-8ee4-ca9448fcf5fa">
+          <HierarchyID>Hierarchy 7</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="703a7015-bf19-4cf7-bdf4-8fb4d34abe77">
+          <HierarchyID>Hierarchy 8</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="49dd1bc2-cd24-4e7e-a4ef-535b66d1b349">
+          <HierarchyID>Hierarchy 10</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="277f9597-bc13-46ae-830b-0a03ac8f0c5f">
+          <HierarchyID>Hierarchy 11</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="3aa6b503-d7f9-4785-a6ff-ced77c2ba7a9">
+          <HierarchyID>Hierarchy 12</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="de021479-a7f0-4464-8ef2-2361418b70ab">
+          <HierarchyID>Hierarchy 13</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="22191eef-5371-4824-9d86-d9b98a8d5b21">
+          <HierarchyID>Hierarchy 14</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="b2ca7348-66db-4d18-9677-e38f4f011f1e">
+          <HierarchyID>Hierarchy 15</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="e213cdca-4552-43d0-bb25-09e5813e61da">
+          <HierarchyID>Hierarchy 16</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="ad131774-01b7-42b2-901f-f7796655e137">
+          <HierarchyID>Hierarchy 17</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="95e67534-9c74-42f1-8caf-a137f0e64ec8">
+          <HierarchyID>Hierarchy 18</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="d862bfe3-0fc7-4cee-823d-86cb1215f1b4">
+          <HierarchyID>Hierarchy 19</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="8a21b936-e8fa-4fcf-bdf9-f0cf2690e9e2">
+          <HierarchyID>Hierarchy 20</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="02dcf885-6182-4d81-990c-ca49d40bd35b">
+          <HierarchyID>Hierarchy 21</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="f6ef3b04-f333-4114-9a49-84bbaeb21aec">
+          <HierarchyID>Hierarchy 22</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="997453ee-09d9-486d-91ed-75ed7fec87b6">
+          <HierarchyID>Hierarchy 23</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="dc7c883d-115c-490e-8d0f-dca23f54e6f4">
+          <HierarchyID>Hierarchy 24</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="6d319e73-f202-44cb-b1c5-6db0abb61a8e">
+          <HierarchyID>Hierarchy 25</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="8388a7d2-6d6e-42ea-87c0-948367c004ad">
+          <HierarchyID>Hierarchy 26</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="daca833d-9c56-4e2b-b879-89818fd851c1">
+          <HierarchyID>Hierarchy 27</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="25f80e8c-18f1-4a2e-8ab5-fbc44e4e9c56">
+          <HierarchyID>Hierarchy 28</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="07c79730-f4a4-47f3-b87a-f082224e998a">
+          <HierarchyID>Hierarchy 29</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="848a0015-89e0-4045-8fd2-0feb00c27462">
+          <HierarchyID>Hierarchy 30</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="d0a402d7-75ac-4103-b8af-5b2d3113a229">
+          <HierarchyID>Hierarchy 31</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="aba5413a-f9d4-427e-9616-3b2796eac1ba">
+          <HierarchyID>Hierarchy 32</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="da51e254-8878-4384-967f-693cb9ee9b0f">
+          <HierarchyID>Hierarchy 33</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="d335f338-a0cf-4668-b54e-ed97aac3d50a">
+          <HierarchyID>Hierarchy 34</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="081676ce-0d1b-4ce0-8d15-d36ae4dc3823">
+          <HierarchyID>Hierarchy 35</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="c729d399-68a6-4ec3-972a-fbc20fb54d84">
+          <HierarchyID>Hierarchy 36</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="e9ec7869-7baf-4d7d-8e38-c76e9f85e4a2">
+          <HierarchyID>Hierarchy 37</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="f9b94199-f953-49a3-b39a-b4cbcb68afb1">
+          <HierarchyID>Hierarchy 38</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="4f12a6b1-e944-4c68-a9b5-cebf9773531d">
+          <HierarchyID>Hierarchy 39</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="3f753d2d-02c5-4587-ac35-4a8cb1419c9d">
+          <HierarchyID>Hierarchy 40</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="41759fd2-b1a8-462e-b3a1-c308873aa546">
+          <HierarchyID>Hierarchy 41</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="1fde0b0e-859b-4eb1-a46d-41fb26d93209">
+          <HierarchyID>Hierarchy 42</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="b54f1b7c-76a5-454c-8eb2-97835484a040">
+          <HierarchyID>Hierarchy 43</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="e33b7a46-feda-4d33-ae57-dc24fe2c70c3">
+          <HierarchyID>Hierarchy 44</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="14f5e92f-eccc-41d4-aee1-0c9d8365edb7">
+          <HierarchyID>Hierarchy 45</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="9207fc25-203b-4f67-bc7e-294bc06ed278">
+          <HierarchyID>Hierarchy 46</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="a9b2b5a0-8a25-47be-ba21-1e83700c5e71">
+          <HierarchyID>Hierarchy 47</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="ea041e2f-71e5-4fa9-9239-35271b38cf6a">
+          <HierarchyID>Hierarchy 48</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="cd394f5b-8f98-4e69-aee3-ab209996e3b8">
+          <HierarchyID>Hierarchy 49</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="0047522e-c592-4f4e-910c-d65d90b2dd59">
+          <HierarchyID>Hierarchy 50</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="be46e363-d73a-4325-b044-abfd5060ad21">
+          <HierarchyID>Hierarchy 51</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="67dfd0a6-9b8f-4d82-9c5d-f8f2a41d8c81">
+          <HierarchyID>Hierarchy 52</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="bb9b04db-c03b-4c32-8146-81065b275f21">
+          <HierarchyID>Hierarchy 53</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="b79d6c66-ff20-44a0-b25d-d5f3a77ccbd4">
+          <HierarchyID>Hierarchy 54</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="854ebb02-6540-4fbd-878e-a3815d4e8a57">
+          <HierarchyID>Hierarchy 55</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="d066300a-4041-4527-a535-b5a898f6626c">
+          <HierarchyID>Hierarchy 9</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="87fef1f0-40d1-4a38-b594-e4b65c60f323">
+      <ID>Primary Worker</ID>
+      <Name>Primary Worker</Name>
+      <DimensionID>Worker Dimension</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="454b7aa2-39c7-42ad-8e5f-0d420ec94107">
+          <AttributeID>ID WORKER DIM</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="344d128a-4ed8-4e42-be53-8ebbb9fc7bfc">
+          <AttributeID>CD JOB CLS</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1e284928-f060-4243-889c-0811a81928eb">
+          <AttributeID>CD RMTS WRKR TYP</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="693ac647-db01-4e7e-967a-60ef889a7d2c">
+          <AttributeID>CD STAT</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="9bc29680-b1f9-4fa2-87a5-9cecf79bba7a">
+          <AttributeID>DT BRTH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f058bf10-2292-4ed9-b313-51f2bf0a10f4">
+          <AttributeID>ID PRSN</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="47dc9395-89a2-4e8f-a061-10a673ad1862">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="59e10e9e-c78a-41be-9147-efe0bbabc420">
+          <HierarchyID>Hierarchy 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="c209def0-c5d7-4193-856b-7186541edf03">
+          <HierarchyID>Hierarchy 2</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="cce269e7-3160-4719-8e7f-20aee9894db9">
+      <ID>Placement Worker</ID>
+      <Name>Placement Worker</Name>
+      <DimensionID>Worker Dimension</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="2800e27f-1f40-4b03-a82c-984f92b18a68">
+          <AttributeID>ID WORKER DIM</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="7dc57bd9-4b79-4d1f-aacd-ebcb934064ac">
+          <AttributeID>CD JOB CLS</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="9a963bc3-2fdf-4209-a2c2-f79330eaa6d6">
+          <AttributeID>CD RMTS WRKR TYP</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="7c09fbb6-9146-46f0-a706-127b9cad863e">
+          <AttributeID>CD STAT</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="895837b9-e822-4188-b01e-5d8037fbb71c">
+          <AttributeID>DT BRTH</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="e38b0043-b1e1-4350-a368-929c0e424428">
+          <AttributeID>ID PRSN</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="604f1cea-def4-4c44-b76e-ff084079f7e0">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="f3111d02-8b47-448f-9f4e-e1d53f61e33b">
+          <HierarchyID>Hierarchy 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="f65378e0-fc3f-497f-a286-5fe63a68ef8e">
+          <HierarchyID>Hierarchy 2</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+  </Dimensions>
+  <CubePermissions>
+    <CubePermission dwd:design-time-name="d2ba409f-0b69-41b0-9e64-f213bc75a314">
+      <ID>CubePermission</ID>
+      <Name>CubePermission</Name>
+      <CreatedTimestamp>0001-01-01T08:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T08:00:00Z</LastSchemaUpdate>
+      <RoleID>Role 1</RoleID>
+      <ReadDefinition>Basic</ReadDefinition>
+      <Read>Allowed</Read>
+      <ReadSourceData>Allowed</ReadSourceData>
+    </CubePermission>
+  </CubePermissions>
+  <MeasureGroups>
+    <MeasureGroup dwd:design-time-name="00870d9a-674e-423a-9d59-a9a5edd4a8e4">
+      <ID>Factrpt Placement</ID>
+      <Name>rptPlacement Fact</Name>
+      <CreatedTimestamp>0001-01-01T08:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T08:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T08:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Measures>
+        <Measure dwd:design-time-name="2541b9bb-5552-4826-a24a-a71f62d8f086">
+          <ID>Fl Abandonment</ID>
+          <Name>Abandonment</Name>
+          <Source dwd:design-time-name="b79b1a6a-349f-451d-97f7-ad0cdab28dca">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="facd7da1-a025-44f0-9617-069c7d47817c">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>fl_abandonment</ColumnID>
+            </Source>
+          </Source>
+          <DisplayFolder>Flag Measures</DisplayFolder>
+        </Measure>
+        <Measure dwd:design-time-name="b0b9243e-fc4c-46f9-acf4-fdf8f3ebf3d4">
+          <ID>Age At Exit Mos</ID>
+          <Name>Age At Exit Months</Name>
+          <AggregateFunction>AverageOfChildren</AggregateFunction>
+          <Source dwd:design-time-name="2d1fc52c-8fd6-49e7-bf4e-3b94ada7181f">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="6617eed1-5a64-41ad-86da-f88adfdf6e0c">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>age_at_exit_mos</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="4edfcce6-fec0-4692-8ee1-764649fff35d">
+          <ID>Age At Removal Mos</ID>
+          <Name>Age At Removal Months</Name>
+          <AggregateFunction>AverageOfChildren</AggregateFunction>
+          <Source dwd:design-time-name="75162cea-2f33-454c-a866-c29325a40095">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="4620394a-5aa7-4d53-9714-4856cce5cf85">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>age_at_removal_mos</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="dde55833-4f97-44ca-a2c5-9e05fefd1441">
+          <ID>Fl Caretaker Inability Cope</ID>
+          <Name>Caretaker Inability Cope</Name>
+          <Source dwd:design-time-name="63d4ac8c-ccca-428d-af7a-f315a7177cb7">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="821046f4-160e-4b17-910a-ffcd755ed4a5">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>fl_caretaker_inability_cope</ColumnID>
+            </Source>
+          </Source>
+          <DisplayFolder>Flag Measures</DisplayFolder>
+        </Measure>
+        <Measure dwd:design-time-name="9c220bac-7665-4f0c-9b74-c0a4c6ad9d09">
+          <ID>Fl Child Abuse Alcohol</ID>
+          <Name>Child Abuse Alcohol</Name>
+          <Source dwd:design-time-name="36a2677d-fb10-4488-9da6-8edc268b0fcf">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="f47284e5-36a8-42b6-ab4b-5e17ec4446e5">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>fl_child_abuse_alcohol</ColumnID>
+            </Source>
+          </Source>
+          <DisplayFolder>Flag Measures</DisplayFolder>
+        </Measure>
+        <Measure dwd:design-time-name="3d7fe514-bc64-4229-a402-b041acdfd148">
+          <ID>Fl Child Abuses Drug</ID>
+          <Name>Child Abuses Drug</Name>
+          <Source dwd:design-time-name="3697ee5e-0424-4048-8fd8-5523450979c0">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="ace90575-9780-48cc-8fe7-7de643ed93b7">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>fl_child_abuses_drug</ColumnID>
+            </Source>
+          </Source>
+          <DisplayFolder>Flag Measures</DisplayFolder>
+        </Measure>
+        <Measure dwd:design-time-name="2aed67a8-5b10-4a8a-b16a-cd880fa940be">
+          <ID>Fl Child Behavior Problems</ID>
+          <Name>Child Behavior Problems</Name>
+          <Source dwd:design-time-name="3af8b6b1-2112-4b64-b36a-6967e1e88833">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="6eca16b1-408a-4f68-b508-e2a5a0610bd2">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>fl_child_behavior_problems</ColumnID>
+            </Source>
+          </Source>
+          <DisplayFolder>Flag Measures</DisplayFolder>
+        </Measure>
+        <Measure dwd:design-time-name="ead50c4d-9461-4540-9385-a838c0c3e6bd">
+          <ID>Fl Child Clinically Diagnosed</ID>
+          <Name>Child Clinically Diagnosed</Name>
+          <Source dwd:design-time-name="d8193f2b-0c78-4e2a-81c4-8414de42ec0e">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="b833247e-a331-4f7f-8e8a-cd4b3cdedb79">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>fl_child_clinically_diagnosed</ColumnID>
+            </Source>
+          </Source>
+          <DisplayFolder>Flag Measures</DisplayFolder>
+        </Measure>
+        <Measure dwd:design-time-name="a83e0c5b-988f-44ec-ba81-253c7924848a">
+          <ID>Child Cnt Episodes</ID>
+          <Name>Child Count Episodes</Name>
+          <Source dwd:design-time-name="6d165e67-dd4b-4975-abb6-0cffea796a6b">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="0dd95e1a-2b63-484f-bcf8-7071f92d780c">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>child_cnt_episodes</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="20af8ee0-a5e2-497f-956a-6fbcc50629a4">
+          <ID>Days To Reentry</ID>
+          <Name>Days To Reentry</Name>
+          <AggregateFunction>AverageOfChildren</AggregateFunction>
+          <Source dwd:design-time-name="a381fa9f-61c4-497f-9013-9ef432cbc9f5">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="4f017f3c-0d04-489c-af5f-eaee66b6544f">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>days_to_reentry</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="05a4310c-2878-4e46-a384-d6f423daa7d7">
+          <ID>Fl Dep Exist</ID>
+          <Name>Dep Exist</Name>
+          <Source dwd:design-time-name="85cc80b7-3285-4205-9186-9ce69de6d1b5">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="6e8563ba-7ea3-4677-8c8f-80d4f6acc8e9">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>fl_dep_exist</ColumnID>
+            </Source>
+          </Source>
+          <DisplayFolder>Flag Measures</DisplayFolder>
+        </Measure>
+        <Measure dwd:design-time-name="f9c03aa2-af04-4375-96b2-ee8a49f54e91">
+          <ID>Dur Days</ID>
+          <Name>Duration Days</Name>
+          <Source dwd:design-time-name="f4be9b9c-b0eb-4ef1-ad41-0be46b78c002">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="b764abaa-5ed7-40f1-a26f-ae76e0a5aa9d">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>dur_days</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="1a19e08b-5a87-4513-ab62-a9905503879e">
+          <ID>Episode Los</ID>
+          <Name>Episode Length of Stay</Name>
+          <Source dwd:design-time-name="464580f0-910c-45d0-b8f6-d24e7adcc847">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="d361b503-8c71-4902-8411-e88e70d3ceb9">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>episode_los</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="036e3464-1a6f-472e-ac93-44255c025ba8">
+          <ID>Fl False</ID>
+          <Name>False</Name>
+          <Source dwd:design-time-name="110ca281-f453-4f3e-965f-a05901d5ed6e">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="aaee68da-7ae2-4caa-b16b-b82cd8e876dc">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>fl_false</ColumnID>
+            </Source>
+          </Source>
+          <DisplayFolder>Flag Measures</DisplayFolder>
+        </Measure>
+        <Measure dwd:design-time-name="8400c77d-1e06-456f-a2dd-8fbc6e06e86d">
+          <ID>Fl Inadequate Housng</ID>
+          <Name>Inadequate Housng</Name>
+          <Source dwd:design-time-name="418377a2-9970-4057-b95b-6cb554ad70d8">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="bb477cf7-9352-4d81-86a8-120da4e369de">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>fl_inadequate_housng</ColumnID>
+            </Source>
+          </Source>
+          <DisplayFolder>Flag Measures</DisplayFolder>
+        </Measure>
+        <Measure dwd:design-time-name="a3d7e4d4-6e47-4b70-8da2-aa0e9cd6a06d">
+          <ID>Fl Neglect</ID>
+          <Name>Neglect</Name>
+          <Source dwd:design-time-name="12a60bb1-9d36-4604-a1d3-cc21c6b5509c">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="9c77c8b6-c783-41a4-ad12-9f1de47c5e9a">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>fl_neglect</ColumnID>
+            </Source>
+          </Source>
+          <DisplayFolder>Flag Measures</DisplayFolder>
+        </Measure>
+        <Measure dwd:design-time-name="0ebb6fdd-0ab2-4fc2-b37b-7dd1f549da34">
+          <ID>Nbr Events</ID>
+          <Name>Number of Events</Name>
+          <Source dwd:design-time-name="e13b43e4-7f05-470a-9ea3-9e0ab398361d">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="e1b171b6-c0f3-46f7-8c68-3b558f893be4">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>nbr_events</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="fe8e31bb-b820-433c-8f15-6d2d5406ead6">
+          <ID>Nbr Ooh Events</ID>
+          <Name>Number of Out of Home Events</Name>
+          <Source dwd:design-time-name="cef1b054-f035-4e9c-be83-d404d5797fe7">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="73582998-5269-4325-b8d1-f8811bfe70f0">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>nbr_ooh_events</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="16f9b919-b22e-416e-9dcd-1907a5e251f5">
+          <ID>Fl Parent Abuse Alcohol</ID>
+          <Name>Parent Abuse Alcohol</Name>
+          <Source dwd:design-time-name="1b811ea9-581a-4193-b22b-e0d7376d76d0">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="315f8553-b540-4c14-9978-2207a2029dbf">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>fl_parent_abuse_alcohol</ColumnID>
+            </Source>
+          </Source>
+          <DisplayFolder>Flag Measures</DisplayFolder>
+        </Measure>
+        <Measure dwd:design-time-name="31178700-a0d3-420c-87b7-211a661b3cbc">
+          <ID>Fl Parent Death</ID>
+          <Name>Parent Death</Name>
+          <Source dwd:design-time-name="1f6dd0ca-bc03-4e61-bc84-2f52140275ae">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="2b15011f-992d-48ae-b84f-08bbc16274ef">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>fl_parent_death</ColumnID>
+            </Source>
+          </Source>
+          <DisplayFolder>Flag Measures</DisplayFolder>
+        </Measure>
+        <Measure dwd:design-time-name="2894258d-c679-4675-91e7-4655a332c926">
+          <ID>Fl Parent Drug Abuse</ID>
+          <Name>Parent Drug Abuse</Name>
+          <Source dwd:design-time-name="c1dc2286-4ecb-4c01-bfb9-20ee64df72b6">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="3d8799ba-b7e4-45a2-8091-f74b25d6cb2c">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>fl_parent_drug_abuse</ColumnID>
+            </Source>
+          </Source>
+          <DisplayFolder>Flag Measures</DisplayFolder>
+        </Measure>
+        <Measure dwd:design-time-name="33ccfd6e-a567-47ac-95ab-6498f4700a36">
+          <ID>Fl Parent Incarceration</ID>
+          <Name>Parent Incarceration</Name>
+          <Source dwd:design-time-name="0b5b28af-1532-47f6-a537-ee6b8facfe3a">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="bd819e86-c3a6-46df-aa5f-3510e0aaaa24">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>fl_parent_incarceration</ColumnID>
+            </Source>
+          </Source>
+          <DisplayFolder>Flag Measures</DisplayFolder>
+        </Measure>
+        <Measure dwd:design-time-name="f0a93a04-d72a-48d4-9d4e-5d6921dd0ee9">
+          <ID>Fl Physical Abuse</ID>
+          <Name>Physical Abuse</Name>
+          <Source dwd:design-time-name="37cc8e13-74bc-41d9-92f0-c1d59b895495">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="bab2aa89-aa11-4f21-a6ed-5aa650bb6cfc">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>fl_physical_abuse</ColumnID>
+            </Source>
+          </Source>
+          <DisplayFolder>Flag Measures</DisplayFolder>
+        </Measure>
+        <Measure dwd:design-time-name="064f6e56-6382-48ed-8e98-21c7777d530f">
+          <ID>Factrpt Placement Count</ID>
+          <Name>Placement Count</Name>
+          <AggregateFunction>Count</AggregateFunction>
+          <Source dwd:design-time-name="5cf166ab-f4b2-4f40-a87f-17e3baad77eb">
+            <DataType>Integer</DataType>
+            <DataSize>4</DataSize>
+            <Source xsi:type="RowBinding" dwd:design-time-name="57cdc057-7dbe-4f0b-a754-4643c00d8a6a">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="415d6e4a-e796-4a1e-b07a-4e11dacb677b">
+          <ID>Placement Los</ID>
+          <Name>Placement Length of Stay</Name>
+          <Source dwd:design-time-name="5e2154d3-0993-43e2-bda3-c235f0e4f7c3">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="3f618846-693d-4b71-8f6a-71468f8df2e9">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>placement_los</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="b5c47ea3-de53-4990-add4-332de2939ea3">
+          <ID>Fl Relinquishment</ID>
+          <Name>Relinquishment</Name>
+          <Source dwd:design-time-name="c35a971d-d82d-4bdb-8669-c25bfe48a913">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="8d3f60c9-7e3b-40b2-9f58-80201dcfdb5b">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>fl_relinquishment</ColumnID>
+            </Source>
+          </Source>
+          <DisplayFolder>Flag Measures</DisplayFolder>
+        </Measure>
+        <Measure dwd:design-time-name="a3dc3abf-4aa8-4c1c-bd0c-df9e0ecd6f7d">
+          <ID>Fl Sex Abuse</ID>
+          <Name>Sex Abuse</Name>
+          <Source dwd:design-time-name="43c8ee9e-d9eb-4824-862e-0697106659e1">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="f2934692-2f3e-4fd6-a88a-d266aa4dbab1">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>fl_sex_abuse</ColumnID>
+            </Source>
+          </Source>
+          <DisplayFolder>Flag Measures</DisplayFolder>
+        </Measure>
+        <Measure dwd:design-time-name="59943fd7-3aba-408f-a1df-d09866ac8fe3">
+          <ID>Vpa Lngth</ID>
+          <Name>VPA Length</Name>
+          <Source dwd:design-time-name="72c3e32d-96e2-4c57-bbfa-b7a0c1cb89d3">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="04a6ebe3-f72b-4687-aaf3-0e0ab5fb50bd">
+              <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+              <ColumnID>vpa_lngth</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+      </Measures>
+      <StorageMode>Molap</StorageMode>
+      <EstimatedRows>171368</EstimatedRows>
+      <ProcessingMode>Regular</ProcessingMode>
+      <Dimensions>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="0133efee-f6f3-4e04-82af-62548f60548b">
+          <CubeDimensionID>Id Calendar Dim Begin</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="59d8b665-8a02-4fbc-9fb8-1840d55ad3b1">
+              <AttributeID>ID CALENDAR DIM</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="a1e89f54-bcd0-410b-9b12-c265fca65fca">
+                  <DataType>Integer</DataType>
+                  <NullProcessing>UnknownMember</NullProcessing>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="084c39da-3924-4426-9442-64a5dfca19ac">
+                    <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+                    <ColumnID>id_calendar_dim_begin</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="7f006130-ca53-4e0c-8480-973ce5ea567e">
+          <CubeDimensionID>Id Calendar Dim Afcars End</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="5873a0f1-3cec-496f-96b3-2e1ba7c891a8">
+              <AttributeID>ID CALENDAR DIM</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="96a4c6b7-3e4b-462a-9eed-d3c3a0ae3e7d">
+                  <DataType>Integer</DataType>
+                  <NullProcessing>UnknownMember</NullProcessing>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="4a87f369-30e4-4b27-a4a9-9120e326f0ae">
+                    <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+                    <ColumnID>id_calendar_dim_afcars_end</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="f71baf00-2e96-41f1-93b8-125efe8d8259">
+          <CubeDimensionID>Location Dimension</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="d464cb29-26d5-48a3-9a70-d00ea4ebc467">
+              <AttributeID>ID LOCATION DIM</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="8f9836e3-dbb1-4e5a-b4d9-9d06cfa789c1">
+                  <DataType>Integer</DataType>
+                  <NullProcessing>UnknownMember</NullProcessing>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="401e338e-5d2e-4d2e-8ca5-d0f6f2992131">
+                    <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+                    <ColumnID>primary_worker_location</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="360cbfe3-3cf2-4a87-b47e-848e52ae55fe">
+          <CubeDimensionID>Mom</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="e3d68f0e-4a80-4232-9420-26717c17d7ea">
+              <AttributeID>ID PRSN</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="16ff7746-e4b9-4a74-abf1-a5141a950640">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="41f7a864-6a49-4f92-ad93-e2c5d952c54c">
+                    <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+                    <ColumnID>mom_id</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="63cf5a88-d170-445e-889f-cd0b9ae017a4">
+          <CubeDimensionID>Dad</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="d9858487-b0f0-48ec-8649-870ffa846abf">
+              <AttributeID>ID PRSN</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="11803b51-da30-4d72-9b8d-ea16e2b74306">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="ba77af87-7e8c-4dd6-a53e-96fbbaf54fa3">
+                    <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+                    <ColumnID>dad_id</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="55fdda72-7e4c-44bb-92a1-f39a0d780345">
+          <CubeDimensionID>Provider Dimension</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="6dd49610-b5c4-405a-a090-c40249ede493">
+              <AttributeID>ID PRVD ORG</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="9a614e49-19f4-42cd-92fa-abc0d9cc342e">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="5f99b2d3-49b6-480e-bb8b-aef546d02601">
+                    <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+                    <ColumnID>id_prvd_org_caregiver</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="31591201-afb7-4530-8813-36447ede00c1">
+          <CubeDimensionID>Primary Worker</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="573d2bda-0ba7-4a77-b283-aa08ba7c6e69">
+              <AttributeID>ID PRSN</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="7c16baa9-b944-451c-b48e-d147ee0f5f8b">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="aeae012c-bd1e-47b9-aa05-d03b83ab8697">
+                    <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+                    <ColumnID>primary_worker</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="e0bd0761-3821-4abd-a440-88c76797b16c">
+          <CubeDimensionID>Placement Worker</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="e6e41bb2-46b1-4727-ad98-c7d188d15f48">
+              <AttributeID>ID PRSN</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="9106e1e3-b898-473b-8368-a9bb5a62ec43">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="753b6007-35b0-4a72-b6d7-2cbb068fc1a7">
+                    <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+                    <ColumnID>placement_worker_id</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="5972b1ba-0de9-44c0-a5df-d9f234a5313a">
+          <CubeDimensionID>Child</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="66f5520e-a0b0-4131-a37d-980c1b115ebf">
+              <AttributeID>ID PRSN</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="f1c8a588-60e8-4db4-80ce-65e7bc0c4de3">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="65726348-83be-42d3-80af-2f7e52709f6b">
+                    <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+                    <ColumnID>child</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="1f131130-9889-48ee-82e9-11e7b0a05c03">
+          <CubeDimensionID>rptPlacement Dimension</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="dddec584-663b-4bdd-975b-d4632621e287">
+              <AttributeID>Id Removal Episode Fact</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="f27a023a-21a2-42ef-9875-7c735c1941cc">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="aa1a00f3-2851-4273-a938-e62989576c33">
+                    <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+                    <ColumnID>id_removal_episode_fact</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="01f460d3-52bf-4155-8c30-78642aa01dcf">
+          <CubeDimensionID>Age At Removal Mos</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="78522c47-ca41-42e9-8dd5-9208748f7402">
+              <AttributeID>Age Mo</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="52cc0060-e8e4-4dd2-b29e-d2599ebf59ac">
+                  <DataType>Integer</DataType>
+                  <NullProcessing>UnknownMember</NullProcessing>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="b3bc1b36-7c7c-4d41-994d-fb45ed5d299c">
+                    <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+                    <ColumnID>age_at_removal_mos</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="ae30fd88-610f-4c71-bbf1-c5383d542db6">
+          <CubeDimensionID>Age At Exit Mos</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="6057132c-6580-47dc-b3c3-bc6e0e795380">
+              <AttributeID>Age Mo</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="e9d1fd49-872d-468c-a6fc-b61910896ae8">
+                  <DataType>Integer</DataType>
+                  <NullProcessing>UnknownMember</NullProcessing>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="74e05676-eea9-4b13-ba22-965acb0265f4">
+                    <TableID>dbo_Cube_rptPlacement_Fact</TableID>
+                    <ColumnID>age_at_exit_mos</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+      </Dimensions>
+      <Partitions />
+      <AggregationDesigns />
+    </MeasureGroup>
+  </MeasureGroups>
+  <Source dwd:design-time-name="c621b541-394e-4c43-856b-b71cf0a1afcd">
+    <DataSourceViewID>CA ODS</DataSourceViewID>
+  </Source>
+</Cube>

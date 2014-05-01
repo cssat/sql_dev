@@ -1,0 +1,202 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="064abf4f-7148-49f0-bcc3-c66687222574" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>PLACEMENT CARE AUTH DIM</ID>
+  <Name>PLACEMENT CARE AUTH DIM</Name>
+  <CreatedTimestamp>0001-01-01T08:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T08:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-1118" scrolltop="-2500" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="8229" y="9843" backcolor="16185078" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="PLACEMENT_CARE_AUTH_DIM" left="20" top="0" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="5953" height="4842" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="0008000041170000ea120000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_PLACEMENT_CARE_AUTH_DIM" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-1118</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>-2500</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>20</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
+      <Value>
+        <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="0" xmlns="">
+          <Shapes NodeWidth="227">
+            <Shape Id="ID PLACEMENT CARE AUTH DIM" Expanded="true">
+              <Attributes>
+                <Attribute Id="ID PLACEMENT CARE AUTH DIM" />
+                <Attribute Id="CD PLACEMENT CARE AUTH" />
+                <Attribute Id="CD TRIBE" />
+                <Attribute Id="TX PLACEMENT CARE AUTH" />
+                <Attribute Id="TX TRIBE" />
+              </Attributes>
+              <Position x="20" y="20" />
+            </Shape>
+          </Shapes>
+        </DiagramLayout>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T08:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="47ef1882-fe35-4ccf-a2bd-bbf3e0c6ca86">
+    <DataSourceViewID>CA_ODS</DataSourceViewID>
+  </Source>
+  <UnknownMember>Visible</UnknownMember>
+  <ErrorConfiguration dwd:design-time-name="887305b7-76a9-4932-8ebb-c5f637459139">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <Attributes>
+    <Attribute dwd:design-time-name="441c6d7c-f78e-4eda-9ee6-b33d597184b3">
+      <ID>ID PLACEMENT CARE AUTH DIM</ID>
+      <Name>ID PLACEMENT CARE AUTH DIM</Name>
+      <Usage>Key</Usage>
+      <EstimatedCount>617</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="a3326f01-9491-436f-979d-0621e29d8612">
+          <DataType>Integer</DataType>
+          <NullProcessing>UnknownMember</NullProcessing>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="c34dd65e-4b9b-44b4-aa51-3009fec18a91">
+            <TableID>dbo_PLACEMENT_CARE_AUTH_DIM</TableID>
+            <ColumnID>ID_PLACEMENT_CARE_AUTH_DIM</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="970e987c-a274-4c50-99a7-536d1e6c7587">
+          <AttributeID>CD PLACEMENT CARE AUTH</AttributeID>
+          <Name>CD PLACEMENT CARE AUTH</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="f4a2202e-6541-4c8b-908c-763c63641397">
+          <AttributeID>TX PLACEMENT CARE AUTH</AttributeID>
+          <Name>TX PLACEMENT CARE AUTH</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="5fc5683f-a3ac-4b46-8aee-2a513dc86181">
+          <AttributeID>CD TRIBE</AttributeID>
+          <Name>CD TRIBE</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="648049da-0cc3-42a9-8ea5-3a179d18be4f">
+          <AttributeID>TX TRIBE</AttributeID>
+          <Name>TX TRIBE</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="45718ab6-d1eb-4fad-b783-8f7c5c36c1f5">
+      <ID>CD PLACEMENT CARE AUTH</ID>
+      <Name>CD PLACEMENT CARE AUTH</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="1abc73a3-153c-4c6a-914c-4b35085030e9">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="8678d45e-1b9e-43ec-b999-f469dd3e2dd2">
+            <TableID>dbo_PLACEMENT_CARE_AUTH_DIM</TableID>
+            <ColumnID>CD_PLACEMENT_CARE_AUTH</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="861a03df-9574-462f-a622-77bfad0ec1d1">
+      <ID>TX PLACEMENT CARE AUTH</ID>
+      <Name>TX PLACEMENT CARE AUTH</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="1c6f508b-5535-4432-a460-1daf13284e7b">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="4a1d7cfd-b4a7-41a7-bc81-6c3e13508cfb">
+            <TableID>dbo_PLACEMENT_CARE_AUTH_DIM</TableID>
+            <ColumnID>TX_PLACEMENT_CARE_AUTH</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="79e7f504-1f93-4d42-bf36-04bdca5ec0b6">
+      <ID>CD TRIBE</ID>
+      <Name>CD TRIBE</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="37c4ec1d-e085-4ada-88eb-f5ae76a9c9ae">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f95bade8-1016-4405-8adf-abf6e053df99">
+            <TableID>dbo_PLACEMENT_CARE_AUTH_DIM</TableID>
+            <ColumnID>CD_TRIBE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="0bef5301-d56d-48ce-95dd-d84bdbbd7aa6">
+      <ID>TX TRIBE</ID>
+      <Name>TX TRIBE</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="9d5b3f73-b1c5-4602-9cc4-d8c8f5708b58">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="1a3e093f-53a5-4e22-8b07-4862ab4d2b1c">
+            <TableID>dbo_PLACEMENT_CARE_AUTH_DIM</TableID>
+            <ColumnID>TX_TRIBE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>

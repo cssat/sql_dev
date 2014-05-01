@@ -1,0 +1,315 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="4fe23a05-8461-4798-842c-994971439374" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Worker Dimension</ID>
+  <Name>Worker Dimension</Name>
+  <CreatedTimestamp>0001-01-01T08:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T08:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-3155" scrolltop="-8361" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="12012" y="21722" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="Dim.Worker" left="20" top="0" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="5662" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000800001e16000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_Cube_WORKER_DIM" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-3155</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>-8361</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>20</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
+      <Value>
+        <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="0" xmlns="">
+          <Shapes NodeWidth="145">
+            <Shape Id="ID WORKER DIM" Expanded="false">
+              <Attributes>
+                <Attribute Id="ID WORKER DIM" />
+                <Attribute Id="DT BRTH" />
+              </Attributes>
+              <Position x="20" y="20" />
+            </Shape>
+            <Shape Id="CD STAT" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD STAT" />
+              </Attributes>
+              <Position x="206" y="20" />
+            </Shape>
+            <Shape Id="CD RMTS WRKR TYP" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD RMTS WRKR TYP" />
+              </Attributes>
+              <Position x="206" y="68" />
+            </Shape>
+            <Shape Id="CD JOB CLS" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD JOB CLS" />
+              </Attributes>
+              <Position x="206" y="116" />
+            </Shape>
+          </Shapes>
+        </DiagramLayout>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T08:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="741dc620-b035-4754-9027-97657c19e39e">
+    <DataSourceViewID>CA ODS</DataSourceViewID>
+  </Source>
+  <ErrorConfiguration dwd:design-time-name="09b5e901-0fda-4a71-9198-13b660649830">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <DimensionPermissions>
+    <DimensionPermission dwd:design-time-name="870fbafe-477f-45d3-8826-2b7b98eeae75">
+      <ID>DimensionPermission</ID>
+      <Name>DimensionPermission</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <RoleID>Role 1</RoleID>
+      <ReadDefinition>Allowed</ReadDefinition>
+      <Read>Allowed</Read>
+    </DimensionPermission>
+  </DimensionPermissions>
+  <Attributes>
+    <Attribute dwd:design-time-name="4cde167a-0169-4abe-8fc6-6c8f85add1a1">
+      <ID>ID WORKER DIM</ID>
+      <Name>ID WORKER DIM</Name>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="2f3ac8d2-e940-4b18-bca8-ee2d68773cc9">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="1a06df1a-5759-4864-bd75-bfe76fcfcba7">
+            <TableID>dbo_Cube_WORKER_DIM</TableID>
+            <ColumnID>ID_WORKER_DIM</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="c8082ad7-fead-44e5-831e-bee4d5dda674">
+          <AttributeID>CD JOB CLS</AttributeID>
+          <Name>Job</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="8f4570a5-58f8-4940-82cf-cadfaace2cdf">
+          <AttributeID>CD RMTS WRKR TYP</AttributeID>
+          <Name>RMTS Type</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="2fe03200-b75b-4097-ad46-2e49edf0ce6d">
+          <AttributeID>CD STAT</AttributeID>
+          <Name>Status</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="39d5e03a-1d2b-40e8-97bd-9ba0e9048b5c">
+          <AttributeID>DT BRTH</AttributeID>
+          <Name>Date of Birth</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="48ee1acf-96c3-493f-a5a5-5b0c86276f7b">
+          <AttributeID>ID PRSN</AttributeID>
+          <Name>ID PRSN</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="f0277739-2e10-4fde-8836-832bc901ce0f">
+      <ID>CD JOB CLS</ID>
+      <Name>Job</Name>
+      <EstimatedCount>60</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="f73c0308-149d-45f6-b554-7be97fe40275">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="061696cc-c960-4b27-8e92-240f31a0581c">
+            <TableID>dbo_Cube_WORKER_DIM</TableID>
+            <ColumnID>CD_JOB_CLS</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="088972d5-108d-40ee-8592-ab6c9326e429">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="8ce4c292-e6e0-4db7-89be-c9935d7cce68">
+          <TableID>dbo_Cube_WORKER_DIM</TableID>
+          <ColumnID>TX_JOB_CLS</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="64880e51-3160-4ac0-ade9-759173ecb85e">
+      <ID>CD RMTS WRKR TYP</ID>
+      <Name>RMTS Type</Name>
+      <EstimatedCount>16</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="8ecf6c95-a834-4e65-b608-ed5ffcb09bc2">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="05937c2e-5bc5-42b3-9dad-bacc1700082f">
+            <TableID>dbo_Cube_WORKER_DIM</TableID>
+            <ColumnID>CD_RMTS_WRKR_TYP</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="0c6e59f4-c274-499c-8a64-ddf9563d6706">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="4af19b8b-1ebe-4c32-91d2-446741567ae5">
+          <TableID>dbo_Cube_WORKER_DIM</TableID>
+          <ColumnID>TX_RMTS_WRKR_TYP</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="0ff55d7b-e549-4dc3-8512-b1812d51efa9">
+      <ID>CD STAT</ID>
+      <Name>Status</Name>
+      <EstimatedCount>3</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="3697c763-eb47-4976-885e-1da4d0ce03b4">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="d4f8765c-e5b2-4f86-8215-9689cd438a35">
+            <TableID>dbo_Cube_WORKER_DIM</TableID>
+            <ColumnID>CD_STAT</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="62c5b63b-1ab3-4719-a59b-2add1af3dcee">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="a2412ddb-75b1-4029-a107-67d3e23d0d81">
+          <TableID>dbo_Cube_WORKER_DIM</TableID>
+          <ColumnID>TX_STAT</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="630c05db-d917-434a-9ebf-4f3dcf4c845a">
+      <ID>DT BRTH</ID>
+      <Name>Date of Birth</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="4461e24a-4d77-4d79-9ab1-e5d81ee2b129">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="a15bd668-e860-4bbc-9d8b-4995dab2143b">
+            <TableID>dbo_Cube_WORKER_DIM</TableID>
+            <ColumnID>DT_BRTH</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="b4ee54d4-8988-49dd-ac64-23b4b4a6872a">
+      <ID>ID PRSN</ID>
+      <Name>ID PRSN</Name>
+      <EstimatedCount>14096</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="3848c890-c560-4fbf-a501-5de2563799e3">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="8d9dad24-cf98-480e-bb22-7211727711fa">
+            <TableID>dbo_Cube_WORKER_DIM</TableID>
+            <ColumnID>ID_PRSN</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <Hierarchies>
+    <Hierarchy dwd:design-time-name="5fb8ccf9-09b5-4608-908b-7eb868d0d9f9">
+      <ID>Hierarchy</ID>
+      <Name>Job Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="39efff45-373b-4a7a-ab40-7f8a62152a9b">
+          <ID>Job</ID>
+          <Name>Job</Name>
+          <SourceAttributeID>CD JOB CLS</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="c1e7249d-4dae-4010-8c75-51266e2a3875">
+      <ID>Hierarchy 1</ID>
+      <Name>RMTS Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="3162f954-3c75-42bc-9d4d-b68a83a93c81">
+          <ID>RMTS Type</ID>
+          <Name>RMTS Type</Name>
+          <SourceAttributeID>CD RMTS WRKR TYP</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="c9394e80-dd62-4145-a232-82e4a623df39">
+      <ID>Hierarchy 2</ID>
+      <Name>Status Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="28b39dda-8e1d-4e7e-b9eb-29cac975bb79">
+          <ID>Status</ID>
+          <Name>Status</Name>
+          <SourceAttributeID>CD STAT</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+  </Hierarchies>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>

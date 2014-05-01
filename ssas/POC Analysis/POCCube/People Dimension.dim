@@ -1,0 +1,1795 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="8e939f5f-9e28-4de4-a161-231e9bf7ab55" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>People Dimension</ID>
+  <Name>People Dimension</Name>
+  <CreatedTimestamp>0001-01-01T08:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T08:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-2838" scrolltop="-8361" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="12012" y="21722" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="Dim.People" left="20" top="0" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="6297" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000800009918000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_Cube_PEOPLE_DIM" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-2838</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>-8361</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>20</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
+      <Value>
+        <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="4" xmlns="">
+          <Shapes NodeWidth="226">
+            <Shape Id="ID PEOPLE DIM" Expanded="false">
+              <Attributes>
+                <Attribute Id="ID PEOPLE DIM" />
+                <Attribute Id="DT BIRTH" />
+                <Attribute Id="DT DEATH" />
+                <Attribute Id="ID PRSN" />
+                <Attribute Id="DT LICWAC DETERMINATION" />
+              </Attributes>
+              <Position x="20" y="20" />
+            </Shape>
+            <Shape Id="Census Hispanic Latino Origin Cd" Expanded="false">
+              <Attributes>
+                <Attribute Id="Census Hispanic Latino Origin Cd" />
+              </Attributes>
+              <Position x="307" y="20" />
+            </Shape>
+            <Shape Id="Cd Race Census" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Race Census" />
+              </Attributes>
+              <Position x="307" y="68" />
+            </Shape>
+            <Shape Id="FL EXPUNGED" Expanded="false">
+              <Attributes>
+                <Attribute Id="FL EXPUNGED" />
+              </Attributes>
+              <Position x="307" y="116" />
+            </Shape>
+            <Shape Id="FL DELETED" Expanded="false">
+              <Attributes>
+                <Attribute Id="FL DELETED" />
+              </Attributes>
+              <Position x="307" y="164" />
+            </Shape>
+            <Shape Id="FL VIS HEARING IMPR" Expanded="false">
+              <Attributes>
+                <Attribute Id="FL VIS HEARING IMPR" />
+              </Attributes>
+              <Position x="307" y="212" />
+            </Shape>
+            <Shape Id="FL TEEN PARENT" Expanded="false">
+              <Attributes>
+                <Attribute Id="FL TEEN PARENT" />
+              </Attributes>
+              <Position x="307" y="260" />
+            </Shape>
+            <Shape Id="FL SEX AGGRESIVE YOUTH" Expanded="false">
+              <Attributes>
+                <Attribute Id="FL SEX AGGRESIVE YOUTH" />
+              </Attributes>
+              <Position x="307" y="308" />
+            </Shape>
+            <Shape Id="FL PRSN MALTREATER" Expanded="false">
+              <Attributes>
+                <Attribute Id="FL PRSN MALTREATER" />
+              </Attributes>
+              <Position x="307" y="356" />
+            </Shape>
+            <Shape Id="FL PHYS DISABLED" Expanded="false">
+              <Attributes>
+                <Attribute Id="FL PHYS DISABLED" />
+              </Attributes>
+              <Position x="307" y="404" />
+            </Shape>
+            <Shape Id="FL OTHR SPC CARE" Expanded="false">
+              <Attributes>
+                <Attribute Id="FL OTHR SPC CARE" />
+              </Attributes>
+              <Position x="307" y="452" />
+            </Shape>
+            <Shape Id="FL MNTAL RETARDATN" Expanded="false">
+              <Attributes>
+                <Attribute Id="FL MNTAL RETARDATN" />
+              </Attributes>
+              <Position x="307" y="500" />
+            </Shape>
+            <Shape Id="FL ICW INVOLVEMENT" Expanded="false">
+              <Attributes>
+                <Attribute Id="FL ICW INVOLVEMENT" />
+              </Attributes>
+              <Position x="307" y="548" />
+            </Shape>
+            <Shape Id="FL EMOTION DSTRBD" Expanded="false">
+              <Attributes>
+                <Attribute Id="FL EMOTION DSTRBD" />
+              </Attributes>
+              <Position x="307" y="596" />
+            </Shape>
+            <Shape Id="FL DT BIRTH ESTIMATED" Expanded="false">
+              <Attributes>
+                <Attribute Id="FL DT BIRTH ESTIMATED" />
+              </Attributes>
+              <Position x="307" y="644" />
+            </Shape>
+            <Shape Id="FL DECEASED" Expanded="false">
+              <Attributes>
+                <Attribute Id="FL DECEASED" />
+              </Attributes>
+              <Position x="307" y="692" />
+            </Shape>
+            <Shape Id="FL DANGER TO WORKER" Expanded="false">
+              <Attributes>
+                <Attribute Id="FL DANGER TO WORKER" />
+              </Attributes>
+              <Position x="307" y="740" />
+            </Shape>
+            <Shape Id="FL ADOPTION MATCH" Expanded="false">
+              <Attributes>
+                <Attribute Id="FL ADOPTION MATCH" />
+              </Attributes>
+              <Position x="307" y="788" />
+            </Shape>
+            <Shape Id="CD STATE RSDNT" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD STATE RSDNT" />
+              </Attributes>
+              <Position x="307" y="836" />
+            </Shape>
+            <Shape Id="CD RLGN" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD RLGN" />
+              </Attributes>
+              <Position x="307" y="884" />
+            </Shape>
+            <Shape Id="CD RACE TWO" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD RACE TWO" />
+              </Attributes>
+              <Position x="307" y="932" />
+            </Shape>
+            <Shape Id="CD RACE THREE" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD RACE THREE" />
+              </Attributes>
+              <Position x="307" y="980" />
+            </Shape>
+            <Shape Id="CD RACE FOUR" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD RACE FOUR" />
+              </Attributes>
+              <Position x="307" y="1028" />
+            </Shape>
+            <Shape Id="CD RACE FIVE" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD RACE FIVE" />
+              </Attributes>
+              <Position x="307" y="1076" />
+            </Shape>
+            <Shape Id="CD RACE" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD RACE" />
+              </Attributes>
+              <Position x="307" y="1124" />
+            </Shape>
+            <Shape Id="TX MULTIRACE" Expanded="false">
+              <Attributes>
+                <Attribute Id="TX MULTIRACE" />
+              </Attributes>
+              <Position x="307" y="1172" />
+            </Shape>
+            <Shape Id="CD MRTL STAT" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD MRTL STAT" />
+              </Attributes>
+              <Position x="307" y="1220" />
+            </Shape>
+            <Shape Id="CD LTD ENGLISH" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD LTD ENGLISH" />
+              </Attributes>
+              <Position x="307" y="1268" />
+            </Shape>
+            <Shape Id="CD LNG SECONDARY" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD LNG SECONDARY" />
+              </Attributes>
+              <Position x="307" y="1316" />
+            </Shape>
+            <Shape Id="CD LNG PRFR" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD LNG PRFR" />
+              </Attributes>
+              <Position x="307" y="1364" />
+            </Shape>
+            <Shape Id="CD LICWAC" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD LICWAC" />
+              </Attributes>
+              <Position x="307" y="1412" />
+            </Shape>
+            <Shape Id="CD HSPNC" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD HSPNC" />
+              </Attributes>
+              <Position x="307" y="1460" />
+            </Shape>
+            <Shape Id="CD GNDR" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD GNDR" />
+              </Attributes>
+              <Position x="307" y="1508" />
+            </Shape>
+            <Shape Id="CD CTZN" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD CTZN" />
+              </Attributes>
+              <Position x="307" y="1556" />
+            </Shape>
+            <Shape Id="CD CMBN ETHN" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD CMBN ETHN" />
+              </Attributes>
+              <Position x="307" y="1604" />
+            </Shape>
+            <Shape Id="TX BRAAM RACE" Expanded="false">
+              <Attributes>
+                <Attribute Id="TX BRAAM RACE" />
+              </Attributes>
+              <Position x="307" y="1652" />
+            </Shape>
+          </Shapes>
+        </DiagramLayout>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T08:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="6de7b1ae-0f2d-49cc-b246-b6f54ce413ef">
+    <DataSourceViewID>CA ODS</DataSourceViewID>
+  </Source>
+  <ErrorConfiguration dwd:design-time-name="15588a6d-d2fb-4f6c-8bf3-8b9d6ba97bba">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <DimensionPermissions>
+    <DimensionPermission dwd:design-time-name="4a0586f3-f394-44f1-a553-e2fb0c4dd7d5">
+      <ID>DimensionPermission</ID>
+      <Name>DimensionPermission</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <RoleID>Role 1</RoleID>
+      <ReadDefinition>Allowed</ReadDefinition>
+      <Read>Allowed</Read>
+    </DimensionPermission>
+  </DimensionPermissions>
+  <Attributes>
+    <Attribute dwd:design-time-name="001d9c8f-e1d7-4b74-8434-ead16b4df311">
+      <ID>ID PEOPLE DIM</ID>
+      <Name>ID PEOPLE DIM</Name>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="2bfff229-1a97-4cc2-bbda-241b6af2a5b0">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="c9fe391a-f248-464c-b33d-450bce0e3372">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>ID_PEOPLE_DIM</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="a11879a6-7500-43e2-9c2d-d1f1f6bbe453">
+          <AttributeID>ID PRSN</AttributeID>
+          <Name>ID PRSN</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="3d6e1dac-7086-44bf-ba76-aa384817e27d">
+          <AttributeID>TX BRAAM RACE</AttributeID>
+          <Name>BRAAM Race</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="cdc1ed87-6ade-4d4f-a4d9-a4c1a888a4fd">
+          <AttributeID>CD CMBN ETHN</AttributeID>
+          <Name>Combined Ethnicity</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="d11269bd-d5d1-4178-b86c-146793272afe">
+          <AttributeID>CD CTZN</AttributeID>
+          <Name>Citizen</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="a400cccb-eba2-4f25-87cd-e8fcf4e9e773">
+          <AttributeID>CD GNDR</AttributeID>
+          <Name>Gender</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="147c2fbb-10e7-4a74-a581-29aef39e3153">
+          <AttributeID>CD HSPNC</AttributeID>
+          <Name>Hispanic</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="b3ddad5b-9ef6-4975-a32b-794c695c55bc">
+          <AttributeID>CD LICWAC</AttributeID>
+          <Name>LICWAC</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="dc53606b-736e-4a35-9879-5916d0e1a0f8">
+          <AttributeID>CD LNG PRFR</AttributeID>
+          <Name>Language Preference</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="d528fd68-0469-42a9-99fd-8039a1ba43d8">
+          <AttributeID>CD LNG SECONDARY</AttributeID>
+          <Name>Language Secondary</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="a7e83075-2d0f-4301-b71a-b5d8e5a27040">
+          <AttributeID>CD LTD ENGLISH</AttributeID>
+          <Name>Limited English</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="ba9e9eaf-7373-430e-a495-e5df1310ac13">
+          <AttributeID>CD MRTL STAT</AttributeID>
+          <Name>Marital Status</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="6720abe1-c506-4338-9f3e-92f4392c6db2">
+          <AttributeID>TX MULTIRACE</AttributeID>
+          <Name>Multirace</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="a00230f7-6ac2-4e2d-8048-7ed45f245b7e">
+          <AttributeID>CD RACE</AttributeID>
+          <Name>Race</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="da9ff722-cd7e-4bb2-8e5d-d9fc0df26542">
+          <AttributeID>CD RACE FIVE</AttributeID>
+          <Name>Race 5</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="c5229512-2494-46a8-9764-686bdf8d2916">
+          <AttributeID>CD RACE FOUR</AttributeID>
+          <Name>Race 4</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="242a1b2f-99aa-487e-bc3f-a7aba2cdd246">
+          <AttributeID>CD RACE THREE</AttributeID>
+          <Name>Race 3</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="10b3de9e-21b7-4394-8aff-730737f40ccb">
+          <AttributeID>CD RACE TWO</AttributeID>
+          <Name>Race 2</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="8ddc762e-ca5e-4eb0-bb8c-ddd9a65f1af4">
+          <AttributeID>CD RLGN</AttributeID>
+          <Name>Religion</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="e5546011-a4c5-43a8-b156-7271e75bd38a">
+          <AttributeID>CD STATE RSDNT</AttributeID>
+          <Name>State Resident</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="d471d04f-3f6b-4d16-a0d6-3019d2bd2d86">
+          <AttributeID>FL ADOPTION MATCH</AttributeID>
+          <Name>Flag Adoption Match</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="4d425865-533d-4f15-b473-5647833150c8">
+          <AttributeID>FL DANGER TO WORKER</AttributeID>
+          <Name>Flag Danger to Worker</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="506acf39-aded-4d18-86a1-7e6b99f45b0b">
+          <AttributeID>FL DECEASED</AttributeID>
+          <Name>Flag Deceased</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="e78091c6-1ada-461a-be37-a549d3566f54">
+          <AttributeID>FL DT BIRTH ESTIMATED</AttributeID>
+          <Name>Flag Birthdate Estimated</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="dc3170df-ca48-4c5d-a04a-a8f8fe6ba2d5">
+          <AttributeID>FL EMOTION DSTRBD</AttributeID>
+          <Name>Flag Emotionally Disturbed</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="ab4179fa-62d8-4cc9-9a39-e1b3536241b7">
+          <AttributeID>FL ICW INVOLVEMENT</AttributeID>
+          <Name>Flag ICW Involvement</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="9a0519a7-6bd8-4748-85a2-c102b8784bd7">
+          <AttributeID>FL MNTAL RETARDATN</AttributeID>
+          <Name>Flag Mental Retardation</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="b72ba310-a90f-4c65-90c7-32434501a5fc">
+          <AttributeID>FL OTHR SPC CARE</AttributeID>
+          <Name>Flag Other Special Care</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="2ce54e56-e0af-477c-a60c-cd47598741e6">
+          <AttributeID>FL PHYS DISABLED</AttributeID>
+          <Name>Flag Physically Disabled</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="fa65d1d4-4c8d-4de4-978a-39ab7a2fdb8c">
+          <AttributeID>FL PRSN MALTREATER</AttributeID>
+          <Name>Flag Person Maltreater</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="e7d0a72d-05f1-46aa-a560-974a48109a43">
+          <AttributeID>FL SEX AGGRESIVE YOUTH</AttributeID>
+          <Name>Flag Sexually Aggressive Youth</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="ea4062f3-7de4-4b12-859e-f7cdc1880ca3">
+          <AttributeID>FL TEEN PARENT</AttributeID>
+          <Name>Flag Teen Parent</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="a3cbebc8-4131-410c-bf51-e6eee1ae328d">
+          <AttributeID>FL VIS HEARING IMPR</AttributeID>
+          <Name>Flag Visual or Hearing Impaired</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="034a0ac6-2f7f-400b-a248-a75ad6a8cad4">
+          <AttributeID>DT BIRTH</AttributeID>
+          <Name>Birthdate</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="98aa0062-02a9-4893-a3c5-f64ecffbd024">
+          <AttributeID>DT DEATH</AttributeID>
+          <Name>Deathdate</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="aa0affef-703f-4760-9b7d-d7cace7a3b66">
+          <AttributeID>DT LICWAC DETERMINATION</AttributeID>
+          <Name>LICWAC Determination Date</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="1fb83445-e8b2-4461-9be7-b18398e508c7">
+          <AttributeID>FL DELETED</AttributeID>
+          <Name>Flag Deleted</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="21d0ccd8-8450-43a3-9a72-d56b0ec39374">
+          <AttributeID>FL EXPUNGED</AttributeID>
+          <Name>Flag Expunged</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="8fa6b5fe-01f9-4ebc-bf38-955ad8887982">
+          <AttributeID>Cd Race Census</AttributeID>
+          <Name>Race Census</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="8f7c931f-6d86-4174-9db3-9c152e4756ef">
+          <AttributeID>Census Hispanic Latino Origin Cd</AttributeID>
+          <Name>Census Hispanic Latino Origin Code</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="a4ca7b31-8703-47b9-a5d2-ed0c8cbf4f74">
+          <AttributeID>TX SSI SSA STATUS</AttributeID>
+          <Name>SSI SSA Status</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="86a1b1e6-6639-4f75-89b8-f36920f86f4a">
+      <ID>ID PRSN</ID>
+      <Name>ID PRSN</Name>
+      <EstimatedCount>3994185</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="85b07033-0fe8-4d6c-a635-80f09b8e884f">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="8fcae867-2fa0-4a3e-9bec-5891487c6085">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>ID_PRSN</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="e2744e9b-b5fc-47d5-b6a6-20e0e90ed205">
+      <ID>TX BRAAM RACE</ID>
+      <Name>BRAAM Race</Name>
+      <EstimatedCount>8</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="b47e56e5-ab5f-4a80-86d3-ced6b3b676cd">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="12e00bea-6bed-4738-8b22-bfd19618b717">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>TX_BRAAM_RACE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="13212aa9-a98a-4e09-abad-53e4bac55c1b">
+      <ID>CD CMBN ETHN</ID>
+      <Name>Combined Ethnicity</Name>
+      <EstimatedCount>30</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="512be969-9e9e-494f-9697-a26156eb6d18">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="878f89ef-f386-4d04-afb5-499dd823c306">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>CD_CMBN_ETHN</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="25322a45-d156-4a96-a735-8b0756e65a0d">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="31f3818b-45ed-48c2-9594-6fc49ba54616">
+          <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+          <ColumnID>TX_CMBN_ETHN</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="154fe7e2-eaa6-44ba-9321-68eb8766349a">
+      <ID>CD CTZN</ID>
+      <Name>Citizen</Name>
+      <EstimatedCount>3</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="887b20c3-1182-426a-baa9-181ea8d08322">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="a3d40dd7-cd8c-457b-9917-b18bfff8d04a">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>CD_CTZN</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="fef8448c-6603-4420-ad14-1f6a07274d33">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="56d23999-c784-4e68-9379-4cbc611785a7">
+          <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+          <ColumnID>TX_CTZN</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="245c758e-ef55-4998-a99c-6549161e9971">
+      <ID>CD GNDR</ID>
+      <Name>Gender</Name>
+      <EstimatedCount>4</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="b3d1ea4a-3931-4ed6-afeb-871708af4fb0">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="16fb1f31-d288-4c73-bf08-94b5b0b1f5ab">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>CD_GNDR</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="42f1aac8-0e36-4795-be72-acda4b777366">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="9d29ab69-e442-49e0-95c5-3b2dd93fdbec">
+          <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+          <ColumnID>TX_GNDR</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="59342bbe-3256-4840-be93-6098bee65390">
+      <ID>CD HSPNC</ID>
+      <Name>Hispanic</Name>
+      <EstimatedCount>4</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="4a5b8316-0bc9-4515-902b-f11abed1b772">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="b862c234-bf2c-4564-8e4e-d1986112e8ac">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>CD_HSPNC</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="2c76a06e-69d1-422d-903a-8f05105eed8d">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="e493ccff-e944-4833-8f9c-a72a8eb39067">
+          <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+          <ColumnID>TX_HSPNC</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="886ce8aa-e130-4519-bd9c-f965e121fee0">
+      <ID>CD LICWAC</ID>
+      <Name>LICWAC</Name>
+      <EstimatedCount>4</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="6ca07bca-3227-45c6-8338-2c67d9ce09f3">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="2ae4e797-c8e8-4586-9b57-bb973910db0e">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>CD_LICWAC</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="8265ddf0-7e11-4f34-b23f-56aaaee9b8b6">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="ce088dc8-88be-4624-8368-d1c77d941bf3">
+          <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+          <ColumnID>TX_LICWAC</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="53a35eb3-f350-4c67-a34e-7b32caa4409b">
+      <ID>CD LNG PRFR</ID>
+      <Name>Language Preference</Name>
+      <EstimatedCount>99</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="d05d5749-a6c0-4416-9582-d6b5854a9e76">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="3a15d7ed-8a67-4a16-8260-a8edaa5f93b8">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>CD_LNG_PRFR</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="47c1dfed-351b-48d2-b1e6-07798ab1fdce">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="beee2ed4-6815-4f46-9c4f-8bcfaa5b4c62">
+          <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+          <ColumnID>TX_LNG_PRFR</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="58b1843f-1625-45ec-9f66-06276c16f8ca">
+      <ID>CD LNG SECONDARY</ID>
+      <Name>Language Secondary</Name>
+      <EstimatedCount>87</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="e3d80d7f-fd9f-4dcd-a54c-18c82765cb8b">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="cd62efa4-b58c-47f8-8b63-b5f9b6ff8be6">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>CD_LNG_SECONDARY</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="b494a145-84b7-45bd-b8fe-4ddf93d2e78a">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="7a78eca4-b978-4e2b-9822-e16b32e63d3b">
+          <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+          <ColumnID>TX_LNG_SECONDARY</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="4c9972da-edcd-4ce4-9e4d-eb89a200ccd7">
+      <ID>CD LTD ENGLISH</ID>
+      <Name>Limited English</Name>
+      <EstimatedCount>4</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="873e9792-a7ba-40b2-b2dd-3ca7cacdc948">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="4110284e-8106-4593-80c3-7a6f9f8cdabb">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>CD_LTD_ENGLISH</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="7faee243-d43d-4cd1-a1e6-0b2da66700ae">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="a37eb6d8-91ba-482f-952d-9fd91c856558">
+          <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+          <ColumnID>TX_LTD_ENGLISH</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="47afde95-da05-4269-96fa-468d81647ce6">
+      <ID>CD MRTL STAT</ID>
+      <Name>Marital Status</Name>
+      <EstimatedCount>5</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="0cb1f939-d225-44e3-8fa1-7fb2cf176670">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="89295b09-3e43-44a1-95c9-eda2fb7d94f0">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>CD_MRTL_STAT</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="a65011cf-3b76-4a5d-8b12-11673e4a7cb8">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="f1233b87-64b4-40d0-8afc-a3cd9cbf77d0">
+          <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+          <ColumnID>TX_MRTL_STAT</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="9367a9f7-b01c-47d5-b838-8c666679f32f">
+      <ID>TX MULTIRACE</ID>
+      <Name>Multirace</Name>
+      <EstimatedCount>33</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="e30bb5d8-1205-4b78-8091-b1bcb4877cb6">
+          <DataType>WChar</DataType>
+          <DataSize>250</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="c6e54647-f6f8-478d-9ae4-dee7c1285b7a">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>TX_MULTIRACE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="14afa24c-3fd0-4ee0-9d81-cf1394f90e9f">
+      <ID>CD RACE</ID>
+      <Name>Race</Name>
+      <EstimatedCount>9</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="02824196-89e7-4190-b490-9850162bd9c6">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="403af80c-8b1d-4223-b8a9-7ef14daaa641">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>CD_RACE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="98319dca-8d05-4901-b392-3fb41439a005">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="dc953ef2-4f89-40c4-a1e5-2042bb5f052f">
+          <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+          <ColumnID>TX_RACE</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="c343f20e-8884-47fd-aee0-3741107f808a">
+      <ID>CD RACE FIVE</ID>
+      <Name>Race 5</Name>
+      <EstimatedCount>6</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="e8343fbc-270f-4418-93bc-6f0cf9204c08">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="b12c9c10-0991-4b13-b559-7375939114c8">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>CD_RACE_FIVE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="27df8ce6-4c1c-414b-935c-1a1e70324e72">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="031b03ae-a2c0-4209-aee1-f005f0fe9e85">
+          <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+          <ColumnID>TX_RACE_FIVE</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="020451cc-b06a-402d-94af-be5d4abc6e56">
+      <ID>CD RACE FOUR</ID>
+      <Name>Race 4</Name>
+      <EstimatedCount>6</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="be5a7df7-cc2f-4169-8cd0-8183ef32ec35">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="b0c96f6b-c936-4b54-b266-67edc27f0626">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>CD_RACE_FOUR</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="5cf34fd4-8fa4-438f-a947-de21bfda6b58">
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="e331fde0-3581-43bc-b29d-da5592199aeb">
+          <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+          <ColumnID>CD_RACE_FOUR</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="ecec68ea-3614-4cbb-ad0a-f08108907e32">
+      <ID>CD RACE THREE</ID>
+      <Name>Race 3</Name>
+      <EstimatedCount>6</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="76dff6ba-91a4-41bb-97c8-2330d7be6a7d">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="14d9570f-285b-4596-b77c-58de4777f33b">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>CD_RACE_THREE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="aa36c2dd-c342-46f6-9b28-cc76c43fb498">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="732a9e27-e8b2-4fc6-bd18-18cfcf50d2ed">
+          <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+          <ColumnID>TX_RACE_THREE</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="6eae381f-9c60-49f4-9910-e92ee267c35d">
+      <ID>CD RACE TWO</ID>
+      <Name>Race 2</Name>
+      <EstimatedCount>7</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="9bc5209f-3778-4c45-b278-687e3f0cc4b4">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="bd362281-3ae6-46f8-9574-7679fbe0782f">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>CD_RACE_TWO</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="061e20c9-79b7-44b5-a45d-5521502f5313">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="8f064642-25f5-486c-a767-04c915f60c08">
+          <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+          <ColumnID>TX_RACE_TWO</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="3919f964-495b-478e-b3a4-1e090a8f0951">
+      <ID>CD RLGN</ID>
+      <Name>Religion</Name>
+      <EstimatedCount>29</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="05192629-830e-4ff7-bc2b-5a28f5b4ebaa">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="e6794b7b-d9ce-4357-b1b5-c0a4c1269a36">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>CD_RLGN</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="0bad5f35-265e-4a46-9d2c-987facd03c3f">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="4856357d-0352-4469-a711-a0716e6566e5">
+          <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+          <ColumnID>TX_RLGN</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="21b5fad0-3c14-4594-b304-d53a912718b8">
+      <ID>CD STATE RSDNT</ID>
+      <Name>State Resident</Name>
+      <EstimatedCount>4</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="7edef042-e2fa-4bda-a46d-bbfc06076ed7">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="310d1f90-82d0-45dd-970c-b4c6caf579f2">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>CD_STATE_RSDNT</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="6ec1949d-bec1-496c-a217-6bb571cbb3f9">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="17c98351-fb64-4290-99d3-06455d1ef8a3">
+          <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+          <ColumnID>TX_STATE_RSDNT</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="ae54e560-80a1-4791-a109-92aaceee0852">
+      <ID>FL ADOPTION MATCH</ID>
+      <Name>Flag Adoption Match</Name>
+      <EstimatedCount>3</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="41a165da-b332-4a6c-b0bf-d558836a8414">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="9588cef2-6bd0-41ed-9ccc-566862d2ec75">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>FL_ADOPTION_MATCH</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="bf61491e-4cae-4f13-ad65-28179456bc87">
+      <ID>FL DANGER TO WORKER</ID>
+      <Name>Flag Danger to Worker</Name>
+      <EstimatedCount>3</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="546a598e-e99f-4e2a-8cfe-2c02d0a88e9d">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f55a2fcd-c71e-4654-92a5-37bab8aa28da">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>FL_DANGER_TO_WORKER</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="1bab7a91-c44e-485f-9522-9cea7ea8e7d2">
+      <ID>FL DECEASED</ID>
+      <Name>Flag Deceased</Name>
+      <EstimatedCount>3</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="29d0908f-c62e-4e57-b913-3b5b1fdf2624">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="6f79aa72-67df-4821-8d9b-6cf43cb177a3">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>FL_DECEASED</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="5f25d382-c1b0-4a05-b50e-43c993bb8281">
+      <ID>FL DT BIRTH ESTIMATED</ID>
+      <Name>Flag Birthdate Estimated</Name>
+      <EstimatedCount>3</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="9931ba1c-1873-4141-b203-17903d9fa6bd">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="2b58b473-db05-4fb6-8b13-b061e2b91a52">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>FL_DT_BIRTH_ESTIMATED</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="014583a6-909f-4679-bfbd-562f2d6df063">
+      <ID>FL EMOTION DSTRBD</ID>
+      <Name>Flag Emotionally Disturbed</Name>
+      <EstimatedCount>3</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="b3bc56da-5be0-46a2-afc9-2dd966f7625a">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="406a6e86-04ad-43f8-a9c3-a55c6ee9ebe6">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>FL_EMOTION_DSTRBD</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="55166d4c-d286-4268-9a66-7add1f2968d3">
+      <ID>FL ICW INVOLVEMENT</ID>
+      <Name>Flag ICW Involvement</Name>
+      <EstimatedCount>3</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="03872d32-542d-499d-a82e-2e4cee7018aa">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="00facd4e-7ed1-4b50-9bfb-e99fbdcd43cc">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>FL_ICW_INVOLVEMENT</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="011c13c8-1ed7-444b-969d-e4a80defeba0">
+      <ID>FL MNTAL RETARDATN</ID>
+      <Name>Flag Mental Retardation</Name>
+      <EstimatedCount>3</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="32619408-ffb9-4678-9405-cd57b910b82d">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="d11efce2-a16e-407f-98d0-4ab4de7f6291">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>FL_MNTAL_RETARDATN</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="315fab91-a0c1-4662-888a-4907eef9380c">
+      <ID>FL OTHR SPC CARE</ID>
+      <Name>Flag Other Special Care</Name>
+      <EstimatedCount>3</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="33cce790-8237-41a0-9af5-29d0fc0013f5">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="fdf61e24-2691-42b3-8064-14ff03dc9dbd">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>FL_OTHR_SPC_CARE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="89e5b278-a1aa-4c5a-a0cc-4191a6c939cd">
+      <ID>FL PHYS DISABLED</ID>
+      <Name>Flag Physically Disabled</Name>
+      <EstimatedCount>3</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="840c2ab6-40e8-4926-8a03-d942a26b4994">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="2c76d9dc-d671-4e20-9606-0ca07b250a7e">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>FL_PHYS_DISABLED</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="81ec58cf-3a09-47e9-9d9d-d906181ab89e">
+      <ID>FL PRSN MALTREATER</ID>
+      <Name>Flag Person Maltreater</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="7ec38cd5-df33-4b44-956f-230fd9b340f3">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="989da6ce-b85e-4974-b7af-8077b4066ee3">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>FL_PRSN_MALTREATER</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="97097d0b-b738-4220-81a5-92486fe33432">
+      <ID>FL SEX AGGRESIVE YOUTH</ID>
+      <Name>Flag Sexually Aggressive Youth</Name>
+      <EstimatedCount>3</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="46ee72b6-2651-407f-935e-ef09b60d9195">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="e3586b2e-6857-42e3-8b09-01d34f1c39b0">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>FL_SEX_AGGRESIVE_YOUTH</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="0125ce2c-fd9e-4f39-985a-272d0dae54c0">
+      <ID>FL TEEN PARENT</ID>
+      <Name>Flag Teen Parent</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="85093579-7dd9-41a5-8fc1-9d64a8690476">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="26d98bca-5d29-453f-b431-40a71286776a">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>FL_TEEN_PARENT</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="b5eb8e7b-13c1-4471-a60c-3ad7b8105579">
+      <ID>FL VIS HEARING IMPR</ID>
+      <Name>Flag Visual or Hearing Impaired</Name>
+      <EstimatedCount>3</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="8cd45936-26a4-4198-bffc-5924bd654bff">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="8b8e1cd6-71d2-4caa-81c9-ca5b89edc44d">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>FL_VIS_HEARING_IMPR</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="4278dd67-2d07-400f-9324-650f219c328e">
+      <ID>DT BIRTH</ID>
+      <Name>Birthdate</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="d177241c-c901-4f7a-b614-ec0111084c2e">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="b4da0ebd-9160-483c-ada2-4b5f2e948626">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>DT_BIRTH</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="982e3dc2-b49e-42df-99d8-64d49485050b">
+      <ID>DT DEATH</ID>
+      <Name>Deathdate</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="f959da4f-1688-4b11-b1df-8f14f182748f">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="c7595625-c0ee-4e01-82c5-37a553096bf0">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>DT_DEATH</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="48c0d00e-72e1-4345-bcdc-a7806c78b208">
+      <ID>DT LICWAC DETERMINATION</ID>
+      <Name>LICWAC Determination Date</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="f6916f43-626a-418e-914b-405061ef89fe">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="5a7f7015-55d7-4546-8dc6-95b364fc8522">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>DT_LICWAC_DETERMINATION</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="4a2ca2d1-babe-46da-bbe6-bd55ecf114ba">
+      <ID>FL DELETED</ID>
+      <Name>Flag Deleted</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="3de95698-d4a8-4a13-9f7f-0c2edb98d77b">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="bc7a5b75-f381-4c92-91b4-ff1a8b113e0a">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>FL_DELETED</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="90de26fd-2a40-409a-9b89-65038eb4e8cd">
+      <ID>FL EXPUNGED</ID>
+      <Name>Flag Expunged</Name>
+      <EstimatedCount>1</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="d1db7509-46ec-4d3c-a0bd-feba8d6fab93">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="3be5f4a4-67ae-4a39-89e8-b1d2ab5fb478">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>FL_EXPUNGED</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="d377f4c1-4655-4922-9bc2-89f94410c6df">
+      <ID>Cd Race Census</ID>
+      <Name>Race Census</Name>
+      <EstimatedCount>8</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="17ecc084-9c04-4e6e-b092-813a397a0bc8">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="48519f51-7996-4fe3-954b-d5ddd1775bd7">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>cd_race_census</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="bf5af24e-fc91-4943-87af-19f46c9cb12f">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="d84b72b0-527a-4064-98ec-4a35b9cdb562">
+          <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+          <ColumnID>tx_race_census</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="b311d349-cafa-4728-8c65-fa6f3a8c7d65">
+      <ID>Census Hispanic Latino Origin Cd</ID>
+      <Name>Census Hispanic Latino Origin Code</Name>
+      <EstimatedCount>4</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="7f8f946b-7989-4ff8-ad92-31e51387f562">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="7b05ced0-2404-4cdf-954b-d95f8553a148">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>census_Hispanic_Latino_Origin_cd</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="85e7a678-77f2-4955-ade9-e3e0b27fbcc5">
+      <ID>TX SSI SSA STATUS</ID>
+      <Name>SSI SSA Status</Name>
+      <EstimatedCount>51</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="8b1b1d77-a297-433c-b09a-f49424d69432">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="3c750c08-d49f-4910-86ca-e9f5875cc5ff">
+            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
+            <ColumnID>TX_SSI_SSA_STATUS</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <Hierarchies>
+    <Hierarchy dwd:design-time-name="101a19f2-ed9e-4140-aa26-33f6901de6a3">
+      <ID>Hierarchy</ID>
+      <Name>BRAAM Race Hierarchy</Name>
+      <DisplayFolder>Race or Ethnicity Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="cadf13a0-8c9c-4bc1-b226-1e315e06e63a">
+          <ID>BRAAM Race</ID>
+          <Name>BRAAM Race</Name>
+          <SourceAttributeID>TX BRAAM RACE</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="9b19f0b9-6d3f-48f5-92ed-c3825ad6b5e4">
+      <ID>Hierarchy 1</ID>
+      <Name>Census Hispanic Latino Origin Code Hierarchy</Name>
+      <DisplayFolder>Race or Ethnicity Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="b102f256-cfcb-437f-ae48-11910c809294">
+          <ID>Census Hispanic Latino Origin Cd</ID>
+          <Name>Census Hispanic Latino Origin Code</Name>
+          <SourceAttributeID>Census Hispanic Latino Origin Cd</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="03627564-06b0-48e8-930f-f75ed03ef1d9">
+      <ID>Hierarchy 2</ID>
+      <Name>Citizen Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="6d42aafb-c064-4067-ab0e-4830ce6180b2">
+          <ID>Citizen</ID>
+          <Name>Citizen</Name>
+          <SourceAttributeID>CD CTZN</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="4e3cc390-a95b-4d26-af16-ef4ed6a6b316">
+      <ID>Hierarchy 3</ID>
+      <Name>Combined Ethnicity Hierarchy</Name>
+      <DisplayFolder>Race or Ethnicity Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="1b905ddd-53bf-42f2-b7e8-67757be064e4">
+          <ID>Combined Ethnicity</ID>
+          <Name>Combined Ethnicity</Name>
+          <SourceAttributeID>CD CMBN ETHN</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="677468c8-52fe-4be2-9b9f-8757e4920039">
+      <ID>Hierarchy 4</ID>
+      <Name>Gender Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="4d4ed932-c848-4348-b0c2-852b1a2811a1">
+          <ID>Gender</ID>
+          <Name>Gender</Name>
+          <SourceAttributeID>CD GNDR</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="c437e65f-be99-4a41-8b6e-8b93633eb405">
+      <ID>Hierarchy 5</ID>
+      <Name>Hispanic Hierarchy</Name>
+      <DisplayFolder>Race or Ethnicity Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="cf3482a6-6538-438b-abc0-dab7de6647aa">
+          <ID>Hispanic</ID>
+          <Name>Hispanic</Name>
+          <SourceAttributeID>CD HSPNC</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="5b0a3784-fe59-4893-ab0a-02fa910c28d9">
+      <ID>Hierarchy 6</ID>
+      <Name>Language Preference Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="5b39092e-cbb1-4064-8cca-5bb32aea705c">
+          <ID>Language Preference</ID>
+          <Name>Language Preference</Name>
+          <SourceAttributeID>CD LNG PRFR</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="fb4d1c12-af39-44fc-b0b2-ba4eacdc2d8c">
+      <ID>Hierarchy 7</ID>
+      <Name>Secondary Language Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="de843a83-8e6a-426a-abd5-cbbda9eea480">
+          <ID>Language Secondary</ID>
+          <Name>Language Secondary</Name>
+          <SourceAttributeID>CD LNG SECONDARY</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="95de6bb2-0a51-4a71-8cf4-3ea4a05339e0">
+      <ID>Hierarchy 8</ID>
+      <Name>LICWAC Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="5b138146-2f58-4afb-afd9-ed4a4a714de1">
+          <ID>LICWAC</ID>
+          <Name>LICWAC</Name>
+          <SourceAttributeID>CD LICWAC</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="694e2d85-43ca-4b38-861b-9d6b781f0d4e">
+      <ID>Hierarchy 9</ID>
+      <Name>Limited English Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="4666162f-d920-4ab5-a240-bb709780b96d">
+          <ID>Limited English</ID>
+          <Name>Limited English</Name>
+          <SourceAttributeID>CD LTD ENGLISH</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="db4083e3-4f0e-45b0-8ed6-322953bf357d">
+      <ID>Hierarchy 10</ID>
+      <Name>Marital Status Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="e534a220-3b4f-438f-a8b8-f7912567b9fa">
+          <ID>Marital Status</ID>
+          <Name>Marital Status</Name>
+          <SourceAttributeID>CD MRTL STAT</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="844b865a-804b-411c-980b-16ad8636edbf">
+      <ID>Hierarchy 11</ID>
+      <Name>Multirace Hierarchy</Name>
+      <DisplayFolder>Race or Ethnicity Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="44bcddc1-3c63-416f-9a1b-99797993dec8">
+          <ID>Multirace</ID>
+          <Name>Multirace</Name>
+          <SourceAttributeID>TX MULTIRACE</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="3ad38886-7796-44d2-86d4-20380e15eed2">
+      <ID>Hierarchy 12</ID>
+      <Name>First Race Hierarchy</Name>
+      <DisplayFolder>Race or Ethnicity Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="84ccec3e-1437-46d3-b727-1cba1591bfcc">
+          <ID>Race</ID>
+          <Name>Race</Name>
+          <SourceAttributeID>CD RACE</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="1e6e77c2-0c9e-4a23-82c9-151519d1bcb1">
+      <ID>Hierarchy 13</ID>
+      <Name>Second Race Hierarchy</Name>
+      <DisplayFolder>Race or Ethnicity Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="eecda55e-9a5f-4cc5-80ef-b10608781536">
+          <ID>Race 2</ID>
+          <Name>Race 2</Name>
+          <SourceAttributeID>CD RACE TWO</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="fac62496-0500-46b5-9a10-d87ec161100f">
+      <ID>Hierarchy 14</ID>
+      <Name>Third Race Hierarchy</Name>
+      <DisplayFolder>Race or Ethnicity Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="c190873f-2c4b-49ee-ad12-bd63177e9420">
+          <ID>Race 3</ID>
+          <Name>Race 3</Name>
+          <SourceAttributeID>CD RACE THREE</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="b8935be8-d1fe-4f6b-b293-b7b2da862853">
+      <ID>Hierarchy 15</ID>
+      <Name>Fourth Race Hierarchy</Name>
+      <DisplayFolder>Race or Ethnicity Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="f83154f4-7d7e-4f81-9e86-8292e314ca5e">
+          <ID>Race 4</ID>
+          <Name>Race 4</Name>
+          <SourceAttributeID>CD RACE FOUR</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="866af1cb-c340-468e-9ed3-945b1215e5c5">
+      <ID>Hierarchy 16</ID>
+      <Name>Fifth Race Hierarchy</Name>
+      <DisplayFolder>Race or Ethnicity Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="4df601dd-88eb-441e-8d06-a08cc4dc4957">
+          <ID>Race 5</ID>
+          <Name>Race 5</Name>
+          <SourceAttributeID>CD RACE FIVE</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="0618434e-d090-45a4-a611-d8ac2431cb5d">
+      <ID>Hierarchy 17</ID>
+      <Name>Race Census Hierarchy</Name>
+      <DisplayFolder>Race or Ethnicity Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="f609bfc9-aa7b-4419-ab0c-e59c5fa3c7be">
+          <ID>Race Census</ID>
+          <Name>Race Census</Name>
+          <SourceAttributeID>Cd Race Census</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="9af6d98c-89d2-4877-96e4-ceb9983a04bb">
+      <ID>Hierarchy 18</ID>
+      <Name>Religion Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="6b0bb8f8-fee9-4080-a070-81aa4042bebc">
+          <ID>Religion</ID>
+          <Name>Religion</Name>
+          <SourceAttributeID>CD RLGN</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="e444162a-16f2-463e-92fb-d766e0712c1f">
+      <ID>Hierarchy 19</ID>
+      <Name>State Resident Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="43377970-8234-43be-9835-de19044cf970">
+          <ID>State Resident</ID>
+          <Name>State Resident</Name>
+          <SourceAttributeID>CD STATE RSDNT</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="01a9595a-afe1-4957-a2d3-09d001920788">
+      <ID>Hierarchy 20</ID>
+      <Name>Adoption Match Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="9b796f2b-9c81-446f-a188-cc2ae2d0497c">
+          <ID>Flag Adoption Match</ID>
+          <Name>Flag Adoption Match</Name>
+          <SourceAttributeID>FL ADOPTION MATCH</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="5d70a3f8-01ea-4269-99de-506476331352">
+      <ID>Hierarchy 21</ID>
+      <Name>Birthdate Estimated Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="c84b6c9c-d4d7-4483-97a8-a4eb7ecdc234">
+          <ID>Flag Birthdate Estimated</ID>
+          <Name>Flag Birthdate Estimated</Name>
+          <SourceAttributeID>FL DT BIRTH ESTIMATED</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="29eeeae2-3284-44ee-beb5-529d192da4c8">
+      <ID>Hierarchy 22</ID>
+      <Name>Danger to Worker Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="6362bb83-26f2-406c-996b-58fd9e18db0c">
+          <ID>Flag Danger to Worker</ID>
+          <Name>Flag Danger to Worker</Name>
+          <SourceAttributeID>FL DANGER TO WORKER</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="f1435cd7-fa5e-4af8-995c-c412994a104e">
+      <ID>Hierarchy 23</ID>
+      <Name>Deceased Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="03ee99b5-f5a1-4933-b379-64ea4c3204d4">
+          <ID>Flag Deceased</ID>
+          <Name>Flag Deceased</Name>
+          <SourceAttributeID>FL DECEASED</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="cfd3c36e-591e-498f-9337-07f4d38c19cd">
+      <ID>Hierarchy 24</ID>
+      <Name>Deleted Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="75732207-f68c-4f8d-9d1b-ad3b11eaec03">
+          <ID>Flag Deleted</ID>
+          <Name>Flag Deleted</Name>
+          <SourceAttributeID>FL DELETED</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="f417a237-9d93-4c7f-858c-045d21877415">
+      <ID>Hierarchy 25</ID>
+      <Name>Emotionally Distrubed Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="36f8bc53-8a12-4eca-8b0c-d4ba21dbaca5">
+          <ID>Flag Emotionally Disturbed</ID>
+          <Name>Flag Emotionally Disturbed</Name>
+          <SourceAttributeID>FL EMOTION DSTRBD</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="da573d0d-e707-41d6-83c2-7bbb2a878f89">
+      <ID>Hierarchy 26</ID>
+      <Name>Expunged Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="4afc0aa6-3641-4578-ae7e-32165b4b308f">
+          <ID>Flag Expunged</ID>
+          <Name>Flag Expunged</Name>
+          <SourceAttributeID>FL EXPUNGED</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="dcbf14b9-c638-46fd-b2cc-449dce0ae79a">
+      <ID>Hierarchy 27</ID>
+      <Name>ICW Involvement Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="a9b40e10-e652-4d94-a69c-ffb7b1bc388b">
+          <ID>Flag ICW Involvement</ID>
+          <Name>Flag ICW Involvement</Name>
+          <SourceAttributeID>FL ICW INVOLVEMENT</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="e3c2972d-2404-4c19-8376-77222ca01562">
+      <ID>Hierarchy 28</ID>
+      <Name>Mental Retardation Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="6afe05bf-8c81-427b-8083-afd67e41e3b8">
+          <ID>Flag Mental Retardation</ID>
+          <Name>Flag Mental Retardation</Name>
+          <SourceAttributeID>FL MNTAL RETARDATN</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="9fa6bf06-2aec-4f71-9b32-3e90dc40db01">
+      <ID>Hierarchy 29</ID>
+      <Name>Other Special Care Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="727db040-b68c-4924-b0e7-b8e3979940aa">
+          <ID>Flag Other Special Care</ID>
+          <Name>Flag Other Special Care</Name>
+          <SourceAttributeID>FL OTHR SPC CARE</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="a9a2808a-c756-484b-9107-aa0b92b547ca">
+      <ID>Hierarchy 30</ID>
+      <Name>Person Maltreater Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="dd90f370-093a-4563-8857-6635e79115f5">
+          <ID>Flag Person Maltreater</ID>
+          <Name>Flag Person Maltreater</Name>
+          <SourceAttributeID>FL PRSN MALTREATER</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="8d1d5ec5-1fd2-4c69-860c-fba9c7d9f962">
+      <ID>Hierarchy 31</ID>
+      <Name>Physically Disabled Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="21b8ed06-267e-4ebd-8d42-0f47bd7c8f1a">
+          <ID>Flag Physically Disabled</ID>
+          <Name>Flag Physically Disabled</Name>
+          <SourceAttributeID>FL PHYS DISABLED</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="a583bc45-8cbe-4db9-8d11-2453e29daf9f">
+      <ID>Hierarchy 32</ID>
+      <Name>Sexually Aggressive Youth Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="31f6760a-3350-4a28-a076-ef81dfa029fe">
+          <ID>Flag Sexually Aggressive Youth</ID>
+          <Name>Flag Sexually Aggressive Youth</Name>
+          <SourceAttributeID>FL SEX AGGRESIVE YOUTH</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="516f0e03-8c57-40cc-99aa-0c6d804739e9">
+      <ID>Hierarchy 33</ID>
+      <Name>Teen Parent Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="ebd15283-ef59-4d09-a0be-e3c73d21d6ec">
+          <ID>Flag Teen Parent</ID>
+          <Name>Flag Teen Parent</Name>
+          <SourceAttributeID>FL TEEN PARENT</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="a008a501-2e63-4356-9a2a-bb679582f777">
+      <ID>Hierarchy 34</ID>
+      <Name>Visual or Hearing Impaired Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="7c47f10c-d43e-40d3-bbd8-feaa8171fb67">
+          <ID>Flag Visual or Hearing Impaired</ID>
+          <Name>Flag Visual or Hearing Impaired</Name>
+          <SourceAttributeID>FL VIS HEARING IMPR</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="3c23b48d-0ace-4519-a503-9aaa3a25dae6">
+      <ID>Hierarchy 35</ID>
+      <Name>SSI SSA Status Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="812c3a11-5fca-4bb3-8bcb-866e7bdbb710">
+          <ID>SSI SSA Status</ID>
+          <Name>SSI SSA Status</Name>
+          <SourceAttributeID>TX SSI SSA STATUS</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+  </Hierarchies>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>

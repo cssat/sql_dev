@@ -25,7 +25,12 @@ BEGIN
 
  
 declare flg_procedure_off int;
+declare intFoundPos integer;
 
+declare strElement varchar(3000);
+declare strValues varchar(3000);
+declare intVal integer;		
+declare intincAll integer;
 
 
 declare p_qry_id bigint;
@@ -43,7 +48,7 @@ declare var_row_cnt_cache int;
 
 
 declare var_calling_procedure int;
-set var_calling_procedure=20;
+set var_calling_procedure=19;
 
 
 --  DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
@@ -58,18 +63,19 @@ set x2=rand();
 /***  turn procedure on / off for loading data ***************************************/
 set flg_procedure_off =0;
 if  flg_procedure_off =0 then    
-
+    
+    
     call sp_ooh_assign_desc(var_calling_procedure);  
 
-    
+
+     
      
 --  set dates 
     
-    select min_date_any ,max_date_all 
-    into p_minmonthstart,p_maxmonthstart  
-    FROM ref_lookup_max_date where id=var_calling_procedure;
-    select p_minmonthstart,p_maxmonthstart 
-    into p_mindate,p_maxdate;
+    select min_date_any ,max_date_all ,min_date_any ,max_date_all 
+    into p_minmonthstart,p_maxmonthstart  ,p_mindate,p_maxdate
+    FROM ref_lookup_max_date where id=20;
+    
   
     
  
@@ -116,8 +122,6 @@ if  flg_procedure_off =0 then
                 and filter_srvc_type=left(p_filter_service_category,50)
                 and filter_budget=left(p_filter_service_budget,50)
                 and bin_dep_cd=left(p_bin_dep_cd,20)
-                and min_start_date<=p_mindate
-                and max_start_date >=p_maxdate
            order by qry_ID  limit 1;
   
  
@@ -179,7 +183,7 @@ if  flg_procedure_off =0 then
    
    
    
-  call sp_create_ooh_cachekeys(p_age_grouping_cd 
+  call sp_ooh_create_cachekeys(p_age_grouping_cd 
         ,  p_ethnicity_cd 
         ,  p_gender_cd 
         ,  p_init_cd_plcm_setng 
@@ -199,7 +203,7 @@ if  flg_procedure_off =0 then
         , coalesce(p_qry_id,@qry_ID));
         
 
-update cachekeys,cache_qry_param_poc1ab
+        update cachekeys,cache_qry_param_poc1ab
         set cachekeys.in_cache=1,cachekeys.qry_id=cache_qry_param_poc1ab.qry_id
         where cachekeys.int_hash_key=cache_qry_param_poc1ab.int_hash_key;    
         
@@ -210,13 +214,15 @@ update cachekeys,cache_qry_param_poc1ab
                    
 if  var_row_cnt_param <> var_row_cnt_cache then
         
-            call sp_create_ooh_tblprmlocdem(p_age_grouping_cd 
+        call sp_ooh_create_tblprmlocdem(p_age_grouping_cd 
         ,  p_ethnicity_cd 
         ,  p_gender_cd 
         ,  p_init_cd_plcm_setng 
         ,  p_long_cd_plcm_setng 
         ,  p_county_cd 
-        , var_calling_procedure);               
+        , var_calling_procedure);   
+        
+        call sp_ooh_assign_param_multiplier;
         
        set @incl='insert IGNORE into cache_poc1ab_aggr
 			   ( qry_type
@@ -263,7 +269,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
             , mtch.int_param_key');
 		else
 			set @incl=concat(@incl,char(13),'
-            , 100000000');
+            , ',@int_param_key,'');
 		end if;
 		 if trim(p_bin_dep_cd)='0' then
         set @incl=concat(@incl,char(13),', 0 as bin_dep_cd');
@@ -354,51 +360,51 @@ if  var_row_cnt_param <> var_row_cnt_cache then
             and trim(p_long_cd_plcm_setng)='0' 
             and trim(p_county_cd) = '0'  )  then
 			set @incl=concat(@incl,'
-            ,cast((mtch.int_param_key * power(10.0,13) ) as decimal(22,0))');
+            ,cast((cast(mtch.int_param_key as decimal(22,0)) * ',@mult_int_param_key,' ) as decimal(22,0))');
 		else
 			set @incl=concat(@incl,'
-            ,cast((100000000 * power(10.0,13) ) as decimal(22,0))');
+            ,cast((cast(',@int_param_key,' as decimal(22,0)) * ',@mult_int_param_key,' ) as decimal(22,0))');
 		end if;
 		if trim(p_bin_dep_cd)<>'0' then
 			set @incl=concat(@incl,'
-						+ cast((dep.bin_dep_cd * power(10.0,12)) as decimal(22,0))');
+						+ cast((dep.bin_dep_cd * ',@mult_bin_dep_cd,') as decimal(22,0))');
 		end if;
 		if trim(p_bin_los_cd)<>'0' then
 			set @incl=concat(@incl,' 
-            + cast((los.bin_los_cd * power(10.0,11) )as decimal(22,0)) ');
+            + cast((los.bin_los_cd * ',@mult_bin_los_cd,' )as decimal(22,0)) ');
         end if;
         if trim(p_bin_placement_cd)<>'0' then
 		    set @incl=concat(@incl,' 
-            + cast((plc.bin_placement_cd * power(10.0,10) )as decimal(22,0))');
+            + cast((plc.bin_placement_cd * ',@mult_bin_placement_cd,' )as decimal(22,0))');
         end if;   
         if trim(p_bin_ihs_svc_cd)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast( (ihs.bin_ihs_svc_cd * power(10.0,9) ) as decimal(22,0))');
+            + cast( (ihs.bin_ihs_svc_cd * ',@mult_bin_ihs_svc_cd,' ) as decimal(22,0))');
         end if;
         if trim(p_cd_reporter_type)<>'0' then
 	        set @incl=concat(@incl,'
-            + cast((rpt.cd_reporter_type * power(10.0,7) ) as decimal(22,0)) ');
+            + cast((rpt.cd_reporter_type * ',@mult_cd_reporter_type,' ) as decimal(22,0)) ');
         end if;					
         if trim(p_filter_access_type)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast((acc.cd_access_type * power(10.0,6)) as decimal(22,0))');
+            + cast((acc.cd_access_type * ',@mult_cd_access_type,') as decimal(22,0))');
         end if;					
 
         if trim(p_filter_allegation) <> '0' then
 	        set @incl=concat(@incl,' 
-            + cast( (alg.cd_allegation * power(10.0,5)) as decimal(22,0))');
+            + cast( (alg.cd_allegation * ',@mult_cd_allegation,') as decimal(22,0))');
         end if;	       
         if trim(p_filter_finding) <> '0' then
 	        set @incl=concat(@incl,'
-            + cast( (fnd.cd_finding * power(10.0,4)) as decimal(22,0))');
+            + cast( (fnd.cd_finding * ',@mult_cd_finding,') as decimal(22,0))');
         end if;	        
         if trim(p_filter_service_category) <> '0' then
 	        set @incl=concat(@incl,'
-            + cast((srv.cd_subctgry_poc_frc * power(10,2)) as decimal(22,0))');
+            + cast((srv.cd_subctgry_poc_frc * ',@mult_cd_subctgry_poc_frc,') as decimal(22,0))');
         end if;	        
         if trim(p_filter_service_budget) <> '0' then
 	        set @incl=concat(@incl,'
-            +  bud.cd_budget_poc_frc ');
+            +  bud.cd_budget_poc_frc *  ',@mult_cd_budget_poc_frc);
         end if;	
 		set @incl=concat(@incl,char(13),'
   			FROM prtl_poc1ab_ram prtl_poc1ab  ');
@@ -454,9 +460,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 	        set @incl=concat(@incl,char(13),'
 			join tblbudg bud on bud.match_code=prtl_poc1ab.filter_service_budget ');
         end if;	
-		set @incl=concat(@incl,char(13),'where prtl_poc1ab.start_date 
-        between DATE ',char(39),p_minmonthstart,char(39),' and DATE ',char(39),p_maxmonthstart,char(39));
-		set @incl=concat(@incl,char(13),'
+			set @incl=concat(@incl,char(13),'
          			group by  prtl_poc1ab.qry_type
   					, prtl_poc1ab.date_type 
   					, prtl_poc1ab.start_date');
@@ -658,6 +662,7 @@ end if; -- not all rows exist in cache
             join cachekeys ck on ck.qry_id=poc1ab.qry_id
                 and ck.int_hash_key=poc1ab.int_hash_key
             join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=poc1ab.bin_dep_cd
+                and poc1ab.start_date >=min_filter_date
             join ref_filter_los ref_los on ref_los.bin_los_cd=poc1ab.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=poc1ab.county_cd
              join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=poc1ab.cd_reporter_type

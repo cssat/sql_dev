@@ -22,38 +22,39 @@ begin
 		-- initialize variables
 		set @startDate='2000-01-01'
 		select @cutoff_date=cutoff_date from dbo.ref_Last_DW_Transfer
-		set @endDate=(select dateadd(dd,-1,[month]) from dbo.CALENDAR_DIM where calendar_date=@cutoff_date)	
-		set @last_month_end=(select dateadd(mm,-1,[month]) from dbo.CALENDAR_DIM where calendar_date=@cutoff_date)	
+		set @endDate=(select dateadd(dd,-1,[quarter]) from dbo.CALENDAR_DIM where calendar_date=@cutoff_date)	
+		set @last_month_end=(select dateadd(mm,-1,[quarter]) from dbo.CALENDAR_DIM where calendar_date=@cutoff_date)	
 		set @last_year_end=(select dateadd(yy,-1,[year]) from dbo.CALENDAR_DIM where calendar_date=@cutoff_date)	
 				--first pull all episodes into a temp table to clean up dirty data
 		set @int_startDate=(select convert(varchar(8),@startDate,112));
 		set @int_endDate=(select convert(varchar(8),@endDate,112));
 		
-		set @filter_service_category = (select cd_multiplier from dbo.ref_service_cd_subctgry_poc where cd_subctgry_poc_frc=0)
-		set @filter_service_budget=(select cd_multiplier from dbo.ref_service_cd_budget_poc_frc where cd_budget_poc_frc=0 )
+		set @filter_service_category = (select multiplier from dbo.ref_service_cd_subctgry_poc where cd_subctgry_poc_frc=0)
+		set @filter_service_budget=(select multiplier from dbo.ref_service_cd_budget_poc_frc where cd_budget_poc_frc=0 )
 
 		
-			if object_id('tempDB..#month') is not null drop table #month;
+			if object_id('tempDB..#qtr') is not null drop table #qtr;
 			if object_id('tempDB..#year') is not null drop table #year;
 
-			select distinct [month] into #month from dbo.Calendar_dim where ID_CALENDAR_DIM between @int_startDate and @int_endDate;
+			select distinct [quarter] into #qtr from dbo.Calendar_dim where ID_CALENDAR_DIM between @int_startDate and @int_endDate;
 			select distinct [year] into #year from dbo.Calendar_dim where ID_CALENDAR_DIM  between @int_startDate and @int_endDate;
 			
 			--  first get kids and cohort_dates
 			if object_id('tempDB..#kids') is not null drop table #kids
 			select child [id_prsn_child]
-					,[month] [point_in_time_date]
+					,[quarter] [point_in_time_date]
 					,eps.id_removal_episode_fact
 					, id_placement_fact
 					,evt.removal_dt
 					,evt.discharge_dt
 					,evt.begin_date
 					,evt.end_date
-					,0 [date_type]
+					,1 [date_type]
 					,2 [qry_type]
-					, ROW_NUMBER() over (partition by [month],eps.id_removal_episode_fact  order by datediff(dd,evt.begin_date,evt.end_date)  desc,id_placement_fact desc ) [row_num]
+					, ROW_NUMBER() over (partition by [quarter],eps.id_removal_episode_fact  order by datediff(dd,evt.begin_date,evt.end_date)  desc,id_placement_fact desc ) [row_num]
 					, eps.birth_dt
 					, bin_dep_cd
+					, 0 [cnt_plcm]
 					, 0  [bin_placement_cd]
 					, 0  [max_bin_los_cd]
 					,[bin_ihs_svc_cd]
@@ -85,7 +86,7 @@ begin
 					,evt.derived_county [pit_county_cd]
 					,cast(null as int) [age_grouping_cd_census]
 					,cast(null as int) [age_grouping_cd_mix]
-					,datediff(dd,eps.removal_dt,m.[month]) + 1  as dur_days
+					,datediff(dd,eps.removal_dt,m.[quarter]) + 1  as dur_days
 					,cast(null as int) as int_match_param_key_census
 					,cast(null as int) as int_match_param_key_mix
 					,@filter_service_category [filter_service_category]
@@ -112,10 +113,13 @@ begin
 			into #kids   
 			from prtl.ooh_dcfs_eps eps
 			join base.rptPlacement_Events evt on evt.id_removal_episode_fact=eps.id_removal_episode_fact
-			join #month m on  evt.begin_date < m.[month]
-				and evt.end_date >=m.[month]
-				and eps.removal_dt< m.[month]  ;
+			join #qtr m on  evt.begin_date < m.[quarter]
+				and evt.end_date >=m.[quarter]
+				and eps.removal_dt< m.[quarter] 
+			 ;
 				
+
+
 			insert into #kids
 			select 
 					child [id_prsn_child]
@@ -131,6 +135,7 @@ begin
 					, ROW_NUMBER() over (partition by [year],eps.id_removal_episode_fact  order by datediff(dd,evt.begin_date,evt.end_date) desc ,id_placement_fact desc) [row_num]
 					, eps.birth_dt
 					, bin_dep_cd
+					, 0 [cnt_plcm]
 					, 0  [bin_placement_cd]
 					, 0  [bin_max_los_cd]
 					,[bin_ihs_svc_cd]
@@ -195,18 +200,19 @@ begin
 		insert into #kids
 			select 
 					child [id_prsn_child]
-					,[month]  [point_in_time_date]
+					,[quarter]  [point_in_time_date]
 					,eps.id_removal_episode_fact
 					, id_placement_fact
 					,evt.removal_dt
 					,evt.discharge_dt
 					,evt.begin_date
 					,evt.end_date
-					,0[date_type]
+					,1 [date_type]
 					,1 [qry_type]
-					, ROW_NUMBER() over (partition by [month],eps.id_removal_episode_fact  order by datediff(dd,evt.begin_date,evt.end_date) desc ,id_placement_fact desc) [row_num]
+					, ROW_NUMBER() over (partition by [quarter],eps.id_removal_episode_fact  order by datediff(dd,evt.begin_date,evt.end_date) desc ,id_placement_fact desc) [row_num]
 					, eps.birth_dt
 					, bin_dep_cd
+					, 0 [cnt_plcm]
 					, 0  [bin_placement_cd]
 					, 0  [bin_max_los_cd]
 					,[bin_ihs_svc_cd]
@@ -238,7 +244,7 @@ begin
 					,evt.derived_county [pit_county_cd]
 					,cast(null as int) [age_grouping_cd_census]
 					,cast(null as int) [age_grouping_cd_mix]
-					,datediff(dd,eps.removal_dt,m.[month]) + 1  as dur_days
+					,datediff(dd,eps.removal_dt,m.[quarter]) + 1  as dur_days
 					,cast(null as int) as int_match_param_key_census
 					,cast(null as int) as int_match_param_key_mix
 					,@filter_service_category [filter_service_category]
@@ -264,8 +270,8 @@ begin
 					,evt.id_provider_dim_caregiver
 			from prtl.ooh_dcfs_eps eps
 			join base.rptPlacement_Events evt on evt.id_removal_episode_fact=eps.id_removal_episode_fact
-			join #month m on  evt.begin_date < m.[month]
-				and evt.end_date >=m.[month]
+			join #qtr m on  evt.begin_date < m.[quarter]
+				and evt.end_date >=m.[quarter]
 			where eps.removal_dt=first_removal_dt;
 
 			insert into #kids
@@ -283,6 +289,7 @@ begin
 					, ROW_NUMBER() over (partition by [year],eps.id_removal_episode_fact  order by datediff(dd,evt.begin_date,evt.end_date) desc ,id_placement_fact desc) [row_num]
 					, eps.birth_dt
 					, bin_dep_cd
+					, 0 [cnt_plcm]
 					, 0  [bin_placement_cd]
 					, 0  [bin_max_los_cd]
 					,[bin_ihs_svc_cd]
@@ -343,6 +350,8 @@ begin
 			join #year m on  evt.begin_date < m.[year]
 				and evt.end_date >=m.[year]
 			where first_removal_dt=eps.removal_dt;
+	
+	
 			
 			-- remove multiple placements keeping longest	
 			delete from #kids where row_num > 1;
@@ -361,7 +370,42 @@ begin
 					and q.point_in_time_date=k.point_in_time_date
 					and q.id_removal_episode_fact=k.id_removal_episode_fact
 	
-	
+	-- get point in time placement count & max_bin_los_cd 
+		update kids
+		set cnt_plcm=q.cnt_plcm
+		from #kids kids
+		join (
+		select k.id_removal_episode_fact,k.id_placement_fact,k.point_in_time_date,count(distinct evt.id_placement_fact) [cnt_plcm]
+		from #kids k
+		join base.rptPlacement_Events evt on evt.id_removal_episode_fact=k.id_removal_episode_fact
+		where evt.begin_date < point_in_time_date
+		group by k.id_removal_episode_fact,k.id_placement_fact,k.point_in_time_date )  q
+		on q.point_in_time_date=kids.point_in_time_date
+		and q.id_placement_fact=kids.id_placement_fact
+		and q.id_removal_episode_fact=kids.id_removal_episode_fact
+
+
+
+		update #kids
+		set bin_placement_cd=q.bin_placement_cd
+		from ref_filter_nbr_placement q 
+		where q.bin_placement_cd <> 0
+		and #kids.cnt_plcm between q.nbr_placement_from and q.nbr_placement_thru
+
+
+		update kids
+		set max_bin_los_cd=q.max_bin_los_cd
+		from #kids kids
+		join (
+		select  point_in_time_date,id_removal_episode_fact,id_placement_fact,max(bin_los_cd) as max_bin_los_cd
+		from #kids kids
+		join ref_filter_los los on kids.dur_days between los.dur_days_from and  los.dur_days_thru
+		group by point_in_time_date,id_removal_episode_fact,id_placement_fact) q
+		on q.point_in_time_date=kids.point_in_time_date
+		and q.id_placement_fact=kids.id_placement_fact
+		and q.id_removal_episode_fact=kids.id_removal_episode_fact
+
+
 			update k
 			set age_grouping_cd_census=census_child_group_cd
 			,age_grouping_cd_mix=cdc_census_mix_age_cd
@@ -373,28 +417,8 @@ begin
 		delete 		--select id_prsn_child,birth_dt,point_in_time_date
 		 from #kids	 where	age_grouping_cd_census = -99
 
-		 -- get point in time placement count & max_bin_los_cd 
-		 update kids
-		 set bin_placement_cd=plc.bin_placement_cd
-		 , max_bin_los_cd=q.max_bin_los_cd
-		--  select distinct q.cnt_plc,q.dur_days,kids.*
-		 from #kids kids
-		 join (
-		 select k.point_in_time_date,pe.id_removal_episode_fact,pe.id_placement_fact,pe.removal_dt,pe.begin_date,pe.end_date
-			,count(pe.id_placement_fact) over (partition by pe.id_removal_episode_fact order by pe.begin_date,pe.end_date asc) as cnt_plc
-			,max(los.bin_los_cd) over (partition by pe.id_placement_fact order by pe.begin_date ) [max_bin_los_cd]
-		 from  base.rptPlacement_Events pe  
-		  join (select distinct id_placement_fact,point_in_time_date,dur_days from #kids) k on k.id_placement_fact=pe.id_placement_fact
-		join ref_filter_los los on k.dur_days between los.dur_days_from and los.dur_days_thru
-				-- order by id_removal_episode_fact
-		 ) q on q.id_placement_fact=kids.id_placement_fact
-		 and q.id_removal_episode_fact=kids.id_removal_episode_fact
-		  left join ref_filter_nbr_placement plc on q.cnt_plc between plc.nbr_placement_from and plc.nbr_placement_thru
-		  and plc.bin_placement_cd <> 0
+		
 
-		
-		
-		-- 
 		update kds
 		set long_cd_plcm_setng=qry.prtl_cd_plcm_setng
 		--  select  prtl_cd_plcm_setng,*

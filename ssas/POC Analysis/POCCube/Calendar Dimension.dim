@@ -1,0 +1,2078 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="34f9d351-749b-43d9-8636-874c801e6f5b" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Calendar Dimension</ID>
+  <Name>Calendar Dimension</Name>
+  <CreatedTimestamp>0001-01-01T08:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T08:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-2031" scrolltop="-8361" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="12012" y="16484" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="Dim.Calendar" left="20" top="0" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="7911" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="00080000e71e000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_Cube_CALENDAR_DIM" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-2031</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>-8361</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>20</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
+      <Value>
+        <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="199" xmlns="">
+          <Shapes NodeWidth="214">
+            <Shape Id="ID CALENDAR DIM" Expanded="true">
+              <Attributes>
+                <Attribute Id="ID CALENDAR DIM" />
+                <Attribute Id="CALENDAR DATE" />
+                <Attribute Id="CALENDAR DATE MM DD YYYY" />
+                <Attribute Id="CALENDAR DATE YYYY MM DD" />
+                <Attribute Id="DAY DD" />
+                <Attribute Id="DAY OF MONTH" />
+                <Attribute Id="DAY OF QUARTER" />
+                <Attribute Id="DAY OF WEEK" />
+                <Attribute Id="DAY OF YEAR" />
+                <Attribute Id="DST FLAG" />
+                <Attribute Id="MONTH END FLAG" />
+                <Attribute Id="STATE HOLIDAY FLAG" />
+                <Attribute Id="WORKDAY FLAG" />
+              </Attributes>
+              <Position x="20" y="20" />
+            </Shape>
+            <Shape Id="WEEK" Expanded="true">
+              <Attributes>
+                <Attribute Id="WEEK" />
+                <Attribute Id="WEEK OF YEAR" />
+                <Attribute Id="WEEK START DATE" />
+              </Attributes>
+              <Position x="292" y="20" />
+            </Shape>
+            <Shape Id="YEAR" Expanded="true">
+              <Attributes>
+                <Attribute Id="YEAR" />
+                <Attribute Id="YEAR START DATE" />
+                <Attribute Id="YEAR YYYY" />
+              </Attributes>
+              <Position x="837" y="20" />
+            </Shape>
+            <Shape Id="FEDERAL FISCAL DAY" Expanded="true">
+              <Attributes>
+                <Attribute Id="FEDERAL FISCAL DAY" />
+                <Attribute Id="FEDERAL FISCAL DAY DATE" />
+                <Attribute Id="FEDERAL FISCAL DAY OF MONTH" />
+                <Attribute Id="FEDERAL FISCAL DAY OF QUARTER" />
+                <Attribute Id="FEDERAL FISCAL DAY OF WEEK" />
+                <Attribute Id="FEDERAL FISCAL DAY OF YEAR" />
+              </Attributes>
+              <Position x="292" y="112" />
+            </Shape>
+            <Shape Id="FEDERAL FISCAL WEEK" Expanded="true">
+              <Attributes>
+                <Attribute Id="FEDERAL FISCAL WEEK" />
+                <Attribute Id="FEDERAL FISCAL WEEK OF YEAR" />
+                <Attribute Id="FEDERAL FISCAL WEEK START DATE" />
+              </Attributes>
+              <Position x="565" y="112" />
+            </Shape>
+            <Shape Id="FEDERAL FISCAL YEAR" Expanded="true">
+              <Attributes>
+                <Attribute Id="FEDERAL FISCAL YEAR" />
+                <Attribute Id="FEDERAL FISCAL YEAR START DATE" />
+              </Attributes>
+              <Position x="1110" y="112" />
+            </Shape>
+            <Shape Id="FEDERAL FISCAL MONTH" Expanded="true">
+              <Attributes>
+                <Attribute Id="FEDERAL FISCAL MONTH" />
+                <Attribute Id="FEDERAL FISCAL MONTH OF QUARTER" />
+                <Attribute Id="FEDERAL FISCAL MONTH OF YEAR" />
+                <Attribute Id="FEDERAL FISCAL MONTH START DATE" />
+              </Attributes>
+              <Position x="565" y="204" />
+            </Shape>
+            <Shape Id="FEDERAL FISCAL QUARTER" Expanded="true">
+              <Attributes>
+                <Attribute Id="FEDERAL FISCAL QUARTER" />
+                <Attribute Id="FEDERAL FISCAL QUARTER OF YEAR" />
+                <Attribute Id="FEDERAL FISCAL QUARTER START DATE" />
+              </Attributes>
+              <Position x="837" y="204" />
+            </Shape>
+            <Shape Id="STATE FISCAL DAY" Expanded="true">
+              <Attributes>
+                <Attribute Id="STATE FISCAL DAY" />
+                <Attribute Id="STATE FISCAL DAY DATE" />
+                <Attribute Id="STATE FISCAL DAY OF MONTH" />
+                <Attribute Id="STATE FISCAL DAY OF QUARTER" />
+                <Attribute Id="STATE FISCAL DAY OF WEEK" />
+                <Attribute Id="STATE FISCAL DAY OF YEAR" />
+              </Attributes>
+              <Position x="292" y="316" />
+            </Shape>
+            <Shape Id="STATE FISCAL WEEK" Expanded="true">
+              <Attributes>
+                <Attribute Id="STATE FISCAL WEEK" />
+                <Attribute Id="STATE FISCAL WEEK OF YEAR" />
+                <Attribute Id="STATE FISCAL WEEK START DATE" />
+              </Attributes>
+              <Position x="565" y="316" />
+            </Shape>
+            <Shape Id="STATE FISCAL YEAR" Expanded="true">
+              <Attributes>
+                <Attribute Id="STATE FISCAL YEAR" />
+                <Attribute Id="STATE FISCAL YEAR START DATE" />
+              </Attributes>
+              <Position x="1110" y="316" />
+            </Shape>
+            <Shape Id="STATE FISCAL MONTH" Expanded="true">
+              <Attributes>
+                <Attribute Id="STATE FISCAL MONTH" />
+                <Attribute Id="STATE FISCAL MONTH OF QUARTER" />
+                <Attribute Id="STATE FISCAL MONTH OF YEAR" />
+                <Attribute Id="STATE FISCAL MONTH START DATE" />
+              </Attributes>
+              <Position x="565" y="408" />
+            </Shape>
+            <Shape Id="STATE FISCAL QUARTER" Expanded="true">
+              <Attributes>
+                <Attribute Id="STATE FISCAL QUARTER" />
+                <Attribute Id="STATE FISCAL QUARTER OF YEAR" />
+                <Attribute Id="STATE FISCAL QUARTER START DATE" />
+              </Attributes>
+              <Position x="837" y="408" />
+            </Shape>
+            <Shape Id="MONTH" Expanded="true">
+              <Attributes>
+                <Attribute Id="MONTH" />
+                <Attribute Id="MONTH MM" />
+                <Attribute Id="MONTH OF QUARTER" />
+                <Attribute Id="MONTH OF YEAR" />
+                <Attribute Id="MONTH START DATE" />
+              </Attributes>
+              <Position x="292" y="520" />
+            </Shape>
+            <Shape Id="QUARTER" Expanded="true">
+              <Attributes>
+                <Attribute Id="QUARTER" />
+                <Attribute Id="QUARTER OF YEAR" />
+                <Attribute Id="QUARTER START DATE" />
+              </Attributes>
+              <Position x="565" y="520" />
+            </Shape>
+          </Shapes>
+        </DiagramLayout>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T08:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="383beab0-2269-47ce-9267-8ceaab80638a">
+    <DataSourceViewID>CA ODS</DataSourceViewID>
+  </Source>
+  <Type>Time</Type>
+  <UnknownMember>Visible</UnknownMember>
+  <ErrorConfiguration dwd:design-time-name="97840489-c4a5-4b23-af28-8f44d60f9331">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <DimensionPermissions>
+    <DimensionPermission dwd:design-time-name="39dce3f9-4f6b-4eb0-a440-4bca47095dd5">
+      <ID>DimensionPermission</ID>
+      <Name>DimensionPermission</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <RoleID>Role 1</RoleID>
+      <ReadDefinition>Allowed</ReadDefinition>
+      <Read>Allowed</Read>
+    </DimensionPermission>
+  </DimensionPermissions>
+  <Attributes>
+    <Attribute dwd:design-time-name="914260d3-215a-4644-8165-3230a8301631">
+      <ID>ID CALENDAR DIM</ID>
+      <Name>Date Name</Name>
+      <Type>Date</Type>
+      <Usage>Key</Usage>
+      <EstimatedCount>39744</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="1802dfc7-76bb-4dcf-a76c-4eef03699d7f">
+          <DataType>Integer</DataType>
+          <NullProcessing>UnknownMember</NullProcessing>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f407b0be-69a2-4da7-8412-664c2128bd2d">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>ID_CALENDAR_DIM</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="37b44319-c1f1-4f74-9d6b-d1be4f0a4262">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="74d7a448-e76e-4a97-b000-8e88b2a95295">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>DATE_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="3a66a102-9849-4c02-ae53-aa2f25905eaf">
+          <AttributeID>CALENDAR DATE</AttributeID>
+          <Name>Calendar Date</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="041cd240-3656-48ad-9456-58196c19c1cc">
+          <AttributeID>DAY DD</AttributeID>
+          <Name>Day DD</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="dc80202e-94af-4e1c-8520-22c50242333a">
+          <AttributeID>MONTH</AttributeID>
+          <Name>Month</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="119451c4-ee8f-4e84-9922-369e8159450f">
+          <AttributeID>DAY OF YEAR</AttributeID>
+          <Name>Day of Year</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="1a88dcb7-0e3d-4319-82fa-abcaaa7901c0">
+          <AttributeID>DAY OF QUARTER</AttributeID>
+          <Name>Day of Quarter</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="fc749e90-827e-4e04-aa43-997763407e7a">
+          <AttributeID>DAY OF MONTH</AttributeID>
+          <Name>Day of Month</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="8cb262ce-ea54-4f51-89e4-650fe3ae84c9">
+          <AttributeID>DAY OF WEEK</AttributeID>
+          <Name>Day of Week</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="d6954d5e-76f8-4926-a2cc-3c7ed7d49f89">
+          <AttributeID>STATE FISCAL DAY</AttributeID>
+          <Name>State Fiscal Day</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="4a7ef0f8-25f7-40c1-9105-ca6f54deb569">
+          <AttributeID>STATE HOLIDAY FLAG</AttributeID>
+          <Name>State Holiday Flag</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="6d10b7bf-26cd-4ae5-92c6-4e76efe1cada">
+          <AttributeID>WORKDAY FLAG</AttributeID>
+          <Name>Workday Flag</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="6529381a-2858-4c67-9088-d5d8f89784b8">
+          <AttributeID>DST FLAG</AttributeID>
+          <Name>DST Flag</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="dd7ceeea-3fa4-4042-831e-b1246ceff247">
+          <AttributeID>MONTH END FLAG</AttributeID>
+          <Name>Month End Flag</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="1e941581-ec18-40f8-be55-5a6a923c3642">
+          <AttributeID>CALENDAR DATE YYYY MM DD</AttributeID>
+          <Name>Calendar Date YYYY MM DD</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="958c7c6e-a99c-4a42-ac46-8f73cc36dc19">
+          <AttributeID>CALENDAR DATE MM DD YYYY</AttributeID>
+          <Name>Calendar Date MM DD YYYY</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="3f2dc4e9-2620-428e-bfe3-ea11a0db2a87">
+          <AttributeID>FEDERAL FISCAL DAY</AttributeID>
+          <Name>Federal Fiscal Day</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="b184fe13-148b-4208-9b9e-4a5131a03077">
+          <AttributeID>WEEK</AttributeID>
+          <Name>Week</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="4e515ac2-17b7-45ba-bc31-219fb063495f">
+      <ID>CALENDAR DATE</ID>
+      <Name>Calendar Date</Name>
+      <Type>DateStart</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="0bea9f5d-e639-4156-b269-3d2aa165929d">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="86d9473d-1558-4343-9a54-d6ed19cf87ef">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>CALENDAR_DATE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="a08a75ea-198c-499d-85a5-4357a806cc02">
+      <ID>YEAR YYYY</ID>
+      <Name>Year YYYY</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="efc05f79-8914-4fdc-8d00-70de99961391">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="6a8ae80a-0ffb-433d-9107-5c3c2ea11213">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>YEAR_YYYY</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="ac57f73a-c36e-415c-9ba3-42395edeeb2a">
+      <ID>MONTH MM</ID>
+      <Name>Month MM</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="ff0ac1ea-4c41-4726-b844-c20279086bb1">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="d9ec7b01-f064-4adf-b0b4-263189dd89be">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>MONTH_MM</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="e78101d3-5af7-47c9-aa11-1342742d4654">
+      <ID>DAY DD</ID>
+      <Name>Day DD</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="84378c2f-a09a-4b03-b3b6-0d6d78f99274">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="007d475b-5b6f-493a-9589-77a9b75c029c">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>DAY_DD</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="1cfdbdbc-7965-4182-a47a-055bdab31120">
+      <ID>YEAR</ID>
+      <Name>Year</Name>
+      <Type>Years</Type>
+      <EstimatedCount>111</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="56f10631-7d8c-490e-9af8-10d3162b4cc2">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="42487f43-97a4-4ef8-9f82-f9527c2690b7">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>YEAR</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="d5b3cb54-8094-4524-afc6-5feab1df921b">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="5fb5e672-dad5-4da5-a086-5778346242fc">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>YEAR_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="fb75360e-eccd-4b8c-86c0-1af04448a87d">
+          <AttributeID>YEAR START DATE</AttributeID>
+          <Name>Year Start Date</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="673da251-b4d5-483b-a96e-c724cc42d303">
+          <AttributeID>YEAR YYYY</AttributeID>
+          <Name>Year YYYY</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="c2b6fd89-e914-4b28-95c0-4ccf610b2432">
+      <ID>YEAR START DATE</ID>
+      <Name>Year Start Date</Name>
+      <Type>DateStart</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="a776e4f5-693f-4107-9346-e2a6221d8271">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="b89fa20c-72e5-412e-8e6c-a0a5ca4fb3f7">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>YEAR_START_DATE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="f0907ebd-53ee-44b2-9547-9683b0ec7797">
+      <ID>QUARTER</ID>
+      <Name>Quarter</Name>
+      <Type>Quarters</Type>
+      <EstimatedCount>437</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="4d711e38-2548-4834-a5bb-10ad89ff0ed1">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="dece9225-f4e8-48d1-9cfb-832849b6e032">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>QUARTER</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="25e17005-d9d0-49fb-9374-80c016b48704">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="0ea41bb8-892f-4c56-b4db-aca0bad743ec">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>QUARTER_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="b929cab9-e83d-4ef3-ac7f-e6c2eee33b7c">
+          <AttributeID>QUARTER START DATE</AttributeID>
+          <Name>Quarter Start Date</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="ea84a1b1-c0f3-44b1-8132-53b70cb8c9c4">
+          <AttributeID>QUARTER OF YEAR</AttributeID>
+          <Name>Quarter of Year</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="75afe1bc-95a1-4d15-b0e6-5bef14316b6e">
+          <AttributeID>YEAR</AttributeID>
+          <Name>Year</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="f196df70-bce5-47fd-a36d-8a73cbd7d7e7">
+      <ID>QUARTER START DATE</ID>
+      <Name>Quarter Start Date</Name>
+      <Type>DateStart</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="78465c45-4097-4c75-8d57-468a0f9d8743">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="6eeee7be-0ff4-4158-af99-0c689aacf57d">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>QUARTER_START_DATE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="c1616fe5-6be5-4c05-8ada-865cfd14860a">
+      <ID>MONTH</ID>
+      <Name>Month</Name>
+      <Type>Months</Type>
+      <EstimatedCount>1307</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="cc73c382-0ede-440f-b364-663e65ae920a">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="bb31804a-59d1-4d38-b96d-29fd2c8ea494">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>MONTH</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="e498b94e-3bb0-473d-9cff-f17438a0ba01">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="53576a42-9e82-4b6a-925d-65f6816fdc22">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>MONTH_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="30ff539e-bab2-4419-8809-b11f259bb595">
+          <AttributeID>MONTH OF QUARTER</AttributeID>
+          <Name>Month of Quarter</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="f4e0f0d3-bb3c-4a57-b76b-a03ccfc44785">
+          <AttributeID>MONTH OF YEAR</AttributeID>
+          <Name>Month of Year</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="9008e1f4-eb34-464d-bc54-c09b9a022f8d">
+          <AttributeID>MONTH START DATE</AttributeID>
+          <Name>Month Start Date</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="2e026493-0ff9-45e8-9dfd-6ba3853a5504">
+          <AttributeID>QUARTER</AttributeID>
+          <Name>Quarter</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="0f4d235c-25bf-4ab5-b618-0cd6ef111100">
+          <AttributeID>MONTH MM</AttributeID>
+          <Name>Month MM</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="856d01e5-bf0f-4bc1-ba69-f41f51230818">
+      <ID>MONTH START DATE</ID>
+      <Name>Month Start Date</Name>
+      <Type>DateStart</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="ade353bd-1407-415b-8b39-bc3a44729ca4">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="c867a31d-d52d-4d35-9492-ceffddd3fcba">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>MONTH_START_DATE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="a5478f77-c074-44aa-9122-3af24afba1fa">
+      <ID>WEEK</ID>
+      <Name>Week</Name>
+      <Type>Weeks</Type>
+      <EstimatedCount>5773</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="708bd229-8f5e-4d27-a192-f1dace6c9441">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="86dabbdb-6bb1-41af-9ea2-0b964675c617">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>WEEK</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="9230d692-c4f6-4b2a-b2e6-66c15d89bbfa">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="58d83b75-0680-4959-924e-c7921f0e338e">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>WEEK_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="2da6658a-b706-419d-a197-83b25499b36d">
+          <AttributeID>WEEK OF YEAR</AttributeID>
+          <Name>Week of Year</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="5bb41744-1e4f-4520-8347-aaafa03a90ce">
+          <AttributeID>WEEK START DATE</AttributeID>
+          <Name>Week Start Date</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="b2001365-7e20-442d-95b6-ae5ce9862763">
+          <AttributeID>YEAR</AttributeID>
+          <Name>Year</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="862fc7e5-7406-4a5b-85b8-6fad5b004f5c">
+      <ID>WEEK START DATE</ID>
+      <Name>Week Start Date</Name>
+      <Type>DateStart</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="e9604498-a953-4dd3-a8ca-6361cf2e8e79">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="4a8fffe1-007c-4b07-9a86-9bc239355de3">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>WEEK_START_DATE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="1c99505e-64f5-4e30-9718-22948b7a3f48">
+      <ID>DAY OF YEAR</ID>
+      <Name>Day of Year</Name>
+      <Type>DayOfYear</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="b92480f3-67bd-4d61-b5f7-0f245644db66">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="041eaea7-f385-4283-a2fd-6d30fc91f388">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>DAY_OF_YEAR</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="6f214d3a-f676-4165-bb02-256c1b5448b1">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="2204d451-d620-48b0-85d7-675d8b76d01f">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>DAY_OF_YEAR_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="e8d54fc4-e739-4056-b40b-caab4f13b0f7">
+      <ID>DAY OF QUARTER</ID>
+      <Name>Day of Quarter</Name>
+      <Type>DayOfQuarter</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="1abb0621-1f0a-454b-8a23-4be2d0bcf116">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="cd206b25-5266-4485-8c95-34f14d53bd39">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>DAY_OF_QUARTER</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="f73bc9fb-4605-4f96-a639-ddbded9f0275">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="ac54ed66-01f5-423b-b023-1d57e39ca0f7">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>DAY_OF_QUARTER_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="3a6ed686-c216-4c89-b04c-5d289e5243d1">
+      <ID>DAY OF MONTH</ID>
+      <Name>Day of Month</Name>
+      <Type>DayOfMonth</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="dde940f5-c8f3-475a-919f-f7338779adc2">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="b2900ab5-103e-47a1-a309-c74c58398d0b">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>DAY_OF_MONTH</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="d2858d64-7752-4305-8878-eb72fb4538ee">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="c48400cf-297a-4635-8fb0-f0970287e5aa">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>DAY_OF_MONTH_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="2860eb4a-6d49-41be-8b4d-1217c2bfabb4">
+      <ID>DAY OF WEEK</ID>
+      <Name>Day of Week</Name>
+      <Type>DayOfWeek</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="a242dc2b-873f-47f3-a819-b8e6cdd5e833">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="b0c8c22d-004e-4bb6-b011-1e6a9b911368">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>DAY_OF_WEEK</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="c4f95ca8-bc35-4994-84e0-0ca174dfdcf9">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="8b552b10-fc77-4d49-8d12-d17ef9913787">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>DAY_OF_WEEK_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="a7404eb2-b314-42eb-a125-86b4bedeb38c">
+      <ID>WEEK OF YEAR</ID>
+      <Name>Week of Year</Name>
+      <Type>WeekOfYear</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="91b7acac-4368-4eaf-8ae7-a202c02f2103">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="120b5b80-95e9-4fd2-b480-50532e0bdeb9">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>WEEK_OF_YEAR</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="ae5fcea2-fe16-4585-8165-a8400018076f">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="d6007aa3-2206-44d8-b2fc-f5c65dd55c99">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>WEEK_OF_YEAR_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="d0fd7c45-ecec-42ab-aa11-d8e9c219d57d">
+      <ID>MONTH OF YEAR</ID>
+      <Name>Month of Year</Name>
+      <Type>MonthOfYear</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="c5921389-a56b-4d0e-9dd4-f5b83cdf47d1">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="c64ff032-7e62-4979-a1b9-d02bdb4f4e1d">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>MONTH_OF_YEAR</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="8f8cda33-25c1-452b-a7e2-c87a9866bf0c">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="58a574b5-6ca7-4ef1-b90a-e23711ec3632">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>MONTH_OF_YEAR_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="defc8353-f443-4ce9-bb9f-8da248d735d8">
+      <ID>MONTH OF QUARTER</ID>
+      <Name>Month of Quarter</Name>
+      <Type>MonthOfQuarter</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="7b6825fb-3939-403d-bdcd-7c1566c2fcc5">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="6f1fecf1-b148-4ad2-9a6f-3cb566d2484f">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>MONTH_OF_QUARTER</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="359d79d6-eb1c-4e7f-bced-78c5b9e3694e">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="31ce309b-544b-4ad0-817d-ee698c77a555">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>MONTH_OF_QUARTER_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="07b7cf8f-02ed-4482-a6b1-4f2dfcf5d89c">
+      <ID>QUARTER OF YEAR</ID>
+      <Name>Quarter of Year</Name>
+      <Type>QuarterOfYear</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="298181b2-c5cb-49ab-9159-51002776ae99">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="7dd88e64-6882-4de8-8064-17d055b5c18e">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>QUARTER_OF_YEAR</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="a962b94c-fd83-44d1-ae88-9c75bfb84f25">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="6d78e925-635c-4bac-a866-fca226afc79a">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>QUARTER_OF_YEAR_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="a7f29b5c-4524-488e-a653-0f3de727a52b">
+      <ID>FEDERAL FISCAL YEAR</ID>
+      <Name>Federal Fiscal Year</Name>
+      <Type>FiscalYears</Type>
+      <EstimatedCount>111</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="d3f357bd-4e76-4959-9b5c-38211233aced">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="88f79e13-bc1d-4e16-81cf-eabd3f88f0d6">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>FEDERAL_FISCAL_YEAR</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="e434b384-fb82-4089-ae63-3e079660a473">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="0f398ca2-f8e6-408d-9a5a-d2858163ee5e">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>FEDERAL_FISCAL_YEAR_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="d68801f4-68c9-48b0-a5f3-2d4a20724091">
+          <AttributeID>FEDERAL FISCAL YEAR START DATE</AttributeID>
+          <Name>Federal Fiscal Year Start Date</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="88c22d3e-025e-4bac-9819-6d573c2fc608">
+      <ID>FEDERAL FISCAL YEAR START DATE</ID>
+      <Name>Federal Fiscal Year Start Date</Name>
+      <Type>DateStart</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="1a684432-44eb-4fa1-a69f-28bb4682030e">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="c3f420f4-d90e-40d1-bc1f-73c12110a321">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>FEDERAL_FISCAL_YEAR_START_DATE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="e3e55870-04d4-4d98-a9eb-441cd8636471">
+      <ID>FEDERAL FISCAL QUARTER</ID>
+      <Name>Federal Fiscal Quarter</Name>
+      <Type>FiscalQuarters</Type>
+      <EstimatedCount>437</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="cc72aa6b-cbe8-4b45-9dab-45df693fe325">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="ca4a30c7-b43a-4d4c-815e-e6fe85747699">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>FEDERAL_FISCAL_QUARTER</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="b2fb11e2-a1f0-4cc5-83e8-6f4a9dddd0d4">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="a8c1a822-d311-4c50-89c5-a18d7a35e278">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>STATE_FISCAL_QUARTER_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="bcc8fc62-cbcb-4c8a-81a9-2a69e709a6cd">
+          <AttributeID>FEDERAL FISCAL QUARTER OF YEAR</AttributeID>
+          <Name>Federal Fiscal Quarter of Year</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="2c107f78-43f9-428c-a806-507802a2a432">
+          <AttributeID>FEDERAL FISCAL QUARTER START DATE</AttributeID>
+          <Name>Federal Fiscal Quarter Start Date</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="2e33aae8-180b-4788-a28f-2f1b0c9791f9">
+          <AttributeID>FEDERAL FISCAL YEAR</AttributeID>
+          <Name>Federal Fiscal Year</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="aa1898c9-e135-4660-a8db-6a4d3425f007">
+      <ID>FEDERAL FISCAL QUARTER START DATE</ID>
+      <Name>Federal Fiscal Quarter Start Date</Name>
+      <Type>DateStart</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="19978e8a-c94a-47e3-8789-c43f1e6eefc7">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="075d25af-a532-489e-8153-86152dbc6da9">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>FEDERAL_FISCAL_QUARTER_START_DATE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="dcc5f758-1dca-46dc-97f0-700d5a6a2aa2">
+      <ID>FEDERAL FISCAL MONTH</ID>
+      <Name>Federal Fiscal Month</Name>
+      <Type>FiscalMonths</Type>
+      <EstimatedCount>1307</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="bea549a2-ef67-4704-a23a-af7215780b16">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="b357ed87-200e-436a-b37b-98212ec3e91e">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>FEDERAL_FISCAL_MONTH</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="997c8e66-11e6-4583-89b6-d57a74278537">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="89418512-11b1-4cac-b8aa-8ec11d433445">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>FEDERAL_FISCAL_MONTH_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="385e660f-8269-4ddc-90e2-e6ba7e4c1d02">
+          <AttributeID>FEDERAL FISCAL MONTH OF QUARTER</AttributeID>
+          <Name>Federal Fiscal Month of Quarter</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="55f0e2ae-203e-4e71-86e5-4179412412dc">
+          <AttributeID>FEDERAL FISCAL MONTH OF YEAR</AttributeID>
+          <Name>Federal Fiscal Month of Year</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="8a10c914-05aa-4067-b158-2c2665abeffb">
+          <AttributeID>FEDERAL FISCAL MONTH START DATE</AttributeID>
+          <Name>Federal Fiscal Month Start Date</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="5de17a43-6c40-40f6-b4f8-eb032f41244f">
+          <AttributeID>FEDERAL FISCAL QUARTER</AttributeID>
+          <Name>Federal Fiscal Quarter</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="5f6eb8cf-ed24-41ac-987f-2dd6c73ad0e9">
+      <ID>FEDERAL FISCAL MONTH START DATE</ID>
+      <Name>Federal Fiscal Month Start Date</Name>
+      <Type>DateStart</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="59f1f459-573d-4eb1-bb45-2f1de9a42fc5">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="e0b2be8c-a516-4e97-8d66-411cd3525534">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>FEDERAL_FISCAL_MONTH_START_DATE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="849b48ea-1149-4659-a3a6-f5672e50c850">
+      <ID>FEDERAL FISCAL WEEK</ID>
+      <Name>Federal Fiscal Week</Name>
+      <Type>FiscalWeeks</Type>
+      <EstimatedCount>5772</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="a94b2f8a-0bc6-4445-b1fd-d4c8127e290c">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="d15e9a91-2d2e-4ea3-abfa-3fee37ca99fa">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>FEDERAL_FISCAL_WEEK</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="6dbf9c43-fe46-41c3-9e1b-558058edd06f">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="94caad33-67b2-49d7-a18a-d208402a8f27">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>FEDERAL_FISCAL_WEEK_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="cb52d5fb-bc21-4f8a-879c-84c6e8778d37">
+          <AttributeID>FEDERAL FISCAL WEEK OF YEAR</AttributeID>
+          <Name>Federal Fiscal Week of Year</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="b3afbc7e-fac5-429f-93ee-6a228ddf61e1">
+          <AttributeID>FEDERAL FISCAL WEEK START DATE</AttributeID>
+          <Name>Federal Fiscal Week Start Date</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="ea545253-1ab3-43b1-a584-2cb28f51316e">
+          <AttributeID>FEDERAL FISCAL YEAR</AttributeID>
+          <Name>Federal Fiscal Year</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="3ed9165e-f5c3-49b1-82c8-cefccf11b904">
+      <ID>FEDERAL FISCAL WEEK START DATE</ID>
+      <Name>Federal Fiscal Week Start Date</Name>
+      <Type>DateStart</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="8fdd544d-8c9c-469d-b863-345db45bf774">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="a53805a5-1f3b-4108-ac8b-ceca9e3674fe">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>FEDERAL_FISCAL_WEEK_START_DATE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="3b732e95-5f77-448b-8cf2-7b505edb618b">
+      <ID>FEDERAL FISCAL DAY</ID>
+      <Name>Federal Fiscal Day</Name>
+      <Type>FiscalDate</Type>
+      <EstimatedCount>39744</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="ef00d33d-3ea1-4859-bd9c-15683fac7bc9">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="a9140590-aa4c-495c-a629-c5ebcba36ad5">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>FEDERAL_FISCAL_DAY</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="536d5cd2-17d7-48a7-952e-da5eb498da61">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="e928ee7e-4c4f-4d37-bf1c-d6ba658f041f">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>FEDERAL_FISCAL_DAY_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="76075cca-f62e-4287-a58b-5f6fee0ea438">
+          <AttributeID>FEDERAL FISCAL DAY DATE</AttributeID>
+          <Name>Federal Fiscal Day Date</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="f4f8bad7-d4c4-4d2b-a4a1-0bbfc17104d6">
+          <AttributeID>FEDERAL FISCAL DAY OF MONTH</AttributeID>
+          <Name>Federal Fiscal Day of Month</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="f433363d-d89f-44ec-a668-f3c85a0f95ed">
+          <AttributeID>FEDERAL FISCAL DAY OF QUARTER</AttributeID>
+          <Name>Federal Fiscal Day of Quarter</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="4cd55292-be4a-4279-a8ac-b58a0c58d57e">
+          <AttributeID>FEDERAL FISCAL DAY OF WEEK</AttributeID>
+          <Name>Federal Fiscal Day of Week</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="4e4b4b41-300f-4790-a29d-5d23215b96a2">
+          <AttributeID>FEDERAL FISCAL DAY OF YEAR</AttributeID>
+          <Name>Federal Fiscal Day of Year</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="4d7454c1-8806-49bd-85d0-4abe3d170361">
+          <AttributeID>FEDERAL FISCAL MONTH</AttributeID>
+          <Name>Federal Fiscal Month</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="5fb60c54-2d99-4e67-a9ad-b3a41ea84fd5">
+          <AttributeID>FEDERAL FISCAL WEEK</AttributeID>
+          <Name>Federal Fiscal Week</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="48c9bcde-140c-4cf1-a09b-648db9338893">
+      <ID>FEDERAL FISCAL DAY DATE</ID>
+      <Name>Federal Fiscal Day Date</Name>
+      <Type>DateStart</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="21b2dc75-9c01-4c3f-ae95-f2148ce01e38">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="84628c88-a8c8-4959-8feb-fa8efad08213">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>FEDERAL_FISCAL_DAY_DATE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="1d7299b6-79e1-479c-b2e3-928e4e83bacd">
+      <ID>FEDERAL FISCAL DAY OF YEAR</ID>
+      <Name>Federal Fiscal Day of Year</Name>
+      <Type>FiscalDayOfYear</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="57b586e5-8535-445b-9d74-ae94e7e57078">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="955f4471-ba4b-4d6f-80d5-41728824c306">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>FEDERAL_FISCAL_DAY_OF_YEAR</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="ba69ffdc-ca2a-40bd-bfaa-f62c9bb3ea90">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="67d1bf58-1d23-4aa0-97b9-b049de7153be">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>FEDERAL_FISCAL_DAY_OF_YEAR_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="006d3733-4b0b-4172-8876-20674306115d">
+      <ID>FEDERAL FISCAL DAY OF QUARTER</ID>
+      <Name>Federal Fiscal Day of Quarter</Name>
+      <Type>FiscalDayOfQuarter</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="16c6b374-23f3-4a9d-bac0-e1ff090af135">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="e6d5ef69-93bb-419d-a04b-04dea93c60b3">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>FEDERAL_FISCAL_DAY_OF_QUARTER</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="68954d4f-263b-4f4c-9080-801759805232">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="91032107-48f4-475a-8acd-e89f779d85f4">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>FEDERAL_FISCAL_DAY_OF_QUARTER_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="42036e41-2c7f-4594-aa80-fcaf4b7a708f">
+      <ID>FEDERAL FISCAL DAY OF MONTH</ID>
+      <Name>Federal Fiscal Day of Month</Name>
+      <Type>FiscalDayOfMonth</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="4aaa91ed-68cd-44a1-9fbe-9228a5e98444">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="46f97380-bb53-4c29-937e-6f4ecf13c30b">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>FEDERAL_FISCAL_DAY_OF_MONTH</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="9fe71940-8282-4ca0-a6c1-4e5f54d44213">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="c46a41d0-5369-4051-b530-261c150eca7c">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>FEDERAL_FISCAL_DAY_OF_MONTH_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="917381d6-9c32-45a6-a7ad-a78db94b0aa9">
+      <ID>FEDERAL FISCAL DAY OF WEEK</ID>
+      <Name>Federal Fiscal Day of Week</Name>
+      <Type>FiscalDayOfWeek</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="5dc02941-edd4-4c55-abf9-45a42cce4003">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="e422269d-a508-4972-86f6-0d6f8e388bd1">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>FEDERAL_FISCAL_DAY_OF_WEEK</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="21a5f50b-3f6f-47eb-ab31-db8345f9c443">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="35596a8b-b90e-4b9d-8bfb-e5fe611e5d28">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>FEDERAL_FISCAL_DAY_OF_WEEK_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="c90facc0-2062-4da7-a924-387106d93d17">
+      <ID>FEDERAL FISCAL WEEK OF YEAR</ID>
+      <Name>Federal Fiscal Week of Year</Name>
+      <Type>FiscalWeekOfYear</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="25779b5c-53d6-42d3-b220-60e72ee32ffb">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="5face010-4a66-4e09-b30c-f82f6d151104">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>FEDERAL_FISCAL_WEEK_OF_YEAR</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="e79abc45-6efb-46e2-87c9-9ba7dca458a9">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="6a11fa58-37fb-497f-ab35-3fb0b12a2383">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>FEDERAL_FISCAL_WEEK_OF_YEAR_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="4b0bc544-d1d7-44a2-a5b3-d354c0dca47e">
+      <ID>FEDERAL FISCAL MONTH OF YEAR</ID>
+      <Name>Federal Fiscal Month of Year</Name>
+      <Type>FiscalMonthOfYear</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="f301345f-ae36-4db6-88a8-3cb0010bfccf">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f408e5d7-9b2c-4a0a-9078-204a04896f5c">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>FEDERAL_FISCAL_MONTH_OF_YEAR</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="cfce7c73-0d81-448b-addb-4de9e27232f9">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="9372793e-31d1-4527-9d92-9483049726bb">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>FEDERAL_FISCAL_MONTH_OF_YEAR_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="dcc51cbc-9052-489e-990c-e2a994eb8b6d">
+      <ID>FEDERAL FISCAL MONTH OF QUARTER</ID>
+      <Name>Federal Fiscal Month of Quarter</Name>
+      <Type>FiscalMonthOfQuarter</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="601f90e9-8630-4580-a6b2-0ffa7cedca17">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="be6ac941-db22-4d2f-8b22-6e32b1ee2b01">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>FEDERAL_FISCAL_MONTH_OF_QUARTER</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="8589a29e-716e-41d2-97b7-7c0e6bdf9b1c">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="7e38863e-0e32-4949-8547-97ef82141a95">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>FEDERAL_FISCAL_MONTH_OF_QUARTER_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="963131cc-510e-4c7e-bf6c-a65121493d62">
+      <ID>FEDERAL FISCAL QUARTER OF YEAR</ID>
+      <Name>Federal Fiscal Quarter of Year</Name>
+      <Type>FiscalQuarterOfYear</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="0e8b3aed-504d-4c24-a802-d0ef68cae449">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="0aaf476c-6604-42b2-ba17-32ba2a0c5fdd">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>FEDERAL_FISCAL_QUARTER_OF_YEAR</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="29f4074c-d23c-4136-bca1-23021f8b143e">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="5788f297-7e64-4859-a63d-ecb1b9238e72">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>FEDERAL_FISCAL_QUARTER_OF_YEAR_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="1ed4a540-7e7e-4cf6-89d4-17db9e9f258f">
+      <ID>STATE FISCAL YEAR</ID>
+      <Name>State Fiscal Year</Name>
+      <Type>FiscalYears</Type>
+      <EstimatedCount>111</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="602f42e7-a72f-459b-aa24-70012cddc50b">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="bf881b6b-c1f6-4c8a-80b0-34381fb37b13">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>STATE_FISCAL_YEAR</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="56df3343-87d4-4f07-af2e-ad6685f806ef">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="0d12bf36-ca3b-4fba-825a-a0994a7d4456">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>STATE_FISCAL_YEAR_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="0a072321-4d5d-4f60-b302-cd12af26e469">
+          <AttributeID>STATE FISCAL YEAR START DATE</AttributeID>
+          <Name>State Fiscal Year Start Date</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="f9d5134c-69f9-4b6f-ac71-1f17c38958af">
+      <ID>STATE FISCAL YEAR START DATE</ID>
+      <Name>State Fiscal Year Start Date</Name>
+      <Type>DateStart</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="10e90c38-e911-447c-bbc7-4a5d7e62e1bd">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="406a01f1-a27e-4914-a5c8-54a7ee6898cb">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>STATE_FISCAL_YEAR_START_DATE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="9d8ada42-0efe-4ceb-a7fc-798e2c952e9f">
+      <ID>STATE FISCAL QUARTER</ID>
+      <Name>State Fiscal Quarter</Name>
+      <Type>FiscalQuarters</Type>
+      <EstimatedCount>437</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="45edcfb0-237c-4e24-b786-88133694f4ca">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="e473f630-b2d9-4634-9994-a1ba5d41fc67">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>STATE_FISCAL_QUARTER</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="0a9b260b-cfa8-42a1-9414-c582926c5ac5">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="5e1a9ef4-26ad-43c0-9f59-b141880c92d2">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>STATE_FISCAL_QUARTER_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="4ddbb4ca-381b-49db-a9ad-88754336d0a8">
+          <AttributeID>STATE FISCAL QUARTER OF YEAR</AttributeID>
+          <Name>State Fiscal Quarter of Year</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="477ad4fe-6977-46e2-8cd8-0ebf075c1a0d">
+          <AttributeID>STATE FISCAL QUARTER START DATE</AttributeID>
+          <Name>State Fiscal Quarter Start Date</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="c735de6e-4655-4920-af31-4fa571e30b28">
+          <AttributeID>STATE FISCAL YEAR</AttributeID>
+          <Name>State Fiscal Year</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="ca3081c8-fc94-4481-a7cf-b36bbeb80697">
+      <ID>STATE FISCAL QUARTER START DATE</ID>
+      <Name>State Fiscal Quarter Start Date</Name>
+      <Type>DateStart</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="e5d7ae79-bc82-4bc2-a21b-4e7557a8135d">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="57555ab8-b7b3-41d8-8470-e132528275f9">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>STATE_FISCAL_QUARTER_START_DATE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="07287bd7-1610-4eab-9611-0431093c564a">
+      <ID>STATE FISCAL MONTH</ID>
+      <Name>State Fiscal Month</Name>
+      <Type>FiscalMonths</Type>
+      <EstimatedCount>1307</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="79d95489-6bbf-4b90-bbc9-f701fe467b4e">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="46d9bf3e-be31-46ec-a21a-34143c5f5594">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>STATE_FISCAL_MONTH</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="d44d5580-f240-4538-b6ee-278fc27898c9">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="31ddb736-71f7-4566-9172-d307fa01de34">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>STATE_FISCAL_MONTH_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="0a079c48-acb1-40ad-b20a-ef2eae14e757">
+          <AttributeID>STATE FISCAL MONTH OF QUARTER</AttributeID>
+          <Name>State Fiscal Month of Quarter</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="2295cd66-e478-4751-9e11-14a274f886fc">
+          <AttributeID>STATE FISCAL MONTH OF YEAR</AttributeID>
+          <Name>State Fiscal Month of Year</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="549d14e9-9aed-4068-9c99-d42ea1b5cf1b">
+          <AttributeID>STATE FISCAL MONTH START DATE</AttributeID>
+          <Name>State Fiscal Month Start Date</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="91826c31-83ed-4b6c-969f-13ab77d9cbaf">
+          <AttributeID>STATE FISCAL QUARTER</AttributeID>
+          <Name>State Fiscal Quarter</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="444f56ab-9b07-4a8b-95a1-1a877102dc97">
+      <ID>STATE FISCAL MONTH START DATE</ID>
+      <Name>State Fiscal Month Start Date</Name>
+      <Type>DateStart</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="d757d97c-acce-4896-9cfe-1b240247b9c9">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="3f6199ea-3755-44b9-8a8e-8ac7dfa0e6f3">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>STATE_FISCAL_MONTH_START_DATE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="76820cd2-47b7-4bdf-b524-a0cb80e16147">
+      <ID>STATE FISCAL WEEK</ID>
+      <Name>State Fiscal Week</Name>
+      <Type>FiscalWeeks</Type>
+      <EstimatedCount>5772</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="c4cb83d0-8f17-4e34-a319-f67e36ba49fc">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="95621b26-6e43-4703-9bf1-ea4dd8310946">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>STATE_FISCAL_WEEK</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="ff860610-22e3-4689-b372-e6a24058540e">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="86c536ce-c355-41ba-8954-ddc1f3f4512f">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>STATE_FISCAL_WEEK_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="0b5a90dc-fbb8-4117-b854-f45c624258ef">
+          <AttributeID>STATE FISCAL WEEK OF YEAR</AttributeID>
+          <Name>State Fiscal Week of Year</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="1a5383c7-5197-4cac-a5f2-b5fe7ba35f18">
+          <AttributeID>STATE FISCAL WEEK START DATE</AttributeID>
+          <Name>State Fiscal Week Start Date</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="4e0fd489-80cc-46c1-a570-07d7e8e48a8b">
+          <AttributeID>STATE FISCAL YEAR</AttributeID>
+          <Name>State Fiscal Year</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="6ef296fb-30f4-4c87-ba7d-d94e1d86580f">
+      <ID>STATE FISCAL WEEK START DATE</ID>
+      <Name>State Fiscal Week Start Date</Name>
+      <Type>DateStart</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="0478e09e-a440-4904-a36f-cd565958b32e">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="af9ff57a-2383-479f-ba50-956924dfa77a">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>STATE_FISCAL_WEEK_START_DATE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="bc344d56-7095-4f62-a128-cc8adc21f875">
+      <ID>STATE FISCAL DAY</ID>
+      <Name>State Fiscal Day</Name>
+      <Type>FiscalDate</Type>
+      <EstimatedCount>39744</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="ca2a2ba9-269c-4e32-b1ad-a78310fd6069">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="576abe1d-0b4a-4aa5-b532-aaf3f78c3cca">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>STATE_FISCAL_DAY</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="c43906eb-0610-443d-95b1-bcbf533cf2cb">
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="5d070b06-781b-4bb1-843f-07770b11398e">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>STATE_FISCAL_DAY_DATE</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="f82ed86a-2ea4-4042-9489-ef35dabf50da">
+          <AttributeID>STATE FISCAL DAY DATE</AttributeID>
+          <Name>State Fiscal Day Date</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="c08a5774-b11c-49a5-9310-495c113b767f">
+          <AttributeID>STATE FISCAL DAY OF MONTH</AttributeID>
+          <Name>State Fiscal Day of Month</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="a3175202-f7a3-4b89-99f2-62eca2c0f6e0">
+          <AttributeID>STATE FISCAL DAY OF QUARTER</AttributeID>
+          <Name>State Fiscal Day of Quarter</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="ca57f027-10b8-43de-9f94-5b25ad20b29b">
+          <AttributeID>STATE FISCAL DAY OF WEEK</AttributeID>
+          <Name>State Fiscal Day of Week</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="73ae3d64-8150-44ac-9cd3-c676abaabb69">
+          <AttributeID>STATE FISCAL DAY OF YEAR</AttributeID>
+          <Name>State Fiscal Day of Year</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="3b738e48-4b44-499f-b212-18bcb5266ddd">
+          <AttributeID>STATE FISCAL MONTH</AttributeID>
+          <Name>State Fiscal Month</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="447198b3-2bba-467b-b5ca-9449b937ccd0">
+          <AttributeID>STATE FISCAL WEEK</AttributeID>
+          <Name>State Fiscal Week</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="0b8adb8a-a740-463f-8bda-47c19cbb42c7">
+      <ID>STATE FISCAL DAY DATE</ID>
+      <Name>State Fiscal Day Date</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="bdbfe2e2-8cfb-4da5-af37-895b81fd57b0">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="7ad7c8fc-cd96-430c-9fbd-14cc5b1b54c9">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>STATE_FISCAL_DAY_DATE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="fe8c6be2-5ff7-43af-84f5-df7b2db8ff0e">
+      <ID>STATE FISCAL DAY OF YEAR</ID>
+      <Name>State Fiscal Day of Year</Name>
+      <Type>FiscalDayOfYear</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="5c8f3732-9047-44f1-ba3d-d177fcac7548">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="5f6d3755-ef3b-43c8-853f-a3881bb99548">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>STATE_FISCAL_DAY_OF_YEAR</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="0f0d1f47-9a33-4404-8aaf-3e54ab7ce3f6">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="0d4f0ec8-63a1-4fc1-aaf5-c1c329141206">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>STATE_FISCAL_DAY_OF_YEAR_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="f31b39c1-d3c4-40c7-9c31-4babf4ffd324">
+      <ID>STATE FISCAL DAY OF QUARTER</ID>
+      <Name>State Fiscal Day of Quarter</Name>
+      <Type>FiscalDayOfQuarter</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="9b0cebe7-77c2-4af9-b7b8-f8e3754a63c4">
+          <DataType>WChar</DataType>
+          <DataSize>50</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="c44988ee-6449-4c51-adff-24698528fba1">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>STATE_FISCAL_DAY_OF_QUARTER</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="1ec2ee08-2b95-4079-8ab8-26b9b4e86a11">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="df350ee3-214e-46d0-b7ea-508b9568ecd6">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>STATE_FISCAL_DAY_OF_QUARTER_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="018a01d5-0791-4865-a217-6d37751fcb4e">
+      <ID>STATE FISCAL DAY OF MONTH</ID>
+      <Name>State Fiscal Day of Month</Name>
+      <Type>FiscalDayOfMonth</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="c97d983a-9fa7-4159-a201-4f24807c257b">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="6c17ce0e-7289-4c9f-9013-03baafaccca0">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>STATE_FISCAL_DAY_OF_MONTH</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="7c103bd0-cb1e-41d7-be83-0172733a3fa8">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="3a3ceb20-aed1-48cc-b1d0-e9fdf77e2dae">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>STATE_FISCAL_DAY_OF_MONTH_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="943501e0-a1d2-4fcf-8f34-f7925f551c3b">
+      <ID>STATE FISCAL DAY OF WEEK</ID>
+      <Name>State Fiscal Day of Week</Name>
+      <Type>FiscalDayOfWeek</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="f07bb837-79e8-42a7-82a6-44c4982a0528">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="618854e4-1c05-4f42-ac5b-52fdfd69ca0a">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>STATE_FISCAL_DAY_OF_WEEK</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="3ee4c28f-61aa-463c-930c-95d2bc8cc58b">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="b407c038-ca66-4a90-b599-346ebd73d54e">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>STATE_FISCAL_DAY_OF_WEEK_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="14b0410a-7d5a-48e8-8c3e-24f3164b4479">
+      <ID>STATE FISCAL WEEK OF YEAR</ID>
+      <Name>State Fiscal Week of Year</Name>
+      <Type>FiscalWeekOfYear</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="29ed6630-6929-41ce-ae19-686784f09987">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="cf9d0b7c-99fd-42a1-9202-33698df9277b">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>STATE_FISCAL_WEEK_OF_YEAR</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="0e91a87a-7b0b-4a40-9bad-bf36d792f50b">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="54b3d245-2844-4144-83c6-1325f0213acb">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>STATE_FISCAL_WEEK_OF_YEAR_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="75112f82-3638-45d4-be3d-7a8173a359d9">
+      <ID>STATE FISCAL MONTH OF YEAR</ID>
+      <Name>State Fiscal Month of Year</Name>
+      <Type>FiscalMonthOfYear</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="52510064-3c61-436e-b647-247603c77e71">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="d515a9cd-f57d-4a2d-879a-553f437cc724">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>STATE_FISCAL_MONTH_OF_YEAR</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="ba5497e4-16e7-45d9-a28a-4158e7192e88">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="d8fc1b8d-b50a-4637-83bc-ee069ccf3ecb">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>STATE_FISCAL_MONTH_OF_YEAR_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="ffafb586-c3f8-4fd1-b551-d20a00a07262">
+      <ID>STATE FISCAL MONTH OF QUARTER</ID>
+      <Name>State Fiscal Month of Quarter</Name>
+      <Type>FiscalMonthOfQuarter</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="048cef73-11bb-4a80-8e1d-6648b0ab4edb">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="e6808551-1bf3-4b08-986d-17e586b4a139">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>STATE_FISCAL_MONTH_OF_QUARTER</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="4c57c54f-c5c0-4881-88e2-ad4bc94ec625">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="f1cb75c2-a6cb-497c-b2b7-40770d432631">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>STATE_FISCAL_MONTH_OF_QUARTER_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="2757f2de-f63b-48fc-85c5-74745fd3d140">
+      <ID>STATE FISCAL QUARTER OF YEAR</ID>
+      <Name>State Fiscal Quarter of Year</Name>
+      <Type>FiscalQuarterOfYear</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="cac05635-8e8c-4209-86a9-6142f6ff1c42">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="501b719f-f540-44e1-aac4-b01d0e06ffe8">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>STATE_FISCAL_QUARTER_OF_YEAR</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="7bdc3637-3bd6-4fba-8bd8-7d7493279511">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="20469d23-261a-49e7-bdf0-2a4776b099c7">
+          <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+          <ColumnID>STATE_FISCAL_QUARTER_OF_YEAR_NAME</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="192efa82-824f-4835-8678-39c6d0dcf840">
+      <ID>STATE HOLIDAY FLAG</ID>
+      <Name>State Holiday Flag</Name>
+      <Type>IsHoliday</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="558a8a48-b864-4da0-ae27-835fb92666d2">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="b20f7d54-da32-4733-81e7-ee8d200fe62c">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>STATE_HOLIDAY_FLAG</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="27d2f2f8-ec45-4df8-9ec9-acde84ec5e07">
+      <ID>WORKDAY FLAG</ID>
+      <Name>Workday Flag</Name>
+      <Type>IsWorkingDay</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="621fe53e-abcb-44b8-bb62-85ada485cad7">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="97cb25a3-9a3a-4813-ad9b-2c278c864fde">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>WORKDAY_FLAG</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="1b2466e0-903f-4e08-9573-88d74c809c2c">
+      <ID>DST FLAG</ID>
+      <Name>DST Flag</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="819e18fe-f52e-4483-856e-b84404a4129d">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="18896577-11ef-403b-b938-a5b82bf28acd">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>DST_FLAG</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="b8336d22-2a48-4c4f-b427-5f57cc1bd0fd">
+      <ID>MONTH END FLAG</ID>
+      <Name>Month End Flag</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="5655a82c-026f-43c4-9397-e29bcc980336">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="717aa1d5-e2ea-4c1b-8106-a38cd74f812d">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>MONTH_END_FLAG</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="3ce5bcc4-7da2-48ac-b4dc-4dedec01a782">
+      <ID>CALENDAR DATE YYYY MM DD</ID>
+      <Name>Calendar Date YYYY MM DD</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="d0b13f48-6d3f-43d7-be63-d4b3049f413f">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="2c371e84-d322-41fd-ae76-e91f9268a999">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>CALENDAR_DATE_YYYY_MM_DD</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="0350bc16-a41e-42f6-8f67-4270b3ac7013">
+      <ID>CALENDAR DATE MM DD YYYY</ID>
+      <Name>Calendar Date MM DD YYYY</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="93e007a1-ef94-43fa-9d48-0ecb515e4980">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="e6b5b5d2-58db-4721-99bf-9fd3e6b07afb">
+            <TableID>dbo_Cube_CALENDAR_DIM</TableID>
+            <ColumnID>CALENDAR_DATE_MM_DD_YYYY</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <Hierarchies>
+    <Hierarchy dwd:design-time-name="94584c6c-f9c9-4410-914d-78aa1b628cda">
+      <ID>Hierarchy</ID>
+      <Name>Calendar Week Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="5c73b384-d7f8-4193-a129-166a021b6179">
+          <ID>Year</ID>
+          <Name>Year</Name>
+          <SourceAttributeID>YEAR</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="4aa59f09-50c7-47a1-8e80-93eba8b6ad5d">
+          <ID>Week</ID>
+          <Name>Week</Name>
+          <SourceAttributeID>WEEK</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="b51df54c-4130-4ae6-b90b-2f6a88c7942a">
+      <ID>Hierarchy 1</ID>
+      <Name>Calendar Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="5d15d501-c1a2-401b-b6fc-1fc822429c6e">
+          <ID>Year</ID>
+          <Name>Year</Name>
+          <SourceAttributeID>YEAR</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="c5a9331d-a0ee-4748-8adb-fc0f8fac20d0">
+          <ID>Quarter</ID>
+          <Name>Quarter</Name>
+          <SourceAttributeID>QUARTER</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="f90a62be-5d31-4624-9bf3-8e3f5f7af105">
+          <ID>Month</ID>
+          <Name>Month</Name>
+          <SourceAttributeID>MONTH</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="2b0ba563-a9ac-4e15-a701-aedceb4c19d0">
+      <ID>Hierarchy 2</ID>
+      <Name>Federal Fiscal Calendar Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="f0e30394-3f6e-4e0c-867f-4ab0c60f5ec3">
+          <ID>Federal Fiscal Year</ID>
+          <Name>Federal Fiscal Year</Name>
+          <SourceAttributeID>FEDERAL FISCAL YEAR</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="82a6c8ff-a15f-4916-87b4-fbf0216d6d44">
+          <ID>Federal Fiscal Quarter</ID>
+          <Name>Federal Fiscal Quarter</Name>
+          <SourceAttributeID>FEDERAL FISCAL QUARTER</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="c57d3a6e-7ca8-4d08-93be-28192e2e9a12">
+          <ID>Federal Fiscal Month</ID>
+          <Name>Federal Fiscal Month</Name>
+          <SourceAttributeID>FEDERAL FISCAL MONTH</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="3bd6489a-2824-45d5-8565-ba6662739267">
+          <ID>Federal Fiscal Day</ID>
+          <Name>Federal Fiscal Day</Name>
+          <SourceAttributeID>FEDERAL FISCAL DAY</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="43b24a2d-5dbd-4c5d-8d53-1b1386b8351e">
+      <ID>Hierarchy 3</ID>
+      <Name>Federal Fiscal Week Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="ea34fa1e-1fb8-4e3a-83e7-cded08cb3cbf">
+          <ID>Federal Fiscal Year</ID>
+          <Name>Federal Fiscal Year</Name>
+          <SourceAttributeID>FEDERAL FISCAL YEAR</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="d1ffb560-6547-44a1-a47b-79af020b8805">
+          <ID>Federal Fiscal Week</ID>
+          <Name>Federal Fiscal Week</Name>
+          <SourceAttributeID>FEDERAL FISCAL WEEK</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="6bd66ee9-426c-4a09-bbbb-d6a5c36524c5">
+          <ID>Federal Fiscal Day</ID>
+          <Name>Federal Fiscal Day</Name>
+          <SourceAttributeID>FEDERAL FISCAL DAY</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="875ca963-9aee-474b-b582-892b9a2abc2d">
+      <ID>Hierarchy 4</ID>
+      <Name>State Fiscal Calendar Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="1195e358-d987-4530-93b3-ef951f2b126f">
+          <ID>State Fiscal Year</ID>
+          <Name>State Fiscal Year</Name>
+          <SourceAttributeID>STATE FISCAL YEAR</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="d8676491-8cad-4644-923b-72b133c41039">
+          <ID>State Fiscal Quarter</ID>
+          <Name>State Fiscal Quarter</Name>
+          <SourceAttributeID>STATE FISCAL QUARTER</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="84f0ca3d-431e-4f45-8a3c-1999661793ed">
+          <ID>State Fiscal Month</ID>
+          <Name>State Fiscal Month</Name>
+          <SourceAttributeID>STATE FISCAL MONTH</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="e7dee4e6-60cd-4537-b714-55f26700b290">
+          <ID>State Fiscal Day</ID>
+          <Name>State Fiscal Day</Name>
+          <SourceAttributeID>STATE FISCAL DAY</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="1e340151-6005-4d24-aa37-6f0b93cec1e2">
+      <ID>Hierarchy 5</ID>
+      <Name>State Fiscal Week Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="f57e8d2d-9d60-4021-8341-583b87b88630">
+          <ID>State Fiscal Year</ID>
+          <Name>State Fiscal Year</Name>
+          <SourceAttributeID>STATE FISCAL YEAR</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="9e7b8aaa-6412-41b3-9beb-19d3e18790c1">
+          <ID>State Fiscal Week</ID>
+          <Name>State Fiscal Week</Name>
+          <SourceAttributeID>STATE FISCAL WEEK</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="db3949e1-ad09-4b00-99fe-562ac67f1aa8">
+          <ID>State Fiscal Day</ID>
+          <Name>State Fiscal Day</Name>
+          <SourceAttributeID>STATE FISCAL DAY</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+  </Hierarchies>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>

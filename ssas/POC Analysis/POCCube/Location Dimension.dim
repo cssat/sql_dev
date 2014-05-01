@@ -1,0 +1,649 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="028c74c4-0b4d-4e59-b14f-5ac1d967be29" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Location Dimension</ID>
+  <Name>Location Dimension</Name>
+  <CreatedTimestamp>0001-01-01T08:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T08:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-4094" scrolltop="-8361" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="12012" y="21722" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="Dim.Location" left="20" top="0" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="3784" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="00080000c80e000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_Cube_LOCATION_DIM" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-4094</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>-8361</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>20</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
+      <Value>
+        <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="0" xmlns="">
+          <Shapes NodeWidth="153">
+            <Shape Id="ID LOCATION DIM" Expanded="false">
+              <Attributes>
+                <Attribute Id="ID LOCATION DIM" />
+                <Attribute Id="CD ACTIVE" />
+                <Attribute Id="CD RGN" />
+                <Attribute Id="CD STATE" />
+                <Attribute Id="CD UNIT" />
+                <Attribute Id="CD ZIP" />
+                <Attribute Id="Zip 5" />
+              </Attributes>
+              <Position x="20" y="20" />
+            </Shape>
+            <Shape Id="CD CITY TYPE" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD CITY TYPE" />
+              </Attributes>
+              <Position x="216" y="20" />
+            </Shape>
+            <Shape Id="CD OFFICE" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD OFFICE" />
+              </Attributes>
+              <Position x="216" y="68" />
+            </Shape>
+            <Shape Id="Old Region Cd" Expanded="false">
+              <Attributes>
+                <Attribute Id="Old Region Cd" />
+              </Attributes>
+              <Position x="412" y="68" />
+            </Shape>
+            <Shape Id="CD CNTY" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD CNTY" />
+              </Attributes>
+              <Position x="412" y="116" />
+            </Shape>
+            <Shape Id="Court Cd" Expanded="false">
+              <Attributes>
+                <Attribute Id="Court Cd" />
+              </Attributes>
+              <Position x="608" y="116" />
+            </Shape>
+            <Shape Id="Cd Office Collapse" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Office Collapse" />
+              </Attributes>
+              <Position x="412" y="164" />
+            </Shape>
+            <Shape Id="CD REGION" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD REGION" />
+              </Attributes>
+              <Position x="608" y="164" />
+            </Shape>
+            <Shape Id="CD LCTN" Expanded="false">
+              <Attributes>
+                <Attribute Id="CD LCTN" />
+              </Attributes>
+              <Position x="216" y="212" />
+            </Shape>
+          </Shapes>
+        </DiagramLayout>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T08:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="d65ea9a3-f625-493a-90e6-00f07e9a0ce1">
+    <DataSourceViewID>CA ODS</DataSourceViewID>
+  </Source>
+  <Type>Geography</Type>
+  <UnknownMember>Visible</UnknownMember>
+  <ErrorConfiguration dwd:design-time-name="6a731c54-d944-45e2-891d-c4d1482ecc8b">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <DimensionPermissions>
+    <DimensionPermission dwd:design-time-name="e37d5ef1-4745-46b1-b9bc-780d72c940d4">
+      <ID>DimensionPermission</ID>
+      <Name>DimensionPermission</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <RoleID>Role 1</RoleID>
+      <ReadDefinition>Allowed</ReadDefinition>
+      <Read>Allowed</Read>
+    </DimensionPermission>
+  </DimensionPermissions>
+  <Attributes>
+    <Attribute dwd:design-time-name="10d6ca5b-94a2-4db2-b1ad-5580206b8e3e">
+      <ID>ID LOCATION DIM</ID>
+      <Name>ID LOCATION DIM</Name>
+      <Usage>Key</Usage>
+      <EstimatedCount>10702</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="1715e30b-5d1c-4016-a61e-b3f2a2c41cc9">
+          <DataType>Integer</DataType>
+          <NullProcessing>UnknownMember</NullProcessing>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="d2764471-200b-4981-a475-4b25a922ea6b">
+            <TableID>dbo_Cube_LOCATION_DIM</TableID>
+            <ColumnID>ID_LOCATION_DIM</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="c10ed234-1d0e-4180-ab6e-cc56c1d20b74">
+          <AttributeID>CD LCTN</AttributeID>
+          <Name>Location Name</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="a7eacac6-0fda-4034-b644-ff58156329a7">
+          <AttributeID>CD OFFICE</AttributeID>
+          <Name>Office</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="09b4aac1-5415-48c6-af1c-095f1672c8a7">
+          <AttributeID>CD UNIT</AttributeID>
+          <Name>Unit</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="16ed2eb7-a1d8-4faa-9695-79504327ead2">
+          <AttributeID>CD ACTIVE</AttributeID>
+          <Name>Active</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="bfead304-15bf-4211-9a6c-457a5ce5fcb1">
+          <AttributeID>CD RGN</AttributeID>
+          <Name>Region Number</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="7b383d5d-f381-46c7-96ed-263fb0dfd309">
+          <AttributeID>CD STATE</AttributeID>
+          <Name>State</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="d844f309-f9d5-4e26-915b-4135a54224e3">
+          <AttributeID>CD ZIP</AttributeID>
+          <Name>Zip</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="5d379fe4-7ae5-4802-95ca-dfbf1975c131">
+          <AttributeID>Zip 5</AttributeID>
+          <Name>Zip 5</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="f3d0c860-0eb0-4dd5-99e7-7ef84ed18984">
+          <AttributeID>CD CITY TYPE</AttributeID>
+          <Name>City Type</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="53bc55bf-2fb3-4698-bee1-db6e265b4621">
+      <ID>CD CNTY</ID>
+      <Name>County</Name>
+      <Type>County</Type>
+      <EstimatedCount>34</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="c9062866-ead7-4ab9-80fb-1ab3f68013a5">
+          <DataType>WChar</DataType>
+          <DataSize>4</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="b523fda0-5c44-4eea-a4af-075e87bec6df">
+            <TableID>dbo_Cube_LOCATION_DIM</TableID>
+            <ColumnID>CD_CNTY</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="cbeb7e77-a52b-4e3e-8d6c-2736758b85fb">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="2fa229d7-0fc5-4898-8ce3-8c1c3852f246">
+          <TableID>dbo_Cube_LOCATION_DIM</TableID>
+          <ColumnID>TX_CNTY</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="b640814c-9f01-4d37-ba78-66287f3ffd40">
+          <AttributeID>Court Cd</AttributeID>
+          <Name>Court</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="707f9297-20ff-4e8c-9fb6-63197273483f">
+      <ID>CD LCTN</ID>
+      <Name>Location Name</Name>
+      <EstimatedCount>8</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="f5a29f1c-f4d4-4c0c-bd90-abb36bd66fa9">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="1c5617aa-64fa-486b-b55d-47c59690a8e3">
+            <TableID>dbo_Cube_LOCATION_DIM</TableID>
+            <ColumnID>CD_LCTN</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="331d628c-4484-4cd8-9a6f-8aa492b68e7d">
+        <DataType>WChar</DataType>
+        <DataSize>40</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="536ae595-8c44-4786-851e-0f43f3d24f62">
+          <TableID>dbo_Cube_LOCATION_DIM</TableID>
+          <ColumnID>TX_LCTN</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="a7c121c2-d2a5-4db0-ae0f-d9c9a3a6caf5">
+      <ID>CD OFFICE</ID>
+      <Name>Office</Name>
+      <EstimatedCount>109</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="ff98d00d-85d2-4ef3-81f2-3117ed137df6">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="91e5cdf5-daa5-405b-9774-f1b1936a12dd">
+            <TableID>dbo_Cube_LOCATION_DIM</TableID>
+            <ColumnID>CD_OFFICE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="a6cdc3c2-2b68-4314-ac63-74a24205e1ba">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="b77922cf-74d0-491a-8ea2-3edc055c8e17">
+          <TableID>dbo_Cube_LOCATION_DIM</TableID>
+          <ColumnID>TX_OFFICE</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="0f6f243d-bd96-49e7-8a30-4ba3b3627c63">
+          <AttributeID>Cd Office Collapse</AttributeID>
+          <Name>Office Collapse</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="7946ab26-1c00-462f-ab47-bf34f4a4d347">
+          <AttributeID>CD CNTY</AttributeID>
+          <Name>County</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="cb6f1e5c-5938-44b5-97a8-b2c91b1dee71">
+          <AttributeID>Old Region Cd</AttributeID>
+          <Name>Old Region</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="9af46237-8da8-43b4-99c6-85ca1a82d140">
+      <ID>CD REGION</ID>
+      <Name>Region</Name>
+      <EstimatedCount>5</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="0e26b865-535a-44e9-9bef-a08d8b6ed20d">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="726fbbeb-dd73-406f-a6c0-cc25d156533b">
+            <TableID>dbo_Cube_LOCATION_DIM</TableID>
+            <ColumnID>CD_REGION</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="242b618d-235e-4c66-96cf-6fd9b363ceb3">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="ac16955a-f3ac-4f38-a985-e75ad4fe9c13">
+          <TableID>dbo_Cube_LOCATION_DIM</TableID>
+          <ColumnID>TX_REGION</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="4fd6f4ba-22d7-4952-9456-9e597ddde3bd">
+      <ID>CD UNIT</ID>
+      <Name>Unit</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="1d3f34cb-7473-4575-91f8-cb6cd53d80d3">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="8e18acc0-d01f-43a8-b733-2cfbf357f1b4">
+            <TableID>dbo_Cube_LOCATION_DIM</TableID>
+            <ColumnID>CD_UNIT</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="4fbc9bf4-0d54-4988-8f1f-939d51235960">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="249612f2-f9ac-4174-babb-2201b5bc678f">
+          <TableID>dbo_Cube_LOCATION_DIM</TableID>
+          <ColumnID>TX_UNIT</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="e7f37bd6-c0d9-4ab9-927d-b0acf168914c">
+      <ID>CD ACTIVE</ID>
+      <Name>Active</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="6683c254-66a0-4f47-9b0f-75bb0e9fd2fe">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="29f545ba-93c4-48a5-8dc8-8aaa94060d93">
+            <TableID>dbo_Cube_LOCATION_DIM</TableID>
+            <ColumnID>CD_ACTIVE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="77ca831e-7cce-45e3-9331-528c9a51e9c9">
+      <ID>CD RGN</ID>
+      <Name>Region Number</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="75cd7443-e4c3-4954-9d3b-2ab05c0860ca">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="0c0af36d-9c85-42b8-ac7c-018ae2569f17">
+            <TableID>dbo_Cube_LOCATION_DIM</TableID>
+            <ColumnID>CD_RGN</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="cde4658e-47d5-4cb3-84f4-c1a373f3ba70">
+      <ID>CD STATE</ID>
+      <Name>State</Name>
+      <Type>StateOrProvince</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="01f21485-2c39-4fa8-9ee5-e4afd6d06b1e">
+          <DataType>WChar</DataType>
+          <DataSize>2</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="64c54669-bd96-429d-ab44-c9209ed59d29">
+            <TableID>dbo_Cube_LOCATION_DIM</TableID>
+            <ColumnID>CD_STATE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="98c54dbd-a174-4360-9ade-20742fa88eb3">
+      <ID>CD ZIP</ID>
+      <Name>Zip</Name>
+      <Type>PostalCode</Type>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="bee177b7-8597-4de4-97cd-a721b1f3ebd8">
+          <DataType>WChar</DataType>
+          <DataSize>9</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="8a6caa62-77a6-49c1-bf55-8234a1e60be1">
+            <TableID>dbo_Cube_LOCATION_DIM</TableID>
+            <ColumnID>CD_ZIP</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="2bdbb2b2-ead4-4e7b-ba7b-e86a9bc79947">
+      <ID>Zip 5</ID>
+      <Name>Zip 5</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="7f4a6c26-e70b-4c89-90d8-7d40459740a7">
+          <DataType>WChar</DataType>
+          <DataSize>5</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="c2efaff4-355a-4da2-8064-1f822e0ff75a">
+            <TableID>dbo_Cube_LOCATION_DIM</TableID>
+            <ColumnID>zip_5</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="60541006-8c42-4336-a5df-b884a1b5dd9e">
+      <ID>CD CITY TYPE</ID>
+      <Name>City Type</Name>
+      <EstimatedCount>1</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="14051e5e-f280-420e-90a1-2749b45637d9">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="31598878-fc53-4a37-afb1-038e6839d452">
+            <TableID>dbo_Cube_LOCATION_DIM</TableID>
+            <ColumnID>CD_CITY_TYPE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="d6b8fc62-7c69-4999-8470-b1e96d788934">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="3b7f8e6c-679a-4ea7-a301-082cb4fc751c">
+          <TableID>dbo_Cube_LOCATION_DIM</TableID>
+          <ColumnID>TX_CITY_TYPE</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="572d1ea1-9bc4-4080-8667-c7f984108b51">
+      <ID>Old Region Cd</ID>
+      <Name>Old Region</Name>
+      <EstimatedCount>8</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="4d0d86d6-ff9e-456a-8459-6581d963c156">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f0380d83-b720-4747-86c0-f7c81c4e3fed">
+            <TableID>dbo_Cube_LOCATION_DIM</TableID>
+            <ColumnID>old_region_cd</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="4fe4a372-ea77-4ee7-8c2f-f874d7e5c78f">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="6f64c1bd-0297-4078-bb00-0a06d1017de2">
+          <TableID>dbo_Cube_LOCATION_DIM</TableID>
+          <ColumnID>old_region_tx</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="38197575-b25d-4ab4-95a5-63df834a2a04">
+      <ID>Court Cd</ID>
+      <Name>Court</Name>
+      <EstimatedCount>31</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="d99b5f17-ef2c-4184-b627-337882aa0acf">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="75171d11-8835-4ae4-bedf-74ac0c7fa276">
+            <TableID>dbo_Cube_LOCATION_DIM</TableID>
+            <ColumnID>court_cd</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="e51c70d0-d37b-49ee-aa5e-8c9a06c01b53">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="1bc24f10-0328-4f0f-9c4d-bdf0942fd391">
+          <TableID>dbo_Cube_LOCATION_DIM</TableID>
+          <ColumnID>court</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="a5eb4f51-3152-49fa-9864-33c23834762a">
+      <ID>Cd Office Collapse</ID>
+      <Name>Office Collapse</Name>
+      <EstimatedCount>50</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="2e4a9a29-024d-40ef-9816-eb7c9427570f">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="c6baeceb-7ed8-4639-b548-04232d08d829">
+            <TableID>dbo_Cube_LOCATION_DIM</TableID>
+            <ColumnID>cd_office_collapse</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="cf236e15-78a3-42bc-9fb1-d4d1bfcfbc95">
+        <DataType>WChar</DataType>
+        <DataSize>403</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="247501d1-f40d-4077-84a0-4213a74d971d">
+          <TableID>dbo_Cube_LOCATION_DIM</TableID>
+          <ColumnID>tx_office_collapse</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="a2fc44cd-cd2e-4e96-bcd8-8cd47d432e5c">
+          <AttributeID>CD REGION</AttributeID>
+          <Name>Region</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <Hierarchies>
+    <Hierarchy dwd:design-time-name="866542d4-f532-44e3-8681-5eb67d6d5068">
+      <ID>Hierarchy</ID>
+      <Name>City Type Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="f25a58b5-e1a1-4fa6-9d68-9132d33ad4a5">
+          <ID>City Type</ID>
+          <Name>City Type</Name>
+          <SourceAttributeID>CD CITY TYPE</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="1a5d3ac6-43d4-407e-86a3-40aa1be2c774">
+      <ID>Hierarchy 1</ID>
+      <Name>Region Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="691d5ccc-6c9c-4d62-9869-508f5d0de368">
+          <ID>Region</ID>
+          <Name>Region</Name>
+          <SourceAttributeID>CD REGION</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="ff1038fa-31b4-47c4-9380-266b883faa2d">
+          <ID>Office Collapse</ID>
+          <Name>Office Collapse</Name>
+          <SourceAttributeID>Cd Office Collapse</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="0ca95c60-9bb0-45cd-a4ab-d732554b9e74">
+          <ID>Office</ID>
+          <Name>Office</Name>
+          <SourceAttributeID>CD OFFICE</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="2fbea00c-8207-47b0-a4db-adf8304185a0">
+      <ID>Hierarchy 2</ID>
+      <Name>Court Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="ec3534bc-506b-489c-9b19-74e3fedec4d4">
+          <ID>Court</ID>
+          <Name>Court</Name>
+          <SourceAttributeID>Court Cd</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="e7d14082-8311-4b22-8b93-78045cba380f">
+          <ID>County</ID>
+          <Name>County</Name>
+          <SourceAttributeID>CD CNTY</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="416959a9-0f2b-4874-b6e4-eaaf469c635e">
+          <ID>Office</ID>
+          <Name>Office</Name>
+          <SourceAttributeID>CD OFFICE</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="720f22c2-99ce-43f6-b97b-d7708015e9a3">
+      <ID>Hierarchy 3</ID>
+      <Name>Old Region Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="e8a306b9-b63b-4143-a145-25eb8a55e187">
+          <ID>Old Region</ID>
+          <Name>Old Region</Name>
+          <SourceAttributeID>Old Region Cd</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="958fa19c-6e77-497f-b376-beaac0918c8a">
+          <ID>Office</ID>
+          <Name>Office</Name>
+          <SourceAttributeID>CD OFFICE</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="5edcbdbd-9817-4caf-83c9-bc186ac9cd45">
+      <ID>Hierarchy 4</ID>
+      <Name>Location Name Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="04f374b9-d569-4a94-b11d-2b5eaf596360">
+          <ID>Location Name</ID>
+          <Name>Location Name</Name>
+          <SourceAttributeID>CD LCTN</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+  </Hierarchies>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>

@@ -1,0 +1,2626 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="75138f4c-7dbc-4b7b-b60e-ec057ba2f32c" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Provider Dimension</ID>
+  <Name>Provider Dimension</Name>
+  <CreatedTimestamp>0001-01-01T08:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T08:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-1674" scrolltop="-8361" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="12012" y="21722" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="Dim.Provider" left="20" top="0" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="8625" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="00080000b121000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_Cube_PROVIDER_DIM" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-1674</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>-8361</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>20</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T08:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="2cd800a5-f3cf-49f0-9cfc-f594aca01e88">
+    <DataSourceViewID>CA ODS</DataSourceViewID>
+  </Source>
+  <ErrorConfiguration dwd:design-time-name="efcdac54-d6dd-4f08-8949-fbe9cc960352">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <DimensionPermissions>
+    <DimensionPermission dwd:design-time-name="52b552a6-cca7-4abd-a3ed-33959c5b6b70">
+      <ID>DimensionPermission</ID>
+      <Name>DimensionPermission</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <RoleID>Role 1</RoleID>
+      <ReadDefinition>Allowed</ReadDefinition>
+      <Read>Allowed</Read>
+    </DimensionPermission>
+  </DimensionPermissions>
+  <Attributes>
+    <Attribute dwd:design-time-name="40b1da79-c789-4944-b2c0-b2301709fec6">
+      <ID>ID PROVIDER DIM</ID>
+      <Name>ID PROVIDER DIM</Name>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="3f3813ce-0bd3-401e-b882-ff0c6b21bdf4">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="cf106d42-ac13-45e5-a332-1660704b472e">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>ID_PROVIDER_DIM</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="ae6beb00-a083-493b-8a39-e14412a271b7">
+          <AttributeID>CD MAIL COUNTY</AttributeID>
+          <Name>Mail County</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="8bd6e123-f053-42b8-826d-fa713fe49361">
+          <AttributeID>TX MAIL STATE</AttributeID>
+          <Name>Mail State</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="983a4f2d-34ad-455b-b40a-a0467f7a77cd">
+          <AttributeID>TX MAIL ZIP</AttributeID>
+          <Name>Mail Zip</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="f002ed67-fec7-47b4-af4b-610b23a3f15b">
+          <AttributeID>CD PHYS COUNTY</AttributeID>
+          <Name>Physical County</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="e74452ed-f64c-4c40-a14d-a95940b070ac">
+          <AttributeID>TX PHYS STATE</AttributeID>
+          <Name>Physical State</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="00f442eb-d858-4954-afcf-ed0b844dbf9d">
+          <AttributeID>TX PHYS ZIP</AttributeID>
+          <Name>Physical Zip</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="fdb620c9-bb86-4788-b41c-f646667abcaf">
+          <AttributeID>Phys Zip 5</AttributeID>
+          <Name>Physical Zip 5</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="0c8f9622-feff-47f9-830c-985781181fdb">
+          <AttributeID>CD PROVIDER TYPE</AttributeID>
+          <Name>Provider Type</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="d515d829-2b01-489e-bb86-06e849358bf2">
+          <AttributeID>CD REGION</AttributeID>
+          <Name>Region</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="7bcfa75f-8cf5-4b8e-bc9f-38084cc16eb7">
+          <AttributeID>CD SSPS STATUS</AttributeID>
+          <Name>SSPS Status</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="282eeb25-2849-4a5d-896b-45e805a5c05d">
+          <AttributeID>CD STAT</AttributeID>
+          <Name>Status</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="67623c09-ffb4-42de-9598-f6555647a3e5">
+          <AttributeID>CD TRIBAL AFLTN</AttributeID>
+          <Name>Tribal Affiliation</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="f88b2bbe-08d1-4e77-869c-87a3d5622466">
+          <AttributeID>FL 24 HOUR CARE</AttributeID>
+          <Name>Flag 24 Hour Care</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="0c3029e6-1d3c-46e0-a1aa-73a9afabc69a">
+          <AttributeID>FL ABUSES ANIMALS</AttributeID>
+          <Name>Flag Abuses Animals</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="982ccd6a-f5ba-4cc4-ba74-1f65bab3e0b2">
+          <AttributeID>FL ADA NEEDS</AttributeID>
+          <Name>Flag ADA Needs</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="24bcbc5f-021c-4a5c-9597-80316232cace">
+          <AttributeID>FL ADJUDICATED CRIMINAL</AttributeID>
+          <Name>Flag Adjudicated Criminal</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="454828f7-1d3f-4ef0-b34c-d2990ff3e55d">
+          <AttributeID>FL AFFILIATED WITH GANGS</AttributeID>
+          <Name>Flag Affiliated with Gangs</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="878eb5b9-7bf0-4539-ab68-d6c54ce119dd">
+          <AttributeID>FL AUTISTIC</AttributeID>
+          <Name>Flag Autistic</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="66b1ad1b-ec7f-4879-aaec-34f37be85acf">
+          <AttributeID>FL BEFORE AFTER SCHOOL ONLY</AttributeID>
+          <Name>Flag Before School Only</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="c397f68b-8b71-4293-a283-61dc54c474e1">
+          <AttributeID>FL DEVELOPMENTAL DELAY</AttributeID>
+          <Name>Flag Developmental Delay</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="aeb177b7-d048-4a1a-bf16-db47620da859">
+          <AttributeID>FL DIABETIC</AttributeID>
+          <Name>Flag Diabetic</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="00a59c91-0100-431e-94bb-6490d5ceff7b">
+          <AttributeID>FL DIAGNOSED MENTAL HEALTH CONDITION</AttributeID>
+          <Name>Flag Diagnosed Mental Health Condition</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="02f738f2-1807-45a6-a5ba-a2244455b09c">
+          <AttributeID>FL DIAGNOSED WITH FETAL ALCOHOL SYNDROME</AttributeID>
+          <Name>Flag Diagnosed with Fetal Alcohol Syndrome</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="8eb58fdf-bc63-45b9-b474-aacfab59da1a">
+          <AttributeID>FL DRUG AFFECTED</AttributeID>
+          <Name>Flag Drug Affected</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="8c87ff4c-7bca-4924-aea4-a8d0913da4cf">
+          <AttributeID>FL EATING DISORDER</AttributeID>
+          <Name>Flag Eating Disorder</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="80de3bf1-0891-4867-a607-24a0ea7f266e">
+          <AttributeID>FL ENCOPRETIC</AttributeID>
+          <Name>Flag Encopretic</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="7f4f697f-a366-449d-91e6-e43b5f8a0647">
+          <AttributeID>FL ENURESIS</AttributeID>
+          <Name>Flag Enuresis</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="efd9528d-4835-48b3-8b94-27d90fc37aa5">
+          <AttributeID>FL EVENING</AttributeID>
+          <Name>Flag Evening</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="d8032822-f400-4632-88fe-019c16045543">
+          <AttributeID>FL FEMALE</AttributeID>
+          <Name>Flag Female</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="60536424-46e8-4c7a-ab38-63807533c62f">
+          <AttributeID>FL FIRE SETTER</AttributeID>
+          <Name>Flag Fire Setter</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="f514cb39-3080-4505-b9aa-8c2d135c62fe">
+          <AttributeID>FL HEARING IMPAIRED</AttributeID>
+          <Name>Flag Hearing Impaired</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="230cc1be-5288-4869-ad1f-eb16d46eb430">
+          <AttributeID>FL HIV POSITIVE</AttributeID>
+          <Name>Flag HIV Positive</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="f62a9250-16b8-4bcc-be98-53efd8bf466f">
+          <AttributeID>FL IV DRUG USER</AttributeID>
+          <Name>Flag IV Drug User</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="7ead8d2c-d44a-4b41-8371-20091d39dd9e">
+          <AttributeID>FL IVE TRIBAL AGREEMENT</AttributeID>
+          <Name>Flag IVE Tribal Agreement</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="03ec6b6f-877b-4aba-9d1d-9378a1485f74">
+          <AttributeID>FL IVE TRIBAL AGRMT IN PLC</AttributeID>
+          <Name>Flag IVE Tribal Agreement in Place</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="61c23bc6-7864-4f07-b303-ceea1002a9eb">
+          <AttributeID>FL LEARNING DISABILITIES</AttributeID>
+          <Name>Flag Learning Disabilities</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="6567280c-1b2e-44fc-89e9-30545057f258">
+          <AttributeID>FL LIFE SKILLS TRAINING</AttributeID>
+          <Name>Flag Life Skills Training</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="f22b86d8-99e6-4a0b-b896-337445e8709e">
+          <AttributeID>FL MALE</AttributeID>
+          <Name>Flag Male</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="f93cb2d2-d153-4ea3-aa5f-b71b3de15394">
+          <AttributeID>FL MASTURBATES IN PUBLIC</AttributeID>
+          <Name>Flag Mastrubates in Public</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="519192a8-36a5-40c5-bb17-c9c1a0c315e1">
+          <AttributeID>FL MEDICALLY FRAGILE</AttributeID>
+          <Name>Flag Medically Fragile</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="88e9c642-2f84-4bb8-aee4-376034eac837">
+          <AttributeID>FL NAA ACCREDITED</AttributeID>
+          <Name>Flag NAA Accredited</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="e5299051-6785-49ce-b641-120771b96b63">
+          <AttributeID>FL NAEYC ACCREDITED</AttributeID>
+          <Name>Flag NAEYC Accredited</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="3ceb8160-226c-43c3-b34a-c3570fa1820a">
+          <AttributeID>FL NAFCC ACCREDITED</AttributeID>
+          <Name>Flag NAFCC Accredited</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="ca1d637a-0105-4eae-b1d7-926b708b8db9">
+          <AttributeID>FL OPEN</AttributeID>
+          <Name>Flag Open</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="5279b48f-35a5-4ba1-82db-ce69af8a8654">
+          <AttributeID>FL PARENT AGENCY</AttributeID>
+          <Name>Flag Parent Agency</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="c389cff6-3fdb-45c6-99bc-1b9d3cf21903">
+          <AttributeID>FL PHYSICALLY AGGRESSIVE YOUTH</AttributeID>
+          <Name>Flag Physically Aggressive Youth</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="2f55c68f-89d1-45c7-9d2d-2ccd2798eff0">
+          <AttributeID>FL PHYSICALLY ASSAULTIVE YOUTH PAY</AttributeID>
+          <Name>Flag Physically Assaultive Youth Pay</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="d43f00b0-257d-4a9d-86d9-b1441f671ba7">
+          <AttributeID>FL PROPERTY DESTRUCTION</AttributeID>
+          <Name>Flag Property Destruction</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="52143f1a-a95e-4c02-9fcf-37ba86bbcb00">
+          <AttributeID>FL PSYCHIATRIC HOSPITALIZATION HISTORY</AttributeID>
+          <Name>Flag Psychiatric Hospitalization History</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="ce979848-7190-4b4e-920b-89e96cf4d6fd">
+          <AttributeID>FL RELATIVE CAREGIVER</AttributeID>
+          <Name>Flag Relative Caregiver</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="9f72931b-c68f-45d1-a424-4b27fb316ef4">
+          <AttributeID>FL REQUIRES MEDICATION</AttributeID>
+          <Name>Flag Requires Medication</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="6540c90c-b3e5-435d-b10c-79b527eab3b4">
+          <AttributeID>FL REQUIRES SPECIAL DIET</AttributeID>
+          <Name>Flag Requires Special Diet</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="91d8aed5-9347-44e0-92d3-39c3d2b7a112">
+          <AttributeID>FL RESIDENTIAL TREATMENT HISTORY</AttributeID>
+          <Name>Flag Residential Treatment History</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="eef790bc-5908-47d0-9e0c-951dd76e2ca4">
+          <AttributeID>FL RUNAWAY HISTORY</AttributeID>
+          <Name>Flag Runaway History</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="a2b456ef-415f-4dfb-83a8-e692d30051bc">
+          <AttributeID>FL SELF ABUSIVE</AttributeID>
+          <Name>Flag Self Abusive</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="f01a0d8f-be84-4820-bdde-bffa9faf2f21">
+          <AttributeID>FL SEXUALLY ABUSED</AttributeID>
+          <Name>Flag Sexually Abused</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="66898170-995f-4233-941b-d14da720c7f6">
+          <AttributeID>FL SEXUALLY ACTIVE</AttributeID>
+          <Name>Flag Sexually Active</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="e04a5fc2-bd54-431a-9905-9ffb689ab265">
+          <AttributeID>FL SEXUALLY AGGRESSIVE YOUTH</AttributeID>
+          <Name>Flag Sexually Aggressive Youth</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="7b453c71-52ee-45be-ac04-7b3973e3f852">
+          <AttributeID>FL SEXUALLY AGGRESSIVE YOUTH SAY</AttributeID>
+          <Name>Flag Sexually Aggressive Youth Say</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="97d31989-e11f-46a4-8693-567d05a49933">
+          <AttributeID>FL SEXUALLY REACTIVE</AttributeID>
+          <Name>Flag Sexually Reactive</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="ab41364c-1b24-48b9-8257-e69b7a1416f6">
+          <AttributeID>FL SIBLING GROUP</AttributeID>
+          <Name>Flag Sibling Group</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="d231c28f-15ab-4d0a-a2bc-58d9e7a61b31">
+          <AttributeID>FL SIGNIFICANT ASTHMA OR ALLERGIES</AttributeID>
+          <Name>Flag Significant Asthma or Allergies</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="7dfa65dd-8b57-4272-825c-1cf811f2e888">
+          <AttributeID>FL SPECIAL NEEDS CHILDREN</AttributeID>
+          <Name>Flag Special Needs Children</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="da8ae05f-229e-4344-9eaa-306aeda8c42b">
+          <AttributeID>FL SPECIALIZED MEDICAL CERTIFICATION</AttributeID>
+          <Name>Flag Specialized Medical Certification</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="472ce08e-ad50-4d0b-b5f8-ca7de0c4d810">
+          <AttributeID>FL SUICIDAL THREAT ATTEMPT</AttributeID>
+          <Name>Flag Suicidal Treatment Attempt</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="89788aa5-1e81-493a-b12b-a814fe434d1f">
+          <AttributeID>FL TREATMENT FOSTER HOME TRAINING</AttributeID>
+          <Name>Flag Treatment Foster Home Training</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="c76eab0e-c48d-4ea5-b01b-e34d01c02e15">
+          <AttributeID>FL TUTORING</AttributeID>
+          <Name>Flag Tutoring</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="a71f12ea-86f9-48d5-885b-82ecf719d35d">
+          <AttributeID>FL VISUALLY IMPAIRED</AttributeID>
+          <Name>Flag Visually Impaired</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="b1ed8783-aeee-4190-9635-85e76d6214ef">
+          <AttributeID>FL WEEKEND CARE</AttributeID>
+          <Name>Flag Weekend Care</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="14328582-06aa-4456-ad8c-db3a18d366f4">
+          <AttributeID>DT ADDR LAST VERIFIED</AttributeID>
+          <Name>Date Address Last Verified</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="0130b35b-b1ba-4d32-bd10-3885329b6710">
+          <AttributeID>DT IVE TRIBAL AGREEMENT EFFECTIVE</AttributeID>
+          <Name>Date IVE Tribal Agreement Effective</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="f42ca7d7-2cde-43dd-ad2b-aef95090f9c8">
+          <AttributeID>ID PRVD ORG</AttributeID>
+          <Name>ID PRVD ORG</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="4087ac4c-5ff5-4518-b466-42d407734366">
+      <ID>CD MAIL COUNTY</ID>
+      <Name>Mail County</Name>
+      <EstimatedCount>41</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="8c698c12-15f0-43bc-a73a-2a10e6793949">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="e0e4c6e0-7981-4b59-8c4d-44663e4dce18">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>CD_MAIL_COUNTY</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="85f21b0a-bcc8-4b5e-96d5-54d3d4b3c215">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="3417f1d2-2ab8-4276-a22a-10ca71d822a1">
+          <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+          <ColumnID>TX_MAIL_COUNTY</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="368144a9-8aaf-4b0b-8fe6-87d2ab55067b">
+      <ID>TX MAIL STATE</ID>
+      <Name>Mail State</Name>
+      <EstimatedCount>60</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="fd9bd3aa-5c9f-4ff1-8a3d-2ef7397b5828">
+          <DataType>WChar</DataType>
+          <DataSize>2</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="5abf3d9b-dcaf-4c29-bef9-3cc270fb66d5">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>TX_MAIL_STATE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="a1da59dc-c9dc-4009-a55c-1de758f89a24">
+      <ID>TX MAIL ZIP</ID>
+      <Name>Mail Zip</Name>
+      <EstimatedCount>6445</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="0ef14493-a0bd-4bce-86d3-5dc37f35823b">
+          <DataType>WChar</DataType>
+          <DataSize>9</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="0314e600-e985-4be1-a411-6d0ee40aab99">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>TX_MAIL_ZIP</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="8f06534e-2c93-4ca1-80a8-eea8cfaadea8">
+      <ID>CD PHYS COUNTY</ID>
+      <Name>Physical County</Name>
+      <EstimatedCount>42</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="7044a47d-29b5-445b-9e61-0432038fea40">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="7538dba3-28d2-4f8f-b027-e676d9fabb50">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>CD_PHYS_COUNTY</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="be5c42e3-7471-4f9b-8257-aacc581e2fe7">
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="4fca1628-dbfd-49be-ab39-5108ba3dbb1a">
+          <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+          <ColumnID>CD_PHYS_COUNTY</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="b904dfbc-b912-4cf5-9139-3b6c38c6fd34">
+      <ID>TX PHYS STATE</ID>
+      <Name>Physical State</Name>
+      <EstimatedCount>62</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="61d2bab8-2a26-44de-96f6-1bcfc9045d3c">
+          <DataType>WChar</DataType>
+          <DataSize>2</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="6ac1bbb3-257a-4d23-b9c9-463a8a7c210e">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>TX_PHYS_STATE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="1b7d1379-4298-4a27-a739-175c6503fe52">
+      <ID>TX PHYS ZIP</ID>
+      <Name>Physical Zip</Name>
+      <EstimatedCount>11248</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="07e3ce38-f0ba-4741-9631-42e7a18acce8">
+          <DataType>WChar</DataType>
+          <DataSize>9</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="9f447a5a-c11d-4eb1-967a-b2f05c743b25">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>TX_PHYS_ZIP</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="278d9be3-1313-4dcf-bfc4-48a7192949dd">
+      <ID>Phys Zip 5</ID>
+      <Name>Physical Zip 5</Name>
+      <EstimatedCount>7624</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="fa0efc03-b75f-4c8a-964a-111fd21beb67">
+          <DataType>WChar</DataType>
+          <DataSize>5</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="4ee29fdb-a91c-43a4-b530-19477da3c7ea">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>phys_zip_5</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="dd331b12-6742-4710-a3ff-19477e33f908">
+      <ID>CD PROVIDER TYPE</ID>
+      <Name>Provider Type</Name>
+      <EstimatedCount>16</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="bddbd158-acf6-4ec4-b064-06408dcd03a2">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="5129d674-3d55-44f5-ad09-03e55421896d">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>CD_PROVIDER_TYPE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="d51aacbf-b169-4192-8464-e7319b8dfc46">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="7529e4f0-878f-4527-8dcd-7f4d3b382d7b">
+          <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+          <ColumnID>TX_PROVIDER_TYPE</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="c23b5575-43bc-4e86-ae1a-9d3e4108a7b5">
+      <ID>CD REGION</ID>
+      <Name>Region</Name>
+      <EstimatedCount>13</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="0f3d2bc3-eddc-4751-9e37-8e59c08b5b5e">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="27cec89d-a567-42db-a58c-5b99eeb246cf">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>CD_REGION</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="cad9ab28-51af-4a1b-a796-3af9bc11023b">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="96536c31-2779-4edc-bd8a-f3ceebfee4f7">
+          <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+          <ColumnID>TX_REGION</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="bc3fbbd6-97ba-404c-ae46-7d6214e93174">
+      <ID>CD SSPS STATUS</ID>
+      <Name>SSPS Status</Name>
+      <EstimatedCount>7</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="5763d25d-4e44-4d20-ba39-cb6f027f1000">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="8884e0da-c5a9-4f2a-bbab-e9dbfd2128a0">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>CD_SSPS_STATUS</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="5f1ce045-dab4-4d5d-8a09-4b4db1f2c1e5">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="e96552e5-271b-4ea5-9b85-1ee394644c2f">
+          <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+          <ColumnID>TX_SSPS_STATUS</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="0e68e7fe-4b66-40c6-8ca4-64e08c088d85">
+      <ID>CD STAT</ID>
+      <Name>Status</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="7c52e464-2475-494e-8a78-10e89047a386">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="779e0006-e43a-4a67-ba5e-af120d7f230b">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>CD_STAT</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="0bbddc5e-5be5-4c73-92c5-fb1eb99bddbe">
+      <ID>CD TRIBAL AFLTN</ID>
+      <Name>Tribal Affiliation</Name>
+      <EstimatedCount>35</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="0c2a8fa8-fb66-4dad-9893-b4ab9d39c6b1">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="86d0507c-86c0-4d8d-9bb1-2be6290bfd44">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>CD_TRIBAL_AFLTN</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="61155f71-3016-4676-998c-f2267b9956dd">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="f32b8556-c205-4b83-8e2b-b5e9820057c5">
+          <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+          <ColumnID>TX_TRIBAL_AFLTN</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="c78d5555-fb82-4f76-b960-4ea608433554">
+      <ID>FL 24 HOUR CARE</ID>
+      <Name>Flag 24 Hour Care</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="1cacf1c6-03e5-4c85-87b2-245abf15e264">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="6e8f5ef7-526b-4719-b799-a3e5b9224600">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_24_HOUR_CARE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="48eae0ac-637d-417d-9db1-32cfc89b737e">
+      <ID>FL ABUSES ANIMALS</ID>
+      <Name>Flag Abuses Animals</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="2f2f7192-698f-4e08-b350-66d6659ed73e">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="d39d0e19-b311-4c5c-bb19-c5c6b79279a9">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_ABUSES_ANIMALS</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="31318b61-d0cc-4df2-a5f7-09a5d53fb523">
+      <ID>FL ADA NEEDS</ID>
+      <Name>Flag ADA Needs</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="f7d3ca08-4d51-46a3-9059-fee6509545c2">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="46459fa5-daaa-4081-b5f6-879d323c086e">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_ADA_NEEDS</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="83f1053d-1238-40d5-af65-ed2b090de7f1">
+      <ID>FL ADJUDICATED CRIMINAL</ID>
+      <Name>Flag Adjudicated Criminal</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="833176e6-27bd-4537-a950-c1307a68ae3a">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="6f039c7c-1bbb-4284-9f0b-2a591376eeea">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_ADJUDICATED_CRIMINAL</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="ad3e468a-8e89-4afa-ba55-819d0ea35225">
+      <ID>FL AFFILIATED WITH GANGS</ID>
+      <Name>Flag Affiliated with Gangs</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="99164d96-c1e3-4952-95fe-c05adef69cf7">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="c83ca879-157f-439c-92a5-3c58f5ce8983">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_AFFILIATED_WITH_GANGS</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="bac5336d-7664-41ae-9655-a3d2d7985df8">
+      <ID>FL AUTISTIC</ID>
+      <Name>Flag Autistic</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="b3b47ba4-5548-4bab-97d7-9b5692e5f6bd">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="05d93fc9-8a74-49ec-9a56-f6224e885ee4">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_AUTISTIC</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="91a4a33d-d859-430b-bb53-957b0943da99">
+      <ID>FL BEFORE AFTER SCHOOL ONLY</ID>
+      <Name>Flag Before School Only</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="47b1d2d8-b878-4ead-aa9c-507c2cf61152">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="70d7b8cf-a576-4adf-9b73-5d987f05baee">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_BEFORE_AFTER_SCHOOL_ONLY</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="67884fa3-1f99-4dc1-9b7f-ebc666d28c73">
+      <ID>FL DEVELOPMENTAL DELAY</ID>
+      <Name>Flag Developmental Delay</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="9a3e247c-7371-4013-b184-11116e00a565">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="06432868-17e1-46e9-a0c5-3d8abb11d707">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_DEVELOPMENTAL_DELAY</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="61d1e2e8-a8f3-487c-a164-0e561524aa5a">
+      <ID>FL DIABETIC</ID>
+      <Name>Flag Diabetic</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="fa01cfaf-df08-4698-9f16-cc71af044f65">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="92952388-eec1-42bb-8031-51195246d993">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_DIABETIC</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="c990b485-f578-4b83-bd26-214c617f6abd">
+      <ID>FL DIAGNOSED MENTAL HEALTH CONDITION</ID>
+      <Name>Flag Diagnosed Mental Health Condition</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="6adf4d2b-3539-4f7b-9ca5-8c42fe82fd1f">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="748dcc52-b677-4687-91f6-23f239a943c5">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_DIAGNOSED_MENTAL_HEALTH_CONDITION</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="3596e752-782c-4863-bcbd-847d1f50d14e">
+      <ID>FL DIAGNOSED WITH FETAL ALCOHOL SYNDROME</ID>
+      <Name>Flag Diagnosed with Fetal Alcohol Syndrome</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="519ad330-40da-45f7-9be0-cb0e474c341a">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f5860a8e-6301-4994-8234-87f2b0d91241">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_DIAGNOSED_WITH_FETAL_ALCOHOL_SYNDROME</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="94a8f5a9-8c1c-40fd-9baa-972f0ed2140b">
+      <ID>FL DRUG AFFECTED</ID>
+      <Name>Flag Drug Affected</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="2fef371b-282d-429b-b3e1-82f37f30b8c1">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="e50ca947-43c5-4713-9566-de4b18ce97d1">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_DRUG_AFFECTED</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="cc8de3ab-5124-4821-a32d-0333d000a6c7">
+      <ID>FL EATING DISORDER</ID>
+      <Name>Flag Eating Disorder</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="38463635-4df2-4ccc-966a-acb9b28f5303">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="1e485d35-1e9e-4edb-86e4-86a62f9cb3db">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_EATING_DISORDER</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="fcf48baf-8f83-4ade-8ce2-d54f410b6ca1">
+      <ID>FL ENCOPRETIC</ID>
+      <Name>Flag Encopretic</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="637fe8c9-b994-4feb-8722-730e17d8c96f">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="958814de-0e32-4f16-ae29-34edbb29c465">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_ENCOPRETIC</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="4522b8cd-004f-494f-aa86-dc985197485d">
+      <ID>FL ENURESIS</ID>
+      <Name>Flag Enuresis</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="e59f71b2-fe8a-4a89-b7f6-86ac2d0bd8d8">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="5b7c4ad3-cf5d-4c51-be3e-324c4372123a">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_ENURESIS</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="1e0a17a9-d06a-4a0b-8b62-6f3d559f4c5c">
+      <ID>FL EVENING</ID>
+      <Name>Flag Evening</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="b8c2386d-3fbb-4268-83b3-827ca6e767ce">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="edc61972-85af-4aa6-9b1d-48335360f22b">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_EVENING</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="dd51e0a4-10c7-480e-9691-e6acf4ec5eab">
+      <ID>FL FEMALE</ID>
+      <Name>Flag Female</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="5762627b-9a55-4850-ac9b-37dd8859f42f">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="23a856c1-96c1-4b9c-9897-c8ce0c486094">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_FEMALE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="bbd2c469-2f5f-4091-b559-0c975b1f8d9b">
+      <ID>FL FIRE SETTER</ID>
+      <Name>Flag Fire Setter</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="1ff65e46-7b1d-41f9-94c3-6edb7e9a52cf">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="10a2101e-632c-452e-ba11-e333af9c693f">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_FIRE_SETTER</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="81440945-d23b-4bcc-80d0-fd64e0353bd3">
+      <ID>FL HEARING IMPAIRED</ID>
+      <Name>Flag Hearing Impaired</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="9c2a38aa-99ca-4525-9a60-fb49f727dab2">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="18c5d2c1-c2c2-441d-ab49-b420ed3d6914">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_HEARING_IMPAIRED</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="97e5e32b-60e4-4c6c-b9d1-a20b842b0556">
+      <ID>FL HIV POSITIVE</ID>
+      <Name>Flag HIV Positive</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="ff787bc5-8892-4ee2-b080-035d1ffb34c3">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="06a7dfdb-dcd4-4ac6-b9fc-3992c65f33db">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_HIV_POSITIVE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="339d733a-8aba-48ab-a9ac-b53d0d705bdb">
+      <ID>FL IV DRUG USER</ID>
+      <Name>Flag IV Drug User</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="3f388b5d-21a4-4b5c-b5d3-a9a3ac768094">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="a8530522-9737-4c8e-909c-0f42a5e63557">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_IV_DRUG_USER</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="4e3ca9ab-b22a-43b1-b848-ba4c21afc62e">
+      <ID>FL IVE TRIBAL AGREEMENT</ID>
+      <Name>Flag IVE Tribal Agreement</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="19def5aa-70f9-4a44-ae2f-1cc1726ad07e">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="988cc89c-41dd-4afe-95a0-29ca9087288a">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_IVE_TRIBAL_AGREEMENT</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="77b5de68-379b-4e63-a9b4-4bbe12570e17">
+      <ID>FL IVE TRIBAL AGRMT IN PLC</ID>
+      <Name>Flag IVE Tribal Agreement in Place</Name>
+      <EstimatedCount>3</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="3ed70603-6afc-40a2-9cb5-81fa6fbda522">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="571d8633-2e5d-4c8a-935c-f03c22d738fb">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_IVE_TRIBAL_AGRMT_IN_PLC</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="4b0656e2-5b50-4118-bf0d-2b0773520105">
+      <ID>FL LEARNING DISABILITIES</ID>
+      <Name>Flag Learning Disabilities</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="020711d0-5272-475b-bc30-e1236be11dc3">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="23308904-2c7f-4c89-b025-860a7731bae3">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_LEARNING_DISABILITIES</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="b49aaa7a-20b6-42eb-ae30-43c2bd3e108f">
+      <ID>FL LIFE SKILLS TRAINING</ID>
+      <Name>Flag Life Skills Training</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="45f1a5e6-ec3c-4181-8497-58f23dadebef">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="9034dfee-7978-4076-9198-241b402f4c67">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_LIFE_SKILLS_TRAINING</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="37ba1ca2-8442-4d18-98d1-2243fb72c68f">
+      <ID>FL MALE</ID>
+      <Name>Flag Male</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="1d11658f-1be6-47c3-ab83-baa8d1bbf987">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="9dd11687-88ca-4ba2-a81b-a34fddeaaef4">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_MALE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="68db02e3-2c28-4f5c-82cd-9eb122c65be8">
+      <ID>FL MASTURBATES IN PUBLIC</ID>
+      <Name>Flag Mastrubates in Public</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="fe0bcf08-633c-4c00-802d-fdb10f06b916">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="32da6f13-59ec-44f9-81d8-ac6466954e8a">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_MASTURBATES_IN_PUBLIC</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="cd724ac0-d043-4310-820d-cb56cc2482f0">
+      <ID>FL MEDICALLY FRAGILE</ID>
+      <Name>Flag Medically Fragile</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="27eaa6d8-2ecf-48b4-8293-129114b41fef">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="d8f7a03d-1e03-413f-a7d5-eb47922791ef">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_MEDICALLY_FRAGILE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="299c7efb-c370-4a9e-a458-872c0ba4789b">
+      <ID>FL NAA ACCREDITED</ID>
+      <Name>Flag NAA Accredited</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="2a5e41d5-037d-426f-a516-a783a3599ac7">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="11e5a587-5216-4a05-add9-934866ea1247">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_NAA_ACCREDITED</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="d8259340-d307-4334-adc1-6ff155d56f3a">
+      <ID>FL NAEYC ACCREDITED</ID>
+      <Name>Flag NAEYC Accredited</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="d3bcef72-820a-4839-a334-5e40ed6b737c">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="22a0c5fb-4ab0-4840-979d-739ecf05c593">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_NAEYC_ACCREDITED</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="3ba0dca4-e656-418d-9c32-fc21ef69e4a1">
+      <ID>FL NAFCC ACCREDITED</ID>
+      <Name>Flag NAFCC Accredited</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="f64e241c-fa5e-47f8-898c-3531acbd9644">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="347aed99-3fd7-454e-b91c-7c7d9bd34462">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_NAFCC_ACCREDITED</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="f1233156-2fbe-4b92-8408-e9302bc33c8d">
+      <ID>FL OPEN</ID>
+      <Name>Flag Open</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="dd3b6cc9-faee-4702-8d19-04552ede26e9">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f85bbd9f-a589-4291-b782-f6f90f952782">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_OPEN</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="66b0c03e-1b66-481b-a007-41b1c1d59811">
+      <ID>FL PARENT AGENCY</ID>
+      <Name>Flag Parent Agency</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="6258c86f-7fe5-447f-accf-813e7718024e">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="35af9849-b2b6-4558-b437-c0958a8097be">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_PARENT_AGENCY</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="fefe365a-da3b-4604-b40c-e8ae194ef429">
+      <ID>FL PHYSICALLY AGGRESSIVE YOUTH</ID>
+      <Name>Flag Physically Aggressive Youth</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="46303ac7-e4ee-4a4e-9a42-b86991663bed">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="b5fc96df-e798-4173-8865-500ec38e3ee5">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_PHYSICALLY_AGGRESSIVE_YOUTH</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="75213351-b0cf-4976-90cc-f8199204e870">
+      <ID>FL PHYSICALLY ASSAULTIVE YOUTH PAY</ID>
+      <Name>Flag Physically Assaultive Youth Pay</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="279ade1c-13e5-406b-b421-bd75115ab39d">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="8757898a-d72e-4a30-82ac-64ce64d4cb37">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_PHYSICALLY_ASSAULTIVE_YOUTH_PAY</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="a24191b4-4099-448d-8042-d206d69e512f">
+      <ID>FL PROPERTY DESTRUCTION</ID>
+      <Name>Flag Property Destruction</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="f697e924-fc43-4863-80b2-bfd6de41de21">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="0adb69a3-3ba4-4e61-9599-b57dbe20bd4f">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_PROPERTY_DESTRUCTION</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="7405e8fc-2145-4d9a-b458-4d81e3d6d597">
+      <ID>FL PSYCHIATRIC HOSPITALIZATION HISTORY</ID>
+      <Name>Flag Psychiatric Hospitalization History</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="212ade71-1d88-4b1e-a0e9-242afea228a6">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="3cd482ba-91e2-4a3c-b1c4-37707f01422e">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_PSYCHIATRIC_HOSPITALIZATION_HISTORY</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="7fe9b1a4-c5d4-48e3-be69-eebb0cb7522e">
+      <ID>FL RELATIVE CAREGIVER</ID>
+      <Name>Flag Relative Caregiver</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="0483e7dc-8234-4ac0-8fa2-91ff078c7323">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="a6becb9e-9d20-43ec-a0cc-f03163f891f2">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_RELATIVE_CAREGIVER</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="54a675d5-91a2-4f86-a4d8-dc3a9e034d15">
+      <ID>FL REQUIRES MEDICATION</ID>
+      <Name>Flag Requires Medication</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="75f07e01-a99c-4215-a5e1-0e74a7da8580">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="9c472ccf-b7a8-4297-98cc-bddfed8a9a10">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_REQUIRES_MEDICATION</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="347a8524-64de-4888-9a17-833dcc8c9000">
+      <ID>FL REQUIRES SPECIAL DIET</ID>
+      <Name>Flag Requires Special Diet</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="07097c94-bbb6-4ae2-a616-6622b2fd1abc">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="b7e47f8d-6fda-4e78-99d4-634fb12c9b2d">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_REQUIRES_SPECIAL_DIET</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="6e26ffdd-23c8-4fb8-8285-e4d17ec7ffec">
+      <ID>FL RESIDENTIAL TREATMENT HISTORY</ID>
+      <Name>Flag Residential Treatment History</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="22427c8b-c873-4fd6-8813-bfdb5a43bc9c">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="b4d80dbc-ba45-400d-91c3-86188c5b018c">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_RESIDENTIAL_TREATMENT_HISTORY</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="d577e441-5ec1-4c7a-a22f-77c22af8980d">
+      <ID>FL RUNAWAY HISTORY</ID>
+      <Name>Flag Runaway History</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="aaced3a5-4122-44f9-91c4-db7a91728b73">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="ddb340d7-8080-46f1-b89f-c0fcaf47d475">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_RUNAWAY_HISTORY</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="7e0b43c7-dffd-475e-be94-ab64c7f00f66">
+      <ID>FL SELF ABUSIVE</ID>
+      <Name>Flag Self Abusive</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="b0a9d58b-29f4-4782-83eb-99d59a6285e3">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="17ada0ec-501c-44e0-ab0c-0eb88f60b1ab">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_SELF_ABUSIVE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="e7c9f315-cf68-4997-ae4b-6a4700e0aa7f">
+      <ID>FL SEXUALLY ABUSED</ID>
+      <Name>Flag Sexually Abused</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="21eac8d2-9cb9-4e9a-b422-14ecd2d65e31">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="5edba478-0d1a-452f-8102-ab9f0a39ec53">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_SEXUALLY_ABUSED</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="ac506a8e-92e9-41d8-8e18-180051f31ab5">
+      <ID>FL SEXUALLY ACTIVE</ID>
+      <Name>Flag Sexually Active</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="7bbd3eb3-532a-4f3b-96f1-091b3c7ef9b3">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f654801b-d320-467d-ae22-fad5191f4bd3">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_SEXUALLY_ACTIVE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="d347cfc6-3c92-4829-9d0c-340a9da6c2be">
+      <ID>FL SEXUALLY AGGRESSIVE YOUTH</ID>
+      <Name>Flag Sexually Aggressive Youth</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="d4999178-a4c8-404d-bd58-e316c18cef4b">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="85b65970-1bc6-456c-bc98-657ad07aff06">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_SEXUALLY_AGGRESSIVE_YOUTH</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="e4728e5b-cabc-44be-a395-0ec48ba95e76">
+      <ID>FL SEXUALLY AGGRESSIVE YOUTH SAY</ID>
+      <Name>Flag Sexually Aggressive Youth Say</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="b0a25d8f-87b3-4cb5-92af-6aedf200a0b8">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="a1ea65e4-de5d-46ac-935c-ae58f350c860">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_SEXUALLY_AGGRESSIVE_YOUTH_SAY</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="8eae8a4d-b918-4243-ba04-156db88a8218">
+      <ID>FL SEXUALLY REACTIVE</ID>
+      <Name>Flag Sexually Reactive</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="15c52f1a-85c4-4a6b-9def-f0e11ecc5ad5">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="00529172-0049-4642-b530-334ca7ddac8f">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_SEXUALLY_REACTIVE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="1bb3c5d3-ddb2-4f6f-b185-ddb312258e3e">
+      <ID>FL SIBLING GROUP</ID>
+      <Name>Flag Sibling Group</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="190f3b9c-3975-4eb5-954e-bdac632986d2">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="4dee93a2-a938-4931-bb57-01920a278300">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_SIBLING_GROUP</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="08da784d-c4b8-4d31-96c9-d33a7cd0b664">
+      <ID>FL SIGNIFICANT ASTHMA OR ALLERGIES</ID>
+      <Name>Flag Significant Asthma or Allergies</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="54629566-4843-4e13-b9b4-d437b4e9fe0b">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="e5602bf6-80b1-4c05-b4e8-e0417a24a485">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_SIGNIFICANT_ASTHMA_OR_ALLERGIES</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="f85182da-8fb8-44f5-9678-d5a0e02e1b89">
+      <ID>FL SPECIAL NEEDS CHILDREN</ID>
+      <Name>Flag Special Needs Children</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="983f1d96-1b57-4b34-94f8-46102a77222f">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f2f3a730-40c4-4dfd-ae94-58b698959ba7">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_SPECIAL_NEEDS_CHILDREN</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="82026c41-4b1c-4a80-b918-395cdc5ff616">
+      <ID>FL SPECIALIZED MEDICAL CERTIFICATION</ID>
+      <Name>Flag Specialized Medical Certification</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="2726ecd7-4de4-4fb8-a8ad-243e608b40df">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="5990af04-be3d-4b19-98f9-46cdfdbadf7f">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_SPECIALIZED_MEDICAL_CERTIFICATION</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="de8820ae-cab2-4344-b5d5-4d770d8ea7e9">
+      <ID>FL SUICIDAL THREAT ATTEMPT</ID>
+      <Name>Flag Suicidal Treatment Attempt</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="f79f15dd-dc3b-4705-a6cf-0beb30ebf989">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="548657fe-b090-44e7-a14e-5227b4357aa7">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_SUICIDAL_THREAT_ATTEMPT</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="4c7019fe-1bd0-4530-8001-83c916afea4f">
+      <ID>FL TREATMENT FOSTER HOME TRAINING</ID>
+      <Name>Flag Treatment Foster Home Training</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="f57e1a7a-3fc8-4f7d-b175-8cf63952f2be">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="4a41b0f4-7c78-4927-96a2-aee775822341">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_TREATMENT_FOSTER_HOME_TRAINING</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="3175248f-d87b-4234-9d26-02907a3fd3db">
+      <ID>FL TUTORING</ID>
+      <Name>Flag Tutoring</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="6972d309-beab-4a14-a04a-6c9fd8e38e20">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="0743a591-208f-4391-b86d-7d4f3f1864c4">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_TUTORING</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="b7dcbb8d-e37d-4148-9ed2-f756164fe7fd">
+      <ID>FL VISUALLY IMPAIRED</ID>
+      <Name>Flag Visually Impaired</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="57d5f4d9-3496-4794-aa2e-846975ef8ff0">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="61dc631c-370a-4ea1-aecb-d67cc805d42b">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_VISUALLY_IMPAIRED</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="b2c6d40e-23b2-4ca7-87af-b03fa39d1d12">
+      <ID>FL WEEKEND CARE</ID>
+      <Name>Flag Weekend Care</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="4d2a9d22-4fd0-4a1f-bbde-5e0d8d86f84d">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="ad65b12b-5e7b-4047-9b72-8d5ec6d822e4">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>FL_WEEKEND_CARE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="e0b1b99f-5baf-4d12-8da3-e35fa18a0005">
+      <ID>DT ADDR LAST VERIFIED</ID>
+      <Name>Date Address Last Verified</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="da5aa31a-1b9f-4379-804f-20f46a242c57">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="122d43e0-8cee-4723-b939-08a1279e1727">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>DT_ADDR_LAST_VERIFIED</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="8c180d5a-5fab-428b-8f1b-6d42574e3543">
+      <ID>DT IVE TRIBAL AGREEMENT EFFECTIVE</ID>
+      <Name>Date IVE Tribal Agreement Effective</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="4c3a553c-ed18-4b74-b370-43852801245b">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="16a22917-639f-4a83-8ba8-9cde505b8529">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>DT_IVE_TRIBAL_AGREEMENT_EFFECTIVE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="e3f67576-1d03-4de0-9a7c-9a2debc65e66">
+      <ID>ID PRVD ORG</ID>
+      <Name>ID PRVD ORG</Name>
+      <EstimatedCount>314809</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="23318692-b702-4853-bcee-6b3cf8a34687">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="c6194a95-7bc4-4a8d-905f-343b6b2b609a">
+            <TableID>dbo_Cube_PROVIDER_DIM</TableID>
+            <ColumnID>ID_PRVD_ORG</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <Hierarchies>
+    <Hierarchy dwd:design-time-name="9a5d5ce8-9344-44be-9825-6ea9bb7ffdd0">
+      <ID>Hierarchy</ID>
+      <Name>Mail County Hierarchy</Name>
+      <DisplayFolder>Mail Address Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="c18f6dbb-f668-4107-8f3c-3913eae9214d">
+          <ID>Mail County</ID>
+          <Name>Mail County</Name>
+          <SourceAttributeID>CD MAIL COUNTY</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="24ffbff6-fda3-4841-9ce4-1c3f0be52118">
+      <ID>Hierarchy 1</ID>
+      <Name>Mail State Hierarchy</Name>
+      <DisplayFolder>Mail Address Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="466e3581-f1fe-4ba0-bde6-0f29516ecec8">
+          <ID>Mail State</ID>
+          <Name>Mail State</Name>
+          <SourceAttributeID>TX MAIL STATE</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="dfeacf93-f495-40d7-8e03-b3a9611db4a7">
+      <ID>Hierarchy 2</ID>
+      <Name>Mail Zip Hierarchy</Name>
+      <DisplayFolder>Mail Address Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="d1d61c50-3a6a-49e3-88ac-412808dedb59">
+          <ID>Mail Zip</ID>
+          <Name>Mail Zip</Name>
+          <SourceAttributeID>TX MAIL ZIP</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="524ea8ce-5d17-4a43-adaf-faf23f7765ea">
+      <ID>Hierarchy 3</ID>
+      <Name>Physical County Hierarchy</Name>
+      <DisplayFolder>Physical Address Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="658c790c-ee32-443b-b3d9-a35cc92edfdf">
+          <ID>Physical County</ID>
+          <Name>Physical County</Name>
+          <SourceAttributeID>CD PHYS COUNTY</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="9a4d3e2e-a767-44d6-8c50-5d880accea1e">
+      <ID>Hierarchy 4</ID>
+      <Name>Physical State Hierarchy</Name>
+      <DisplayFolder>Physical Address Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="b87d09cc-ddb8-4193-a0cf-b9c7c114006f">
+          <ID>Physical State</ID>
+          <Name>Physical State</Name>
+          <SourceAttributeID>TX PHYS STATE</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="0a61f5bd-7c57-48d3-bd64-d5185d045333">
+      <ID>Hierarchy 5</ID>
+      <Name>Physical Zip Hierarchy</Name>
+      <DisplayFolder>Physical Address Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="b8bf207b-faf0-4265-b845-fdb680818e2d">
+          <ID>Physical Zip</ID>
+          <Name>Physical Zip</Name>
+          <SourceAttributeID>TX PHYS ZIP</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="e9e5f297-dc0c-4afb-b956-43bb4f50ad2d">
+      <ID>Hierarchy 6</ID>
+      <Name>Physical Zip 5 Hierarchy</Name>
+      <DisplayFolder>Physical Address Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="55593441-3525-43bf-b9b1-b1801ba8a71c">
+          <ID>Physical Zip 5</ID>
+          <Name>Physical Zip 5</Name>
+          <SourceAttributeID>Phys Zip 5</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="309424f2-dd7f-45c3-858e-3d2b9e3864dd">
+      <ID>Hierarchy 7</ID>
+      <Name>Provider Type Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="71a4b591-a3e7-4235-9100-98db7b2cac59">
+          <ID>Provider Type</ID>
+          <Name>Provider Type</Name>
+          <SourceAttributeID>CD PROVIDER TYPE</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="3e9dc6f7-68ac-4fea-bac7-0ff984153398">
+      <ID>Hierarchy 8</ID>
+      <Name>Region Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="e60f0177-60fc-4469-85a2-66992ae186a7">
+          <ID>Region</ID>
+          <Name>Region</Name>
+          <SourceAttributeID>CD REGION</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="d98e5e7a-93b9-45e9-b6c8-b657714e5076">
+      <ID>Hierarchy 9</ID>
+      <Name>SSPS Status Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="890c2dd4-822c-4b4a-9d3c-223e01b489fc">
+          <ID>SSPS Status</ID>
+          <Name>SSPS Status</Name>
+          <SourceAttributeID>CD SSPS STATUS</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="f1be6765-a4f3-49b1-b983-54a3719711c3">
+      <ID>Hierarchy 10</ID>
+      <Name>Provider Status Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="30434a94-fe72-43b7-9f09-8e94e53fa53c">
+          <ID>Status</ID>
+          <Name>Status</Name>
+          <SourceAttributeID>CD STAT</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="be23e252-4321-43bf-aea8-010bef7701e1">
+      <ID>Hierarchy 11</ID>
+      <Name>Tribal Affiliation Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="ecee7de1-c32f-4770-a7a6-233378d74f5a">
+          <ID>Tribal Affiliation</ID>
+          <Name>Tribal Affiliation</Name>
+          <SourceAttributeID>CD TRIBAL AFLTN</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="9971821f-6238-423a-9780-83ea02a5eb6d">
+      <ID>Hierarchy 12</ID>
+      <Name>24 Hour Care Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="5d8c2aef-f836-4bbf-9e3e-bbc77d29a2d2">
+          <ID>Flag 24 Hour Care</ID>
+          <Name>Flag 24 Hour Care</Name>
+          <SourceAttributeID>FL 24 HOUR CARE</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="c1be1dca-34fb-4ba1-b0ad-3892932f4b3a">
+      <ID>Hierarchy 13</ID>
+      <Name>Abuses Animals Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="24bffc50-fa00-404c-9b46-b76f285a039f">
+          <ID>Flag Abuses Animals</ID>
+          <Name>Flag Abuses Animals</Name>
+          <SourceAttributeID>FL ABUSES ANIMALS</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="f4e09897-3cac-43a9-b4c5-b2dd04d9bfba">
+      <ID>Hierarchy 14</ID>
+      <Name>ADA Needs Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="b7aef5f6-50c7-42e2-bd2b-dde84f668ef1">
+          <ID>Flag ADA Needs</ID>
+          <Name>Flag ADA Needs</Name>
+          <SourceAttributeID>FL ADA NEEDS</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="89f60422-d23d-40ff-b94a-7563bb0b5ddf">
+      <ID>Hierarchy 15</ID>
+      <Name>Adjudicated Criminal Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="1f7a8ab2-d45b-40b5-9081-b8cdb1e1b382">
+          <ID>Flag Adjudicated Criminal</ID>
+          <Name>Flag Adjudicated Criminal</Name>
+          <SourceAttributeID>FL ADJUDICATED CRIMINAL</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="d1a9f22e-fc27-4a53-8f77-ab894309e850">
+      <ID>Hierarchy 16</ID>
+      <Name>Affiliated with Gangs Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="907dd37b-8086-4a8a-8fe4-f009187b74b0">
+          <ID>Flag Affiliated with Gangs</ID>
+          <Name>Flag Affiliated with Gangs</Name>
+          <SourceAttributeID>FL AFFILIATED WITH GANGS</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="142f6816-23a1-4b43-b550-e13ad380511e">
+      <ID>Hierarchy 17</ID>
+      <Name>Autistic Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="8dfaea9f-8bc8-4f75-9763-d0d64319f0da">
+          <ID>Flag Autistic</ID>
+          <Name>Flag Autistic</Name>
+          <SourceAttributeID>FL AUTISTIC</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="5cbc5c8f-c9da-4031-abe5-3f9bb45efea5">
+      <ID>Hierarchy 18</ID>
+      <Name>Before School Only Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="3e55166e-fb8c-4a27-9e40-f23117ff1c64">
+          <ID>Flag Before School Only</ID>
+          <Name>Flag Before School Only</Name>
+          <SourceAttributeID>FL BEFORE AFTER SCHOOL ONLY</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="77115ed2-9bac-4af8-beff-51cbfafdeccc">
+      <ID>Hierarchy 19</ID>
+      <Name>Developmental Delay Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="fc8bc864-f489-4adc-8e40-182622cd202d">
+          <ID>Flag Developmental Delay</ID>
+          <Name>Flag Developmental Delay</Name>
+          <SourceAttributeID>FL DEVELOPMENTAL DELAY</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="929400b4-478f-4210-a73e-f54f636d9e14">
+      <ID>Hierarchy 20</ID>
+      <Name>Diabetic Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="1db275e7-dadc-438f-91fb-a0d0a78d8ada">
+          <ID>Flag Diabetic</ID>
+          <Name>Flag Diabetic</Name>
+          <SourceAttributeID>FL DIABETIC</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="9a040108-68f2-4384-9b25-9b30a6af9bde">
+      <ID>Hierarchy 21</ID>
+      <Name>Diagnosed with Mental Illness Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="039ff271-1564-43c2-9fa5-b2ec82354d4c">
+          <ID>Flag Diagnosed Mental Health Condition</ID>
+          <Name>Flag Diagnosed Mental Health Condition</Name>
+          <SourceAttributeID>FL DIAGNOSED MENTAL HEALTH CONDITION</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="550a1f81-590b-4ce0-940c-26d3cd3fa842">
+      <ID>Hierarchy 22</ID>
+      <Name>Diagnosed with Fetal Alcohol Syndrome Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="6a74a672-4fd1-4114-9405-aaf8bad46b5f">
+          <ID>Flag Diagnosed with Fetal Alcohol Syndrome</ID>
+          <Name>Flag Diagnosed with Fetal Alcohol Syndrome</Name>
+          <SourceAttributeID>FL DIAGNOSED WITH FETAL ALCOHOL SYNDROME</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="1fbde5ed-1508-4994-9174-3f6f2fe59fc3">
+      <ID>Hierarchy 23</ID>
+      <Name>Drug Affected Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="e97ae134-baee-46d1-a831-16cd1d288903">
+          <ID>Flag Drug Affected</ID>
+          <Name>Flag Drug Affected</Name>
+          <SourceAttributeID>FL DRUG AFFECTED</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="4d6dbaeb-e0f2-4c99-8870-81c714a682f3">
+      <ID>Hierarchy 24</ID>
+      <Name>Eating Disorder Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="72466c20-11b5-484c-869e-05f86a19046d">
+          <ID>Flag Eating Disorder</ID>
+          <Name>Flag Eating Disorder</Name>
+          <SourceAttributeID>FL EATING DISORDER</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="b769b544-9325-49ac-8cef-46318b4d065c">
+      <ID>Hierarchy 25</ID>
+      <Name>Encopretic Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="5444de7c-ffdd-48f9-a5fb-b10a9f595b9e">
+          <ID>Flag Encopretic</ID>
+          <Name>Flag Encopretic</Name>
+          <SourceAttributeID>FL ENCOPRETIC</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="f3fdee0c-e694-4ba4-a713-210046a89660">
+      <ID>Hierarchy 26</ID>
+      <Name>Enuresis Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="f9cd82dd-8b57-4e36-97cd-160ad1f048c2">
+          <ID>Flag Enuresis</ID>
+          <Name>Flag Enuresis</Name>
+          <SourceAttributeID>FL ENURESIS</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="ce2d2ca1-8d65-42dd-8621-fee2a55701a3">
+      <ID>Hierarchy 27</ID>
+      <Name>Evening Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="9042e1ea-9a25-4b72-b246-1ffaa2343544">
+          <ID>Flag Evening</ID>
+          <Name>Flag Evening</Name>
+          <SourceAttributeID>FL EVENING</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="7bfdc513-4c5e-4c7f-ae15-d2dfd68d3097">
+      <ID>Hierarchy 28</ID>
+      <Name>Female Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="8237412e-9d38-4d92-99ef-9949d2b6a4d1">
+          <ID>Flag Female</ID>
+          <Name>Flag Female</Name>
+          <SourceAttributeID>FL FEMALE</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="98882390-76e3-41d0-b490-cd8fa98363e6">
+      <ID>Hierarchy 29</ID>
+      <Name>Fire Starter Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="aa7f7f56-b429-40fa-969e-7095fd6f2817">
+          <ID>Flag Fire Setter</ID>
+          <Name>Flag Fire Setter</Name>
+          <SourceAttributeID>FL FIRE SETTER</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="6f40e1ac-032b-4bfe-8f34-09c8b412e509">
+      <ID>Hierarchy 30</ID>
+      <Name>Hearing Impaired Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="8cb2ae51-afea-4a13-b757-24f593715979">
+          <ID>Flag Hearing Impaired</ID>
+          <Name>Flag Hearing Impaired</Name>
+          <SourceAttributeID>FL HEARING IMPAIRED</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="35b463cc-7ba2-46d8-ac80-4a189b6b279d">
+      <ID>Hierarchy 31</ID>
+      <Name>HIV Positive Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="76834b7d-f866-4229-8748-308f085d6b37">
+          <ID>Flag HIV Positive</ID>
+          <Name>Flag HIV Positive</Name>
+          <SourceAttributeID>FL HIV POSITIVE</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="05a2bc6a-1fc8-4807-bee7-154f9fa7c6ab">
+      <ID>Hierarchy 32</ID>
+      <Name>IV Drug User Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="0416fd08-7e8d-449a-8723-4b5e76f6dd59">
+          <ID>Flag IV Drug User</ID>
+          <Name>Flag IV Drug User</Name>
+          <SourceAttributeID>FL IV DRUG USER</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="eb7c7bec-676f-4a5b-ba5a-c4b55c9aa3d7">
+      <ID>Hierarchy 33</ID>
+      <Name>IVE Tribal Agreement Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="486f49d2-10d9-4a1f-a033-595c41879555">
+          <ID>Flag IVE Tribal Agreement</ID>
+          <Name>Flag IVE Tribal Agreement</Name>
+          <SourceAttributeID>FL IVE TRIBAL AGREEMENT</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="94ea78dd-eec5-4f70-8138-4d10b6ed29cc">
+      <ID>Hierarchy 34</ID>
+      <Name>IVE Tribal Agreement in Place Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="400d637d-f47b-49c0-8d0d-5bf9007b4b7b">
+          <ID>Flag IVE Tribal Agreement in Place</ID>
+          <Name>Flag IVE Tribal Agreement in Place</Name>
+          <SourceAttributeID>FL IVE TRIBAL AGRMT IN PLC</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="035e85d6-e9ef-42b6-9ce4-0b77d64b6b82">
+      <ID>Hierarchy 35</ID>
+      <Name>Learning Disabilities Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="0c6bde4f-965d-4c7a-84bf-f66d85182bdc">
+          <ID>Flag Learning Disabilities</ID>
+          <Name>Flag Learning Disabilities</Name>
+          <SourceAttributeID>FL LEARNING DISABILITIES</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="a9304d25-37c0-449c-8dbe-d99e913acffb">
+      <ID>Hierarchy 36</ID>
+      <Name>Life Skills Training Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="26ed0059-6da8-4e9f-b491-04e1f7f199c7">
+          <ID>Flag Life Skills Training</ID>
+          <Name>Flag Life Skills Training</Name>
+          <SourceAttributeID>FL LIFE SKILLS TRAINING</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="165a1b1a-23c1-4910-9c9c-bc5eaa6a5ed3">
+      <ID>Hierarchy 37</ID>
+      <Name>Male Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="f96c099d-c0c4-44fd-b78f-5eac6802dcb3">
+          <ID>Flag Male</ID>
+          <Name>Flag Male</Name>
+          <SourceAttributeID>FL MALE</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="2eae2596-7071-4216-8f33-141ecfc3b4e6">
+      <ID>Hierarchy 38</ID>
+      <Name>Mastrubates in Public Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="a5038a85-05b1-4d4c-a5c7-04e2a2fad6bf">
+          <ID>Flag Mastrubates in Public</ID>
+          <Name>Flag Mastrubates in Public</Name>
+          <SourceAttributeID>FL MASTURBATES IN PUBLIC</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="1e2bd05c-3587-4cae-b8d5-203eb5eae7f8">
+      <ID>Hierarchy 39</ID>
+      <Name>Medically Fragile Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="ff525550-201a-4154-b389-1e2ab6c7f519">
+          <ID>Flag Medically Fragile</ID>
+          <Name>Flag Medically Fragile</Name>
+          <SourceAttributeID>FL MEDICALLY FRAGILE</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="c35c86d1-b40f-4a37-9dda-9778e6f8db89">
+      <ID>Hierarchy 40</ID>
+      <Name>NAA Accredited Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="6b91127c-d6cf-4c0e-be09-27af7ad464c0">
+          <ID>Flag NAA Accredited</ID>
+          <Name>Flag NAA Accredited</Name>
+          <SourceAttributeID>FL NAA ACCREDITED</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="4f34565f-4003-464d-85e7-578c643d1053">
+      <ID>Hierarchy 41</ID>
+      <Name>NAEYC Accredited Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="259e2981-140e-42c6-b4c6-89179d471df9">
+          <ID>Flag NAEYC Accredited</ID>
+          <Name>Flag NAEYC Accredited</Name>
+          <SourceAttributeID>FL NAEYC ACCREDITED</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="1d4e8eae-db36-4cc0-be22-30c4446d228d">
+      <ID>Hierarchy 42</ID>
+      <Name>NAFCC Accredited Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="b21abffc-aa93-42f6-9dba-e5324284c2e0">
+          <ID>Flag NAFCC Accredited</ID>
+          <Name>Flag NAFCC Accredited</Name>
+          <SourceAttributeID>FL NAFCC ACCREDITED</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="07a3209b-3cb4-4616-93aa-711c6948dc52">
+      <ID>Hierarchy 43</ID>
+      <Name>Open Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="2077596d-bbd3-4f2a-9399-3e146c10a50e">
+          <ID>Flag Open</ID>
+          <Name>Flag Open</Name>
+          <SourceAttributeID>FL OPEN</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="8d46d63e-2307-4b9d-bbd9-001e9ab10614">
+      <ID>Hierarchy 44</ID>
+      <Name>Parent Agency Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="1b5ba5f7-1cf8-4af6-a950-e81a8e726978">
+          <ID>Flag Parent Agency</ID>
+          <Name>Flag Parent Agency</Name>
+          <SourceAttributeID>FL PARENT AGENCY</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="f2c4e905-064d-4958-9adb-64cbf892aae8">
+      <ID>Hierarchy 45</ID>
+      <Name>Physically Aggressive Youth Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="be8c8471-70a0-41a9-b09a-b43b4608c4f7">
+          <ID>Flag Physically Aggressive Youth</ID>
+          <Name>Flag Physically Aggressive Youth</Name>
+          <SourceAttributeID>FL PHYSICALLY AGGRESSIVE YOUTH</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="4fdfe7fa-8092-4c78-9e87-3dd212cf9e2e">
+      <ID>Hierarchy 46</ID>
+      <Name>Physically Assaultive Youth Pay Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="53fb1cb5-9b0c-4024-8136-55bda733f769">
+          <ID>Flag Physically Assaultive Youth Pay</ID>
+          <Name>Flag Physically Assaultive Youth Pay</Name>
+          <SourceAttributeID>FL PHYSICALLY ASSAULTIVE YOUTH PAY</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="36ddf771-b1df-4067-95e2-be764581ab68">
+      <ID>Hierarchy 47</ID>
+      <Name>Property Destruction Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="c3ebf7b5-8e5b-4d6d-ba6c-b0cec349ed0b">
+          <ID>Flag Property Destruction</ID>
+          <Name>Flag Property Destruction</Name>
+          <SourceAttributeID>FL PROPERTY DESTRUCTION</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="2fcd7ff9-238a-4bd5-b75a-73778126d7cf">
+      <ID>Hierarchy 48</ID>
+      <Name>Psychiatric Hospitalization History Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="27d33a73-d55a-48c0-96b6-e41dd9d82cbb">
+          <ID>Flag Psychiatric Hospitalization History</ID>
+          <Name>Flag Psychiatric Hospitalization History</Name>
+          <SourceAttributeID>FL PSYCHIATRIC HOSPITALIZATION HISTORY</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="c5fbe3f5-d970-469e-b810-3f1910505b2e">
+      <ID>Hierarchy 49</ID>
+      <Name>Relative Caregiver Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="c2f7f4e6-061d-42a4-8d8f-d4f20eef4d06">
+          <ID>Flag Relative Caregiver</ID>
+          <Name>Flag Relative Caregiver</Name>
+          <SourceAttributeID>FL RELATIVE CAREGIVER</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="186f92fa-9904-4e4b-bedc-e711560f0adc">
+      <ID>Hierarchy 50</ID>
+      <Name>Requires Medication Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="f8b8901a-b380-4685-9ab0-c6dae3b126c4">
+          <ID>Flag Requires Medication</ID>
+          <Name>Flag Requires Medication</Name>
+          <SourceAttributeID>FL REQUIRES MEDICATION</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="4a2cc6c8-d9aa-47fa-91ce-85989f7d08b7">
+      <ID>Hierarchy 51</ID>
+      <Name>Requires Special Data Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="1e53d267-6671-4e4e-b4b3-180e22157320">
+          <ID>Flag Requires Special Diet</ID>
+          <Name>Flag Requires Special Diet</Name>
+          <SourceAttributeID>FL REQUIRES SPECIAL DIET</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="ab9d11eb-c53c-4dbe-a7b0-798dd2941c8c">
+      <ID>Hierarchy 52</ID>
+      <Name>Residential Treatment History Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="5af145f4-ddd2-41f7-a867-dfca881611de">
+          <ID>Flag Residential Treatment History</ID>
+          <Name>Flag Residential Treatment History</Name>
+          <SourceAttributeID>FL RESIDENTIAL TREATMENT HISTORY</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="3ada10a0-6b99-43bd-b24a-9692d0ad25bc">
+      <ID>Hierarchy 53</ID>
+      <Name>Runaway History Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="7bc04d14-dc93-4243-ab29-65526a76718d">
+          <ID>Flag Runaway History</ID>
+          <Name>Flag Runaway History</Name>
+          <SourceAttributeID>FL RUNAWAY HISTORY</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="7a235b10-6332-4d58-b892-2d55c8f3d924">
+      <ID>Hierarchy 54</ID>
+      <Name>Self Abusive Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="0b8164fb-0835-4748-8bf6-23c4fbf7d59c">
+          <ID>Flag Self Abusive</ID>
+          <Name>Flag Self Abusive</Name>
+          <SourceAttributeID>FL SELF ABUSIVE</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="164237f9-327f-400d-9176-71fd2945317d">
+      <ID>Hierarchy 55</ID>
+      <Name>Sexually Abused Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="f6ca7ec2-59f7-4d1e-963a-6fb7da7d76d0">
+          <ID>Flag Sexually Abused</ID>
+          <Name>Flag Sexually Abused</Name>
+          <SourceAttributeID>FL SEXUALLY ABUSED</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="cd9a00a5-7ade-4b0f-be0f-094bec68927d">
+      <ID>Hierarchy 56</ID>
+      <Name>Sexually Active Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="c28d7d12-ffaf-44f0-9067-157b0a4e386b">
+          <ID>Flag Sexually Active</ID>
+          <Name>Flag Sexually Active</Name>
+          <SourceAttributeID>FL SEXUALLY ACTIVE</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="db2083fb-40b7-4073-90b5-4aef47f04ce8">
+      <ID>Hierarchy 57</ID>
+      <Name>Sexually Aggressive Youth Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="8fff4fd5-512a-472d-86d5-758572f4707a">
+          <ID>Flag Sexually Aggressive Youth</ID>
+          <Name>Flag Sexually Aggressive Youth</Name>
+          <SourceAttributeID>FL SEXUALLY AGGRESSIVE YOUTH</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="e372b6e4-d4dc-4c34-b31c-823dc0254f1b">
+      <ID>Hierarchy 58</ID>
+      <Name>Sexually Aggressive Youth Say Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="3f122173-7cd6-41a7-b14d-cd428f398051">
+          <ID>Flag Sexually Aggressive Youth Say</ID>
+          <Name>Flag Sexually Aggressive Youth Say</Name>
+          <SourceAttributeID>FL SEXUALLY AGGRESSIVE YOUTH SAY</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="69477f9b-a0e9-40e1-9253-7f1d080c1402">
+      <ID>Hierarchy 59</ID>
+      <Name>Sexually Reactive Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="ddc40faa-1540-41ea-a7d3-5f93ab7b20b8">
+          <ID>Flag Sexually Reactive</ID>
+          <Name>Flag Sexually Reactive</Name>
+          <SourceAttributeID>FL SEXUALLY REACTIVE</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="d11e75d6-f49a-40cf-b7b3-8cc47a36b27d">
+      <ID>Hierarchy 60</ID>
+      <Name>Sibling Group Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="48d192e9-d4e2-4795-b411-ac51e715b4e7">
+          <ID>Flag Sibling Group</ID>
+          <Name>Flag Sibling Group</Name>
+          <SourceAttributeID>FL SIBLING GROUP</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="1faf8639-cad1-47f2-804c-465a99df6bec">
+      <ID>Hierarchy 61</ID>
+      <Name>Significant Asthma or Allergies Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="c823eef0-3436-4934-8a19-130e7b338fe7">
+          <ID>Flag Significant Asthma or Allergies</ID>
+          <Name>Flag Significant Asthma or Allergies</Name>
+          <SourceAttributeID>FL SIGNIFICANT ASTHMA OR ALLERGIES</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="ab2fbf7e-a9e0-4fbc-accb-ca711b9b3bdd">
+      <ID>Hierarchy 62</ID>
+      <Name>Special Needs Children Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="b6a4b6ac-3f1f-4be1-a12c-fff4b6ded714">
+          <ID>Flag Special Needs Children</ID>
+          <Name>Flag Special Needs Children</Name>
+          <SourceAttributeID>FL SPECIAL NEEDS CHILDREN</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="ea4aadcf-99ce-4745-bb57-c5e4590a0652">
+      <ID>Hierarchy 63</ID>
+      <Name>Specialized Medical Certification Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="1ffa8fbb-4a01-4be5-99d4-11a80e9abca7">
+          <ID>Flag Specialized Medical Certification</ID>
+          <Name>Flag Specialized Medical Certification</Name>
+          <SourceAttributeID>FL SPECIALIZED MEDICAL CERTIFICATION</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="77ef0ebc-9b27-480f-a34a-5264af03f54f">
+      <ID>Hierarchy 64</ID>
+      <Name>Suicidal Treatment Attempt Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="c2d4cb3f-689f-4afc-8685-a29125086891">
+          <ID>Flag Suicidal Treatment Attempt</ID>
+          <Name>Flag Suicidal Treatment Attempt</Name>
+          <SourceAttributeID>FL SUICIDAL THREAT ATTEMPT</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="6c204f36-17f0-4a09-ac8c-c12f6ec389fb">
+      <ID>Hierarchy 65</ID>
+      <Name>Treatment Foster Home Training Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="c0d7a6b3-74a0-40d6-b36a-ba9467d636ec">
+          <ID>Flag Treatment Foster Home Training</ID>
+          <Name>Flag Treatment Foster Home Training</Name>
+          <SourceAttributeID>FL TREATMENT FOSTER HOME TRAINING</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="971352cf-4b36-4f0c-8445-745d36ccd817">
+      <ID>Hierarchy 66</ID>
+      <Name>Tutoring Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="b7a57c29-fb06-4538-8132-acf7994e022c">
+          <ID>Flag Tutoring</ID>
+          <Name>Flag Tutoring</Name>
+          <SourceAttributeID>FL TUTORING</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="2a7b8a77-8a7a-4b9d-a279-18eeb83336ac">
+      <ID>Hierarchy 67</ID>
+      <Name>Visually Impaired Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="99049593-6431-42df-bd56-8c25d72a3061">
+          <ID>Flag Visually Impaired</ID>
+          <Name>Flag Visually Impaired</Name>
+          <SourceAttributeID>FL VISUALLY IMPAIRED</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="7905548d-1eb2-40bb-bf8e-0966af6455a0">
+      <ID>Hierarchy 68</ID>
+      <Name>Weekend Care Hierarchy</Name>
+      <DisplayFolder>Flag Hierarchies</DisplayFolder>
+      <Levels>
+        <Level dwd:design-time-name="be73f4c0-2c13-459b-aee4-8a48d937afff">
+          <ID>Flag Weekend Care</ID>
+          <Name>Flag Weekend Care</Name>
+          <SourceAttributeID>FL WEEKEND CARE</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+  </Hierarchies>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>

@@ -31,8 +31,7 @@ begin
     declare var_calling_procedure int;
     
 
---    DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
-    
+    -- initialize variables
     set flg_procedure_off =0;
     
     if  flg_procedure_off =0 then    
@@ -40,21 +39,17 @@ begin
             set x2=rand();
             
 
-            set var_calling_procedure=6;
-            
-            call sp_ia_assign_desc (var_calling_procedure);
+        --  initialize variables
+        set var_calling_procedure=6;
+        
+        call sp_ia_assign_desc (var_calling_procedure);
    
-
-
         select min_date_any ,max_date_yr,min_date_any 
         ,max_date_yr 
         into p_minmonthstart,p_maxmonthstart ,p_mindate,p_maxdate 
         FROM ref_lookup_max_date where id=var_calling_procedure;
     
     
-     
-        
-        
         
         select qry_id into p_qry_id from cache_pbcs2_params
         where age_grouping_cd=left(p_age_grouping_cd,20)
@@ -141,6 +136,11 @@ end if;
         ,  p_mindate
         ,  p_maxdate
         ,  var_calling_procedure);    
+        
+    -- intialize constants
+        select multiplier into @constant_mult from ia_int_param_key where parameter_name='constant';
+        select multiplier into @int_param_key_mult from ia_int_hash_key where fl_int_param_key_multiplier=1;        
+        call sp_ia_assign_param_multiplier;
 
   drop temporary table if exists q_total;
    set @incl='
@@ -154,7 +154,7 @@ end if;
             set    @incl= concat(@incl,char(13),'
             , mtch.int_param_key ');
         else
-            set @incl=concat(@incl,char(13),', 1000000 as int_param_key');
+            set @incl=concat(@incl,char(13),', ',@constant_mult,' as int_param_key');
         end if;     
         if trim(p_cd_reporter_type)='0' then
         set @incl=concat(@incl,char(13),', 0 as cd_reporter_type');
@@ -181,26 +181,26 @@ end if;
             and p_ethnicity_cd = '0' 
             and p_cd_office = '0' ) then
          set    @incl= concat(@incl,char(13),'
-             , cast(( mtch.int_param_key *  power(10.0,5)) as decimal(12,0))  ');
+             , cast(( mtch.int_param_key *  ',@int_param_key_mult,') as decimal(12,0))  ');
         else
-            set @incl=concat(@incl,char(13),', cast((1000000 * power(10.0,5) ) as decimal(12,0))');
+            set @incl=concat(@incl,char(13),', cast((',@constant_mult,' * ',@int_param_key_mult,' ) as decimal(12,0))');
         end if;
        if trim(p_cd_reporter_type)<>'0' then
 	        set @incl=concat(@incl,'
-            + cast((rpt.cd_reporter_type * power(10.0,3)) as decimal(12,0)) ');
+            + cast((rpt.cd_reporter_type * ',@mult_cd_reporter_type,')as decimal(12,0)) ');
         end if;					
        if trim(p_filter_access_type)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast((acc.cd_access_type * power(10.0,2)) as decimal(12,0))');
+            + cast((acc.cd_access_type * ',@mult_cd_access_type,') as decimal(12,0))');
         end if;					
 
         if trim(p_filter_allegation) <> '0' then
 	        set @incl=concat(@incl,' 
-            + cast( (alg.cd_allegation * power(10.0,1)) as decimal(12,0))');
+            + cast( (alg.cd_allegation * ',@mult_cd_allegation,') as decimal(12,0))');
         end if;	       
         if trim(p_filter_finding) <> '0' then
 	        set @incl=concat(@incl,'
-            + cast( (fnd.cd_finding * power(10.0,0)) as decimal(12,0))');
+            + cast( (fnd.cd_finding * ',@mult_cd_finding,') as decimal(12,0))');
         end if;	        
 
      set @incl=concat(@incl,'as int_hash_key');
@@ -237,26 +237,26 @@ end if;
             and p_ethnicity_cd = '0' 
             and p_cd_office = '0' ) then
          set    @incl= concat(@incl,char(13),'
-             cast(( mtch.int_param_key *  power(10.0,5)) as decimal(12,0))  ');
+             cast(( mtch.int_param_key *  ',@int_param_key_mult,') as decimal(12,0))  ');
         else
-            set @incl=concat(@incl,char(13),'cast((1000000 * power(10.0,5) ) as decimal(12,0))');
+            set @incl=concat(@incl,char(13),'cast((',@constant_mult,' * ',@int_param_key_mult,' ) as decimal(12,0))');
         end if;
        if trim(p_cd_reporter_type)<>'0' then
 	        set @incl=concat(@incl,'
-            + cast((rpt.cd_reporter_type * power(10.0,3)) as decimal(12,0)) ');
+            + cast((rpt.cd_reporter_type * ',@mult_cd_reporter_type,') as decimal(12,0)) ');
         end if;					
        if trim(p_filter_access_type)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast((acc.cd_access_type * power(10.0,2)) as decimal(12,0))');
+            + cast((acc.cd_access_type * ',@mult_cd_access_type,') as decimal(12,0))');
         end if;					
 
         if trim(p_filter_allegation) <> '0' then
 	        set @incl=concat(@incl,' 
-            + cast( (alg.cd_allegation * power(10.0,1)) as decimal(12,0))');
+            + cast( (alg.cd_allegation * ',@mult_cd_allegation,') as decimal(12,0))');
         end if;	       
         if trim(p_filter_finding) <> '0' then
 	        set @incl=concat(@incl,'
-            + cast( (fnd.cd_finding * power(10.0,0)) as decimal(12,0))');
+            + cast( (fnd.cd_finding * ',@mult_cd_finding,') as decimal(12,0))');
         end if;
         set @incl=concat(@incl,char(13),' and ck.in_cache=0');
         set @incl=concat(@incl,char(13),'
@@ -305,7 +305,7 @@ end if;
         EXECUTE stmt;
         DEALLOCATE PREPARE stmt;
         
-        create index idx_params on q_total (cohort_begin_date,date_type,qry_type,int_param_key);
+        create index idx_params on q_total (cohort_begin_date,date_type,qry_type,int_hash_key);
         create index idx_other_params on q_total (cohort_begin_date,date_type,qry_type,cd_reporter_type,cd_access_type,cd_allegation,cd_finding);
         
        set @incl='        
@@ -343,7 +343,7 @@ end if;
          set    @incl= concat(@incl,char(13),'
             , mtch.int_param_key ');
         else
-            set @incl=concat(@incl,char(13),'1000000');
+            set @incl=concat(@incl,char(13),@constant_mult);
         end if;
         if p_cd_reporter_type = '0' then
             set @incl=concat(@incl,char(13),', 0');
@@ -391,35 +391,36 @@ end if;
             and p_cd_office = '0' ) then
             set @incl=concat(@incl,'mtch.int_param_key');
         else
-            set @incl=concat(@incl,'1000000');
+            set @incl=concat(@incl,@constant_mult);
         end if;
-        set @incl=concat(@incl,' * power(10.0,5)) as decimal(12,0))
+        set @incl=concat(@incl,' * ',@int_param_key_mult,') as decimal(12,0))
 			+ cast((');
        if p_cd_reporter_type = '0' then
             set @incl=concat(@incl,char(13),' 0');
         else
             set @incl=concat(@incl,char(13),' rpt.cd_reporter_type');
         end if;
-        set @incl=concat(@incl,'  * power(10.0,3)) as decimal(12,0))
+        set @incl=concat(@incl,'  * ',@mult_cd_reporter_type,') as decimal(12,0))
 			+  cast((');
         if p_filter_access_type = '0' then
              set @incl=concat(@incl,char(13),' 0');       
         else
             set @incl=concat(@incl,char(13),' acc.cd_access_type');
         end if;   
-        set @incl=concat(@incl,'   * power(10.0,2)) as decimal(12,0))
+        set @incl=concat(@incl,'   * ',@mult_cd_access_type,') as decimal(12,0))
 			+  cast((');
         if p_filter_allegation = '0' then
              set @incl=concat(@incl,char(13),' 0');       
         else
             set @incl=concat(@incl,char(13),' alg.cd_allegation');
         end if;  
-        set @incl=concat(@incl,' * power(10.0,1)) as decimal(12,0))',char(13),'+ ');
+        set @incl=concat(@incl,' * ',@mult_cd_allegation,') as decimal(12,0))',char(13),'+ ');
         if p_filter_finding = '0' then
-             set @incl=concat(@incl,char(13),' 0');       
+             set @incl=concat(@incl,char(13),'( 0');       
         else
-            set @incl=concat(@incl,char(13),' fnd.cd_finding');
+            set @incl=concat(@incl,char(13),'( fnd.cd_finding');
         end if;     
+        set @incl=concat(@incl,' * ',@mult_cd_finding,')');
         set @incl=concat(@incl,char(13),', ',char(39), @qry_id,char(39),char(13),'
             , year(prtl_pbcs2.cohort_begin_date)
         FROM prtl_pbcs2  ');
@@ -459,35 +460,36 @@ end if;
             and p_cd_office = '0' ) then
             set @incl=concat(@incl,'mtch.int_param_key');
         else
-            set @incl=concat(@incl,'1000000');
+            set @incl=concat(@incl,@constant_mult);
         end if;
-        set @incl=concat(@incl,' * power(10.0,5)) as decimal(12,0))
+        set @incl=concat(@incl,' * ',@int_param_key_mult,') as decimal(12,0))
 			+ cast((');
        if p_cd_reporter_type = '0' then
             set @incl=concat(@incl,char(13),' 0');
         else
             set @incl=concat(@incl,char(13),' rpt.cd_reporter_type');
         end if;
-        set @incl=concat(@incl,'  * power(10.0,3)) as decimal(12,0))
+        set @incl=concat(@incl,'  * ',@mult_cd_reporter_type,') as decimal(12,0))
 			+  cast((');
         if p_filter_access_type = '0' then
              set @incl=concat(@incl,char(13),' 0');       
         else
             set @incl=concat(@incl,char(13),' acc.cd_access_type');
         end if;   
-        set @incl=concat(@incl,'   * power(10.0,2)) as decimal(12,0))
+        set @incl=concat(@incl,'   * ',@mult_cd_access_type,') as decimal(12,0))
 			+  cast((');
         if p_filter_allegation = '0' then
              set @incl=concat(@incl,char(13),' 0');       
         else
             set @incl=concat(@incl,char(13),' alg.cd_allegation');
         end if;  
-        set @incl=concat(@incl,' * power(10.0,1)) as decimal(12,0))',char(13),'+ ');
+        set @incl=concat(@incl,' * ',@mult_cd_allegation,') as decimal(12,0))',char(13),'+ ');
         if p_filter_finding = '0' then
-             set @incl=concat(@incl,char(13),' 0');       
+             set @incl=concat(@incl,char(13),'( 0');       
         else
-            set @incl=concat(@incl,char(13),' fnd.cd_finding');
+            set @incl=concat(@incl,char(13),'( fnd.cd_finding');
         end if;  
+         set @incl=concat(@incl,' * ',@mult_cd_finding,')');
         set @incl=concat(@incl,char(13), ' and ck.in_cache=0');
          set @incl= concat(@incl,char(13),' join q_total q on 
        q.cohort_begin_date =prtl_pbcs2.cohort_begin_date
@@ -499,36 +501,36 @@ end if;
             and p_cd_office = '0' ) then
             set @incl=concat(@incl,'mtch.int_param_key');
         else
-            set @incl=concat(@incl,'1000000');
+            set @incl=concat(@incl,@constant_mult);
         end if;
-        set @incl=concat(@incl,' * power(10.0,5)) as decimal(12,0))
+        set @incl=concat(@incl,' * ',@int_param_key_mult,') as decimal(12,0))
 			+ cast((');
        if p_cd_reporter_type = '0' then
             set @incl=concat(@incl,char(13),' 0');
         else
             set @incl=concat(@incl,char(13),' rpt.cd_reporter_type');
         end if;
-        set @incl=concat(@incl,'  * power(10.0,3)) as decimal(12,0))
+        set @incl=concat(@incl,'  * ',@mult_cd_reporter_type,') as decimal(12,0))
 			+  cast((');
         if p_filter_access_type = '0' then
              set @incl=concat(@incl,char(13),' 0');       
         else
             set @incl=concat(@incl,char(13),' acc.cd_access_type');
         end if;   
-        set @incl=concat(@incl,'   * power(10.0,2)) as decimal(12,0))
+        set @incl=concat(@incl,'   * ',@mult_cd_access_type,') as decimal(12,0))
 			+  cast((');
         if p_filter_allegation = '0' then
              set @incl=concat(@incl,char(13),' 0');       
         else
             set @incl=concat(@incl,char(13),' alg.cd_allegation');
         end if;  
-        set @incl=concat(@incl,' * power(10.0,1)) as decimal(12,0))',char(13),'+ ');
+        set @incl=concat(@incl,' * ',@mult_cd_allegation,') as decimal(12,0))',char(13),'+ ');
         if p_filter_finding = '0' then
-             set @incl=concat(@incl,char(13),' 0');       
+             set @incl=concat(@incl,char(13),'( 0');       
         else
-            set @incl=concat(@incl,char(13),' fnd.cd_finding');
+            set @incl=concat(@incl,char(13),'( fnd.cd_finding');
         end if;     
-      
+         set @incl=concat(@incl,' * ',@mult_cd_finding,')');
            
         set @incl=concat(@incl,char(13),'where prtl_pbcs2.cohortrefcount=1 
         and prtl_pbcs2.nxt_ref_within_min_month between 3 and 48
