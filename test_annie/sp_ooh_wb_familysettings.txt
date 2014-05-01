@@ -26,12 +26,7 @@ begin
 
 
 declare flg_procedure_off int;
-declare intFoundPos integer;
 
-declare strElement varchar(3000);
-declare strValues varchar(3000);
-declare intVal integer;		
-declare intincAll integer;
 
 declare p_qry_id bigint;
 declare p_mindate datetime;
@@ -48,75 +43,10 @@ declare var_row_cnt_param int;
 declare var_row_cnt_cache int;
 declare unq_qry_id int;
 declare  var_calling_procedure int;
-declare age0 char(50);
-declare age1 char(50);
-declare age2 char(50);
-declare age3 char(50);
-declare age4 char(50);
-declare age5 char(50);
-declare age6 char(50);
-declare age7 char(50);
 
-declare gdr0 char(10);
-declare gdr1 char(10);
-declare gdr2 char(10);
-declare gdr3 char(10);
-
-
-declare fpl0 char(50);
-declare fpl3 char(50);
-declare fpl4 char(50);
-declare fpl5 char(50);
-declare fpl6 char(50);
-declare fpl7 char(50);
-
-declare lpl0 char(50);
-declare lpl3 char(50);
-declare lpl4 char(50);
-declare lpl5 char(50);
-declare lpl6 char(50);
-declare lpl7 char(50);
-
-declare plc0 char(25);
-declare plc1 char(25);
-declare plc2 char(25);
-declare plc3 char(25);
-declare plc4 char(25);
-declare plc5 char(25);
-
-
-declare ihs0 char(50);
-declare ihs1 char(50);
-declare ihs2 char(50);
-declare ihs3 char(50);
-
-declare alg0 char(50);
-declare alg1 char(50);
-declare alg2 char(50);
-declare alg3 char(50);
-declare alg4 char(50);
-
-declare fnd0 char(50);
-declare fnd1 char(50);
-declare fnd2 char(50);
-declare fnd3 char(50);
-declare fnd4 char(50);
-declare eth0  char(100) ;
-declare eth1  char(100) ;
-declare eth2  char(100) ;
-declare eth3  char(100) ;
-declare eth4  char(100) ;
-declare eth5  char(100) ;
-declare eth6  char(100) ;
-declare eth7  char(100) ;
-declare eth8  char(100) ;
-declare eth9  char(100) ;
-declare eth10 char(100) ;
-declare eth11 char(100) ;
-declare eth12 char(100) ;
 
 --  DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
-set p_bin_dep_cd='1,2,3,0';
+
 set x1=rand();
 set x2=rand();
 
@@ -127,7 +57,7 @@ set flg_procedure_off =0;
 
 if  flg_procedure_off =0 then    
   
-call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fpl0,fpl3,fpl4,fpl5,fpl6,fpl7,lpl0,lpl3,lpl4,lpl5,lpl6,lpl7,plc0,plc1,plc2,plc3,plc4,plc5,ihs0,ihs1,ihs2,ihs3,alg0,alg1,alg2,alg3,alg4,fnd0,fnd1,fnd2,fnd3,fnd4,eth0,eth1,eth2,eth3,eth4,eth5,eth6,eth7,eth8,eth9,eth10,eth11,eth12,var_calling_procedure);
+    call sp_ooh_assign_desc(var_calling_procedure);
 
 
         
@@ -163,8 +93,6 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
                 and filter_srvc_type=left(p_filter_service_category,50)
                 and filter_budget=left(p_filter_service_budget,50)
                 and bin_dep_cd=left(p_bin_dep_cd,20)
-                and min_start_date<=p_mindate
-                and max_start_date >=p_maxdate
            order by qry_ID  limit 1);
            
     if p_qry_id is null  then
@@ -223,8 +151,10 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
             where qry_id=p_qry_id;
         
         end if;  -- p_qry_id is null
+        
+
  
-    call sp_create_ooh_cachekeys(p_age_grouping_cd 
+    call sp_ooh_create_cachekeys(p_age_grouping_cd 
         ,  p_ethnicity_cd 
         ,  p_gender_cd 
         ,  p_init_cd_plcm_setng 
@@ -252,11 +182,38 @@ call assign_desc (age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fp
         select sum(in_cache),count(*) ,count(distinct qry_id)
             into var_row_cnt_cache,var_row_cnt_param ,unq_qry_id
                 from cachekeys;
+
+
 if  var_row_cnt_param <> var_row_cnt_cache then
-               drop temporary table if exists tot_episodes ;  
                
+  
+       call sp_ooh_load_param_tbls(p_date
+        ,  p_age_grouping_cd 
+        ,  p_ethnicity_cd 
+        ,  p_gender_cd 
+        ,  p_init_cd_plcm_setng 
+        ,  p_long_cd_plcm_setng 
+        ,  p_county_cd 
+        ,  p_bin_los_cd 
+        ,  p_bin_placement_cd 
+        ,  p_bin_ihs_svc_cd 
+        ,  p_cd_reporter_type 
+        ,  p_filter_access_type 
+        ,  p_filter_allegation  
+        , p_filter_finding 
+        , p_filter_service_category  
+        , p_filter_service_budget
+        , p_bin_dep_cd
+        , 0  -- p_is_perCapita
+        , 1  -- p_load_paramkey_tbl
+        , p_mindate
+        , p_maxdate
+        , var_calling_procedure); 
+        
+        call sp_ooh_assign_param_multiplier;
+             
  
- set @myqry='INSERT INTO cache_pbcw3_aggr
+        set @myqry='INSERT INTO cache_pbcw3_aggr
            (qry_type
            ,date_type
            ,cohort_entry_date
@@ -302,7 +259,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
             and trim(p_county_cd) = '0'  )  then
         set @incl=concat(@myqry,', mtch.int_param_key');
         else
-        set @incl=concat(@myqry,', 100000000,');
+        set @incl=concat(@myqry,', ',@int_param_key,',');
         end if;
         if trim(p_bin_dep_cd)='0' then
         set @incl=concat(@incl,', 0');
@@ -408,7 +365,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
         set @incl=concat(@incl,' join tbldep dep on prtl_pbcw3.bin_dep_cd=dep.match_code');
         end if;        
         if trim(p_bin_los_cd)<>'0' then
-        set @incl=concat(@incl,' join tbllos los on prtl_pbcw3.bin_los_cd=los.match_code');
+        set @incl=concat(@incl,' join tbllos los on prtl_pbcw3.max_bin_los_cd=los.match_code');
         end if;
         if trim(p_bin_placement_cd) <>'0' then
          set @incl=concat(@incl,' join tblnbrplc plc on plc.match_code=prtl_pbcw3.bin_placement_cd');
@@ -429,10 +386,10 @@ if  var_row_cnt_param <> var_row_cnt_cache then
              set  @incl=concat(@incl,'  join tblfnd fnd on fnd.match_code=prtl_pbcw3.filter_finding');
         end if;
         if trim(p_filter_service_category) <> '0' then
-             set  @incl=concat(@incl,' join tblsrvc srv on srv.match_code=prtl_pbcw3.filter_service_type');
+             set  @incl=concat(@incl,' join tblsrvc srv on srv.match_code=prtl_pbcw3.filter_service_category');
         end if;
         if trim(p_filter_service_budget) <> '0' then
-            set  @incl=concat(@incl,' join tblbudg bud on bud.match_code=prtl_pbcw3.filter_budget_type');
+            set  @incl=concat(@incl,' join tblbudg bud on bud.match_code=prtl_pbcw3.filter_service_budget');
         end if;
         if NOT(trim(p_age_grouping_cd) ='0' 
             and trim(p_gender_cd) ='0'
@@ -445,7 +402,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 
         else
          set @incl=concat(@incl,'      
-            join cachekeys che on che.int_param_key = 100000000');
+            join cachekeys che on che.int_param_key = ',@int_param_key,'');
         end if;
          set @incl=concat(@incl,'	
                 and che.bin_dep_cd=');
@@ -519,8 +476,6 @@ if  var_row_cnt_param <> var_row_cnt_cache then
         end if;
 				set @incl=concat(@incl,'
                 and che.in_cache=0
-			where prtl_pbcw3.cohort_begin_date between ');
-        set @incl=concat(@incl,'DATE ',char(39),p_minmonthstart ,char(39),' and  DATE ',char(39),p_maxmonthstart,char(39),' 
 			group by  prtl_pbcw3.qry_type
 					,prtl_pbcw3.date_type 
 					,prtl_pbcw3.cohort_begin_date
@@ -623,60 +578,58 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 						join (select distinct int_param_key,age_grouping_cd,cd_race_census,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd from tblprmlocdem)  q on q.int_param_key=ck.int_param_key
 						where ck.in_cache=0; 
 end if; -- all not in cache
-            select
-
-						qry_type "qry_type_poc1_first_unique"
-						, date_type
-            ,pbcw3.cohort_entry_date as "Month"
-						, pbcw3.age_grouping_cd
-						, case pbcw3.age_grouping_cd
-                                when 0 then age0
-                                when 1 then age1
-                                when 2 then age2
-                                when 3 then age3
-                                when 4 then age4
-                                when 5 then age5
-                                when 6 then age6
-                                when 7 then age7
-                end as "Age Grouping"
+        select
+            qry_type "qry_type_poc1_first_all"
+            ,pbcw3.cohort_entry_date as "Year"
+            , pbcw3.age_grouping_cd
+            , case pbcw3.age_grouping_cd
+                when 0 then @age0
+                when 1 then @age1
+                when 2 then @age2
+                when 3 then @age3
+                when 4 then @age4
+                when 5 then @age5
+                when 6 then @age6
+                when 7 then @age7
+            end as "Age Grouping"
 						, pbcw3.cd_race as ethnicity_cd
 						, case pbcw3.cd_race
-                   when 0 then eth0
-                   when 1 then eth1
-                   when 2 then eth2
-                   when 3 then eth3
-                   when 4 then eth4
-                   when 5 then eth5
-                   when 6 then eth6
-                   when 7 then eth7
-                   when 8 then eth8
-                   when 9 then eth9
-                   when 10 then eth10
-                   when 11 then eth11
-                   when 12 then eth12
+                   when 0 then @eth0
+                   when 1 then @eth1
+                   when 2 then @eth2
+                   when 3 then @eth3
+                   when 4 then @eth4
+                   when 5 then @eth5
+                   when 6 then @eth6
+                   when 7 then @eth7
+                   when 8 then @eth8
+                   when 9 then @eth9
+                   when 10 then @eth10
+                   when 11 then @eth11
+                   when 12 then @eth12
                    end as  "Race/Ethnicity" 
 						, pbcw3.pk_gndr as gender_cd
 						, case pbcw3.pk_gndr
-                                when 0 then gdr0
-                                when 1 then gdr1
-                                when 2 then gdr2
-                                when 3 then gdr3
-                              end as "Gender" 
+                when 0 then @gdr0
+                when 1 then @gdr1
+                when 2 then @gdr2
+                when 3 then @gdr3
+              end as "Gender" 
 						, pbcw3.init_cd_plcm_setng  
-						, case when pbcw3.init_cd_plcm_setng = 0 then fpl0
-                   when pbcw3.init_cd_plcm_setng = 3 then fpl3
-                   when pbcw3.init_cd_plcm_setng = 4 then fpl4
-                   when pbcw3.init_cd_plcm_setng = 5 then fpl5
-                   when pbcw3.init_cd_plcm_setng = 6 then fpl6
-                   when pbcw3.init_cd_plcm_setng = 7 then fpl7
+						, case when pbcw3.init_cd_plcm_setng = 0 then @fpl0
+                   when pbcw3.init_cd_plcm_setng = 3 then @fpl3
+                   when pbcw3.init_cd_plcm_setng = 4 then @fpl4
+                   when pbcw3.init_cd_plcm_setng = 5 then @fpl5
+                   when pbcw3.init_cd_plcm_setng = 6 then @fpl6
+                   when pbcw3.init_cd_plcm_setng = 7 then @fpl7
               end as  "Initial Placement"
 						, pbcw3.long_cd_plcm_setng  
-						, case when pbcw3.long_cd_plcm_setng = 0 then lpl0
-                   when pbcw3.long_cd_plcm_setng = 3 then lpl3
-                   when pbcw3.long_cd_plcm_setng = 4 then lpl4
-                   when pbcw3.long_cd_plcm_setng = 5 then lpl5
-                   when pbcw3.long_cd_plcm_setng = 6 then lpl6
-                   when pbcw3.long_cd_plcm_setng = 7 then lpl7
+						, case when pbcw3.long_cd_plcm_setng = 0 then @lpl0
+                   when pbcw3.long_cd_plcm_setng = 3 then @lpl3
+                   when pbcw3.long_cd_plcm_setng = 4 then @lpl4
+                   when pbcw3.long_cd_plcm_setng = 5 then @lpl5
+                   when pbcw3.long_cd_plcm_setng = 6 then @lpl6
+                   when pbcw3.long_cd_plcm_setng = 7 then @lpl7
               end as  "Longest Placement"
 						, pbcw3.county_cd
 						, ref_cnty.county as "County"
@@ -686,39 +639,39 @@ end if; -- all not in cache
 						, ref_los.bin_los_desc as "Length of Service Desc"
 						, pbcw3.bin_placement_cd
 						, case pbcw3.bin_placement_cd
-                                when 0 then plc0
-                                when 1 then plc1
-                                when 2 then plc2
-                                when 3 then plc3
-                                when 4 then plc4
-                                when 5 then plc5
-                              end   as "Placement Count Desc"
+                when 0 then @plc0
+                when 1 then @plc1
+                when 2 then @plc2
+                when 3 then @plc3
+                when 4 then @plc4
+                when 5 then @plc5
+              end   as "Placement Count Desc"
 						, pbcw3.bin_ihs_svc_cd
 						, case pbcw3.bin_ihs_svc_cd
-                                when 0 then ihs0
-                                when 1 then ihs1
-                                when 2 then ihs2
-                                when 3 then ihs3
-                              end as "In-Home Service Desc"
+                when 0 then @ihs0
+                when 1 then @ihs1
+                when 2 then @ihs2
+                when 3 then @ihs3
+              end as "In-Home Service Desc"
 						, pbcw3.cd_reporter_type
 						, ref_rpt.tx_reporter_type as "Reporter Desc"
 						, pbcw3.cd_access_type
 						, ref_acc.tx_access_type as "Access type desc"
 						, pbcw3.cd_allegation
 						, case pbcw3.cd_allegation
-                   when 0 then alg0
-                   when 1 then alg1
-                   when 2 then alg2
-                   when 3 then alg3
-                   when 4 then alg4
+                   when 0 then @alg0
+                   when 1 then @alg1
+                   when 2 then @alg2
+                   when 3 then @alg3
+                   when 4 then @alg4
                 end as "Allegation" 
 						, pbcw3.cd_finding
 						, case pbcw3.cd_finding
-                   when 0 then fnd0
-                   when 1 then fnd1
-                   when 2 then fnd2
-                   when 3 then fnd3
-                   when 4 then fnd4
+                   when 0 then @fnd0
+                   when 1 then @fnd1
+                   when 2 then @fnd2
+                   when 3 then @fnd3
+                   when 4 then @fnd4
                 end as "Finding"
 						, pbcw3.cd_subctgry_poc_frc as "service_type_cd"
 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
@@ -730,19 +683,18 @@ end if; -- all not in cache
             , group_inst_care_prcntg as "Non-Family Setting"
             FROM cache_pbcw3_aggr  pbcw3
             join cachekeys ck on ck.qry_id=pbcw3.qry_id and ck.int_hash_key=pbcw3.int_hash_key
-            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcw3.bin_dep_cd
-            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcw3.bin_los_cd
+            join vw_ref_dependency_lag ref_dep 
+                on ref_dep.bin_dep_cd=pbcw3.bin_dep_cd 
+                and ref_dep.date_type=pbcw3.date_type
+                and pbcw3.cohort_entry_date between ref_dep.min_filter_date and ref_dep.cohort_max_filter_date            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcw3.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw3.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw3.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw3.cd_access_type
              join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw3.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw3.cd_budget_poc_frc
-            where pbcw3.cohort_entry_date 
-            between p_mindate and p_maxdate
             order by   pbcw3.bin_dep_cd asc
             ,qry_type
-                ,date_type
-                ,Cohort_Entry_date asc
+                ,pbcw3.cohort_entry_date asc
                 ,age_grouping_cd asc
                     ,gender_cd asc
                     ,ethnicity_cd asc

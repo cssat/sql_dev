@@ -873,7 +873,7 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
                   reentry_within_month as "Month"
                   ,pbcp5.start_year as "Cohort Entry Date"
                             , qry_type "qry_type_poc1_first_unique"
-                            , date_type
+                            , pbcp5.date_type
                             , pbcp5.age_grouping_cd
                             , case pbcp5.age_grouping_cd
                                     when 0 then @age0
@@ -977,8 +977,10 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
             join cachekeys ck on ck.int_hash_key=pbcp5.int_hash_key
                 and ck.qry_id=pbcp5.qry_id
             join ref_lookup_type_of_exit toe on toe.type_of_exit=pbcp5.cd_discharge_type
-            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=pbcp5.bin_dep_cd 
-                    and date_add(date_add(date_add(date_add(pbcp5.cohort_entry_date, INTERVAL 1 year),INTERVAL -1 DAY),INTERVAL 9 MONTH),INTERVAL abs(ref_dep.lag) DAY)<= var_cutoff_date
+            join vw_ref_dependency_lag ref_dep 
+                on ref_dep.bin_dep_cd=pbcp5.bin_dep_cd 
+                and ref_dep.date_type=pbcp5.date_type
+                and pbcp5.cohort_entry_date between ref_dep.min_filter_date and ref_dep.cohort_max_filter_date
             join ref_filter_los ref_los on ref_los.bin_los_cd=pbcp5.bin_los_cd 
                     and  date_add(date_add(date_add(date_add(pbcp5.cohort_entry_date, INTERVAL 1 year),INTERVAL -1 DAY),INTERVAL 9 MONTH),INTERVAL abs(ref_los.lag)  DAY)<= var_cutoff_date
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcp5.county_cd
@@ -986,11 +988,11 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcp5.cd_access_type
             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc =pbcp5.cd_budget_poc_frc
- --           where pbcp5.cohort_entry_date between p_mindate and p_maxdate
+             where date_add(cohort_entry_date,INTERVAL (12 + pbcp5.reentry_within_month) MONTH) <= var_cutoff_date
             order by 
                 pbcp5.bin_dep_cd asc
                 ,qry_type
-                ,date_type
+                ,pbcp5.date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
                     ,gender_cd asc

@@ -4,7 +4,7 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_create_ooh_tblprmlocdem`(p_age_grouping_cd varchar(30)
+CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_ooh_create_tblprmlocdem`(p_age_grouping_cd varchar(30)
 ,  p_ethnicity_cd varchar(30)
 ,  p_gender_cd varchar(10)
 ,  p_init_cd_plcm_setng varchar(30)
@@ -28,7 +28,8 @@ BEGIN
 								,match_init_cd_plcm_setng int not null
 								,match_long_cd_plcm_setng int not null
 								,match_county_cd int not null
-								,primary key (int_match_param_key,int_param_key)) engine=memory;
+								,primary key (int_match_param_key,int_param_key)
+                ,index using btree(int_match_param_key)) engine=memory;
        
        
     if p_calling_procedure in (19,20,24,25,26) then
@@ -171,7 +172,7 @@ select
 						,long_cd_plcm_setng
 						,county_cd);
                         
-           create index idx_int_match_param_key_only on tblprmlocdem(int_match_param_key);      
+     
 
 					create index idx_int_match_cd_race_census on tblprmlocdem(
 						cd_race_census

@@ -71,11 +71,10 @@ if  flg_procedure_off =0 then
      
 --  set dates 
     
-    select min_date_any ,max_date_all 
-    into p_minmonthstart,p_maxmonthstart  
+    select min_date_any ,max_date_all ,min_date_any ,max_date_all
+    into p_minmonthstart,p_maxmonthstart ,p_mindate,p_maxdate 
     FROM ref_lookup_max_date where id=var_calling_procedure;
-    select p_minmonthstart,p_maxmonthstart 
-    into p_mindate,p_maxdate;
+
   
     
  
@@ -122,8 +121,6 @@ if  flg_procedure_off =0 then
                 and filter_srvc_type=left(p_filter_service_category,50)
                 and filter_budget=left(p_filter_service_budget,50)
                 and bin_dep_cd=left(p_bin_dep_cd,20)
-                and min_start_date<=p_mindate
-                and max_start_date >=p_maxdate
            order by qry_ID  limit 1;
   
  
@@ -184,7 +181,7 @@ if  flg_procedure_off =0 then
        end if;
 
   
-    call sp_create_ooh_cachekeys(p_age_grouping_cd 
+    call sp_ooh_create_cachekeys(p_age_grouping_cd 
         ,  p_ethnicity_cd 
         ,  p_gender_cd 
         ,  p_init_cd_plcm_setng 
@@ -203,20 +200,20 @@ if  flg_procedure_off =0 then
         , var_calling_procedure
         , coalesce(p_qry_id,@qry_ID));
 
-update cachekeys,cache_qry_param_poc1ab_entries
+        update cachekeys,cache_qry_param_poc1ab_entries
         set cachekeys.in_cache=1,cachekeys.qry_id=cache_qry_param_poc1ab_entries.qry_id
         where cachekeys.int_hash_key=cache_qry_param_poc1ab_entries.int_hash_key;    
         
-      select sum(in_cache),count(*) ,count(distinct qry_id)
+        select sum(in_cache),count(*) ,count(distinct qry_id)
             into var_row_cnt_cache,var_row_cnt_param ,var_match_unq_qry_id
-    from cachekeys;
+        from cachekeys;
     
                    
-if  var_row_cnt_param <> var_row_cnt_cache then
+    if  var_row_cnt_param <> var_row_cnt_cache then
         
-      drop temporary table if exists tblprmlocdem ;
+      
         -- census age is census_child_group other is cdc_census_mix
-       call sp_create_ooh_tblprmlocdem(p_age_grouping_cd 
+       call sp_ooh_create_tblprmlocdem(p_age_grouping_cd 
         ,  p_ethnicity_cd 
         ,  p_gender_cd 
         ,  p_init_cd_plcm_setng 
@@ -270,8 +267,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 			set @incl=concat(@incl,char(13),'
             , mtch.int_param_key');
 		else
-			set @incl=concat(@incl,char(13),'
-            , ',@int_param_key);
+			set @incl=concat(@incl,char(13),', ',@int_param_key);
 		end if;
 		 if trim(p_bin_dep_cd)='0' then
         set @incl=concat(@incl,char(13),', 0 as bin_dep_cd');
@@ -365,7 +361,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
             ,cast(mtch.int_param_key as decimal(22,0)) * ',@mult_int_param_key);
 		else
 			set @incl=concat(@incl,'
-            ,cast((',@constant,'  as decimal(22,0))');
+            ,cast((',@constant,')  as decimal(22,0))');
 		end if;
 		if trim(p_bin_dep_cd)<>'0' then
 			set @incl=concat(@incl,'
@@ -406,7 +402,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
         end if;	        
         if trim(p_filter_service_budget) <> '0' then
 	        set @incl=concat(@incl,'
-            +  cast(bud.cd_budget_poc_frc  as decimal(22,0)) * ',@mult_cd_budget_poc_frc);
+            +  cast(bud.cd_budget_poc_frc as decimal(22,0)) * ',@mult_cd_budget_poc_frc);
         end if;	
 		set @incl=concat(@incl,char(13),'
   			FROM prtl_poc1ab_entries prtl_poc1ab_entries  ');
@@ -462,8 +458,6 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 	        set @incl=concat(@incl,char(13),'
 			join tblbudg bud on bud.match_code=prtl_poc1ab_entries.filter_service_budget ');
         end if;	
-		set @incl=concat(@incl,char(13),'where prtl_poc1ab_entries.start_date 
-        between DATE ',char(39),p_minmonthstart,char(39),' and DATE ',char(39),p_maxmonthstart,char(39));
 		set @incl=concat(@incl,char(13),'
          			group by  prtl_poc1ab_entries.qry_type
   					, prtl_poc1ab_entries.date_type 
@@ -668,8 +662,13 @@ end if; -- not all rows exist in cache
                     and pop.county_cd=poc1ab.county_cd
             join cachekeys ck on ck.qry_id=poc1ab.qry_id
                 and ck.int_hash_key=poc1ab.int_hash_key
-            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=poc1ab.bin_dep_cd
-            join ref_filter_los ref_los on ref_los.bin_los_cd=poc1ab.bin_los_cd
+            join vw_ref_dependency_lag ref_dep on ref_dep.bin_dep_cd=poc1ab.bin_dep_cd
+                and poc1ab.date_type=ref_dep.date_type
+                and poc1ab.start_date between min_filter_date and max_filter_date
+            join vw_los_lag ref_los 
+            on poc1ab.bin_los_cd=ref_los.bin_los_cd
+                and poc1ab.date_type=ref_los.date_type
+                and poc1ab.start_date <= ref_los.max_filter_date
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=poc1ab.county_cd
              join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=poc1ab.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=poc1ab.cd_access_type

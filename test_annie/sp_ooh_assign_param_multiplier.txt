@@ -8,8 +8,8 @@ CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_ooh_assign_param_multiplie
 BEGIN
 declare i int;
 set  @constant:=(select multiplier from ooh_int_hash_key where parameter_id=0);
-set @mult_int_param_key:=(select multiplier from ooh_int_hash_key where parameter_id=6);
-set @int_param_key=cast((@constant/@int_param_key) as unsigned);
+set @mult_int_param_key:=(select multiplier from ooh_int_hash_key where fl_int_param_key_multiplier=1);
+set @int_param_key=cast((@constant/@mult_int_param_key) as unsigned);
 set i=1;
 
 while i<=16 do

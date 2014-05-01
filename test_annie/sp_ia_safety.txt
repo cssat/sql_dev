@@ -29,7 +29,7 @@ begin
     declare var_row_cnt_param int;
     declare var_row_cnt_cache int;
     declare var_calling_procedure int;
-    
+    declare var_cutoff_date datetime;
 
     -- initialize variables
     set flg_procedure_off =0;
@@ -49,7 +49,7 @@ begin
         into p_minmonthstart,p_maxmonthstart ,p_mindate,p_maxdate 
         FROM ref_lookup_max_date where id=var_calling_procedure;
     
-    
+        select cutoff_date into var_cutoff_date from ref_last_dw_transfer;
         
         select qry_id into p_qry_id from cache_pbcs2_params
         where age_grouping_cd=left(p_age_grouping_cd,20)
@@ -138,8 +138,7 @@ end if;
         ,  var_calling_procedure);    
         
     -- intialize constants
-        select multiplier into @constant_mult from ia_int_param_key where parameter_name='constant';
-        select multiplier into @int_param_key_mult from ia_int_hash_key where fl_int_param_key_multiplier=1;        
+    
         call sp_ia_assign_param_multiplier;
 
   drop temporary table if exists q_total;
@@ -154,7 +153,7 @@ end if;
             set    @incl= concat(@incl,char(13),'
             , mtch.int_param_key ');
         else
-            set @incl=concat(@incl,char(13),', ',@constant_mult,' as int_param_key');
+            set @incl=concat(@incl,char(13),', ',@int_param_key,' as int_param_key');
         end if;     
         if trim(p_cd_reporter_type)='0' then
         set @incl=concat(@incl,char(13),', 0 as cd_reporter_type');
@@ -181,9 +180,9 @@ end if;
             and p_ethnicity_cd = '0' 
             and p_cd_office = '0' ) then
          set    @incl= concat(@incl,char(13),'
-             , cast(( mtch.int_param_key *  ',@int_param_key_mult,') as decimal(12,0))  ');
+             , cast(( mtch.int_param_key *  ',@mult_int_param_key,') as decimal(12,0))  ');
         else
-            set @incl=concat(@incl,char(13),', cast((',@constant_mult,' * ',@int_param_key_mult,' ) as decimal(12,0))');
+            set @incl=concat(@incl,char(13),', cast((',@int_param_key,' * ',@mult_int_param_key,' ) as decimal(12,0))');
         end if;
        if trim(p_cd_reporter_type)<>'0' then
 	        set @incl=concat(@incl,'
@@ -237,9 +236,9 @@ end if;
             and p_ethnicity_cd = '0' 
             and p_cd_office = '0' ) then
          set    @incl= concat(@incl,char(13),'
-             cast(( mtch.int_param_key *  ',@int_param_key_mult,') as decimal(12,0))  ');
+             cast(( mtch.int_param_key *  ',@mult_int_param_key,') as decimal(12,0))  ');
         else
-            set @incl=concat(@incl,char(13),'cast((',@constant_mult,' * ',@int_param_key_mult,' ) as decimal(12,0))');
+            set @incl=concat(@incl,char(13),'cast((',@int_param_key,' * ',@mult_int_param_key,' ) as decimal(12,0))');
         end if;
        if trim(p_cd_reporter_type)<>'0' then
 	        set @incl=concat(@incl,'
@@ -343,7 +342,7 @@ end if;
          set    @incl= concat(@incl,char(13),'
             , mtch.int_param_key ');
         else
-            set @incl=concat(@incl,char(13),@constant_mult);
+            set @incl=concat(@incl,char(13),@int_param_key);
         end if;
         if p_cd_reporter_type = '0' then
             set @incl=concat(@incl,char(13),', 0');
@@ -391,9 +390,9 @@ end if;
             and p_cd_office = '0' ) then
             set @incl=concat(@incl,'mtch.int_param_key');
         else
-            set @incl=concat(@incl,@constant_mult);
+            set @incl=concat(@incl,@int_param_key);
         end if;
-        set @incl=concat(@incl,' * ',@int_param_key_mult,') as decimal(12,0))
+        set @incl=concat(@incl,' * ',@mult_int_param_key,') as decimal(12,0))
 			+ cast((');
        if p_cd_reporter_type = '0' then
             set @incl=concat(@incl,char(13),' 0');
@@ -460,9 +459,9 @@ end if;
             and p_cd_office = '0' ) then
             set @incl=concat(@incl,'mtch.int_param_key');
         else
-            set @incl=concat(@incl,@constant_mult);
+            set @incl=concat(@incl,@int_param_key);
         end if;
-        set @incl=concat(@incl,' * ',@int_param_key_mult,') as decimal(12,0))
+        set @incl=concat(@incl,' * ',@mult_int_param_key,') as decimal(12,0))
 			+ cast((');
        if p_cd_reporter_type = '0' then
             set @incl=concat(@incl,char(13),' 0');
@@ -501,9 +500,9 @@ end if;
             and p_cd_office = '0' ) then
             set @incl=concat(@incl,'mtch.int_param_key');
         else
-            set @incl=concat(@incl,@constant_mult);
+            set @incl=concat(@incl,@int_param_key);
         end if;
-        set @incl=concat(@incl,' * ',@int_param_key_mult,') as decimal(12,0))
+        set @incl=concat(@incl,' * ',@mult_int_param_key,') as decimal(12,0))
 			+ cast((');
        if p_cd_reporter_type = '0' then
             set @incl=concat(@incl,char(13),' 0');
@@ -630,8 +629,8 @@ end if;
 						join ref_lookup_office_collapse ref_ofc on ref_ofc.cd_office=pbcs2.cd_office
 						join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcs2.cd_reporter_type
 						join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcs2.cd_access_type
-        where pbcs2.start_date between p_mindate and p_maxdate
-						order by pbcs2.qry_type   
+           where date_add(start_date,INTERVAL (12 + pbcs2.month) MONTH) <= var_cutoff_date
+ 						order by pbcs2.qry_type   
 -- 								, pbcs2.date_type
 								, pbcs2.start_year
 								, pbcs2.cd_sib_age_grp

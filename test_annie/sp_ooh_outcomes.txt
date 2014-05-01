@@ -4,8 +4,7 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_ooh_outcomes`(p_date  varchar(3000)
-,  p_age_grouping_cd varchar(30)
+CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_ooh_outcomes`( p_age_grouping_cd varchar(30)
 ,  p_ethnicity_cd varchar(30)
 ,  p_gender_cd varchar(10)
 ,  p_init_cd_plcm_setng varchar(30)
@@ -46,7 +45,7 @@ declare x2 float;
 declare var_row_cnt_param int;
 declare var_row_cnt_cache int;
 declare unq_qry_id int;
-
+declare var_cutoff_date datetime;
 
 --  DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
 
@@ -61,13 +60,15 @@ set flg_procedure_off =0;
 
 if  flg_procedure_off =0 then    
   
-call sp_ooh_assign_desc (var_calling_procedure);
+-- initialize variables  
+    call sp_ooh_assign_desc (var_calling_procedure);
 
-    select min_date_any ,max_date_any 
-    into p_minmonthstart,p_maxmonthstart  
+    select min_date_any ,max_date_any ,min_date_any ,max_date_any
+    into p_minmonthstart,p_maxmonthstart  ,p_mindate,p_maxdate
     FROM ref_lookup_max_date where id=var_calling_procedure;
-    select p_minmonthstart,p_maxmonthstart 
-    into p_mindate,p_maxdate ;
+
+    
+    select cutoff_date into var_cutoff_date from ref_last_dw_transfer;
     
    
     set p_qry_id=(
@@ -151,7 +152,7 @@ call sp_ooh_assign_desc (var_calling_procedure);
         end if;  -- p_qry_id is null
  
    
-  call sp_create_ooh_cachekeys(p_age_grouping_cd 
+  call sp_ooh_create_cachekeys(p_age_grouping_cd 
         ,  p_ethnicity_cd 
         ,  p_gender_cd 
         ,  p_init_cd_plcm_setng 
@@ -186,7 +187,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
                drop temporary table if exists tot_episodes ;  
        
  --  call load_ooh_parameters(p_date
- call sp_ooh_load_param_tbls(p_date
+    call sp_ooh_load_param_tbls('2000-01-01,2014-01-01'
                 ,  p_age_grouping_cd 
                 ,  p_ethnicity_cd 
                 ,  p_gender_cd 
@@ -387,8 +388,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 	        set @myqry=concat(@myqry,char(13),'
 			join tblbudg bud on bud.match_code=pocm.filter_budget_type ');
     end if;	
-		set @myqry=concat(@myqry,char(13),'where pocm.cohort_entry_date 
-        between DATE ',char(39),p_minmonthstart,char(39),' and DATE ',char(39),p_maxmonthstart,char(39),'
+		set @myqry=concat(@myqry,char(13),'
 		group by  pocm.cohort_entry_date
             , pocm.date_type
             , pocm.qry_type');
@@ -870,9 +870,10 @@ set @incl=concat(@incl,char(13),'
         end if; --  all rows not in cache
    
    select
-            outcomes.cohort_entry_date as "Cohort Entry Date"
+            outcomes.mnth as "Month"
+   ,          outcomes.start_year as "cohort_year"
 						, qry_type "qry_type_poc1_first_unique"
-						, date_type
+	-- 					, date_type
 						, outcomes.age_grouping_cd
 						, case outcomes.age_grouping_cd
                                 when 0 then @age0
@@ -970,32 +971,33 @@ set @incl=concat(@incl,char(13),'
 						, outcomes.cd_budget_poc_frc   "budget_cd"
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , outcomes.cd_discharge_type
-						, toe.type_of_exit_desc as "Discharge Type"
-            , mnth as "Month"
+						, toe.type_of_exit_desc as "Discharge"
             , rate as "Rate"     
             from cache_outcomes_aggr outcomes 
             join cachekeys ck on ck.int_hash_key=outcomes.int_hash_key
             and ck.qry_id=outcomes.qry_id
-           join ref_lookup_type_of_exit toe on toe.type_of_exit=outcomes.cd_discharge_type
-            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=outcomes.bin_dep_cd
-            join ref_filter_los ref_los on ref_los.bin_los_cd=outcomes.bin_los_cd
+            join ref_lookup_type_of_exit toe on toe.type_of_exit=outcomes.cd_discharge_type
+            join vw_ref_dependency_lag ref_dep on ref_dep.bin_dep_cd=outcomes.bin_dep_cd 
+                and ref_dep.date_type=outcomes.date_type
+                and outcomes.cohort_entry_date between min_filter_date and cohort_max_filter_date
+            join ref_filter_los ref_los on ref_los.bin_los_cd=outcomes.bin_los_cd and  date_add(date_add(date_add(date_add(outcomes.cohort_entry_date, INTERVAL 1 year),INTERVAL -1 DAY),INTERVAL 9 MONTH),INTERVAL abs(ref_los.lag)  DAY)<= var_cutoff_date
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=outcomes.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=outcomes.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=outcomes.cd_access_type
              join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=outcomes.cd_subctgry_poc_frc
             join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=outcomes.cd_budget_poc_frc
-            -- where outcomes.cohort_entry_date between p_mindate and p_maxdate
+            where date_add(cohort_entry_date,INTERVAL (12 + outcomes.mnth) MONTH) <= var_cutoff_date
             order by 
-                outcomes.bin_dep_cd asc
+                outcomes.start_year asc
+                
                 ,qry_type
-                ,date_type
-                ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
                     ,gender_cd asc
                     ,ethnicity_cd asc
                     ,init_cd_plcm_setng asc
                     ,long_cd_plcm_setng asc
                     ,county_cd asc
+                    , outcomes.bin_dep_cd asc
                     , outcomes.bin_los_cd asc
                     , outcomes.bin_placement_cd asc
                     , outcomes.bin_ihs_svc_cd asc

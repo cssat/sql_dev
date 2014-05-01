@@ -13,49 +13,56 @@ CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_create_ia_cachekeys`(p_age
 , p_filter_finding varchar(30)
 , p_qry_id int)
 BEGIN
-drop temporary table if exists cachekeys;
- create temporary table cachekeys(int_hash_key decimal(12,0)
-    ,int_param_key int
-    
-					 ,cd_reporter_type int
-					 ,cd_access_type int
-					 ,cd_allegation int
-					 ,cd_finding int
-					 ,in_cache int
-					 ,qry_id int,primary key (int_hash_key)
-            ,key (qry_id,int_hash_key)
-            , key (int_hash_key,in_cache)
-            , key (int_param_key,cd_reporter_type,cd_access_type,cd_allegation	
-            ,cd_finding,in_cache)) ENGINE=MEMORY;
+
+   call sp_ia_assign_param_multiplier;
  
-insert into cachekeys
-		   select cast(power(10,11) 
-    + cast((age.cd_sib_age_grp * power(10,10)) as decimal(12,0))
-    + cast(( eth.cd_race_census * power(10,8)) as decimal(12,0))
-    + cast((ofc.cd_office * power(10,5)) as decimal(12,0))
-			+ cast((rpt.cd_reporter_type  * power(10,3)) as decimal(12,0))
-			+  cast((acc.cd_access_type  * power(10,2)) as decimal(12,0))
-			+  cast((alg.cd_allegation  * power(10,1)) as decimal(12,0))
-			+ cast(fnd.cd_finding as decimal(12,0)) as decimal(12,0)) as int_hash_key
-					 ,cast((power(10,6) 
-            + age.cd_sib_age_grp  * power(10,5)
-            + eth.cd_race_census * power(10,3)
-            + abs(ofc.cd_office)) as unsigned)
-					 ,cd_reporter_type
-					 ,cd_access_type
-					 ,cd_allegation
-					 ,cd_finding
-					 ,0 as in_cache
-					 ,p_qry_id as qry_id
-				from (select distinct cd_sib_age_grp from ref_lookup_sib_age_grp where find_in_set(cd_sib_age_grp,p_age_grouping_cd)>0 ) age
-            cross join (select cd_race_census  from ref_lookup_ethnicity_census where find_in_set(cd_race_census,p_ethnicity_cd) > 0) eth
-            cross join (select cd_office from ref_lookup_office_collapse where find_in_set(cd_office,p_cd_office)>0) ofc
+ 
+   drop table if exists tblprm     ;
+    create temporary table tblprm
+    (int_param_key int,index using btree(int_param_key) ) engine=memory;
+    
+    
+    insert into tblprm
+     select distinct cast(@int_param_key + (age_grouping_cd * cast(@mult_age_grouping_cd/@mult_int_param_key as unsigned)) 
+    + (cd_race * cast(@mult_cd_race_census/@mult_int_param_key as unsigned))
+    + (cd_office * cast(@mult_cd_office_collapse/@mult_int_param_key as unsigned))  as unsigned) int_param_key
+            from (select distinct cd_sib_age_grp `age_grouping_cd` from ref_lookup_sib_age_grp where find_in_set(cd_sib_age_grp,p_age_grouping_cd)>0)age
+            cross join (select cd_race_census as cd_race from ref_lookup_ethnicity_census where find_in_set(cd_race_census,p_ethnicity_cd) > 0) eth
+            cross join (select distinct abs(cd_office) cd_office from ref_lookup_office_collapse where find_in_set(cd_office,p_cd_office) > 0) ofc;
+            
+            
+            
+   drop temporary table if exists cachekeys ;
+  create temporary table cachekeys 
+  (int_hash_key decimal(12,0)
+  ,int_param_key bigint
+  ,cd_reporter_type int
+  ,cd_access_type int
+  ,cd_allegation int
+  ,cd_finding int
+  ,in_cache int
+  ,qry_id int
+  ,primary key(int_hash_key)
+  ,index using btree(qry_id,int_hash_key)
+  ,index using btree(int_hash_key,in_cache)) engine=memory;
+
+  insert into cachekeys
+  select	cast((int_param_key * @mult_int_param_key ) as decimal(12,0)) + 
+                    cast((cd_reporter_type * @mult_cd_reporter_type) as decimal(12,0)) + 
+                   cast( (cd_access_type * @mult_cd_access_type) as decimal(12,0)) + 
+                   cast( (cd_allegation * @mult_cd_allegation) as decimal(12,0)) + 
+                   cast( (cd_finding * @mult_cd_finding) as decimal(12,0)) `int_hash_key`
+                     ,int_param_key
+                     ,cd_reporter_type
+                     ,cd_access_type
+                     ,cd_allegation
+                     ,cd_finding
+                     ,0 as in_cache
+                    ,coalesce(p_qry_id,@qry_ID) as qry_id
+				from tblprm prm
 				cross join (select distinct cd_reporter_type from ref_filter_reporter_type where find_in_set(cd_reporter_type,p_cd_reporter_type)>0) rpt
 				cross join (select distinct cd_access_type from ref_filter_access_type where find_in_set(cd_access_type,p_filter_access_type)>0) acc
 				cross join (select distinct cd_allegation from ref_filter_allegation where find_in_set(cd_allegation,p_filter_allegation)>0) alg
 				cross join (select distinct cd_finding from ref_filter_finding where find_in_set(cd_finding,p_filter_finding)>0) fnd;
-
-
-	create index idx_hash_key on cachekeys(qry_id,int_hash_key);
 
 END

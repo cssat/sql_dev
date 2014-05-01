@@ -1,0 +1,83 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_ihs_load_param_tbls`(p_age_grouping_cd varchar(30)
+,  p_ethnicity_cd varchar(30)
+,  p_cd_office varchar(250) 
+,  p_cd_reporter_type varchar(100) 
+,  p_bin_ihs_svc_cd varchar(30) 
+,  p_filter_access_type varchar(30) 
+,  p_filter_allegation  varchar(30)
+,  p_filter_finding varchar(30)
+,  p_filter_service_category  varchar(100)
+,  p_filter_service_budget varchar(100)
+,  p_is_perCapita int
+,  p_load_paramkey_tbl int
+,  p_mindate datetime
+,  p_maxdate datetime
+,  p_calling_procedure int)
+BEGIN
+
+    call sp_ihs_create_param_tables;
+    -- age
+    insert into tblage(age_grouping_cd,match_code)
+    select cd_sib_age_grp,match_code
+    from prm_age_household where find_in_set(cd_sib_age_grp,p_age_grouping_cd) > 0;
+    
+    --  race/ethnicity
+    insert into tbleth(cd_race,cd_origin,match_code)
+    select * from prm_eth_census
+    where find_in_set(cd_race,p_ethnicity_cd)>0;   
+    
+    --  office
+    insert into tblofc(cd_office,match_code)
+    select * from prm_office_collapse
+    where find_in_set(cd_office,p_cd_office)>0;
+    
+    -- reporter
+    insert into tblrpt(cd_reporter_type,match_code)
+    select * from prm_rpt
+    where find_in_set(cd_reporter_type,p_cd_reporter_type)>0;
+    
+    --  ihs services
+    insert into tblihs(bin_ihs_svc_cd,match_code)
+    select * from prm_ihs
+    where find_in_set(bin_ihs_svc_cd,p_bin_ihs_svc_cd)>0;    
+    
+    -- access_type
+    insert into tblacc(cd_access_type,match_code)
+    select * from prm_acc
+    where find_in_set(cd_access_type,p_filter_access_type)>0;
+    
+    -- allegation
+    insert into tblalg(cd_allegation,match_code)
+    select * from prm_alg
+    where find_in_set(cd_allegation,p_filter_allegation)>0;
+    
+    -- finding
+    insert into tblfnd(cd_finding,match_code)
+    select * from prm_fnd
+    where find_in_set(cd_finding,p_filter_finding)>0;
+    
+    -- services
+    insert into tblsrvc(cd_subctgry_poc_frc,match_code)
+    select * from prm_srvc
+    where find_in_set(cd_subctgry_poc_frc,p_filter_service_category)>0;    
+    
+    -- budget
+    insert into tblbudg(cd_budget_poc_frc,match_code)
+    select * from prm_budg
+    where find_in_set(cd_budget_poc_frc,p_filter_service_budget)>0;    
+    
+        if p_load_paramkey_tbl=1 then
+           call sp_create_ihs_tblprmlocdem(p_age_grouping_cd 
+                ,  p_ethnicity_cd 
+                ,  p_cd_office 
+                ,  p_calling_procedure);
+                    
+        end if;
+    
+END

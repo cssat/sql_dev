@@ -1,0 +1,569 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_ihs_trends_counts`(p_date varchar(3000)
+,	p_age_grouping_cd varchar(30)
+,	p_ethnicity_cd varchar(30)
+,	p_office_cd  varchar(500)
+, p_bin_ihs_svc_cd varchar(30) 
+, p_cd_reporter_type varchar(100) 
+, p_filter_access_type varchar(30) 
+, p_filter_allegation  varchar(30)
+, p_filter_finding varchar(30)
+, p_filter_service_category  varchar(100)
+, p_filter_service_budget varchar(100)
+)
+begin
+ -- procedure begins here
+
+    declare p_mindate datetime;
+    declare p_maxdate datetime;
+    declare var_maxmonthstart datetime;
+    declare var_minmonthstart datetime;
+    declare p_qry_id bigint;
+
+    declare var_qry_cnt int;
+    declare x1 float;
+    declare x2 float;
+    declare jitval float;
+    declare  flg_procedure_off int;
+    declare var_row_cnt_param int;
+    declare var_row_cnt_cache int;
+    declare var_match_unq_qry_id int;
+    declare var_start_year int;
+    
+    declare var_calling_procedure int;
+    
+    
+    
+    set flg_procedure_off =0;
+    
+    if  flg_procedure_off =0 then    
+    
+        --  initialize variables
+        set x1=rand();
+        set x2=rand();
+            
+        set var_calling_procedure=22;
+            
+
+        call sp_ihs_assign_param_multiplier;
+        call sp_ihs_assign_desc (var_calling_procedure);
+
+    
+        
+        --  set dates 
+        select min_date_any ,max_date_all ,min_date_any,max_date_all
+        into var_minmonthstart,var_maxmonthstart,p_mindate,p_maxdate
+        FROM ref_lookup_max_date where id=var_calling_procedure;
+
+        
+        set var_start_year= year(var_minmonthstart) ;
+ 
+        set p_qry_id=(
+        select qry_id 
+        from cache_poc3ab_params
+        where cd_sib_age_grp=left(p_age_grouping_cd,20)
+            and cd_race_census=left(p_ethnicity_cd,30) 
+            and cd_office=	left(p_office_cd,250)   
+            and cd_reporter_type=left(p_cd_reporter_type,100)
+            and bin_ihs_svc_cd=left(p_bin_ihs_svc_cd,30)
+            and filter_access_type=left(p_filter_access_type,30)
+            and filter_allegation=left(p_filter_allegation,30)
+            and filter_finding=left(p_filter_finding,30)
+            and filter_srvc_type=left(p_filter_service_category,50)
+            and filter_budget=left(p_filter_service_budget,50)
+        order by qry_ID  limit 1);
+                
+      
+        if p_qry_id is null then         
+            INSERT INTO cache_poc3ab_params
+            (qry_id
+            , cd_sib_age_grp
+            , cd_race_census
+            , cd_office
+            , bin_ihs_svc_cd
+            , cd_reporter_type
+            , filter_access_type
+            , filter_allegation
+            , filter_finding
+            , filter_srvc_type
+            , filter_budget
+            , min_start_date
+            , max_start_date
+            , cnt_qry
+            , last_run_date)
+
+            select 
+             (select @qry_ID:=(max(qry_ID) + 1)  from cache_poc3ab_params)
+                ,p_age_grouping_cd
+                ,p_ethnicity_cd
+                ,p_office_cd
+                ,p_bin_ihs_svc_cd
+                ,p_cd_reporter_type
+                ,p_filter_access_type
+                ,p_filter_allegation
+                ,p_filter_finding
+                ,p_filter_service_category
+                ,p_filter_service_budget
+                ,var_minmonthstart
+                ,var_maxmonthstart
+                ,1
+                ,now();
+        else
+             update cache_poc3ab_params
+            set cnt_qry=cnt_qry + 1,last_run_date=now()
+            where qry_id=p_qry_id;
+        end if;
+            
+  
+      call sp_create_ihs_cachekeys(p_age_grouping_cd
+                ,p_ethnicity_cd
+                ,p_office_cd
+                ,p_bin_ihs_svc_cd
+                ,p_cd_reporter_type
+                ,p_filter_access_type
+                ,p_filter_allegation
+                ,p_filter_finding
+                ,p_filter_service_category
+                ,p_filter_service_budget
+                , var_calling_procedure
+                , coalesce(p_qry_id,@qry_ID));
+
+
+  
+
+        update cachekeys,cache_qry_param_poc3ab
+        set cachekeys.in_cache=1
+            ,cachekeys.qry_id=cache_qry_param_poc3ab.qry_id
+        where cachekeys.int_hash_key=cache_qry_param_poc3ab.int_hash_key;    
+        
+        select sum(in_cache),count(*) ,count(distinct qry_id)
+            into var_row_cnt_cache,var_row_cnt_param ,var_match_unq_qry_id
+        from cachekeys;
+    
+                   
+if  var_row_cnt_param <> var_row_cnt_cache then   
+
+    call sp_ihs_load_param_tbls(
+           p_age_grouping_cd 
+        ,  p_ethnicity_cd 
+        ,  p_office_cd 
+        ,  p_cd_reporter_type 
+        ,  p_bin_ihs_svc_cd 
+        ,  p_filter_access_type 
+        ,  p_filter_allegation  
+        ,  p_filter_finding 
+        ,  p_filter_service_category  
+        ,  p_filter_service_budget
+        ,  0 -- load perCapita
+        ,  1 -- load tblprmlocdem
+        ,  p_mindate
+        ,  p_maxdate
+        ,  var_calling_procedure);
+                
+    set @incl='                
+        insert IGNORE into cache_poc3ab_aggr
+                   ( qry_type
+                    ,date_type
+                    ,start_date
+                    ,int_param_key
+                    ,bin_ihs_svc_cd
+                    ,cd_reporter_type
+                    ,cd_access_type
+                    ,cd_allegation
+                    ,cd_finding
+                    ,cd_service_type
+                    ,cd_budget_type
+                    ,cd_sib_age_grp
+                    ,cd_race_census
+                    ,cd_office_collapse
+                    ,cnt_start_date
+                    ,cnt_opened
+                    ,cnt_closed
+                    ,min_start_date
+                    ,max_start_date
+                    ,x1
+                    ,x2
+                    ,insert_date
+                    ,qry_id
+                    ,start_year
+                    ,int_hash_key)
+                SELECT    prtl_poc3ab.qry_type
+                        , prtl_poc3ab.date_type 
+                        , prtl_poc3ab.start_date';
+       if NOT (p_age_grouping_cd = '0' 
+            and p_ethnicity_cd = '0' 
+            and p_office_cd = '0' ) then
+         set    @incl= concat(@incl,char(13),'
+            , mtch.int_param_key ');
+        else
+            set @incl=concat(@incl,char(13),', 1000000');
+        end if;
+        if trim(p_bin_ihs_svc_cd)='0' then
+        set @incl=concat(@incl,char(13),', 0 as bin_ihs_svc_cd');
+        else
+        set @incl=concat(@incl,char(13),', ihs.bin_ihs_svc_cd');
+        end if;
+        if trim(p_cd_reporter_type)='0' then
+        set @incl=concat(@incl,char(13),', 0 as cd_reporter_type');
+        else
+        set @incl=concat(@incl,char(13),', rpt.cd_reporter_type');
+        end if;	
+        if trim(p_filter_access_type)='0' then
+        set @incl=concat(@incl,char(13),', 0 as cd_access_type');
+        else
+        set @incl=concat(@incl,char(13),', acc.cd_access_type');
+        end if;					
+
+        if trim(p_filter_allegation)= '0' then
+        set @incl=concat(@incl,char(13),', 0 as cd_allegation');
+        else
+        set @incl=concat(@incl,char(13),', alg.cd_allegation');
+        end if;	       
+        if trim(p_filter_finding)='0' then
+        set @incl=concat(@incl,char(13),', 0 as cd_finding');
+        else
+        set @incl=concat(@incl,char(13),', fnd.cd_finding');
+        end if;	        
+        if trim(p_filter_service_category) = '0'  then
+        set @incl=concat(@incl,', 0 as cd_subctgry_poc_frc');
+        else
+        set @incl=concat(@incl,', srv.cd_subctgry_poc_frc');
+        end if;	        
+        if trim(p_filter_service_budget) ='0' then
+        set @incl=concat(@incl,', 0 as cd_budget_poc_frc');
+        else
+        set @incl=concat(@incl,', bud.cd_budget_poc_frc ');
+        end if;
+       if NOT (p_age_grouping_cd = '0' 
+            and p_ethnicity_cd = '0' 
+            and p_office_cd = '0' ) then
+         set    @incl= concat(@incl,char(13),', mtch.cd_sib_age_grp 
+                                    , mtch.cd_race_census
+                                    , mtch.cd_office');
+        else
+            set    @incl= concat(@incl,char(13),', 0 as      cd_sib_age_grp
+                                            , 0 as cd_race_census
+                                            , 0 as cd_office');
+        end if;
+        set @incl=concat(@incl,char(13),'
+  					, coalesce(sum(prtl_poc3ab.cnt_start_date),0) as cnt_start_date
+  					, coalesce(sum(prtl_poc3ab.cnt_opened),0) as cnt_opened
+  					, coalesce(sum(prtl_poc3ab.cnt_closed),0) as cnt_closed');
+		set @incl=concat(@incl,char(13),', DATE',char(39), var_minmonthstart,char(39));
+		set @incl=concat(@incl,char(13),', DATE',char(39), var_maxmonthstart,char(39));
+		set @incl=concat(@incl,char(13),', ',char(39), x1,char(39));
+		set @incl=concat(@incl,char(13),', ',char(39), x2,char(39));    
+		set @incl=concat(@incl,char(13),', DATE',char(39), now() ,char(39),' as insert_date'); 
+		set @incl=concat(@incl,char(13),', ',char(39), @qry_id,char(39),char(13),'
+                                    ,prtl_poc3ab.start_year');
+        set @incl=concat(@incl,char(13),', ck.int_hash_key
+        FROM prtl_poc3ab prtl_poc3ab  ');
+   if NOT (p_age_grouping_cd = '0' 
+            and p_ethnicity_cd = '0' 
+            and p_office_cd = '0' ) then
+         set    @incl= concat(@incl,char(13),'
+          join tblprmlocdem mtch on mtch.int_match_param_key=prtl_poc3ab.int_match_param_key 
+            and mtch.cd_race_census in (select distinct cd_race from tbleth)');
+    end if;
+      if trim(p_bin_ihs_svc_cd)<>'0' then
+	        set @incl=concat(@incl,char(13),'
+			join tblihs ihs on ihs.match_code=prtl_poc3ab.bin_ihs_svc_cd');
+        end if;
+        if trim(p_cd_reporter_type)<>'0' then
+	        set @incl=concat(@incl,char(13),'
+			join tblrpt rpt on rpt.match_code=prtl_poc3ab.cd_reporter_type');
+        end if;					
+        if trim(p_filter_access_type)<>'0' then
+	        set @incl=concat(@incl,char(13),'
+			join tblacc acc on acc.match_code=prtl_poc3ab.filter_access_type');
+        end if;					
+
+        if trim(p_filter_allegation) <> '0' then
+	        set @incl=concat(@incl,char(13),'
+			join tblalg alg on alg.match_code=prtl_poc3ab.filter_allegation');
+        end if;	       
+        if trim(p_filter_finding) <> '0' then
+	        set @incl=concat(@incl,char(13),'
+			join tblfnd fnd on fnd.match_code=prtl_poc3ab.filter_finding');
+        end if;	        
+        if trim(p_filter_service_category) <> '0' then
+	        set @incl=concat(@incl,char(13),'
+			join tblsrvc srv on srv.match_code=prtl_poc3ab.filter_service_type');
+        end if;	        
+        if trim(p_filter_service_budget) <> '0' then
+	        set @incl=concat(@incl,char(13),'
+			join tblbudg bud on bud.match_code=prtl_poc3ab.filter_budget_type ');
+        end if;	
+       set @incl=concat(@incl,char(13),'join cachekeys ck on 
+         ck.int_hash_key=');
+     if NOT (p_age_grouping_cd = '0' 
+            and p_ethnicity_cd = '0' 
+            and p_office_cd = '0' ) then
+         set    @incl= concat(@incl,char(13),'
+             cast(( mtch.int_param_key * power(10.0,10) ) as decimal(22,0))  ');
+        else
+            set @incl=concat(@incl,char(13),' cast((1000000 * power(10.0,10) ) as decimal(22,0))');
+        end if;
+       if trim(p_cd_reporter_type)<>'0' then
+	        set @incl=concat(@incl,'
+            + cast((rpt.cd_reporter_type * power(10.0,8) ) as decimal(22,0)) ');
+        end if;					
+        if trim(p_bin_ihs_svc_cd)<>'0' then
+	        set @incl=concat(@incl,' 
+            + cast( (ihs.bin_ihs_svc_cd * power(10.0,7) ) as decimal(22,0))');
+        end if;
+       if trim(p_filter_access_type)<>'0' then
+	        set @incl=concat(@incl,' 
+            + cast((acc.cd_access_type * power(10.0,6)) as decimal(22,0))');
+        end if;					
+
+        if trim(p_filter_allegation) <> '0' then
+	        set @incl=concat(@incl,' 
+            + cast( (alg.cd_allegation * power(10.0,5)) as decimal(22,0))');
+        end if;	       
+        if trim(p_filter_finding) <> '0' then
+	        set @incl=concat(@incl,'
+            + cast( (fnd.cd_finding * power(10.0,4)) as decimal(22,0))');
+        end if;	        
+        if trim(p_filter_service_category) <> '0' then
+	        set @incl=concat(@incl,'
+            + cast((srv.cd_subctgry_poc_frc * power(10,2)) as decimal(22,0))');
+        end if;	        
+        if trim(p_filter_service_budget) <> '0' then
+	        set @incl=concat(@incl,'
+            +  bud.cd_budget_poc_frc ');
+        end if;	
+        set @incl=concat(@incl,char(13),' and ck.in_cache=0');
+       
+         
+    set @incl=concat(@incl,char(13),'where prtl_poc3ab.start_date 
+        between DATE ',char(39),var_minmonthstart,char(39),' and DATE ',char(39),var_maxmonthstart,char(39));
+		set @incl=concat(@incl,char(13),'
+         			group by  prtl_poc3ab.qry_type
+  					, prtl_poc3ab.date_type 
+  					, prtl_poc3ab.start_date');
+      if NOT (p_age_grouping_cd = '0' 
+            and p_ethnicity_cd = '0' 
+            and p_office_cd = '0' ) then
+         set    @incl= concat(@incl,char(13),'
+                                    , mtch.int_param_key');
+        end if;
+        if trim(p_bin_ihs_svc_cd)<>'0' then
+	        set @incl=concat(@incl,char(13),'
+			, ihs.bin_ihs_svc_cd');
+        end if;
+        if trim(p_cd_reporter_type)<>'0' then
+	        set @incl=concat(@incl,char(13),'
+			, rpt.cd_reporter_type');
+        end if;					
+        if trim(p_filter_access_type)<>'0' then
+	        set @incl=concat(@incl,char(13),'
+			, acc.cd_access_type');
+        end if;					
+
+        if trim(p_filter_allegation) <> '0' then
+	        set @incl=concat(@incl,char(13),'
+			, alg.cd_allegation');
+        end if;	       
+        if trim(p_filter_finding) <> '0' then
+	        set @incl=concat(@incl,char(13),'
+			, fnd.cd_finding');
+        end if;	        
+        if trim(p_filter_service_category) <> '0' then
+	        set @incl=concat(@incl,char(13),'
+			, srv.cd_subctgry_poc_frc');
+        end if;	        
+        if trim(p_filter_service_budget) <> '0' then
+	        set @incl=concat(@incl,char(13),'
+			, bud.cd_budget_poc_frc ');
+        end if;	
+         if NOT (p_age_grouping_cd = '0' 
+            and p_ethnicity_cd = '0' 
+            and p_office_cd = '0' ) then
+         set    @incl= concat(@incl,char(13),'
+                                    , mtch.cd_sib_age_grp 
+                                    , mtch.cd_race_census
+                                    , mtch.cd_office');  
+         end if;
+         set @incl=concat(@incl,';',char(13));                            
+       
+ --      drop temporary table if exists myincl;
+ --      create temporary table myincl as
+ --      select @incl;
+      
+        PREPARE stmt FROM @incl;
+        EXECUTE stmt;
+        DEALLOCATE PREPARE stmt;
+        
+    INSERT IGNORE INTO cache_qry_param_poc3ab
+								   (int_param_key,
+                    bin_ihs_svc_cd,
+                    cd_reporter_type,
+                    cd_access_type,
+                    cd_allegation,
+                    cd_finding,
+                    cd_subctgry_poc_frc,
+                    cd_budget_poc_frc,
+                    cd_sib_age_grp,
+                    cd_race,
+                    cd_office,
+                    qry_id,
+                    int_hash_key)
+						select ck.int_param_key
+
+								   ,bin_ihs_svc_cd
+								   ,cd_reporter_type
+								   ,cd_access_type
+								   ,cd_allegation
+								   ,cd_finding
+								   ,cd_subctgry_poc_frc
+								   ,cd_budget_poc_frc
+								   ,cd_sib_age_grp
+								   ,cd_race_census
+								   ,cd_office
+								   ,@qry_id
+								   ,ck.int_hash_key
+						from cachekeys ck
+						join (select distinct int_param_key,cd_sib_age_grp,cd_race_census,cd_office from tblprmlocdem)  q on q.int_param_key=ck.int_param_key
+						where ck.in_cache=0;        
+
+    end if;  --   not all in cache
+            -- NOW select results
+            
+            SELECT  
+                poc3ab.qry_type as   "qry_type_poc3"
+                , poc3ab.date_type
+                , poc3ab.start_date  as "Month"
+                , poc3ab.cd_sib_age_grp as  "age_grouping_cd"
+                , ref_age.tx_sib_age_grp as "Age Grouping"
+                , poc3ab.cd_race_census  as "ethnicity_cd"
+                , case poc3ab.cd_race_census  when 0   then @eth0  when 1   then @eth1  when 2   then @eth2  when 3   then @eth3  when 4   then @eth4  when 5   then @eth5  when 6   then @eth6  when 7   then @eth7  when 8   then @eth8  when 9   then @eth9  when 10  then @eth10 when 11  then @eth11 when 12  then @eth12 end as "Race/Ethnicity" 
+                , poc3ab.cd_office_collapse as office_cd
+                , ref_ofc.tx_office as Office
+                , poc3ab.bin_ihs_svc_cd
+                , case poc3ab.bin_ihs_svc_cd
+                    when 0 then @ihs0
+                    when 1 then @ihs1
+                    when 2 then @ihs2
+                    when 3 then @ihs3
+                  end  as "In-Home Service Desc"
+                , poc3ab.cd_reporter_type
+                , ref_rpt.tx_reporter_type as "Reporter Desc"
+                , poc3ab.cd_access_type
+                , ref_acc.tx_access_type as "Access type desc"
+                , poc3ab.cd_allegation
+                , case poc3ab.cd_allegation  when 0  then @alg0 when 1  then @alg1 when 2  then @alg2 when 3  then @alg3 when 4  then @alg4 end as "Allegation"
+                , poc3ab.cd_finding
+                , case poc3ab.cd_finding  when 0  then @fnd0 when 1  then @fnd1 when 2  then @fnd2 when 3  then @fnd3 when 4  then @fnd4 end as "Finding"
+                , poc3ab.cd_service_type as "service_type_cd"
+                , ref_srv.tx_subctgry_poc_frc as "Service Type"
+                , poc3ab.cd_budget_type as "budget_cd"
+                , ref_bud.tx_budget_poc_frc as "Budget"
+                , case when (cnt_start_date) > 0 /* jitter all above 0 */ 
+                        then 
+                            case when (round(cnt_start_date + 2 * sqrt(-2 * log(poc3ab.x1)) 
+                            * cos(2*pi()*poc3ab.x2),0) ) <1
+                            then 1
+                            else round(cnt_start_date + 2 * sqrt(-2 * log(poc3ab.x1)) * cos(2*pi()*poc3ab.x2),0)
+                            end
+                        else (cnt_start_date) 
+                    end  as   "Total In Care First Day"
+                , case when (cnt_opened) > 0 /* jitter all above 0 */ 
+                        then 
+                            case when (round(cnt_opened + 2 * sqrt(-2 * log(poc3ab.x1)) 
+                            * cos(2*pi()*poc3ab.x2),0) ) <1
+                            then 1
+                            else round(cnt_opened + 2 * sqrt(-2 * log(poc3ab.x1)) * cos(2*pi()*poc3ab.x2),0)
+                            end
+                        else (cnt_opened) 
+                    end as "Number of Entries"
+                ,  case when ( --  first day + entered care < exited care
+                    (case when (cnt_start_date) > 0 /* jitter all above 0 */ 
+                        then 
+                            case when (round(cnt_start_date + 2 * sqrt(-2 * log(poc3ab.x1)) 
+                            * cos(2*pi()*poc3ab.x2),0) ) <1
+                            then 1
+                            else round(cnt_start_date + 2 * sqrt(-2 * log(poc3ab.x1)) * cos(2*pi()*poc3ab.x2),0)
+                            end
+                        else (cnt_start_date) 
+                    end)
+                    +
+                    (case when (cnt_opened) > 0 /* jitter all above 0 */ 
+                        then 
+                            case when (round(cnt_opened + 2 * sqrt(-2 * log(poc3ab.x1))
+                            * cos(2*pi()*poc3ab.x2),0) ) <1
+                            then 1
+                            else round(cnt_opened + 2 * sqrt(-2 * log(poc3ab.x1)) * cos(2*pi()*poc3ab.x2),0)
+                            end
+                        else (cnt_opened) 
+                    end)) >= -- exited care
+                        (case when (cnt_closed) > 0 /* jitter all above 0 */ 
+                            then 
+                                case when (round(cnt_closed + 2 * sqrt(-2 
+                                * log(poc3ab.x1)) * cos(2*pi()*poc3ab.x2),0) ) <1
+                                then 1
+                                else round(cnt_closed + 2 * sqrt(-2 * log(poc3ab.x1)) * cos(2*pi()*poc3ab.x2),0)
+                                end
+                            else cnt_closed
+                        end)
+                        
+                    then -- use exits as they are
+                    (case when (cnt_closed) > 0 /* jitter all above 0 */ 
+                            then 
+                                case when (round(cnt_closed + 2 * sqrt(-2 * log(poc3ab.x1)) 
+                                * cos(2*pi()*poc3ab.x2),0) ) <1
+                                then 1
+                                else round(cnt_closed + 2 * sqrt(-2 * log(poc3ab.x1)) * cos(2*pi()*poc3ab.x2),0)
+                                end
+                            else cnt_closed
+                        end)
+                    else -- use first day plus entered
+                    (case when (cnt_start_date) > 0 /* jitter all above 0 */ 
+                        then 
+                            case when (round(cnt_start_date + 2 * sqrt(-2 * log(poc3ab.x1)) 
+                            * cos(2*pi()*poc3ab.x2),0) ) <1
+                            then 1
+                            else round(cnt_start_date + 2 * sqrt(-2 * log(poc3ab.x1)) * cos(2*pi()*poc3ab.x2),0)
+                            end
+                        else (cnt_start_date) 
+                    end)
+                    +
+                    (case when (cnt_opened) > 0 /* jitter all above 0 */ 
+                        then 
+                            case when (round(cnt_opened + 2 * sqrt(-2 * log(poc3ab.x1)) 
+                            * cos(2*pi()*poc3ab.x2),0) ) <1
+                            then 1
+                            else round(cnt_opened + 2 * sqrt(-2 * log(poc3ab.x1)) * cos(2*pi()*poc3ab.x2),0)
+                            end
+                        else (cnt_opened) 
+                    end)
+                end as "Number of Exits"
+            FROM cache_poc3ab_aggr poc3ab  
+            join cachekeys ck on ck.qry_id=poc3ab.qry_id and ck.int_hash_key=poc3ab.int_hash_key
+            join ref_lookup_sib_age_grp ref_age on ref_age.cd_sib_age_grp=poc3ab.cd_sib_age_grp
+            join ref_lookup_office_collapse ref_ofc on ref_ofc.cd_office=poc3ab.cd_office_collapse
+             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=poc3ab.cd_reporter_type
+            join ref_filter_access_type ref_acc on ref_acc.cd_access_type=poc3ab.cd_access_type
+             join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=poc3ab.cd_service_type
+            join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=poc3ab.cd_budget_type
+            where poc3ab.start_date 
+            between p_mindate and p_maxdate
+            order by qry_type,date_type,start_date
+                           , poc3ab.cd_sib_age_grp
+                            , poc3ab.cd_race_census
+                            , poc3ab.cd_office_collapse
+                            , poc3ab.bin_ihs_svc_cd
+                            , poc3ab.cd_reporter_type
+                            , poc3ab.cd_access_type
+                            , poc3ab.cd_allegation
+                            , poc3ab.cd_finding
+                            , poc3ab.cd_service_type
+                            , poc3ab.cd_budget_type 
+; 
+      end if; -- turn procedure off
+    end

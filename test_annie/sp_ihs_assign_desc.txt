@@ -1,0 +1,43 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_ihs_assign_desc`(p_calling_procedure int)
+BEGIN
+
+declare i int;
+set i=0;
+while i <=12 do
+    set @myqry=concat('select tx_race_census into @eth',i,' from ref_lookup_ethnicity_census where cd_race_census=',i);
+    PREPARE stmt FROM @myqry;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
+    set i=i+1;
+end while;  
+set i=0;
+while i <=3 do
+    set @myqry=concat('select bin_ihs_svc_tx into @ihs',i,' from ref_filter_ihs_services where bin_ihs_svc_cd=',i);
+    PREPARE stmt FROM @myqry;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
+    set i=i+1;
+end while;
+set i=0;
+while i <=4 do
+    set @myqry=concat('select tx_allegation into @alg',i,' from ref_filter_allegation where cd_allegation=',i);
+    PREPARE stmt FROM @myqry;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
+    set i=i+1;
+end while;
+set i=0;
+while i <=4 do
+    set @myqry=concat('select tx_finding into @fnd',i,' from ref_filter_finding where cd_finding=',i);
+    PREPARE stmt FROM @myqry;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
+    set i=i+1;
+end while;  
+END

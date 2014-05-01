@@ -1,0 +1,90 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_create_ihs_cachekeys`(p_age_grouping_cd varchar(30)
+,	p_ethnicity_cd varchar(30)
+,	p_office_cd  varchar(500)
+, p_bin_ihs_svc_cd varchar(30) 
+, p_cd_reporter_type varchar(100) 
+, p_filter_access_type varchar(30) 
+, p_filter_allegation  varchar(30)
+, p_filter_finding varchar(30)
+, p_filter_service_category  varchar(100)
+, p_filter_service_budget varchar(100)
+, var_calling_procedure int
+, p_qry_id int)
+BEGIN
+
+    call sp_ihs_assign_param_multiplier;
+
+    drop table if exists tblprm     ;
+    create temporary table tblprm
+    (int_param_key int,primary key(int_param_key) )engine=memory;
+    
+    
+    insert into tblprm
+     select distinct cast(@int_param_key + (age_grouping_cd * cast(@mult_age_grouping_cd/@mult_int_param_key as unsigned)) 
+    + (cd_race * cast(@mult_cd_race_census/@mult_int_param_key as unsigned))
+    + (cd_office * cast(@mult_cd_office_collapse/@mult_int_param_key as unsigned))  as unsigned) int_param_key
+            from (select distinct cd_sib_age_grp `age_grouping_cd` from ref_lookup_sib_age_grp where find_in_set(cd_sib_age_grp,p_age_grouping_cd)>0)age
+            cross join (select cd_race_census as cd_race from ref_lookup_ethnicity_census where find_in_set(cd_race_census,p_ethnicity_cd) > 0) eth
+            cross join (select distinct abs(cd_office) cd_office from ref_lookup_office_collapse where find_in_set(cd_office,p_office_cd) > 0) ofc;
+            
+  
+  drop temporary table if exists cachekeys ;
+  create temporary table cachekeys 
+  (int_hash_key decimal(22,0)
+  ,int_param_key bigint
+  ,cd_reporter_type int
+  ,bin_ihs_svc_cd int
+  ,cd_access_type int
+  ,cd_allegation int
+  ,cd_finding int
+  ,cd_subctgry_poc_frc int
+  ,cd_budget_poc_frc int
+  ,in_cache int
+  ,qry_id int
+  ,index using btree(int_hash_key,in_cache)
+  ,index using btree(qry_id,int_hash_key)) engine=memory;
+  
+  insert into cachekeys
+  select	cast((int_param_key * @mult_int_param_key ) as decimal(22,0)) + 
+                    cast((cd_reporter_type * @mult_cd_reporter_type) as decimal(22,0)) + 
+                   cast( (bin_ihs_svc_cd * @mult_bin_ihs_svc_cd ) as decimal(22,0)) + 
+                   cast( (cd_access_type * @mult_cd_access_type) as decimal(22,0)) + 
+                   cast( (cd_allegation * @mult_cd_allegation) as decimal(22,0)) + 
+                   cast( (cd_finding * @mult_cd_finding) as decimal(22,0)) + 
+                    cast((cd_subctgry_poc_frc * @mult_cd_subctgry_poc_frc) + 
+                        cd_budget_poc_frc * @mult_cd_budget_poc_frc as decimal(22,0)) as  int_hash_key
+                     ,int_param_key
+                     ,cd_reporter_type
+                     ,bin_ihs_svc_cd
+                     ,cd_access_type
+                     ,cd_allegation
+                     ,cd_finding
+                     ,cd_subctgry_poc_frc
+                     ,cd_budget_poc_frc
+                     ,0 as in_cache
+                    ,coalesce(p_qry_id,@qry_ID) as qry_id
+				from tblprm prm
+				cross join (select distinct bin_ihs_svc_cd from ref_filter_ihs_services where find_in_set(bin_ihs_svc_cd,p_bin_ihs_svc_cd)>0) ihs
+				cross join (select distinct cd_reporter_type from ref_filter_reporter_type where find_in_set(cd_reporter_type,p_cd_reporter_type)>0) rpt
+				cross join (select distinct cd_access_type from ref_filter_access_type where find_in_set(cd_access_type,p_filter_access_type)>0) acc
+				cross join (select distinct cd_allegation from ref_filter_allegation where find_in_set(cd_allegation,p_filter_allegation)>0) alg
+				cross join (select distinct cd_finding from ref_filter_finding where find_in_set(cd_finding,p_filter_finding)>0) fnd
+				cross join (select distinct cd_subctgry_poc_frc from ref_service_cd_subctgry_poc where find_in_set(cd_subctgry_poc_frc,p_filter_service_category)>0) srvc
+				cross join (select distinct cd_budget_poc_frc from ref_service_cd_budget_poc_frc where find_in_set(cd_budget_poc_frc,p_filter_service_budget)>0) budg;
+   
+
+alter table cachekeys 
+add index idx_params(int_param_key
+,cd_reporter_type,bin_ihs_svc_cd
+,cd_access_type,cd_allegation	,cd_finding
+,cd_budget_poc_frc
+,cd_subctgry_poc_frc
+,in_cache);   
+
+END

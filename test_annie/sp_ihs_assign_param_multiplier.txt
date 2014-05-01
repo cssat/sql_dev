@@ -1,0 +1,28 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_ihs_assign_param_multiplier`()
+BEGIN
+declare i int;
+set  @constant:=(select multiplier from ihs_int_hash_key where parameter_id=0);
+set @mult_int_param_key:=(select multiplier from ihs_int_hash_key where fl_int_param_key_multiplier=1);
+set @int_param_key=cast((@constant/@mult_int_param_key) as unsigned);
+set i=1;
+
+while i<=10 do
+        --  set  @parameter_name= (select parameter_name from ihs_int_hash_key where parameter_id=i);
+      
+       --  set  @multiplier= (select multiplier from ihs_int_hash_key where parameter_id=i);
+        select parameter_name into @parameter_name from ihs_int_hash_key where parameter_id=i;
+        set @myqry=concat('select multiplier into @mult_',@parameter_name,' from ihs_int_hash_key where parameter_id=',i);
+        set i= i+ 1;
+
+        PREPARE stmt FROM @myqry;
+        EXECUTE stmt;
+        DEALLOCATE PREPARE stmt;
+        set @myqry='';
+end while;
+END

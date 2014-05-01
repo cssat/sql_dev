@@ -4,7 +4,7 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_create_ooh_cachekeys`(p_age_grouping_cd varchar(30)
+CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_ooh_create_cachekeys`(p_age_grouping_cd varchar(30)
 ,  p_ethnicity_cd varchar(30)
 ,  p_gender_cd varchar(10)
 ,  p_init_cd_plcm_setng varchar(30)
@@ -27,11 +27,9 @@ BEGIN
   drop table if exists tblprm     ;
     create temporary table tblprm
     (int_param_key int,primary key(int_param_key) )engine=memory;
-
-
 call sp_ooh_assign_param_multiplier;
 
-if var_calling_procedure in (19,20,24,25,26) then
+if var_calling_procedure in (19,20,24,26) then
  insert into tblprm (int_param_key)
   select cast(@int_param_key + (age_grouping_cd * cast(@mult_age_grouping_cd/@mult_int_param_key as unsigned)) 
 + (cd_race * cast(@mult_cd_race_census/@mult_int_param_key as unsigned))
@@ -46,6 +44,20 @@ from (select distinct age_grouping_cd from ref_lookup_age_census where find_in_s
         cross join (select distinct placement_cd as long_cd_plcm_setng from ref_lookup_placement where find_in_set(placement_cd,p_long_cd_plcm_setng) > 0) lpl
         cross join (select distinct County_Cd as cd_cnty from ref_lookup_county_all where find_in_set(county_cd,p_county_cd) > 0) cnty;
 
+elseif var_calling_procedure=25 then
+insert into tblprm (int_param_key)
+  select cast(@int_param_key + (age_grouping_cd * cast(@mult_age_grouping_cd/@mult_int_param_key as unsigned)) 
++ (cd_race * cast(@mult_cd_race_census/@mult_int_param_key as unsigned))
++ (pk_gndr* cast(@mult_pk_gndr/@mult_int_param_key as unsigned))
++ (init_cd_plcm_setng * cast(@mult_init_cd_plcm_setng/@mult_int_param_key as unsigned))
++ (long_cd_plcm_setng * cast(@mult_long_cd_plcm_setng/@mult_int_param_key as unsigned))
++ cd_cnty as unsigned) int_param_key
+from (select distinct developmental_age_cd `age_grouping_cd` from vw_age_developmental_exits where find_in_set(developmental_age_cd,p_age_grouping_cd)>0)age
+        cross join (select cd_race_census as cd_race from ref_lookup_ethnicity_census where find_in_set(cd_race_census,p_ethnicity_cd) > 0) eth
+        cross join (select distinct pk_gndr from ref_lookup_gender where find_in_set(pk_gndr,p_gender_cd) > 0) gdr
+        cross join (select distinct placement_cd as init_cd_plcm_setng from ref_lookup_placement where find_in_set(placement_cd,p_init_cd_plcm_setng) > 0) fpl
+        cross join (select distinct placement_cd as long_cd_plcm_setng from ref_lookup_placement where find_in_set(placement_cd,p_long_cd_plcm_setng) > 0) lpl
+        cross join (select distinct County_Cd as cd_cnty from ref_lookup_county_all where find_in_set(county_cd,p_county_cd) > 0) cnty;
 else
   
       insert into tblprm (int_param_key)
@@ -124,7 +136,7 @@ else
 				cross join (select distinct cd_allegation from ref_filter_allegation where find_in_set(cd_allegation,p_filter_allegation)>0) alg
 				cross join (select distinct cd_finding from ref_filter_finding where find_in_set(cd_finding,p_filter_finding)>0) fnd
 				cross join (select distinct cd_subctgry_poc_frc from ref_service_cd_subctgry_poc where find_in_set(cd_subctgry_poc_frc,p_filter_service_category)>0) srvc
-				cross join (select distinct cd_budget_poc_frc from ref_service_cd_budget_poc_frc where find_in_set(cd_budget_poc_frc,'0')>0) budg;
+				cross join (select distinct cd_budget_poc_frc from ref_service_cd_budget_poc_frc where find_in_set(cd_budget_poc_frc,p_filter_service_budget)>0) budg;
    
    
     create  index idx_int_hash_key on cachekeys(int_hash_key,in_cache);

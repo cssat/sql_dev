@@ -1,0 +1,101 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_ooh_create_param_tables`()
+BEGIN
+        DROP TEMPORARY TABLE IF EXISTS tblage;
+        create temporary table tblage(age_grouping_cd int
+        , age_grouping char(50)
+        , match_code int
+        ,primary key (match_code,age_grouping_cd)
+        ,index using btree(match_code)) engine = memory;
+        
+        DROP TEMPORARY TABLE IF EXISTS tbleth;  
+        create TEMPORARY table tbleth(cd_race int
+        ,cd_origin int
+        ,match_code int
+        ,index using btree(match_code) ) engine = memory;
+        
+        
+        
+        DROP TEMPORARY TABLE IF EXISTS tblgdr;
+        create temporary table tblgdr(pk_gndr int,match_code int
+        ,primary key(match_code,pk_gndr),index using btree(match_code) ) engine = memory;
+   
+
+        DROP TEMPORARY TABLE IF EXISTS tblfpl;
+        create temporary table  tblfpl(cd_plcm_setng int,match_code int,primary key(cd_plcm_setng,match_code)
+            ,index using btree(match_code) ) engine = memory;
+
+        
+        DROP TEMPORARY TABLE IF EXISTS tbllpl;
+        create temporary table  tbllpl(cd_plcm_setng int,match_code int
+                ,primary key (cd_plcm_setng,match_code)
+                ,index using btree(match_code) ) engine = memory;
+        
+       
+        DROP TEMPORARY TABLE IF EXISTS tblcnty;
+        create TEMPORARY table tblcnty(
+                              cd_cnty int
+                            , match_code int
+                            , primary key(match_code,cd_cnty)
+                            , key idx_cnty_match(cd_cnty)
+                             ,index using btree(match_code) ) engine = memory;
+        
+
+      
+
+        DROP TEMPORARY TABLE IF EXISTS tbllos;
+        create temporary table tbllos(bin_los_cd int,match_code int
+        ,primary key(bin_los_cd,match_code) ,index using btree(match_code) ) engine = memory;
+
+        DROP TEMPORARY TABLE IF EXISTS  tblnbrplc;
+        create temporary table tblnbrplc(bin_placement_cd int,match_code int
+        ,primary key(bin_placement_cd,match_code) ,index using btree(match_code) ) engine = memory;
+
+
+        DROP TEMPORARY TABLE IF EXISTS tblihs;
+        create temporary table tblihs(bin_ihs_svc_cd int,match_code int
+        ,primary key(bin_ihs_svc_cd,match_code) ,index using btree(match_code) ) engine = memory;
+        
+        
+        DROP TEMPORARY TABLE IF EXISTS tblrpt;
+        create temporary table tblrpt(cd_reporter_type int,match_code int
+        ,primary key(cd_reporter_type,match_code) ,index using btree(match_code) ) engine = memory;
+       
+        
+        DROP TEMPORARY TABLE IF EXISTS tblacc;
+        create temporary table tblacc(cd_access_type int,match_code decimal(18,0)
+        ,primary key (cd_access_type,match_code)
+         ,index using btree(match_code) ) engine = memory;
+
+        DROP TEMPORARY TABLE IF EXISTS tblalg;
+        create temporary table tblalg(cd_allegation int,match_code decimal(18,0)
+        ,primary key(match_code,cd_allegation)
+         ,index using btree(match_code) ) engine = memory;
+
+        DROP TEMPORARY TABLE IF EXISTS tblfnd;
+        create temporary table tblfnd(cd_finding int,match_code decimal(18,0)
+        ,primary key(match_code,cd_finding) ,index using btree(match_code) ) engine = memory;
+
+        DROP TEMPORARY TABLE IF EXISTS tblsrvc;
+        create temporary table tblsrvc(cd_subctgry_poc_frc int
+        ,match_code decimal(18,0),primary key(cd_subctgry_poc_frc,match_code) 
+        ,index using btree(match_code) ) engine = memory;
+        
+        
+        DROP TEMPORARY TABLE IF EXISTS tblbudg;
+        create temporary table tblbudg(cd_budget_poc_frc int
+        ,match_code decimal(18,0),primary key(cd_budget_poc_frc,match_code)
+         ,index using btree(match_code) ) engine = memory;
+       
+        DROP TEMPORARY TABLE IF EXISTS tbldep;
+        create temporary table tbldep(bin_dep_cd int,match_code int
+        ,primary key(bin_dep_cd,match_code)
+         ,index using btree(match_code) ) engine = memory;
+
+
+END

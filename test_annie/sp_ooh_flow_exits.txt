@@ -68,14 +68,12 @@ set flg_procedure_off =0;
 if  flg_procedure_off =0 then    
 
      
-call sp_ooh_assign_desc (var_calling_procedure);
+    call sp_ooh_assign_desc (var_calling_procedure);
 --  set dates 
     
-    select min_date_any ,max_date_all 
-    into p_minmonthstart,p_maxmonthstart  
+    select min_date_any ,max_date_all ,min_date_any ,max_date_all
+    into p_minmonthstart,p_maxmonthstart  ,p_mindate,p_maxdate
     FROM ref_lookup_max_date where id=var_calling_procedure;
-    select p_minmonthstart,p_maxmonthstart  
-    into p_mindate,p_maxdate;
     
   
    
@@ -99,8 +97,6 @@ call sp_ooh_assign_desc (var_calling_procedure);
                 and filter_srvc_type=left(p_filter_service_category,50)
                 and filter_budget=left(p_filter_service_budget,50)
                 and bin_dep_cd=left(p_bin_dep_cd,20)
-                and min_start_date<=p_mindate
-                and max_start_date >=p_maxdate
            order by qry_ID  limit 1;
   
  
@@ -160,7 +156,7 @@ call sp_ooh_assign_desc (var_calling_procedure);
             where qry_id=p_qry_id;
        end if;
        
-     call sp_create_ooh_cachekeys(p_age_grouping_cd 
+     call sp_ooh_create_cachekeys(p_age_grouping_cd 
         ,  p_ethnicity_cd 
         ,  p_gender_cd 
         ,  p_init_cd_plcm_setng 
@@ -181,13 +177,13 @@ call sp_ooh_assign_desc (var_calling_procedure);
  
    
 
-update cachekeys,cache_qry_param_poc1ab_exits
+        update cachekeys,cache_qry_param_poc1ab_exits
         set cachekeys.in_cache=1,cachekeys.qry_id=cache_qry_param_poc1ab_exits.qry_id
         where cachekeys.int_hash_key=cache_qry_param_poc1ab_exits.int_hash_key;    
         
-      select sum(in_cache),count(*) ,count(distinct qry_id)
-            into var_row_cnt_cache,var_row_cnt_param ,var_match_unq_qry_id
-    from cachekeys;
+        select sum(in_cache),count(*) ,count(distinct qry_id)
+        into var_row_cnt_cache,var_row_cnt_param ,var_match_unq_qry_id
+        from cachekeys;
     
                    
 if  var_row_cnt_param <> var_row_cnt_cache then
@@ -466,8 +462,6 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 	        set @incl=concat(@incl,char(13),'
 			join tblbudg bud on bud.match_code=prtl_poc1ab_exits.filter_service_budget ');
         end if;	
-		set @incl=concat(@incl,char(13),'where prtl_poc1ab_exits.start_date 
-        between DATE ',char(39),p_minmonthstart,char(39),' and DATE ',char(39),p_maxmonthstart,char(39));
 		set @incl=concat(@incl,char(13),'
          			group by  prtl_poc1ab_exits.qry_type
   					, prtl_poc1ab_exits.date_type 
@@ -584,7 +578,7 @@ if NOT(trim(p_age_grouping_cd) ='0'
 end if; -- not all rows exist in cache
        
       select            
-                poc1ab.qry_type   "qry_type_poc1_first_unique"
+                poc1ab.qry_type   "qry_type"
                 , poc1ab.date_type
                 , poc1ab.start_date  as "Month"
                 , poc1ab.age_grouping_cd  
@@ -594,6 +588,8 @@ end if; -- not all rows exist in cache
                     when 2 then @age2
                     when 3 then @age3
                     when 4 then @age4
+                    when 5 then @age5
+                    when 6 then @age6
                   end as "Age Grouping"
                 , poc1ab.pk_gndr  as "gender_cd"
                 , case poc1ab.pk_gndr
@@ -670,7 +666,9 @@ end if; -- not all rows exist in cache
         and ck.int_hash_key=poc1ab.int_hash_key
 --            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=poc1ab.init_cd_plcm_setng
 --            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=poc1ab.long_cd_plcm_setng
-            join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=poc1ab.bin_dep_cd
+            join vw_ref_dependency_lag ref_dep on ref_dep.bin_dep_cd=poc1ab.bin_dep_cd
+                        and ref_dep.date_type=poc1ab.date_type
+                        and poc1ab.start_date between ref_dep.min_filter_date and max_filter_date
             join ref_filter_los ref_los on ref_los.bin_los_cd=poc1ab.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=poc1ab.county_cd
              join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=poc1ab.cd_reporter_type
