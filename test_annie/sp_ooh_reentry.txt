@@ -287,11 +287,11 @@ if  flg_procedure_off =0 then
             ,cast((cast(mtch.int_param_key as decimal(22,0)) * ',@mult_int_param_key,' ) as decimal(22,0))');
 		else
 			set @myqry=concat(@myqry,'
-            ,cast((cast(',@int_param_key,'as decimal(22,0)) * ',@mult_int_param_key,' ) as decimal(22,0))');
+            ,cast((cast(',@int_param_key,'  as decimal(22,0)) * ',@mult_int_param_key,' ) as decimal(22,0))');
 		end if;
 		if trim(p_bin_dep_cd)<>'0' then
 			set @myqry=concat(@myqry,' 
-            + cast((dep.bin_dep_cd * ',@mult_bin_dep_cd,' )as decimal(22,0)) ');
+            + cast((dep.bin_dep_cd * ',@mult_bin_dep_cd,' ) as decimal(22,0)) ');
         end if;
        if trim(p_bin_los_cd)<>'0' then
 			set @myqry=concat(@myqry,' 

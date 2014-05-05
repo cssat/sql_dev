@@ -182,7 +182,7 @@ end if;
          set    @incl= concat(@incl,char(13),'
              , cast(( mtch.int_param_key *  ',@mult_int_param_key,') as decimal(12,0))  ');
         else
-            set @incl=concat(@incl,char(13),', cast((',@int_param_key,' * ',@mult_int_param_key,' ) as decimal(12,0))');
+            set @incl=concat(@incl,char(13),', cast((',@int_param_key,' *  ',@mult_int_param_key,' ) as decimal(12,0))');
         end if;
        if trim(p_cd_reporter_type)<>'0' then
 	        set @incl=concat(@incl,'
@@ -342,7 +342,7 @@ end if;
          set    @incl= concat(@incl,char(13),'
             , mtch.int_param_key ');
         else
-            set @incl=concat(@incl,char(13),@int_param_key);
+            set @incl=concat(@incl,char(13),', ', @int_param_key);
         end if;
         if p_cd_reporter_type = '0' then
             set @incl=concat(@incl,char(13),', 0');
@@ -373,7 +373,7 @@ end if;
             , mtch.cd_office');
         else
              set @incl=concat(@incl,char(13),'
-             0,0,0');
+             ,0,0,0');
         end if;
 
         set @incl=concat(@incl,char(13),', n.nbr
