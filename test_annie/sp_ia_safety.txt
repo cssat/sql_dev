@@ -63,7 +63,9 @@ begin
         limit 1; 
             
             
-  if p_qry_id is null then      
+  if p_qry_id is null then    
+  
+    select @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_pbcs2_params),1);
   
 			INSERT INTO cache_pbcs2_params
   			(qry_id
@@ -80,7 +82,7 @@ begin
   			,last_run_date)
 
     select 
-        (select @qry_ID:=(max(qry_ID) + 1)  from cache_pbcs2_params)
+         @qry_id
   			,p_age_grouping_cd
   			,p_ethnicity_cd
   			,p_cd_office
@@ -420,7 +422,7 @@ end if;
             set @incl=concat(@incl,char(13),'( fnd.cd_finding');
         end if;     
         set @incl=concat(@incl,' * ',@mult_cd_finding,')');
-        set @incl=concat(@incl,char(13),', ',char(39), @qry_id,char(39),char(13),'
+        set @incl=concat(@incl,char(13),', ck.qry_id',char(13),'
             , year(prtl_pbcs2.cohort_begin_date)
         FROM prtl_pbcs2  ');
           if NOT (p_age_grouping_cd = '0' 

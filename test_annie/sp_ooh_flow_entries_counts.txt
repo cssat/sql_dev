@@ -103,6 +103,8 @@ if  flg_procedure_off =0 then
    
 					-- qry_id is still null
     if p_qry_id is  null  then
+    
+        select @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_poc1ab_entries_params),1);
   
         INSERT INTO cache_poc1ab_entries_params
                 (qry_id
@@ -128,7 +130,7 @@ if  flg_procedure_off =0 then
                 ,last_run_date)
 
         select 
-             (select @qry_ID:=(max(qry_ID) + 1)  from cache_poc1ab_entries_params)
+                 @qry_ID
                 ,p_age_grouping_cd
                 ,p_ethnicity_cd
                 ,p_gender_cd
@@ -210,7 +212,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
         , p_maxdate
         , var_calling_procedure);
         
-        call sp_ooh_assign_param_multiplier;
+
         
       set @incl='insert IGNORE into cache_poc1ab_entries_aggr
 			   ( qry_type

@@ -79,7 +79,9 @@ begin
         order by qry_ID  limit 1);
                 
       
-        if p_qry_id is null then         
+        if p_qry_id is null then   
+        
+            select @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_poc3ab_params),1);
             INSERT INTO cache_poc3ab_params
             (qry_id
             , cd_sib_age_grp
@@ -98,7 +100,7 @@ begin
             , last_run_date)
 
             select 
-             (select @qry_ID:=(max(qry_ID) + 1)  from cache_poc3ab_params)
+                 @qry_ID
                 ,p_age_grouping_cd
                 ,p_ethnicity_cd
                 ,p_office_cd
@@ -259,7 +261,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 		set @incl=concat(@incl,char(13),', ',char(39), x1,char(39));
 		set @incl=concat(@incl,char(13),', ',char(39), x2,char(39));    
 		set @incl=concat(@incl,char(13),', DATE',char(39), now() ,char(39),' as insert_date'); 
-		set @incl=concat(@incl,char(13),', ',char(39), @qry_id,char(39),char(13),'
+		set @incl=concat(@incl,char(13),', ck.qry_id',char(13),'
                                     ,prtl_poc3ab.start_year');
         set @incl=concat(@incl,char(13),', ck.int_hash_key
         FROM prtl_poc3ab prtl_poc3ab  ');

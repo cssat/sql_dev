@@ -27,12 +27,7 @@ begin
 
  
 declare flg_procedure_off int;
-declare intFoundPos integer;
 
-declare strElement varchar(3000);
-declare strValues varchar(3000);
-declare intVal integer;		
-declare intincAll integer;
 
 
 declare p_qry_id bigint;
@@ -47,7 +42,7 @@ declare x1 float;
 declare x2 float;
 declare var_row_cnt_param int;
 declare var_row_cnt_cache int;
-declare cnt_hardcoded_qryid int;
+
 
 
 declare var_calling_procedure int;
@@ -128,6 +123,8 @@ if  flg_procedure_off =0 then
 					-- qry_id is still null
     if p_qry_id is  null  then
   
+        select @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_poc1ab_entries_params),1);
+        
         INSERT INTO cache_poc1ab_entries_params
                 (qry_id
                 , age_grouping_cd
@@ -152,7 +149,7 @@ if  flg_procedure_off =0 then
                 ,last_run_date)
 
         select 
-             (select @qry_ID:=(max(qry_ID) + 1)  from cache_poc1ab_entries_params)
+                @qry_ID
                 ,p_age_grouping_cd
                 ,p_ethnicity_cd
                 ,p_gender_cd

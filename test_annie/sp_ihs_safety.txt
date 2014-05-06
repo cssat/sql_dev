@@ -77,7 +77,7 @@ begin
       
     if p_qry_id is null then         
 
-
+        select @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_pbcs3_params),1);
         INSERT INTO cache_pbcs3_params
             (qry_id
             , cd_sib_age_grp
@@ -96,7 +96,7 @@ begin
             , last_run_date)
 
             select 
-             (select @qry_ID:=(max(qry_ID) + 1)  from cache_pbcs3_params)
+                 @qry_ID
                 ,p_age_grouping_cd
                 ,p_ethnicity_cd
                 ,p_office_cd
@@ -160,6 +160,8 @@ if  var_row_cnt_param <> var_row_cnt_cache then
                 ,  p_maxdate
                 ,  var_calling_procedure);
                 
+            call sp_ihs_assign_param_multiplier;
+                
                 
    drop temporary table if exists s3_total;
    set @incl='
@@ -173,7 +175,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
             set    @incl= concat(@incl,char(13),'
             , mtch.int_param_key ');
         else
-            set @incl=concat(@incl,char(13),', 1000000 as int_param_key');
+            set @incl=concat(@incl,char(13),', ',@int_param_key,' as int_param_key');
         end if;     
         if trim(p_bin_ihs_svc_cd)='0' then
         set @incl=concat(@incl,char(13),', 0 as bin_ihs_svc_cd');
@@ -215,38 +217,38 @@ if  var_row_cnt_param <> var_row_cnt_cache then
             and p_ethnicity_cd = '0' 
             and p_office_cd = '0' ) then
          set    @incl= concat(@incl,char(13),'
-             , cast(( mtch.int_param_key * power(10.0,10) ) as decimal(22,0))  ');
+             , cast(( cast(mtch.int_param_key as decimal(22,0)) * ',@mult_int_param_key,' ) as decimal(22,0))  ');
         else
-            set @incl=concat(@incl,char(13),', cast((1000000 * power(10.0,10) ) as decimal(22,0))');
+            set @incl=concat(@incl,char(13),', cast((cast(',@int_param_key,'as decimal(22,0)) * ',@mult_int_param_key,' ) as decimal(22,0))');
         end if;
        if trim(p_cd_reporter_type)<>'0' then
 	        set @incl=concat(@incl,'
-            + cast((rpt.cd_reporter_type * power(10.0,8) ) as decimal(22,0)) ');
+            + cast((rpt.cd_reporter_type * ',@mult_cd_reporter_type,' ) as decimal(22,0)) ');
         end if;					
         if trim(p_bin_ihs_svc_cd)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast( (ihs.bin_ihs_svc_cd * power(10.0,7) ) as decimal(22,0))');
+            + cast( (ihs.bin_ihs_svc_cd * ',@mult_bin_ihs_svc_cd,' ) as decimal(22,0))');
         end if;
        if trim(p_filter_access_type)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast((acc.cd_access_type * power(10.0,6)) as decimal(22,0))');
+            + cast((acc.cd_access_type * ',@mult_cd_access_type,') as decimal(22,0))');
         end if;					
 
         if trim(p_filter_allegation) <> '0' then
 	        set @incl=concat(@incl,' 
-            + cast( (alg.cd_allegation * power(10.0,5)) as decimal(22,0))');
+            + cast( (alg.cd_allegation * ',@mult_cd_allegation,') as decimal(22,0))');
         end if;	       
         if trim(p_filter_finding) <> '0' then
 	        set @incl=concat(@incl,'
-            + cast( (fnd.cd_finding * power(10.0,4)) as decimal(22,0))');
+            + cast( (fnd.cd_finding * ',@mult_cd_finding,') as decimal(22,0))');
         end if;	        
         if trim(p_filter_service_category) <> '0' then
 	        set @incl=concat(@incl,'
-            + cast((srv.cd_subctgry_poc_frc * power(10,2)) as decimal(22,0))');
+            + cast((srv.cd_subctgry_poc_frc * ',@mult_cd_subctgry_poc_frc,') as decimal(22,0))');
         end if;	        
         if trim(p_filter_service_budget) <> '0' then
 	        set @incl=concat(@incl,'
-            +  bud.cd_budget_poc_frc ');   
+            +  bud.cd_budget_poc_frc  * ',@mult_cd_budget_poc_frc);   
         end if;
      set @incl=concat(@incl,'as int_hash_key');
      set @incl=concat(@incl,char(13),'
@@ -294,38 +296,38 @@ set @incl=concat(@incl,char(13),'join cachekeys ck on
             and p_ethnicity_cd = '0' 
             and p_office_cd = '0' ) then
          set    @incl= concat(@incl,char(13),'
-             cast(( mtch.int_param_key * power(10.0,10) ) as decimal(22,0))  ');
+             cast(( mtch.int_param_key * ',@mult_int_param_key,' ) as decimal(22,0))  ');
         else
-            set @incl=concat(@incl,char(13),' cast((1000000 * power(10.0,10) ) as decimal(22,0))');
+            set @incl=concat(@incl,char(13),' cast((',@int_param_key,' * ',@mult_int_param_key,' ) as decimal(22,0))');
         end if;
        if trim(p_cd_reporter_type)<>'0' then
 	        set @incl=concat(@incl,'
-            + cast((rpt.cd_reporter_type * power(10.0,8) ) as decimal(22,0)) ');
+            + cast((rpt.cd_reporter_type * ',@mult_cd_reporter_type,' ) as decimal(22,0)) ');
         end if;					
         if trim(p_bin_ihs_svc_cd)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast( (ihs.bin_ihs_svc_cd * power(10.0,7) ) as decimal(22,0))');
+            + cast( (ihs.bin_ihs_svc_cd * ',@mult_bin_ihs_svc_cd,' ) as decimal(22,0))');
         end if;
        if trim(p_filter_access_type)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast((acc.cd_access_type * power(10.0,6)) as decimal(22,0))');
+            + cast((acc.cd_access_type * ',@mult_cd_access_type,') as decimal(22,0))');
         end if;					
 
         if trim(p_filter_allegation) <> '0' then
 	        set @incl=concat(@incl,' 
-            + cast( (alg.cd_allegation * power(10.0,5)) as decimal(22,0))');
+            + cast( (alg.cd_allegation * ',@mult_cd_allegation,') as decimal(22,0))');
         end if;	       
         if trim(p_filter_finding) <> '0' then
 	        set @incl=concat(@incl,'
-            + cast( (fnd.cd_finding * power(10.0,4)) as decimal(22,0))');
+            + cast( (fnd.cd_finding * ',@mult_cd_finding,') as decimal(22,0))');
         end if;	        
         if trim(p_filter_service_category) <> '0' then
 	        set @incl=concat(@incl,'
-            + cast((srv.cd_subctgry_poc_frc * power(10,2)) as decimal(22,0))');
+            + cast((srv.cd_subctgry_poc_frc * ',@mult_cd_subctgry_poc_frc,') as decimal(22,0))');
         end if;	        
         if trim(p_filter_service_budget) <> '0' then
 	        set @incl=concat(@incl,'
-            +  bud.cd_budget_poc_frc ');
+            +  bud.cd_budget_poc_frc   * ',@mult_cd_budget_poc_frc);  
         end if;	
         set @incl=concat(@incl,char(13),' and ck.in_cache=0');
 set @incl=concat(@incl,char(13),'
@@ -424,7 +426,7 @@ set @incl=concat(@incl,char(13),'
             set    @incl= concat(@incl,char(13),'
             , mtch.int_param_key ');
         else
-            set @incl=concat(@incl,char(13),', 1000000 as int_param_key');
+            set @incl=concat(@incl,char(13),', ',@int_param_key,' as int_param_key');
         end if;     
         if trim(p_bin_ihs_svc_cd)='0' then
         set @incl=concat(@incl,char(13),', 0 as bin_ihs_svc_cd');
@@ -481,7 +483,7 @@ set @incl=concat(@incl,char(13),'
 		set @incl=concat(@incl,char(13),', ',char(39), x1,char(39));
 		set @incl=concat(@incl,char(13),', ',char(39), x2,char(39));    
 		set @incl=concat(@incl,char(13),', DATE',char(39), now() ,char(39),' as insert_date'); 
-		set @incl=concat(@incl,char(13),', ',char(39), @qry_id,char(39),char(13),'
+		set @incl=concat(@incl,char(13),', ck.qry_id',char(13),'
                                     ,year(prtl_pbcs3.cohort_begin_date)');
     set @incl=concat(@incl,char(13),', ck.int_hash_key
     from prtl_pbcs3');
@@ -527,38 +529,38 @@ set @incl=concat(@incl,char(13),'
             and p_ethnicity_cd = '0' 
             and p_office_cd = '0' ) then
          set    @incl= concat(@incl,char(13),'
-             cast(( mtch.int_param_key * power(10.0,10) ) as decimal(22,0))  ');
+             cast(( mtch.int_param_key * ',@mult_int_param_key,' ) as decimal(22,0))  ');
         else
-            set @incl=concat(@incl,char(13),' cast((1000000 * power(10.0,10) ) as decimal(22,0))');
+            set @incl=concat(@incl,char(13),' cast((',@int_param_key,' * ',@mult_int_param_key,' ) as decimal(22,0))');
         end if;
        if trim(p_cd_reporter_type)<>'0' then
 	        set @incl=concat(@incl,'
-            + cast((rpt.cd_reporter_type * power(10.0,8) ) as decimal(22,0)) ');
+            + cast((rpt.cd_reporter_type * ',@mult_cd_reporter_type,' ) as decimal(22,0)) ');
         end if;					
         if trim(p_bin_ihs_svc_cd)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast( (ihs.bin_ihs_svc_cd * power(10.0,7) ) as decimal(22,0))');
+            + cast( (ihs.bin_ihs_svc_cd * ',@mult_bin_ihs_svc_cd,' ) as decimal(22,0))');
         end if;
        if trim(p_filter_access_type)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast((acc.cd_access_type * power(10.0,6)) as decimal(22,0))');
+            + cast((acc.cd_access_type * ',@mult_cd_access_type,') as decimal(22,0))');
         end if;					
 
         if trim(p_filter_allegation) <> '0' then
 	        set @incl=concat(@incl,' 
-            + cast( (alg.cd_allegation * power(10.0,5)) as decimal(22,0))');
+            + cast( (alg.cd_allegation * ',@mult_cd_allegation,') as decimal(22,0))');
         end if;	       
         if trim(p_filter_finding) <> '0' then
 	        set @incl=concat(@incl,'
-            + cast( (fnd.cd_finding * power(10.0,4)) as decimal(22,0))');
+            + cast( (fnd.cd_finding * ',@mult_cd_finding,') as decimal(22,0))');
         end if;	        
         if trim(p_filter_service_category) <> '0' then
 	        set @incl=concat(@incl,'
-            + cast((srv.cd_subctgry_poc_frc * power(10,2)) as decimal(22,0))');
+            + cast((srv.cd_subctgry_poc_frc * ',@mult_cd_subctgry_poc_frc,') as decimal(22,0))');
         end if;	        
         if trim(p_filter_service_budget) <> '0' then
 	        set @incl=concat(@incl,'
-            +  bud.cd_budget_poc_frc ');
+            +  bud.cd_budget_poc_frc   * ',@mult_cd_budget_poc_frc);  
         end if;	
         set @incl=concat(@incl,char(13),' and ck.in_cache=0');
         set @incl=concat(@incl,char(13),' join (select number * 3 as mnth from numbers where number between 1 and 16) cal 
@@ -572,38 +574,38 @@ set @incl=concat(@incl,char(13),'
             and p_ethnicity_cd = '0' 
             and p_office_cd = '0' ) then
          set    @incl= concat(@incl,char(13),'
-             cast(( mtch.int_param_key * power(10.0,10) ) as decimal(22,0))  ');
+             cast(( mtch.int_param_key * ',@mult_int_param_key,' ) as decimal(22,0))  ');
         else
-            set @incl=concat(@incl,char(13),' cast((1000000 * power(10.0,10) ) as decimal(22,0))');
+            set @incl=concat(@incl,char(13),' cast((',@int_param_key,' * ',@mult_int_param_key,' ) as decimal(22,0))');
         end if;
        if trim(p_cd_reporter_type)<>'0' then
 	        set @incl=concat(@incl,'
-            + cast((rpt.cd_reporter_type * power(10.0,8) ) as decimal(22,0)) ');
+            + cast((rpt.cd_reporter_type * ',@mult_cd_reporter_type,' ) as decimal(22,0)) ');
         end if;					
         if trim(p_bin_ihs_svc_cd)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast( (ihs.bin_ihs_svc_cd * power(10.0,7) ) as decimal(22,0))');
+            + cast( (ihs.bin_ihs_svc_cd * ',@mult_bin_ihs_svc_cd,' ) as decimal(22,0))');
         end if;
        if trim(p_filter_access_type)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast((acc.cd_access_type * power(10.0,6)) as decimal(22,0))');
+            + cast((acc.cd_access_type * ',@mult_cd_access_type,') as decimal(22,0))');
         end if;					
 
         if trim(p_filter_allegation) <> '0' then
 	        set @incl=concat(@incl,' 
-            + cast( (alg.cd_allegation * power(10.0,5)) as decimal(22,0))');
+            + cast( (alg.cd_allegation * ',@mult_cd_allegation,') as decimal(22,0))');
         end if;	       
         if trim(p_filter_finding) <> '0' then
 	        set @incl=concat(@incl,'
-            + cast( (fnd.cd_finding * power(10.0,4)) as decimal(22,0))');
+            + cast( (fnd.cd_finding * ',@mult_cd_finding,') as decimal(22,0))');
         end if;	        
         if trim(p_filter_service_category) <> '0' then
 	        set @incl=concat(@incl,'
-            + cast((srv.cd_subctgry_poc_frc * power(10,2)) as decimal(22,0))');
+            + cast((srv.cd_subctgry_poc_frc * ',@mult_cd_subctgry_poc_frc,') as decimal(22,0))');
         end if;	        
         if trim(p_filter_service_budget) <> '0' then
 	        set @incl=concat(@incl,'
-            +  bud.cd_budget_poc_frc ');
+            +  bud.cd_budget_poc_frc   * ',@mult_cd_budget_poc_frc);  
         end if;	
         set @incl=concat(@incl,char(13),'group by 
         prtl_pbcs3.cohort_begin_date
@@ -650,6 +652,9 @@ set @incl=concat(@incl,char(13),'
         end if;
  set @incl=concat(@incl,char(13),', ck.int_hash_key',char(13),', s3_total.total_cases');
  set @incl=concat(@incl,';');
+ 
+        drop temporary table if exists mycode;
+        create temporary table mycode as select @incl;
 
         PREPARE stmt FROM @incl;
         EXECUTE stmt;

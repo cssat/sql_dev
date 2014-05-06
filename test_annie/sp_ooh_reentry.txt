@@ -96,6 +96,8 @@ if  flg_procedure_off =0 then
            
     if p_qry_id is null  then
 
+
+            select @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_pbcp5_params),1);
             INSERT INTO cache_pbcp5_params
                     (qry_id
                     , age_grouping_cd
@@ -120,7 +122,7 @@ if  flg_procedure_off =0 then
                     ,last_run_date)
 
             select 
-                 (select @qry_ID:=(max(qry_ID) + 1)  from cache_pbcp5_params)
+                    @qry_id
                     ,p_age_grouping_cd
                     ,p_ethnicity_cd
                     ,p_gender_cd
@@ -869,24 +871,22 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
         end if; --  all rows not in cache              
     
             select    					  
-                  
                   reentry_within_month as "Month"
                   ,pbcp5.start_year as "Cohort Entry Date"
-                            , qry_type "qry_type_poc1_first_unique"
-                            , pbcp5.date_type
-                            , pbcp5.age_grouping_cd
-                            , case pbcp5.age_grouping_cd
-                                    when 0 then @age0
-                                    when 1 then @age1
-                                    when 2 then @age2
-                                    when 3 then @age3
-                                    when 4 then @age4
-                                    when 5 then @age5
-                                    when 6 then @age6
-                                    when 7 then @age7
+                , qry_type "qry_type_poc1_first_unique"
+                , pbcp5.age_grouping_cd
+                , case pbcp5.age_grouping_cd
+                        when 0 then @age0
+                        when 1 then @age1
+                        when 2 then @age2
+                        when 3 then @age3
+                        when 4 then @age4
+                        when 5 then @age5
+                        when 6 then @age6
+                        when 7 then @age7
                     end as "Age Grouping"
-                            , pbcp5.cd_race as ethnicity_cd
-                            , case pbcp5.cd_race
+                    , pbcp5.cd_race as ethnicity_cd
+                    , case pbcp5.cd_race
                        when 0 then @eth0
                        when 1 then @eth1
                        when 2 then @eth2
@@ -992,7 +992,6 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
             order by 
                 pbcp5.bin_dep_cd asc
                 ,qry_type
-                ,pbcp5.date_type
                 ,Cohort_Entry_date asc
                 ,age_grouping_cd asc
                     ,gender_cd asc

@@ -63,7 +63,9 @@ begin
         limit 1; 
             
             
-  if p_qry_id is null then      
+  if p_qry_id is null then    
+  
+      select @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_poc2ab_params),1);
   
 			INSERT INTO cache_poc2ab_params
   			(qry_id
@@ -80,7 +82,7 @@ begin
   			,last_run_date)
 
     select 
-        (select @qry_ID:=(max(qry_ID) + 1)  from cache_poc2ab_params)
+        @qry_ID
   			,p_age_grouping_cd
   			,p_ethnicity_cd
   			,p_cd_office
@@ -178,7 +180,7 @@ begin
          set    @incl= concat(@incl,char(13),'
             , mtch.int_param_key ');
         else
-            set @incl=concat(@incl,char(13),@int_param_key);
+            set @incl=concat(@incl,char(13),',',@int_param_key);
         end if;
         if p_cd_reporter_type = '0' then
             set @incl=concat(@incl,char(13),', 0');
@@ -209,7 +211,7 @@ begin
             , mtch.cd_office');
         else
              set @incl=concat(@incl,char(13),'
-             0,0,0');
+            , 0,0,0');
         end if;
         set @incl=concat(@incl,char(13),'
             , coalesce(sum(prtl_poc2ab.cnt_start_date),0) as cnt_start_date
@@ -226,7 +228,7 @@ begin
             and p_cd_office = '0' ) then
             set @incl=concat(@incl,'mtch.int_param_key');
         else
-            set @incl=concat(@incl,@int_param_key);
+            set @incl=concat(@incl, @int_param_key);
         end if;
         set @incl=concat(@incl,' * ',@mult_int_param_key,') as decimal(12,0))
 			+ cast((');
@@ -255,7 +257,7 @@ begin
         else
             set @incl=concat(@incl,char(13),' fnd.cd_finding');
         end if;     
-        set @incl=concat(@incl,' * ',@mult_cd_finding,', ',char(13),char(39), @qry_id,char(39),char(13),'
+        set @incl=concat(@incl,' * ',@mult_cd_finding,', ck.qry_id',char(13),'
             ,prtl_poc2ab.start_year
         FROM prtl_poc2ab  ');
            if NOT (p_age_grouping_cd = '0' 

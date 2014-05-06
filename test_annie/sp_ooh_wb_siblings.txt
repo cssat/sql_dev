@@ -84,6 +84,8 @@ if  flg_procedure_off =0 then
            order by qry_ID  limit 1);
            
     if p_qry_id is null  then
+    
+            select @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_pbcw4_params),1);
 
             INSERT INTO cache_pbcw4_params
                     (qry_id
@@ -109,7 +111,7 @@ if  flg_procedure_off =0 then
                     ,last_run_date)
 
             select 
-                 (select @qry_ID:=(max(qry_ID) + 1)  from cache_pbcw4_params)
+                 @qry_ID
                 ,p_age_grouping_cd
                 ,p_ethnicity_cd
                 ,p_gender_cd

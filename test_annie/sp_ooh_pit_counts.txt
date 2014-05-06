@@ -57,9 +57,6 @@ set x2=rand();
 
  call sp_ooh_assign_desc(var_calling_procedure);  
 
---  call assign_desc (var_calling_procedure,age0,age1,age2,age3,age4,age5,age6,age7,gdr0,gdr1,gdr2,gdr3,fpl0,fpl3,fpl4,fpl5,fpl6,fpl7,lpl0,lpl3,lpl4,lpl5,lpl6,lpl7,plc0,plc1,plc2,plc3,plc4,plc5,ihs0,ihs1,ihs2,ihs3,alg0,alg1,alg2,alg3,alg4,fnd0,fnd1,fnd2,fnd3,fnd4,eth0,eth1,eth2,eth3,eth4,eth5,eth6,eth7,eth8,eth9,eth10,eth11,eth12);
-
-
 
 
 
@@ -68,7 +65,6 @@ set flg_procedure_off =0;
 if  flg_procedure_off =0 then    
   
   
---    
      
 --  set dates 
     
@@ -77,37 +73,36 @@ if  flg_procedure_off =0 then
     FROM ref_lookup_max_date where id=var_calling_procedure;
 
   
+          
     
- 
- 
-        
-    
-            select qry_id into p_qry_id
-            from cache_poc1ab_params
-            where age_grouping_cd=left(p_age_grouping_cd,20)
-                and cd_race_census=left(p_ethnicity_cd,30) 
-                and pk_gndr=left(p_gender_cd,10) 
-                and init_cd_plcm_setng=left(p_init_cd_plcm_setng,50) 
-                and long_cd_plcm_setng=left(p_long_cd_plcm_setng,50) 
-                and county_cd=	left(p_County_Cd,200)   
-                and bin_los_cd=left(p_bin_los_cd,30)
-                and bin_placement_cd=left(p_bin_placement_cd,30)
-                and bin_ihs_svc_cd=left(p_bin_ihs_svc_cd,30)
-                and cd_reporter_type=left(p_cd_reporter_type,100)
-                and filter_access_type=left(p_filter_access_type,30)
-                and filter_allegation=left(p_filter_allegation,30)
-                and filter_finding=left(p_filter_finding,30)
-                and filter_srvc_type=left(p_filter_service_category,50)
-                and filter_budget=left(p_filter_service_budget,50)
-                and bin_dep_cd=left(p_bin_dep_cd,20)
-                and min_start_date<=p_mindate
-                and max_start_date >=p_maxdate
-           order by qry_ID  limit 1;
+    select qry_id into p_qry_id
+    from cache_poc1ab_params
+    where age_grouping_cd=left(p_age_grouping_cd,20)
+        and cd_race_census=left(p_ethnicity_cd,30) 
+        and pk_gndr=left(p_gender_cd,10) 
+        and init_cd_plcm_setng=left(p_init_cd_plcm_setng,50) 
+        and long_cd_plcm_setng=left(p_long_cd_plcm_setng,50) 
+        and county_cd=	left(p_County_Cd,200)   
+        and bin_los_cd=left(p_bin_los_cd,30)
+        and bin_placement_cd=left(p_bin_placement_cd,30)
+        and bin_ihs_svc_cd=left(p_bin_ihs_svc_cd,30)
+        and cd_reporter_type=left(p_cd_reporter_type,100)
+        and filter_access_type=left(p_filter_access_type,30)
+        and filter_allegation=left(p_filter_allegation,30)
+        and filter_finding=left(p_filter_finding,30)
+        and filter_srvc_type=left(p_filter_service_category,50)
+        and filter_budget=left(p_filter_service_budget,50)
+        and bin_dep_cd=left(p_bin_dep_cd,20)
+        and min_start_date<=p_mindate
+        and max_start_date >=p_maxdate
+   order by qry_ID  limit 1;
   
  
    
 					-- qry_id is still null
     if p_qry_id is  null  then
+    
+        select @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_poc1ab_params),1);
   
         INSERT INTO cache_poc1ab_params
                 (qry_id
@@ -133,7 +128,7 @@ if  flg_procedure_off =0 then
                 ,last_run_date)
 
         select 
-             (select @qry_ID:=(max(qry_ID) + 1)  from cache_poc1ab_params)
+                 @qry_ID
                 ,p_age_grouping_cd
                 ,p_ethnicity_cd
                 ,p_gender_cd
@@ -359,7 +354,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
             ,cast((cast(mtch.int_param_key as decimal(22,0)) * ',@mult_int_param_key,' ) as decimal(22,0))');
 		else
 			set @incl=concat(@incl,'
-            ,cast((cast(',@int_param_key,'as decimal(22,0))  * ',@mult_int_param_key,' ) as decimal(22,0))');
+            ,cast((cast(',@int_param_key,'  as decimal(22,0))  * ',@mult_int_param_key,' ) as decimal(22,0))');
 		end if;
 		if trim(p_bin_dep_cd)<>'0' then
 			set @incl=concat(@incl,'

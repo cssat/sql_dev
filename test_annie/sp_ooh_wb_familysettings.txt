@@ -63,11 +63,10 @@ if  flg_procedure_off =0 then
         
 --  set dates 
     
-    select min_date_any ,max_date_all 
-    into p_minmonthstart,p_maxmonthstart  
+    select min_date_any ,max_date_all ,min_date_any ,max_date_all 
+    into p_minmonthstart,p_maxmonthstart  ,p_mindate,p_maxdate
     FROM ref_lookup_max_date where id=12;
-    select p_minmonthstart,p_maxmonthstart  
-    into p_mindate,p_maxdate;
+
    
  
   
@@ -96,6 +95,8 @@ if  flg_procedure_off =0 then
            order by qry_ID  limit 1);
            
     if p_qry_id is null  then
+    
+            select @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_pbcw3_params),1); 
 
             INSERT INTO cache_pbcw3_params
                     (qry_id
@@ -121,7 +122,7 @@ if  flg_procedure_off =0 then
                     ,last_run_date)
 
             select 
-                 (select @qry_ID:=(max(qry_ID) + 1)  from cache_pbcw3_params)
+                     @qry_ID
                     ,p_age_grouping_cd
                     ,p_ethnicity_cd
                     ,p_gender_cd
