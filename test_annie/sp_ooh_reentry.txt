@@ -97,7 +97,7 @@ if  flg_procedure_off =0 then
     if p_qry_id is null  then
 
 
-            select @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_pbcp5_params),1);
+            set @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_pbcp5_params),1);
             INSERT INTO cache_pbcp5_params
                     (qry_id
                     , age_grouping_cd
@@ -184,7 +184,7 @@ if  flg_procedure_off =0 then
                 from cachekeys;
 
   if  var_row_cnt_param <> var_row_cnt_cache then
-    call sp_ooh_load_param_tbls('2000-01-01'
+    call sp_ooh_load_param_tbls(date_format(p_mindate,'%Y-%m-%d')
                 ,  p_age_grouping_cd 
                 ,  p_ethnicity_cd 
                 ,  p_gender_cd 
@@ -213,7 +213,8 @@ if  flg_procedure_off =0 then
         select  
             pocm.cohort_exit_year
             ,pocm.date_type
-            ,pocm.qry_type';
+            ,pocm.qry_type
+            ,pocm.cd_discharge_type';
 	if NOT(trim(p_age_grouping_cd) ='0' 
             and trim(p_gender_cd) ='0'
             and trim(p_ethnicity_cd)='0'
@@ -389,7 +390,8 @@ if  flg_procedure_off =0 then
 		set @myqry=concat(@myqry,char(13),'
 		group by pocm.cohort_exit_year
             ,pocm.date_type
-            ,pocm.qry_type');
+            ,pocm.qry_type
+            ,pocm.cd_discharge_type',char(13));
 		if NOT(trim(p_age_grouping_cd) ='0' 
             and trim(p_gender_cd) ='0'
             and trim(p_ethnicity_cd)='0'
@@ -400,8 +402,7 @@ if  flg_procedure_off =0 then
 				,mtch.int_param_key');
 		end if;
 		if trim(p_bin_dep_cd)<>'0' then
-			set @myqry=concat(@myqry,'
-				,dep.bin_dep_cd');
+			set @myqry=concat(@myqry,',dep.bin_dep_cd');
         end if;
 		if trim(p_bin_los_cd)<>'0' then
 			set @myqry=concat(@myqry,'
@@ -693,6 +694,7 @@ if  flg_procedure_off =0 then
     and tot_episodes.cohort_exit_year=pbcp5.cohort_exit_year
     and tot_episodes.qry_type=pbcp5.qry_type
     and tot_episodes.date_type=pbcp5.date_type
+    and tot_episodes.cd_discharge_type=pbcp5.cd_discharge_type 
     join (select distinct int_hash_key,qry_id,in_cache from cachekeys)
     che on  che.int_hash_key = ');
     	if NOT(trim(p_age_grouping_cd) ='0' 
@@ -862,8 +864,8 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
 								   ,init_cd_plcm_setng
 								   ,long_cd_plcm_setng
 								   ,county_cd
-								   ,@qry_id
-								   ,int_hash_key
+								   ,ck.qry_id
+								   ,ck.int_hash_key
 						from cachekeys ck
 						join (select distinct int_param_key,age_grouping_cd,cd_race_census,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd from tblprmlocdem)  q on q.int_param_key=ck.int_param_key
 						where ck.in_cache=0;        

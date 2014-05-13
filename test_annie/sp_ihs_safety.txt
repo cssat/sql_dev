@@ -77,7 +77,7 @@ begin
       
     if p_qry_id is null then         
 
-        select @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_pbcs3_params),1);
+        set @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_pbcs3_params),1);
         INSERT INTO cache_pbcs3_params
             (qry_id
             , cd_sib_age_grp
@@ -96,7 +96,7 @@ begin
             , last_run_date)
 
             select 
-                 @qry_ID
+             @qry_ID
                 ,p_age_grouping_cd
                 ,p_ethnicity_cd
                 ,p_office_cd
@@ -484,7 +484,7 @@ set @incl=concat(@incl,char(13),'
 		set @incl=concat(@incl,char(13),', ',char(39), x2,char(39));    
 		set @incl=concat(@incl,char(13),', DATE',char(39), now() ,char(39),' as insert_date'); 
 		set @incl=concat(@incl,char(13),', ck.qry_id',char(13),'
-                                    ,year(prtl_pbcs3.cohort_begin_date)');
+                                    , year(prtl_pbcs3.cohort_begin_date)');
     set @incl=concat(@incl,char(13),', ck.int_hash_key
     from prtl_pbcs3');
     if NOT (p_age_grouping_cd = '0' 
@@ -650,7 +650,7 @@ set @incl=concat(@incl,char(13),'
 	        set @incl=concat(@incl,char(13),'
 			, bud.cd_budget_poc_frc ');
         end if;
- set @incl=concat(@incl,char(13),', ck.int_hash_key',char(13),', s3_total.total_cases');
+ set @incl=concat(@incl,char(13),', ck.int_hash_key',char(13),', ck.qry_id',char(13),', s3_total.total_cases');
  set @incl=concat(@incl,';');
  
         drop temporary table if exists mycode;
@@ -672,7 +672,7 @@ set @incl=concat(@incl,char(13),'
 								   ,q.cd_sib_age_grp
 								   ,q.cd_race_census
 								   ,q.cd_office
-								   ,@qry_id
+								   ,ck.qry_id
 								   ,int_hash_key
 						from cachekeys ck
 						join (select distinct int_param_key,cd_sib_age_grp,cd_race_census,cd_office from tblprmlocdem)  q on q.int_param_key=ck.int_param_key

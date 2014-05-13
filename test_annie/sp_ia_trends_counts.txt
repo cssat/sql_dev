@@ -65,7 +65,7 @@ begin
             
   if p_qry_id is null then    
   
-      select @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_poc2ab_params),1);
+      set @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_poc2ab_params),1);
   
 			INSERT INTO cache_poc2ab_params
   			(qry_id

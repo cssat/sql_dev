@@ -24,12 +24,7 @@ CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_ooh_outcomes`( p_age_group
 begin
 
 declare flg_procedure_off int;
-declare intFoundPos integer;
 
-declare strElement varchar(3000);
-declare strValues varchar(3000);
-declare intVal integer;		
-declare intincAll integer;
 
 declare p_qry_id bigint;
 declare p_mindate datetime;
@@ -178,9 +173,7 @@ if  flg_procedure_off =0 then
         set cachekeys.in_cache=1,cachekeys.qry_id=cache_qry_param_outcomes.qry_id
         where cachekeys.int_hash_key=cache_qry_param_outcomes.int_hash_key;
         
-        update cachekeys,cache_qry_param_poc1ab_entries
-        set cachekeys.in_poc1ab_entries_cache=1,cachekeys.poc1ab_entries_qry_id=cache_qry_param_poc1ab_entries.qry_id
-        where cachekeys.int_hash_key=cache_qry_param_poc1ab_entries.int_hash_key;
+
   
         select sum(in_cache),count(*) ,count(distinct qry_id)
             into var_row_cnt_cache,var_row_cnt_param ,unq_qry_id
@@ -189,10 +182,11 @@ if  flg_procedure_off =0 then
                 
                      
 if  var_row_cnt_param <> var_row_cnt_cache then
-               drop temporary table if exists tot_episodes ;  
-       
- --  call load_ooh_parameters(p_date
-    call sp_ooh_load_param_tbls('2000-01-01,2014-01-01'
+
+        
+        
+        --  call load_ooh_parameters(p_date
+        call sp_ooh_load_param_tbls(date_format(p_mindate,'%Y-%m-%d')
                 ,  p_age_grouping_cd 
                 ,  p_ethnicity_cd 
                 ,  p_gender_cd 
@@ -215,9 +209,11 @@ if  var_row_cnt_param <> var_row_cnt_cache then
                 , p_maxdate
                 , var_calling_procedure);    
     
-    call sp_ooh_assign_param_multiplier;
-       
-       
+        call sp_ooh_assign_param_multiplier;
+    
+        drop temporary table if exists tot_episodes ; 
+        
+   
     set @myqry='create temporary table tot_episodes engine=memory as 
         select  
             pocm.cohort_entry_date
@@ -457,44 +453,44 @@ if  var_row_cnt_param <> var_row_cnt_cache then
         PREPARE stmt FROM @myqry;
         EXECUTE stmt;
         DEALLOCATE PREPARE stmt;
-            
+  
     create index idx_int_param_key2 on tot_episodes(int_hash_key,cohort_entry_date,qry_type,date_type);
     
-    set @incl='   insert IGNORE into cache_outcomes_aggr( qry_type
-								,date_type
-								,cohort_entry_date
-								 ,cd_discharge_type
-								,int_param_key
-								,bin_dep_cd
-								,bin_los_cd
-								,bin_placement_cd
-								,bin_ihs_svc_cd
-								,cd_reporter_type
-								,cd_access_type
-								,cd_allegation
-								,cd_finding
-								,cd_subctgry_poc_frc
-								,cd_budget_poc_frc
-								,age_grouping_cd
-								,cd_race
-								,pk_gndr
-								,init_cd_plcm_setng
-								,long_cd_plcm_setng
-								,county_cd
+    set @incl='insert IGNORE into cache_outcomes_aggr( qry_type
+                ,date_type
+                ,cohort_entry_date
+                 ,cd_discharge_type
+                ,int_param_key
+                ,bin_dep_cd
+                ,bin_los_cd
+                ,bin_placement_cd
+                ,bin_ihs_svc_cd
+                ,cd_reporter_type
+                ,cd_access_type
+                ,cd_allegation
+                ,cd_finding
+                ,cd_subctgry_poc_frc
+                ,cd_budget_poc_frc
+                ,age_grouping_cd
+                ,cd_race
+                ,pk_gndr
+                ,init_cd_plcm_setng
+                ,long_cd_plcm_setng
+                ,county_cd
                 ,mnth
                 ,rate
-								,min_start_date
-								,max_start_date
-								,x1
-								,x2
-								,insert_date
-								,qry_id
-								,start_year
-						,int_hash_key)   
-    SELECT  outcomes.qry_type
-        , outcomes.date_type 
-        , outcomes.cohort_entry_date
-        , outcomes.cd_discharge_type';
+                ,min_start_date
+                ,max_start_date
+                ,x1
+                ,x2
+                ,insert_date
+                ,qry_id
+                ,start_year
+                ,int_hash_key)   
+        SELECT    outcomes.qry_type
+                , outcomes.date_type 
+                , outcomes.cohort_entry_date
+                , outcomes.cd_discharge_type';
   if NOT(trim(p_age_grouping_cd) ='0' 
             and trim(p_gender_cd) ='0'
             and trim(p_ethnicity_cd)='0'
@@ -502,9 +498,10 @@ if  var_row_cnt_param <> var_row_cnt_cache then
             and trim(p_long_cd_plcm_setng)='0' 
             and trim(p_county_cd) = '0'  )  then
                 set @incl=concat(@incl,'
-				,mtch.int_param_key ');
+                ,mtch.int_param_key ');
        else
-            set @incl=concat(@incl,', ',@int_param_key,' as int_param_key');
+            set @incl=concat(@incl,'
+                , ',@int_param_key,' as int_param_key');
     end if;
      if trim(p_bin_dep_cd)='0' then
         set @incl=concat(@incl,', 0 as bin_dep_cd');
@@ -702,64 +699,10 @@ if  var_row_cnt_param <> var_row_cnt_cache then
     set @incl=concat(@incl,'  and che.in_cache=0');
       set @incl=concat(@incl,char(13),'
      join tot_episodes  
-    on tot_episodes.int_hash_key=');
-    	if NOT(trim(p_age_grouping_cd) ='0' 
-            and trim(p_gender_cd) ='0'
-            and trim(p_ethnicity_cd)='0'
-            and trim(p_init_cd_plcm_setng)='0' 
-            and trim(p_long_cd_plcm_setng)='0' 
-            and trim(p_county_cd) = '0'  )  then
-			set @incl=concat(@incl,'
-            cast((cast(mtch.int_param_key as decimal(22,0)) * ',@mult_int_param_key,' ) as decimal(22,0))');
-		else
-			set @incl=concat(@incl,'
-            cast((cast(',@int_param_key,'  as decimal(22,0))  * ',@mult_int_param_key,' ) as decimal(22,0))');
-		end if;
-		if trim(p_bin_dep_cd)<>'0' then
-			set @incl=concat(@incl,' 
-            + cast((dep.bin_dep_cd * ',@mult_bin_dep_cd,' )as decimal(22,0)) ');
-        end if;		
-    if trim(p_bin_los_cd)<>'0' then
-			set @incl=concat(@incl,' 
-            + cast((los.bin_los_cd * ',@mult_bin_los_cd,' )as decimal(22,0)) ');
-        end if;
-        if trim(p_bin_placement_cd)<>'0' then
-		    set @incl=concat(@incl,' 
-            + cast((plc.bin_placement_cd * ',@mult_bin_placement_cd,' )as decimal(22,0))');
-        end if;   
-        if trim(p_bin_ihs_svc_cd)<>'0' then
-	        set @incl=concat(@incl,' 
-            + cast( (ihs.bin_ihs_svc_cd * ',@mult_bin_ihs_svc_cd,' ) as decimal(22,0))');
-        end if;
-        if trim(p_cd_reporter_type)<>'0' then
-	        set @incl=concat(@incl,'
-            + cast((rpt.cd_reporter_type * ',@mult_cd_reporter_type,' ) as decimal(22,0)) ');
-        end if;					
-        if trim(p_filter_access_type)<>'0' then
-	        set @incl=concat(@incl,' 
-            + cast((acc.cd_access_type * ',@mult_cd_access_type,') as decimal(22,0))');
-        end if;					
-
-        if trim(p_filter_allegation) <> '0' then
-	        set @incl=concat(@incl,' 
-            + cast( (alg.cd_allegation * ',@mult_cd_allegation,') as decimal(22,0))');
-        end if;	       
-        if trim(p_filter_finding) <> '0' then
-	        set @incl=concat(@incl,'
-            + cast( (fnd.cd_finding * ',@mult_cd_finding,') as decimal(22,0))');
-        end if;	        
-        if trim(p_filter_service_category) <> '0' then
-	        set @incl=concat(@incl,'
-            + cast((srv.cd_subctgry_poc_frc * ',@mult_cd_subctgry_poc_frc,') as decimal(22,0))');
-        end if;	        
-        if trim(p_filter_service_budget) <> '0' then
-	        set @incl=concat(@incl,'
-            +  bud.cd_budget_poc_frc * ' ,  @mult_cd_budget_poc_frc); 
-        end if;	
-    set @incl=concat(@incl,char(13),'
-    and tot_episodes.cohort_entry_date=outcomes.cohort_entry_date
-    and tot_episodes.qry_type=outcomes.qry_type
-    and tot_episodes.date_type=outcomes.date_type');
+        on tot_episodes.int_hash_key=che.int_hash_key
+        and tot_episodes.cohort_entry_date=outcomes.cohort_entry_date
+        and tot_episodes.qry_type=outcomes.qry_type
+        and tot_episodes.date_type=outcomes.date_type');
   
 set @incl=concat(@incl,char(13),'
         group by  outcomes.qry_type

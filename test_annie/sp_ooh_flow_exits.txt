@@ -79,31 +79,31 @@ if  flg_procedure_off =0 then
    
    
     
-    select qry_id into p_qry_id
-    from cache_poc1ab_exits_params
-    where age_grouping_cd=left(p_age_grouping_cd,20)
-        and cd_race_census=left(p_ethnicity_cd,30) 
-        and pk_gndr=left(p_gender_cd,10) 
-        and init_cd_plcm_setng=left(p_init_cd_plcm_setng,50) 
-        and long_cd_plcm_setng=left(p_long_cd_plcm_setng,50) 
-        and county_cd=	left(p_County_Cd,200)   
-        and bin_los_cd=left(p_bin_los_cd,30)
-        and bin_placement_cd=left(p_bin_placement_cd,30)
-        and bin_ihs_svc_cd=left(p_bin_ihs_svc_cd,30)
-        and cd_reporter_type=left(p_cd_reporter_type,100)
-        and filter_access_type=left(p_filter_access_type,30)
-        and filter_allegation=left(p_filter_allegation,30)
-        and filter_finding=left(p_filter_finding,30)
-        and filter_srvc_type=left(p_filter_service_category,50)
-        and filter_budget=left(p_filter_service_budget,50)
-        and bin_dep_cd=left(p_bin_dep_cd,20)
-   order by qry_ID  limit 1;
+            select qry_id into p_qry_id
+            from cache_poc1ab_exits_params
+            where age_grouping_cd=left(p_age_grouping_cd,20)
+                and cd_race_census=left(p_ethnicity_cd,30) 
+                and pk_gndr=left(p_gender_cd,10) 
+                and init_cd_plcm_setng=left(p_init_cd_plcm_setng,50) 
+                and long_cd_plcm_setng=left(p_long_cd_plcm_setng,50) 
+                and county_cd=	left(p_County_Cd,200)   
+                and bin_los_cd=left(p_bin_los_cd,30)
+                and bin_placement_cd=left(p_bin_placement_cd,30)
+                and bin_ihs_svc_cd=left(p_bin_ihs_svc_cd,30)
+                and cd_reporter_type=left(p_cd_reporter_type,100)
+                and filter_access_type=left(p_filter_access_type,30)
+                and filter_allegation=left(p_filter_allegation,30)
+                and filter_finding=left(p_filter_finding,30)
+                and filter_srvc_type=left(p_filter_service_category,50)
+                and filter_budget=left(p_filter_service_budget,50)
+                and bin_dep_cd=left(p_bin_dep_cd,20)
+           order by qry_ID  limit 1;
   
  
 
 					-- qry_id is still null
     if p_qry_id is  null  then
-        select @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_poc1ab_exits_params),1);
+        set @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_poc1ab_exits_params),1);
   
         INSERT INTO cache_poc1ab_exits_params
                 (qry_id
@@ -344,7 +344,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 		set @incl=concat(@incl,char(13),', ',char(39), x1,char(39));
 		set @incl=concat(@incl,char(13),', ',char(39), x2,char(39));    
 		set @incl=concat(@incl,char(13),', DATE',char(39), now() ,char(39),' as insert_date'); 
-		set @incl=concat(@incl,char(13),', ',char(39), @qry_id,char(39),char(13),'
+		set @incl=concat(@incl,char(13),', ck.qry_id ',char(13),'
             , prtl_poc1ab_exits.start_year
             , dsch.cd_discharge_type');
 		if NOT(trim(p_age_grouping_cd) ='0' 
@@ -455,6 +455,62 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 	        set @incl=concat(@incl,char(13),'
 			join tblbudg bud on bud.match_code=prtl_poc1ab_exits.filter_service_budget ');
         end if;	
+      set @incl=concat(@incl,char(13),'
+     join cachekeys ck on ck.int_hash_key=');
+       if NOT(trim(p_age_grouping_cd) ='0' 
+            and trim(p_gender_cd) ='0'
+            and trim(p_ethnicity_cd)='0'
+            and trim(p_init_cd_plcm_setng)='0' 
+            and trim(p_long_cd_plcm_setng)='0' 
+            and trim(p_county_cd) = '0'  )  then
+			set @incl=concat(@incl,'
+            cast(mtch.int_param_key as decimal(22,0)) * ',@mult_int_param_key);
+		else
+			set @incl=concat(@incl,'
+            cast((',@constant,')  as decimal(22,0))');
+		end if;
+		if trim(p_bin_dep_cd)<>'0' then
+			set @incl=concat(@incl,'
+						+ cast(dep.bin_dep_cd as decimal(22,0)) * ',@mult_bin_dep_cd);
+		end if;
+		if trim(p_bin_los_cd)<>'0' then
+			set @incl=concat(@incl,' 
+            + cast(los.bin_los_cd as decimal(22,0))  * ',@mult_bin_los_cd);
+        end if;
+        if trim(p_bin_placement_cd)<>'0' then
+		    set @incl=concat(@incl,' 
+            + cast(plc.bin_placement_cd as decimal(22,0)) * ',@mult_bin_placement_cd);
+        end if;   
+        if trim(p_bin_ihs_svc_cd)<>'0' then
+	        set @incl=concat(@incl,' 
+            + cast(ihs.bin_ihs_svc_cd  as decimal(22,0)) * ',@mult_bin_ihs_svc_cd);
+        end if;
+        if trim(p_cd_reporter_type)<>'0' then
+	        set @incl=concat(@incl,'
+            + cast(rpt.cd_reporter_type  as decimal(22,0)) * ',@mult_cd_reporter_type);
+        end if;					
+        if trim(p_filter_access_type)<>'0' then
+	        set @incl=concat(@incl,' 
+            + cast(acc.cd_access_type as decimal(22,0)) * ',@mult_cd_access_type);
+        end if;					
+
+        if trim(p_filter_allegation) <> '0' then
+	        set @incl=concat(@incl,' 
+            + cast(alg.cd_allegation  as decimal(22,0)) * ',@mult_cd_allegation);
+        end if;	       
+        if trim(p_filter_finding) <> '0' then
+	        set @incl=concat(@incl,'
+            + cast(fnd.cd_finding  as decimal(22,0)) * ',@mult_cd_finding);
+        end if;	        
+        if trim(p_filter_service_category) <> '0' then
+	        set @incl=concat(@incl,'
+            + cast(srv.cd_subctgry_poc_frc  as decimal(22,0)) * ',@mult_cd_subctgry_poc_frc);
+        end if;	        
+        if trim(p_filter_service_budget) <> '0' then
+	        set @incl=concat(@incl,'
+            +  cast(bud.cd_budget_poc_frc as decimal(22,0)) * ',@mult_cd_budget_poc_frc);
+        end if;	
+        set @incl=concat(@incl,char(13),' and ck.in_cache=0',char(13));            
 		set @incl=concat(@incl,char(13),'
          			group by  prtl_poc1ab_exits.qry_type
   					, prtl_poc1ab_exits.date_type 
@@ -517,7 +573,7 @@ if NOT(trim(p_age_grouping_cd) ='0'
 	        set @incl=concat(@incl,char(13),'
 			, bud.cd_budget_poc_frc ');
         end if;	
-        set @incl=concat(@incl,';',char(13));
+        set @incl=concat(@incl,' , ck.qry_id;',char(13));
         
         drop temporary table if exists myexit;
         create temporary table myexit as select @incl;
@@ -562,8 +618,8 @@ if NOT(trim(p_age_grouping_cd) ='0'
 								   ,init_cd_plcm_setng
 								   ,long_cd_plcm_setng
 								   ,county_cd
-								   ,@qry_id
-								   ,int_hash_key
+								   ,ck.qry_id
+								   ,ck.int_hash_key
 						from cachekeys ck
 						join (select distinct int_param_key,age_grouping_cd,cd_race_census,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd from tblprmlocdem)  q on q.int_param_key=ck.int_param_key
 						where ck.in_cache=0;        
