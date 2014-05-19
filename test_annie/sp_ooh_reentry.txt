@@ -94,10 +94,12 @@ if  flg_procedure_off =0 then
                 and bin_dep_cd=left(p_bin_dep_cd,20)
            order by qry_ID  limit 1);
            
+    set @qry_ID:= coalesce(p_qry_id,(select (max(qry_ID) + 1)  from cache_pbcp5_params),1);           
+           
     if p_qry_id is null  then
 
 
-            set @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_pbcp5_params),1);
+            
             INSERT INTO cache_pbcp5_params
                     (qry_id
                     , age_grouping_cd
@@ -287,10 +289,10 @@ if  flg_procedure_off =0 then
             and trim(p_long_cd_plcm_setng)='0' 
             and trim(p_county_cd) = '0'  )  then
 			set @myqry=concat(@myqry,'
-            ,cast((cast(mtch.int_param_key as decimal(22,0)) * ',@mult_int_param_key,' ) as decimal(22,0))');
+            ,cast((cast(mtch.int_param_key as decimal(22,0)) * cast(',@mult_int_param_key,' as decimal(22,0)) ) as decimal(22,0))');
 		else
 			set @myqry=concat(@myqry,'
-            ,cast((cast(',@int_param_key,'  as decimal(22,0)) * ',@mult_int_param_key,' ) as decimal(22,0))');
+            ,cast((cast(',@int_param_key,'  as decimal(22,0)) * cast(',@mult_int_param_key,' as decimal(22,0)) ) as decimal(22,0))');
 		end if;
 		if trim(p_bin_dep_cd)<>'0' then
 			set @myqry=concat(@myqry,' 
@@ -644,10 +646,10 @@ if  flg_procedure_off =0 then
             and trim(p_long_cd_plcm_setng)='0' 
             and trim(p_county_cd) = '0'  )  then
 			set @incl=concat(@incl,'
-            cast((cast(mtch.int_param_key as decimal(22,0)) * ',@mult_int_param_key,' ) as decimal(22,0))');
+            cast((cast(mtch.int_param_key as decimal(22,0)) * cast(',@mult_int_param_key,' as decimal(22,0)) ) as decimal(22,0))');
 		else
 			set @incl=concat(@incl,'
-            cast((',@int_param_key,' * ',@mult_int_param_key,' ) as decimal(22,0))');
+            cast((cast(',@int_param_key,' as decimal(22,0)) * cast(',@mult_int_param_key,' as decimal(22,0)) ) as decimal(22,0))');
 		end if;
 		if trim(p_bin_dep_cd)<>'0' then
 			set @incl=concat(@incl,' 
@@ -695,8 +697,7 @@ if  flg_procedure_off =0 then
     and tot_episodes.qry_type=pbcp5.qry_type
     and tot_episodes.date_type=pbcp5.date_type
     and tot_episodes.cd_discharge_type=pbcp5.cd_discharge_type 
-    join (select distinct int_hash_key,qry_id,in_cache from cachekeys)
-    che on  che.int_hash_key = ');
+    join cachekeys che on  che.int_hash_key = ');
     	if NOT(trim(p_age_grouping_cd) ='0' 
             and trim(p_gender_cd) ='0'
             and trim(p_ethnicity_cd)='0'
@@ -704,10 +705,10 @@ if  flg_procedure_off =0 then
             and trim(p_long_cd_plcm_setng)='0' 
             and trim(p_county_cd) = '0'  )  then
 			set @incl=concat(@incl,'
-            cast((cast(mtch.int_param_key as decimal(22,0)) * ',@mult_int_param_key,' ) as decimal(22,0))');
+            cast((cast(mtch.int_param_key as decimal(22,0)) *  cast(',@mult_int_param_key,' as decimal(22,0))) as decimal(22,0))');
 		else
 			set @incl=concat(@incl,'
-            cast((',@int_param_key,' * ',@mult_int_param_key,' ) as decimal(22,0))');
+            cast((cast(',@int_param_key,' as decimal(22,0))  * cast(',@mult_int_param_key,' as decimal(22,0))  ) as decimal(22,0))');
 		end if;
 		if trim(p_bin_dep_cd)<>'0' then
 			set @incl=concat(@incl,' 
@@ -974,7 +975,7 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
                             , ref_bud.tx_budget_poc_frc  "Budget"
                 , pbcp5.cd_discharge_type
                             , toe.type_of_exit_desc as "Discharge Type"
-                , reentry_rate as "Reentry Percent"
+                , reentry_rate as "Re-Entry Percent"
             from cache_pbcp5_aggr pbcp5 
             join cachekeys ck on ck.int_hash_key=pbcp5.int_hash_key
                 and ck.qry_id=pbcp5.qry_id

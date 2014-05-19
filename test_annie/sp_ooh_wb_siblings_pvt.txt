@@ -83,10 +83,10 @@ if  flg_procedure_off =0 then
                 and bin_dep_cd=left(p_bin_dep_cd,20)
            order by qry_ID  limit 1);
            
+    set @qry_ID:= coalesce(p_qry_id,(select (max(qry_ID) + 1)  from cache_pbcw4_params),1);
+
     if p_qry_id is null  then
     
-            set @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_pbcw4_params),1);
-
             INSERT INTO cache_pbcw4_params
                     (qry_id
                     , age_grouping_cd
@@ -404,7 +404,7 @@ if  flg_procedure_off =0 then
             and trim(p_long_cd_plcm_setng)='0' 
             and trim(p_county_cd) = '0'  )  then
             set @incl=concat(@incl,'      
-            cast((cast(mtch.int_param_key as decimal(22,0)) * ',@mult_int_param_key,' ) as decimal(22,0)) +');
+            cast((cast(mtch.int_param_key as decimal(22,0)) *  cast(',@mult_int_param_key,' as decimal(22,0)) ) as decimal(22,0)) +');
         else
             set @incl=concat(@incl,'
             cast((',@constant,' ) as decimal(22,0))');

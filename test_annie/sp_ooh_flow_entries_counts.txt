@@ -100,11 +100,11 @@ if  flg_procedure_off =0 then
    order by qry_ID  limit 1;
   
  
-   
-					-- qry_id is still null
+   set @qry_ID:= coalesce(p_qry_id,(select (max(qry_ID) + 1)  from cache_poc1ab_entries_params),1);
+
     if p_qry_id is  null  then
     
-        set @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_poc1ab_entries_params),1);
+        
   
         INSERT INTO cache_poc1ab_entries_params
                 (qry_id
@@ -178,12 +178,12 @@ if  flg_procedure_off =0 then
         , coalesce(p_qry_id,@qry_ID));
  
 
-update cachekeys,cache_qry_param_poc1ab_entries
-        set cachekeys.in_cache=1,cachekeys.qry_id=cache_qry_param_poc1ab_entries.qry_id
-        where cachekeys.int_hash_key=cache_qry_param_poc1ab_entries.int_hash_key;    
-        
-      select sum(in_cache),count(*) ,count(distinct qry_id)
-            into var_row_cnt_cache,var_row_cnt_param ,var_match_unq_qry_id
+    update cachekeys,cache_qry_param_poc1ab_entries
+    set cachekeys.in_cache=1,cachekeys.qry_id=cache_qry_param_poc1ab_entries.qry_id
+    where cachekeys.int_hash_key=cache_qry_param_poc1ab_entries.int_hash_key;    
+    
+    select sum(in_cache),count(*) ,count(distinct qry_id)
+        into var_row_cnt_cache,var_row_cnt_param ,var_match_unq_qry_id
     from cachekeys;
     
                    
@@ -349,7 +349,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
             and trim(p_long_cd_plcm_setng)='0' 
             and trim(p_county_cd) = '0'  )  then
 			set @incl=concat(@incl,'
-            ,cast(mtch.int_param_key as decimal(22,0)) * ',@mult_int_param_key);
+            ,cast(mtch.int_param_key as decimal(22,0)) *  cast(',@mult_int_param_key,' as decimal(22,0))');
 		else
 			set @incl=concat(@incl,'
             ,cast((',@constant,')  as decimal(22,0))');
@@ -458,7 +458,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
             and trim(p_long_cd_plcm_setng)='0' 
             and trim(p_county_cd) = '0'  )  then
 			set @incl=concat(@incl,'
-            cast(mtch.int_param_key as decimal(22,0)) * ',@mult_int_param_key);
+            cast(mtch.int_param_key as decimal(22,0)) *  cast(',@mult_int_param_key,' as decimal(22,0))');
 		else
 			set @incl=concat(@incl,'
             cast((',@constant,')  as decimal(22,0))');

@@ -79,9 +79,10 @@ begin
         order by qry_ID  limit 1);
                 
       
+        set @qry_ID:= coalesce(p_qry_id,(select (max(qry_ID) + 1)  from cache_poc3ab_params),1);
         if p_qry_id is null then   
         
-            set @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_poc3ab_params),1);
+            
             INSERT INTO cache_poc3ab_params
             (qry_id
             , cd_sib_age_grp
@@ -476,7 +477,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
                             else round(cnt_start_date + 2 * sqrt(-2 * log(poc3ab.x1)) * cos(2*pi()*poc3ab.x2),0)
                             end
                         else (cnt_start_date) 
-                    end  as   "Total In Care First Day"
+                    end  as   "Total Cases First Day"
                 , case when (cnt_opened) > 0 /* jitter all above 0 */ 
                         then 
                             case when (round(cnt_opened + 2 * sqrt(-2 * log(poc3ab.x1)) 
@@ -485,7 +486,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
                             else round(cnt_opened + 2 * sqrt(-2 * log(poc3ab.x1)) * cos(2*pi()*poc3ab.x2),0)
                             end
                         else (cnt_opened) 
-                    end as "Number of Entries"
+                    end as "Opened Cases"
                 ,  case when ( --  first day + entered care < exited care
                     (case when (cnt_start_date) > 0 /* jitter all above 0 */ 
                         then 
@@ -546,7 +547,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
                             end
                         else (cnt_opened) 
                     end)
-                end as "Number of Exits"
+                end as "Case Closures"
             FROM cache_poc3ab_aggr poc3ab  
             join cachekeys ck on ck.qry_id=poc3ab.qry_id and ck.int_hash_key=poc3ab.int_hash_key
             join ref_lookup_sib_age_grp ref_age on ref_age.cd_sib_age_grp=poc3ab.cd_sib_age_grp

@@ -74,10 +74,10 @@ begin
         and filter_budget=left(p_filter_service_budget,50)
     order by qry_ID  limit 1);
                 
-      
+    set @qry_ID:= coalesce(p_qry_id,(select (max(qry_ID) + 1)  from cache_pbcs3_params),1);  
     if p_qry_id is null then         
 
-        set @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_pbcs3_params),1);
+        
         INSERT INTO cache_pbcs3_params
             (qry_id
             , cd_sib_age_grp

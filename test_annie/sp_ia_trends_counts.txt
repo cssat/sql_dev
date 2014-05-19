@@ -62,10 +62,10 @@ begin
             and filter_finding=left(p_filter_finding,30)
         limit 1; 
             
-            
+  set @qry_ID:= coalesce(p_qry_id,(select (max(qry_ID) + 1)  from cache_poc2ab_params),1);          
   if p_qry_id is null then    
   
-      set @qry_ID:= coalesce((select (max(qry_ID) + 1)  from cache_poc2ab_params),1);
+      
   
 			INSERT INTO cache_poc2ab_params
   			(qry_id
