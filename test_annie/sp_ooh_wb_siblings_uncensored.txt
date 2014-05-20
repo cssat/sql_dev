@@ -1,0 +1,706 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_ooh_wb_siblings_uncensored`(  p_age_grouping_cd varchar(30)
+,  p_ethnicity_cd varchar(30)
+,  p_gender_cd varchar(10)
+,  p_init_cd_plcm_setng varchar(30)
+,  p_long_cd_plcm_setng varchar(30) 
+,  p_county_cd varchar(200) 
+,  p_bin_los_cd varchar(30) 
+,  p_bin_placement_cd varchar(30) 
+,  p_bin_ihs_svc_cd varchar(30) 
+,  p_cd_reporter_type varchar(100) 
+,  p_filter_access_type varchar(30) 
+,  p_filter_allegation  varchar(30)
+, p_filter_finding varchar(30)
+, p_filter_service_category  varchar(100)
+, p_filter_service_budget varchar(100)
+, p_bin_dep_cd varchar(20)
+ )
+begin
+
+declare flg_procedure_off int;
+
+declare p_qry_id bigint;
+declare p_mindate datetime;
+declare p_maxdate datetime;
+declare p_minmonthstart datetime;
+declare p_maxmonthstart datetime;
+declare var_calling_procedure int;
+
+
+declare x1 float;
+declare x2 float;
+
+declare var_row_cnt_param int;
+declare var_row_cnt_cache int;
+declare unq_qry_id int;
+
+
+
+--  DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+
+set x1=rand();
+set x2=rand();
+set var_calling_procedure=13;
+
+/***  turn procedure on / off for loading data ***************************************/
+set flg_procedure_off =0;
+
+if  flg_procedure_off =0 then  
+
+    call sp_ooh_assign_desc(var_calling_procedure);
+
+    select min_date_any ,max_date_any ,min_date_any ,max_date_any 
+    into p_minmonthstart,p_maxmonthstart  ,p_mindate,p_maxdate
+    FROM ref_lookup_max_date 
+    where id=var_calling_procedure;
+    
+ 
+
+    set p_qry_id=(
+            select qry_id 
+            from cache_pbcw4_params
+            where age_grouping_cd=left(p_age_grouping_cd,20)
+                and cd_race_census=left(p_ethnicity_cd,30) 
+                and pk_gndr=left(p_gender_cd,10) 
+                and init_cd_plcm_setng=left(p_init_cd_plcm_setng,50) 
+                and long_cd_plcm_setng=left(p_long_cd_plcm_setng,50) 
+                and county_cd=	left(p_County_Cd,200)   
+                and bin_los_cd=left(p_bin_los_cd,30)
+                and bin_placement_cd=left(p_bin_placement_cd,30)
+                and bin_ihs_svc_cd=left(p_bin_ihs_svc_cd,30)
+                and cd_reporter_type=left(p_cd_reporter_type,100)
+                and filter_access_type=left(p_filter_access_type,30)
+                and filter_allegation=left(p_filter_allegation,30)
+                and filter_finding=left(p_filter_finding,30)
+                and filter_srvc_type=left(p_filter_service_category,50)
+                and filter_budget=left(p_filter_service_budget,50)
+                and bin_dep_cd=left(p_bin_dep_cd,20)
+           order by qry_ID  limit 1);
+           
+    set @qry_ID:= coalesce(p_qry_id,(select (max(qry_ID) + 1)  from cache_pbcw4_params),1);           
+           
+    if p_qry_id is null  then
+    
+            
+
+            INSERT INTO cache_pbcw4_params
+                    (qry_id
+                    , age_grouping_cd
+                    ,cd_race_census
+                    ,pk_gndr
+                    ,init_cd_plcm_setng
+                    ,long_cd_plcm_setng
+                    ,county_cd
+                    ,bin_los_cd
+                    ,bin_placement_cd
+                    ,bin_ihs_svc_cd
+                    ,cd_reporter_type
+                    ,filter_access_type
+                    ,filter_allegation
+                    ,filter_finding
+                    ,filter_srvc_type
+                    ,filter_budget
+                    ,bin_dep_cd
+                    ,min_start_date
+                    ,max_start_date
+                    ,cnt_qry
+                    ,last_run_date)
+
+            select 
+                 @qry_ID
+                ,p_age_grouping_cd
+                ,p_ethnicity_cd
+                ,p_gender_cd
+                ,p_init_cd_plcm_setng
+                ,p_long_cd_plcm_setng
+                ,p_county_cd
+                ,p_bin_los_cd
+                ,p_bin_placement_cd
+                ,p_bin_ihs_svc_cd
+                ,p_cd_reporter_type
+                ,p_filter_access_type
+                ,p_filter_allegation
+                ,p_filter_finding
+                ,p_filter_service_category
+                ,p_filter_service_budget
+                ,p_bin_dep_cd
+                ,p_minmonthstart
+                ,p_maxmonthstart
+                ,1
+                ,now();
+     
+  
+          else --  p_qry_id is not null
+            
+            update cache_pbcw4_params
+            set cnt_qry=cnt_qry + 1,last_run_date=now()
+            where qry_id=p_qry_id;
+        
+        end if;  -- p_qry_id is null
+ 
+     call sp_ooh_create_cachekeys(p_age_grouping_cd 
+        ,  p_ethnicity_cd 
+        ,  p_gender_cd 
+        ,  p_init_cd_plcm_setng 
+        ,  p_long_cd_plcm_setng 
+        ,  p_county_cd 
+        ,  p_bin_los_cd 
+        ,  p_bin_placement_cd 
+        ,  p_bin_ihs_svc_cd 
+        ,  p_cd_reporter_type 
+        ,  p_filter_access_type 
+        ,  p_filter_allegation  
+        , p_filter_finding 
+        , p_filter_service_category  
+        , p_filter_service_budget
+        , p_bin_dep_cd
+        , var_calling_procedure
+        , coalesce(p_qry_id,@qry_ID));
+
+
+        update cachekeys,cache_qry_param_pbcw4
+        set cachekeys.in_cache=1,cachekeys.qry_id=cache_qry_param_pbcw4.qry_id
+        where cachekeys.int_hash_key=cache_qry_param_pbcw4.int_hash_key;
+  
+        select sum(in_cache),count(*) ,count(distinct qry_id)
+            into var_row_cnt_cache,var_row_cnt_param ,unq_qry_id
+                from cachekeys;
+
+  if  var_row_cnt_param <> var_row_cnt_cache then
+  
+  
+       call sp_ooh_load_param_tbls('2000-01-01'
+        ,  p_age_grouping_cd 
+        ,  p_ethnicity_cd 
+        ,  p_gender_cd 
+        ,  p_init_cd_plcm_setng 
+        ,  p_long_cd_plcm_setng 
+        ,  p_county_cd 
+        ,  p_bin_los_cd 
+        ,  p_bin_placement_cd 
+        ,  p_bin_ihs_svc_cd 
+        ,  p_cd_reporter_type 
+        ,  p_filter_access_type 
+        ,  p_filter_allegation  
+        , p_filter_finding 
+        , p_filter_service_category  
+        , p_filter_service_budget
+        , p_bin_dep_cd
+        , 0  -- p_is_perCapita
+        , 1  -- p_load_paramkey_tbl
+        , p_mindate
+        , p_maxdate
+        , var_calling_procedure); 
+
+          
+    call sp_ooh_assign_param_multiplier;
+ 
+ set @myqry='INSERT INTO cache_pbcw4_aggr
+           (qry_type
+           ,date_type
+           ,cohort_entry_date
+           ,int_param_key
+           ,bin_dep_cd
+           ,bin_los_cd
+           ,bin_placement_cd
+           ,bin_ihs_svc_cd
+           ,cd_reporter_type
+           ,cd_access_type
+           ,cd_allegation
+           ,cd_finding
+           ,cd_subctgry_poc_frc
+           ,cd_budget_poc_frc
+           ,age_grouping_cd
+           ,cd_race
+           ,pk_gndr
+           ,init_cd_plcm_setng
+           ,long_cd_plcm_setng
+           ,county_cd
+            ,kincare
+            ,bin_sibling_group_size
+            ,all_together
+            ,some_together
+            ,none_together
+           ,min_start_date
+           ,max_start_date
+           ,x1
+           ,x2
+           ,insert_date
+           ,qry_id
+           ,cohort_begin_year
+           ,int_hash_key
+           , cnt_cohort)
+
+		SELECT    prtl_pbcw4.qry_type
+				, prtl_pbcw4.date_type 
+				, prtl_pbcw4.pit_date';
+       
+       if NOT(trim(p_age_grouping_cd) ='0' 
+            and trim(p_gender_cd) ='0'
+            and trim(p_ethnicity_cd)='0'
+            and trim(p_init_cd_plcm_setng)='0' 
+            and trim(p_long_cd_plcm_setng)='0' 
+            and trim(p_county_cd) = '0'  )  then
+        set @incl=concat(@myqry,', mtch.int_param_key');
+        else
+        set @incl=concat(@myqry,', ',@int_param_key,'');
+        end if;
+        if trim(p_bin_dep_cd)='0' then
+        set @incl=concat(@incl,', 0');
+        else
+        set @incl=concat(@incl,', dep.bin_dep_cd');
+        end if;        if trim(p_bin_los_cd)='0' then
+        set @incl=concat(@incl,', 0');
+        else
+        set @incl=concat(@incl,', los.bin_los_cd');
+        end if;
+          if trim(p_bin_placement_cd)='0' then
+        set @incl=concat(@incl,', 0');
+        else
+        set @incl=concat(@incl,', plc.bin_placement_cd');
+        end if;   
+        if trim(p_bin_ihs_svc_cd)='0' then
+        set @incl=concat(@incl,', 0');
+        else
+        set @incl=concat(@incl,', ihs.bin_ihs_svc_cd');
+        end if;
+        if trim(p_cd_reporter_type)='0' then
+        set @incl=concat(@incl,', 0');
+        else
+        set @incl=concat(@incl,', rpt.cd_reporter_type');
+        end if;					
+        if trim(p_filter_access_type)='0' then
+        set @incl=concat(@incl,', 0');
+        else
+        set @incl=concat(@incl,', acc.cd_access_type');
+        end if;					
+
+        if trim(p_filter_allegation)= '0' then
+        set @incl=concat(@incl,', 0');
+        else
+        set @incl=concat(@incl,', alg.cd_allegation');
+        end if;	       
+        if trim(p_filter_finding)='0' then
+        set @incl=concat(@incl,', 0');
+        else
+        set @incl=concat(@incl,', fnd.cd_finding');
+        end if;	        
+        if trim(p_filter_service_category) = '0'  then
+        set @incl=concat(@incl,', 0');
+        else
+        set @incl=concat(@incl,', srv.cd_subctgry_poc_frc');
+        end if;	        
+        if trim(p_filter_service_budget) ='0' then
+        set @incl=concat(@incl,', 0');
+        else
+        set @incl=concat(@incl,', bud.cd_budget_poc_frc ');
+        end if;	
+       if NOT(trim(p_age_grouping_cd) ='0' 
+            and trim(p_gender_cd) ='0'
+            and trim(p_ethnicity_cd)='0'
+            and trim(p_init_cd_plcm_setng)='0' 
+            and trim(p_long_cd_plcm_setng)='0' 
+            and trim(p_county_cd) = '0'  )  then
+       set @incl=concat(@incl,', mtch.age_grouping_cd 
+				, mtch.cd_race_census
+				, mtch.pk_gndr
+				, mtch.init_cd_plcm_setng
+				, mtch.long_cd_plcm_setng
+				, mtch.county_cd
+				, kin.kincare
+				, sib.bin_sibling_group_size
+				, round(sum(all_sib_together)/(sum(total)* 1.0000) * 100,2) as All_Together
+				, round(sum(some_sib_together)/(sum(total)* 1.0000) * 100,2) as Some_Together
+				, round(sum(no_sib_together)/(sum(total)* 1.0000) * 100,2) as None_Together
+				, DATE',char(39));
+        set @incl=concat(@incl,p_minmonthstart,char(39));
+        set @incl=concat(@incl,' as minmonthstart');
+				set @incl=concat(@incl,', DATE',char(39));
+        set @incl=concat(@incl,p_maxmonthstart,char(39),' as maxmonthstart');
+				set @incl=concat(@incl, ',',char(39),x1,char(39));
+				set @incl=concat(@incl, ',',char(39),x2,char(39));
+				set @incl=concat(@incl, ', DATE',char(39), now(),char(39),' as insert_date');
+				set @incl=concat(@incl, ', che.qry_id ',char(13));
+				set @incl=concat(@incl, ',year(prtl_pbcw4.pit_date)
+				,int_hash_key
+        , sum(total)
+			FROM prtl_pbcw4  
+				join tblprmlocdem mtch on mtch.int_match_param_key=prtl_pbcw4.int_match_param_key 
+				and mtch.cd_race_census in (select distinct cd_race from tbleth)');
+        else
+        set @incl=concat(@incl,', 0, 0, 0, 0, 0, 0
+				, 0
+				, sib.nbr_sibling_desc
+				, round(sum(all_sib_together)/(sum(total)* 1.0000) * 100,2) as All_Together
+				, round(sum(some_sib_together)/(sum(total)* 1.0000) * 100,2) as Some_Together
+				, round(sum(no_sib_together)/(sum(total)* 1.0000) * 100,2) as None_Together
+				, DATE',char(39));
+        set @incl=concat(@incl,p_minmonthstart,char(39));
+        set @incl=concat(@incl,' as minmonthstart');
+				set @incl=concat(@incl,', DATE',char(39));
+        set @incl=concat(@incl,p_maxmonthstart,char(39),' as maxmonthstart');
+				set @incl=concat(@incl, ',',char(39),x1,char(39));
+				set @incl=concat(@incl, ',',char(39),x2,char(39));
+				set @incl=concat(@incl, ', DATE',char(39), now(),char(39),' as insert_date');
+				set @incl=concat(@incl, ',',char(39),@qry_id,char(39));
+				set @incl=concat(@incl, ',year(prtl_pbcw4.pit_date)
+				,int_hash_key
+        , sum(total)
+			FROM prtl_pbcw4  ');
+        end if;
+         if trim(p_bin_dep_cd)<>'0' then
+        set @incl=concat(@incl,' 
+		join tbldep dep on prtl_pbcw4.bin_dep_cd=dep.match_code');
+        end if;
+        if trim(p_bin_los_cd)<>'0' then
+        set @incl=concat(@incl,' 
+		join tbllos los on prtl_pbcw4.max_bin_los_cd=los.match_code');
+        end if;
+        if trim(p_bin_placement_cd) <>'0' then
+         set @incl=concat(@incl,' 
+		 join tblnbrplc plc on plc.match_code=prtl_pbcw4.bin_placement_cd');
+        end if;
+        if trim(p_bin_ihs_svc_cd) <> '0' then
+            set @incl=concat(@incl,' 
+			join tblihs ihs on ihs.match_code=prtl_pbcw4.bin_ihs_svc_cd');
+        end if;
+        if trim(p_cd_reporter_type) <> '0' then
+            set  @incl=concat(@incl,' 
+			join tblrpt rpt on rpt.match_code=prtl_pbcw4.cd_reporter_type');
+        end if;
+        if trim(p_filter_access_type)<>'0' then
+             set  @incl=concat(@incl,'  
+			 join tblacc acc on acc.match_code=prtl_pbcw4.filter_access_type');
+        end if;
+        if trim(p_filter_allegation) <> '0' then
+            set  @incl=concat(@incl,'  
+			join tblalg alg on alg.match_code=prtl_pbcw4.filter_allegation');
+        end if;
+        if trim(p_filter_finding)<> '0' then
+             set  @incl=concat(@incl,'  
+			 join tblfnd fnd on fnd.match_code=prtl_pbcw4.filter_finding');
+        end if;
+        if trim(p_filter_service_category) <> '0' then
+             set  @incl=concat(@incl,' 
+			 join tblsrvc srv on srv.match_code=prtl_pbcw4.filter_service_category');
+        end if;
+        if trim(p_filter_service_budget) <> '0' then
+            set  @incl=concat(@incl,' 
+			join tblbudg bud on bud.match_code=prtl_pbcw4.filter_service_budget');
+        end if;
+		set  @incl=concat(@incl,' 
+		join prm_sib sib on sib.match_code=prtl_pbcw4.bin_sibling_group_size');
+		set  @incl=concat(@incl,' 
+		join prm_kin kin on kin.match_code=prtl_pbcw4.kincare
+    join cachekeys che on che.int_hash_key=');
+        if NOT(trim(p_age_grouping_cd) ='0' 
+            and trim(p_gender_cd) ='0'
+            and trim(p_ethnicity_cd)='0'
+            and trim(p_init_cd_plcm_setng)='0' 
+            and trim(p_long_cd_plcm_setng)='0' 
+            and trim(p_county_cd) = '0'  )  then
+            set @incl=concat(@incl,'      
+            cast((cast(mtch.int_param_key as decimal(22,0)) *  cast(',@mult_int_param_key,' as decimal(22,0))) as decimal(22,0)) +');
+        else
+            set @incl=concat(@incl,'
+            cast((',@constant,' ) as decimal(22,0))');
+            end if;
+            if trim(p_bin_dep_cd)<>'0' then
+                set @incl=concat(@incl,' 
+                + cast((dep.bin_dep_cd * ',@mult_bin_dep_cd,' )as decimal(22,0)) ');
+            end if;	
+        if trim(p_bin_los_cd)<>'0' then
+                set @incl=concat(@incl,' 
+            + cast((los.bin_los_cd * ',@mult_bin_los_cd,' )as decimal(22,0)) ');
+        end if;
+        if trim(p_bin_placement_cd)<>'0' then
+		    set @incl=concat(@incl,' 
+            + cast((plc.bin_placement_cd * ',@mult_bin_placement_cd,' )as decimal(22,0))');
+        end if;   
+        if trim(p_bin_ihs_svc_cd)<>'0' then
+	        set @incl=concat(@incl,' 
+            + cast( (ihs.bin_ihs_svc_cd * ',@mult_bin_ihs_svc_cd,' ) as decimal(22,0))');
+        end if;
+        if trim(p_cd_reporter_type)<>'0' then
+	        set @incl=concat(@incl,'
+            + cast((rpt.cd_reporter_type * ',@mult_cd_reporter_type,' ) as decimal(22,0)) ');
+        end if;					
+        if trim(p_filter_access_type)<>'0' then
+	        set @incl=concat(@incl,' 
+            + cast((acc.cd_access_type * ',@mult_cd_access_type,') as decimal(22,0))');
+        end if;					
+
+        if trim(p_filter_allegation) <> '0' then
+	        set @incl=concat(@incl,' 
+            + cast( (alg.cd_allegation * ',@mult_cd_allegation,') as decimal(22,0))');
+        end if;	       
+        if trim(p_filter_finding) <> '0' then
+	        set @incl=concat(@incl,'
+            + cast( (fnd.cd_finding * ',@mult_cd_finding,') as decimal(22,0))');
+        end if;	        
+        if trim(p_filter_service_category) <> '0' then
+	        set @incl=concat(@incl,'
+            + cast((srv.cd_subctgry_poc_frc * ',@mult_cd_subctgry_poc_frc,') as decimal(22,0))');
+        end if;	        
+        if trim(p_filter_service_budget) <> '0' then
+	        set @incl=concat(@incl,'
+            +  bud.cd_budget_poc_frc * ',@mult_cd_budget_poc_frc);
+        end if;	
+    				set @incl=concat(@incl,'
+                and che.in_cache=0
+        group by  kin.kincare
+          ,prtl_pbcw4.qry_type
+					,prtl_pbcw4.date_type 
+					,prtl_pbcw4.pit_date
+					,year(prtl_pbcw4.pit_date)
+					,sib.bin_sibling_group_size');
+        if NOT(trim(p_age_grouping_cd) ='0' 
+            and trim(p_gender_cd) ='0'
+            and trim(p_ethnicity_cd)='0'
+            and trim(p_init_cd_plcm_setng)='0' 
+            and trim(p_long_cd_plcm_setng)='0' 
+            and trim(p_county_cd) = '0'  )  then
+            set @incl=concat(@incl,'    
+					,mtch.int_param_key
+					,mtch.age_grouping_cd 
+					,mtch.pk_gndr
+					,mtch.cd_race_census
+					,mtch.init_cd_plcm_setng
+					,mtch.long_cd_plcm_setng
+					,mtch.county_cd');
+         end if;
+         if trim(p_bin_dep_cd)<>'0' then
+            set @incl=concat(@incl,', dep.bin_dep_cd');
+        end if;
+         if trim(p_bin_los_cd)<>'0' then
+            set @incl=concat(@incl,', los.bin_los_cd');
+        end if;
+        if trim(p_bin_placement_cd) <>'0' then
+            set @incl=concat(@incl,',  plc.bin_placement_cd');
+        end if;
+        if trim(p_bin_ihs_svc_cd) <> '0' then
+						set @incl=concat(@incl,', ihs.bin_ihs_svc_cd');
+        end if;
+        if trim(p_cd_reporter_type) <> '0' then
+            set  @incl=concat(@incl,', rpt.cd_reporter_type');
+        end if;
+        if trim(p_filter_access_type)<>'0' then
+             set  @incl=concat(@incl,', acc.cd_access_type ');
+        end if;
+        if trim(p_filter_allegation) <> '0' then
+            set  @incl=concat(@incl,', alg.cd_allegation');
+        end if;
+        if trim(p_filter_finding)<> '0' then
+            set  @incl=concat(@incl,', fnd.cd_finding');
+        end if;
+        if trim(p_filter_service_category) <> '0' then
+             set  @incl=concat(@incl,', srv.cd_subctgry_poc_frc');
+        end if;
+        if trim(p_filter_service_budget) <> '0' then
+            set  @incl=concat(@incl,', bud.cd_budget_poc_frc ');
+        end if;                   
+        set @incl=concat(@incl,'
+					, che.int_hash_key
+          , che.qry_id');
+        drop temporary table if exists mycode;
+        create temporary table mycode as
+        select @incl;
+        PREPARE stmt FROM @incl;
+        EXECUTE stmt;
+        DEALLOCATE PREPARE stmt;
+          INSERT IGNORE INTO cache_qry_param_pbcw4
+								   (int_param_key
+                   ,bin_dep_cd
+								   ,bin_los_cd
+								   ,bin_placement_cd
+								   ,bin_ihs_svc_cd
+								   ,cd_reporter_type
+								   ,cd_access_type
+								   ,cd_allegation
+								   ,cd_finding
+								   ,cd_subctgry_poc_frc
+								   ,cd_budget_poc_frc
+								   ,age_grouping_cd
+								   ,cd_race
+								   ,pk_gndr
+								   ,init_cd_plcm_setng
+								   ,long_cd_plcm_setng
+								   ,county_cd
+								   ,qry_id
+								   ,int_hash_key)
+						select ck.int_param_key
+                   ,bin_dep_cd
+								   ,bin_los_cd
+								   ,bin_placement_cd
+								   ,bin_ihs_svc_cd
+								   ,cd_reporter_type
+								   ,cd_access_type
+								   ,cd_allegation
+								   ,cd_finding
+								   ,cd_subctgry_poc_frc
+								   ,cd_budget_poc_frc
+								   ,age_grouping_cd
+								   ,cd_race_census
+								   ,pk_gndr
+								   ,init_cd_plcm_setng
+								   ,long_cd_plcm_setng
+								   ,county_cd
+								   ,ck.qry_id
+								   ,int_hash_key
+						from cachekeys ck
+						join (select distinct int_param_key,age_grouping_cd,cd_race_census,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd from tblprmlocdem)  q on q.int_param_key=ck.int_param_key
+						where ck.in_cache=0;         
+ end if; -- not all in cache
+         select
+            pbcw4.cohort_begin_year as "Year"
+						, qry_type "qry_type_poc1_first_all"
+						, pbcw4.age_grouping_cd
+						, case pbcw4.age_grouping_cd
+                                when 0 then @age0
+                                when 1 then @age1
+                                when 2 then @age2
+                                when 3 then @age3
+                                when 4 then @age4
+                                when 5 then @age5
+                                when 6 then @age6
+                                when 7 then @age7
+                end as "Age Grouping"
+						, pbcw4.cd_race as ethnicity_cd
+						, case pbcw4.cd_race
+                   when 0 then @eth0
+                   when 1 then @eth1
+                   when 2 then @eth2
+                   when 3 then @eth3
+                   when 4 then @eth4
+                   when 5 then @eth5
+                   when 6 then @eth6
+                   when 7 then @eth7
+                   when 8 then @eth8
+                   when 9 then @eth9
+                   when 10 then @eth10
+                   when 11 then @eth11
+                   when 12 then @eth12
+                   end as  "Race/Ethnicity" 
+						, pbcw4.pk_gndr as gender_cd
+						, case pbcw4.pk_gndr
+                                when 0 then @gdr0
+                                when 1 then @gdr1
+                                when 2 then @gdr2
+                                when 3 then @gdr3
+                              end as "Gender" 
+            , pbcw4.init_cd_plcm_setng
+            , case when pbcw4.init_cd_plcm_setng = 0 then @fpl0
+                    when pbcw4.init_cd_plcm_setng = 3 then @fpl3
+                    when pbcw4.init_cd_plcm_setng = 4 then @fpl4
+                    when pbcw4.init_cd_plcm_setng = 5 then @fpl5
+                    when pbcw4.init_cd_plcm_setng = 6 then @fpl6
+                    when pbcw4.init_cd_plcm_setng = 7 then @fpl7
+                end as  "Initial Placement"
+            , pbcw4.long_cd_plcm_setng  
+            , case when pbcw4.long_cd_plcm_setng = 0 then @lpl0
+                    when pbcw4.long_cd_plcm_setng = 3 then @lpl3
+                    when pbcw4.long_cd_plcm_setng = 4 then @lpl4
+                    when pbcw4.long_cd_plcm_setng = 5 then @lpl5
+                    when pbcw4.long_cd_plcm_setng = 6 then @lpl6
+                    when pbcw4.long_cd_plcm_setng = 7 then @lpl7
+                end as  "Longest Placement"
+						, pbcw4.county_cd
+						, ref_cnty.county as "County"
+						, pbcw4.bin_dep_cd as  "dependency_cd"
+						, ref_dep.bin_dep_desc as "Dependency"
+						, pbcw4.bin_los_cd
+						, ref_los.bin_los_desc as "Length of Service Desc"
+						, pbcw4.bin_placement_cd
+						, case pbcw4.bin_placement_cd
+                                when 0 then @plc0
+                                when 1 then @plc1
+                                when 2 then @plc2
+                                when 3 then @plc3
+                                when 4 then @plc4
+                                when 5 then @plc5
+                              end   as "Placement Count Desc"
+						, pbcw4.bin_ihs_svc_cd
+						, case pbcw4.bin_ihs_svc_cd
+                                when 0 then @ihs0
+                                when 1 then @ihs1
+                                when 2 then @ihs2
+                                when 3 then @ihs3
+                              end as "In-Home Service Desc"
+						, pbcw4.cd_reporter_type
+						, ref_rpt.tx_reporter_type as "Reporter Desc"
+						, pbcw4.cd_access_type
+						, ref_acc.tx_access_type as "Access type desc"
+						, pbcw4.cd_allegation
+						, case pbcw4.cd_allegation
+                   when 0 then @alg0
+                   when 1 then @alg1
+                   when 2 then @alg2
+                   when 3 then @alg3
+                   when 4 then @alg4
+                end as "Allegation" 
+						, pbcw4.cd_finding
+						, case pbcw4.cd_finding
+                   when 0 then @fnd0
+                   when 1 then @fnd1
+                   when 2 then @fnd2
+                   when 3 then @fnd3
+                   when 4 then @fnd4
+                end as "Finding"
+						, pbcw4.cd_subctgry_poc_frc as "service_type_cd"
+						, ref_srv.tx_subctgry_poc_frc as "Service Type"
+						, pbcw4.cd_budget_poc_frc   "budget_cd"
+						, ref_bud.tx_budget_poc_frc  "Budget"
+            , kincare
+            , case when kincare=1 then @kin1 else @kin0 end as "Placement Type"
+            , pbcw4.bin_sibling_group_size
+            , ref_sib.Sibling_Group_Name "Sibling Group Size"
+            , all_together  as All_Together
+            , some_together as Some_Together
+            , none_together as None_Together
+            , cnt_cohort
+                  "Number in Cohort"
+            FROM cache_pbcw4_aggr  pbcw4
+            join cachekeys ck on ck.qry_id=pbcw4.qry_id and ck.int_hash_key=pbcw4.int_hash_key
+            join vw_ref_dependency_lag ref_dep 
+                on ref_dep.bin_dep_cd=pbcw4.bin_dep_cd 
+                and ref_dep.date_type=pbcw4.date_type
+                and pbcw4.cohort_entry_date between ref_dep.min_filter_date and ref_dep.cohort_max_filter_date
+            join ref_filter_los ref_los 
+                    on ref_los.bin_los_cd=pbcw4.bin_los_cd
+--            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw4.init_cd_plcm_setng
+--            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw4.long_cd_plcm_setng
+            join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw4.county_cd
+            join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw4.cd_reporter_type
+            join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw4.cd_access_type
+            join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
+            join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
+            join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
+            where pbcw4.cohort_entry_date between p_mindate and p_maxdate
+            order by kincare asc,
+                pbcw4.bin_dep_cd asc
+                ,qry_type
+                ,cohort_begin_year asc
+                ,age_grouping_cd asc
+                    ,gender_cd asc
+                    ,ethnicity_cd asc
+                    ,init_cd_plcm_setng asc
+                    ,long_cd_plcm_setng asc
+                    ,county_cd asc
+                    , pbcw4.bin_los_cd asc
+                    , pbcw4.bin_placement_cd asc
+                    , pbcw4.bin_ihs_svc_cd asc
+                    , pbcw4.cd_reporter_type
+                    , pbcw4.cd_access_type
+                    , pbcw4.cd_allegation
+                    , pbcw4.cd_finding
+                    , pbcw4.cd_subctgry_poc_frc
+                    , pbcw4.cd_budget_poc_frc
+                    , pbcw4.bin_sibling_group_size;  
+ end if; -- turn procedure off
+END

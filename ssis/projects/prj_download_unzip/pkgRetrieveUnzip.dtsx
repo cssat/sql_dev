@@ -7,12 +7,12 @@
   DTS:CreatorName="NEBULA2\MESSEJ"
   DTS:DTSID="{E06E7964-1E27-42AB-B825-23D80EE80981}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="11.0.2100.60"
+  DTS:LastModifiedProductVersion="11.0.3369.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="pkgRetrieveUnzip"
   DTS:PackageType="5"
-  DTS:VersionBuild="153"
-  DTS:VersionGUID="{5409A146-46EF-4EF4-9007-134693F90A5C}">
+  DTS:VersionBuild="155"
+  DTS:VersionGUID="{53611C11-06A1-4FF6-BB75-3FF7F4A043A5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -93,7 +93,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="pocdir">
       <DTS:VariableValue
-        DTS:DataType="8">\\poc2\pocshare\CA\Data</DTS:VariableValue>
+        DTS:DataType="8">"\\\\poc2\\pocshare\\CA\\data\\" + (DT_WSTR, 4) YEAR( GETDATE() ) + RIGHT((DT_WSTR, 3) (100 + MONTH(GETDATE())), 2) + RIGHT((DT_WSTR, 3) (100 + DAY(GETDATE())), 2) + "\\"</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -139,6 +139,7 @@
       DTS:refId="Package\Loop to move files"
       DTS:CreationName="STOCK:FOREACHLOOP"
       DTS:Description="Foreach Loop Container"
+      DTS:Disabled="True"
       DTS:DTSID="{47fdb825-8b00-4124-9433-47508bd4dc21}"
       DTS:ExecutableType="STOCK:FOREACHLOOP"
       DTS:LocaleID="-1"
@@ -209,10 +210,12 @@
         DTS:CreationName="DTS.ForEachFileEnumerator.3"
         DTS:DTSID="{762AAC85-5F29-4C07-BCE4-0AD63E25B86B}"
         DTS:ObjectName="{762AAC85-5F29-4C07-BCE4-0AD63E25B86B}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@pocdir</DTS:PropertyExpression>
         <DTS:ObjectData>
           <ForEachFileEnumeratorProperties>
             <FEFEProperty
-              Folder="C:\ca\" />
+              Folder="&quot;\\\\poc2\\pocshare\\CA\\data\\&quot; + (DT_WSTR, 4) YEAR( GETDATE() ) + RIGHT((DT_WSTR, 3) (100 + MONTH(GETDATE())), 2) + RIGHT((DT_WSTR, 3) (100 + DAY(GETDATE())), 2) + &quot;\\&quot;" />
             <FEFEProperty
               FileSpec="*.zip" />
             <FEFEProperty
@@ -250,8 +253,8 @@
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{CAC531E2-A34F-4B7F-AACF-C1279EFE6798}"
-          DTS:ObjectName="{CAC531E2-A34F-4B7F-AACF-C1279EFE6798}"
+          DTS:DTSID="{201CEACD-0C21-4A39-A448-E7DA8BF6A2E2}"
+          DTS:ObjectName="{201CEACD-0C21-4A39-A448-E7DA8BF6A2E2}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::filename" />
       </DTS:ForEachVariableMappings>
@@ -261,6 +264,7 @@
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:DelayValidation="True"
       DTS:Description="Execute Process Task"
+      DTS:Disabled="True"
       DTS:DTSID="{2CDF7D01-1F44-4355-AEFB-F628A615E1E9}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
@@ -281,6 +285,7 @@
       DTS:refId="Package\write conn file"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Script Task"
+      DTS:Disabled="True"
       DTS:DTSID="{DA91BFAB-18E4-4757-9125-8C1A0B3D439E}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
