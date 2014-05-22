@@ -8,7 +8,7 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
       <Value>
         <dds xmlns="">
-          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-4094" scrolltop="-8361" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="12012" y="21722" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-4094" scrolltop="-8361" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="12012" y="21061" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
             <font>
               <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
             </font>
@@ -152,8 +152,8 @@
     <DimensionPermission dwd:design-time-name="e37d5ef1-4745-46b1-b9bc-780d72c940d4">
       <ID>DimensionPermission</ID>
       <Name>DimensionPermission</Name>
-      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <CreatedTimestamp>0001-01-01T08:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T08:00:00Z</LastSchemaUpdate>
       <RoleID>Role 1</RoleID>
       <ReadDefinition>Allowed</ReadDefinition>
       <Read>Allowed</Read>
@@ -566,7 +566,8 @@
   <Hierarchies>
     <Hierarchy dwd:design-time-name="866542d4-f532-44e3-8681-5eb67d6d5068">
       <ID>Hierarchy</ID>
-      <Name>City Type Hierarchy</Name>
+      <Name>City Type List</Name>
+      <AllMemberName>All City Types</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="f25a58b5-e1a1-4fa6-9d68-9132d33ad4a5">
           <ID>City Type</ID>
@@ -575,30 +576,10 @@
         </Level>
       </Levels>
     </Hierarchy>
-    <Hierarchy dwd:design-time-name="1a5d3ac6-43d4-407e-86a3-40aa1be2c774">
-      <ID>Hierarchy 1</ID>
-      <Name>Region Hierarchy</Name>
-      <Levels>
-        <Level dwd:design-time-name="691d5ccc-6c9c-4d62-9869-508f5d0de368">
-          <ID>Region</ID>
-          <Name>Region</Name>
-          <SourceAttributeID>CD REGION</SourceAttributeID>
-        </Level>
-        <Level dwd:design-time-name="ff1038fa-31b4-47c4-9380-266b883faa2d">
-          <ID>Office Collapse</ID>
-          <Name>Office Collapse</Name>
-          <SourceAttributeID>Cd Office Collapse</SourceAttributeID>
-        </Level>
-        <Level dwd:design-time-name="0ca95c60-9bb0-45cd-a4ab-d732554b9e74">
-          <ID>Office</ID>
-          <Name>Office</Name>
-          <SourceAttributeID>CD OFFICE</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
     <Hierarchy dwd:design-time-name="2fbea00c-8207-47b0-a4db-adf8304185a0">
       <ID>Hierarchy 2</ID>
-      <Name>Court Hierarchy</Name>
+      <Name>County Hierarchy</Name>
+      <AllMemberName>All County Offices</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="ec3534bc-506b-489c-9b19-74e3fedec4d4">
           <ID>Court</ID>
@@ -617,9 +598,44 @@
         </Level>
       </Levels>
     </Hierarchy>
+    <Hierarchy dwd:design-time-name="5edcbdbd-9817-4caf-83c9-bc186ac9cd45">
+      <ID>Hierarchy 4</ID>
+      <Name>Location Name List</Name>
+      <AllMemberName>All Location Names</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="04f374b9-d569-4a94-b11d-2b5eaf596360">
+          <ID>Location Name</ID>
+          <Name>Location Name</Name>
+          <SourceAttributeID>CD LCTN</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="1a5d3ac6-43d4-407e-86a3-40aa1be2c774">
+      <ID>Hierarchy 1</ID>
+      <Name>Office Hierarchy</Name>
+      <AllMemberName>All Offices</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="691d5ccc-6c9c-4d62-9869-508f5d0de368">
+          <ID>Region</ID>
+          <Name>Region</Name>
+          <SourceAttributeID>CD REGION</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="ff1038fa-31b4-47c4-9380-266b883faa2d">
+          <ID>Office Collapse</ID>
+          <Name>Office Collapse</Name>
+          <SourceAttributeID>Cd Office Collapse</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="0ca95c60-9bb0-45cd-a4ab-d732554b9e74">
+          <ID>Office</ID>
+          <Name>Office</Name>
+          <SourceAttributeID>CD OFFICE</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
     <Hierarchy dwd:design-time-name="720f22c2-99ce-43f6-b97b-d7708015e9a3">
       <ID>Hierarchy 3</ID>
       <Name>Old Region Hierarchy</Name>
+      <AllMemberName>All Old Region Offices</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="e8a306b9-b63b-4143-a145-25eb8a55e187">
           <ID>Old Region</ID>
@@ -630,17 +646,6 @@
           <ID>Office</ID>
           <Name>Office</Name>
           <SourceAttributeID>CD OFFICE</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="5edcbdbd-9817-4caf-83c9-bc186ac9cd45">
-      <ID>Hierarchy 4</ID>
-      <Name>Location Name Hierarchy</Name>
-      <Levels>
-        <Level dwd:design-time-name="04f374b9-d569-4a94-b11d-2b5eaf596360">
-          <ID>Location Name</ID>
-          <Name>Location Name</Name>
-          <SourceAttributeID>CD LCTN</SourceAttributeID>
         </Level>
       </Levels>
     </Hierarchy>

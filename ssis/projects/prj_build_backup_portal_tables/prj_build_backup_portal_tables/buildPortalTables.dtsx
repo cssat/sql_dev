@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="buildPortalTables"
   DTS:PackageType="5"
-  DTS:VersionBuild="134"
-  DTS:VersionGUID="{4EEA1469-18D5-4001-AB4B-A928B7AC57D2}">
+  DTS:VersionBuild="141"
+  DTS:VersionGUID="{7E078493-BA0D-487D-8E85-4CF121EFA167}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -167,6 +167,7 @@
       DTS:refId="Package\build ooh_dcfs_eps"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{FF905082-7A8B-4999-A9FA-FE197DF4A2D1}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
@@ -191,6 +192,7 @@
       DTS:refId="Package\build ooh_point_in_time_child"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{43f47742-ab2c-4682-a0bd-0b2fe54f866d}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
@@ -215,6 +217,7 @@
       DTS:refId="Package\build prtl_outcomes"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{F6711A5D-74EF-44F0-B4EF-756CBDDB3DE9}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
@@ -241,6 +244,7 @@
       DTS:refId="Package\build prtl_pbcp5"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{8e545b08-84a8-4734-8bd5-3cb5074c2aa3}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
@@ -294,7 +298,6 @@
       DTS:refId="Package\build PRTL_PBCS3"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{5463db66-666d-4c1b-9784-f8e9b42e8bc4}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
@@ -321,6 +324,7 @@
       DTS:refId="Package\build PRTL_PBCW3W4"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{d13ceddc-8ef4-47b3-a8cc-906e6e68b783}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
@@ -347,6 +351,7 @@
       DTS:refId="Package\build PRTL_POC1AB"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{2e60cdc7-8771-4ba0-acf4-9dd5f87c53e2}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
@@ -386,7 +391,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{1F770548-82ED-4A21-94C9-AD6799BC53FA}"
-          SQLTask:SqlStatementSource="exec prtl.prod_build_PRTL_POC2 ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          SQLTask:SqlStatementSource="exec prtl.prod_build_prtl_poc2ab ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
             SQLTask:ParameterName="0"
             SQLTask:DtsVariableName="User::permission_key"
@@ -413,7 +418,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{1F770548-82ED-4A21-94C9-AD6799BC53FA}"
-          SQLTask:SqlStatementSource="exec prtl.prod_build_PRTL_POC3 ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          SQLTask:SqlStatementSource="exec prtl.prod_build_prtl_poc3ab ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
             SQLTask:ParameterName="0"
             SQLTask:DtsVariableName="User::permission_key"

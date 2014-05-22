@@ -8,7 +8,7 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
       <Value>
         <dds xmlns="">
-          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-3777" scrolltop="-5742" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="7011" y="21590" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-3777" scrolltop="-5742" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="12012" y="21061" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
             <font>
               <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
             </font>
@@ -69,7 +69,7 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
       <Value>
         <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="0" xmlns="">
-          <Shapes NodeWidth="168">
+          <Shapes NodeWidth="144">
             <Shape Id="Age Mo" Expanded="false">
               <Attributes>
                 <Attribute Id="Age Mo" />
@@ -80,49 +80,49 @@
               <Attributes>
                 <Attribute Id="Age Yr" />
               </Attributes>
-              <Position x="235" y="20" />
+              <Position x="205" y="20" />
             </Shape>
             <Shape Id="School Age Cd" Expanded="false">
               <Attributes>
                 <Attribute Id="School Age Cd" />
               </Attributes>
-              <Position x="450" y="20" />
+              <Position x="390" y="20" />
             </Shape>
             <Shape Id="Developmental Age Cd" Expanded="false">
               <Attributes>
                 <Attribute Id="Developmental Age Cd" />
               </Attributes>
-              <Position x="450" y="68" />
+              <Position x="390" y="68" />
             </Shape>
             <Shape Id="Census Child Group Cd" Expanded="false">
               <Attributes>
                 <Attribute Id="Census Child Group Cd" />
               </Attributes>
-              <Position x="450" y="116" />
+              <Position x="390" y="116" />
             </Shape>
             <Shape Id="Census All Group Cd" Expanded="false">
               <Attributes>
                 <Attribute Id="Census All Group Cd" />
               </Attributes>
-              <Position x="450" y="164" />
+              <Position x="390" y="164" />
             </Shape>
             <Shape Id="Census 20 Group Cd" Expanded="false">
               <Attributes>
                 <Attribute Id="Census 20 Group Cd" />
               </Attributes>
-              <Position x="450" y="212" />
+              <Position x="390" y="212" />
             </Shape>
             <Shape Id="Cdc Census Mix Age Cd" Expanded="false">
               <Attributes>
                 <Attribute Id="Cdc Census Mix Age Cd" />
               </Attributes>
-              <Position x="450" y="260" />
+              <Position x="390" y="260" />
             </Shape>
             <Shape Id="Cdc Age Cd" Expanded="false">
               <Attributes>
                 <Attribute Id="Cdc Age Cd" />
               </Attributes>
-              <Position x="450" y="308" />
+              <Position x="390" y="308" />
             </Shape>
           </Shapes>
         </DiagramLayout>
@@ -145,8 +145,8 @@
     <DimensionPermission dwd:design-time-name="c87e3c46-3f49-453b-8ba2-8340a4cb3f4d">
       <ID>DimensionPermission</ID>
       <Name>DimensionPermission</Name>
-      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <CreatedTimestamp>0001-01-01T08:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T08:00:00Z</LastSchemaUpdate>
       <RoleID>Role 1</RoleID>
       <ReadDefinition>Allowed</ReadDefinition>
       <Read>Allowed</Read>
@@ -411,7 +411,8 @@
   <Hierarchies>
     <Hierarchy dwd:design-time-name="64d2bf8e-2a7e-4974-87bd-b0eb3e74144b">
       <ID>Hierarchy</ID>
-      <Name>Age Month Hierarchy</Name>
+      <Name>Age in Months List</Name>
+      <AllMemberName>All Age Months</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="dcd31c00-a1c5-424f-a8a8-b108401f0232">
           <ID>Age Month</ID>
@@ -422,23 +423,20 @@
     </Hierarchy>
     <Hierarchy dwd:design-time-name="c0d31eac-e7af-4812-b7e8-ce7408890504">
       <ID>Hierarchy 1</ID>
-      <Name>Age Year Hierarchy</Name>
+      <Name>Age in Years List</Name>
+      <AllMemberName>All Age Years</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="2a6287b9-d113-4249-b33d-1470f45c4dc9">
           <ID>Age Year</ID>
           <Name>Age Year</Name>
           <SourceAttributeID>Age Yr</SourceAttributeID>
         </Level>
-        <Level dwd:design-time-name="d6ebf1db-b516-4e25-bf7f-585475e41c80">
-          <ID>Age Month</ID>
-          <Name>Age Month</Name>
-          <SourceAttributeID>Age Mo</SourceAttributeID>
-        </Level>
       </Levels>
     </Hierarchy>
     <Hierarchy dwd:design-time-name="fb8f1682-0814-4c53-9bff-6257c3bc9a87">
       <ID>Hierarchy 2</ID>
       <Name>CDC Age Hierarchy</Name>
+      <AllMemberName>All CDC Ages</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="bf4cee55-0c8e-4792-b77f-a58efbe46841">
           <ID>CDC Age</ID>
@@ -450,16 +448,12 @@
           <Name>Age Year</Name>
           <SourceAttributeID>Age Yr</SourceAttributeID>
         </Level>
-        <Level dwd:design-time-name="cc0b5f96-6e44-41f4-b3dd-ffa2cd203901">
-          <ID>Age Month</ID>
-          <Name>Age Month</Name>
-          <SourceAttributeID>Age Mo</SourceAttributeID>
-        </Level>
       </Levels>
     </Hierarchy>
     <Hierarchy dwd:design-time-name="3a1e3fc1-769c-4334-897b-cf257883986c">
       <ID>Hierarchy 3</ID>
       <Name>CDC Census Mix Age Hierarchy</Name>
+      <AllMemberName>All CDC Census Mix Ages</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="ae98e407-9f06-40b0-8d4b-86685ba3e0df">
           <ID>CDC Census Mix Age</ID>
@@ -471,16 +465,12 @@
           <Name>Age Year</Name>
           <SourceAttributeID>Age Yr</SourceAttributeID>
         </Level>
-        <Level dwd:design-time-name="4a6256ec-a948-4d88-b020-ecd898285c5e">
-          <ID>Age Month</ID>
-          <Name>Age Month</Name>
-          <SourceAttributeID>Age Mo</SourceAttributeID>
-        </Level>
       </Levels>
     </Hierarchy>
     <Hierarchy dwd:design-time-name="f4abd372-f65f-4f14-aafc-4b780a16b041">
       <ID>Hierarchy 4</ID>
       <Name>Census 20 Group Hierarchy</Name>
+      <AllMemberName>All Census 20 Group Ages</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="d172a2d3-9fa9-4c51-a977-326bfe6087dd">
           <ID>Census 20 Group</ID>
@@ -492,16 +482,12 @@
           <Name>Age Year</Name>
           <SourceAttributeID>Age Yr</SourceAttributeID>
         </Level>
-        <Level dwd:design-time-name="7ee5328f-1450-4620-9f63-2a106641ac13">
-          <ID>Age Month</ID>
-          <Name>Age Month</Name>
-          <SourceAttributeID>Age Mo</SourceAttributeID>
-        </Level>
       </Levels>
     </Hierarchy>
     <Hierarchy dwd:design-time-name="4ee68313-08c3-45d5-a0db-180eef82c1b1">
       <ID>Hierarchy 5</ID>
       <Name>Census All Group Hierarchy</Name>
+      <AllMemberName>All Census All Group Ages</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="a7a54d69-13a1-40fb-a83f-e82b736ed0eb">
           <ID>Census All Group</ID>
@@ -513,16 +499,12 @@
           <Name>Age Year</Name>
           <SourceAttributeID>Age Yr</SourceAttributeID>
         </Level>
-        <Level dwd:design-time-name="22dc4dbe-6645-4c49-aa16-8445e10dd6bf">
-          <ID>Age Month</ID>
-          <Name>Age Month</Name>
-          <SourceAttributeID>Age Mo</SourceAttributeID>
-        </Level>
       </Levels>
     </Hierarchy>
     <Hierarchy dwd:design-time-name="ec20916a-99eb-442e-858e-ea380d929d8d">
       <ID>Hierarchy 6</ID>
       <Name>Census Child Group Hierarchy</Name>
+      <AllMemberName>All Census Child Group Ages</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="27a41077-78d2-4ca9-a3cf-8b13e4da8030">
           <ID>Census Child Group</ID>
@@ -534,16 +516,12 @@
           <Name>Age Year</Name>
           <SourceAttributeID>Age Yr</SourceAttributeID>
         </Level>
-        <Level dwd:design-time-name="b70bfaad-c441-4aec-ab64-ee47be5dad02">
-          <ID>Age Month</ID>
-          <Name>Age Month</Name>
-          <SourceAttributeID>Age Mo</SourceAttributeID>
-        </Level>
       </Levels>
     </Hierarchy>
     <Hierarchy dwd:design-time-name="b53d7194-2931-468f-90a9-d85f6c757228">
       <ID>Hierarchy 7</ID>
       <Name>Developmental Age Hierarchy</Name>
+      <AllMemberName>All Developmental Ages</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="ae151c07-a93e-4476-80bf-6c6d62eac2c1">
           <ID>Developmental Age</ID>
@@ -555,16 +533,12 @@
           <Name>Age Year</Name>
           <SourceAttributeID>Age Yr</SourceAttributeID>
         </Level>
-        <Level dwd:design-time-name="cc1ec119-c889-4a76-962e-1e24755a4307">
-          <ID>Age Month</ID>
-          <Name>Age Month</Name>
-          <SourceAttributeID>Age Mo</SourceAttributeID>
-        </Level>
       </Levels>
     </Hierarchy>
     <Hierarchy dwd:design-time-name="5436885f-5707-4e02-9bfd-c150bcf565f9">
       <ID>Hierarchy 8</ID>
       <Name>School Age Hierarchy</Name>
+      <AllMemberName>All School Ages</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="8d3225e8-58f7-4622-a53e-1fc4ce920bcd">
           <ID>School Age</ID>
@@ -575,11 +549,6 @@
           <ID>Age Year</ID>
           <Name>Age Year</Name>
           <SourceAttributeID>Age Yr</SourceAttributeID>
-        </Level>
-        <Level dwd:design-time-name="73a12bd1-cc96-432c-a320-3fa583334577">
-          <ID>Age Month</ID>
-          <Name>Age Month</Name>
-          <SourceAttributeID>Age Mo</SourceAttributeID>
         </Level>
       </Levels>
     </Hierarchy>

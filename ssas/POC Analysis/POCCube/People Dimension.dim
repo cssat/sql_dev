@@ -8,7 +8,7 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
       <Value>
         <dds xmlns="">
-          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-2838" scrolltop="-8361" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="12012" y="21722" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-2838" scrolltop="-8361" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="12012" y="21061" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
             <font>
               <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
             </font>
@@ -68,227 +68,95 @@
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
       <Value>
-        <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="4" xmlns="">
-          <Shapes NodeWidth="226">
+        <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="0" xmlns="">
+          <Shapes NodeWidth="223">
             <Shape Id="ID PEOPLE DIM" Expanded="false">
               <Attributes>
                 <Attribute Id="ID PEOPLE DIM" />
                 <Attribute Id="DT BIRTH" />
+                <Attribute Id="TX BRAAM RACE" />
+                <Attribute Id="Census Hispanic Latino Origin Cd" />
+                <Attribute Id="CD CTZN" />
+                <Attribute Id="CD CMBN ETHN" />
                 <Attribute Id="DT DEATH" />
-                <Attribute Id="ID PRSN" />
+                <Attribute Id="FL ADOPTION MATCH" />
+                <Attribute Id="FL DT BIRTH ESTIMATED" />
+                <Attribute Id="FL DANGER TO WORKER" />
+                <Attribute Id="FL DECEASED" />
+                <Attribute Id="FL EMOTION DSTRBD" />
+                <Attribute Id="FL ICW INVOLVEMENT" />
+                <Attribute Id="FL MNTAL RETARDATN" />
+                <Attribute Id="FL OTHR SPC CARE" />
+                <Attribute Id="FL PRSN MALTREATER" />
+                <Attribute Id="FL PHYS DISABLED" />
+                <Attribute Id="FL SEX AGGRESIVE YOUTH" />
+                <Attribute Id="FL TEEN PARENT" />
+                <Attribute Id="FL VIS HEARING IMPR" />
+                <Attribute Id="CD GNDR" />
+                <Attribute Id="CD HSPNC" />
+                <Attribute Id="CD LNG PRFR" />
+                <Attribute Id="CD LNG SECONDARY" />
+                <Attribute Id="CD LICWAC" />
                 <Attribute Id="DT LICWAC DETERMINATION" />
+                <Attribute Id="CD LTD ENGLISH" />
+                <Attribute Id="CD MRTL STAT" />
+                <Attribute Id="TX MULTIRACE" />
               </Attributes>
               <Position x="20" y="20" />
             </Shape>
-            <Shape Id="Census Hispanic Latino Origin Cd" Expanded="false">
+            <Shape Id="TX SSI SSA STATUS" Expanded="false">
               <Attributes>
-                <Attribute Id="Census Hispanic Latino Origin Cd" />
+                <Attribute Id="TX SSI SSA STATUS" />
               </Attributes>
-              <Position x="307" y="20" />
+              <Position x="303" y="20" />
             </Shape>
             <Shape Id="Cd Race Census" Expanded="false">
               <Attributes>
                 <Attribute Id="Cd Race Census" />
               </Attributes>
-              <Position x="307" y="68" />
-            </Shape>
-            <Shape Id="FL EXPUNGED" Expanded="false">
-              <Attributes>
-                <Attribute Id="FL EXPUNGED" />
-              </Attributes>
-              <Position x="307" y="116" />
-            </Shape>
-            <Shape Id="FL DELETED" Expanded="false">
-              <Attributes>
-                <Attribute Id="FL DELETED" />
-              </Attributes>
-              <Position x="307" y="164" />
-            </Shape>
-            <Shape Id="FL VIS HEARING IMPR" Expanded="false">
-              <Attributes>
-                <Attribute Id="FL VIS HEARING IMPR" />
-              </Attributes>
-              <Position x="307" y="212" />
-            </Shape>
-            <Shape Id="FL TEEN PARENT" Expanded="false">
-              <Attributes>
-                <Attribute Id="FL TEEN PARENT" />
-              </Attributes>
-              <Position x="307" y="260" />
-            </Shape>
-            <Shape Id="FL SEX AGGRESIVE YOUTH" Expanded="false">
-              <Attributes>
-                <Attribute Id="FL SEX AGGRESIVE YOUTH" />
-              </Attributes>
-              <Position x="307" y="308" />
-            </Shape>
-            <Shape Id="FL PRSN MALTREATER" Expanded="false">
-              <Attributes>
-                <Attribute Id="FL PRSN MALTREATER" />
-              </Attributes>
-              <Position x="307" y="356" />
-            </Shape>
-            <Shape Id="FL PHYS DISABLED" Expanded="false">
-              <Attributes>
-                <Attribute Id="FL PHYS DISABLED" />
-              </Attributes>
-              <Position x="307" y="404" />
-            </Shape>
-            <Shape Id="FL OTHR SPC CARE" Expanded="false">
-              <Attributes>
-                <Attribute Id="FL OTHR SPC CARE" />
-              </Attributes>
-              <Position x="307" y="452" />
-            </Shape>
-            <Shape Id="FL MNTAL RETARDATN" Expanded="false">
-              <Attributes>
-                <Attribute Id="FL MNTAL RETARDATN" />
-              </Attributes>
-              <Position x="307" y="500" />
-            </Shape>
-            <Shape Id="FL ICW INVOLVEMENT" Expanded="false">
-              <Attributes>
-                <Attribute Id="FL ICW INVOLVEMENT" />
-              </Attributes>
-              <Position x="307" y="548" />
-            </Shape>
-            <Shape Id="FL EMOTION DSTRBD" Expanded="false">
-              <Attributes>
-                <Attribute Id="FL EMOTION DSTRBD" />
-              </Attributes>
-              <Position x="307" y="596" />
-            </Shape>
-            <Shape Id="FL DT BIRTH ESTIMATED" Expanded="false">
-              <Attributes>
-                <Attribute Id="FL DT BIRTH ESTIMATED" />
-              </Attributes>
-              <Position x="307" y="644" />
-            </Shape>
-            <Shape Id="FL DECEASED" Expanded="false">
-              <Attributes>
-                <Attribute Id="FL DECEASED" />
-              </Attributes>
-              <Position x="307" y="692" />
-            </Shape>
-            <Shape Id="FL DANGER TO WORKER" Expanded="false">
-              <Attributes>
-                <Attribute Id="FL DANGER TO WORKER" />
-              </Attributes>
-              <Position x="307" y="740" />
-            </Shape>
-            <Shape Id="FL ADOPTION MATCH" Expanded="false">
-              <Attributes>
-                <Attribute Id="FL ADOPTION MATCH" />
-              </Attributes>
-              <Position x="307" y="788" />
+              <Position x="303" y="68" />
             </Shape>
             <Shape Id="CD STATE RSDNT" Expanded="false">
               <Attributes>
                 <Attribute Id="CD STATE RSDNT" />
               </Attributes>
-              <Position x="307" y="836" />
+              <Position x="303" y="116" />
             </Shape>
             <Shape Id="CD RLGN" Expanded="false">
               <Attributes>
                 <Attribute Id="CD RLGN" />
               </Attributes>
-              <Position x="307" y="884" />
+              <Position x="303" y="164" />
             </Shape>
             <Shape Id="CD RACE TWO" Expanded="false">
               <Attributes>
                 <Attribute Id="CD RACE TWO" />
               </Attributes>
-              <Position x="307" y="932" />
+              <Position x="303" y="212" />
             </Shape>
             <Shape Id="CD RACE THREE" Expanded="false">
               <Attributes>
                 <Attribute Id="CD RACE THREE" />
               </Attributes>
-              <Position x="307" y="980" />
+              <Position x="303" y="260" />
             </Shape>
             <Shape Id="CD RACE FOUR" Expanded="false">
               <Attributes>
                 <Attribute Id="CD RACE FOUR" />
               </Attributes>
-              <Position x="307" y="1028" />
+              <Position x="303" y="308" />
             </Shape>
             <Shape Id="CD RACE FIVE" Expanded="false">
               <Attributes>
                 <Attribute Id="CD RACE FIVE" />
               </Attributes>
-              <Position x="307" y="1076" />
+              <Position x="303" y="356" />
             </Shape>
             <Shape Id="CD RACE" Expanded="false">
               <Attributes>
                 <Attribute Id="CD RACE" />
               </Attributes>
-              <Position x="307" y="1124" />
-            </Shape>
-            <Shape Id="TX MULTIRACE" Expanded="false">
-              <Attributes>
-                <Attribute Id="TX MULTIRACE" />
-              </Attributes>
-              <Position x="307" y="1172" />
-            </Shape>
-            <Shape Id="CD MRTL STAT" Expanded="false">
-              <Attributes>
-                <Attribute Id="CD MRTL STAT" />
-              </Attributes>
-              <Position x="307" y="1220" />
-            </Shape>
-            <Shape Id="CD LTD ENGLISH" Expanded="false">
-              <Attributes>
-                <Attribute Id="CD LTD ENGLISH" />
-              </Attributes>
-              <Position x="307" y="1268" />
-            </Shape>
-            <Shape Id="CD LNG SECONDARY" Expanded="false">
-              <Attributes>
-                <Attribute Id="CD LNG SECONDARY" />
-              </Attributes>
-              <Position x="307" y="1316" />
-            </Shape>
-            <Shape Id="CD LNG PRFR" Expanded="false">
-              <Attributes>
-                <Attribute Id="CD LNG PRFR" />
-              </Attributes>
-              <Position x="307" y="1364" />
-            </Shape>
-            <Shape Id="CD LICWAC" Expanded="false">
-              <Attributes>
-                <Attribute Id="CD LICWAC" />
-              </Attributes>
-              <Position x="307" y="1412" />
-            </Shape>
-            <Shape Id="CD HSPNC" Expanded="false">
-              <Attributes>
-                <Attribute Id="CD HSPNC" />
-              </Attributes>
-              <Position x="307" y="1460" />
-            </Shape>
-            <Shape Id="CD GNDR" Expanded="false">
-              <Attributes>
-                <Attribute Id="CD GNDR" />
-              </Attributes>
-              <Position x="307" y="1508" />
-            </Shape>
-            <Shape Id="CD CTZN" Expanded="false">
-              <Attributes>
-                <Attribute Id="CD CTZN" />
-              </Attributes>
-              <Position x="307" y="1556" />
-            </Shape>
-            <Shape Id="CD CMBN ETHN" Expanded="false">
-              <Attributes>
-                <Attribute Id="CD CMBN ETHN" />
-              </Attributes>
-              <Position x="307" y="1604" />
-            </Shape>
-            <Shape Id="TX BRAAM RACE" Expanded="false">
-              <Attributes>
-                <Attribute Id="TX BRAAM RACE" />
-              </Attributes>
-              <Position x="307" y="1652" />
+              <Position x="303" y="404" />
             </Shape>
           </Shapes>
         </DiagramLayout>
@@ -310,8 +178,8 @@
     <DimensionPermission dwd:design-time-name="4a0586f3-f394-44f1-a553-e2fb0c4dd7d5">
       <ID>DimensionPermission</ID>
       <Name>DimensionPermission</Name>
-      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <CreatedTimestamp>0001-01-01T08:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T08:00:00Z</LastSchemaUpdate>
       <RoleID>Role 1</RoleID>
       <ReadDefinition>Allowed</ReadDefinition>
       <Read>Allowed</Read>
@@ -322,6 +190,7 @@
       <ID>ID PEOPLE DIM</ID>
       <Name>ID PEOPLE DIM</Name>
       <Usage>Key</Usage>
+      <EstimatedCount>4484083</EstimatedCount>
       <KeyColumns>
         <KeyColumn dwd:design-time-name="2bfff229-1a97-4cc2-bbda-241b6af2a5b0">
           <DataType>Integer</DataType>
@@ -332,10 +201,6 @@
         </KeyColumn>
       </KeyColumns>
       <AttributeRelationships>
-        <AttributeRelationship dwd:design-time-name="a11879a6-7500-43e2-9c2d-d1f1f6bbe453">
-          <AttributeID>ID PRSN</AttributeID>
-          <Name>ID PRSN</Name>
-        </AttributeRelationship>
         <AttributeRelationship dwd:design-time-name="3d6e1dac-7086-44bf-ba76-aa384817e27d">
           <AttributeID>TX BRAAM RACE</AttributeID>
           <Name>BRAAM Race</Name>
@@ -382,7 +247,7 @@
         </AttributeRelationship>
         <AttributeRelationship dwd:design-time-name="a00230f7-6ac2-4e2d-8048-7ed45f245b7e">
           <AttributeID>CD RACE</AttributeID>
-          <Name>Race</Name>
+          <Name>Race 1</Name>
         </AttributeRelationship>
         <AttributeRelationship dwd:design-time-name="da9ff722-cd7e-4bb2-8e5d-d9fc0df26542">
           <AttributeID>CD RACE FIVE</AttributeID>
@@ -472,14 +337,6 @@
           <AttributeID>DT LICWAC DETERMINATION</AttributeID>
           <Name>LICWAC Determination Date</Name>
         </AttributeRelationship>
-        <AttributeRelationship dwd:design-time-name="1fb83445-e8b2-4461-9be7-b18398e508c7">
-          <AttributeID>FL DELETED</AttributeID>
-          <Name>Flag Deleted</Name>
-        </AttributeRelationship>
-        <AttributeRelationship dwd:design-time-name="21d0ccd8-8450-43a3-9a72-d56b0ec39374">
-          <AttributeID>FL EXPUNGED</AttributeID>
-          <Name>Flag Expunged</Name>
-        </AttributeRelationship>
         <AttributeRelationship dwd:design-time-name="8fa6b5fe-01f9-4ebc-bf38-955ad8887982">
           <AttributeID>Cd Race Census</AttributeID>
           <Name>Race Census</Name>
@@ -493,24 +350,6 @@
           <Name>SSI SSA Status</Name>
         </AttributeRelationship>
       </AttributeRelationships>
-      <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
-      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-    </Attribute>
-    <Attribute dwd:design-time-name="86a1b1e6-6639-4f75-89b8-f36920f86f4a">
-      <ID>ID PRSN</ID>
-      <Name>ID PRSN</Name>
-      <EstimatedCount>3994185</EstimatedCount>
-      <KeyColumns>
-        <KeyColumn dwd:design-time-name="85b07033-0fe8-4d6c-a635-80f09b8e884f">
-          <DataType>Integer</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="8fcae867-2fa0-4a3e-9bec-5891487c6085">
-            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
-            <ColumnID>ID_PRSN</ColumnID>
-          </Source>
-        </KeyColumn>
-      </KeyColumns>
       <OrderBy>Key</OrderBy>
       <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
@@ -531,7 +370,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Race or Ethnicity Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -557,7 +396,7 @@
         </Source>
       </NameColumn>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Race or Ethnicity Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -583,7 +422,7 @@
         </Source>
       </NameColumn>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Person Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -610,7 +449,7 @@
         </Source>
       </NameColumn>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Person Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -637,7 +476,7 @@
         </Source>
       </NameColumn>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Race or Ethnicity Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -664,6 +503,7 @@
       </NameColumn>
       <OrderBy>Key</OrderBy>
       <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Person Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -689,7 +529,7 @@
         </Source>
       </NameColumn>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Person Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -715,7 +555,7 @@
         </Source>
       </NameColumn>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Person Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -741,7 +581,7 @@
         </Source>
       </NameColumn>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Person Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -767,7 +607,7 @@
         </Source>
       </NameColumn>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Person Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -786,13 +626,13 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Race or Ethnicity Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
     <Attribute dwd:design-time-name="14afa24c-3fd0-4ee0-9d81-cf1394f90e9f">
       <ID>CD RACE</ID>
-      <Name>Race</Name>
+      <Name>Race 1</Name>
       <EstimatedCount>9</EstimatedCount>
       <KeyColumns>
         <KeyColumn dwd:design-time-name="02824196-89e7-4190-b490-9850162bd9c6">
@@ -987,7 +827,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1006,7 +846,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1025,7 +865,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1044,7 +884,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1063,7 +903,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1082,7 +922,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1101,7 +941,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1120,7 +960,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1139,7 +979,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1158,7 +998,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1177,7 +1017,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1196,7 +1036,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1215,7 +1055,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1232,6 +1072,8 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
+      <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1264,44 +1106,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
-      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-    </Attribute>
-    <Attribute dwd:design-time-name="4a2ca2d1-babe-46da-bbe6-bd55ecf114ba">
-      <ID>FL DELETED</ID>
-      <Name>Flag Deleted</Name>
-      <EstimatedCount>2</EstimatedCount>
-      <KeyColumns>
-        <KeyColumn dwd:design-time-name="3de95698-d4a8-4a13-9f7f-0c2edb98d77b">
-          <DataType>WChar</DataType>
-          <DataSize>1</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="bc7a5b75-f381-4c92-91b4-ff1a8b113e0a">
-            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
-            <ColumnID>FL_DELETED</ColumnID>
-          </Source>
-        </KeyColumn>
-      </KeyColumns>
-      <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
-      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-    </Attribute>
-    <Attribute dwd:design-time-name="90de26fd-2a40-409a-9b89-65038eb4e8cd">
-      <ID>FL EXPUNGED</ID>
-      <Name>Flag Expunged</Name>
-      <EstimatedCount>1</EstimatedCount>
-      <KeyColumns>
-        <KeyColumn dwd:design-time-name="d1db7509-46ec-4d3c-a0bd-feba8d6fab93">
-          <DataType>WChar</DataType>
-          <DataSize>1</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="3be5f4a4-67ae-4a39-89e8-b1d2ab5fb478">
-            <TableID>dbo_Cube_PEOPLE_DIM</TableID>
-            <ColumnID>FL_EXPUNGED</ColumnID>
-          </Source>
-        </KeyColumn>
-      </KeyColumns>
-      <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1345,7 +1150,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Race or Ethnicity Attributes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1363,164 +1168,30 @@
           </Source>
         </KeyColumn>
       </KeyColumns>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
   </Attributes>
   <Hierarchies>
-    <Hierarchy dwd:design-time-name="101a19f2-ed9e-4140-aa26-33f6901de6a3">
+    <Hierarchy dwd:design-time-name="782e6f33-4468-4e09-96b0-bc67989650e6">
       <ID>Hierarchy</ID>
-      <Name>BRAAM Race Hierarchy</Name>
-      <DisplayFolder>Race or Ethnicity Hierarchies</DisplayFolder>
+      <Name>1st Indicated Race List</Name>
+      <DisplayFolder>Race or Ethnicity Attributes</DisplayFolder>
+      <AllMemberName>All Races</AllMemberName>
       <Levels>
-        <Level dwd:design-time-name="cadf13a0-8c9c-4bc1-b226-1e315e06e63a">
-          <ID>BRAAM Race</ID>
-          <Name>BRAAM Race</Name>
-          <SourceAttributeID>TX BRAAM RACE</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="9b19f0b9-6d3f-48f5-92ed-c3825ad6b5e4">
-      <ID>Hierarchy 1</ID>
-      <Name>Census Hispanic Latino Origin Code Hierarchy</Name>
-      <DisplayFolder>Race or Ethnicity Hierarchies</DisplayFolder>
-      <Levels>
-        <Level dwd:design-time-name="b102f256-cfcb-437f-ae48-11910c809294">
-          <ID>Census Hispanic Latino Origin Cd</ID>
-          <Name>Census Hispanic Latino Origin Code</Name>
-          <SourceAttributeID>Census Hispanic Latino Origin Cd</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="03627564-06b0-48e8-930f-f75ed03ef1d9">
-      <ID>Hierarchy 2</ID>
-      <Name>Citizen Hierarchy</Name>
-      <Levels>
-        <Level dwd:design-time-name="6d42aafb-c064-4067-ab0e-4830ce6180b2">
-          <ID>Citizen</ID>
-          <Name>Citizen</Name>
-          <SourceAttributeID>CD CTZN</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="4e3cc390-a95b-4d26-af16-ef4ed6a6b316">
-      <ID>Hierarchy 3</ID>
-      <Name>Combined Ethnicity Hierarchy</Name>
-      <DisplayFolder>Race or Ethnicity Hierarchies</DisplayFolder>
-      <Levels>
-        <Level dwd:design-time-name="1b905ddd-53bf-42f2-b7e8-67757be064e4">
-          <ID>Combined Ethnicity</ID>
-          <Name>Combined Ethnicity</Name>
-          <SourceAttributeID>CD CMBN ETHN</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="677468c8-52fe-4be2-9b9f-8757e4920039">
-      <ID>Hierarchy 4</ID>
-      <Name>Gender Hierarchy</Name>
-      <Levels>
-        <Level dwd:design-time-name="4d4ed932-c848-4348-b0c2-852b1a2811a1">
-          <ID>Gender</ID>
-          <Name>Gender</Name>
-          <SourceAttributeID>CD GNDR</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="c437e65f-be99-4a41-8b6e-8b93633eb405">
-      <ID>Hierarchy 5</ID>
-      <Name>Hispanic Hierarchy</Name>
-      <DisplayFolder>Race or Ethnicity Hierarchies</DisplayFolder>
-      <Levels>
-        <Level dwd:design-time-name="cf3482a6-6538-438b-abc0-dab7de6647aa">
-          <ID>Hispanic</ID>
-          <Name>Hispanic</Name>
-          <SourceAttributeID>CD HSPNC</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="5b0a3784-fe59-4893-ab0a-02fa910c28d9">
-      <ID>Hierarchy 6</ID>
-      <Name>Language Preference Hierarchy</Name>
-      <Levels>
-        <Level dwd:design-time-name="5b39092e-cbb1-4064-8cca-5bb32aea705c">
-          <ID>Language Preference</ID>
-          <Name>Language Preference</Name>
-          <SourceAttributeID>CD LNG PRFR</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="fb4d1c12-af39-44fc-b0b2-ba4eacdc2d8c">
-      <ID>Hierarchy 7</ID>
-      <Name>Secondary Language Hierarchy</Name>
-      <Levels>
-        <Level dwd:design-time-name="de843a83-8e6a-426a-abd5-cbbda9eea480">
-          <ID>Language Secondary</ID>
-          <Name>Language Secondary</Name>
-          <SourceAttributeID>CD LNG SECONDARY</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="95de6bb2-0a51-4a71-8cf4-3ea4a05339e0">
-      <ID>Hierarchy 8</ID>
-      <Name>LICWAC Hierarchy</Name>
-      <Levels>
-        <Level dwd:design-time-name="5b138146-2f58-4afb-afd9-ed4a4a714de1">
-          <ID>LICWAC</ID>
-          <Name>LICWAC</Name>
-          <SourceAttributeID>CD LICWAC</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="694e2d85-43ca-4b38-861b-9d6b781f0d4e">
-      <ID>Hierarchy 9</ID>
-      <Name>Limited English Hierarchy</Name>
-      <Levels>
-        <Level dwd:design-time-name="4666162f-d920-4ab5-a240-bb709780b96d">
-          <ID>Limited English</ID>
-          <Name>Limited English</Name>
-          <SourceAttributeID>CD LTD ENGLISH</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="db4083e3-4f0e-45b0-8ed6-322953bf357d">
-      <ID>Hierarchy 10</ID>
-      <Name>Marital Status Hierarchy</Name>
-      <Levels>
-        <Level dwd:design-time-name="e534a220-3b4f-438f-a8b8-f7912567b9fa">
-          <ID>Marital Status</ID>
-          <Name>Marital Status</Name>
-          <SourceAttributeID>CD MRTL STAT</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="844b865a-804b-411c-980b-16ad8636edbf">
-      <ID>Hierarchy 11</ID>
-      <Name>Multirace Hierarchy</Name>
-      <DisplayFolder>Race or Ethnicity Hierarchies</DisplayFolder>
-      <Levels>
-        <Level dwd:design-time-name="44bcddc1-3c63-416f-9a1b-99797993dec8">
-          <ID>Multirace</ID>
-          <Name>Multirace</Name>
-          <SourceAttributeID>TX MULTIRACE</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="3ad38886-7796-44d2-86d4-20380e15eed2">
-      <ID>Hierarchy 12</ID>
-      <Name>First Race Hierarchy</Name>
-      <DisplayFolder>Race or Ethnicity Hierarchies</DisplayFolder>
-      <Levels>
-        <Level dwd:design-time-name="84ccec3e-1437-46d3-b727-1cba1591bfcc">
-          <ID>Race</ID>
-          <Name>Race</Name>
+        <Level dwd:design-time-name="20ab013e-4f9f-4513-8966-90b19741fef7">
+          <ID>Race 1</ID>
+          <Name>Race 1</Name>
           <SourceAttributeID>CD RACE</SourceAttributeID>
         </Level>
       </Levels>
     </Hierarchy>
     <Hierarchy dwd:design-time-name="1e6e77c2-0c9e-4a23-82c9-151519d1bcb1">
       <ID>Hierarchy 13</ID>
-      <Name>Second Race Hierarchy</Name>
-      <DisplayFolder>Race or Ethnicity Hierarchies</DisplayFolder>
+      <Name>2nd Indicated Race List</Name>
+      <DisplayFolder>Race or Ethnicity Attributes</DisplayFolder>
+      <AllMemberName>All Races</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="eecda55e-9a5f-4cc5-80ef-b10608781536">
           <ID>Race 2</ID>
@@ -1531,8 +1202,9 @@
     </Hierarchy>
     <Hierarchy dwd:design-time-name="fac62496-0500-46b5-9a10-d87ec161100f">
       <ID>Hierarchy 14</ID>
-      <Name>Third Race Hierarchy</Name>
-      <DisplayFolder>Race or Ethnicity Hierarchies</DisplayFolder>
+      <Name>3rd Indicated  Race List</Name>
+      <DisplayFolder>Race or Ethnicity Attributes</DisplayFolder>
+      <AllMemberName>All Races</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="c190873f-2c4b-49ee-ad12-bd63177e9420">
           <ID>Race 3</ID>
@@ -1543,8 +1215,9 @@
     </Hierarchy>
     <Hierarchy dwd:design-time-name="b8935be8-d1fe-4f6b-b293-b7b2da862853">
       <ID>Hierarchy 15</ID>
-      <Name>Fourth Race Hierarchy</Name>
-      <DisplayFolder>Race or Ethnicity Hierarchies</DisplayFolder>
+      <Name>4th Indicated Race List</Name>
+      <DisplayFolder>Race or Ethnicity Attributes</DisplayFolder>
+      <AllMemberName>All Races</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="f83154f4-7d7e-4f81-9e86-8292e314ca5e">
           <ID>Race 4</ID>
@@ -1555,8 +1228,9 @@
     </Hierarchy>
     <Hierarchy dwd:design-time-name="866af1cb-c340-468e-9ed3-945b1215e5c5">
       <ID>Hierarchy 16</ID>
-      <Name>Fifth Race Hierarchy</Name>
-      <DisplayFolder>Race or Ethnicity Hierarchies</DisplayFolder>
+      <Name>5th Indicated Race List</Name>
+      <DisplayFolder>Race or Ethnicity Attributes</DisplayFolder>
+      <AllMemberName>All Races</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="4df601dd-88eb-441e-8d06-a08cc4dc4957">
           <ID>Race 5</ID>
@@ -1565,12 +1239,13 @@
         </Level>
       </Levels>
     </Hierarchy>
-    <Hierarchy dwd:design-time-name="0618434e-d090-45a4-a611-d8ac2431cb5d">
-      <ID>Hierarchy 17</ID>
-      <Name>Race Census Hierarchy</Name>
-      <DisplayFolder>Race or Ethnicity Hierarchies</DisplayFolder>
+    <Hierarchy dwd:design-time-name="26085193-1d1f-42ca-ada0-035274264b7f">
+      <ID>Hierarchy 1</ID>
+      <Name>Race by Census List</Name>
+      <DisplayFolder>Race or Ethnicity Attributes</DisplayFolder>
+      <AllMemberName>All Races</AllMemberName>
       <Levels>
-        <Level dwd:design-time-name="f609bfc9-aa7b-4419-ab0c-e59c5fa3c7be">
+        <Level dwd:design-time-name="ea743823-d75e-43e6-9e41-d61641412a28">
           <ID>Race Census</ID>
           <Name>Race Census</Name>
           <SourceAttributeID>Cd Race Census</SourceAttributeID>
@@ -1579,7 +1254,9 @@
     </Hierarchy>
     <Hierarchy dwd:design-time-name="9af6d98c-89d2-4877-96e4-ceb9983a04bb">
       <ID>Hierarchy 18</ID>
-      <Name>Religion Hierarchy</Name>
+      <Name>Religion List</Name>
+      <DisplayFolder>Person Attributes</DisplayFolder>
+      <AllMemberName>All Religions</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="6b0bb8f8-fee9-4080-a070-81aa4042bebc">
           <ID>Religion</ID>
@@ -1588,205 +1265,29 @@
         </Level>
       </Levels>
     </Hierarchy>
-    <Hierarchy dwd:design-time-name="e444162a-16f2-463e-92fb-d766e0712c1f">
-      <ID>Hierarchy 19</ID>
-      <Name>State Resident Hierarchy</Name>
-      <Levels>
-        <Level dwd:design-time-name="43377970-8234-43be-9835-de19044cf970">
-          <ID>State Resident</ID>
-          <Name>State Resident</Name>
-          <SourceAttributeID>CD STATE RSDNT</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="01a9595a-afe1-4957-a2d3-09d001920788">
-      <ID>Hierarchy 20</ID>
-      <Name>Adoption Match Hierarchy</Name>
-      <DisplayFolder>Flag Hierarchies</DisplayFolder>
-      <Levels>
-        <Level dwd:design-time-name="9b796f2b-9c81-446f-a188-cc2ae2d0497c">
-          <ID>Flag Adoption Match</ID>
-          <Name>Flag Adoption Match</Name>
-          <SourceAttributeID>FL ADOPTION MATCH</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="5d70a3f8-01ea-4269-99de-506476331352">
-      <ID>Hierarchy 21</ID>
-      <Name>Birthdate Estimated Hierarchy</Name>
-      <DisplayFolder>Flag Hierarchies</DisplayFolder>
-      <Levels>
-        <Level dwd:design-time-name="c84b6c9c-d4d7-4483-97a8-a4eb7ecdc234">
-          <ID>Flag Birthdate Estimated</ID>
-          <Name>Flag Birthdate Estimated</Name>
-          <SourceAttributeID>FL DT BIRTH ESTIMATED</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="29eeeae2-3284-44ee-beb5-529d192da4c8">
-      <ID>Hierarchy 22</ID>
-      <Name>Danger to Worker Hierarchy</Name>
-      <DisplayFolder>Flag Hierarchies</DisplayFolder>
-      <Levels>
-        <Level dwd:design-time-name="6362bb83-26f2-406c-996b-58fd9e18db0c">
-          <ID>Flag Danger to Worker</ID>
-          <Name>Flag Danger to Worker</Name>
-          <SourceAttributeID>FL DANGER TO WORKER</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="f1435cd7-fa5e-4af8-995c-c412994a104e">
-      <ID>Hierarchy 23</ID>
-      <Name>Deceased Hierarchy</Name>
-      <DisplayFolder>Flag Hierarchies</DisplayFolder>
-      <Levels>
-        <Level dwd:design-time-name="03ee99b5-f5a1-4933-b379-64ea4c3204d4">
-          <ID>Flag Deceased</ID>
-          <Name>Flag Deceased</Name>
-          <SourceAttributeID>FL DECEASED</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="cfd3c36e-591e-498f-9337-07f4d38c19cd">
-      <ID>Hierarchy 24</ID>
-      <Name>Deleted Hierarchy</Name>
-      <DisplayFolder>Flag Hierarchies</DisplayFolder>
-      <Levels>
-        <Level dwd:design-time-name="75732207-f68c-4f8d-9d1b-ad3b11eaec03">
-          <ID>Flag Deleted</ID>
-          <Name>Flag Deleted</Name>
-          <SourceAttributeID>FL DELETED</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="f417a237-9d93-4c7f-858c-045d21877415">
-      <ID>Hierarchy 25</ID>
-      <Name>Emotionally Distrubed Hierarchy</Name>
-      <DisplayFolder>Flag Hierarchies</DisplayFolder>
-      <Levels>
-        <Level dwd:design-time-name="36f8bc53-8a12-4eca-8b0c-d4ba21dbaca5">
-          <ID>Flag Emotionally Disturbed</ID>
-          <Name>Flag Emotionally Disturbed</Name>
-          <SourceAttributeID>FL EMOTION DSTRBD</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="da573d0d-e707-41d6-83c2-7bbb2a878f89">
-      <ID>Hierarchy 26</ID>
-      <Name>Expunged Hierarchy</Name>
-      <DisplayFolder>Flag Hierarchies</DisplayFolder>
-      <Levels>
-        <Level dwd:design-time-name="4afc0aa6-3641-4578-ae7e-32165b4b308f">
-          <ID>Flag Expunged</ID>
-          <Name>Flag Expunged</Name>
-          <SourceAttributeID>FL EXPUNGED</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="dcbf14b9-c638-46fd-b2cc-449dce0ae79a">
-      <ID>Hierarchy 27</ID>
-      <Name>ICW Involvement Hierarchy</Name>
-      <DisplayFolder>Flag Hierarchies</DisplayFolder>
-      <Levels>
-        <Level dwd:design-time-name="a9b40e10-e652-4d94-a69c-ffb7b1bc388b">
-          <ID>Flag ICW Involvement</ID>
-          <Name>Flag ICW Involvement</Name>
-          <SourceAttributeID>FL ICW INVOLVEMENT</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="e3c2972d-2404-4c19-8376-77222ca01562">
-      <ID>Hierarchy 28</ID>
-      <Name>Mental Retardation Hierarchy</Name>
-      <DisplayFolder>Flag Hierarchies</DisplayFolder>
-      <Levels>
-        <Level dwd:design-time-name="6afe05bf-8c81-427b-8083-afd67e41e3b8">
-          <ID>Flag Mental Retardation</ID>
-          <Name>Flag Mental Retardation</Name>
-          <SourceAttributeID>FL MNTAL RETARDATN</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="9fa6bf06-2aec-4f71-9b32-3e90dc40db01">
-      <ID>Hierarchy 29</ID>
-      <Name>Other Special Care Hierarchy</Name>
-      <DisplayFolder>Flag Hierarchies</DisplayFolder>
-      <Levels>
-        <Level dwd:design-time-name="727db040-b68c-4924-b0e7-b8e3979940aa">
-          <ID>Flag Other Special Care</ID>
-          <Name>Flag Other Special Care</Name>
-          <SourceAttributeID>FL OTHR SPC CARE</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="a9a2808a-c756-484b-9107-aa0b92b547ca">
-      <ID>Hierarchy 30</ID>
-      <Name>Person Maltreater Hierarchy</Name>
-      <DisplayFolder>Flag Hierarchies</DisplayFolder>
-      <Levels>
-        <Level dwd:design-time-name="dd90f370-093a-4563-8857-6635e79115f5">
-          <ID>Flag Person Maltreater</ID>
-          <Name>Flag Person Maltreater</Name>
-          <SourceAttributeID>FL PRSN MALTREATER</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="8d1d5ec5-1fd2-4c69-860c-fba9c7d9f962">
-      <ID>Hierarchy 31</ID>
-      <Name>Physically Disabled Hierarchy</Name>
-      <DisplayFolder>Flag Hierarchies</DisplayFolder>
-      <Levels>
-        <Level dwd:design-time-name="21b8ed06-267e-4ebd-8d42-0f47bd7c8f1a">
-          <ID>Flag Physically Disabled</ID>
-          <Name>Flag Physically Disabled</Name>
-          <SourceAttributeID>FL PHYS DISABLED</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="a583bc45-8cbe-4db9-8d11-2453e29daf9f">
-      <ID>Hierarchy 32</ID>
-      <Name>Sexually Aggressive Youth Hierarchy</Name>
-      <DisplayFolder>Flag Hierarchies</DisplayFolder>
-      <Levels>
-        <Level dwd:design-time-name="31f6760a-3350-4a28-a076-ef81dfa029fe">
-          <ID>Flag Sexually Aggressive Youth</ID>
-          <Name>Flag Sexually Aggressive Youth</Name>
-          <SourceAttributeID>FL SEX AGGRESIVE YOUTH</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="516f0e03-8c57-40cc-99aa-0c6d804739e9">
-      <ID>Hierarchy 33</ID>
-      <Name>Teen Parent Hierarchy</Name>
-      <DisplayFolder>Flag Hierarchies</DisplayFolder>
-      <Levels>
-        <Level dwd:design-time-name="ebd15283-ef59-4d09-a0be-e3c73d21d6ec">
-          <ID>Flag Teen Parent</ID>
-          <Name>Flag Teen Parent</Name>
-          <SourceAttributeID>FL TEEN PARENT</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-    <Hierarchy dwd:design-time-name="a008a501-2e63-4356-9a2a-bb679582f777">
-      <ID>Hierarchy 34</ID>
-      <Name>Visual or Hearing Impaired Hierarchy</Name>
-      <DisplayFolder>Flag Hierarchies</DisplayFolder>
-      <Levels>
-        <Level dwd:design-time-name="7c47f10c-d43e-40d3-bbd8-feaa8171fb67">
-          <ID>Flag Visual or Hearing Impaired</ID>
-          <Name>Flag Visual or Hearing Impaired</Name>
-          <SourceAttributeID>FL VIS HEARING IMPR</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
     <Hierarchy dwd:design-time-name="3c23b48d-0ace-4519-a503-9aaa3a25dae6">
       <ID>Hierarchy 35</ID>
-      <Name>SSI SSA Status Hierarchy</Name>
+      <Name>SSI SSA Status List</Name>
+      <DisplayFolder>Person Attributes</DisplayFolder>
+      <AllMemberName>All SSI SSA Statuses</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="812c3a11-5fca-4bb3-8bcb-866e7bdbb710">
           <ID>SSI SSA Status</ID>
           <Name>SSI SSA Status</Name>
           <SourceAttributeID>TX SSI SSA STATUS</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="e444162a-16f2-463e-92fb-d766e0712c1f">
+      <ID>Hierarchy 19</ID>
+      <Name>State Residency Status List</Name>
+      <DisplayFolder>Person Attributes</DisplayFolder>
+      <AllMemberName>All Resident Statuses</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="43377970-8234-43be-9835-de19044cf970">
+          <ID>State Resident</ID>
+          <Name>State Resident</Name>
+          <SourceAttributeID>CD STATE RSDNT</SourceAttributeID>
         </Level>
       </Levels>
     </Hierarchy>

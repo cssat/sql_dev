@@ -8,7 +8,7 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
       <Value>
         <dds xmlns="">
-          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-2031" scrolltop="-8361" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="12012" y="16484" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-2031" scrolltop="-8361" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="12012" y="21061" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
             <font>
               <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
             </font>
@@ -68,7 +68,7 @@
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
       <Value>
-        <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="199" xmlns="">
+        <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="0" xmlns="">
           <Shapes NodeWidth="214">
             <Shape Id="ID CALENDAR DIM" Expanded="true">
               <Attributes>
@@ -230,8 +230,8 @@
     <DimensionPermission dwd:design-time-name="39dce3f9-4f6b-4eb0-a440-4bca47095dd5">
       <ID>DimensionPermission</ID>
       <Name>DimensionPermission</Name>
-      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <CreatedTimestamp>0001-01-01T08:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T08:00:00Z</LastSchemaUpdate>
       <RoleID>Role 1</RoleID>
       <ReadDefinition>Allowed</ReadDefinition>
       <Read>Allowed</Read>
@@ -346,6 +346,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
+      <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -362,6 +363,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
+      <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -378,6 +380,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
+      <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -448,6 +451,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
+      <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -506,6 +510,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
+      <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -572,6 +577,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
+      <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -630,6 +636,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
+      <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -880,6 +887,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
+      <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -938,6 +946,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
+      <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1000,6 +1009,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
+      <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1058,6 +1068,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
+      <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1132,6 +1143,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
+      <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1382,6 +1394,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
+      <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1440,6 +1453,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
+      <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1502,6 +1516,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
+      <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1560,6 +1575,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
+      <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1632,6 +1648,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
+      <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1920,6 +1937,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
+      <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1937,6 +1955,7 @@
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
+      <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -1945,6 +1964,7 @@
     <Hierarchy dwd:design-time-name="94584c6c-f9c9-4410-914d-78aa1b628cda">
       <ID>Hierarchy</ID>
       <Name>Calendar Week Hierarchy</Name>
+      <AllMemberName>All Calendar Weeks</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="5c73b384-d7f8-4193-a129-166a021b6179">
           <ID>Year</ID>
@@ -1961,6 +1981,7 @@
     <Hierarchy dwd:design-time-name="b51df54c-4130-4ae6-b90b-2f6a88c7942a">
       <ID>Hierarchy 1</ID>
       <Name>Calendar Hierarchy</Name>
+      <AllMemberName>All Calendar Days</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="5d15d501-c1a2-401b-b6fc-1fc822429c6e">
           <ID>Year</ID>
@@ -1982,6 +2003,7 @@
     <Hierarchy dwd:design-time-name="2b0ba563-a9ac-4e15-a701-aedceb4c19d0">
       <ID>Hierarchy 2</ID>
       <Name>Federal Fiscal Calendar Hierarchy</Name>
+      <AllMemberName>All Federal Fiscal Days</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="f0e30394-3f6e-4e0c-867f-4ab0c60f5ec3">
           <ID>Federal Fiscal Year</ID>
@@ -2008,6 +2030,7 @@
     <Hierarchy dwd:design-time-name="43b24a2d-5dbd-4c5d-8d53-1b1386b8351e">
       <ID>Hierarchy 3</ID>
       <Name>Federal Fiscal Week Hierarchy</Name>
+      <AllMemberName>All Federal Fiscal Weeks</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="ea34fa1e-1fb8-4e3a-83e7-cded08cb3cbf">
           <ID>Federal Fiscal Year</ID>
@@ -2029,6 +2052,7 @@
     <Hierarchy dwd:design-time-name="875ca963-9aee-474b-b582-892b9a2abc2d">
       <ID>Hierarchy 4</ID>
       <Name>State Fiscal Calendar Hierarchy</Name>
+      <AllMemberName>All State Fiscal Days</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="1195e358-d987-4530-93b3-ef951f2b126f">
           <ID>State Fiscal Year</ID>
@@ -2055,6 +2079,7 @@
     <Hierarchy dwd:design-time-name="1e340151-6005-4d24-aa37-6f0b93cec1e2">
       <ID>Hierarchy 5</ID>
       <Name>State Fiscal Week Hierarchy</Name>
+      <AllMemberName>All State Fiscal Weeks</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="f57e8d2d-9d60-4021-8341-583b87b88630">
           <ID>State Fiscal Year</ID>

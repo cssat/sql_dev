@@ -1,0 +1,3731 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="18bca3e7-1cf0-4165-be74-50933697cd2e" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>rptPlacement Dimension</ID>
+  <Name>Placement Dimension</Name>
+  <CreatedTimestamp>0001-01-01T08:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T08:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-3089" scrolltop="-8361" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="12012" y="21061" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="Dim.Placement" left="20" top="0" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="5794" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="00080000a216000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_Cube_rptPlacement_Dim" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-3089</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>-8361</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>20</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
+      <Value>
+        <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="204" xmlns="">
+          <Shapes NodeWidth="242">
+            <Shape Id="Id Removal Episode Fact" Expanded="true">
+              <Attributes>
+                <Attribute Id="Id Removal Episode Fact" />
+                <Attribute Id="18bday" />
+                <Attribute Id="Birthdate" />
+                <Attribute Id="Child" />
+                <Attribute Id="Child Eps Rank" />
+                <Attribute Id="Dependency Dt" />
+                <Attribute Id="Discharge Dt" />
+                <Attribute Id="Discharge Dt Force 18" />
+                <Attribute Id="Episode Los Grp" />
+                <Attribute Id="Exit" />
+                <Attribute Id="Fl Abandonment" />
+                <Attribute Id="Fl Caretaker Inability Cope" />
+                <Attribute Id="Fl Child Abuse Alcohol" />
+                <Attribute Id="Fl Child Abuses Drug" />
+                <Attribute Id="Fl Child Behavior Problems" />
+                <Attribute Id="Fl Child Clinically Diagnosed" />
+                <Attribute Id="Fl Dep Exist" />
+                <Attribute Id="Fl Inadequate Housng" />
+                <Attribute Id="Fl Neglect" />
+                <Attribute Id="Fl Parent Abuse Alcohol" />
+                <Attribute Id="Fl Parent Death" />
+                <Attribute Id="Fl Parent Drug Abuse" />
+                <Attribute Id="Fl Parent Incarceration" />
+                <Attribute Id="Fl Physical Abuse" />
+                <Attribute Id="Fl Relinquishment" />
+                <Attribute Id="Fl Sex Abuse" />
+                <Attribute Id="Init Cd Plcm Setng" />
+                <Attribute Id="Latest Plcmnt Dt" />
+                <Attribute Id="Latest Plcmnt End Dt" />
+                <Attribute Id="Next Reentry Date" />
+                <Attribute Id="Placement Workerint Level" />
+                <Attribute Id="Placement Workerint Reason" />
+                <Attribute Id="Placement Worker Unit" />
+                <Attribute Id="Removal" />
+                <Attribute Id="Worker Unit" />
+              </Attributes>
+              <Position x="20" y="224" />
+            </Shape>
+            <Shape Id="Cd Removal County" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Removal County" />
+              </Attributes>
+              <Position x="327" y="224" />
+            </Shape>
+            <Shape Id="Cd Old Removal Region" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Old Removal Region" />
+              </Attributes>
+              <Position x="635" y="224" />
+            </Shape>
+            <Shape Id="Cd Removal Region" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Removal Region" />
+              </Attributes>
+              <Position x="635" y="272" />
+            </Shape>
+            <Shape Id="Cd Discharge Type 1" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Discharge Type 1" />
+              </Attributes>
+              <Position x="327" y="320" />
+            </Shape>
+            <Shape Id="Long Cd Plcm Setng" Expanded="false">
+              <Attributes>
+                <Attribute Id="Long Cd Plcm Setng" />
+              </Attributes>
+              <Position x="327" y="368" />
+            </Shape>
+            <Shape Id="Exit County Cd" Expanded="false">
+              <Attributes>
+                <Attribute Id="Exit County Cd" />
+              </Attributes>
+              <Position x="327" y="416" />
+            </Shape>
+            <Shape Id="Exit Old Region Cd" Expanded="false">
+              <Attributes>
+                <Attribute Id="Exit Old Region Cd" />
+              </Attributes>
+              <Position x="635" y="416" />
+            </Shape>
+            <Shape Id="Exit Region Cd" Expanded="false">
+              <Attributes>
+                <Attribute Id="Exit Region Cd" />
+              </Attributes>
+              <Position x="635" y="464" />
+            </Shape>
+            <Shape Id="Zip" Expanded="false">
+              <Attributes>
+                <Attribute Id="Zip" />
+              </Attributes>
+              <Position x="327" y="512" />
+            </Shape>
+            <Shape Id="Cd Worker Office" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Worker Office" />
+              </Attributes>
+              <Position x="327" y="560" />
+            </Shape>
+            <Shape Id="Cd Worker Old Region" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Worker Old Region" />
+              </Attributes>
+              <Position x="635" y="560" />
+            </Shape>
+            <Shape Id="Cd Worker County" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Worker County" />
+              </Attributes>
+              <Position x="635" y="608" />
+            </Shape>
+            <Shape Id="Cd Worker Court" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Worker Court" />
+              </Attributes>
+              <Position x="942" y="608" />
+            </Shape>
+            <Shape Id="Cd Worker Office Collapse" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Worker Office Collapse" />
+              </Attributes>
+              <Position x="635" y="656" />
+            </Shape>
+            <Shape Id="Cd Worker Region" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Worker Region" />
+              </Attributes>
+              <Position x="942" y="656" />
+            </Shape>
+            <Shape Id="Tx Tribe Name" Expanded="false">
+              <Attributes>
+                <Attribute Id="Tx Tribe Name" />
+              </Attributes>
+              <Position x="327" y="704" />
+            </Shape>
+            <Shape Id="Trh" Expanded="false">
+              <Attributes>
+                <Attribute Id="Trh" />
+              </Attributes>
+              <Position x="327" y="752" />
+            </Shape>
+            <Shape Id="Town" Expanded="false">
+              <Attributes>
+                <Attribute Id="Town" />
+              </Attributes>
+              <Position x="327" y="800" />
+            </Shape>
+            <Shape Id="Tx Subctgry" Expanded="false">
+              <Attributes>
+                <Attribute Id="Tx Subctgry" />
+              </Attributes>
+              <Position x="327" y="848" />
+            </Shape>
+            <Shape Id="Staddress Type" Expanded="false">
+              <Attributes>
+                <Attribute Id="Staddress Type" />
+              </Attributes>
+              <Position x="327" y="896" />
+            </Shape>
+            <Shape Id="State" Expanded="false">
+              <Attributes>
+                <Attribute Id="State" />
+              </Attributes>
+              <Position x="327" y="944" />
+            </Shape>
+            <Shape Id="Setting" Expanded="false">
+              <Attributes>
+                <Attribute Id="Setting" />
+              </Attributes>
+              <Position x="327" y="992" />
+            </Shape>
+            <Shape Id="Cd Rmvl Mnr" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Rmvl Mnr" />
+              </Attributes>
+              <Position x="327" y="1040" />
+            </Shape>
+            <Shape Id="Cd Rel" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Rel" />
+              </Attributes>
+              <Position x="327" y="1088" />
+            </Shape>
+            <Shape Id="Cd Race Census" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Race Census" />
+              </Attributes>
+              <Position x="327" y="1136" />
+            </Shape>
+            <Shape Id="Cd Primary Ppln" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Primary Ppln" />
+              </Attributes>
+              <Position x="327" y="1184" />
+            </Shape>
+            <Shape Id="Placement Worker Office Cd" Expanded="false">
+              <Attributes>
+                <Attribute Id="Placement Worker Office Cd" />
+              </Attributes>
+              <Position x="327" y="1232" />
+            </Shape>
+            <Shape Id="Placement Worker Old Region" Expanded="false">
+              <Attributes>
+                <Attribute Id="Placement Worker Old Region" />
+              </Attributes>
+              <Position x="635" y="1232" />
+            </Shape>
+            <Shape Id="Placement Worker County Cd" Expanded="false">
+              <Attributes>
+                <Attribute Id="Placement Worker County Cd" />
+              </Attributes>
+              <Position x="635" y="1280" />
+            </Shape>
+            <Shape Id="Placement Worker Court Cd" Expanded="false">
+              <Attributes>
+                <Attribute Id="Placement Worker Court Cd" />
+              </Attributes>
+              <Position x="942" y="1280" />
+            </Shape>
+            <Shape Id="Placement Worker Office Collapse Cd" Expanded="false">
+              <Attributes>
+                <Attribute Id="Placement Worker Office Collapse Cd" />
+              </Attributes>
+              <Position x="635" y="1328" />
+            </Shape>
+            <Shape Id="Placement Worker Region Cd" Expanded="false">
+              <Attributes>
+                <Attribute Id="Placement Worker Region Cd" />
+              </Attributes>
+              <Position x="942" y="1328" />
+            </Shape>
+            <Shape Id="Placement Los Grp" Expanded="false">
+              <Attributes>
+                <Attribute Id="Placement Los Grp" />
+              </Attributes>
+              <Position x="327" y="1376" />
+            </Shape>
+            <Shape Id="Tx Plcm Dsch Rsn" Expanded="false">
+              <Attributes>
+                <Attribute Id="Tx Plcm Dsch Rsn" />
+              </Attributes>
+              <Position x="327" y="1424" />
+            </Shape>
+            <Shape Id="Cd Placement Care Auth" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Placement Care Auth" />
+              </Attributes>
+              <Position x="327" y="1472" />
+            </Shape>
+            <Shape Id="Orig Cd Plcm Dsch Rsn" Expanded="false">
+              <Attributes>
+                <Attribute Id="Orig Cd Plcm Dsch Rsn" />
+              </Attributes>
+              <Position x="327" y="1520" />
+            </Shape>
+            <Shape Id="Cd Office" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Office" />
+              </Attributes>
+              <Position x="327" y="1568" />
+            </Shape>
+            <Shape Id="Cd Old Region" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Old Region" />
+              </Attributes>
+              <Position x="635" y="1568" />
+            </Shape>
+            <Shape Id="Cd County" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd County" />
+              </Attributes>
+              <Position x="635" y="1616" />
+            </Shape>
+            <Shape Id="Court Cd" Expanded="false">
+              <Attributes>
+                <Attribute Id="Court Cd" />
+              </Attributes>
+              <Position x="942" y="1616" />
+            </Shape>
+            <Shape Id="Cd Office Collapse" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Office Collapse" />
+              </Attributes>
+              <Position x="635" y="1664" />
+            </Shape>
+            <Shape Id="Cd Region" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Region" />
+              </Attributes>
+              <Position x="942" y="1664" />
+            </Shape>
+            <Shape Id="Nxt Reentry Within Min Month Mult3" Expanded="false">
+              <Attributes>
+                <Attribute Id="Nxt Reentry Within Min Month Mult3" />
+              </Attributes>
+              <Position x="327" y="1712" />
+            </Shape>
+            <Shape Id="Multi Race Mask" Expanded="false">
+              <Attributes>
+                <Attribute Id="Multi Race Mask" />
+              </Attributes>
+              <Position x="327" y="1760" />
+            </Shape>
+            <Shape Id="Max Bin Los Cd" Expanded="false">
+              <Attributes>
+                <Attribute Id="Max Bin Los Cd" />
+              </Attributes>
+              <Position x="327" y="1808" />
+            </Shape>
+            <Shape Id="Tx Lgl Stat" Expanded="false">
+              <Attributes>
+                <Attribute Id="Tx Lgl Stat" />
+              </Attributes>
+              <Position x="327" y="1856" />
+            </Shape>
+            <Shape Id="Last End Rsn" Expanded="false">
+              <Attributes>
+                <Attribute Id="Last End Rsn" />
+              </Attributes>
+              <Position x="327" y="1904" />
+            </Shape>
+            <Shape Id="Cd Gndr" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Gndr" />
+              </Attributes>
+              <Position x="327" y="1952" />
+            </Shape>
+            <Shape Id="Exit Within Month Mult3" Expanded="false">
+              <Attributes>
+                <Attribute Id="Exit Within Month Mult3" />
+              </Attributes>
+              <Position x="327" y="2000" />
+            </Shape>
+            <Shape Id="Exit Reason" Expanded="false">
+              <Attributes>
+                <Attribute Id="Exit Reason" />
+              </Attributes>
+              <Position x="327" y="2048" />
+            </Shape>
+            <Shape Id="Cd Epsd Type" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Epsd Type" />
+              </Attributes>
+              <Position x="327" y="2096" />
+            </Shape>
+            <Shape Id="Cd Discharge Type" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Discharge Type" />
+              </Attributes>
+              <Position x="327" y="2144" />
+            </Shape>
+            <Shape Id="Tx Dsch Rsn" Expanded="false">
+              <Attributes>
+                <Attribute Id="Tx Dsch Rsn" />
+              </Attributes>
+              <Position x="327" y="2192" />
+            </Shape>
+            <Shape Id="Current Setting" Expanded="false">
+              <Attributes>
+                <Attribute Id="Current Setting" />
+              </Attributes>
+              <Position x="327" y="2240" />
+            </Shape>
+            <Shape Id="Current Service" Expanded="false">
+              <Attributes>
+                <Attribute Id="Current Service" />
+              </Attributes>
+              <Position x="327" y="2288" />
+            </Shape>
+            <Shape Id="Child Age" Expanded="false">
+              <Attributes>
+                <Attribute Id="Child Age" />
+              </Attributes>
+              <Position x="327" y="2336" />
+            </Shape>
+            <Shape Id="Census Hispanic Latino Origin Cd" Expanded="false">
+              <Attributes>
+                <Attribute Id="Census Hispanic Latino Origin Cd" />
+              </Attributes>
+              <Position x="327" y="2384" />
+            </Shape>
+            <Shape Id="Tx Braam Race" Expanded="false">
+              <Attributes>
+                <Attribute Id="Tx Braam Race" />
+              </Attributes>
+              <Position x="327" y="2432" />
+            </Shape>
+            <Shape Id="Bin Placement Cd" Expanded="false">
+              <Attributes>
+                <Attribute Id="Bin Placement Cd" />
+              </Attributes>
+              <Position x="327" y="2480" />
+            </Shape>
+            <Shape Id="Bin Ihs Svc Cd" Expanded="false">
+              <Attributes>
+                <Attribute Id="Bin Ihs Svc Cd" />
+              </Attributes>
+              <Position x="327" y="2528" />
+            </Shape>
+            <Shape Id="Bin Dep Cd" Expanded="false">
+              <Attributes>
+                <Attribute Id="Bin Dep Cd" />
+              </Attributes>
+              <Position x="327" y="2576" />
+            </Shape>
+            <Shape Id="Cd Alt Ppln" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Alt Ppln" />
+              </Attributes>
+              <Position x="327" y="2624" />
+            </Shape>
+            <Shape Id="Cd Hspnc" Expanded="false">
+              <Attributes>
+                <Attribute Id="Cd Hspnc" />
+              </Attributes>
+              <Position x="327" y="2672" />
+            </Shape>
+          </Shapes>
+        </DiagramLayout>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T08:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="8384ee6a-8253-4a11-a53e-0da65a657ca4">
+    <DataSourceViewID>CA ODS</DataSourceViewID>
+  </Source>
+  <ErrorConfiguration dwd:design-time-name="09747e14-0a1f-45f5-be7f-1aab93562ec0">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <Attributes>
+    <Attribute dwd:design-time-name="11016245-b2bd-458d-aa36-d8cc6d9e3a53">
+      <ID>Child</ID>
+      <Name>Child</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="51e8e773-ca9e-4858-a5ee-a4ba2da14757">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f33035dc-f6a1-4cf9-a210-61fe487b96d3">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>child</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="b7c3e518-5c1e-4174-84db-bbb3dd5ffff4">
+      <ID>Cd Region</ID>
+      <Name>Region</Name>
+      <EstimatedCount>4</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="0bd8a085-5503-4368-8e93-dd4c01ef0832">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="36c6fb5c-27dc-41ab-a131-e6f29b1e4532">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_region</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="f0a0720d-5fc4-4605-83f1-71d00f9fd72f">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="a0bc87fa-9238-415d-b161-4f5961e18d0d">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>tx_region</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="3366f1f6-08fd-47f4-9bda-c8913435ccb5">
+      <ID>Cd Office</ID>
+      <Name>Office</Name>
+      <EstimatedCount>86</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="7cf99af9-62de-459b-8865-1a64985dff1e">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="6cf50c43-0ca7-4684-9549-34a943b0e712">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_office</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="ec5cbc99-60e0-460f-a584-40add2525181">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="e432b369-54d2-4088-a640-5bcf9bffaaee">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>tx_office</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="b2840ec7-eef4-4f19-8ed1-d3d3a1c4092b">
+          <AttributeID>Cd Office Collapse</AttributeID>
+          <Name>Office Collapse</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="ec3fe90c-626f-4b84-aff8-08be355604a3">
+          <AttributeID>Cd County</AttributeID>
+          <Name>County</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="8604644c-35d5-4731-a434-8a6c30d56084">
+          <AttributeID>Cd Old Region</AttributeID>
+          <Name>Old Region</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="2483cacd-81c1-4dd9-8000-428b1f103f9d">
+      <ID>Cd County</ID>
+      <Name>County</Name>
+      <EstimatedCount>32</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="73c0fb75-c287-48f0-8931-958a7bb1f742">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="15e5794b-41a1-4202-9494-be34418bb0ae">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_county</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="5c1010a8-1668-4503-a9e3-704ff88a7c5c">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="3cf8bd3a-a81e-4467-bccb-188708f6930d">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>tx_county</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="cf3e74bb-9731-4793-8e1a-3a6b26249114">
+          <AttributeID>Court Cd</AttributeID>
+          <Name>Court</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="d45aaac4-c41a-47c5-900b-f73c2d97e681">
+      <ID>Cd Epsd Type</ID>
+      <Name>Episode Type</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="f428b37c-974a-4244-8d76-9bb147b2a9f3">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="aa6481cb-ac12-4018-bc2e-2fcd38bd1815">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_epsd_type</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="f673b697-79c4-495e-a8e4-28a1355b887a">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="aa73511e-dfd7-4319-858e-734d26e6834a">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>tx_epsd_type</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="3afa6a0f-c4a5-4473-85c5-e1949e9a3b5c">
+      <ID>18bday</ID>
+      <Name>18th Birthday</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="5ec05c0f-c297-4cab-ae70-d774a4fd641e">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="44472db8-897f-4907-b738-2936469f71ce">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>_x0031_8bday</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="3a65aa35-8f25-49e2-ad0f-386d6c1892cc">
+      <ID>Child Age</ID>
+      <Name>Child Age</Name>
+      <EstimatedCount>65</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="66b365de-19ed-4f19-a049-5cd658ad129f">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="eb204c6f-4f27-4950-9112-35f3b74cc639">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>child_age</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="cc1ccd23-10f1-48e8-8c50-35958a8f8ba8">
+      <ID>Cd Rel</ID>
+      <Name>Relationship</Name>
+      <EstimatedCount>17</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="c1095d59-dcc1-4fb0-9809-82b4e037bc50">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="3984c8c2-43a3-4520-a71b-e0c107010a6c">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_rel</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="b59fb435-9daf-4f7b-9abc-a0b611a08da0">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="88ab1024-62a8-451e-90af-a0a110db916c">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>tx_rel</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="28275fdb-ffd0-4e46-b901-f68c9a0ba9c3">
+      <ID>Current Setting</ID>
+      <Name>Current Setting</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="dd68c4c6-a6ec-4079-b06b-be7ed97f9450">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="01ff3dc8-023e-46e7-89ca-0ebf5224c0c8">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>current_setting</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="6dbf1299-4801-42b6-8865-f53fbab7726b">
+      <ID>Placement Worker Region Cd</ID>
+      <Name>Placement Worker Region</Name>
+      <EstimatedCount>5</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="88377865-8832-436b-8ad9-631f5549892e">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="b338fa9b-8cc5-4c54-9064-d3dda36e608b">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>placement_worker_region_cd</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="5cc8f6a7-7c24-493b-90c1-b91d8dc39be4">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="ef6b315f-ceea-4097-85bf-91044bfb3db8">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>placement_worker_region</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="8e0dd5da-11f1-422a-9cd9-d2d0d4e7ad33">
+      <ID>Placement Worker Office Cd</ID>
+      <Name>Placement Worker Office</Name>
+      <EstimatedCount>93</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="290768ca-35c7-411c-916d-5884ed52dc11">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="8767ba48-1f33-4a6c-a23a-8714e48c0784">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>placement_worker_office_cd</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="bd497e4f-89b4-4e85-b1df-8adae09eb30b">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="f755f012-f367-470b-812c-b7efed1c558c">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>placement_worker_office</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="bc120656-7075-46a0-82f6-eeb2898a0e34">
+          <AttributeID>Placement Worker Office Collapse Cd</AttributeID>
+          <Name>Placement Worker Office Collapse</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="979ffa3c-45d4-4272-9506-87b581e177a7">
+          <AttributeID>Placement Worker County Cd</AttributeID>
+          <Name>Placement Worker County</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="a22d799f-02fd-4a20-9983-b4573bd545b0">
+          <AttributeID>Placement Worker Old Region</AttributeID>
+          <Name>Placement Worker Old Region</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="9f0e1ba8-32b3-4aa8-95e2-83c2f9871107">
+      <ID>Placement Worker County Cd</ID>
+      <Name>Placement Worker County</Name>
+      <EstimatedCount>33</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="7a18f4f0-7273-42eb-b0d9-ad2170097538">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="16b8254b-b968-458c-98bd-0be7b2e33c83">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>placement_worker_county_cd</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="d2458cf2-f9d7-4e2f-8c32-8ef25986169a">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="0c22b81f-f7f5-454c-9c21-f60b7a45bb67">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>placement_worker_county</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="943a65a5-2069-4fd1-a444-6adc038b374f">
+          <AttributeID>Placement Worker Court Cd</AttributeID>
+          <Name>Placement Worker Court</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="ce392c75-fd52-4a8f-84e3-0055da05ae46">
+      <ID>Placement Worker Unit</ID>
+      <Name>Placement Worker Unit</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="e9f70d99-b2d1-4699-b228-af28101d020e">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="06174cce-ee35-4109-8806-24346f6f1f1c">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>placement_worker_unit</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="1edce664-3553-44d3-8753-bf828228b7a8">
+      <ID>Placement Workerint Level</ID>
+      <Name>Placement Worker Level</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="4b97768d-de33-4ee4-9bc3-be871dc67564">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="1a163952-fdf0-4fd8-8f03-47480b744551">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>placement_workerint_level</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="86d7197e-06bf-4b8e-9fa6-2ccfc21057ad">
+      <ID>Cd Primary Ppln</ID>
+      <Name>Primary Permanency Plan</Name>
+      <EstimatedCount>12</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="c4bb7bed-90c5-43ff-8dee-90df7c2ab6b3">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="506cbca4-d57a-4a8c-bcb5-c6ce4db23044">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_primary_ppln</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="8b20a449-d4b7-4f57-b920-9542cbd41d7d">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="c9e8be6d-2830-48cd-8a91-718fb12f4204">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>primary_ppln</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="77f47c91-5d9a-4023-902d-0367bf0d8c85">
+      <ID>Cd Alt Ppln</ID>
+      <Name>Alternate Permanency Plan</Name>
+      <EstimatedCount>12</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="832fc287-c396-4b53-a3e5-ce4b2da4f853">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="ec18439b-6f32-48b6-83a6-95351afd6606">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_alt_ppln</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="6f9c8df5-e868-4e49-bdf9-4b82cbca7b8f">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="0ad65327-e8f3-472b-a6de-42cd1e0062e1">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>alt_ppln</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="98241d48-e639-49cd-9053-a4b099bd2ff5">
+      <ID>Cd Hspnc</ID>
+      <Name>Hispanic</Name>
+      <EstimatedCount>4</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="384a8deb-bc25-4791-a51c-95c2b3c0568f">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="d155e2d3-b1ae-4ad7-bf17-5602e2e9b5b8">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_hspnc</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="04cb2a83-25e4-49c8-a00c-78445ad72c7b">
+        <DataType>WChar</DataType>
+        <DataSize>20</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="f7f82a09-f93b-4562-a2e1-f31b65db252c">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>tx_hspnc</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="6bc1436f-114b-4568-80a0-00ab1e1480ab">
+      <ID>Cd Rmvl Mnr</ID>
+      <Name>Removal Manner</Name>
+      <EstimatedCount>4</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="a7464ee2-864e-4fec-b4db-2f66d001e6e2">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="80e493ac-1aa3-481c-af5e-5a890ad40a20">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_rmvl_mnr</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="618a7786-e5a1-4d45-84e6-8c45d434ca5a">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="edff9c18-2e94-4aa8-ad4e-6165fbf7e628">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>tx_rmvl_mnr</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="ac2008a4-5626-461b-bd53-7a0793ac104e">
+      <ID>Cd Placement Care Auth</ID>
+      <Name>Placement Caregiver Authorization</Name>
+      <EstimatedCount>13</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="567753eb-17d7-4cb1-855a-cb244a3c7e98">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="c51a8620-83b3-4819-8acc-5e15779731a2">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_placement_care_auth</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="ef7b1651-eae8-4ad9-a278-ac0c6345f51d">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="d3968b07-bae1-47e7-8e78-8aa121a20505">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>tx_placement_care_auth</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="6f6f7866-12a4-4845-841f-5a2d6e498072">
+      <ID>Orig Cd Plcm Dsch Rsn</ID>
+      <Name>Original Placement Discharge Reason</Name>
+      <EstimatedCount>22</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="7f991542-6350-41a3-874b-7f105339c3b8">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="aa7c5252-1fcb-417d-9b3d-7202a2471e62">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>orig_cd_plcm_dsch_rsn</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="bfcef3bd-5ed4-4e4b-b6a4-602373cca2bb">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="9093ade7-cdff-4152-97e1-4f2c31f33542">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>orig_tx_plcm_dsch_rsn</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="325d2111-0c04-43f8-8fb4-606a8fe5679d">
+      <ID>Child Eps Rank</ID>
+      <Name>Child Episode Rank</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="ae2f3760-f580-4457-ae66-c2ab65cc9858">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="cba84d5c-42e4-4887-bda3-700179197364">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>child_eps_rank</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="9f4df8ca-9768-4c0b-809f-bb2cdc161f4e">
+      <ID>Cd Race Census</ID>
+      <Name>Race Census</Name>
+      <EstimatedCount>8</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="dbae847e-f6dd-4736-ba6c-0d2be909a987">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="05687d04-5f10-45ab-8b92-f68155ed9855">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_race_census</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="a324a2b8-cebc-4c35-bc7c-2cea05afe6ba">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="c784a122-7d11-41f8-be14-47ddfceedf48">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>tx_race_census</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="ae8e4f5e-667a-405d-b46a-a03113ed20d4">
+      <ID>Census Hispanic Latino Origin Cd</ID>
+      <Name>Census Hispanic Latino Origin</Name>
+      <EstimatedCount>4</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="c40e92d7-8ca7-4a90-b6ae-601965fa23ea">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="0e727893-cde8-4bbc-9186-5b0408cfff1e">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>census_hispanic_latino_origin_cd</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="59285dcb-57f5-4dcf-9ef7-462635522046">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="bf3e4d68-7b73-40da-a4f9-c3c3aea11397">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>census_hispanic_latino_origin</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="2839b9c1-f82e-4ca6-bf3a-370960bd1f85">
+      <ID>Cd Discharge Type</ID>
+      <Name>Discharge Type</Name>
+      <EstimatedCount>5</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="05072e54-fc49-40cd-8c35-e2efd65e42b6">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="c258637d-bc64-45a8-8400-1fdfd7b84323">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_discharge_type</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="2ceb1bb3-7fd3-4cc8-b6d4-dd4b8a44818a">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="f84e2b68-c3d3-44e8-a306-8841511bbd3f">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>tx_discharge_type</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="2ed02f1c-ed8f-46c6-9b21-7a684b52addb">
+      <ID>Max Bin Los Cd</ID>
+      <Name>Length of Stay Duration</Name>
+      <EstimatedCount>5</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="44452554-7a6c-4f46-928e-e30021b784bb">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="a7fc0ac1-14a9-4cb3-b1ec-348779725a23">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>max_bin_los_cd</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="3405f6be-952a-4639-98d1-af218840c538">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="382a66b8-bffe-4301-80e6-f8756580d46c">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>bin_los_desc</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="4914d798-e699-476f-8871-7df85f59ef11">
+      <ID>Bin Dep Cd</ID>
+      <Name>Dependency</Name>
+      <EstimatedCount>3</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="e14becda-f434-4d78-9ff7-d9cef2888caa">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="9595908f-0217-45c1-9ee3-ae1a59b0d3f4">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>bin_dep_cd</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="725d631b-c1d1-4db2-a65e-a04319b3628d">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="081e2b77-0b30-422a-b6d8-247a3513c649">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>bin_dep_desc</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="33cde2bc-9927-4877-a142-c67c65871da7">
+      <ID>Bin Ihs Svc Cd</ID>
+      <Name>IHS Service</Name>
+      <EstimatedCount>3</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="eaccf139-2163-49eb-b3ce-9a8f46c31125">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="455e8190-6023-47bf-92ca-9f2542767a50">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>bin_ihs_svc_cd</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="ac1ac0e0-cc9d-4acd-866b-79c596558ba9">
+        <DataType>WChar</DataType>
+        <DataSize>100</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="114c3c84-5c88-4747-a650-9001c3036592">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>bin_ihs_svc_tx</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="d3fb0c59-25e8-418e-922c-f2aacf7480f6">
+      <ID>Exit Within Month Mult3</ID>
+      <Name>Exit Within Month Mult3</Name>
+      <EstimatedCount>17</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="d0814348-b1d8-4628-a777-a69604eb3723">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="2368caef-6650-4e94-9e3e-a4903ae6fd12">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>exit_within_month_mult3</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="629ff106-760f-4d4f-b92a-dd33ee6f1914">
+      <ID>Nxt Reentry Within Min Month Mult3</ID>
+      <Name>Next Reentry Within Min Month Mult3</Name>
+      <EstimatedCount>17</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="5d67e0b3-4d6b-4482-8ffe-99e8e82939be">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="e4cafb9d-fcd1-4c2a-ab40-fcc65e1deb09">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>nxt_reentry_within_min_month_mult3</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="d122748f-e8d8-4ba8-b21a-176001c1f9a8">
+      <ID>Bin Placement Cd</ID>
+      <Name>Number of Placements</Name>
+      <EstimatedCount>5</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="9dbc2d92-7648-4a89-927e-bab22515d791">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="dc64a937-6c30-4510-82a5-e49cb071f8c2">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>bin_placement_cd</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="c69d2c6e-3b34-485c-bc54-921b1a75ad4e">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="b75bf2a7-6f2f-414f-bd54-23810eb5082b">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>bin_placement_desc</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="c69cfaa9-572d-4fd2-a709-99a09b6181cd">
+      <ID>Init Cd Plcm Setng</ID>
+      <Name>Initial Placement Setting</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="8f1a1472-7a82-41cc-849b-68d60929215b">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="29bf3d51-c167-4c2a-9bcf-d9d686a71806">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>init_cd_plcm_setng</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="61666e33-9d11-46f0-b3ef-3c730374de5f">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="0adc0255-9a8e-4c1d-b8c5-8c24cd1972cc">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>init_tx_plcm_setng</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="7f5196cc-db9c-4b1e-8b16-cf130379f528">
+      <ID>Worker Unit</ID>
+      <Name>Worker Unit</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="c947d896-f47e-483d-961d-af468b6d542a">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="51b28adb-ce28-4726-bcfa-44033af85ac2">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>worker_unit</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="fd0c79c1-1e6c-4484-9849-8a74f48d6b82">
+      <ID>Cd Worker Region</ID>
+      <Name>Worker Region</Name>
+      <EstimatedCount>4</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="22f1e559-214f-4957-be9f-b2c307ab03ab">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="1379341f-e253-453f-a55e-64711c5007a8">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_worker_region</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="e0804e72-e696-4bbc-aa92-eb2e68611b10">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="e890c9ca-d374-46de-9e18-e62f6f3065e5">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>worker_region</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="73910c7b-4e51-4280-8840-8bf9f8a871ae">
+      <ID>Cd Worker Office</ID>
+      <Name>Worker Office</Name>
+      <EstimatedCount>96</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="5c4febcb-3bbb-48b1-a10d-90aae1810d51">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="3e854283-a507-4bf6-8551-5fa08e6ba271">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_worker_office</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="705cea83-7356-4b08-b49e-18a3f465c2c3">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="9286ec64-f5d2-46fe-8231-f7f14de8dedb">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>worker_office</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="9cbc77bb-3cf1-4a28-bb32-8899bf4ab750">
+          <AttributeID>Cd Worker Office Collapse</AttributeID>
+          <Name>Worker Office Collapse</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="8dbca925-85c2-4f6b-aa33-f07d97fa0ca7">
+          <AttributeID>Cd Worker County</AttributeID>
+          <Name>Worker County</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="026a38e0-1868-4a76-b358-db17523b50a7">
+          <AttributeID>Cd Worker Old Region</AttributeID>
+          <Name>Worker Old Region</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="5d6268e4-a222-4e1a-aa07-0cb074c8e56c">
+      <ID>Cd Worker County</ID>
+      <Name>Worker County</Name>
+      <EstimatedCount>33</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="40f19555-ad61-4fd0-aa58-b0bd633c4507">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="776fb41e-ec1e-42a0-be28-0fd0e78c117b">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_worker_county</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="313259c6-adde-4e03-ab1f-f72abfb1f503">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="9b1fed74-78c3-413d-ae11-baecdccbb236">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>worker_county</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="27c27efa-a90a-4493-bfa6-4a7daa9a1a1c">
+          <AttributeID>Cd Worker Court</AttributeID>
+          <Name>Worker Court</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="2bb7dd2c-b183-4817-9794-f32644ddcbe2">
+      <ID>Fl Abandonment</ID>
+      <Name>Flag Abandonment</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="d784452a-5c37-4b8b-a47d-2cdfe9152e8f">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="8ed39005-c224-4614-88c8-ccdedcbc458c">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>fl_abandonment</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="522d01d7-c24b-4960-8bab-5d1ece4afd45">
+      <ID>Fl Caretaker Inability Cope</ID>
+      <Name>Flag Caretaker Inability to Cope</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="d39be591-51e9-4eb4-aa13-5d396c6d6f13">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="2eb2899a-61bc-416c-887e-63a9a0764ec8">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>fl_caretaker_inability_cope</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="85f60614-cc57-4869-a52d-481ad0e0314a">
+      <ID>Fl Child Abuse Alcohol</ID>
+      <Name>Flag Child Abuse Alcohol</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="550176e0-849c-4872-8de3-60313ade75d1">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="58625ad7-0e8d-4231-a4ed-297dd5a1c122">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>fl_child_abuse_alcohol</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="f2db5e21-07c0-4049-aff6-acb2628aeab7">
+      <ID>Fl Child Abuses Drug</ID>
+      <Name>Flag Child Abuses Drug</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="1588cf92-a4f8-4fa5-9682-38418a2c987c">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="65c4fedd-0b3b-47a6-9a9c-741744e7683d">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>fl_child_abuses_drug</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="5441e5c1-16fa-48c1-9e7d-2f3a8fe5ad8a">
+      <ID>Fl Child Behavior Problems</ID>
+      <Name>Flag Child Behavior Problems</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="7d97c86d-f937-43a4-bbc8-2f54b8215310">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="6f9d0c19-4353-4d12-a2da-9840dd38b500">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>fl_child_behavior_problems</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="ea7436c2-2d77-4f77-8ae4-b3f117fa3b9c">
+      <ID>Fl Inadequate Housng</ID>
+      <Name>Flag Inadequate Housng</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="1fe18ca5-17e8-40f4-88b0-35a6b3d07617">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="9c7d9134-0d12-4450-a0ed-bcb9ecdf51ba">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>fl_inadequate_housng</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="7133c4cd-edba-4978-8e88-223a332d3752">
+      <ID>Fl Neglect</ID>
+      <Name>Flag Neglect</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="0ba05ed7-2400-4261-a6db-e677988f3a9e">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="734de7e4-242d-41ae-9077-39883a67cf6f">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>fl_neglect</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="4d507f42-5d65-4914-9d3a-34458f79f5d6">
+      <ID>Fl Parent Abuse Alcohol</ID>
+      <Name>Flag Parent Abuse Alcohol</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="572737e5-d168-440a-85d5-770fbd635eb3">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f47a2e8a-a46f-433e-b486-d0a1b0b0af68">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>fl_parent_abuse_alcohol</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="36f12e15-3127-4489-a25a-f03f0f5ca030">
+      <ID>Fl Parent Death</ID>
+      <Name>Flag Parent Death</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="ab861323-3390-4634-847b-4da7c4929029">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="d3653311-1730-477d-84f9-ce4459dbf5ad">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>fl_parent_death</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="fce1b48c-78f6-4d2d-9759-ef857253dec0">
+      <ID>Fl Parent Drug Abuse</ID>
+      <Name>Flag Parent Drug Abuse</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="c7e273bb-432c-4f4d-923a-b9c001aeb71d">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="118d8fa9-9fdc-45bf-881f-381e8f933067">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>fl_parent_drug_abuse</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="40666c62-cd40-4ef4-a155-b7a73edaa818">
+      <ID>Fl Parent Incarceration</ID>
+      <Name>Flag Parent Incarceration</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="3de00e31-f280-472e-bfd2-f70609cffa5f">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f832d289-a06e-45ad-9c54-e3252299d9b3">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>fl_parent_incarceration</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="84d77d44-3789-4192-ac79-e434aa14782a">
+      <ID>Fl Physical Abuse</ID>
+      <Name>Flag Physical Abuse</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="209a973f-6ddd-433b-b8fa-94e063b1b802">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="9589c93e-0d75-476b-b474-704833d74725">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>fl_physical_abuse</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="027f0b1f-9d94-4cb2-9042-adee1a92c471">
+      <ID>Fl Sex Abuse</ID>
+      <Name>Flag Sex Abuse</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="e38537c5-3b85-4424-92af-b7710dc440cd">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="6644cbc5-267f-4f2d-9429-955fca1cd32e">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>fl_sex_abuse</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="8263ccfd-794b-44dd-a143-2c78af4e39d8">
+      <ID>Fl Relinquishment</ID>
+      <Name>Flag Relinquishment</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="8dbf6c32-3fab-431f-a6e9-6c4a933687eb">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="546a220e-34b7-4df8-89e6-c58f13cadb75">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>fl_relinquishment</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="cb3cd421-1cb4-4117-9b70-09a3af8b16d9">
+      <ID>Fl Child Clinically Diagnosed</ID>
+      <Name>Flag Child Clinically Diagnosed</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="28900c9e-8184-4897-8e66-1d4f491c6bb7">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="95e367dc-ce20-4a05-a6d4-8841f2c6a590">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>fl_child_clinically_diagnosed</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="a3b79308-eb8f-4376-9ff3-6d2f84fc22fb">
+      <ID>Fl Dep Exist</ID>
+      <Name>Flag Dependency Exists</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="1b63a43e-b757-4701-a6eb-afe854569ce5">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f7e61c69-e868-4a9e-a4aa-09834e64b4d7">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>fl_dep_exist</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyDisplayFolder>Flag Attributes</AttributeHierarchyDisplayFolder>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="0e85f37b-6d4b-4b8c-9fb4-7062bc8249bf">
+      <ID>Next Reentry Date</ID>
+      <Name>Next Reentry Date</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="66a15fc5-abce-41e9-9d0b-e65f451f2d27">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="4ae17f6f-e911-4e49-9d16-92b6009e4b60">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>next_reentry_date</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="3253b5f0-a6a3-4541-9bc7-ac41141ac4e2">
+      <ID>Dependency Dt</ID>
+      <Name>Dependency Date</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="f6430aea-9d54-4cf6-a039-c339061bb80e">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="99198e6e-ef7d-464d-972b-9582b3c8609e">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>dependency_dt</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="5bbed16c-5cc0-4ac5-8ae2-e1683edef38c">
+      <ID>Tx Tribe Name</ID>
+      <Name>Tribe Name</Name>
+      <EstimatedCount>22</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="920ef652-e8a9-49fa-aded-0dfae7503a7a">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="78ac1b3c-ba07-4ea1-a9c9-f69d50fcab4c">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>tx_tribe_name</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="61f02083-d6af-409c-b221-b73252ebd348">
+      <ID>Town</ID>
+      <Name>Town</Name>
+      <EstimatedCount>1013</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="30d0c05d-89cd-4a0f-9ea3-9d8c069dac33">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="12098a29-6a87-4f9c-844a-ad77f8f69855">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>town</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="c1eafeae-4da0-4fe0-8905-37b51e8ce8e2">
+      <ID>Zip</ID>
+      <Name>Zip</Name>
+      <EstimatedCount>1170</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="55c398a8-2cf2-4184-8148-2a8b3f8e8058">
+          <DataType>WChar</DataType>
+          <DataSize>50</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="2cd6c576-0b59-4653-98a0-1998af2f68ed">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>zip</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="416b02e5-e579-415a-b762-08a9a348353f">
+      <ID>Staddress Type</ID>
+      <Name>Street Address Type</Name>
+      <EstimatedCount>4</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="9d48d5b5-2930-4ec8-88fc-a9257b9c024f">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="33cc0e8d-f76b-4a46-8abf-283448c5332f">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>staddress_type</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="216bad1e-35c5-48f9-8864-b3ed56a656a8">
+      <ID>State</ID>
+      <Name>State</Name>
+      <EstimatedCount>49</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="583682fc-44fc-4019-b956-3d2c8ed7169e">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="18d40de4-19b4-44e2-a35a-d555820454ff">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>state</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="970c04fa-e5ba-4c45-95c2-b595a86e78b3">
+      <ID>Placement Workerint Reason</ID>
+      <Name>Placement Worker Reason</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="3767bf96-7580-48ff-910a-1651ed2b0a51">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="eecb3da0-8b0d-4db0-aa5f-d2352ccdd776">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>placement_workerint_reason</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="f67d186a-75cc-424f-b6fa-f6d6c2db7da2">
+      <ID>Trh</ID>
+      <Name>Trial Return Home</Name>
+      <EstimatedCount>2</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="18b93d61-5fe5-452c-87c3-41b0ed87beba">
+          <DataType>WChar</DataType>
+          <DataSize>20</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="7c696856-fdee-4a80-9144-5d884f0b535c">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>trh</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="3ee26b86-67c6-43a9-badd-dad0142b380b">
+      <ID>Exit</ID>
+      <Name>Exit Date</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="216029ff-5108-4816-9614-1073e64234c7">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="5e227111-b0a7-471e-a616-f12cb7af06ae">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>exit</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="bcae444a-13d2-4456-a978-57ce931e6eb1">
+      <ID>Exit Reason</ID>
+      <Name>Exit Reason</Name>
+      <EstimatedCount>25</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="a62d746d-1b96-4804-9e2e-bbd3519d2ba6">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="02e8a6cc-eaab-4c4b-afa7-5d23a1ff23ba">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>exit_reason</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="f999d635-b919-4ab8-b1a7-fba3c85bd559">
+      <ID>Tx Lgl Stat</ID>
+      <Name>Legal Status</Name>
+      <EstimatedCount>22</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="5d8f0cc7-e515-452e-895a-bcf68a41cc09">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="d4c11edd-a4c0-44bd-a6c3-c79b367b4f3d">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>tx_lgl_stat</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="1fd0e8c0-564b-4dc6-94d6-d8a97d4eb501">
+      <ID>Tx Plcm Dsch Rsn</ID>
+      <Name>Placement Discharge Reason</Name>
+      <EstimatedCount>31</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="11a13465-a8f6-4114-ac47-c6d2f21f9c22">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="bce561a3-b640-49f7-9359-c51773432620">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>tx_plcm_dsch_rsn</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="9f3ff876-56d3-4146-99a4-fd1c435d33a5">
+      <ID>Tx Dsch Rsn</ID>
+      <Name>Discharge Reason</Name>
+      <EstimatedCount>30</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="83e72a72-a416-4eda-8828-2caeea7a635c">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="e48e9f3e-996c-43e1-a72a-ed4f5c5ce2a7">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>tx_dsch_rsn</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="e365c9a5-b1d6-4d9c-9faa-f7bc2f359f4c">
+      <ID>Removal</ID>
+      <Name>Removal Date</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="c429edd7-7bac-4d00-9159-3ee5a26972ab">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="8a98f3ba-6e45-4448-92b6-e57392da2e6a">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>removal</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="5eec3213-7ca9-4540-9cdd-1f9f1ed79b70">
+      <ID>Tx Subctgry</ID>
+      <Name>Subcategory</Name>
+      <EstimatedCount>8</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="4ff68d9e-47df-40da-ad6b-5eafda7fe4fb">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="07144ea3-4749-4bd6-94b2-2ebd363fffc3">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>tx_subctgry</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="745db136-75eb-476a-872c-8660a89af6fd">
+      <ID>Setting</ID>
+      <Name>Setting</Name>
+      <EstimatedCount>27</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="da294854-9123-4c62-bfb9-394e0552a83e">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="d7ab3d19-7148-43a2-9ef2-c472aa2500ea">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>setting</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="7d37d03c-9cd0-42ec-810c-9426ac2530c2">
+      <ID>Tx Braam Race</ID>
+      <Name>BRAAM Race</Name>
+      <EstimatedCount>7</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="0167a34c-fd45-4e48-a208-46bb1d6fbb4f">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="0b45018b-2c74-4637-8bb9-c87951327de3">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>tx_braam_race</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="c8d4b895-dff5-4a23-a8fb-407010c1eb3f">
+      <ID>Birthdate</ID>
+      <Name>Birthdate</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="bef98689-08b4-4651-a09e-6cc01e31d219">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="0991bdfc-c1d3-4c7c-a083-657757abc226">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>birthdate</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="0b040c0b-074d-4556-97d0-6212acfbaa63">
+      <ID>Discharge Dt</ID>
+      <Name>Discharge Date</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="f54bbfa8-6b2e-40db-b26a-d8d8454d33e6">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="9389a095-0b42-4e56-8e61-d50c196724c2">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>discharge_dt</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="ee6c13aa-54dd-4051-a4e2-24fb9569c0fc">
+      <ID>Latest Plcmnt Dt</ID>
+      <Name>Latest Placement Date</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="9cb38b76-b4fc-46a8-8bad-2c247601af22">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="5f18dc54-4c1d-4139-ad1d-1175ea7c10ca">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>latest_plcmnt_dt</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="5f606778-9deb-4190-a79a-45fbc3592e98">
+      <ID>Latest Plcmnt End Dt</ID>
+      <Name>Latest Placement End Date</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="d54e426d-fa4e-44c4-b27f-8641e8e456cd">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="7eec51c3-d23f-4a66-b4b3-f4ff3b853112">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>latest_plcmnt_end_dt</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="af057013-c8ac-4be8-a7ff-e376ce9c7c87">
+      <ID>Last End Rsn</ID>
+      <Name>Last End Reason</Name>
+      <EstimatedCount>41</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="3fd55589-ecef-4a06-af88-2d89690da405">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="87f20be9-5477-487d-81d9-be22b39750ed">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>last_end_rsn</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="8f300b75-0882-4098-9411-23512edbeed5">
+      <ID>Episode Los Grp</ID>
+      <Name>Episode Length of Stay Group</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="1ac59b8a-a2fe-4415-8f44-cff389f5e5e9">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="de22efd8-5700-4f78-8018-9064afa352f1">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>episode_los_grp</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="96f9a4dc-0e9b-4fa5-b0ad-46001e71df99">
+      <ID>Placement Los Grp</ID>
+      <Name>Placement Length of Stay Group</Name>
+      <EstimatedCount>8</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="52155018-6ed6-442a-a2e1-aca4339dd237">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="1e21b014-2fca-459d-a4f0-ea6216f472a0">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>placement_los_grp</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="a474e417-4311-453b-9f13-b629c0217924">
+      <ID>Cd Gndr</ID>
+      <Name>Gender</Name>
+      <EstimatedCount>4</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="65d6753d-1eb4-42a4-92c8-0ac0503b76aa">
+          <DataType>WChar</DataType>
+          <DataSize>1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="8b2c8cb9-479d-4ddd-87b0-8aff332e78cc">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_gndr</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="f5896bb1-bdf1-48db-b2e9-f54fdb74b4b1">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="208368f9-5afd-4025-a244-a2176954abd1">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>tx_gndr</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="68df6e81-3c09-4cb1-a8cc-ff59e38232f7">
+      <ID>Current Service</ID>
+      <Name>Current Service</Name>
+      <EstimatedCount>101</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="a5938158-1745-4f64-adaf-e59fa8b9dc68">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="bae1d465-bf8f-4a1e-aacf-bd65b118d2b3">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>current_service</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="5a78a8e5-6a19-43bf-996a-0ee98ee05410">
+      <ID>Multi Race Mask</ID>
+      <Name>Multi Race</Name>
+      <EstimatedCount>29</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="ec825751-1db9-45bf-b3cb-9cbd3726e95c">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="d0998b50-0e65-4cab-99fc-e593e5fde284">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>multi_race_mask</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="ddb0cb3d-14f0-4d4d-a2fd-2468aad19977">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="9a2dc55a-fba0-46c7-b6d7-53a36f30ce3b">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>tx_multirace</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="a80d0a62-0f51-4df7-b1cf-0320fa3ad1f3">
+      <ID>Cd Office Collapse</ID>
+      <Name>Office Collapse</Name>
+      <EstimatedCount>49</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="114603a0-c8dc-470c-8a0f-d5e201c7df7f">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="1b539ac2-1e96-4926-b9b4-32c3f574a995">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_office_collapse</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="c2d952ae-926b-4b70-b3d6-916a277eb72e">
+        <DataType>WChar</DataType>
+        <DataSize>403</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="103c5568-0c7a-4417-8a13-9077e3c0fa19">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>tx_office_collapse</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="43ca9a02-4cc7-47db-8330-ba93c6b378db">
+          <AttributeID>Cd Region</AttributeID>
+          <Name>Region</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="120293a8-1b95-4f9b-a968-0e9baa18ff12">
+      <ID>Court Cd</ID>
+      <Name>Court</Name>
+      <EstimatedCount>30</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="dbbb3bc0-abc7-4a08-82c6-be1390fa1c66">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="cca9e343-31cf-41b1-b46f-3448e2fc9995">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>court_cd</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="a071dc26-c8a4-495d-84fa-0f7c2515cb0a">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="450db155-9c34-4595-8de1-f4984d1dd571">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>court</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="23fe6468-b6bd-412a-949b-d19bd74cebb8">
+      <ID>Cd Worker Office Collapse</ID>
+      <Name>Worker Office Collapse</Name>
+      <EstimatedCount>48</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="98011fc5-fe13-4a1e-934a-c2774d2e6a2d">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="3d9751e2-10b6-41f9-940a-352874dab142">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_worker_office_collapse</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="2ca3d555-c98d-45a7-a8c1-8c6fab213948">
+        <DataType>WChar</DataType>
+        <DataSize>403</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="30f52541-5010-4c4a-9ae7-610c2d06e494">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>worker_office_collapse</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="860a0452-6de6-4135-b3db-3cd765e8e724">
+          <AttributeID>Cd Worker Region</AttributeID>
+          <Name>Worker Region</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="c11ab9c3-f862-4b88-843c-befdb620757b">
+      <ID>Cd Worker Court</ID>
+      <Name>Worker Court</Name>
+      <EstimatedCount>30</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="bef5143e-bd49-4663-9353-0c1ac8a331f8">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="ab920d76-6b76-45c4-ab98-f4d3b727397f">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_worker_court</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="30bbdd09-da9f-4677-ba40-0711f0762e43">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="0022968a-d95d-4ee4-a61f-53608aa7fc10">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>worker_court</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="f4c7b547-509d-4a3d-b42c-03161175f421">
+      <ID>Placement Worker Office Collapse Cd</ID>
+      <Name>Placement Worker Office Collapse</Name>
+      <EstimatedCount>48</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="9ce583b4-bca9-41bb-9b57-30f5efff32f1">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="ad092fa0-fb79-4765-a526-6b498b2c6fbc">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>placement_worker_office_collapse_cd</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="f3a14a7d-2c41-45c1-b375-7af61b4b1985">
+        <DataType>WChar</DataType>
+        <DataSize>403</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="da09e545-004a-4038-befd-304c5bf919c2">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>placement_worker_office_collapse</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="25a19660-263d-4fd8-9336-7be894013d02">
+          <AttributeID>Placement Worker Region Cd</AttributeID>
+          <Name>Placement Worker Region</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="693fb207-4232-4535-a03a-8332e6abde71">
+      <ID>Placement Worker Court Cd</ID>
+      <Name>Placement Worker Court</Name>
+      <EstimatedCount>30</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="9e2cb0bd-fcaa-463b-913d-047f7482cdc8">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="510b0453-dc3f-4127-b921-b9555ca40eaa">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>placement_worker_court_cd</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="166ff859-f2c0-4b91-ae57-6cadaa975b65">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="f667b045-1c50-4e9b-ab8d-6d7963b603fd">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>placement_worker_court</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="0c20a4b4-1d04-4a3d-b887-e770cfdf14f3">
+      <ID>Cd Old Region</ID>
+      <Name>Old Region</Name>
+      <EstimatedCount>7</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="d2b5674f-cbc3-4e81-bf4f-8accb0cd2361">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f6a4f8d5-621c-4564-b528-29c8894eadaf">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_old_region</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="066a73b7-6c05-423c-b996-7f9cba367fb0">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="9501d08b-8603-4a8e-8b27-373cf25ff64d">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>tx_old_region</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="4f5b324a-5a34-4c8f-9931-f90ceb9ec4a1">
+      <ID>Cd Worker Old Region</ID>
+      <Name>Worker Old Region</Name>
+      <EstimatedCount>7</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="f508cd7b-4783-442f-af99-b4c83b341306">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="a2c7dff9-992a-4a29-b4e7-5a53d27f54c4">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_worker_old_region</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="826b176a-837c-46a4-9e5c-547480da70ee">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="c47b1181-f2bf-475c-93eb-e61ffff0dab8">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>worker_old_region</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="a14ecacc-ae5c-4142-9e00-a3aef5874130">
+      <ID>Placement Worker Old Region</ID>
+      <Name>Placement Worker Old Region</Name>
+      <EstimatedCount>4</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="6dccf05b-d7fe-4f47-9b56-fba0e4ca2dd7">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="317ad9f8-fedc-4352-b239-638619911240">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>placement_worker_old_region</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="a3e66c58-f51e-4c74-8250-bcfba8fb2cbd">
+      <ID>Id Removal Episode Fact</ID>
+      <Name>Id Removal Episode Fact</Name>
+      <Usage>Key</Usage>
+      <EstimatedCount>171368</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="203cbe90-3cb6-4659-9ff2-231da4905883">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="58a0d82d-18e4-435c-b5d5-d368a93a3988">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>id_removal_episode_fact</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="8a3bd093-cdfa-4805-925d-170c5dcd6882">
+          <AttributeID>Cd Hspnc</AttributeID>
+          <Name>Hispanic</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="bfd4bf8f-9906-4d0a-a37f-831f14044f69">
+          <AttributeID>18bday</AttributeID>
+          <Name>18th Birthday</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="6e84c235-1bfa-4aa2-ab8a-62c9151fb73b">
+          <AttributeID>Cd Alt Ppln</AttributeID>
+          <Name>Alternate Permanency Plan</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="b2886885-26e2-403e-b56c-5e5a43b9ff54">
+          <AttributeID>Bin Dep Cd</AttributeID>
+          <Name>Dependency</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="d49dc9ad-0477-47dd-8156-ae11f5c6c3fc">
+          <AttributeID>Bin Ihs Svc Cd</AttributeID>
+          <Name>IHS Service</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="b860c643-2ae4-407c-8dd7-0e977fe1f973">
+          <AttributeID>Bin Placement Cd</AttributeID>
+          <Name>Number of Placements</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="25e7fdf0-e25f-4d02-b8ee-2f4f8de78608">
+          <AttributeID>Birthdate</AttributeID>
+          <Name>Birthdate</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="efca3e35-4048-4f45-8d8e-d583d5f1b4e8">
+          <AttributeID>Tx Braam Race</AttributeID>
+          <Name>BRAAM Race</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="8802f860-5a97-4a67-a33b-65b73b1c298c">
+          <AttributeID>Census Hispanic Latino Origin Cd</AttributeID>
+          <Name>Census Hispanic Latino Origin</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="1c6aed34-f2d2-44ad-9a01-c64077dbe5b4">
+          <AttributeID>Child Age</AttributeID>
+          <Name>Child Age</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="ef752b76-6071-41e8-8b06-aae880a80ebb">
+          <AttributeID>Child Eps Rank</AttributeID>
+          <Name>Child Episode Rank</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="72340cb3-138d-47ba-85df-cab6369a926d">
+          <AttributeID>Current Service</AttributeID>
+          <Name>Current Service</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="53a55487-8e2f-4dac-9af3-b8146e24614a">
+          <AttributeID>Current Setting</AttributeID>
+          <Name>Current Setting</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="c916513d-9a91-4100-a558-4fba8a822432">
+          <AttributeID>Dependency Dt</AttributeID>
+          <Name>Dependency Date</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="6c61406e-aa43-4af2-8be4-3ef023faed1c">
+          <AttributeID>Discharge Dt</AttributeID>
+          <Name>Discharge Date</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="ebb83e26-fd63-486c-8de1-49cf4e2b85b3">
+          <AttributeID>Tx Dsch Rsn</AttributeID>
+          <Name>Discharge Reason</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="27aab2d1-16fd-43e9-b524-fe110b5bec69">
+          <AttributeID>Cd Discharge Type</AttributeID>
+          <Name>Discharge Type</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="aa5a4071-9445-4572-8c30-16cde24224ec">
+          <AttributeID>Episode Los Grp</AttributeID>
+          <Name>Episode Length of Stay Group</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="1ee6216c-9491-4853-a099-aed013ef19d0">
+          <AttributeID>Cd Epsd Type</AttributeID>
+          <Name>Episode Type</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="b5c5ae18-5861-4bf3-99d2-eaa2a67a54d3">
+          <AttributeID>Exit</AttributeID>
+          <Name>Exit Date</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="549f5bab-76c2-4b67-bd19-93cae5af6c07">
+          <AttributeID>Exit Reason</AttributeID>
+          <Name>Exit Reason</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="f4f0cbaf-b37f-48a9-b4a3-986cbb5cb05c">
+          <AttributeID>Exit Within Month Mult3</AttributeID>
+          <Name>Exit Within Month Mult3</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="528a0b10-1cdb-47e3-bbe7-5d684620a4fd">
+          <AttributeID>Fl Abandonment</AttributeID>
+          <Name>Flag Abandonment</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="51e9b7bb-77c5-45f1-a09a-36e2d3aff0eb">
+          <AttributeID>Fl Caretaker Inability Cope</AttributeID>
+          <Name>Flag Caretaker Inability to Cope</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="1498346f-a0d0-4fb1-9e81-79e7f26e43ba">
+          <AttributeID>Fl Child Abuse Alcohol</AttributeID>
+          <Name>Flag Child Abuse Alcohol</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="07d6bbe6-f1c2-4e0d-86cc-0e646a37ba35">
+          <AttributeID>Fl Child Abuses Drug</AttributeID>
+          <Name>Flag Child Abuses Drug</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="ff4a2314-b49a-4d59-bad8-6d9d17bb87ac">
+          <AttributeID>Fl Child Behavior Problems</AttributeID>
+          <Name>Flag Child Behavior Problems</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="60a9f51c-ea7d-4c76-89ff-d813d04b4498">
+          <AttributeID>Fl Child Clinically Diagnosed</AttributeID>
+          <Name>Flag Child Clinically Diagnosed</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="a14491f5-01c7-4b4d-b986-d8da47a93934">
+          <AttributeID>Fl Dep Exist</AttributeID>
+          <Name>Flag Dep Exist</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="19981bc9-62d8-4275-b8a0-fc607ce026da">
+          <AttributeID>Fl Inadequate Housng</AttributeID>
+          <Name>Flag Inadequate Housng</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="1e62742c-62ad-4a74-950f-f51e8b5d4149">
+          <AttributeID>Fl Neglect</AttributeID>
+          <Name>Flag Neglect</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="9bf4ff53-bd35-4072-aa56-f161d4ac353b">
+          <AttributeID>Fl Parent Abuse Alcohol</AttributeID>
+          <Name>Flag Parent Abuse Alcohol</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="acc2c109-8e2c-48fe-88eb-41feddb29784">
+          <AttributeID>Fl Parent Death</AttributeID>
+          <Name>Flag Parent Death</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="58c9b921-7cdf-4b12-976f-ca5298ff8d77">
+          <AttributeID>Fl Parent Drug Abuse</AttributeID>
+          <Name>Flag Parent Drug Abuse</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="4a1a8d94-50ba-4486-b7a1-0ad06e2669c8">
+          <AttributeID>Fl Parent Incarceration</AttributeID>
+          <Name>Flag Parent Incarceration</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="4a91c0c9-b40a-4837-bce0-d049711e33f5">
+          <AttributeID>Fl Physical Abuse</AttributeID>
+          <Name>Flag Physical Abuse</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="34f8f054-a20f-4aea-8492-db49f2f7c938">
+          <AttributeID>Fl Relinquishment</AttributeID>
+          <Name>Flag Relinquishment</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="37c4abdd-934d-4202-b573-2777a9b0d62c">
+          <AttributeID>Fl Sex Abuse</AttributeID>
+          <Name>Flag Sex Abuse</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="f5cd8a40-0fc7-423f-92ff-2743d0eccfc2">
+          <AttributeID>Cd Gndr</AttributeID>
+          <Name>Gender</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="32337273-dd29-44b0-8a1f-ee37ad3e417d">
+          <AttributeID>Init Cd Plcm Setng</AttributeID>
+          <Name>Initial Placement Setting</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="a677cf9e-8fa0-4f6b-83b0-32a569f1073e">
+          <AttributeID>Last End Rsn</AttributeID>
+          <Name>Last End Reason</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="e58dfa4e-ab8c-4d43-a193-3782331e5c0a">
+          <AttributeID>Latest Plcmnt Dt</AttributeID>
+          <Name>Latest Placement Date</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="b63a9b9f-31e9-4993-9c5c-b4270ff9bc56">
+          <AttributeID>Latest Plcmnt End Dt</AttributeID>
+          <Name>Latest Placement End Date</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="c4e9ada6-b04d-4c33-a6bf-a8aee671eb7c">
+          <AttributeID>Tx Lgl Stat</AttributeID>
+          <Name>Legal Status</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="dbf17dac-f29f-4dc2-ae52-b0606545ff45">
+          <AttributeID>Max Bin Los Cd</AttributeID>
+          <Name>Length of Stay Duration</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="91b44613-b21f-4ba0-9bae-5d59bf6f18c2">
+          <AttributeID>Multi Race Mask</AttributeID>
+          <Name>Multi Race</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="d1a30b1d-e116-4522-a963-6b64922fca04">
+          <AttributeID>Next Reentry Date</AttributeID>
+          <Name>Next Reentry Date</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="9791d147-d887-4bb2-8f23-91ab4988ba5c">
+          <AttributeID>Nxt Reentry Within Min Month Mult3</AttributeID>
+          <Name>Next Reentry Within Min Month Mult3</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="3fdfff55-d3c8-45d5-8b23-1d417dabcb2e">
+          <AttributeID>Cd Office</AttributeID>
+          <Name>Office</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="73becb32-1d27-4959-bd80-597e5fac629d">
+          <AttributeID>Orig Cd Plcm Dsch Rsn</AttributeID>
+          <Name>Original Placement Discharge Reason</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="de7ae718-1f90-4bdd-8d46-efcf50a41f3d">
+          <AttributeID>Cd Placement Care Auth</AttributeID>
+          <Name>Placement Caregiver Authorization</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="d9a96c39-5437-42f5-a96f-9c4eb1f37dcb">
+          <AttributeID>Tx Plcm Dsch Rsn</AttributeID>
+          <Name>Placement Discharge Reason</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="f6cd2438-b2b0-4a57-8e41-0e9e74ab5b70">
+          <AttributeID>Placement Los Grp</AttributeID>
+          <Name>Placement Length of Stay Group</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="8f979698-c2d1-4bcf-8c55-c38d1bc951a5">
+          <AttributeID>Placement Workerint Level</AttributeID>
+          <Name>Placement Worker Level</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="90a701ac-90ef-4c2a-aff7-2b795dbc5968">
+          <AttributeID>Placement Worker Office Cd</AttributeID>
+          <Name>Placement Worker Office</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="efe0580e-72bf-42fa-bf3f-0ec5da8b7bae">
+          <AttributeID>Placement Workerint Reason</AttributeID>
+          <Name>Placement Worker Reason</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="8087d3c9-7169-431a-b76e-c9df15e5e31d">
+          <AttributeID>Placement Worker Unit</AttributeID>
+          <Name>Placement Worker Unit</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="9ef5ab44-7ed4-4534-82f5-01d6ccb5698a">
+          <AttributeID>Cd Primary Ppln</AttributeID>
+          <Name>Primary Permanency Plan</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="efe6ced4-5745-4d46-84b2-ddea09eae217">
+          <AttributeID>Cd Race Census</AttributeID>
+          <Name>Race Census</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="059bea1d-792f-47d7-a6e4-caba99e3e672">
+          <AttributeID>Cd Rel</AttributeID>
+          <Name>Relationship</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="9552daf6-92ab-47a2-a3ea-5e892cb3478c">
+          <AttributeID>Removal</AttributeID>
+          <Name>Removal Date</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="013bf64c-b556-48b3-9c7b-f19f182f3d66">
+          <AttributeID>Cd Rmvl Mnr</AttributeID>
+          <Name>Removal Manner</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="6d89cdcd-7156-4cb5-8049-4951e344b8f2">
+          <AttributeID>Setting</AttributeID>
+          <Name>Setting</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="360bd186-85da-4ce5-92a5-484f1e674020">
+          <AttributeID>State</AttributeID>
+          <Name>State</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="9791aa21-7051-425e-9037-8e429be98928">
+          <AttributeID>Staddress Type</AttributeID>
+          <Name>Street Address Type</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="e7d69ccf-ba42-4493-96a4-b936f5da3e36">
+          <AttributeID>Tx Subctgry</AttributeID>
+          <Name>Subcategory</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="1e8c30f7-f36f-429a-b28c-f5c7d12cc1a2">
+          <AttributeID>Town</AttributeID>
+          <Name>Town</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="6e49cfec-a555-4eb8-be3d-8a1d40acb674">
+          <AttributeID>Trh</AttributeID>
+          <Name>Trial Return Home</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="34e486ed-bef7-4433-935d-96fbbd060fc5">
+          <AttributeID>Tx Tribe Name</AttributeID>
+          <Name>Tribe Name</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="6fc6affa-8de4-4edd-b2b3-7bb189efb15c">
+          <AttributeID>Cd Worker Office</AttributeID>
+          <Name>Worker Office</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="15dd0316-a911-4b94-b2a0-335f08b8e52d">
+          <AttributeID>Worker Unit</AttributeID>
+          <Name>Worker Unit</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="2aedba8d-ca83-4a6e-9371-256bd04a0faf">
+          <AttributeID>Zip</AttributeID>
+          <Name>Zip</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="f97fba20-fe07-4974-a764-97b19f75cb80">
+          <AttributeID>Child</AttributeID>
+          <Name>Child</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="ca0d0081-6e8d-4e80-81cc-fa243ad0627f">
+          <AttributeID>Discharge Dt Force 18</AttributeID>
+          <Name>Discharge Date Force 18</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="9ec205d0-aeb9-4bf6-ace7-5369efedde47">
+          <AttributeID>Exit County Cd</AttributeID>
+          <Name>Exit County</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="84fadedf-703f-4a9c-9a61-11f3d1cd55b3">
+          <AttributeID>Long Cd Plcm Setng</AttributeID>
+          <Name>Longest Placement Setting</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="0d1b0350-9615-4267-9405-a2529f883856">
+          <AttributeID>Cd Discharge Type 1</AttributeID>
+          <Name>Portal Discharge Type</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="53b73776-b5d4-4c4d-9966-ed8d650a9104">
+          <AttributeID>Cd Removal County</AttributeID>
+          <Name>Removal County</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="a0f8dbd5-5451-485a-9a56-c41b4100fe36">
+      <ID>Discharge Dt Force 18</ID>
+      <Name>Discharge Date Force 18</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="f900a08a-cbfc-447b-b940-5b2d2c580f6a">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="96da5c50-a59b-46df-aa45-2a54a8b78722">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>discharge_dt_force_18</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="6b63b7a3-0b0e-4c9c-b2f4-37280d4b2e7c">
+      <ID>Exit County Cd</ID>
+      <Name>Exit County</Name>
+      <EstimatedCount>40</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="44cf6d47-7143-45c6-a9e3-821378885360">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="9cccf6b8-b3b3-4c63-bee5-938cdd8f121d">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>exit_county_cd</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="32a4d9f1-bb78-4a73-9e68-1dc3ba5888f2">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="05df228c-38e7-4f39-aae5-2e12f81df670">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>exit_county_tx</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="2482ce9e-af36-47eb-89bb-3562d8b622da">
+          <AttributeID>Exit Region Cd</AttributeID>
+          <Name>Exit Region</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="2845bca0-2183-45d1-b410-5a21375d91ea">
+          <AttributeID>Exit Old Region Cd</AttributeID>
+          <Name>Exit Old Region</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="2ce0567e-ccf0-49e0-bca3-26b0e9a56680">
+      <ID>Long Cd Plcm Setng</ID>
+      <Name>Longest Placement Setting</Name>
+      <EstimatedCount>5</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="4f3a86c9-f924-4d99-9ea7-ae91d35e8bc1">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="72575941-fb77-4439-af26-ed91746496aa">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>long_cd_plcm_setng</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="fb928b93-85f7-44c8-abdb-095ce821ef17">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="3db14a76-245a-42f4-8386-6aebfca25f99">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>long_tx_plcm_setng</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="1e45c948-7d56-4aaa-b3ce-49e1e284da20">
+      <ID>Cd Discharge Type 1</ID>
+      <Name>Portal Discharge Type</Name>
+      <EstimatedCount>5</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="12eeba28-4ce9-4c6a-9865-be05c7d22eeb">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="39a03d33-f805-4037-90a3-da3e8cc446d0">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_discharge_type</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="b7ab0b4c-203f-43a1-bc13-c09ac9102f40">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="2b33ff78-38c3-49c2-a298-a80787786d5f">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>tx_discharge_type</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="f62e0139-dd7b-4fc5-9961-805059af93bc">
+      <ID>Exit Region Cd</ID>
+      <Name>Exit Region</Name>
+      <EstimatedCount>4</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="b5557935-0d68-43b2-890f-db702186ec72">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="460fc83b-fc05-42ff-b057-21f5a259ab7f">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>exit_region_cd</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="95c7ffee-683e-4646-b1bc-6ea8d6a6be5a">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="c8be06c4-18b7-43b6-bba8-b31f9cb38c0d">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>exit_region_tx</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="050b1bbe-074c-4aa4-acc6-7648d7196aa3">
+      <ID>Exit Old Region Cd</ID>
+      <Name>Exit Old Region</Name>
+      <EstimatedCount>7</EstimatedCount>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="ee8c7363-7601-439f-9dc0-b9c19f222b9f">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="714e1c81-3e50-4245-9052-b737dd4dd0bc">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>exit_old_region_cd</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="0c60785a-5daf-49bc-b6a2-00284fa1816e">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="617982dd-0e1d-4c60-a281-2db0cd559ec3">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>exit_old_region_tx</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="29a83232-06d8-436d-bebd-7d4e50a1ba3e">
+      <ID>Cd Removal County</ID>
+      <Name>Removal County</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="0505d5f5-9a14-4000-82ca-2e58b1e0a777">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="dd44c79a-a6ef-4a98-a5d9-4bc5aff4c4c9">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_removal_county</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="23653ea3-f760-4906-9843-598064fc62f4">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="d6113e9d-bff6-407d-b917-99744f5f9bf9">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>tx_removal_county</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="e65df1dd-9676-4c36-8ff6-972f25a9b147">
+          <AttributeID>Cd Removal Region</AttributeID>
+          <Name>Removal Region</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="5a70c4e0-5978-4dd8-900c-e624a11522b1">
+          <AttributeID>Cd Old Removal Region</AttributeID>
+          <Name>Old Removal Region</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="7a45d4f7-a3fc-4392-9e93-cc572e8af710">
+      <ID>Cd Removal Region</ID>
+      <Name>Removal Region</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="35f0bdb4-6d54-48d8-acb1-ec86975776a6">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="09fa5dad-52fc-44e4-acd3-d5f46d11da60">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_removal_region</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="7429144a-ead1-48bb-9678-51f8fa1ebe33">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="3883e947-e53a-41bd-b711-3745e51894fe">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>tx_removal_region</ColumnID>
+        </Source>
+      </NameColumn>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="9319b9ce-3175-4d4a-b321-220d4c29d778">
+      <ID>Cd Old Removal Region</ID>
+      <Name>Old Removal Region</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="957ced28-d505-42c1-8ca2-717a5a028317">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="d0fe7745-27dc-4178-a829-738d51afbc20">
+            <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+            <ColumnID>cd_old_removal_region</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="8c6e377b-7a31-46ed-bb5e-666d28e63e3a">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="fc28a1ad-8bd1-4dc8-b4c5-1108df2a704c">
+          <TableID>dbo_Cube_rptPlacement_Dim</TableID>
+          <ColumnID>tx_old_removal_region</ColumnID>
+        </Source>
+      </NameColumn>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <Hierarchies>
+    <Hierarchy dwd:design-time-name="960cdc84-ea9e-43eb-a667-911b843f9add">
+      <ID>Hierarchy</ID>
+      <Name>Case Office Hierarchy</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Removal Offices</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="d50d20f7-3362-48b2-bcb9-c85dffeddb1c">
+          <ID>Region</ID>
+          <Name>Region</Name>
+          <SourceAttributeID>Cd Region</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="cdf5f095-f652-4964-81b5-e0b65e8f61d7">
+          <ID>Office Collapse</ID>
+          <Name>Office Collapse</Name>
+          <SourceAttributeID>Cd Office Collapse</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="a526b79c-9633-4a03-b6af-06360ae9e757">
+          <ID>Office</ID>
+          <Name>Office</Name>
+          <SourceAttributeID>Cd Office</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="02ef0a0d-31d7-4862-95b4-3205a1f603f6">
+      <ID>Hierarchy 1</ID>
+      <Name>Case County Hierarchy</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Removal County Offices</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="0b6ad82a-e311-426a-bd07-2b06841c828d">
+          <ID>Court</ID>
+          <Name>Court</Name>
+          <SourceAttributeID>Court Cd</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="5572b976-c2e6-40e4-8645-ee3a084cc8ec">
+          <ID>County</ID>
+          <Name>County</Name>
+          <SourceAttributeID>Cd County</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="b85207f1-6270-4b4e-811a-710fd87296d5">
+          <ID>Office</ID>
+          <Name>Office</Name>
+          <SourceAttributeID>Cd Office</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="ddcac4a9-6423-4638-8696-2fa0c951a032">
+      <ID>Hierarchy 6</ID>
+      <Name>Case Old Region Hierarchy</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Removal Old Region Offices</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="d6ee9d64-59e2-4ec2-aed0-939d97c33c83">
+          <ID>Old Region</ID>
+          <Name>Old Region</Name>
+          <SourceAttributeID>Cd Old Region</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="bf905bdb-3db8-4721-b25b-ecb3be9a454e">
+          <ID>Office</ID>
+          <Name>Office</Name>
+          <SourceAttributeID>Cd Office</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="f7c4166c-bcf1-43b2-83de-443bad69dbcb">
+      <ID>Hierarchy 2</ID>
+      <Name>Worker Office Hierarchy</Name>
+      <DisplayFolder>Worker Hierarchies</DisplayFolder>
+      <AllMemberName>All Worker Offices</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="edf1971c-bc33-4d18-8fde-7506524b49d0">
+          <ID>Worker Region</ID>
+          <Name>Worker Region</Name>
+          <SourceAttributeID>Cd Worker Region</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="5ef6da63-407f-45e7-8613-154e30969a86">
+          <ID>Worker Office Collapse</ID>
+          <Name>Worker Office Collapse</Name>
+          <SourceAttributeID>Cd Worker Office Collapse</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="c154640d-073e-4096-b30d-a10e22007c41">
+          <ID>Worker Office</ID>
+          <Name>Worker Office</Name>
+          <SourceAttributeID>Cd Worker Office</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="0c31eb9e-93bb-41db-83d7-a0741765e487">
+      <ID>Hierarchy 3</ID>
+      <Name>Worker County Hierarchy</Name>
+      <DisplayFolder>Worker Hierarchies</DisplayFolder>
+      <AllMemberName>All Worker County Offices</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="4c27748d-fba9-47b1-9b43-59b53398d518">
+          <ID>Worker Court</ID>
+          <Name>Worker Court</Name>
+          <SourceAttributeID>Cd Worker Court</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="49c3032a-123f-4a0a-9bad-0c1f2ceb1db1">
+          <ID>Worker County</ID>
+          <Name>Worker County</Name>
+          <SourceAttributeID>Cd Worker County</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="7cb77f23-5b79-46d9-835e-423ce4715762">
+          <ID>Worker Office</ID>
+          <Name>Worker Office</Name>
+          <SourceAttributeID>Cd Worker Office</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="830e69c4-1ea5-43ed-8022-25f81b5c36e2">
+      <ID>Hierarchy 4</ID>
+      <Name>Placement Worker Office Hierarchy</Name>
+      <DisplayFolder>Placement Worker Hierarchies</DisplayFolder>
+      <AllMemberName>All Placement Worker Offices</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="ea25bd52-9d86-4ae9-947a-c6aaebe8797b">
+          <ID>Placement Worker Region</ID>
+          <Name>Placement Worker Region</Name>
+          <SourceAttributeID>Placement Worker Region Cd</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="5db8a417-a245-4b1f-87b1-b056d62854f1">
+          <ID>Placement Worker Office Collapse</ID>
+          <Name>Placement Worker Office Collapse</Name>
+          <SourceAttributeID>Placement Worker Office Collapse Cd</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="272f6cac-37ab-470d-88d7-49f1dc103a7a">
+          <ID>Placement Worker Office</ID>
+          <Name>Placement Worker Office</Name>
+          <SourceAttributeID>Placement Worker Office Cd</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="c7bbddb9-8e44-4452-ae4f-af3f4cc8159b">
+      <ID>Hierarchy 5</ID>
+      <Name>Placement Worker County Hierarchy</Name>
+      <DisplayFolder>Placement Worker Hierarchies</DisplayFolder>
+      <AllMemberName>All Placement Worker County Offices</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="52e096a6-5a75-4088-ae84-bea4be538acb">
+          <ID>Placement Worker Court</ID>
+          <Name>Placement Worker Court</Name>
+          <SourceAttributeID>Placement Worker Court Cd</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="18301ac2-2632-4368-a180-d60b11cdcfb9">
+          <ID>Placement Worker County</ID>
+          <Name>Placement Worker County</Name>
+          <SourceAttributeID>Placement Worker County Cd</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="4d7e257c-487a-4d23-a104-0e12678aa6ef">
+          <ID>Placement Worker Office</ID>
+          <Name>Placement Worker Office</Name>
+          <SourceAttributeID>Placement Worker Office Cd</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="cf801d4d-3939-420a-9326-6dcb191164a0">
+      <ID>Hierarchy 7</ID>
+      <Name>Worker Old Region Hierarchy</Name>
+      <DisplayFolder>Worker Hierarchies</DisplayFolder>
+      <AllMemberName>All Worker Old Region Offices</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="828c5d42-f0dd-44e2-8188-2588095e690c">
+          <ID>Worker Old Region</ID>
+          <Name>Worker Old Region</Name>
+          <SourceAttributeID>Cd Worker Old Region</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="38f5414e-3753-43ac-b7df-17e9bf1fb7bc">
+          <ID>Worker Office</ID>
+          <Name>Worker Office</Name>
+          <SourceAttributeID>Cd Worker Office</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="30fd8d33-a947-4c49-9828-adc859ad88b9">
+      <ID>Hierarchy 8</ID>
+      <Name>Placement Worker Old Region Hierarchy</Name>
+      <DisplayFolder>Placement Worker Hierarchies</DisplayFolder>
+      <AllMemberName>All Placement Worker Old Region Offices</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="5572f58f-d3e8-4d54-b28d-67d74ef67c23">
+          <ID>Placement Worker Old Region</ID>
+          <Name>Placement Worker Old Region</Name>
+          <SourceAttributeID>Placement Worker Old Region</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="1de636c0-c623-4af7-9a0d-e6471216f09c">
+          <ID>Placement Worker Office</ID>
+          <Name>Placement Worker Office</Name>
+          <SourceAttributeID>Placement Worker Office Cd</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="58926e10-dd2d-49f9-98e0-f8a088edcaf0">
+      <ID>Hierarchy 10</ID>
+      <Name>Alternate Permanency Plan List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Alternate Permanency Plans</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="764d42b0-6a7e-402f-b472-ef275a1f7aba">
+          <ID>Alternate Permanency Plan</ID>
+          <Name>Alternate Permanency Plan</Name>
+          <SourceAttributeID>Cd Alt Ppln</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="619ef3f0-b0e6-4b83-9ac5-65e4ba0afc3d">
+      <ID>Hierarchy 11</ID>
+      <Name>BRAAM Race List</Name>
+      <DisplayFolder>Child Attributes</DisplayFolder>
+      <AllMemberName>All BRAAM Races</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="9cc79ca2-7da1-400a-87b5-57bb11ceb5dc">
+          <ID>BRAAM Race</ID>
+          <Name>BRAAM Race</Name>
+          <SourceAttributeID>Tx Braam Race</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="7ba85dee-0d61-41c0-8a8b-1f8e2662f236">
+      <ID>Hierarchy 12</ID>
+      <Name>Child Age List</Name>
+      <DisplayFolder>Child Attributes</DisplayFolder>
+      <AllMemberName>All Child Ages</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="8de9b6e1-00e1-4414-a8cb-2fdf44e96e11">
+          <ID>Child Age</ID>
+          <Name>Child Age</Name>
+          <SourceAttributeID>Child Age</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="7ef17f59-0782-42ee-910d-dca86fd86409">
+      <ID>Hierarchy 13</ID>
+      <Name>Current Service List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Current Services</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="e8dc6c1b-a805-49a7-96f0-8de6b02dd2f9">
+          <ID>Current Service</ID>
+          <Name>Current Service</Name>
+          <SourceAttributeID>Current Service</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="1d779ecc-6e6c-4e5e-a9b4-cd7ca9f1fb97">
+      <ID>Hierarchy 14</ID>
+      <Name>Current Setting List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Current Settings</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="bdb23301-8ffc-41a3-bb46-b03e7339586d">
+          <ID>Current Setting</ID>
+          <Name>Current Setting</Name>
+          <SourceAttributeID>Current Setting</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="a0f2b020-a58b-4d5d-9c80-8a91270cd291">
+      <ID>Hierarchy 15</ID>
+      <Name>Discharge Reason List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Discharge Reasons</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="91bfe5d0-cd84-41b9-bc07-8a32561995e9">
+          <ID>Discharge Reason</ID>
+          <Name>Discharge Reason</Name>
+          <SourceAttributeID>Tx Dsch Rsn</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="c10147ec-f663-4cf4-b327-70636b6749eb">
+      <ID>Hierarchy 16</ID>
+      <Name>Episode Type List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Episode Types</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="8025d1eb-28fb-4b90-8402-56d04ec53284">
+          <ID>Episode Type</ID>
+          <Name>Episode Type</Name>
+          <SourceAttributeID>Cd Epsd Type</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="9db1009a-d68b-407f-a801-c3eb4314bb20">
+      <ID>Hierarchy 17</ID>
+      <Name>Exit Reason List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Exit Reasons</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="b910bf6c-3f53-4f42-b525-40398f6a0d41">
+          <ID>Exit Reason</ID>
+          <Name>Exit Reason</Name>
+          <SourceAttributeID>Exit Reason</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="091fe9b2-554a-4497-8e73-306b25c964b2">
+      <ID>Hierarchy 18</ID>
+      <Name>Exit Within Month Mult3 List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Exit Months</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="497aa799-1e39-4ec9-a389-625131656752">
+          <ID>Exit Within Month Mult3</ID>
+          <Name>Exit Within Month Mult3</Name>
+          <SourceAttributeID>Exit Within Month Mult3</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="329ab537-227a-4cd1-ba3f-72431b29ee67">
+      <ID>Hierarchy 19</ID>
+      <Name>Gender List</Name>
+      <DisplayFolder>Child Attributes</DisplayFolder>
+      <AllMemberName>All Genders</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="752b76a9-400e-44b9-8d04-c1a58375d6fa">
+          <ID>Gender</ID>
+          <Name>Gender</Name>
+          <SourceAttributeID>Cd Gndr</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="9c2532b9-ea81-4a1b-8cc8-817c36e3b3fc">
+      <ID>Hierarchy 20</ID>
+      <Name>Hispanic Definition List</Name>
+      <DisplayFolder>Child Attributes</DisplayFolder>
+      <AllMemberName>All Hispanic Definitions</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="c4756d32-aba4-4afa-b958-47a06892816a">
+          <ID>Hispanic</ID>
+          <Name>Hispanic</Name>
+          <SourceAttributeID>Cd Hspnc</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="79f94939-bcb0-4e38-92a8-5aab415f6a35">
+      <ID>Hierarchy 21</ID>
+      <Name>Last End Reason List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Last End Reasons</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="fb7723f2-2aa9-453f-b2bf-83c0a5bbcb53">
+          <ID>Last End Reason</ID>
+          <Name>Last End Reason</Name>
+          <SourceAttributeID>Last End Rsn</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="db77246b-bf40-4b62-abbd-a2fa92226d3c">
+      <ID>Hierarchy 22</ID>
+      <Name>Legal Status List</Name>
+      <DisplayFolder>Child Attributes</DisplayFolder>
+      <AllMemberName>All Legal Statuses</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="46a2a9f1-d9ee-4e70-a566-4fb74c7828f2">
+          <ID>Legal Status</ID>
+          <Name>Legal Status</Name>
+          <SourceAttributeID>Tx Lgl Stat</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="bd71ffb7-eb72-4a7b-84e4-0446eb8af279">
+      <ID>Hierarchy 23</ID>
+      <Name>Multi Race List</Name>
+      <DisplayFolder>Child Attributes</DisplayFolder>
+      <AllMemberName>All Multi Race Definitions</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="09742c21-fe24-4be2-a80a-e901698ceba1">
+          <ID>Multi Race</ID>
+          <Name>Multi Race</Name>
+          <SourceAttributeID>Multi Race Mask</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="7986d0b4-a927-4326-8281-e5f05f24bb97">
+      <ID>Hierarchy 24</ID>
+      <Name>Next Reentry Within Min Month Mult3 List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Next Reentry Months</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="2b9783e2-2b5c-4c18-8a09-36ce58a8f759">
+          <ID>Next Reentry Within Min Month Mult3</ID>
+          <Name>Next Reentry Within Min Month Mult3</Name>
+          <SourceAttributeID>Nxt Reentry Within Min Month Mult3</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="23f2c729-6313-4530-8120-9793bf7fa46f">
+      <ID>Hierarchy 25</ID>
+      <Name>Original Placement Discharge Reason List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Original Placement Discharge Reasons</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="a57516fb-f3db-494f-b0e6-26f9261c4cf9">
+          <ID>Original Placement Discharge Reason</ID>
+          <Name>Original Placement Discharge Reason</Name>
+          <SourceAttributeID>Orig Cd Plcm Dsch Rsn</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="8db50fa7-16ee-4ac0-847e-87794e7b2223">
+      <ID>Hierarchy 26</ID>
+      <Name>Placement Caregiver Authorization List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Caregiver Authorizations</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="acf21ebe-fe21-4b64-bee7-9442a87e8435">
+          <ID>Placement Caregiver Authorization</ID>
+          <Name>Placement Caregiver Authorization</Name>
+          <SourceAttributeID>Cd Placement Care Auth</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="4c1b7a97-31dd-45d7-8198-ea80e9f8a706">
+      <ID>Hierarchy 27</ID>
+      <Name>Placement Discharge Reason List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Placement Discharge Reasons</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="9c685fdf-0306-4b1c-b69b-40f195b1f103">
+          <ID>Placement Discharge Reason</ID>
+          <Name>Placement Discharge Reason</Name>
+          <SourceAttributeID>Tx Plcm Dsch Rsn</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="a180ae1a-27ad-4263-abd9-c37d20581e98">
+      <ID>Hierarchy 28</ID>
+      <Name>Placement Length of Stay Group List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Placement Length of Stay Groups</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="530ae511-c3b2-4bbb-b244-2897fe502b2b">
+          <ID>Placement Length of Stay Group</ID>
+          <Name>Placement Length of Stay Group</Name>
+          <SourceAttributeID>Placement Los Grp</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="11c0461f-4d01-4ae6-9738-ffd6c6c537c5">
+      <ID>Hierarchy 29</ID>
+      <Name>Primary Permanency Plan List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Primary Permanency Plans</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="ae63f658-260d-43b7-92a2-ca91efd9cc19">
+          <ID>Primary Permanency Plan</ID>
+          <Name>Primary Permanency Plan</Name>
+          <SourceAttributeID>Cd Primary Ppln</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="30f2899d-3107-44ca-9c53-bc30156d88e6">
+      <ID>Hierarchy 30</ID>
+      <Name>Removal Manner List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Removal Manners</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="b9ac0459-fe1d-411b-8ae8-749ab73eebcc">
+          <ID>Removal Manner</ID>
+          <Name>Removal Manner</Name>
+          <SourceAttributeID>Cd Rmvl Mnr</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="f0cca491-1f9b-444e-ade3-cb972f3fcf77">
+      <ID>Hierarchy 31</ID>
+      <Name>Setting List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Settings</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="47bc7e2d-c6fd-47d5-be04-65b9a444e21a">
+          <ID>Setting</ID>
+          <Name>Setting</Name>
+          <SourceAttributeID>Setting</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="3368455d-ed2b-44c3-8de2-8e4226cd7c71">
+      <ID>Hierarchy 32</ID>
+      <Name>State List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Placement States</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="e8300da1-83df-47cb-89c4-094eba877ed8">
+          <ID>State</ID>
+          <Name>State</Name>
+          <SourceAttributeID>State</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="2165998a-14f8-4d2e-a659-fb2eee6a6c58">
+      <ID>Hierarchy 33</ID>
+      <Name>Street Address Type List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Street Address Types</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="439a9d74-231c-4343-89f5-b21a369bead7">
+          <ID>Street Address Type</ID>
+          <Name>Street Address Type</Name>
+          <SourceAttributeID>Staddress Type</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="16a3ab86-3ec7-4c1a-8af3-cd5a5e880397">
+      <ID>Hierarchy 34</ID>
+      <Name>Subcategory List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Subcategories</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="307580c8-a232-44b9-a296-154fc3d3dbef">
+          <ID>Subcategory</ID>
+          <Name>Subcategory</Name>
+          <SourceAttributeID>Tx Subctgry</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="ba5a0e48-15e1-4dda-8d7a-08d7328709c8">
+      <ID>Hierarchy 35</ID>
+      <Name>Town List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Towns</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="8e7e228c-0d55-4a97-9502-f3a0a9c71d8d">
+          <ID>Town</ID>
+          <Name>Town</Name>
+          <SourceAttributeID>Town</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="79e1fb15-a893-482d-8a23-a78da50ac8dd">
+      <ID>Hierarchy 36</ID>
+      <Name>Trial Return Home List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Trial Return Home Types</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="dab442b2-d93a-487f-ba86-3b02ce33c9e1">
+          <ID>Trial Return Home</ID>
+          <Name>Trial Return Home</Name>
+          <SourceAttributeID>Trh</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="a67f680f-a924-4cdd-8aed-27511be54018">
+      <ID>Hierarchy 37</ID>
+      <Name>Tribe Name List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Tribes</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="c0ed5e76-53b6-4ac6-8a5c-7d29ba202e89">
+          <ID>Tribe Name</ID>
+          <Name>Tribe Name</Name>
+          <SourceAttributeID>Tx Tribe Name</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="883b10e9-871d-4a51-b665-5f07048b66ba">
+      <ID>Hierarchy 38</ID>
+      <Name>Placement Zip List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Placement Zip Codes</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="e9c1dbb6-2288-4da1-9290-abec1fbf1c32">
+          <ID>Zip</ID>
+          <Name>Zip</Name>
+          <SourceAttributeID>Zip</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="00693568-c337-4597-a155-cd80ec8c9c8a">
+      <ID>Hierarchy 39</ID>
+      <Name>Relationship List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Relationship Types</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="0bab0962-329d-453f-8ff4-a52cfe5e89c6">
+          <ID>Relationship</ID>
+          <Name>Relationship</Name>
+          <SourceAttributeID>Cd Rel</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="8bee1b7f-ddb1-44ac-aca1-d77de6d1034c">
+      <ID>Hierarchy 9</ID>
+      <Name>Longest Placement Setting List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Longest Placement Settings</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="446a22a2-a39a-443f-bb6a-4bf5cd9128d1">
+          <ID>Longest Placement Setting Code</ID>
+          <Name>Longest Placement Setting</Name>
+          <SourceAttributeID>Long Cd Plcm Setng</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="354297ca-d1a5-4f23-b5fc-114b5f253e90">
+      <ID>Hierarchy 56</ID>
+      <Name>Portal Discharge Type List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Portal Discharge Types</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="0f2e7f64-aadb-409e-80dd-4e8bd5b8a344">
+          <ID>Portal Discharge Type</ID>
+          <Name>Portal Discharge Type</Name>
+          <SourceAttributeID>Cd Discharge Type 1</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="20957dda-712f-4463-bbd1-2be5eb3d66b1">
+      <ID>Hierarchy 57</ID>
+      <Name>Dependency List</Name>
+      <DisplayFolder>Child Attributes</DisplayFolder>
+      <AllMemberName>All Dependencies</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="e023911c-1bcd-47a3-b020-471858ecec81">
+          <ID>Dependency</ID>
+          <Name>Dependency</Name>
+          <SourceAttributeID>Bin Dep Cd</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="1afcf937-0f25-468e-ae07-562d6bb5bb94">
+      <ID>Hierarchy 58</ID>
+      <Name>IHS Service List</Name>
+      <DisplayFolder>Child Attributes</DisplayFolder>
+      <AllMemberName>All IHS Services</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="01402f81-cf01-4ec5-b3c7-feb9c616b2e6">
+          <ID>IHS Service</ID>
+          <Name>IHS Service</Name>
+          <SourceAttributeID>Bin Ihs Svc Cd</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="8968050b-0ebe-4ed6-a77a-3193ed63057a">
+      <ID>Hierarchy 59</ID>
+      <Name>Number of Placements List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Numbers of Placements</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="08f40ca4-088e-4726-8620-c4a8fffd0755">
+          <ID>Number of Placements</ID>
+          <Name>Number of Placements</Name>
+          <SourceAttributeID>Bin Placement Cd</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="b50d0ffb-4680-486a-8230-dcc3d956b997">
+      <ID>Hierarchy 60</ID>
+      <Name>Census Hispanic Latino Origin List</Name>
+      <DisplayFolder>Child Attributes</DisplayFolder>
+      <AllMemberName>All Census Hispanic Latino Origin Types</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="da3ba0be-fb28-425b-bec8-61cee4b793bd">
+          <ID>Census Hispanic Latino Origin</ID>
+          <Name>Census Hispanic Latino Origin</Name>
+          <SourceAttributeID>Census Hispanic Latino Origin Cd</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="e9759058-1974-4007-be4d-6eefe5929982">
+      <ID>Hierarchy 61</ID>
+      <Name>Placement Race by Census List</Name>
+      <DisplayFolder>Child Attributes</DisplayFolder>
+      <AllMemberName>All Placement Races by Census</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="fad6ac8d-3e29-44b3-8af8-f749921bef2b">
+          <ID>Race Census</ID>
+          <Name>Race Census</Name>
+          <SourceAttributeID>Cd Race Census</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="67d68970-0c21-4bb1-b646-b8e32d34746f">
+      <ID>Hierarchy 62</ID>
+      <Name>Discharge Type List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Discharge Types</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="1848a0f0-ccbc-4ad5-8e68-fefb4dba8357">
+          <ID>Discharge Type</ID>
+          <Name>Discharge Type</Name>
+          <SourceAttributeID>Cd Discharge Type</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="e3626acd-cb68-42c8-be20-bf22f9644af5">
+      <ID>Hierarchy 63</ID>
+      <Name>Length of Stay Duration List</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Length of Stay Durations</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="45d96bc7-781c-4c81-a8e9-fbd63993c77e">
+          <ID>Length of Stay Duration</ID>
+          <Name>Length of Stay Duration</Name>
+          <SourceAttributeID>Max Bin Los Cd</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="42e01c89-53c7-4b42-934f-6665ae3a51d0">
+      <ID>Hierarchy 64</ID>
+      <Name>Exit County Hierarchy</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Exit Counties</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="10f4ec27-508d-41d1-9a56-bcbeb926c419">
+          <ID>Exit Region</ID>
+          <Name>Exit Region</Name>
+          <SourceAttributeID>Exit Region Cd</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="3119022b-7a80-4673-857f-dd6c1ae3e8eb">
+          <ID>Exit County</ID>
+          <Name>Exit County</Name>
+          <SourceAttributeID>Exit County Cd</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="a65827ed-5b6d-4369-8a1d-3a0171541463">
+      <ID>Hierarchy 65</ID>
+      <Name>Exit Old Region Hierarchy</Name>
+      <DisplayFolder>Removal Episode Hierarchies</DisplayFolder>
+      <AllMemberName>All Old Exit Counties</AllMemberName>
+      <Levels>
+        <Level dwd:design-time-name="00d4f2f6-809e-499b-b231-63d82349cf45">
+          <ID>Exit Old Region</ID>
+          <Name>Exit Old Region</Name>
+          <SourceAttributeID>Exit Old Region Cd</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="013418b9-f6ef-49bd-84a1-10fbd926ff43">
+          <ID>Exit County</ID>
+          <Name>Exit County</Name>
+          <SourceAttributeID>Exit County Cd</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="fd6e8032-e5e6-415d-9206-1a134d7b9eba">
+      <ID>Hierarchy 40</ID>
+      <Name>Removal County Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="ba3dd022-3bc9-41e4-b5f7-b00505e7ddbf">
+          <ID>Removal Region</ID>
+          <Name>Removal Region</Name>
+          <SourceAttributeID>Cd Removal Region</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="28ef7a65-0421-42c3-b1fa-944651a97281">
+          <ID>Removal County</ID>
+          <Name>Removal County</Name>
+          <SourceAttributeID>Cd Removal County</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="20297354-e095-4ff7-bc3b-f2ef2c8b164d">
+      <ID>Hierarchy 41</ID>
+      <Name>Old Removal Region Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="fcd9d3a4-8015-46b5-91b6-697ee105f1d9">
+          <ID>Old Removal Region</ID>
+          <Name>Old Removal Region</Name>
+          <SourceAttributeID>Cd Old Removal Region</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="1909b069-abda-4f13-abe9-bbd1d93abcfc">
+          <ID>Removal County</ID>
+          <Name>Removal County</Name>
+          <SourceAttributeID>Cd Removal County</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+  </Hierarchies>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>

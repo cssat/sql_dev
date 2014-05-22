@@ -8,7 +8,7 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
       <Value>
         <dds xmlns="">
-          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-3155" scrolltop="-8361" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="12012" y="21722" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-3155" scrolltop="-8361" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="12012" y="21061" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
             <font>
               <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
             </font>
@@ -115,8 +115,8 @@
     <DimensionPermission dwd:design-time-name="870fbafe-477f-45d3-8826-2b7b98eeae75">
       <ID>DimensionPermission</ID>
       <Name>DimensionPermission</Name>
-      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <CreatedTimestamp>0001-01-01T08:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T08:00:00Z</LastSchemaUpdate>
       <RoleID>Role 1</RoleID>
       <ReadDefinition>Allowed</ReadDefinition>
       <Read>Allowed</Read>
@@ -127,6 +127,7 @@
       <ID>ID WORKER DIM</ID>
       <Name>ID WORKER DIM</Name>
       <Usage>Key</Usage>
+      <EstimatedCount>18429</EstimatedCount>
       <KeyColumns>
         <KeyColumn dwd:design-time-name="2f3ac8d2-e940-4b18-bca8-ee2d68773cc9">
           <DataType>Integer</DataType>
@@ -152,10 +153,6 @@
         <AttributeRelationship dwd:design-time-name="39d5e03a-1d2b-40e8-97bd-9ba0e9048b5c">
           <AttributeID>DT BRTH</AttributeID>
           <Name>Date of Birth</Name>
-        </AttributeRelationship>
-        <AttributeRelationship dwd:design-time-name="48ee1acf-96c3-493f-a5a5-5b0c86276f7b">
-          <AttributeID>ID PRSN</AttributeID>
-          <Name>ID PRSN</Name>
         </AttributeRelationship>
       </AttributeRelationships>
       <OrderBy>Key</OrderBy>
@@ -258,28 +255,12 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="b4ee54d4-8988-49dd-ac64-23b4b4a6872a">
-      <ID>ID PRSN</ID>
-      <Name>ID PRSN</Name>
-      <EstimatedCount>14096</EstimatedCount>
-      <KeyColumns>
-        <KeyColumn dwd:design-time-name="3848c890-c560-4fbf-a501-5de2563799e3">
-          <DataType>Integer</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="8d9dad24-cf98-480e-bb22-7211727711fa">
-            <TableID>dbo_Cube_WORKER_DIM</TableID>
-            <ColumnID>ID_PRSN</ColumnID>
-          </Source>
-        </KeyColumn>
-      </KeyColumns>
-      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
-      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-    </Attribute>
   </Attributes>
   <Hierarchies>
     <Hierarchy dwd:design-time-name="5fb8ccf9-09b5-4608-908b-7eb868d0d9f9">
       <ID>Hierarchy</ID>
-      <Name>Job Hierarchy</Name>
+      <Name>Job List</Name>
+      <AllMemberName>All Jobs</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="39efff45-373b-4a7a-ab40-7f8a62152a9b">
           <ID>Job</ID>
@@ -290,7 +271,8 @@
     </Hierarchy>
     <Hierarchy dwd:design-time-name="c1e7249d-4dae-4010-8c75-51266e2a3875">
       <ID>Hierarchy 1</ID>
-      <Name>RMTS Hierarchy</Name>
+      <Name>RMTS Type List</Name>
+      <AllMemberName>All RMTS Types</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="3162f954-3c75-42bc-9d4d-b68a83a93c81">
           <ID>RMTS Type</ID>
@@ -301,7 +283,8 @@
     </Hierarchy>
     <Hierarchy dwd:design-time-name="c9394e80-dd62-4145-a232-82e4a623df39">
       <ID>Hierarchy 2</ID>
-      <Name>Status Hierarchy</Name>
+      <Name>Worker Status List</Name>
+      <AllMemberName>All Worker Statuses</AllMemberName>
       <Levels>
         <Level dwd:design-time-name="28b39dda-8e1d-4e7e-b9eb-29cac975bb79">
           <ID>Status</ID>

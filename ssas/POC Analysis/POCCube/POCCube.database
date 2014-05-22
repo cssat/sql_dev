@@ -19,8 +19,8 @@
     <DatabasePermission dwd:design-time-name="6712dca6-fe10-408c-8067-6d098a21768a">
       <ID>DatabasePermission</ID>
       <Name>DatabasePermission</Name>
-      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <CreatedTimestamp>0001-01-01T08:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T08:00:00Z</LastSchemaUpdate>
       <RoleID>Role</RoleID>
       <Process>true</Process>
       <ReadDefinition>Allowed</ReadDefinition>
@@ -30,9 +30,18 @@
     <DatabasePermission dwd:design-time-name="d8cf69b9-7a68-4118-8bf9-9439070005ff">
       <ID>DatabasePermission 1</ID>
       <Name>DatabasePermission 1</Name>
+      <CreatedTimestamp>0001-01-01T08:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T08:00:00Z</LastSchemaUpdate>
+      <RoleID>Role 1</RoleID>
+      <ReadDefinition>Allowed</ReadDefinition>
+      <Read>Allowed</Read>
+    </DatabasePermission>
+    <DatabasePermission dwd:design-time-name="3c0c07c5-b843-4e44-b639-d3bfd1c21743">
+      <ID>DatabasePermission 2</ID>
+      <Name>DatabasePermission 2</Name>
       <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
       <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-      <RoleID>Role 1</RoleID>
+      <RoleID>Role 2</RoleID>
       <ReadDefinition>Allowed</ReadDefinition>
       <Read>Allowed</Read>
     </DatabasePermission>
