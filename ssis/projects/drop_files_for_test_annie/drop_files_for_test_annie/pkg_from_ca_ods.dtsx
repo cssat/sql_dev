@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="pkg_from_ca_ods"
   DTS:PackageType="5"
-  DTS:VersionBuild="254"
-  DTS:VersionGUID="{B8AE72D0-F9E8-4988-B606-56C3F037A8BE}">
+  DTS:VersionBuild="258"
+  DTS:VersionGUID="{4B877AFF-FD5E-4C11-B924-3BE5DAEE41A6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -30149,7 +30149,8 @@ FROM            prtl.cache_poc1ab_params</property>
                          cd_sib_age_grp, cd_race,  cd_office, cnt_start_date, cnt_opened, cnt_closed, CONVERT(varchar(10), min_start_date, 121) AS min_start_date, 
                          CONVERT(varchar(10), max_start_date, 121) AS max_start_date, x1, x2, CONVERT(varchar(10), insert_date, 121) AS insert_date, int_all_param_key, qry_id, 
                          start_year
-FROM            prtl.cache_poc2ab_aggr</property>
+FROM            prtl.cache_poc2ab_aggr
+where qry_type &lt;&gt;2</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -38629,7 +38630,9 @@ FROM            prtl.cache_qry_param_outcomes</property>
                   <inputColumns>
                     <inputColumn
                       refId="Package\drop file prtl_outcomes\Flat File Destination.Inputs[Flat File Destination Input].Columns[cohort_entry_date]"
-                      cachedDataType="dbTimeStamp"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
                       cachedName="cohort_entry_date"
                       externalMetadataColumnId="Package\drop file prtl_outcomes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cohort_entry_date]"
                       lineageId="Package\drop file prtl_outcomes\OLE DB Source.Outputs[OLE DB Source Output].Columns[cohort_entry_date]" />
@@ -38726,8 +38729,9 @@ FROM            prtl.cache_qry_param_outcomes</property>
                       lineageId="Package\drop file prtl_outcomes\OLE DB Source.Outputs[OLE DB Source Output].Columns[bin_ihs_svc_cd]" />
                     <inputColumn
                       refId="Package\drop file prtl_outcomes\Flat File Destination.Inputs[Flat File Destination Input].Columns[filter_access_type]"
-                      cachedDataType="i4"
+                      cachedDataType="numeric"
                       cachedName="filter_access_type"
+                      cachedPrecision="18"
                       externalMetadataColumnId="Package\drop file prtl_outcomes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[filter_access_type]"
                       lineageId="Package\drop file prtl_outcomes\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_access_type]" />
                     <inputColumn
@@ -38957,10 +38961,12 @@ FROM            prtl.prtl_outcomes AS [GO]</property>
                   <outputColumns>
                     <outputColumn
                       refId="Package\drop file prtl_outcomes\OLE DB Source.Outputs[OLE DB Source Output].Columns[cohort_entry_date]"
-                      dataType="dbTimeStamp"
+                      codePage="1252"
+                      dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\drop file prtl_outcomes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cohort_entry_date]"
+                      length="10"
                       lineageId="Package\drop file prtl_outcomes\OLE DB Source.Outputs[OLE DB Source Output].Columns[cohort_entry_date]"
                       name="cohort_entry_date"
                       truncationRowDisposition="FailComponent" />
@@ -39102,12 +39108,13 @@ FROM            prtl.prtl_outcomes AS [GO]</property>
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\drop file prtl_outcomes\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_access_type]"
-                      dataType="i4"
+                      dataType="numeric"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\drop file prtl_outcomes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_access_type]"
                       lineageId="Package\drop file prtl_outcomes\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_access_type]"
                       name="filter_access_type"
+                      precision="18"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\drop file prtl_outcomes\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_allegation]"
@@ -39255,8 +39262,9 @@ FROM            prtl.prtl_outcomes AS [GO]</property>
                       name="bin_ihs_svc_cd" />
                     <externalMetadataColumn
                       refId="Package\drop file prtl_outcomes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_access_type]"
-                      dataType="i4"
-                      name="filter_access_type" />
+                      dataType="numeric"
+                      name="filter_access_type"
+                      precision="18" />
                     <externalMetadataColumn
                       refId="Package\drop file prtl_outcomes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_allegation]"
                       dataType="i4"
@@ -39388,9 +39396,10 @@ FROM            prtl.prtl_outcomes AS [GO]</property>
                       name="bin_ihs_svc_cd" />
                     <outputColumn
                       refId="Package\drop file prtl_outcomes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_access_type]"
-                      dataType="i4"
+                      dataType="numeric"
                       lineageId="Package\drop file prtl_outcomes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_access_type]"
-                      name="filter_access_type" />
+                      name="filter_access_type"
+                      precision="18" />
                     <outputColumn
                       refId="Package\drop file prtl_outcomes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_allegation]"
                       dataType="i4"
@@ -39705,7 +39714,8 @@ FROM            prtl.prtl_outcomes AS [GO]</property>
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT        qry_type, date_type, CONVERT(varchar(10), start_date, 121) AS start_date, start_year, int_match_param_key, cd_reporter_type,filter_access_type, 
                          filter_allegation, filter_finding, cd_sib_age_group, cd_race_census, census_hispanic_latino_origin_cd,  cd_office, cnt_start_date, cnt_opened, cnt_closed
-FROM            prtl.prtl_poc2ab</property>
+FROM            prtl.prtl_poc2ab
+where qry_type &lt;&gt;2</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -45981,7 +45991,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                       refId="Package\pbcw3\Flat File Destination.Inputs[Flat File Destination Input].Columns[filter_access_type]"
                       cachedDataType="numeric"
                       cachedName="filter_access_type"
-                      cachedPrecision="6"
+                      cachedPrecision="18"
                       externalMetadataColumnId="Package\pbcw3\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[filter_access_type]"
                       lineageId="Package\pbcw3\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_access_type]" />
                     <inputColumn
@@ -46385,7 +46395,7 @@ where date_type=2;</property>
                       externalMetadataColumnId="Package\pbcw3\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_access_type]"
                       lineageId="Package\pbcw3\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_access_type]"
                       name="filter_access_type"
-                      precision="6"
+                      precision="18"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\pbcw3\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_allegation]"
@@ -46565,7 +46575,7 @@ where date_type=2;</property>
                       refId="Package\pbcw3\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_access_type]"
                       dataType="numeric"
                       name="filter_access_type"
-                      precision="6" />
+                      precision="18" />
                     <externalMetadataColumn
                       refId="Package\pbcw3\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_allegation]"
                       dataType="numeric"
@@ -46713,7 +46723,7 @@ where date_type=2;</property>
                       dataType="numeric"
                       lineageId="Package\pbcw3\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_access_type]"
                       name="filter_access_type"
-                      precision="6" />
+                      precision="18" />
                     <outputColumn
                       refId="Package\pbcw3\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_allegation]"
                       dataType="numeric"
@@ -46843,7 +46853,9 @@ where date_type=2;</property>
                   <inputColumns>
                     <inputColumn
                       refId="Package\pbcw4\Flat File Destination.Inputs[Flat File Destination Input].Columns[pit_date]"
-                      cachedDataType="dbTimeStamp"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
                       cachedName="pit_date"
                       externalMetadataColumnId="Package\pbcw4\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[pit_date]"
                       lineageId="Package\pbcw4\OLE DB Source.Outputs[OLE DB Source Output].Columns[pit_date]" />
@@ -46930,7 +46942,7 @@ where date_type=2;</property>
                       refId="Package\pbcw4\Flat File Destination.Inputs[Flat File Destination Input].Columns[filter_access_type]"
                       cachedDataType="numeric"
                       cachedName="filter_access_type"
-                      cachedPrecision="6"
+                      cachedPrecision="18"
                       externalMetadataColumnId="Package\pbcw4\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[filter_access_type]"
                       lineageId="Package\pbcw4\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_access_type]" />
                     <inputColumn
@@ -47202,10 +47214,12 @@ GROUP BY pit_date, date_type, qry_type, age_grouping_cd, pk_gndr, cd_race_census
                   <outputColumns>
                     <outputColumn
                       refId="Package\pbcw4\OLE DB Source.Outputs[OLE DB Source Output].Columns[pit_date]"
-                      dataType="dbTimeStamp"
+                      codePage="1252"
+                      dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\pbcw4\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[pit_date]"
+                      length="10"
                       lineageId="Package\pbcw4\OLE DB Source.Outputs[OLE DB Source Output].Columns[pit_date]"
                       name="pit_date"
                       truncationRowDisposition="FailComponent" />
@@ -47335,7 +47349,7 @@ GROUP BY pit_date, date_type, qry_type, age_grouping_cd, pk_gndr, cd_race_census
                       externalMetadataColumnId="Package\pbcw4\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_access_type]"
                       lineageId="Package\pbcw4\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_access_type]"
                       name="filter_access_type"
-                      precision="6"
+                      precision="18"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\pbcw4\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_allegation]"
@@ -47515,7 +47529,7 @@ GROUP BY pit_date, date_type, qry_type, age_grouping_cd, pk_gndr, cd_race_census
                       refId="Package\pbcw4\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_access_type]"
                       dataType="numeric"
                       name="filter_access_type"
-                      precision="6" />
+                      precision="18" />
                     <externalMetadataColumn
                       refId="Package\pbcw4\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_allegation]"
                       dataType="numeric"
@@ -47663,7 +47677,7 @@ GROUP BY pit_date, date_type, qry_type, age_grouping_cd, pk_gndr, cd_race_census
                       dataType="numeric"
                       lineageId="Package\pbcw4\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_access_type]"
                       name="filter_access_type"
-                      precision="6" />
+                      precision="18" />
                     <outputColumn
                       refId="Package\pbcw4\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_allegation]"
                       dataType="numeric"
@@ -48727,8 +48741,9 @@ FROM            prtl.prtl_pbcp5</property>
                       lineageId="Package\prtl_pbcs2\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_office_collapse]" />
                     <inputColumn
                       refId="Package\prtl_pbcs2\Flat File Destination.Inputs[Flat File Destination Input].Columns[filter_access_type]"
-                      cachedDataType="i4"
+                      cachedDataType="numeric"
                       cachedName="filter_access_type"
+                      cachedPrecision="18"
                       externalMetadataColumnId="Package\prtl_pbcs2\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[filter_access_type]"
                       lineageId="Package\prtl_pbcs2\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_access_type]" />
                     <inputColumn
@@ -49037,12 +49052,13 @@ FROM            prtl.prtl_pbcs2</property>
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\prtl_pbcs2\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_access_type]"
-                      dataType="i4"
+                      dataType="numeric"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\prtl_pbcs2\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_access_type]"
                       lineageId="Package\prtl_pbcs2\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_access_type]"
                       name="filter_access_type"
+                      precision="18"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\prtl_pbcs2\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_allegation]"
@@ -49191,8 +49207,9 @@ FROM            prtl.prtl_pbcs2</property>
                       name="cd_office_collapse" />
                     <externalMetadataColumn
                       refId="Package\prtl_pbcs2\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_access_type]"
-                      dataType="i4"
-                      name="filter_access_type" />
+                      dataType="numeric"
+                      name="filter_access_type"
+                      precision="18" />
                     <externalMetadataColumn
                       refId="Package\prtl_pbcs2\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_allegation]"
                       dataType="i4"
@@ -49292,9 +49309,10 @@ FROM            prtl.prtl_pbcs2</property>
                       name="cd_office_collapse" />
                     <outputColumn
                       refId="Package\prtl_pbcs2\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_access_type]"
-                      dataType="i4"
+                      dataType="numeric"
                       lineageId="Package\prtl_pbcs2\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_access_type]"
-                      name="filter_access_type" />
+                      name="filter_access_type"
+                      precision="18" />
                     <outputColumn
                       refId="Package\prtl_pbcs2\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_allegation]"
                       dataType="i4"
@@ -49430,7 +49448,9 @@ FROM            prtl.prtl_pbcs2</property>
                   <inputColumns>
                     <inputColumn
                       refId="Package\prtl_pbcs3\Flat File Destination.Inputs[Flat File Destination Input].Columns[cohort_begin_date]"
-                      cachedDataType="dbTimeStamp"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
                       cachedName="cohort_begin_date"
                       externalMetadataColumnId="Package\prtl_pbcs3\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cohort_begin_date]"
                       lineageId="Package\prtl_pbcs3\OLE DB Source.Outputs[OLE DB Source Output].Columns[cohort_begin_date]" />
@@ -49492,7 +49512,7 @@ FROM            prtl.prtl_pbcs2</property>
                       refId="Package\prtl_pbcs3\Flat File Destination.Inputs[Flat File Destination Input].Columns[filter_access_type]"
                       cachedDataType="numeric"
                       cachedName="filter_access_type"
-                      cachedPrecision="6"
+                      cachedPrecision="18"
                       externalMetadataColumnId="Package\prtl_pbcs3\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[filter_access_type]"
                       lineageId="Package\prtl_pbcs3\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_access_type]" />
                     <inputColumn
@@ -49680,10 +49700,12 @@ FROM            prtl.prtl_pbcs3</property>
                   <outputColumns>
                     <outputColumn
                       refId="Package\prtl_pbcs3\OLE DB Source.Outputs[OLE DB Source Output].Columns[cohort_begin_date]"
-                      dataType="dbTimeStamp"
+                      codePage="1252"
+                      dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\prtl_pbcs3\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cohort_begin_date]"
+                      length="10"
                       lineageId="Package\prtl_pbcs3\OLE DB Source.Outputs[OLE DB Source Output].Columns[cohort_begin_date]"
                       name="cohort_begin_date"
                       truncationRowDisposition="FailComponent" />
@@ -49776,7 +49798,7 @@ FROM            prtl.prtl_pbcs3</property>
                       externalMetadataColumnId="Package\prtl_pbcs3\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_access_type]"
                       lineageId="Package\prtl_pbcs3\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_access_type]"
                       name="filter_access_type"
-                      precision="6"
+                      precision="18"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\prtl_pbcs3\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_allegation]"
@@ -49885,7 +49907,7 @@ FROM            prtl.prtl_pbcs3</property>
                       refId="Package\prtl_pbcs3\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_access_type]"
                       dataType="numeric"
                       name="filter_access_type"
-                      precision="6" />
+                      precision="18" />
                     <externalMetadataColumn
                       refId="Package\prtl_pbcs3\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_allegation]"
                       dataType="numeric"
@@ -49978,7 +50000,7 @@ FROM            prtl.prtl_pbcs3</property>
                       dataType="numeric"
                       lineageId="Package\prtl_pbcs3\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_access_type]"
                       name="filter_access_type"
-                      precision="6" />
+                      precision="18" />
                     <outputColumn
                       refId="Package\prtl_pbcs3\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_allegation]"
                       dataType="numeric"
@@ -50922,6 +50944,40 @@ FROM            prtl.prtl_pbcs3</property>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="-119.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 24]"
+          TopLeft="2078,1747">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="211.56252847897,-103.378605917286"
+              Start="0,0"
+              End="211.56252847897,-95.8786059172862">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-47.6893029586431" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-47.6893029586431"
+                    Point2="0,-51.6893029586431"
+                    Point3="4,-51.6893029586431" />
+                  <mssgle:LineSegment
+                    End="207.56252847897,-51.6893029586431" />
+                  <mssgle:CubicBezierSegment
+                    Point1="207.56252847897,-51.6893029586431"
+                    Point2="211.56252847897,-51.6893029586431"
+                    Point3="211.56252847897,-55.6893029586431" />
+                  <mssgle:LineSegment
+                    End="211.56252847897,-95.8786059172862" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -52634,40 +52690,6 @@ FROM            prtl.prtl_pbcs3</property>
             <s:String>Package\coreadministrative ref_lookup_census_population</s:String>
           </GroupLayout.ChildrenIds>
         </GroupLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 24]"
-          TopLeft="2078,1747">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="211.56252847897,-103.378605917286"
-              Start="0,0"
-              End="211.56252847897,-95.8786059172862">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-47.6893029586431" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,-47.6893029586431"
-                    Point2="0,-51.6893029586431"
-                    Point3="4,-51.6893029586431" />
-                  <mssgle:LineSegment
-                    End="207.56252847897,-51.6893029586431" />
-                  <mssgle:CubicBezierSegment
-                    Point1="207.56252847897,-51.6893029586431"
-                    Point2="211.56252847897,-51.6893029586431"
-                    Point3="211.56252847897,-55.6893029586431" />
-                  <mssgle:LineSegment
-                    End="211.56252847897,-95.8786059172862" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -54774,7 +54796,7 @@ FROM            prtl.prtl_pbcs3</property>
     design-time-name="Package\drop file prtl_outcomes">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="174,42"
           Id="Package\drop file prtl_outcomes\Flat File Destination"
@@ -54814,9 +54836,7 @@ FROM            prtl.prtl_pbcs3</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -55382,7 +55402,7 @@ FROM            prtl.prtl_pbcs3</property>
     design-time-name="Package\pbcw3">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="152,42"
           Id="Package\pbcw3\OLE DB Source"
@@ -55422,9 +55442,7 @@ FROM            prtl.prtl_pbcs3</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -55442,7 +55460,7 @@ FROM            prtl.prtl_pbcs3</property>
     design-time-name="Package\pbcw4">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="152,42"
           Id="Package\pbcw4\OLE DB Source"
@@ -55482,9 +55500,7 @@ FROM            prtl.prtl_pbcs3</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -55502,7 +55518,7 @@ FROM            prtl.prtl_pbcs3</property>
     design-time-name="Package\prtl_pbcp5">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="174,42"
           Id="Package\prtl_pbcp5\Flat File Destination"
@@ -55542,7 +55558,9 @@ FROM            prtl.prtl_pbcs3</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -55565,7 +55583,7 @@ FROM            prtl.prtl_pbcs3</property>
     design-time-name="Package\prtl_pbcs2">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="174,42"
           Id="Package\prtl_pbcs2\Flat File Destination"
@@ -55605,9 +55623,7 @@ FROM            prtl.prtl_pbcs3</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -55625,7 +55641,7 @@ FROM            prtl.prtl_pbcs3</property>
     design-time-name="Package\prtl_pbcs3">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="152,42"
           Id="Package\prtl_pbcs3\OLE DB Source"
@@ -55665,9 +55681,7 @@ FROM            prtl.prtl_pbcs3</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -55685,7 +55699,7 @@ FROM            prtl.prtl_pbcs3</property>
     design-time-name="Package\ref_lookup_max_date">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="152,42"
           Id="Package\ref_lookup_max_date\OLE DB Source"
@@ -55725,7 +55739,9 @@ FROM            prtl.prtl_pbcs3</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
