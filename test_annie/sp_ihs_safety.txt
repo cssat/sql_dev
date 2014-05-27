@@ -217,9 +217,9 @@ if  var_row_cnt_param <> var_row_cnt_cache then
             and p_ethnicity_cd = '0' 
             and p_office_cd = '0' ) then
          set    @incl= concat(@incl,char(13),'
-             , cast(( cast(mtch.int_param_key as decimal(22,0)) * ',@mult_int_param_key,' ) as decimal(22,0))  ');
+             , cast(( cast(mtch.int_param_key as decimal(22,0)) *  ',@mult_int_param_key,' ) as decimal(22,0))  ');
         else
-            set @incl=concat(@incl,char(13),', cast((cast(',@int_param_key,'as decimal(22,0)) * ',@mult_int_param_key,' ) as decimal(22,0))');
+            set @incl=concat(@incl,char(13),', cast((cast(',@int_param_key,' as decimal(22,0)) * ',@mult_int_param_key,' ) as decimal(22,0))');
         end if;
        if trim(p_cd_reporter_type)<>'0' then
 	        set @incl=concat(@incl,'
@@ -379,7 +379,8 @@ set @incl=concat(@incl,char(13),'
          end if;
          set @incl=concat(@incl,';',char(13));   
          
-
+        drop temporary table if exists mycode;
+        create temporary table mycode as select @incl;
                
         PREPARE stmt FROM @incl;
         EXECUTE stmt;
