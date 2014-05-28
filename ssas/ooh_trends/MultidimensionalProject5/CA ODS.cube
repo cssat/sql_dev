@@ -1,0 +1,531 @@
+﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="4b7e9133-0db2-4d6e-99e2-d247b3c4b4e5" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>CA ODS</ID>
+  <Name>ooh_trends</Name>
+  <CreatedTimestamp>0001-01-01T08:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T08:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="12" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-5589" scrolltop="-8405" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="17489" y="21140" backcolor="16185078" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="cube_prtl_poc1ab_dim" left="20" top="7400" logicalid="6" controlid="1" masterid="0" hint1="0" hint2="0" width="5821" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="00080000bd16000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_cube_prtl_poc1ab_dim" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="cube_prtl_poc1ab_fact" left="218" top="0" logicalid="7" controlid="2" masterid="0" hint1="0" hint2="0" width="5424" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000800003015000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_cube_prtl_poc1ab_fact" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline" left="2531" top="4700" logicalid="8" controlid="3" masterid="0" hint1="0" hint2="0" width="799" height="3200" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="1973790" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[cube_prtl_poc1ab_fact-cube_prtl_poc1ab_dim]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="1" destid="2" sourceattachpoint="10" destattachpoint="9" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="2930" y="7400" />
+              <point x="2930" y="5000" />
+            </connector>
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="cube_prtl_poc1ab_time" left="6542" top="2311" logicalid="9" controlid="4" masterid="0" hint1="0" hint2="0" width="3466" height="3572" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000800008a0d0000f40d0000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_cube_prtl_poc1ab_time" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline" left="-482" top="-700" logicalid="10" controlid="5" masterid="0" hint1="0" hint2="0" width="8057" height="3511" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="1973790" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[cube_prtl_poc1ab_fact-cube_prtl_poc1ab_time]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="4" destid="2" sourceattachpoint="0" destattachpoint="18" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="7175" y="2311" />
+              <point x="7175" y="-400" />
+              <point x="-182" y="-400" />
+              <point x="-182" y="300" />
+              <point x="218" y="300" />
+            </connector>
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-5589</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>-8405</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>20</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T08:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Dimensions>
+    <Dimension dwd:design-time-name="927979f4-4695-4e75-bb9f-a2f242baa49d">
+      <ID>Cube Prtl Poc1ab Dim</ID>
+      <Name>ooh_trends_dim</Name>
+      <DimensionID>Cube Prtl Poc1ab Dim</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="bccffeb4-d43c-4a89-8191-b0f152ba3696">
+          <AttributeID>Pk Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="b8de7cbf-f4b2-43bd-b228-7c4317e0504a">
+          <AttributeID>Bin Dep Desc</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="804ab8e1-1d64-47e9-8aee-a921ea4cf5e0">
+          <AttributeID>Bin Los Desc</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="8546d3ce-3223-4c23-a234-3d1b096eb59f">
+          <AttributeID>Bin Placement Desc</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="8f6872ba-07fa-4121-8856-58900cb29fde">
+          <AttributeID>Bin Ihs Svc Tx</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c64352fb-d3f8-4089-b828-588a2627af9e">
+          <AttributeID>Tx Reporter Type</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="8a40ee93-0930-4bb0-804b-dfba1739f170">
+          <AttributeID>Age Grouping</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="b6396cd5-511a-4d9b-8461-0c1ac83df3e4">
+          <AttributeID>Tx Race Census</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="12e64543-97a0-466b-ba2d-b370f6f47fee">
+          <AttributeID>Census Hispanic Latino Origin</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1a86ed03-e6a4-4343-b95e-72a2249713bc">
+          <AttributeID>Tx Gndr</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="8f1378af-db15-42bb-b57f-808386439dc2">
+          <AttributeID>Initial Placement Setting</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3d7faf13-71a9-4ae0-9c95-746a0115bcbc">
+          <AttributeID>Long Tx Plcm Setng</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="ca6c8c1c-4e1d-4d63-b00d-7183b3c72072">
+          <AttributeID>County Desc</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="2f7c0791-8114-4dbb-afc4-aeaf3e37e949">
+          <AttributeID>Fl Alternate Intervention</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="0f01b7c7-f691-43ac-8755-6fd6e285c909">
+          <AttributeID>Fl Cfws</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="98876c8a-276b-4586-a72a-99a1e42e0ab2">
+          <AttributeID>Fl Cps Invs</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c306066b-83b3-4599-8b1f-d1ff5fa1e5f5">
+          <AttributeID>Fl Frs</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="e59950f8-6015-43e9-ae6c-d6919dd1818f">
+          <AttributeID>Fl Risk Only</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="e33f6c38-14f2-4745-9679-a9ffbdb372ed">
+          <AttributeID>Fl Phys Abuse</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f5f60ff8-98b5-4152-a520-2ea0c93487b3">
+          <AttributeID>Fl Sexual Abuse</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="830f985e-bd93-4a50-9f60-e20377ca828e">
+          <AttributeID>Fl Neglect</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="50139489-8e96-4d4a-a8b0-147b928d5164">
+          <AttributeID>Fl Any Legal</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c316a3ff-b086-4b4c-b1b4-f7a4d8ae478b">
+          <AttributeID>Fl Founded Phys Abuse</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="dbc62822-dc87-425b-9af4-6ff1d342391e">
+          <AttributeID>Fl Founded Sexual Abuse</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6c30e637-89cb-4651-aea1-ac28134012f6">
+          <AttributeID>Fl Founded Neglect</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="460bf8fa-cbf4-40e1-8e03-317f88a0c6d7">
+          <AttributeID>Fl Any Finding Legal</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="d7e4fab8-d148-4f47-90fe-03d15157ae62">
+          <AttributeID>Fl Adoption Support</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="26ba2e47-f75f-4ead-b3bc-d0ae61837963">
+          <AttributeID>Fl Behavioral Rehabiliation Services</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f93ce654-6a0c-4990-9f42-0ac53e7f6bdd">
+          <AttributeID>Fl Child Care</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="5049f117-e8c2-4516-ab67-a9a232bfee85">
+          <AttributeID>Fl Clothing Incidentals</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="779ce434-55fe-48a5-8893-ab21efaea15a">
+          <AttributeID>Fl Family Focused Services</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="697ac7fc-fed4-487d-906a-c4f6b7ee60f4">
+          <AttributeID>Fl Family Home Placements</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3a96c639-6b17-450c-be9f-0a45b3208a3f">
+          <AttributeID>Fl Medical</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="da5276cf-a7a9-4b29-b0be-c7b1f60d98b6">
+          <AttributeID>Fl Mh Services</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="24f108f0-7f2e-4eef-b007-8555e1ee87f4">
+          <AttributeID>Fl Other Therapeutic Living Situations</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="134bbdef-74a7-48f1-9919-c05376b56afe">
+          <AttributeID>Fl Receiving Care</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="55ad6b0f-3510-4d82-805f-314fafa43a64">
+          <AttributeID>Fl Respite</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3c6dc514-0692-4293-ae0b-ef56fff48a3a">
+          <AttributeID>Fl Sexually Aggressive Youth</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="31e6d85e-9c4c-4742-a64d-a5018b256d49">
+          <AttributeID>Fl Specialty Adolescent Services</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="de0c3dae-fc1c-4c07-9943-a4475913fd8f">
+          <AttributeID>Fl Therapeutic Services</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c506d334-9c00-435d-8fad-4ddc6b7239d1">
+          <AttributeID>Fl Transportation</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c1aef5ea-cb06-49f6-9439-2c39088007d6">
+          <AttributeID>Fl Various</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="ecd7bd01-9241-4526-9b0f-3ebe757eeecb">
+          <AttributeID>Fl Budget C12</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="58370ff5-62c1-48de-bd2b-f4f417d89b89">
+          <AttributeID>Fl Budget C14</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="5ecd1583-b2da-4175-8b30-65467611cd27">
+          <AttributeID>Fl Budget C15</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="5cf3716a-cb66-462e-bf9e-8cae40165d5f">
+          <AttributeID>Fl Budget C16</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c885e5cf-d48d-419c-b286-caed103937e1">
+          <AttributeID>Fl Budget C18</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="7359ec1f-a134-4a93-a2a5-fd801e375831">
+          <AttributeID>Fl Budget C19</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3f29859c-c5fa-4318-819a-815dc3f6f819">
+          <AttributeID>Fl Uncat Svc</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f935617c-7d6f-4b21-8a59-4e4f6bf04204">
+          <AttributeID>Qry Type Desc</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="865b7f60-0115-4dc2-a4f1-34b40a104372">
+          <AttributeID>Date Type Desc</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="eca14335-b9fc-4606-a53d-7c5434e692a0">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="8a719c97-018b-4b2c-9253-8d1e67c80147">
+          <HierarchyID>Hierarchy 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="b99b097b-0042-433d-a850-a5571b3f5669">
+          <HierarchyID>Hierarchy 2</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="28435f55-7016-4fda-bedb-061ac617f2a1">
+          <HierarchyID>Hierarchy 1 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="41779719-222d-40b3-8970-cd4174ea9692">
+          <HierarchyID>Hierarchy 2 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="e903a14d-cff1-4bab-8dd4-8ab959b52db4">
+          <HierarchyID>Hierarchy 8</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="e7b55bc6-71d6-456c-afbb-a65f96910600">
+          <HierarchyID>Hierarchy 3</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="7766987b-4e95-4a8e-ad40-e5f421a7e548">
+          <HierarchyID>Hierarchy 4</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="7ef26ffb-99a2-44ee-8d1c-dd5542f9c3e2">
+          <HierarchyID>Hierarchy 5</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="cf04cf03-ae97-4ddf-9917-25cfb066121f">
+          <HierarchyID>Hierarchy 6</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="ebc257a9-a75b-4546-aa3e-888064a39598">
+          <HierarchyID>Hierarchy 7</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="f6b63935-ba6c-4580-a141-33d7150765fb">
+          <HierarchyID>Hierarchy 9</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="f8d3fa63-e891-44d1-ab18-cf872f0123a0">
+          <HierarchyID>Hierarchy 10</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="f10687b2-0946-4258-91a0-5f5012b31169">
+          <HierarchyID>Hierarchy 11</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="546296de-27fa-418a-a23d-6213c740d464">
+          <HierarchyID>Hierarchy 12</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="a6de6949-dae1-4dad-8b5a-c70fe97717ce">
+          <HierarchyID>Hierarchy 1 2</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="5203cb7c-e450-42f6-bbef-a225dd3d6a0a">
+          <HierarchyID>Hierarchy 2 2</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="ee2d3538-4b02-45db-bcc8-835453e40eee">
+          <HierarchyID>Hierarchy 3 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="a749a669-21af-4fe6-8f03-538c1755a0d0">
+          <HierarchyID>Hierarchy 4 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="01891fbc-bda5-487d-8c57-0fafeb1de160">
+          <HierarchyID>Hierarchy 13</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="1f75259e-795f-4391-befe-ccb93459673e">
+          <HierarchyID>Hierarchy 1 3</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="0d6cc3f8-271c-427b-8984-7a4d0510ae48">
+          <HierarchyID>Hierarchy 2 3</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="a8584998-8086-4230-a496-6a9acba73fc2">
+          <HierarchyID>Hierarchy 3 2</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="1bc0b654-703d-4a7a-9fc4-b0194c92cd82">
+          <HierarchyID>Hierarchy 14</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="906811f5-b65c-48d6-a164-a7e6da598d2a">
+          <HierarchyID>Hierarchy 1 4</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="d5e7a904-fb37-4aca-96bf-5d00e74fd670">
+          <HierarchyID>Hierarchy 2 4</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="1b8d802b-839c-4349-b6f6-f9f03fbf0c76">
+          <HierarchyID>Hierarchy 3 3</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="86de98d6-3ede-429a-bf18-b8949b571c6a">
+          <HierarchyID>Hierarchy 15</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="eb897d44-8744-44f2-8d5b-b496f1ecf031">
+          <HierarchyID>Hierarchy 1 5</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="3d3ad35d-83f6-42e3-a819-5043cf3c0ec4">
+          <HierarchyID>Hierarchy 2 5</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="7461ed51-79ef-4a1b-81b5-3a150a7913c6">
+          <HierarchyID>Hierarchy 3 4</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="6941ee19-10a4-47c0-99b7-ab192d687f29">
+          <HierarchyID>Hierarchy 4 2</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="0548fd9a-3f22-4cc1-a408-d1306d8891d9">
+          <HierarchyID>Hierarchy 5 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="2f139110-b525-4389-830e-a274271bcc94">
+          <HierarchyID>Hierarchy 6 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="2c72cf59-9e57-40cf-8fba-a84e473d460e">
+          <HierarchyID>Hierarchy 7 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="bf8152e1-faae-4a18-9507-29233765850c">
+          <HierarchyID>Hierarchy 8 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="cd25cc44-cd5b-49e6-9165-9353cc669ada">
+          <HierarchyID>Hierarchy 9 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="f9849de5-c89b-400d-9867-721b8d8f2e23">
+          <HierarchyID>Hierarchy 10 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="fee1a600-4eea-42c2-b221-c9586643a79c">
+          <HierarchyID>Hierarchy 11 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="af0f4932-28e5-4b4b-be8f-ecd09085ab13">
+          <HierarchyID>Hierarchy 12 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="8786c5dc-2764-4366-a889-90b9b57e58f3">
+          <HierarchyID>Hierarchy 13 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="5b42b377-ce3d-4f38-833c-794756fe21af">
+          <HierarchyID>Hierarchy 14 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="70e7ed65-50ad-49cb-8108-db74ceaa69e9">
+          <HierarchyID>Hierarchy 16</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="b673b2a3-4b29-4ee4-954f-6fe130360a03">
+          <HierarchyID>Hierarchy 17</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="3f262cc5-fbd5-46e5-9a00-4ea73da8a52b">
+          <HierarchyID>Hierarchy 1 6</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="9aee8d6f-27f4-40cd-a783-146dbbf76b72">
+          <HierarchyID>Hierarchy 2 6</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="b533225f-1557-4d5a-a9fe-c5c349afa883">
+          <HierarchyID>Hierarchy 3 5</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="17e1fe35-58e4-417c-b711-c57136829f02">
+          <HierarchyID>Hierarchy 4 3</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="1f5d7bcf-2681-4f4e-863d-428144907bbd">
+          <HierarchyID>Hierarchy 5 2</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="0054ade1-d67b-48ff-b504-8888a05e5f86">
+          <HierarchyID>Hierarchy 15 1</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="c968ebf8-b291-4b3c-83a7-223e79922de2">
+      <ID>Cube Prtl Poc1ab Time</ID>
+      <Name>ooh_trends_date</Name>
+      <DimensionID>Cube Prtl Poc1ab Time</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="5dce52a7-6e73-432e-911d-2feafc21d49c">
+          <AttributeID>Pk Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="7e5dfc6e-c867-4053-85ef-9cc039639153">
+          <AttributeID>CALENDAR DATE</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="77250496-0b05-45ea-9070-acaf8d76cc3d">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+  </Dimensions>
+  <MeasureGroups>
+    <MeasureGroup dwd:design-time-name="38f6de08-2972-4ea6-9283-1df8021f489b">
+      <ID>Cube Prtl Poc1ab Fact</ID>
+      <Name>cube_ooh_trends</Name>
+      <CreatedTimestamp>0001-01-01T08:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T08:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T08:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Measures>
+        <Measure dwd:design-time-name="87dab97b-48d5-4468-af52-acce50cb3370">
+          <ID>Cnt Start Date</ID>
+          <Name>Cnt Start Date</Name>
+          <Source dwd:design-time-name="3a6727ae-ddd8-481b-bf9b-ea2d021c0e47">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="64de0177-2cce-4f46-8bc3-b9cdaf024e26">
+              <TableID>dbo_cube_prtl_poc1ab_fact</TableID>
+              <ColumnID>cnt_start_date</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+      </Measures>
+      <StorageMode>Molap</StorageMode>
+      <ProcessingMode>Regular</ProcessingMode>
+      <Dimensions>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="d13288ff-4f5d-4fe6-8023-00855b0dee21">
+          <CubeDimensionID>Cube Prtl Poc1ab Dim</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="186a31e5-f671-4aa2-a511-1f3fcbb74195">
+              <AttributeID>Pk Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="5ba8158a-9e1c-4b8b-b750-871ec7c8b457">
+                  <DataType>BigInt</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="ce6d529d-8f29-4529-9207-25b5cf11fd73">
+                    <TableID>dbo_cube_prtl_poc1ab_fact</TableID>
+                    <ColumnID>pk_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="c2687476-c446-4fed-9656-abefd97aa2d6">
+          <CubeDimensionID>Cube Prtl Poc1ab Time</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="4dd2db6a-af5b-4a31-8b08-1f36b993dd2d">
+              <AttributeID>Pk Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="f211a2da-ca6a-4e4b-bdb7-b9b8d063212f">
+                  <DataType>BigInt</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="1d55df0d-3975-4e6d-a3b5-12fdbf72402b">
+                    <TableID>dbo_cube_prtl_poc1ab_fact</TableID>
+                    <ColumnID>pk_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+      </Dimensions>
+      <Partitions />
+    </MeasureGroup>
+  </MeasureGroups>
+  <Source dwd:design-time-name="dc412e3e-57d3-4992-a9e3-d2e5edaed2c0">
+    <DataSourceViewID>CA ODS</DataSourceViewID>
+  </Source>
+</Cube>
