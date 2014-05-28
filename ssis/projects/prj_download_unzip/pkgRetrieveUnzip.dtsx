@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="pkgRetrieveUnzip"
   DTS:PackageType="5"
-  DTS:VersionBuild="155"
-  DTS:VersionGUID="{53611C11-06A1-4FF6-BB75-3FF7F4A043A5}">
+  DTS:VersionBuild="168"
+  DTS:VersionGUID="{DD8726DE-5562-40A3-AC98-2316A9FF9C03}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -79,6 +79,16 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
+      DTS:DTSID="{9424DDED-BE26-48C9-9810-151A69F65B8F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ftpfilename">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
       DTS:DTSID="{1BAEEF31-A3DA-4461-8984-6B05DF57AA45}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
@@ -89,11 +99,22 @@
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{1E4B5FFF-FF73-4623-8F85-0111AFA52270}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;\\\\poc2\\pocshare\\CA\\data\\&quot; + (DT_WSTR, 4) YEAR( GETDATE() ) + RIGHT((DT_WSTR, 3) (100 + MONTH(GETDATE())), 2) + RIGHT((DT_WSTR, 3) (100 + DAY(GETDATE())), 2) + &quot;\\&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="pocdir">
       <DTS:VariableValue
-        DTS:DataType="8">"\\\\poc2\\pocshare\\CA\\data\\" + (DT_WSTR, 4) YEAR( GETDATE() ) + RIGHT((DT_WSTR, 3) (100 + MONTH(GETDATE())), 2) + RIGHT((DT_WSTR, 3) (100 + DAY(GETDATE())), 2) + "\\"</DTS:VariableValue>
+        DTS:DataType="8">\\poc2\pocshare\CA\data\20140528\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DF0110F7-0B79-485D-81D9-64A299D9FC91}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="remoteDir">
+      <DTS:VariableValue
+        DTS:DataType="8">/POC_data_out/</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -136,6 +157,25 @@
   </DTS:LoggingOptions>
   <DTS:Executables>
     <DTS:Executable
+      DTS:refId="Package\File System Task"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="File System Task"
+      DTS:DTSID="{5DDA6F83-39C8-40C7-87B6-50E55CDD91B7}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="File System Task"
+      DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskOperationType="CreateDirectory"
+          TaskOverwriteDestFile="True"
+          TaskSourcePath="User::pocdir"
+          TaskIsSourceVariable="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\Loop to move files"
       DTS:CreationName="STOCK:FOREACHLOOP"
       DTS:Description="Foreach Loop Container"
@@ -175,7 +215,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="File System Task"
           DTS:TaskContact="File System Task;Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -202,6 +242,7 @@
       DTS:refId="Package\Loop to unzip files"
       DTS:CreationName="STOCK:FOREACHLOOP"
       DTS:Description="Foreach Loop Container"
+      DTS:Disabled="True"
       DTS:DTSID="{D135B186-7720-454B-92FD-B236B594E2A2}"
       DTS:ExecutableType="STOCK:FOREACHLOOP"
       DTS:LocaleID="-1"
@@ -215,7 +256,7 @@
         <DTS:ObjectData>
           <ForEachFileEnumeratorProperties>
             <FEFEProperty
-              Folder="&quot;\\\\poc2\\pocshare\\CA\\data\\&quot; + (DT_WSTR, 4) YEAR( GETDATE() ) + RIGHT((DT_WSTR, 3) (100 + MONTH(GETDATE())), 2) + RIGHT((DT_WSTR, 3) (100 + DAY(GETDATE())), 2) + &quot;\\&quot;" />
+              Folder="\\poc2\pocshare\CA\data\20140528\" />
             <FEFEProperty
               FileSpec="*.zip" />
             <FEFEProperty
@@ -238,7 +279,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="unzip files"
           DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:PropertyExpression
             DTS:Name="Arguments">"e " + @[User::filename] + " -oC:\\ca"</DTS:PropertyExpression>
@@ -253,8 +294,8 @@
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{201CEACD-0C21-4A39-A448-E7DA8BF6A2E2}"
-          DTS:ObjectName="{201CEACD-0C21-4A39-A448-E7DA8BF6A2E2}"
+          DTS:DTSID="{2647621F-1E8F-452A-BAB7-5EFE92C6F572}"
+          DTS:ObjectName="{2647621F-1E8F-452A-BAB7-5EFE92C6F572}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::filename" />
       </DTS:ForEachVariableMappings>
@@ -270,7 +311,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="sftp CA files"
       DTS:TaskContact="Execute Process Task;Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:LoggingOptions
         DTS:FilterKind="0" />
@@ -282,6 +323,43 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\SFTP Task"
+      DTS:CreationName="SSISSFTPTask110.SSIS.SSISSFTTask, SSISSFTPTask110, Version=2.0.0.0, Culture=neutral, PublicKeyToken=f7871de73e053501"
+      DTS:Description="SFTP Task"
+      DTS:DTSID="{89BC1BF3-7151-4D7B-98F1-161B8FC31432}"
+      DTS:ExecutableType="SSISSFTPTask110.SSIS.SSISSFTTask, SSISSFTPTask110, Version=2.0.0.0, Culture=neutral, PublicKeyToken=f7871de73e053501"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SFTP Task"
+      DTS:TaskContact="cosmin.vlasiu@gmail.com"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SSISSFTPTask
+          SFTPServer="sft.wa.gov"
+          SFTPUser="ca-poc"
+          SFTPPassword="rXwt@@543X"
+          SFTPPort="22"
+          EncryptionType="Password"
+          PublicKeyFile=""
+          PublicKeyFileIsConnectionFileType="True"
+          PassPhrase=""
+          LocalPath="@[User::pocdir]"
+          LocalPathIsConnectionFileType="False"
+          OverwriteLocalPath="True"
+          RemotePath="@[User::remoteDir] + &quot;POC1.zip&quot;"
+          TaskAction="Get File"
+          FilesList=""
+          SleepSeconds="0"
+          SleepOnDisconnect="False"
+          RecordsetColumnIndex="0"
+          RecordsetEnabled="False"
+          RecordsetVariable="@[User::ftpfilename]"
+          ValueIsFullPath="False"
+          RecursiveCopy="False"
+          RecursiveCopyDepth="0" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\write conn file"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Script Task"
@@ -290,7 +368,7 @@
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="write conn file"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:LoggingOptions
         DTS:FilterKind="0" />
@@ -1056,6 +1134,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
       DTS:To="Package\Loop to move files" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{670480F8-8160-4C99-B98F-1BF570CCC07A}"
+      DTS:From="Package\File System Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\SFTP Task" />
   </DTS:PrecedenceConstraints>
   <DTS:EventHandlers>
     <DTS:EventHandler
@@ -1128,6 +1214,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
     <LayoutInfo>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="160,42"
+          Id="Package\File System Task"
+          TopLeft="277,147" />
         <NodeLayout
           Size="160,42"
           Id="Package\Loop to move files\File System Task"
@@ -1252,6 +1342,44 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                     Point3="148.11320754717,78.867924528302" />
                   <mssgle:LineSegment
                     End="280.72641509434,78.867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="130,42"
+          Id="Package\SFTP Task"
+          TopLeft="235.558470273111,555.090354779034" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="357,189">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-56.4415297268886,366.090354779034"
+              Start="0,0"
+              End="-56.4415297268886,358.590354779034">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,179.045177389517" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,179.045177389517"
+                    Point2="0,183.045177389517"
+                    Point3="-4,183.045177389517" />
+                  <mssgle:LineSegment
+                    End="-52.4415297268886,183.045177389517" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-52.4415297268886,183.045177389517"
+                    Point2="-56.4415297268886,183.045177389517"
+                    Point3="-56.4415297268886,187.045177389517" />
+                  <mssgle:LineSegment
+                    End="-56.4415297268886,358.590354779034" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
