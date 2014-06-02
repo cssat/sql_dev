@@ -654,8 +654,8 @@ set @incl=concat(@incl,char(13),'
  set @incl=concat(@incl,char(13),', ck.int_hash_key',char(13),', ck.qry_id',char(13),', s3_total.total_cases');
  set @incl=concat(@incl,';');
  
-        drop temporary table if exists mycode;
-        create temporary table mycode as select @incl;
+        drop temporary table if exists mycode_final;
+        create temporary table mycode_final as select @incl;
 
         PREPARE stmt FROM @incl;
         EXECUTE stmt;

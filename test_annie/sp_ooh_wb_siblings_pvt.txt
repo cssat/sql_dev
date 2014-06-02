@@ -333,8 +333,8 @@ if  flg_procedure_off =0 then
 				and mtch.cd_race_census in (select distinct cd_race from tbleth)');
         else
         set @incl=concat(@incl,', 0, 0, 0, 0, 0, 0
-				, 0
-				, sib.nbr_sibling_desc
+				, kin.kincare
+				, sib.bin_sibling_group_size
 				, round(sum(all_sib_together)/(sum(total)* 1.0000) * 100,2) as All_Together
 				, round(sum(some_sib_together)/(sum(total)* 1.0000) * 100,2) as Some_Together
 				, round(sum(no_sib_together)/(sum(total)* 1.0000) * 100,2) as None_Together
@@ -404,7 +404,7 @@ if  flg_procedure_off =0 then
             and trim(p_long_cd_plcm_setng)='0' 
             and trim(p_county_cd) = '0'  )  then
             set @incl=concat(@incl,'      
-            cast((cast(mtch.int_param_key as decimal(22,0)) *  cast(',@mult_int_param_key,' as decimal(22,0)) ) as decimal(22,0)) +');
+            cast((cast(mtch.int_param_key as decimal(22,0)) *  cast(',@mult_int_param_key,' as decimal(22,0))) as decimal(22,0)) +');
         else
             set @incl=concat(@incl,'
             cast((',@constant,' ) as decimal(22,0))');
