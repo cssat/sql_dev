@@ -443,7 +443,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
             SELECT  
                 poc3ab.qry_type as   "qry_type_poc3"
                 , poc3ab.date_type
-                , poc3ab.start_date  as "Month"
+                , poc3ab.start_date  as "Year"
                 , poc3ab.cd_sib_age_grp as  "age_grouping_cd"
                 , ref_age.tx_sib_age_grp as "Age Grouping"
                 , poc3ab.cd_race_census  as "ethnicity_cd"
@@ -477,7 +477,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
                             else round(cnt_start_date + 2 * sqrt(-2 * log(poc3ab.x1)) * cos(2*pi()*poc3ab.x2),0)
                             end
                         else (cnt_start_date) 
-                    end  as   "Total Cases First Day"
+                    end  as   "Total PPS Cases 1st Day Quarter/Year"
                 , case when (cnt_opened) > 0 /* jitter all above 0 */ 
                         then 
                             case when (round(cnt_opened + 2 * sqrt(-2 * log(poc3ab.x1)) 
@@ -547,7 +547,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
                             end
                         else (cnt_opened) 
                     end)
-                end as "Case Closures"
+                end as   "Closed Cases"
             FROM cache_poc3ab_aggr poc3ab  
             join cachekeys ck on ck.qry_id=poc3ab.qry_id and ck.int_hash_key=poc3ab.int_hash_key
             join ref_lookup_sib_age_grp ref_age on ref_age.cd_sib_age_grp=poc3ab.cd_sib_age_grp
