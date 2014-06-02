@@ -1,7 +1,7 @@
 USE [CA_ODS]
 GO
 
-/****** Object:  View [base].[tbl_child_episodes]    Script Date: 6/2/2014 2:12:21 PM ******/
+/****** Object:  View [base].[tbl_child_episodes_ca]    Script Date: 6/2/2014 2:11:42 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -10,24 +10,25 @@ GO
 
 
 
-ALTER VIEW [base].[tbl_child_episodes]
+ALTER VIEW [base].[tbl_child_episodes_ca]
 AS
+
+
 SELECT
 	P.child [id_prsn_child]
 	,P.id_case
-	,P.first_removal_dt [first_removal_date]
-	,P.latest_removal_dt [latest_removal_date]
-	,isnull(cP.old_region_desc,'-') [removal_region]
 	,iif(P.removal_county_cd between 1 and 39,P.removal_county_cd,-99) [removal_county_cd]
 	, iif(P.removal_county_cd between 1 and 39,cP.county_desc,'-')[removal_county]
-	,dbo.IntDate_to_CalDate(P.id_calendar_dim_begin) [state_custody_start_date]
+	,frstRem.removal_dt [first_removal_date]
+	,lastRem.removal_dt [latest_removal_date]
+	,convert(datetime,cast((P.id_calendar_dim_begin) as varchar(8)),112) [state_custody_start_date]
 	,P.id_calendar_dim_begin
-	,FP.id_calendar_dim_end
-	,dbo.IntDate_to_CalDate(P.id_calendar_dim_begin) [state_discharge_date]
+	,ref.id_calendar_dim_end
+	,iif(ref.id_calendar_dim_end=0,null,convert(datetime,cast((ref.ID_CALENDAR_DIM_END) as varchar(8)),112)) [state_discharge_date]
 	,P.tx_dsch_rsn [state_discharge_reason]
 	,DRD.CD_DSCH_RSN [state_discharge_reason_code]
 	,P.discharge_dt [federal_discharge_date]
-	,CASE WHEN DATEADD(YEAR, 18, P.birthdate) < P.discharge_dt THEN DATEADD(YEAR, 18, P.birthdate) ELSE p.discharge_dt END [federal_discharge_date_force_18]
+	,IIF ( P.discharge_dt< getdate() and DATEADD(YEAR, 18, P.birthdate) < P.discharge_dt and DATEADD(YEAR, 18, P.birthdate) <  cast('2014-02-21'  as datetime) , DATEADD(YEAR, 18, P.birthdate) , p.discharge_dt) [federal_discharge_date_force_18]
 	,COALESCE(DRD.CD_DSCH_RSN, PRD.CD_END_RSN) [federal_discharge_reason_code]
 	,COALESCE(P.tx_dsch_rsn, P.tx_plcm_dsch_rsn) [federal_discharge_reason]
 	,P.init_cd_plcm_setng [initial_plcm_setting_for_removal_cd]
@@ -76,30 +77,8 @@ SELECT
 	,P.cd_gndr
 	,P.tx_gndr
 	,P.birthdate [dt_birth]
-	,BR.cd_braam_race
 	,P.tx_braam_race
 	,REF.ID_PEOPLE_DIM_CHILD [id_people_dim_child]
-	,P.cd_race_census
-	,P.census_hispanic_latino_origin_cd
-	,P.dependency_dt [petition_dependency_date]
-	,P.dur_days
-	,CASE WHEN P.dur_days <= 7 THEN 1 ELSE 0 END [fl_dur_7]
-	,CASE WHEN P.dur_days <= 90 THEN 1 ELSE 0 END [fl_dur_90]
-	,P.child_cnt_episodes
-	,P.child_eps_rank
-	,P.id_intake_fact
-	,P.bin_dep_cd
-	,P.fl_dep_exist
-	,P.max_bin_los_cd
-	,P.bin_ihs_svc_cd
-	,p.age_at_removal_mos [age_eps_begin_mos]
-	,p.long_cd_plcm_setng
-	,p.init_cd_plcm_setng
-	,datediff(dd,lngplc.begin_date,lngplc.end_date)  dur_days_longest_plcm
-	,lp.cnt_plcm [cnt_plcm]
-	,RANK() over (partition by p.child order by p.removal_dt asc,p.discharge_dt asc) [eps_rank]
-	,eps_tot.eps_cnt [eps_total]
-	,p.cd_discharge_type
 FROM base.rptPlacement P
 LEFT JOIN ref_lookup_county cP on cP.county_cd=P.[removal_county_cd]
 LEFT JOIN ( 
@@ -113,12 +92,11 @@ LEFT JOIN (
 LEFT JOIN ( 
 	SELECT 
 		*
-		,ROW_NUMBER() OVER(PARTITION BY id_removal_episode_fact ORDER BY begin_date DESC, COALESCE(end_date, '12/31/9999') DESC) [PlacementOrderdesc]
-		,ROW_NUMBER() OVER(PARTITION BY id_removal_episode_fact ORDER BY begin_date asc, COALESCE(end_date, '12/31/9999') asc) as cnt_plcm
+		,ROW_NUMBER() OVER(PARTITION BY id_removal_episode_fact ORDER BY begin_date DESC, COALESCE(end_date, '12/31/9999') DESC) [PlacementOrderDesc]
 	FROM base.rptPlacement_Events
 ) LP ON 
 	LP.id_removal_episode_fact = P.id_removal_episode_fact
-		AND LP.[PlacementOrderdesc] = 1
+		AND LP.[PlacementOrderDesc] = 1
 LEFT JOIN dbo.REMOVAL_EPISODE_FACT REF ON
 	REF.ID_REMOVAL_EPISODE_FACT = P.id_removal_episode_fact
 LEFT JOIN dbo.DISCHARGE_REASON_DIM DRD ON
@@ -137,16 +115,14 @@ LEFT JOIN (
 	PTD.CD_PLCM_SETNG = P.init_cd_plcm_setng
 LEFT JOIN dbo.PEOPLE_DIM PD ON
 	PD.ID_PEOPLE_DIM = REF.ID_PEOPLE_DIM_CHILD
-LEFT JOIN dbo.ref_braam_race BR ON
-	BR.tx_braam_race = P.tx_braam_race
-left join base.rptPlacement_Events lngplc on lngplc.id_placement_fact=p.long_cd_plcm_setng
-left join (select child,count(distinct id_removal_episode_fact) as eps_cnt from base.rptPlacement group by child) eps_tot on eps_tot.child=p.child
-
-
-
-
-
-
+LEFT JOIN (
+	select * ,ROW_NUMBER() over (partition by CHILD order by removal_dt asc,discharge_dt asc) row_num_child 
+	from base.rptPlacement 
+		) frstRem on frstRem.child=p.child and frstRem.row_num_child=1
+LEFT JOIN (
+	select * ,ROW_NUMBER() over (partition by CHILD order by removal_dt desc,discharge_dt desc) row_num_child 
+	from base.rptPlacement 
+		) lastRem on lastRem.child=p.child and lastRem.row_num_child=1
 
 
 GO
