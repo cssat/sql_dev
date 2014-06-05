@@ -20,9 +20,9 @@ BEGIN
         ,match_code int
         ,index using btree(match_code) ) engine = memory;
         
-        DROP TEMPORARY TABLE IF EXISTS  tblofc;
-        create TEMPORARY table tblofc(
-          cd_office  int
+        DROP TEMPORARY TABLE IF EXISTS  tblcnty;
+        create TEMPORARY table tblcnty(
+          cd_county  int
         , match_code int not null
         ,index using btree(match_code)) engine = memory;
                         

@@ -6,7 +6,7 @@ DELIMITER $$
 
 CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_create_ihs_cachekeys`(p_age_grouping_cd varchar(30)
 ,	p_ethnicity_cd varchar(30)
-,	p_office_cd  varchar(500)
+,	p_cd_county  varchar(500)
 , p_bin_ihs_svc_cd varchar(30) 
 , p_cd_reporter_type varchar(100) 
 , p_filter_access_type varchar(30) 
@@ -28,10 +28,11 @@ BEGIN
     insert into tblprm
      select distinct cast(@int_param_key + (age_grouping_cd * cast(@mult_age_grouping_cd/@mult_int_param_key as unsigned)) 
     + (cd_race * cast(@mult_cd_race_census/@mult_int_param_key as unsigned))
-    + (cd_office * cast(@mult_cd_office_collapse/@mult_int_param_key as unsigned))  as unsigned) int_param_key
-            from (select distinct cd_sib_age_grp `age_grouping_cd` from ref_lookup_sib_age_grp where find_in_set(cd_sib_age_grp,p_age_grouping_cd)>0)age
+    + (cd_county * cast(@mult_cd_county/@mult_int_param_key as unsigned))  as unsigned) int_param_key
+            from (select distinct cd_sib_age_grp `age_grouping_cd` 
+            from ref_lookup_sib_age_grp where find_in_set(cd_sib_age_grp,p_age_grouping_cd)>0)age
             cross join (select cd_race_census as cd_race from ref_lookup_ethnicity_census where find_in_set(cd_race_census,p_ethnicity_cd) > 0) eth
-            cross join (select distinct abs(cd_office) cd_office from ref_lookup_office_collapse where find_in_set(cd_office,p_office_cd) > 0) ofc;
+            cross join (select distinct abs(county_cd) cd_county from ref_lookup_county where find_in_set(county_cd,p_cd_county) > 0) cnty;
             
   
   drop temporary table if exists cachekeys ;

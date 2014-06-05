@@ -7,7 +7,7 @@ DELIMITER $$
 CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_ia_trends_counts`( p_date varchar(3000)
 ,  p_age_grouping_cd varchar(30)
 ,  p_ethnicity_cd varchar(30)
-,  p_cd_office varchar(250) 
+,  p_cd_county varchar(250) 
 ,  p_cd_reporter_type varchar(100) 
 ,  p_filter_access_type varchar(30) 
 ,  p_filter_allegation  varchar(30)
@@ -55,7 +55,7 @@ begin
         select qry_id into p_qry_id from cache_poc2ab_params
         where age_grouping_cd=left(p_age_grouping_cd,20)
             and cd_race_census=left(p_ethnicity_cd,30) 
-            and cd_office=	left(p_cd_office,250)   
+            and cd_county=	left(p_cd_county,250)   
             and cd_reporter_type=left(p_cd_reporter_type,100)
             and filter_access_type=left(p_filter_access_type,30)
             and filter_allegation=left(p_filter_allegation,30)
@@ -71,7 +71,7 @@ begin
   			(qry_id
 			 , age_grouping_cd
   			,cd_race_census
-  			,cd_office
+  			,cd_county
   			,cd_reporter_type
   			,filter_access_type
   			,filter_allegation
@@ -85,7 +85,7 @@ begin
         @qry_ID
   			,p_age_grouping_cd
   			,p_ethnicity_cd
-  			,p_cd_office
+  			,p_cd_county
   			,p_cd_reporter_type
   			,p_filter_access_type
   			,p_filter_allegation
@@ -105,7 +105,7 @@ begin
 
     call sp_create_ia_cachekeys (p_age_grouping_cd 
         , p_ethnicity_cd 
-        , p_cd_office 
+        , p_cd_county 
         , p_cd_reporter_type 
         , p_filter_access_type 
         , p_filter_allegation  
@@ -129,7 +129,7 @@ begin
       call sp_ia_load_param_tables(
            p_age_grouping_cd 
         ,  p_ethnicity_cd 
-        ,  p_cd_office 
+        ,  p_cd_county 
         ,  p_cd_reporter_type 
         ,  p_filter_access_type 
         ,  p_filter_allegation  
@@ -156,7 +156,7 @@ begin
                 ,cd_finding
                 ,cd_sib_age_grp
                 ,cd_race
-                ,cd_office
+                ,cd_county
                 ,cnt_start_date
                 ,cnt_opened
                 ,cnt_closed
@@ -176,7 +176,7 @@ begin
             
         if NOT (p_age_grouping_cd = '0' 
             and p_ethnicity_cd = '0' 
-            and p_cd_office = '0' ) then
+            and p_cd_county = '0' ) then
          set    @incl= concat(@incl,char(13),'
             , mtch.int_param_key ');
         else
@@ -204,11 +204,11 @@ begin
         end if;     
         if NOT (p_age_grouping_cd = '0' 
             and p_ethnicity_cd = '0' 
-            and p_cd_office = '0' ) then
+            and p_cd_county = '0' ) then
             set @incl=concat(@incl,char(13),'
             , mtch.cd_sib_age_grp 
             , mtch.cd_race_census
-            , mtch.cd_office');
+            , mtch.cd_county');
         else
              set @incl=concat(@incl,char(13),'
             , 0,0,0');
@@ -225,7 +225,7 @@ begin
     set @incl=concat(@incl,char(13),',cast((');
         if NOT (p_age_grouping_cd = '0' 
             and p_ethnicity_cd = '0' 
-            and p_cd_office = '0' ) then
+            and p_cd_county = '0' ) then
             set @incl=concat(@incl,'mtch.int_param_key');
         else
             set @incl=concat(@incl, @int_param_key);
@@ -262,7 +262,7 @@ begin
         FROM prtl_poc2ab  ');
            if NOT (p_age_grouping_cd = '0' 
             and p_ethnicity_cd = '0' 
-            and p_cd_office = '0' ) then
+            and p_cd_county = '0' ) then
 			set @incl=concat(@incl,char(13),
 			'join tblprmlocdem mtch 
             on mtch.int_match_param_key=prtl_poc2ab.int_match_param_key 
@@ -289,7 +289,7 @@ begin
     join cachekeys ck on ck.int_hash_key=cast((');
             if NOT (p_age_grouping_cd = '0' 
             and p_ethnicity_cd = '0' 
-            and p_cd_office = '0' ) then
+            and p_cd_county = '0' ) then
             set @incl=concat(@incl,'mtch.int_param_key');
         else
             set @incl=concat(@incl,@int_param_key);
@@ -332,12 +332,12 @@ begin
                 ,prtl_poc2ab.start_year');
             if NOT (p_age_grouping_cd = '0' 
             and p_ethnicity_cd = '0' 
-            and p_cd_office = '0' ) then    
+            and p_cd_county = '0' ) then    
             set @incl=concat(@incl,char(13),'
                 ,mtch.int_param_key
                 ,mtch.cd_sib_age_grp 
                 ,mtch.cd_race_census
-                ,mtch.cd_office');
+                ,mtch.cd_county');
             end if;
               if trim(p_cd_reporter_type)<>'0' then
 	        set @incl=concat(@incl,char(13),'   
@@ -367,7 +367,7 @@ begin
 						(int_param_key
 						,cd_sib_age_grp
 						,cd_race
-						,cd_office
+						,cd_county
 						,cd_reporter_type
 						,cd_access_type
 						,cd_allegation
@@ -379,7 +379,7 @@ begin
 						ck.int_param_key
 						,cd_sib_age_grp
 						,cd_race_census
-						,cd_office
+						,cd_county
 						,cd_reporter_type
 						,cd_access_type
 						,cd_allegation
@@ -390,7 +390,7 @@ begin
 						join (select distinct int_param_key
 											, cd_sib_age_grp 
 											, cd_race_census
-											, cd_office
+											, cd_county
 											from tblprmlocdem) q on q.int_param_key=ck.int_param_key
 						where ck.in_cache=0;        
  end if;
@@ -399,13 +399,13 @@ begin
 SELECT  
 		poc2ab.qry_type as   "qry_type_poc2"
 		, poc2ab.date_type
-		, poc2ab.start_date  as "Year"
+		, poc2ab.start_date  as "Date"
 		, poc2ab.cd_sib_age_grp as  "age_grouping_cd"
 		, ref_age.tx_sib_age_grp as "Age Grouping"
 		, poc2ab.cd_race  as "ethnicity_cd"
 		, case poc2ab.cd_race  when 0   then @eth0  when 1   then @eth1  when 2   then @eth2  when 3   then @eth3  when 4   then @eth4  when 5   then @eth5  when 6   then @eth6  when 7   then @eth7  when 8   then @eth8  when 9   then @eth9  when 10  then @eth10 when 11  then @eth11 when 12  then @eth12 end as "Race/Ethnicity" 
-		, poc2ab.cd_office as office_cd
-		, ref_ofc.tx_office as Office
+		, poc2ab.cd_county "county_cd"
+		, ref_cnty.county "County"
 		, poc2ab.cd_reporter_type
 		, ref_rpt.tx_reporter_type as "Reporter_Desc"
 		, poc2ab.cd_access_type
@@ -421,7 +421,7 @@ SELECT
                         else round(poc2ab.cnt_start_date + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0) 
                         end
                     else poc2ab.cnt_start_date
-            end as "Total Screened-In Cases 1st Day Quarter/Year"
+            end as "Total Screened-In Cases 1st Day"
         ,case when (poc2ab.cnt_opened) > 0 /* jitter all above 0 */  
                     then 
                         case when round((poc2ab.cnt_opened) + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0)  < 1
@@ -491,14 +491,14 @@ SELECT
    join cachekeys ck on ck.qry_id=poc2ab.qry_id
    and ck.int_hash_key=poc2ab.int_all_param_key
    join ref_lookup_sib_age_grp ref_age on ref_age.cd_sib_age_grp=poc2ab.cd_sib_age_grp
-            join ref_lookup_office_collapse ref_ofc on ref_ofc.cd_office=poc2ab.cd_office
+            join ref_lookup_county_all ref_cnty on ref_cnty.county_cd=poc2ab.cd_county
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=poc2ab.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=poc2ab.cd_access_type
             where poc2ab.start_date 
             between p_mindate and p_maxdate
             order by qry_type,date_type,start_date,poc2ab.cd_sib_age_grp 
             ,poc2ab.cd_race
-            ,poc2ab.cd_office
+            ,poc2ab.cd_county
             ,poc2ab.cd_reporter_type
             ,poc2ab.cd_access_type
             ,poc2ab.cd_allegation

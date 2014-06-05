@@ -6,7 +6,7 @@ DELIMITER $$
 
 CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_create_ihs_tblprmlocdem`(p_age_grouping_cd varchar(30)
 ,  p_ethnicity_cd varchar(30)
-,  p_cd_office varchar(250) 
+,  p_cd_county varchar(250) 
 ,  p_calling_procedure int)
 BEGIN
    DROP TEMPORARY TABLE IF EXISTS tblprmlocdem;
@@ -15,35 +15,33 @@ BEGIN
 						 power(10,6) 
               + (age_grouping_cd *  power(10,5))
               + (cd_race *  power(10,3))
-              + (abs(cd_office)) int_param_key 
+              + (abs(cd_county)) int_param_key 
 						,power(10,6) 
               + (age.match_code *  power(10,5))
               + (eth.match_code *  power(10,4))
               + (eth.cd_origin * power(10,3))
-              + (abs(ofc.match_code))int_match_param_key
+              + (abs(cnty.match_code))int_match_param_key
 						,age.age_grouping_cd cd_sib_age_grp
 						,eth.cd_race cd_race_census
-						,ofc.cd_office
+						,cnty.cd_county
 						,age.match_code match_cd_sib_age_grp
 						,eth.match_code match_cd_race_census
 						,eth.cd_origin match_cd_hispanic_latino_origin
-						,ofc.match_code match_cd_office
+						,cnty.match_code match_cd_office
 					from  tblage age 
             cross join  tbleth eth 
-            cross join tblofc ofc 
+            cross join tblcnty cnty
 					);
         
   create index idx_int_match_param_key_demog_fields2 on tblprmlocdem(
 				int_match_param_key
-				,cd_sib_age_grp
-				,cd_race_census
-				,cd_office);
+				,cd_race_census);
 
        create index idx_int_match_cd_race_census2 on tblprmlocdem(
 				cd_race_census
 				);
 
-		create index idx_cd_office on tblprmlocdem(
-				cd_office
+		create index idx_cd_county on tblprmlocdem(
+				cd_county
 				);  
 END

@@ -6,7 +6,7 @@ DELIMITER $$
 
 CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_ihs_load_param_tbls`(p_age_grouping_cd varchar(30)
 ,  p_ethnicity_cd varchar(30)
-,  p_cd_office varchar(250) 
+,  p_cd_county varchar(250) 
 ,  p_cd_reporter_type varchar(100) 
 ,  p_bin_ihs_svc_cd varchar(30) 
 ,  p_filter_access_type varchar(30) 
@@ -32,10 +32,10 @@ BEGIN
     select * from prm_eth_census
     where find_in_set(cd_race,p_ethnicity_cd)>0;   
     
-    --  office
-    insert into tblofc(cd_office,match_code)
-    select * from prm_office_collapse
-    where find_in_set(cd_office,p_cd_office)>0;
+    --  county
+    insert into tblcnty(cd_county,match_code)
+    select * from prm_cnty
+    where find_in_set(cd_cnty,p_cd_county)>0;
     
     -- reporter
     insert into tblrpt(cd_reporter_type,match_code)
@@ -75,7 +75,7 @@ BEGIN
         if p_load_paramkey_tbl=1 then
            call sp_create_ihs_tblprmlocdem(p_age_grouping_cd 
                 ,  p_ethnicity_cd 
-                ,  p_cd_office 
+                ,  p_cd_county 
                 ,  p_calling_procedure);
                     
         end if;

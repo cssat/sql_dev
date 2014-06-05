@@ -826,8 +826,8 @@ set @incl=concat(@incl,char(13),'
         end if; --  all rows not in cache
    
    select
-            outcomes.mnth as "Month"
-            , outcomes.start_year as "cohort_year"
+            outcomes.mnth as  "Months Since Entering Out-of-Home Care"
+            , outcomes.start_year as "Cohort Period"
 						, qry_type "qry_type_poc1_first_unique"
 	-- 					, date_type
 						, outcomes.age_grouping_cd
@@ -928,7 +928,7 @@ set @incl=concat(@incl,char(13),'
 						, ref_bud.tx_budget_poc_frc  "Budget"
             , outcomes.cd_discharge_type
 						, toe.type_of_exit_desc as "Discharge"             
-            , rate as "Rate"     
+            , rate as "Percent"     
             from cache_outcomes_aggr outcomes 
             join cachekeys ck on ck.int_hash_key=outcomes.int_hash_key
             and ck.qry_id=outcomes.qry_id
