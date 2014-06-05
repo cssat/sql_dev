@@ -32,7 +32,7 @@ BEGIN
                 ,index using btree(int_match_param_key)) engine=memory;
        
        
-    if p_calling_procedure in (19,20,24,25,26) then
+    if p_calling_procedure in (19,20,24,26) then
             
             insert  into tblprmlocdem(
 							int_param_key
@@ -96,6 +96,68 @@ select
         and find_in_set(lpl.long_cd_plcm_setng,p_long_cd_plcm_setng) > 0
         and find_in_set(cnty.cd_cnty,p_county_cd) > 0
         ; 
+   elseif p_calling_procedure=25 then
+               insert  into tblprmlocdem(
+							int_param_key
+							,age_grouping_cd
+							,cd_race_census
+							,pk_gndr
+							,init_cd_plcm_setng
+							,long_cd_plcm_setng
+							,county_cd
+							,int_match_param_key
+							,match_age_grouping_cd
+							,match_cd_race_census
+							,match_cd_hispanic_latino_origin
+							,match_pk_gdnr
+							,match_init_cd_plcm_setng
+							,match_long_cd_plcm_setng
+							,match_county_cd)
+select  
+
+								 cast(power(10.0,8) + 
+										(power(10.0,7) * coalesce(age.age_grouping_cd,0)) + 
+											(power(10.0,5) * coalesce(eth.cd_race,7)) +
+												(power(10.0,4) * coalesce(gdr.pk_gndr,5)) + 
+														(power(10.0,3) * fpl.init_cd_plcm_setng) +
+															(power(10.0,2) * lpl.long_cd_plcm_setng) + 
+																(power(10.0,0) * cnty.cd_cnty )
+																as decimal(9,0)) as int_param_key
+								, age.age_grouping_cd 
+								, eth.cd_race as cd_race_census
+								, gdr.pk_gndr
+								, fpl.init_cd_plcm_setng
+								, lpl.long_cd_plcm_setng
+								, cnty.cd_cnty as county_cd
+								, cast(power(10.0,8) + 
+										(power(10.0,7) * coalesce(age.match_code,0)) + 
+											(power(10.0,6) * coalesce(eth.match_code,7)) +
+												(power(10.0,5) * coalesce(eth.cd_origin,5)) + 
+													(power(10.0,4) * coalesce(gdr.match_code,3)) + 
+														(power(10.0,3) * fpl.match_code) +
+															(power(10.0,2) * lpl.match_code) + 
+																(power(10.0,0) * (case when coalesce(cnty.match_code,-99) 
+																		 between 1 and 39 then cnty.match_code else 99   end))
+																as decimal(9,0)) as int_match_param_key
+								, age.match_code as match_age_grouping_cd 
+								, eth.match_code as match_cd_race_census
+								, eth.cd_origin as match_census_hispanic_latino_origin_cd
+								, gdr.match_code as match_pk_gndr
+								, fpl.match_code as match_init_cd_plcm_setng
+								, lpl.match_code as match_longest_cd_plcm_setng
+								, cnty.match_code as match_county_cd
+					from prm_age_developmental age 
+					cross join prm_eth_census eth
+					cross join prm_gndr gdr
+					cross join prm_fpl fpl
+					cross join prm_lpl lpl
+					cross join prm_cnty cnty
+        where find_in_set(age.age_grouping_cd,p_age_grouping_cd) > 0
+        and find_in_set(eth.cd_race,p_ethnicity_cd) > 0
+        and find_in_set(gdr.pk_gndr,p_gender_cd)>0
+        and find_in_set(fpl.init_cd_plcm_setng,p_init_cd_plcm_setng)>0
+        and find_in_set(lpl.long_cd_plcm_setng,p_long_cd_plcm_setng) > 0
+        and find_in_set(cnty.cd_cnty,p_county_cd) > 0;
    else
               insert  into tblprmlocdem(
 							int_param_key

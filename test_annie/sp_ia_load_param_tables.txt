@@ -63,5 +63,42 @@ BEGIN
                 ,  p_calling_procedure);
                     
         end if;   
+        
+        
+if p_is_perCapita = 1 then
+
+    DROP TEMPORARY TABLE IF EXISTS tblethcen;  
+    create TEMPORARY table tblethcen
+    (cd_race int,match_code int,index using btree(match_code,cd_race)) engine=memory;
+		
+		
+        insert into tblethcen(cd_race,match_code)
+        select distinct 
+              cd_race
+            , match_code
+        from tbleth
+        where cd_race between 0 and 8;
+        
+        insert into tblethcen(cd_race,match_code)
+        select distinct cd_race,cd_race
+        from tbleth
+        where cd_race >=9;
+
+
+        -- select measurement_year,age.age_grouping_cd,eth.cd_race,gdr.pk_gndr,cnty.cd_cnty,sum(pop_cnt)
+        DROP TEMPORARY TABLE IF EXISTS  tblpop_proj;
+        create TEMPORARY table tblpop_proj engine=memory as 
+        select measurement_year,age.age_grouping_cd,eth.cd_race
+            ,cnty.cd_county as county_cd,sum(pop_cnt) as pop_cnt
+        from ref_lookup_census_population_poc2 cns
+        join tblage age on age.match_code=cns.cd_sib_age_grp
+        join tblethcen eth on eth.match_code=cns.cd_race
+        join tblcnty cnty on cnty.match_code=cns.county_cd
+        where measurement_year between year(p_mindate) and year(p_maxdate)
+        group by measurement_year,age.age_grouping_cd
+        ,eth.cd_race,cnty.cd_county;
+        
+         create index  `idx_age_eth_gdr_cty_year` on tblpop_proj(measurement_year,age_grouping_cd,cd_race,county_cd);
+   end if;
 
 END
