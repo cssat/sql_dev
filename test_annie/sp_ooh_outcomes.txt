@@ -967,10 +967,10 @@ from
     ref_filter_access_type ref_acc ON ref_acc.cd_access_type = outcomes.cd_access_type
         join
     ref_lookup_service_category ref_srv ON ref_srv.cd_subctgry_poc_frc = outcomes.cd_subctgry_poc_frc
-			and min_service_date>=outcomes.cohort_entry_date
+			and outcomes.cohort_entry_date>=min_service_date
         join
     ref_lookup_service_budget ref_bud ON ref_bud.cd_budget_poc_frc = outcomes.cd_budget_poc_frc
-			and min_budget_date>=outcomes.cohort_entry_date
+			and outcomes.cohort_entry_date>=min_budget_date
 where
     date_add(cohort_entry_date,
         INTERVAL (12 + outcomes.mnth) MONTH) <= var_cutoff_date
