@@ -874,7 +874,7 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
         end if; --  all rows not in cache              
     
             select    					  
-                  reentry_within_month as "Month"
+                  reentry_within_month as  "Months Since Exiting Out-of-Home Care"
                   ,pbcp5.start_year as "Cohort Entry Date"
                 , qry_type "qry_type_poc1_first_unique"
                 , pbcp5.age_grouping_cd
@@ -989,8 +989,10 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcp5.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcp5.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcp5.cd_access_type
-            join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
-            join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc =pbcp5.cd_budget_poc_frc
+            join ref_lookup_service_category ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
+             and cohort_entry_date>=min_service_date
+            join ref_lookup_service_budget ref_bud on ref_bud.cd_budget_poc_frc =pbcp5.cd_budget_poc_frc
+                   and cohort_entry_date>=min_budget_date
              where date_add(cohort_entry_date,INTERVAL (12 + pbcp5.reentry_within_month) MONTH) <= var_cutoff_date
             order by 
                 pbcp5.bin_dep_cd asc

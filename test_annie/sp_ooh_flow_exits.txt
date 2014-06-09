@@ -354,10 +354,10 @@ if  var_row_cnt_param <> var_row_cnt_cache then
             and trim(p_long_cd_plcm_setng)='0' 
             and trim(p_county_cd) = '0'  )  then
 			set @incl=concat(@incl,'
-            ,cast((cast(mtch.int_param_key  as decimal(22,0)) *  cast(',@mult_int_param_key,'  as decimal(22,0)) ) as decimal(22,0))');
+            ,cast((cast(mtch.int_param_key  as decimal(22,0)) *  ',@mult_int_param_key,'  ) as decimal(22,0))');
 		else
 			set @incl=concat(@incl,'
-            ,cast((cast(',@int_param_key,'  as decimal(22,0)) *  cast(',@mult_int_param_key,'  as decimal(22,0)) ) as decimal(22,0))');
+            ,cast((cast(',@int_param_key,'  as decimal(22,0)) *  ',@mult_int_param_key,'  ) as decimal(22,0))');
 		end if;
 		if trim(p_bin_dep_cd)<>'0' then
 			set @incl=concat(@incl,'
@@ -464,7 +464,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
             and trim(p_long_cd_plcm_setng)='0' 
             and trim(p_county_cd) = '0'  )  then
 			set @incl=concat(@incl,'
-            cast(mtch.int_param_key as decimal(22,0)) * cast(',@mult_int_param_key,' as decimal(22,0)) ');
+            cast(mtch.int_param_key as decimal(22,0)) * ',@mult_int_param_key);
 		else
 			set @incl=concat(@incl,'
             cast((',@constant,')  as decimal(22,0))');
@@ -629,7 +629,7 @@ end if; -- not all rows exist in cache
       select            
                 poc1ab.qry_type   "qry_type"
                 , poc1ab.date_type
-                , poc1ab.start_date  as "Month"
+                , poc1ab.start_date  as "Cohort Period"
                 , poc1ab.age_grouping_cd  
                 , case poc1ab.age_grouping_cd
                     when 0 then @age0
@@ -722,8 +722,12 @@ end if; -- not all rows exist in cache
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=poc1ab.county_cd
              join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=poc1ab.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=poc1ab.cd_access_type
-            join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=poc1ab.cd_subctgry_poc_frc
-            join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=poc1ab.cd_budget_poc_frc
+            join ref_lookup_service_category ref_srv 
+                on ref_srv.cd_subctgry_poc_frc=poc1ab.cd_subctgry_poc_frc
+                    and poc1ab.start_date>=ref_srv.min_service_date
+            join ref_lookup_service_budget ref_bud 
+                on ref_bud.cd_budget_poc_frc=poc1ab.cd_budget_poc_frc
+                and poc1ab.start_date >=ref_bud.min_budget_date
         join ref_lookup_cd_discharge_type_exits dsch on dsch.cd_discharge_type=poc1ab.cd_discharge_type
         order by  poc1ab.bin_dep_cd 
                             ,poc1ab.qry_type

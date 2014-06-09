@@ -718,8 +718,10 @@ end if; --  not in cache
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcs3.cd_access_type
             join ref_filter_allegation ref_alg on ref_alg.cd_allegation=pbcs3.cd_allegation
             join ref_filter_finding ref_fnd on ref_fnd.cd_finding=pbcs3.cd_finding
-            join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcs3.cd_service_type
-            join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcs3.cd_budget_type
+            join ref_lookup_service_category ref_srv on ref_srv.cd_subctgry_poc_frc=pbcs3.cd_service_type
+             and start_date>=min_service_date
+            join ref_lookup_service_budget ref_bud on ref_bud.cd_budget_poc_frc =pbcs3.cd_budget_type
+                   and start_date>=min_budget_date
             where date_add(start_date,INTERVAL (15 + pbcs3.month) MONTH) <= var_cutoff_date
             order by pbcs3.qry_type 
                 , pbcs3.date_type

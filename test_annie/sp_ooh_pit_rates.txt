@@ -627,7 +627,7 @@ end if; -- not all rows exist in cache
          select            
                             poc1ab.qry_type   "qry_type_first_all"
                             , poc1ab.date_type
-                            , poc1ab.start_date  as "Month"
+                            , poc1ab.start_date  as "Date"
                             , poc1ab.age_grouping_cd  
                             , case poc1ab.age_grouping_cd
                                 when 0 then @age0
@@ -704,7 +704,7 @@ end if; -- not all rows exist in cache
                                         else round(cnt_start_date + 2 * sqrt(-2 * log(poc1ab.x1)) * cos(2*pi()*poc1ab.x2),0)
                                         end
                                     else (cnt_start_date) 
-                                end /(pop.pop_cnt * 1.00) * 1000),2)  as   "Total In Care First Day"
+                                end /(pop.pop_cnt * 1.00) * 1000),2)  as    "Total in Out-of-Home Care 1st Day"
             from cache_poc1ab_aggr poc1ab
             join tblpop_proj pop 
                 on pop.measurement_year=start_year
@@ -721,8 +721,10 @@ end if; -- not all rows exist in cache
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=poc1ab.county_cd
              join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=poc1ab.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=poc1ab.cd_access_type
-            join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=poc1ab.cd_subctgry_poc_frc
-            join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=poc1ab.cd_budget_poc_frc
+            join ref_lookup_service_category ref_srv on ref_srv.cd_subctgry_poc_frc=poc1ab.cd_subctgry_poc_frc
+					and ref_srv.min_service_date>=poc1ab.start_date 
+            join ref_lookup_service_budget ref_bud on ref_bud.cd_budget_poc_frc=poc1ab.cd_budget_poc_frc
+					and ref_bud.min_budget_date>=poc1ab.start_date 
       order by  poc1ab.bin_dep_cd 
                             ,poc1ab.qry_type
                             , poc1ab.date_type
