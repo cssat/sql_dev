@@ -1,0 +1,13 @@
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `test_annie`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `ref_lookup_service_budget` AS
+    select 
+        `ref_service_cd_budget_poc_frc`.`cd_budget_poc_frc` AS `cd_budget_poc_frc`,
+        `ref_service_cd_budget_poc_frc`.`tx_budget_poc_frc` AS `tx_budget_poc_frc`,
+        if((`ref_service_cd_budget_poc_frc`.`cd_budget_poc_frc` = 0),
+            '2000-01-01',
+            '2009-04-01') AS `min_budget_date`
+    from
+        `ref_service_cd_budget_poc_frc`
