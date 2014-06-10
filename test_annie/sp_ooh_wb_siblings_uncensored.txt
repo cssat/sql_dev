@@ -679,9 +679,9 @@ if  flg_procedure_off =0 then
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw4.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw4.cd_access_type
             join ref_lookup_service_category ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
-					and ref_srv.min_service_date >=pbcw4.cohort_entry_date
+					and pbcw4.cohort_entry_date>=ref_srv.min_service_date 
             join ref_lookup_service_budget ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
-					and ref_bud.min_budget_date >=pbcw4.cohort_entry_date
+					and pbcw4.cohort_entry_date>=ref_bud.min_budget_date 
             join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
             where pbcw4.cohort_entry_date between p_mindate and p_maxdate
             order by kincare asc,

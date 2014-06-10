@@ -696,10 +696,10 @@ end if; -- all not in cache
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw3.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw3.cd_access_type
              join ref_lookup_service_category ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw3.cd_subctgry_poc_frc
-				and ref_srv.min_service_date>=pbcw3.cohort_entry_date 
+				and pbcw3.cohort_entry_date >=ref_srv.min_service_date
             join ref_lookup_service_budget ref_bud on ref_bud.cd_budget_poc_frc=pbcw3.cd_budget_poc_frc
-				and ref_bud.min_budget_date>=pbcw3.cohort_entry_date 
-            order by   pbcw3.bin_dep_cd asc
+				and pbcw3.cohort_entry_date  >=ref_bud.min_budget_date
+           order by   pbcw3.bin_dep_cd asc
             ,qry_type
                 ,pbcw3.cohort_entry_date asc
                 ,age_grouping_cd asc
