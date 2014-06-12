@@ -47,16 +47,10 @@ declare x1 float;
 declare x2 float;
 declare var_row_cnt_param int;
 declare var_row_cnt_cache int;
-declare cnt_hardcoded_qryid int;
-
-
 declare var_calling_procedure int;
+DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+
 set var_calling_procedure=25;
-
-
---  DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
-
-
 set x1=rand();
 set x2=rand();
 

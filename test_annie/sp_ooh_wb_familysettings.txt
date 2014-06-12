@@ -45,7 +45,7 @@ declare unq_qry_id int;
 declare  var_calling_procedure int;
 
 
---  DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
 
 set x1=rand();
 set x2=rand();
@@ -688,10 +688,13 @@ end if; -- all not in cache
             , group_inst_care_prcntg as "Non-Family Setting"
             FROM cache_pbcw3_aggr  pbcw3
             join cachekeys ck on ck.qry_id=pbcw3.qry_id and ck.int_hash_key=pbcw3.int_hash_key
+			join ref_last_dw_transfer on 1=1
             join vw_ref_dependency_lag ref_dep 
                 on ref_dep.bin_dep_cd=pbcw3.bin_dep_cd 
                 and ref_dep.date_type=pbcw3.date_type
-                and pbcw3.cohort_entry_date between ref_dep.min_filter_date and ref_dep.cohort_max_filter_date            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcw3.bin_los_cd
+                and pbcw3.cohort_entry_date between ref_dep.min_filter_date and ref_dep.cohort_max_filter_date            
+			join ref_filter_los ref_los on ref_los.bin_los_cd=pbcw3.bin_los_cd
+			 	and   date_add(date_add(date_add(pbcw3.cohort_entry_date, INTERVAL 1 year),INTERVAL -1 DAY),INTERVAL abs(ref_los.lag)  DAY)<= cutoff_date
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw3.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw3.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw3.cd_access_type

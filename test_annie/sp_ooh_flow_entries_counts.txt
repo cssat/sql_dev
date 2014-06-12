@@ -50,6 +50,8 @@ declare var_row_cnt_cache int;
 
 declare var_calling_procedure int;
 
+DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+
 --  initialize variables
 set var_calling_procedure=19;
 

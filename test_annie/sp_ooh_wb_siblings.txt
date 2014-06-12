@@ -42,7 +42,7 @@ declare unq_qry_id int;
 
 
 
---  DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
 
 set x1=rand();
 set x2=rand();
@@ -668,12 +668,14 @@ if  flg_procedure_off =0 then
                 end as "Number in Cohort"
             FROM cache_pbcw4_aggr  pbcw4
             join cachekeys ck on ck.qry_id=pbcw4.qry_id and ck.int_hash_key=pbcw4.int_hash_key
+			join ref_last_dw_transfer on 1=1
             join vw_ref_dependency_lag ref_dep 
                 on ref_dep.bin_dep_cd=pbcw4.bin_dep_cd 
                 and ref_dep.date_type=pbcw4.date_type
                 and pbcw4.cohort_entry_date between ref_dep.min_filter_date and ref_dep.cohort_max_filter_date
             join ref_filter_los ref_los 
                     on ref_los.bin_los_cd=pbcw4.bin_los_cd
+					and   date_add(date_add(date_add(pbcw4.cohort_entry_date, INTERVAL 1 year),INTERVAL -1 DAY),INTERVAL abs(ref_los.lag)  DAY)<= cutoff_date
 --            join ref_lookup_placement ref_fpl on ref_fpl.placement_cd=pbcw4.init_cd_plcm_setng
 --            join ref_lookup_placement ref_lpl on ref_lpl.placement_cd=pbcw4.long_cd_plcm_setng
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw4.county_cd
@@ -683,6 +685,7 @@ if  flg_procedure_off =0 then
 					and pbcw4.cohort_entry_date>=ref_srv.min_service_date 
             join ref_lookup_service_budget ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
 					and pbcw4.cohort_entry_date>=ref_bud.min_budget_date 
+
             join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
             where pbcw4.cohort_entry_date between p_mindate and p_maxdate
             order by kincare asc,
