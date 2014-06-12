@@ -25,19 +25,16 @@ begin
     declare var_minmonthstart datetime;
     declare p_qry_id bigint;
 
-    declare var_qry_cnt int;
+
     declare x1 float;
     declare x2 float;
-    declare jitval float;
     declare  flg_procedure_off int;
     declare var_row_cnt_param int;
     declare var_row_cnt_cache int;
-    declare var_match_unq_qry_id int;
-    declare var_start_year int;
-    
+  
     declare var_calling_procedure int;
     
-    
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
     
     set flg_procedure_off =0;
     
@@ -61,7 +58,7 @@ begin
         FROM ref_lookup_max_date where id=var_calling_procedure;
 
         
-        set var_start_year= year(var_minmonthstart) ;
+ 
         
         call sp_ihs_load_param_tbls(
            p_age_grouping_cd 
@@ -162,8 +159,8 @@ begin
             ,cachekeys.qry_id=cache_qry_param_poc3ab.qry_id
         where cachekeys.int_hash_key=cache_qry_param_poc3ab.int_hash_key;    
         
-        select sum(in_cache),count(*) ,count(distinct qry_id)
-            into var_row_cnt_cache,var_row_cnt_param ,var_match_unq_qry_id
+        select sum(in_cache),count(*) 
+            into var_row_cnt_cache,var_row_cnt_param 
         from cachekeys;
     
                    

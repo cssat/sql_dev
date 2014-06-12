@@ -24,18 +24,16 @@ begin
     declare var_minmonthstart datetime;
     declare p_qry_id bigint;
 
-    declare var_qry_cnt int;
+
     declare x1 float;
     declare x2 float;
-    declare jitval float;
     declare  flg_procedure_off int;
     declare var_row_cnt_param int;
     declare var_row_cnt_cache int;
-    declare var_match_unq_qry_id int;
-    declare var_start_year int;
     declare var_calling_procedure int;
-    declare var_cutoff_date datetime;
+ 
     
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
     
     set flg_procedure_off =0;
     
@@ -55,7 +53,7 @@ begin
     into var_minmonthstart,var_maxmonthstart  ,p_mindate,p_maxdate
     FROM ref_lookup_max_date where id=var_calling_procedure;
   
-    select cutoff_date into var_cutoff_date from ref_last_dw_transfer;
+
     
                 
     set p_qry_id=(
@@ -118,7 +116,7 @@ begin
             
   
   
- call sp_create_ihs_cachekeys(p_age_grouping_cd
+		call sp_create_ihs_cachekeys(p_age_grouping_cd
                 ,p_ethnicity_cd
                 ,p_cd_county
                 ,p_bin_ihs_svc_cd
@@ -136,12 +134,12 @@ begin
             ,cachekeys.qry_id=cache_qry_param_pbcs3.qry_id
         where cachekeys.int_hash_key=cache_qry_param_pbcs3.int_hash_key;    
         
-        select sum(in_cache),count(*) ,count(distinct qry_id)
-            into var_row_cnt_cache,var_row_cnt_param ,var_match_unq_qry_id
+        select sum(in_cache),count(*) 
+            into var_row_cnt_cache,var_row_cnt_param 
         from cachekeys;
     
                    
-if  var_row_cnt_param <> var_row_cnt_cache then 
+	if  var_row_cnt_param <> var_row_cnt_cache then 
             call sp_ihs_load_param_tbls(
                    p_age_grouping_cd 
                 ,  p_ethnicity_cd 
@@ -710,6 +708,7 @@ end if; --  not in cache
             FROM cache_pbcs3_aggr pbcs3  
             join cachekeys ck on ck.int_hash_key=pbcs3.int_hash_key
                 and pbcs3.qry_id=ck.qry_id
+			join ref_last_dw_transfer on 1=1
             join ref_lookup_sib_age_grp ref_age on ref_age.cd_sib_age_grp=pbcs3.cd_sib_age_grp
             join ref_lookup_ethnicity_census ref_eth on ref_eth.cd_race_census=pbcs3.cd_race_census
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcs3.cd_county
@@ -722,7 +721,7 @@ end if; --  not in cache
              and start_date>=min_service_date
             join ref_lookup_service_budget ref_bud on ref_bud.cd_budget_poc_frc =pbcs3.cd_budget_type
                    and start_date>=min_budget_date
-            where date_add(start_date,INTERVAL (15 + pbcs3.month) MONTH) <= var_cutoff_date
+            where date_add(start_date,INTERVAL (15 + pbcs3.month) MONTH) <= cutoff_date
             order by pbcs3.qry_type 
                 , pbcs3.date_type
                 , pbcs3.start_year  

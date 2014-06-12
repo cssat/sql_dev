@@ -23,16 +23,16 @@ begin
     
     
 
-    declare var_qry_cnt int;
     declare x1 float;
     declare x2 float;
-    declare jitval float;
+
     declare  flg_procedure_off int;
     declare var_row_cnt_param int;
     declare var_row_cnt_cache int;
     declare var_calling_procedure int;
     
---    DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+   
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
     
     set flg_procedure_off =0;
     
@@ -62,12 +62,10 @@ begin
             and filter_finding=left(p_filter_finding,30)
         limit 1; 
             
-  set @qry_ID:= coalesce(p_qry_id,(select (max(qry_ID) + 1)  from cache_poc2ab_params),1);          
-  if p_qry_id is null then    
-  
-      
-  
-			INSERT INTO cache_poc2ab_params
+		  set @qry_ID:= coalesce(p_qry_id,(select (max(qry_ID) + 1)  from cache_poc2ab_params),1);          
+		  
+	if p_qry_id is null then    
+ 			INSERT INTO cache_poc2ab_params
   			(qry_id
 			 , age_grouping_cd
   			,cd_race_census
@@ -81,8 +79,8 @@ begin
   			,cnt_qry
   			,last_run_date)
 
-    select 
-        @qry_ID
+		select 
+			@qry_ID
   			,p_age_grouping_cd
   			,p_ethnicity_cd
   			,p_cd_county

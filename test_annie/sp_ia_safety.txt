@@ -29,10 +29,10 @@ begin
     declare var_row_cnt_param int;
     declare var_row_cnt_cache int;
     declare var_calling_procedure int;
-    declare var_cutoff_date datetime;
-
+   
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
     -- initialize variables
-    set flg_procedure_off =1;
+    set flg_procedure_off =0;
     
     if  flg_procedure_off =0 then    
             set x1=rand();
@@ -49,7 +49,7 @@ begin
         into p_minmonthstart,p_maxmonthstart ,p_mindate,p_maxdate 
         FROM ref_lookup_max_date where id=var_calling_procedure;
     
-        select cutoff_date into var_cutoff_date from ref_last_dw_transfer;
+       
         
         select qry_id into p_qry_id from cache_pbcs2_params
         where age_grouping_cd=left(p_age_grouping_cd,20)
@@ -627,11 +627,12 @@ end if;
         from cache_pbcs2_aggr pbcs2
 		 					join cachekeys ck on ck.int_hash_key=pbcs2.int_hash_key
 							and pbcs2.qry_id=ck.qry_id
+			join ref_last_dw_transfer on 1=1
             join ref_lookup_sib_age_grp ref_age on ref_age.cd_sib_age_grp=pbcs2.cd_sib_age_grp
 						join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcs2.cd_county
 						join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcs2.cd_reporter_type
 						join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcs2.cd_access_type
-           where date_add(start_date,INTERVAL (15 + pbcs2.month) MONTH) <= var_cutoff_date
+           where date_add(start_date,INTERVAL (15 + pbcs2.month) MONTH) <= cutoff_date
  						order by pbcs2.qry_type   
 -- 								, pbcs2.date_type
 								, pbcs2.start_year
