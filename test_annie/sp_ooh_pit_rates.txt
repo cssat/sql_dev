@@ -66,7 +66,7 @@ if  flg_procedure_off =0 then
      
 --  set dates 
     
-    select min_date_any ,max_date_all ,min_date_any ,max_date_all 
+    select min_date_any ,max_date_any ,min_date_any ,max_date_any
     into p_minmonthstart,p_maxmonthstart  ,p_mindate,p_maxdate
     FROM ref_lookup_max_date where id=20;
     
@@ -714,12 +714,11 @@ end if; -- not all rows exist in cache
                     and pop.county_cd=poc1ab.county_cd
             join cachekeys ck on ck.qry_id=poc1ab.qry_id
                 and ck.int_hash_key=poc1ab.int_hash_key
-			join ref_last_dw_transfer on 1=1
             join vw_ref_dependency_lag ref_dep on ref_dep.bin_dep_cd=poc1ab.bin_dep_cd
                 and poc1ab.date_type=ref_dep.date_type
                 and poc1ab.start_date between min_filter_date and max_filter_date
-            join ref_filter_los ref_los on ref_los.bin_los_cd=poc1ab.bin_los_cd
-				and   date_add(date_add(date_add(poc1ab.start_date , INTERVAL 1 year),INTERVAL -1 DAY),INTERVAL abs(ref_los.lag)  DAY)<= cutoff_date
+            join ref_los ref_los on ref_los.bin_los_cd=poc1ab.bin_los_cd
+					and  start_date <= ref_los.max_filter_date
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=poc1ab.county_cd
              join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=poc1ab.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=poc1ab.cd_access_type
