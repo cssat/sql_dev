@@ -717,8 +717,10 @@ end if; -- not all rows exist in cache
             join vw_ref_dependency_lag ref_dep on ref_dep.bin_dep_cd=poc1ab.bin_dep_cd
                 and poc1ab.date_type=ref_dep.date_type
                 and poc1ab.start_date between min_filter_date and max_filter_date
-            join ref_los ref_los on ref_los.bin_los_cd=poc1ab.bin_los_cd
-					and  start_date <= ref_los.max_filter_date
+            join vw_los_lag ref_los 
+            on poc1ab.bin_los_cd=ref_los.bin_los_cd
+                and poc1ab.date_type=ref_los.date_type
+                and poc1ab.start_date <= ref_los.max_filter_date
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=poc1ab.county_cd
              join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=poc1ab.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=poc1ab.cd_access_type
