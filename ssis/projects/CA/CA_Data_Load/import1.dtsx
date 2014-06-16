@@ -12,8 +12,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="import1"
   DTS:PackageType="5"
-  DTS:VersionBuild="211"
-  DTS:VersionGUID="{60E14225-10A0-49FC-B5D1-91DC60C979EB}">
+  DTS:VersionBuild="212"
+  DTS:VersionGUID="{601DE26E-95DB-490C-B460-CA70D846F7B0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -42509,7 +42509,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{8326F510-BC0D-40B5-B84B-C70B3318BC1A}"
-          SQLTask:SqlStatementSource="truncate table Abuse_Fact&#xA;go&#xA;IF EXISTS (SELECT * &#xA;  FROM sys.foreign_keys &#xA;   WHERE object_id = OBJECT_ID(N'dbo.[fk_ID_WORKER_DIM_PRIMARY]')&#xA;   AND parent_object_id = OBJECT_ID(N'dbo.ABUSE_FACT')&#xA;)&#xA;ALTER TABLE [dbo].[ABUSE_FACT] DROP CONSTRAINT [fk_ID_WORKER_DIM_PRIMARY]&#xA;GO&#xA;IF EXISTS (SELECT * &#xA;  FROM sys.foreign_keys &#xA;   WHERE object_id = OBJECT_ID(N'dbo.[fk_ID_PROVIDER_DIM]')&#xA;   AND parent_object_id = OBJECT_ID(N'dbo.ABUSE_FACT')&#xA;)&#xA;ALTER TABLE [dbo].[ABUSE_FACT] DROP CONSTRAINT [fk_ID_PROVIDER_DIM]&#xA;GO&#xA;IF EXISTS (SELECT * &#xA;  FROM sys.foreign_keys &#xA;   WHERE object_id = OBJECT_ID(N'dbo.[fk_ID_PLACEMENT_TYPE_DIM]')&#xA;   AND parent_object_id = OBJECT_ID(N'dbo.ABUSE_FACT')&#xA;)&#xA;ALTER TABLE [dbo].[ABUSE_FACT] DROP CONSTRAINT [fk_ID_PLACEMENT_TYPE_DIM]&#xA;GO&#xA;IF EXISTS (SELECT * &#xA;  FROM sys.foreign_keys &#xA;   WHERE object_id = OBJECT_ID(N'dbo.[fk_ID_PEOPLE_DIM_VICTIM]')&#xA;   AND parent_object_id = OBJECT_ID(N'dbo.ABUSE_FACT')&#xA;)&#xA;ALTER TABLE [dbo].[ABUSE_FACT] DROP CONSTRAINT [fk_ID_PEOPLE_DIM_VICTIM]&#xA;GO&#xA;IF EXISTS (SELECT * &#xA;  FROM sys.foreign_keys &#xA;   WHERE object_id = OBJECT_ID(N'dbo.[fk_ID_LOCATION_DIM_PRIMARY_WORKER]')&#xA;   AND parent_object_id = OBJECT_ID(N'dbo.ABUSE_FACT')&#xA;)&#xA;ALTER TABLE [dbo].[ABUSE_FACT] DROP CONSTRAINT [fk_ID_LOCATION_DIM_PRIMARY_WORKER]&#xA;GO&#xA;IF EXISTS (SELECT * &#xA;  FROM sys.foreign_keys &#xA;   WHERE object_id = OBJECT_ID(N'dbo.[fk_ID_LOCATION_DIM_INTAKE_WORKER]')&#xA;   AND parent_object_id = OBJECT_ID(N'dbo.ABUSE_FACT')&#xA;)&#xA;ALTER TABLE [dbo].[ABUSE_FACT] DROP CONSTRAINT [fk_ID_LOCATION_DIM_INTAKE_WORKER]&#xA;GO&#xA;IF EXISTS (SELECT * &#xA;  FROM sys.foreign_keys &#xA;   WHERE object_id = OBJECT_ID(N'dbo.[fk_ID_LOCATION_DIM_INCIDENT]')&#xA;   AND parent_object_id = OBJECT_ID(N'dbo.ABUSE_FACT')&#xA;)&#xA;ALTER TABLE [dbo].[ABUSE_FACT] DROP CONSTRAINT [fk_ID_LOCATION_DIM_INCIDENT]&#xA;GO&#xA;IF EXISTS (SELECT * &#xA;  FROM sys.foreign_keys &#xA;   WHERE object_id = OBJECT_ID(N'dbo.[fk_ID_CASE_DIM]')&#xA;   AND parent_object_id = OBJECT_ID(N'dbo.ABUSE_FACT')&#xA;)&#xA;ALTER TABLE [dbo].[ABUSE_FACT] DROP CONSTRAINT [fk_ID_CASE_DIM]&#xA;GO&#xA;IF EXISTS (SELECT * &#xA;  FROM sys.foreign_keys &#xA;   WHERE object_id = OBJECT_ID(N'dbo.[fk_ID_CALENDAR_DIM_REFERRED]')&#xA;   AND parent_object_id = OBJECT_ID(N'dbo.ABUSE_FACT')&#xA;)&#xA;ALTER TABLE [dbo].[ABUSE_FACT] DROP CONSTRAINT [fk_ID_CALENDAR_DIM_REFERRED]&#xA;GO&#xA;IF EXISTS (SELECT * &#xA;  FROM sys.foreign_keys &#xA;   WHERE object_id = OBJECT_ID(N'dbo.[fk_ID_CALENDAR_DIM_INCIDENT]')&#xA;   AND parent_object_id = OBJECT_ID(N'dbo.ABUSE_FACT')&#xA;)&#xA;ALTER TABLE [dbo].[ABUSE_FACT] DROP CONSTRAINT [fk_ID_CALENDAR_DIM_INCIDENT]&#xA;GO&#xA;IF EXISTS (SELECT * &#xA;  FROM sys.foreign_keys &#xA;   WHERE object_id = OBJECT_ID(N'dbo.[fk_id_calendar_dim_founded]')&#xA;   AND parent_object_id = OBJECT_ID(N'dbo.ABUSE_FACT')&#xA;)&#xA;ALTER TABLE [dbo].[ABUSE_FACT] DROP CONSTRAINT [fk_id_calendar_dim_founded]&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="truncate table Abuse_Fact&#xA;go" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -42547,7 +42547,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{8326F510-BC0D-40B5-B84B-C70B3318BC1A}"
-          SQLTask:SqlStatementSource="truncate table adoption_fact" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="truncate table adoption_fact&#xA;go" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -42883,6 +42883,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       DTS:ObjectName="Constraint 2"
       DTS:To="Package\Abuse Type Dim" />
     <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 20]"
+      DTS:CreationName=""
+      DTS:DTSID="{4FBC7C01-1303-46E3-9496-611FB7FC85B1}"
+      DTS:From="Package\Create Error Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 20"
+      DTS:To="Package\truncate Abuse_Fact" />
+    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 21]"
       DTS:CreationName=""
       DTS:DTSID="{5B091DC9-D894-44C8-B138-0AB5E4784FC1}"
@@ -42938,14 +42946,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 36"
       DTS:To="Package\Send Email" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 37]"
-      DTS:CreationName=""
-      DTS:DTSID="{77A1A05C-A69D-46E5-87C0-A37D19670E0B}"
-      DTS:From="Package\Create Error Tables"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 37"
-      DTS:To="Package\truncate Abuse_Fact" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 38]"
       DTS:CreationName=""
@@ -43214,7 +43214,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           Id="Package\Send Email"
           TopLeft="915.084905660377,2368.55660377358" />
         <NodeLayout
-          Size="229,44"
+          Size="177,42"
           Id="Package\truncate Abuse_Fact"
           TopLeft="15.5,140.764150943396" />
         <NodeLayout
@@ -43275,18 +43275,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           TopLeft="613.537735849057,2364.66981132075" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="244.103773584906,161.367924528302">
+          TopLeft="192.5,163.738993710692">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="52.9433962264151,0"
+              EndConnector="104.547169811321,0"
               Start="0,0"
-              End="45.4433962264151,0">
+              End="97.047169811321,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="45.4433962264151,0" />
+                    End="97.047169811321,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -43814,40 +43814,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 37]"
-          TopLeft="813.952830188679,104.35534591195">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-569.452830188679,52.4088050314463"
-              Start="0,0"
-              End="-561.952830188679,52.4088050314463">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-281.290229777695,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-281.290229777695,0"
-                    Point2="-285.290229777695,0"
-                    Point3="-285.290229777695,4" />
-                  <mssgle:LineSegment
-                    End="-285.290229777695,48.4088050314463" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-285.290229777695,48.4088050314463"
-                    Point2="-285.290229777695,52.4088050314463"
-                    Point3="-289.290229777695,52.4088050314463" />
-                  <mssgle:LineSegment
-                    End="-561.952830188679,52.4088050314463" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 38]"
           TopLeft="373.547169811321,2139.57547169811">
           <EdgeLayout.Curve>
@@ -44107,6 +44073,40 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                     Point3="-276.566037735849,99.82075471698" />
                   <mssgle:LineSegment
                     End="-276.566037735849,184.14150943396" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 20]"
+          TopLeft="813.952830188679,98.688679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-621.452830188679,57.4088050314463"
+              Start="0,0"
+              End="-613.952830188679,57.4088050314463">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-355.188333044833,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-355.188333044833,0"
+                    Point2="-359.188333044833,0"
+                    Point3="-359.188333044833,4" />
+                  <mssgle:LineSegment
+                    End="-359.188333044833,53.4088050314463" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-359.188333044833,53.4088050314463"
+                    Point2="-359.188333044833,57.4088050314463"
+                    Point3="-363.188333044833,57.4088050314463" />
+                  <mssgle:LineSegment
+                    End="-613.952830188679,57.4088050314463" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
