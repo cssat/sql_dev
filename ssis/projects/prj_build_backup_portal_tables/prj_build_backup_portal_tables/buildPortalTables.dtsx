@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="buildPortalTables"
   DTS:PackageType="5"
-  DTS:VersionBuild="142"
-  DTS:VersionGUID="{450E551C-8FB7-4388-A62D-14D4093733EA}">
+  DTS:VersionBuild="143"
+  DTS:VersionGUID="{C2E1C8F0-55FC-4EB1-95C7-95BBD9468BAA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -177,7 +177,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{1F770548-82ED-4A21-94C9-AD6799BC53FA}"
-          SQLTask:SqlStatementSource="exec [prtl].[prod_build_prtl_cohort_ooh_tbls]  ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          SQLTask:SqlStatementSource="exec [prtl].[prod_build_ooh_dcfs_eps]  ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
             SQLTask:ParameterName="0"
             SQLTask:DtsVariableName="User::permission_key"
