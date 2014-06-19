@@ -939,16 +939,20 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
                 on ref_dep.bin_dep_cd=pbcp5.bin_dep_cd 
                 and ref_dep.date_type=pbcp5.date_type
                 and pbcp5.cohort_entry_date between ref_dep.min_filter_date and ref_dep.cohort_max_filter_date
-            join ref_filter_los ref_los on ref_los.bin_los_cd=pbcp5.bin_los_cd 
-                    and  date_add(date_add(date_add(date_add(pbcp5.cohort_entry_date, INTERVAL 1 year),INTERVAL -1 DAY),INTERVAL 9 MONTH),INTERVAL abs(ref_los.lag)  DAY)<= cutoff_date
-            join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcp5.county_cd
+			join ref_filter_los ref_los ON ref_los.bin_los_cd = pbcp5.bin_los_cd
+				and if(pbcp5.bin_los_cd!=0,date_add(date_add(date_add(date_add(pbcp5.Cohort_Entry_date,
+                    INTERVAL 1 year),
+						INTERVAL - 1 DAY),
+						  INTERVAL 9 month),
+							INTERVAL abs(ref_los.lag) DAY),cutoff_date) <= cutoff_date
+			join ref_lookup_county_all ref_cnty on ref_cnty.county_cd=pbcp5.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcp5.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcp5.cd_access_type
             join ref_lookup_service_category ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
              and cohort_entry_date>=min_service_date
             join ref_lookup_service_budget ref_bud on ref_bud.cd_budget_poc_frc =pbcp5.cd_budget_poc_frc
                    and cohort_entry_date>=min_budget_date
-             where date_add(cohort_entry_date,INTERVAL (12 + pbcp5.reentry_within_month) MONTH) <= cutoff_date
+             where date_add(cohort_entry_date,INTERVAL (15 + pbcp5.reentry_within_month) MONTH) <= cutoff_date
             order by 
                 pbcp5.bin_dep_cd asc
                 ,qry_type

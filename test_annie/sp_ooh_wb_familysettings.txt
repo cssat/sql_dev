@@ -692,9 +692,12 @@ end if; -- all not in cache
                 on ref_dep.bin_dep_cd=pbcw3.bin_dep_cd 
                 and ref_dep.date_type=pbcw3.date_type
                 and pbcw3.cohort_entry_date between ref_dep.min_filter_date and ref_dep.cohort_max_filter_date            
-            join vw_los_lag ref_los on ref_los.bin_los_cd=pbcw3.bin_los_cd
-					and pbcw3.date_type=ref_los.date_type
-					and  pbcw3.cohort_entry_date <= ref_los.max_filter_date
+            join ref_last_dw_transfer on cutoff_date=cutoff_date
+			join ref_filter_los ref_los ON ref_los.bin_los_cd = pbcw3.bin_los_cd
+				and if(pbcw3.bin_los_cd!=0,date_add(date_add(date_add(pbcw3.cohort_entry_date,
+                    INTERVAL 1 year),
+						INTERVAL - 1 DAY),
+							INTERVAL abs(ref_los.lag) DAY),cutoff_date) <= cutoff_date
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw3.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw3.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw3.cd_access_type

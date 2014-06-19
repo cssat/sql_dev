@@ -471,7 +471,8 @@ if  var_row_cnt_param <> var_row_cnt_cache then
         DEALLOCATE PREPARE stmt;
 		set @incl='';
   
-    create index idx_int_param_key2 on tot_episodes(int_hash_key,cohort_entry_date,qry_type,date_type);
+    alter table tot_episodes 
+	add primary key (int_hash_key,cohort_entry_date,qry_type,date_type);
     
     set @incl='insert IGNORE into cache_outcomes_aggr( qry_type
                 ,date_type
@@ -959,13 +960,12 @@ from
     vw_ref_dependency_lag ref_dep ON ref_dep.bin_dep_cd = outcomes.bin_dep_cd
         and ref_dep.date_type = outcomes.date_type
         and outcomes.cohort_entry_date between min_filter_date and cohort_max_filter_date
-        join
-    ref_filter_los ref_los ON ref_los.bin_los_cd = outcomes.bin_los_cd
-        and date_add(date_add(date_add(date_add(outcomes.cohort_entry_date,
-                    INTERVAL 1 year),
-                INTERVAL - 1 DAY),
-            INTERVAL 9 MONTH),
-        INTERVAL abs(ref_los.lag) DAY) <= cutoff_date
+	join ref_filter_los ref_los ON ref_los.bin_los_cd = outcomes.bin_los_cd
+			and if(outcomes.bin_los_cd!=0,date_add(date_add(date_add(date_add(outcomes.cohort_entry_date,
+				INTERVAL 1 year),
+				  INTERVAL 9 month),
+					INTERVAL - 1 DAY),
+						INTERVAL abs(ref_los.lag) DAY),cutoff_date) <= cutoff_date
         join
     ref_lookup_county ref_cnty ON ref_cnty.county_cd = outcomes.county_cd
         join
@@ -980,7 +980,7 @@ from
 			and outcomes.cohort_entry_date>=min_budget_date
 where
     date_add(cohort_entry_date,
-        INTERVAL (12 + outcomes.mnth) MONTH) <= cutoff_date
+        INTERVAL (15 + outcomes.mnth) MONTH) <= cutoff_date
 order by outcomes.start_year asc , qry_type , age_grouping_cd asc , gender_cd asc , ethnicity_cd asc , init_cd_plcm_setng asc , long_cd_plcm_setng asc , county_cd asc , outcomes.bin_dep_cd asc , outcomes.bin_los_cd asc , outcomes.bin_placement_cd asc , outcomes.bin_ihs_svc_cd asc , outcomes.cd_reporter_type , outcomes.cd_access_type , outcomes.cd_allegation , outcomes.cd_finding , outcomes.cd_subctgry_poc_frc , outcomes.cd_budget_poc_frc , outcomes.mnth asc , outcomes.cd_discharge_type asc;
 end if;
 end
