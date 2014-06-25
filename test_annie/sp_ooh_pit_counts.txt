@@ -571,12 +571,24 @@ if NOT(trim(p_age_grouping_cd) ='0'
         set @incl=concat(@incl,' , ck.qry_id;',char(13));
         
 
-        drop temporary table if exists mycode_poc1ab;
-        create temporary table mycode_poc1ab as select @incl ;
+  --       drop temporary table if exists mycode_poc1ab;
+     --    create temporary table mycode_poc1ab as select @incl ;
         
         PREPARE stmt FROM @incl;
         EXECUTE stmt;
         DEALLOCATE PREPARE stmt;
+
+		update cache_poc1ab_aggr, prm_ooh_census_population   
+		set cache_poc1ab_aggr.fl_include_perCapita=0
+		-- select pop_cnt, cache_poc1ab_aggr.*
+		where exists(select * from cachekeys ck where cache_poc1ab_aggr.qry_id=ck.qry_id)
+		and prm_ooh_census_population.measurement_year=start_year
+		and prm_ooh_census_population.county_cd=cache_poc1ab_aggr.county_cd 
+		and prm_ooh_census_population.pk_gndr=cache_poc1ab_aggr.pk_gndr
+		and prm_ooh_census_population.cd_race=cache_poc1ab_aggr.cd_race
+		and prm_ooh_census_population.age_grouping_cd=cache_poc1ab_aggr.age_grouping_cd
+		and  (cache_poc1ab_aggr.cnt_start_date *1.00 >   pop_cnt * .35  	)					;
+
         INSERT IGNORE INTO cache_qry_param_poc1ab
 								   (int_param_key
 								   ,bin_dep_cd

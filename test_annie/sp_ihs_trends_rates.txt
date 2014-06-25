@@ -408,6 +408,18 @@ if  var_row_cnt_param <> var_row_cnt_cache then
         PREPARE stmt FROM @incl;
         EXECUTE stmt;
         DEALLOCATE PREPARE stmt;
+
+
+		update cache_poc3ab_aggr,prm_household_census_population   
+						set cache_poc3ab_aggr.fl_include_perCapita=0
+						where exists(select * from cachekeys ck where ck.qry_id=cache_poc3ab_aggr.qry_id)
+						and prm_household_census_population.measurement_year=start_year
+						and prm_household_census_population.county_cd=cache_poc3ab_aggr.cd_county 
+						and prm_household_census_population.cd_race=cache_poc3ab_aggr.cd_race_census
+						and prm_household_census_population.cd_sib_age_grp=cache_poc3ab_aggr.cd_sib_age_grp
+						and  (cache_poc3ab_aggr.cnt_start_date *1.00 >   pop_cnt * .35  			
+							or cache_poc3ab_aggr.cnt_opened *1.00 >   pop_cnt * .35  	
+							or cache_poc3ab_aggr.cnt_closed * 1.00 > pop_cnt*.35);
         
     INSERT IGNORE INTO cache_qry_param_poc3ab
 								   (int_param_key,
@@ -568,7 +580,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
             join ref_lookup_service_budget ref_bud on ref_bud.cd_budget_poc_frc =poc3ab.cd_budget_type
                    and start_date>=min_budget_date
             where poc3ab.start_date 
-            between p_mindate and p_maxdate
+            between p_mindate and p_maxdate and fl_include_perCapita=1
             order by qry_type,date_type,start_date
                            , poc3ab.cd_sib_age_grp
                             , poc3ab.cd_race_census

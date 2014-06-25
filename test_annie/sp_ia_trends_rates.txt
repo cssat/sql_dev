@@ -369,6 +369,17 @@ begin
         PREPARE stmt FROM @incl;
         EXECUTE stmt;
         DEALLOCATE PREPARE stmt;
+
+			update cache_poc2ab_aggr,prm_household_census_population   
+			set cache_poc2ab_aggr.fl_include_perCapita=0
+			where exists (select * from cachekeys ck where cache_poc2ab_aggr.qry_id=ck.qry_id)
+			and prm_household_census_population.measurement_year=start_year
+			and prm_household_census_population.county_cd=cache_poc2ab_aggr.cd_county 
+			and prm_household_census_population.cd_race=cache_poc2ab_aggr.cd_race
+			and prm_household_census_population.cd_sib_age_grp=cache_poc2ab_aggr.cd_sib_age_grp
+			and  (cache_poc2ab_aggr.cnt_start_date *1.00 >   pop_cnt * .35  			
+				or cache_poc2ab_aggr.cnt_opened *1.00 >   pop_cnt * .35  	
+				or cache_poc2ab_aggr.cnt_closed * 1.00 > pop_cnt*.35);
  
    			insert into cache_qry_param_poc2ab
 						(int_param_key
@@ -414,9 +425,9 @@ SELECT
 		, poc2ab.cd_county "county_cd"
 		, ref_cnty.county "County"
 		, poc2ab.cd_reporter_type
-		, ref_rpt.tx_reporter_type as "Reporter_Desc"
+		, ref_rpt.tx_reporter_type as "Reporter Desc"
 		, poc2ab.cd_access_type
-		, ref_acc.tx_access_type as "Access_type_desc"
+		, ref_acc.tx_access_type as "Access type desc"
 		, poc2ab.cd_allegation
 		, case poc2ab.cd_allegation  when 0  then @alg0 when 1  then @alg1 when 2  then @alg2 when 3  then @alg3 when 4  then @alg4 end as "Allegation"
 		, poc2ab.cd_finding
@@ -508,6 +519,7 @@ SELECT
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=poc2ab.cd_access_type
             where poc2ab.start_date 
             between p_mindate and p_maxdate
+				and fl_include_perCapita=1
             order by qry_type,date_type,start_date,poc2ab.cd_sib_age_grp 
             ,poc2ab.cd_race
             ,poc2ab.cd_county

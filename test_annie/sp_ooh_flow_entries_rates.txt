@@ -572,6 +572,19 @@ if NOT(trim(p_age_grouping_cd) ='0'
         PREPARE stmt FROM @incl;
         EXECUTE stmt;
         DEALLOCATE PREPARE stmt;
+
+		update cache_poc1ab_entries_aggr  
+		, prm_ooh_census_population ref_lookup_census_population  
+		set cache_poc1ab_entries_aggr.fl_include_perCapita=0
+		where exists(select * from cachekeys ck where cache_poc1ab_entries_aggr.qry_id=ck.qry_id)
+		and ref_lookup_census_population.measurement_year=start_year
+		and ref_lookup_census_population.county_cd=cache_poc1ab_entries_aggr.county_cd 
+		and ref_lookup_census_population.pk_gndr=cache_poc1ab_entries_aggr.pk_gndr
+		and ref_lookup_census_population.cd_race=cache_poc1ab_entries_aggr.cd_race
+		and ref_lookup_census_population.age_grouping_cd=cache_poc1ab_entries_aggr.age_grouping_cd
+		and  (cache_poc1ab_entries_aggr.cnt_entries *1.00 >   pop_cnt * .35) ;
+
+
         INSERT IGNORE INTO cache_qry_param_poc1ab_entries
 								   (int_param_key
 								   ,bin_dep_cd
@@ -722,6 +735,7 @@ end if; -- not all rows exist in cache
             join ref_lookup_service_budget ref_bud 
 					on ref_bud.cd_budget_poc_frc=poc1ab.cd_budget_poc_frc
 					and poc1ab.start_date >=ref_bud.min_budget_date
+		where fl_include_perCapita=1
       order by  poc1ab.bin_dep_cd 
                             ,poc1ab.qry_type
                             , poc1ab.date_type
