@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="buildPortalTables"
   DTS:PackageType="5"
-  DTS:VersionBuild="143"
-  DTS:VersionGUID="{C2E1C8F0-55FC-4EB1-95C7-95BBD9468BAA}">
+  DTS:VersionBuild="144"
+  DTS:VersionGUID="{62AE66B2-6626-4242-922C-E525F7925E24}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -212,6 +212,32 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\build ooh_point_in_time_measures"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{d13ceddc-8ef4-47b3-a8cc-906e6e68b783}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="build ooh_point_in_time_measures"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1F770548-82ED-4A21-94C9-AD6799BC53FA}"
+          SQLTask:SqlStatementSource="exec prtl.prod_build_ooh_point_in_time_measures ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::permission_key"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\build prtl_outcomes"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
@@ -306,32 +332,6 @@
         <SQLTask:SqlTaskData
           SQLTask:Connection="{1F770548-82ED-4A21-94C9-AD6799BC53FA}"
           SQLTask:SqlStatementSource="exec [prtl].[prod_build_prtl_pbcs3] ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-          <SQLTask:ParameterBinding
-            SQLTask:ParameterName="0"
-            SQLTask:DtsVariableName="User::permission_key"
-            SQLTask:ParameterDirection="Input"
-            SQLTask:DataType="7"
-            SQLTask:ParameterSize="-1" />
-        </SQLTask:SqlTaskData>
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\build PRTL_PBCW3W4"
-      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{d13ceddc-8ef4-47b3-a8cc-906e6e68b783}"
-      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="build PRTL_PBCW3W4"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:LoggingOptions
-        DTS:FilterKind="0" />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{1F770548-82ED-4A21-94C9-AD6799BC53FA}"
-          SQLTask:SqlStatementSource="exec [prtl].[prod_build_prtl_pbcw3_pbcw4] ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
             SQLTask:ParameterName="0"
             SQLTask:DtsVariableName="User::permission_key"
@@ -484,7 +484,7 @@
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
       DTS:DTSID="{281C96F0-9CD3-4C23-98C0-20FDF0AA0C7B}"
-      DTS:From="Package\build PRTL_PBCW3W4"
+      DTS:From="Package\build ooh_point_in_time_measures"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\build PRTL_POC1AB" />
@@ -519,7 +519,7 @@
       DTS:From="Package\build PRTL_PBCS3"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 16"
-      DTS:To="Package\build PRTL_PBCW3W4" />
+      DTS:To="Package\build ooh_point_in_time_measures" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 19]"
       DTS:CreationName=""
@@ -755,8 +755,8 @@
           Id="Package\build PRTL_POC1AB"
           TopLeft="5.5,534.646254176319" />
         <NodeLayout
-          Size="186,42"
-          Id="Package\build PRTL_PBCW3W4"
+          Size="245,42"
+          Id="Package\build ooh_point_in_time_measures"
           TopLeft="14.481132075472,354.929273044244" />
         <NodeLayout
           Size="180,44"
@@ -815,9 +815,9 @@
                     Point2="0,68.8584905660375"
                     Point3="-4,68.8584905660375" />
                   <mssgle:LineSegment
-                    End="-7.98113207547203,68.8584905660375" />
+                    End="-7.981132075472,68.8584905660375" />
                   <mssgle:CubicBezierSegment
-                    Point1="-7.98113207547203,68.8584905660375"
+                    Point1="-7.981132075472,68.8584905660375"
                     Point2="-11.981132075472,68.8584905660375"
                     Point3="-11.981132075472,72.8584905660375" />
                   <mssgle:LineSegment
@@ -977,7 +977,7 @@
             <s:String>Package\build PRTL_POC3</s:String>
             <s:String>Package\build PRTL_POC2</s:String>
             <s:String>Package\build PRTL_POC1AB</s:String>
-            <s:String>Package\build PRTL_PBCW3W4</s:String>
+            <s:String>Package\build ooh_point_in_time_measures</s:String>
             <s:String>Package\build PRTL_PBCS3</s:String>
             <s:String>Package\build PRTL_PBCS2</s:String>
             <s:String>Package\build prtl_pbcp5</s:String>
