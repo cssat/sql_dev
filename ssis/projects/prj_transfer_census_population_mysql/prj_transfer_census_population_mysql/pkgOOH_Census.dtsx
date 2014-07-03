@@ -1,0 +1,686 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/2/2014 9:49:21 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MXL2230QJY"
+  DTS:CreatorName="NEBULA2\messej"
+  DTS:DTSID="{18DBBB27-4F13-427F-8773-803A4427E7BD}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.3369.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="pkgOOH_Census"
+  DTS:PackageType="5"
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{9A85AE05-EA1F-49E7-8C84-216FA328C9E8}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[poc2.CA_ODS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{654C3F66-FCF1-416A-BB29-4CDB4023C031}"
+      DTS:ObjectName="poc2.CA_ODS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=poc2;Initial Catalog=CA_ODS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{654C3F66-FCF1-416A-BB29-4CDB4023C031}poc2.CA_ODS;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[poc2.dbCoreAdministrativeTables]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E0F5A89F-6D52-440C-9BDA-64B1E5BA7AD4}"
+      DTS:ObjectName="poc2.dbCoreAdministrativeTables">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=poc2;Initial Catalog=dbCoreAdministrativeTables;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[pocweb.cac.washington.edu.test_annie.test_annie]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{C708F07F-7405-4445-ABD9-C5AB853BD77D}"
+      DTS:ObjectName="pocweb.cac.washington.edu.test_annie.test_annie">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Retain="True"
+          DTS:ConnectionString="uid=test_annie;Dsn=test_annie_32;">
+          <DTS:Password
+            DTS:Name="pwd"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA2me8L/uMXE+5zGOgrPnTwQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAPqj2tN6h8o+yipJ/rP1RmAAAAAASAAACgAAAAEAAAAKz9KPCBiJcBfatd965K/E0YAAAASSlspsNAU9sbyJ3LZR+2SSHRNP60J6emFAAAAGiCBYRWRge7TDqkbsgZ/ohxmdNI</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{22945C99-E2EF-4518-819A-A2B0FFEE401D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="conn">
+      <DTS:VariableValue
+        DTS:DataType="8">server=pocweb.cac.washington.edu;User Id=test_annie;Persist Security Info=True;database=test_annie;</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BBA14A7E-3BB1-4419-B2C2-457EAC0E07CE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="pwd">
+      <DTS:VariableValue
+        DTS:DataType="8">b4Rxx:pW</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\set mysql params"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7A07B68A-3844-4008-AC50-5DBBCF60BABA}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="set mysql params"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C708F07F-7405-4445-ABD9-C5AB853BD77D}"
+          SQLTask:SqlStatementSource="set sql_mode='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,ANSI_QUOTES';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\transfer data"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{5147B325-A54E-4C71-8683-0A7BAC1518B5}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="transfer data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\transfer data\ADO NET Destination"
+              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="ADO NET Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">ref_lookup_census_population</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.ADONETDestination, Microsoft.SqlServer.ADONETDest, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\transfer data\ADO NET Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[pocweb.cac.washington.edu.test_annie.test_annie]"
+                  connectionManagerRefId="Package.ConnectionManagers[pocweb.cac.washington.edu.test_annie.test_annie]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[source_census]"
+                      cachedDataType="i4"
+                      cachedName="source_census"
+                      externalMetadataColumnId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[source_census]"
+                      lineageId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].Columns[source_census]" />
+                    <inputColumn
+                      refId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[county_cd]"
+                      cachedDataType="i4"
+                      cachedName="county_cd"
+                      externalMetadataColumnId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[county_cd]"
+                      lineageId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].Columns[county_cd]" />
+                    <inputColumn
+                      refId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[pk_gndr]"
+                      cachedDataType="i4"
+                      cachedName="pk_gndr"
+                      externalMetadataColumnId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[pk_gndr]"
+                      lineageId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].Columns[pk_gndr]" />
+                    <inputColumn
+                      refId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[cd_race]"
+                      cachedDataType="i4"
+                      cachedName="cd_race"
+                      externalMetadataColumnId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[cd_race]"
+                      lineageId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_race]" />
+                    <inputColumn
+                      refId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[age_grouping_cd]"
+                      cachedDataType="i4"
+                      cachedName="age_grouping_cd"
+                      externalMetadataColumnId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[age_grouping_cd]"
+                      lineageId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].Columns[age_grouping_cd]" />
+                    <inputColumn
+                      refId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[measurement_year]"
+                      cachedDataType="i4"
+                      cachedName="measurement_year"
+                      externalMetadataColumnId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[measurement_year]"
+                      lineageId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].Columns[measurement_year]" />
+                    <inputColumn
+                      refId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[pop_cnt]"
+                      cachedDataType="i4"
+                      cachedName="pop_cnt"
+                      externalMetadataColumnId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[pop_cnt]"
+                      lineageId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].Columns[pop_cnt]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[source_census]"
+                      dataType="i4"
+                      name="source_census" />
+                    <externalMetadataColumn
+                      refId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[county_cd]"
+                      dataType="i4"
+                      name="county_cd" />
+                    <externalMetadataColumn
+                      refId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[pk_gndr]"
+                      dataType="i4"
+                      name="pk_gndr" />
+                    <externalMetadataColumn
+                      refId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[cd_race]"
+                      dataType="i4"
+                      name="cd_race" />
+                    <externalMetadataColumn
+                      refId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[age_grouping_cd]"
+                      dataType="i4"
+                      name="age_grouping_cd" />
+                    <externalMetadataColumn
+                      refId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[measurement_year]"
+                      dataType="i4"
+                      name="measurement_year" />
+                    <externalMetadataColumn
+                      refId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[pop_cnt]"
+                      dataType="i4"
+                      name="pop_cnt" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\transfer data\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\transfer data\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\transfer data\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\transfer data\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\transfer data\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\transfer data\OLE DB Source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[public_data].[census_population]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\transfer data\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[poc2.dbCoreAdministrativeTables]"
+                  connectionManagerRefId="Package.ConnectionManagers[poc2.dbCoreAdministrativeTables]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].Columns[source_census]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[source_census]"
+                      lineageId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].Columns[source_census]"
+                      name="source_census"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].Columns[county_cd]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[county_cd]"
+                      lineageId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].Columns[county_cd]"
+                      name="county_cd"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].Columns[pk_gndr]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[pk_gndr]"
+                      lineageId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].Columns[pk_gndr]"
+                      name="pk_gndr"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_race]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_race]"
+                      lineageId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_race]"
+                      name="cd_race"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].Columns[age_grouping_cd]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[age_grouping_cd]"
+                      lineageId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].Columns[age_grouping_cd]"
+                      name="age_grouping_cd"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].Columns[measurement_year]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[measurement_year]"
+                      lineageId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].Columns[measurement_year]"
+                      name="measurement_year"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].Columns[pop_cnt]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[pop_cnt]"
+                      lineageId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].Columns[pop_cnt]"
+                      name="pop_cnt"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[source_census]"
+                      dataType="i4"
+                      name="source_census" />
+                    <externalMetadataColumn
+                      refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[county_cd]"
+                      dataType="i4"
+                      name="county_cd" />
+                    <externalMetadataColumn
+                      refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[pk_gndr]"
+                      dataType="i4"
+                      name="pk_gndr" />
+                    <externalMetadataColumn
+                      refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_race]"
+                      dataType="i4"
+                      name="cd_race" />
+                    <externalMetadataColumn
+                      refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[age_grouping_cd]"
+                      dataType="i4"
+                      name="age_grouping_cd" />
+                    <externalMetadataColumn
+                      refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[measurement_year]"
+                      dataType="i4"
+                      name="measurement_year" />
+                    <externalMetadataColumn
+                      refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[pop_cnt]"
+                      dataType="i4"
+                      name="pop_cnt" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[source_census]"
+                      dataType="i4"
+                      lineageId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[source_census]"
+                      name="source_census" />
+                    <outputColumn
+                      refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[county_cd]"
+                      dataType="i4"
+                      lineageId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[county_cd]"
+                      name="county_cd" />
+                    <outputColumn
+                      refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[pk_gndr]"
+                      dataType="i4"
+                      lineageId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[pk_gndr]"
+                      name="pk_gndr" />
+                    <outputColumn
+                      refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_race]"
+                      dataType="i4"
+                      lineageId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_race]"
+                      name="cd_race" />
+                    <outputColumn
+                      refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[age_grouping_cd]"
+                      dataType="i4"
+                      lineageId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[age_grouping_cd]"
+                      name="age_grouping_cd" />
+                    <outputColumn
+                      refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[measurement_year]"
+                      dataType="i4"
+                      lineageId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[measurement_year]"
+                      name="measurement_year" />
+                    <outputColumn
+                      refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[pop_cnt]"
+                      dataType="i4"
+                      lineageId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[pop_cnt]"
+                      name="pop_cnt" />
+                    <outputColumn
+                      refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\transfer data.Paths[OLE DB Source Output]"
+              endId="Package\transfer data\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\transfer data\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\truncate table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{26B24C38-353C-48AE-86CE-1548B4F9968F}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="truncate table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C708F07F-7405-4445-ABD9-C5AB853BD77D}"
+          SQLTask:SqlStatementSource="truncate table  test_annie.ref_lookup_census_population;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{D313C502-A586-463D-8D1C-C3C4E29E8228}"
+      DTS:From="Package\truncate table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\transfer data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{B7168A93-43B8-4FC5-9266-2DF398FA42BF}"
+      DTS:From="Package\set mysql params"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\truncate table" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="142,42"
+          Id="Package\transfer data"
+          TopLeft="405,107" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\set mysql params"
+          TopLeft="427,31" />
+        <NodeLayout
+          Size="146,42"
+          Id="Package\truncate table"
+          TopLeft="70,50" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="216,76.6666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="189,51.3333333333333"
+              Start="0,0"
+              End="181.5,51.3333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="75.7614678899083,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="75.7614678899083,0"
+                    Point2="79.7614678899083,0"
+                    Point3="79.7614678899083,4" />
+                  <mssgle:LineSegment
+                    End="79.7614678899083,47.3333333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="79.7614678899083,47.3333333333333"
+                    Point2="79.7614678899083,51.3333333333333"
+                    Point3="83.7614678899083,51.3333333333333" />
+                  <mssgle:LineSegment
+                    End="181.5,51.3333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="427,52">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-211,13.3333333333333"
+              Start="0,0"
+              End="-203.5,13.3333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-117.954128440367,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-117.954128440367,0"
+                    Point2="-121.954128440367,0"
+                    Point3="-121.954128440367,4" />
+                  <mssgle:LineSegment
+                    End="-121.954128440367,9.33333333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-121.954128440367,9.33333333333333"
+                    Point2="-121.954128440367,13.3333333333333"
+                    Point3="-125.954128440367,13.3333333333333" />
+                  <mssgle:LineSegment
+                    End="-203.5,13.3333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\transfer data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\transfer data\OLE DB Source"
+          TopLeft="207,127" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\transfer data\ADO NET Destination"
+          TopLeft="291,316" />
+        <EdgeLayout
+          Id="Package\transfer data.Paths[OLE DB Source Output]"
+          TopLeft="283,169">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="98.5,147"
+              Start="0,0"
+              End="98.5,139.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,69.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,69.5"
+                    Point2="0,73.5"
+                    Point3="4,73.5" />
+                  <mssgle:LineSegment
+                    End="94.5,73.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="94.5,73.5"
+                    Point2="98.5,73.5"
+                    Point3="98.5,77.5" />
+                  <mssgle:LineSegment
+                    End="98.5,139.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\transfer data\ADO NET Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\transfer data\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
