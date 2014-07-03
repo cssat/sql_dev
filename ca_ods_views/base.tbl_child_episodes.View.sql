@@ -1,7 +1,11 @@
 USE [CA_ODS]
 GO
 
-/****** Object:  View [base].[tbl_child_episodes]    Script Date: 6/2/2014 2:12:21 PM ******/
+/****** Object:  View [base].[tbl_child_episodes]    Script Date: 7/2/2014 1:10:23 PM ******/
+DROP VIEW [base].[tbl_child_episodes]
+GO
+
+/****** Object:  View [base].[tbl_child_episodes]    Script Date: 7/2/2014 1:10:23 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -10,14 +14,16 @@ GO
 
 
 
-ALTER VIEW [base].[tbl_child_episodes]
+
+
+CREATE VIEW [base].[tbl_child_episodes]
 AS
-SELECT
+SELECT 
 	P.child [id_prsn_child]
 	,P.id_case
 	,P.first_removal_dt [first_removal_date]
 	,P.latest_removal_dt [latest_removal_date]
-	,isnull(cP.old_region_desc,'-') [removal_region]
+	,p.tx_region [removal_region]
 	,iif(P.removal_county_cd between 1 and 39,P.removal_county_cd,-99) [removal_county_cd]
 	, iif(P.removal_county_cd between 1 and 39,cP.county_desc,'-')[removal_county]
 	,dbo.IntDate_to_CalDate(P.id_calendar_dim_begin) [state_custody_start_date]
@@ -105,7 +111,7 @@ LEFT JOIN ref_lookup_county cP on cP.county_cd=P.[removal_county_cd]
 LEFT JOIN ( 
 	SELECT 
 		PE.*
-		,RANK() OVER(PARTITION BY PE.id_removal_episode_fact ORDER BY PE.begin_date ASC, COALESCE(PE.end_date, '12/31/9999') ASC) [PlacementOrderAsc]
+		,row_number() OVER(PARTITION BY PE.id_removal_episode_fact ORDER BY PE.begin_date ASC, COALESCE(PE.end_date, '12/31/9999') ASC) [PlacementOrderAsc]
 	FROM base.rptPlacement_Events PE
 ) FP ON 
 	FP.id_removal_episode_fact = P.id_removal_episode_fact
@@ -126,20 +132,22 @@ LEFT JOIN dbo.DISCHARGE_REASON_DIM DRD ON
 LEFT JOIN dbo.PLACEMENT_RESULT_DIM PRD ON
 	PRD.ID_PLACEMENT_RESULT_DIM = REF.ID_PLACEMENT_RESULT_DIM_LATEST
 LEFT JOIN (
-	SELECT
+	SELECT distinct
 		CD_PLCM_SETNG
 		,TX_PLCM_SETNG
 	FROM dbo.PLACEMENT_TYPE_DIM
+	where TX_PLCM_SETNG <> 'Failed' 
 	GROUP BY 
 		CD_PLCM_SETNG
 		,TX_PLCM_SETNG
+		
 ) PTD ON
 	PTD.CD_PLCM_SETNG = P.init_cd_plcm_setng
 LEFT JOIN dbo.PEOPLE_DIM PD ON
 	PD.ID_PEOPLE_DIM = REF.ID_PEOPLE_DIM_CHILD
 LEFT JOIN dbo.ref_braam_race BR ON
 	BR.tx_braam_race = P.tx_braam_race
-left join base.rptPlacement_Events lngplc on lngplc.id_placement_fact=p.long_cd_plcm_setng
+left join base.rptPlacement_Events lngplc on lngplc.id_placement_fact=p.longest_id_placement_fact
 left join (select child,count(distinct id_removal_episode_fact) as eps_cnt from base.rptPlacement group by child) eps_tot on eps_tot.child=p.child
 
 
@@ -149,5 +157,8 @@ left join (select child,count(distinct id_removal_episode_fact) as eps_cnt from 
 
 
 
+
+
 GO
+
 
