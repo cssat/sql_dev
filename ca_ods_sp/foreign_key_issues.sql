@@ -6,3 +6,9 @@ select ID_EDUCATION_FACT from EDUCATION_FACT
 select id_intake_fact from INTAKE_PARTICIPANT_FACT
 except
 select id_intake_fact from INTAKE_FACT
+
+select id_investigation_assessment_Fact from SUBSTANCE_ABUSE_WIZARD_FACT
+except
+select id_investigation_assessment_Fact from INVESTIGATION_ASSESSMENT_FACT
+
+

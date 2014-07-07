@@ -7,12 +7,12 @@
   DTS:CreatorName="NEBULA2\messej"
   DTS:DTSID="{7B706CC4-6EA2-4045-9BC9-AE447FB2FB0F}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="11.0.3369.0"
+  DTS:LastModifiedProductVersion="11.0.5058.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="buildPortalTables"
   DTS:PackageType="5"
-  DTS:VersionBuild="144"
-  DTS:VersionGUID="{62AE66B2-6626-4242-922C-E525F7925E24}">
+  DTS:VersionBuild="145"
+  DTS:VersionGUID="{8D2B23A5-7C73-4D17-98D4-3466CC0867D4}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -357,7 +357,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{1F770548-82ED-4A21-94C9-AD6799BC53FA}"
-          SQLTask:SqlStatementSource="exec prtl.prod_build_PRTL_POC1AB ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          SQLTask:SqlStatementSource="exec prtl.prod_build_prtl_poc1ab_entries_exits ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
             SQLTask:ParameterName="0"
             SQLTask:DtsVariableName="User::permission_key"
