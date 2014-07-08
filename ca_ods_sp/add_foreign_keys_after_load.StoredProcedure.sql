@@ -1,3 +1,5 @@
+use CA_ODS
+go
 alter procedure dbo.prod_ca_load_add_foreign_keys
 as
 ALTER TABLE [dbo].[ABUSE_FACT]  WITH CHECK ADD  CONSTRAINT [fk_id_calendar_dim_founded] FOREIGN KEY([ID_CALENDAR_DIM_FOUNDED])
