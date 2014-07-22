@@ -585,7 +585,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 end if; -- all not in cache
         select
             qry_type "qry_type_poc1_first_all"
-            ,pbcw3.cohort_entry_date as "Year"
+            ,pbcw3.cohort_entry_date as "Date"
             , pbcw3.age_grouping_cd
             , case pbcw3.age_grouping_cd
                 when 0 then @age0

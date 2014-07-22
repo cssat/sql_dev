@@ -1,8 +1,8 @@
-use test_annie;
+use review_annie;
 
 
 
-truncate table test_annie.cache_qry_param_pbcw3;
+truncate table review_annie.cache_qry_param_pbcw3;
 LOAD DATA LOCAL INFILE '/data/pocweb/cache_qry_param_pbcw3.txt'
 into table cache_qry_param_pbcw3
 fields terminated by '|'
@@ -15,7 +15,7 @@ analyze table cache_qry_param_pbcw3;
   set load_date=now(),row_count=(select count(*) from cache_qry_param_pbcw3)
   where tbl_name='cache_qry_param_pbcw3';
 
-truncate table test_annie.cache_pbcw3_params;
+truncate table review_annie.cache_pbcw3_params;
 LOAD DATA LOCAL INFILE '/data/pocweb/cache_pbcw3_params.txt'
 into table cache_pbcw3_params
 fields terminated by '|'
@@ -28,7 +28,7 @@ analyze table cache_pbcw3_params;
   set load_date=now(),row_count=(select count(*) from cache_pbcw3_params)
   where tbl_name='cache_pbcw3_params';
 
-truncate table test_annie.cache_pbcw3_aggr;
+truncate table review_annie.cache_pbcw3_aggr;
 LOAD DATA LOCAL INFILE '/data/pocweb/cache_pbcw3_aggr.txt'
 into table cache_pbcw3_aggr
 fields terminated by '|'

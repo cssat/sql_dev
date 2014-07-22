@@ -1,4 +1,4 @@
-use test_annie;
+use review_annie;
 truncate table cache_poc1ab_params;
 LOAD DATA LOCAL INFILE '/data/pocweb/cache_poc1ab_params.txt'
 into table cache_poc1ab_params
