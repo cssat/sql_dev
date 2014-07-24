@@ -1,16 +1,17 @@
 USE [CA_ODS]
 GO
 
-/****** Object:  View [base].[tbl_child_episodes]    Script Date: 7/2/2014 1:10:23 PM ******/
+/****** Object:  View [base].[tbl_child_episodes]    Script Date: 7/24/2014 9:21:24 AM ******/
 DROP VIEW [base].[tbl_child_episodes]
 GO
 
-/****** Object:  View [base].[tbl_child_episodes]    Script Date: 7/2/2014 1:10:23 PM ******/
+/****** Object:  View [base].[tbl_child_episodes]    Script Date: 7/24/2014 9:21:24 AM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
 
 
 
@@ -33,9 +34,9 @@ SELECT
 	,P.tx_dsch_rsn [state_discharge_reason]
 	,DRD.CD_DSCH_RSN [state_discharge_reason_code]
 	,P.discharge_dt [federal_discharge_date]
-	,CASE WHEN DATEADD(YEAR, 18, P.birthdate) < P.discharge_dt THEN DATEADD(YEAR, 18, P.birthdate) ELSE p.discharge_dt END [federal_discharge_date_force_18]
+	,IIF( DATEADD(YEAR, 18, P.birthdate) < P.discharge_dt , DATEADD(YEAR, 18, P.birthdate) , p.discharge_dt )  [federal_discharge_date_force_18]
 	,COALESCE(DRD.CD_DSCH_RSN, PRD.CD_END_RSN) [federal_discharge_reason_code]
-	,COALESCE(P.tx_dsch_rsn, P.tx_plcm_dsch_rsn) [federal_discharge_reason]
+	,COALESCE(DRD.tx_dsch_rsn, PRD.tx_end_rsn) [federal_discharge_reason]
 	,P.init_cd_plcm_setng [initial_plcm_setting_for_removal_cd]
 	,PTD.TX_PLCM_SETNG [initial_plcm_setting_for_removal]
 	,FP.id_plcmnt_evnt [init_id_plcmnt_evnt]
@@ -149,6 +150,7 @@ LEFT JOIN dbo.ref_braam_race BR ON
 	BR.tx_braam_race = P.tx_braam_race
 left join base.rptPlacement_Events lngplc on lngplc.id_placement_fact=p.longest_id_placement_fact
 left join (select child,count(distinct id_removal_episode_fact) as eps_cnt from base.rptPlacement group by child) eps_tot on eps_tot.child=p.child
+
 
 
 
