@@ -1,0 +1,119 @@
+SELECT DISTINCT
+	C.CaseKey
+	,WPM.PersonKey
+--INTO dbo.CaseTeamMemberList
+FROM ca.PAYMENT_FACT PF
+INNER JOIN dbo.PersonMapping CPM ON
+	CPM.ID_PEOPLE_DIM = PF.ID_PEOPLE_DIM_CHILD
+INNER JOIN dbo.Household H ON
+	H.HeadPersonKey = CPM.PersonKey
+INNER JOIN dbo.[Case] C ON
+	C.HouseholdKey = H.HouseholdKey
+INNER JOIN ca.WORKER_DIM WD ON
+	WD.ID_WORKER_DIM = PF.ID_WORKER_DIM
+INNER JOIN dbo.PersonMapping WPM ON
+	WPM.ID_PRSN = WD.ID_PRSN
+ORDER BY 1, 2
+
+
+SELECT DISTINCT ST2.CaseKey, 
+    SUBSTRING(
+        (
+            SELECT ','+ CONVERT(VARCHAR, ST1.PersonKey) AS [text()]
+            FROM dbo.CaseTeamMemberList ST1
+            WHERE ST1.CaseKey = ST2.CaseKey
+            ORDER BY ST1.CaseKey, ST1.PersonKey
+            FOR XML PATH ('')
+        ), 2, 1000) [TeamMembers]
+--INTO dbo.CaseTeamList
+FROM dbo.CaseTeamMemberList ST2
+ORDER BY ST2.CaseKey, TeamMembers
+
+
+SELECT DISTINCT
+	TeamMembers
+	,CONVERT(INT, NULL) [TeamKey]
+	,CONVERT(BIT, 0) [TeamCreated]
+--INTO dbo.TeamMemberList
+FROM dbo.CaseTeamList
+ORDER BY 1
+
+
+DECLARE @TeamKeys TABLE (TeamKey INT)
+DECLARE @TeamKey INT
+
+WHILE (SELECT COUNT(*) FROM TeamMemberList WHERE TeamKey IS NULL) > 0
+BEGIN
+	INSERT dbo.Team (CreatedDate)
+	OUTPUT INSERTED.TeamKey INTO @TeamKeys
+	VALUES (SYSDATETIMEOFFSET())
+
+	SET @TeamKey = (SELECT TOP 1 TeamKey FROM @TeamKeys)
+
+	UPDATE TML
+	SET TeamKey = @TeamKey
+	FROM dbo.TeamMemberList TML
+	INNER JOIN (
+		SELECT TOP 1
+			TeamMembers
+		FROM dbo.TeamMemberList
+		WHERE TeamCreated = 0
+			AND TeamKey IS NULL
+		ORDER BY TeamMembers
+	) L ON
+		L.TeamMembers = TML.TeamMembers
+
+	DELETE FROM @TeamKeys
+END
+
+UPDATE C
+SET TeamKey = TML.TeamKey
+--SELECT C.*, TML.TeamKey
+FROM dbo.[Case] C
+INNER JOIN dbo.CaseTeamList CTL ON
+	CTL.CaseKey = C.CaseKey
+INNER JOIN dbo.TeamMemberList TML ON
+	TML.TeamMembers = CTL.TeamMembers
+		AND TML.TeamKey IS NOT NULL
+WHERE C.TeamKey IS NULL
+
+INSERT dbo.TeamMember
+	(TeamKey, PersonKey, BeginDate)
+SELECT
+	C.TeamKey
+	,CTML.PersonKey
+	,CONVERT(DATE, ISNULL(MIN(CD.CALENDAR_DATE), GETDATE())) [BeginDate]
+FROM dbo.[Case] C
+INNER JOIN dbo.CaseTeamMemberList CTML ON
+	CTML.CaseKey = C.CaseKey
+INNER JOIN dbo.TeamMemberList TML ON
+	TML.TeamKey = C.TeamKey
+		AND TML.TeamCreated = 0
+INNER JOIN dbo.Household H ON
+	H.HouseholdKey = C.HouseholdKey
+INNER JOIN dbo.PersonMapping CPM ON
+	CPM.PersonKey = H.HeadPersonKey
+INNER JOIN dbo.PersonMapping WPM ON
+	WPM.PersonKey = CTML.PersonKey
+INNER JOIN ca.WORKER_DIM WD ON
+	WD.ID_PRSN = WPM.ID_PRSN
+INNER JOIN ca.PAYMENT_FACT PF ON
+	PF.ID_PEOPLE_DIM_CHILD = CPM.ID_PEOPLE_DIM
+		AND PF.ID_WORKER_DIM = WD.ID_WORKER_DIM
+INNER JOIN ca.CALENDAR_DIM CD ON
+	CD.ID_CALENDAR_DIM = PF.ID_CALENDAR_DIM_WARRANT
+WHERE C.TeamKey IS NOT NULL
+GROUP BY
+	C.TeamKey
+	,CTML.PersonKey
+
+UPDATE TML
+SET TeamCreated = 1
+FROM dbo.TeamMemberList TML
+WHERE EXISTS (
+		SELECT TM.TeamMemberKey
+		FROM dbo.TeamMember TM
+		WHERE TM.TeamKey = TML.TeamKey
+	)
+	AND TML.TeamCreated = 0
+
