@@ -1,0 +1,90 @@
+SELECT DISTINCT
+	--P.FL_PATERNITY_STATUS_KNOWN
+	--IIF(P.FL_PATERNITY_STATUS_KNOWN = 'Y', 'Yes', 'No') [FL_PATERNITY_STATUS_KNOWN]
+	IIF(P.FL_PATERNITY_STATUS_KNOWN = 1, 'Yes', 'No') [FL_PATERNITY_STATUS_KNOWN]
+	--P.CD_MULTI_RACE_ETHNICITY
+	--,P.TX_MULTI_RACE_ETHNICITY
+	--ISNULL(P.CD_MULTI_RACE_ETHNICITY, 9) [CD_MULTI_RACE_ETHNICITY]
+	--,IIF(P.CD_MULTI_RACE_ETHNICITY IS NULL, 'Unknown', P.TX_MULTI_RACE_ETHNICITY) [TX_MULTI_RACE_ETHNICITY]
+	--IIF(P.CD_SSI_SSA_STATUS = 17 AND P.TX_SSI_SSA_STATUS = 'SW: Suspend - Welfare Reform', 80, ISNULL(P.CD_SSI_SSA_STATUS, 28)) [CD_SSI_SSA_STATUS]
+	--,CASE P.CD_SSI_SSA_STATUS
+	--	WHEN 5 THEN 'PI: In Pay - Hospital'
+	--	WHEN 8 THEN 'PU: In Pay - DHU Hearing'
+	--	WHEN 10 THEN 'SA: Suspend - Adoption'
+	--	WHEN 23 THEN 'CM: Closed - Aged Out Majority'
+	--	ELSE IIF(P.CD_SSI_SSA_STATUS IS NULL, 'DN: Denied', P.TX_SSI_SSA_STATUS)
+	--END [TX_SSI_SSA_STATUS]
+FROM ca.PEOPLE_DIM P
+INNER JOIN (
+	SELECT
+		P.ID_PRSN
+		,MAX(P.ID_PEOPLE_DIM) [MAX_ID_PEOPLE_DIM]
+	FROM ca.PEOPLE_DIM P
+	GROUP BY
+		P.ID_PRSN
+) LP ON
+	LP.MAX_ID_PEOPLE_DIM = P.ID_PEOPLE_DIM
+WHERE
+	P.ID_PRSN NOT IN (0, -1)
+ORDER BY 1
+
+/*
+INSERT dbo.CharacteristicCategory (CharacteristicCategoryName)
+VALUES 
+	('Flags')
+SELECT * FROM dbo.CharacteristicCategory ORDER BY CharacteristicCategoryName
+--*/
+/*
+INSERT dbo.CharacteristicType (CharacteristicTypeName, CharacteristicCategoryKey)
+VALUES
+	('Paternity Status Known', 4)
+SELECT * FROM dbo.CharacteristicType ORDER BY CharacteristicTypeKey
+--*/
+/*
+INSERT dbo.Characteristic (CharacteristicName, CharacteristicTypeKey)
+SELECT DISTINCT
+	IIF(P.FL_PATERNITY_STATUS_KNOWN = 1, 'Yes', 'No') [CharacteristicName]
+	,35 [CharacteristicTypeKey]
+FROM ca.PEOPLE_DIM P
+INNER JOIN (
+	SELECT
+		P.ID_PRSN
+		,MAX(P.ID_PEOPLE_DIM) [MAX_ID_PEOPLE_DIM]
+		,COUNT(P.ID_PEOPLE_DIM) [RECORDS]
+	FROM ca.PEOPLE_DIM P
+	GROUP BY
+		P.ID_PRSN
+) LP ON
+	LP.MAX_ID_PEOPLE_DIM = P.ID_PEOPLE_DIM
+WHERE 
+	P.ID_PRSN NOT IN (0, -1) 
+SELECT * FROM dbo.Characteristic WHERE CharacteristicTypeKey = 35 ORDER BY CharacteristicName
+--*/
+/*
+INSERT dbo.PersonCharacteristic (PersonKey, CharacteristicKey)
+SELECT
+	PM.PersonKey
+	,C.CharacteristicKey
+FROM ca.PEOPLE_DIM P
+INNER JOIN (
+	SELECT
+		P.ID_PRSN
+		,MAX(P.ID_PEOPLE_DIM) [MAX_ID_PEOPLE_DIM]
+	FROM ca.PEOPLE_DIM P
+	GROUP BY
+		P.ID_PRSN
+) LP ON
+	LP.MAX_ID_PEOPLE_DIM = P.ID_PEOPLE_DIM
+INNER JOIN dbo.PersonMapping PM ON
+	PM.ID_PRSN = P.ID_PRSN
+INNER JOIN dbo.Characteristic C ON
+	C.CharacteristicName = IIF(P.FL_PATERNITY_STATUS_KNOWN = 1, 'Yes', 'No')
+		AND C.CharacteristicTypeKey = 35
+WHERE 
+	P.ID_PRSN NOT IN (0, -1) 
+--*/
+SELECT COUNT(*) [Characteristics] FROM dbo.Characteristic
+SELECT COUNT(*) [People] FROM dbo.Person
+SELECT COUNT(*) [Person Characteristics] FROM dbo.PersonCharacteristic WHERE CharacteristicKey = 396
+
+SELECT * FROM Characteristic WHERE CharacteristicTypeKey = 24
