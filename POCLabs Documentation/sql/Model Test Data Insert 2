@@ -1,0 +1,32 @@
+SELECT * FROM dbo.DataType
+
+INSERT dbo.Question
+	(QuestionName, DataTypeKey)
+SELECT 'Units Paid', 3
+EXCEPT
+SELECT QuestionName, DataTypeKey FROM Question
+
+INSERT dbo.DataItem
+	(ItemName)
+SELECT DISTINCT
+	--ST.CD_UNIT_RATE_TYPE
+	--,
+	--ST.FL_RGAP
+	IIF(ST.FL_RGAP = 'Y', 'Yes', IIF(ST.FL_RGAP = 'N', 'No', 'Unspecified')) [FL_RGAP]
+FROM ca.SERVICE_TYPE_DIM ST
+WHERE NOT EXISTS (
+		SELECT DI.ItemName
+		FROM dbo.DataItem DI
+		WHERE DI.ItemName = IIF(ST.FL_RGAP = 'Y', 'Yes', IIF(ST.FL_RGAP = 'N', 'No', 'Unspecified'))
+	)
+
+INSERT dbo.QuestionItem
+	(QuestionKey, DataItemKey)
+SELECT DISTINCT
+	Q.QuestionKey
+	,DI.DataItemKey
+	--,DI.ItemName
+FROM ca.SERVICE_TYPE_DIM ST
+INNER JOIN dbo.DataItem DI ON
+	DI.ItemName = IIF(ST.FL_RGAP = 'Y', 'Yes', IIF(ST.FL_RGAP = 'N', 'No', 'Unspecified'))
+CROSS JOIN (SELECT QuestionKey FROM dbo.Question WHERE QuestionName = 'RGAP') Q
