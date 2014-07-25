@@ -1,0 +1,112 @@
+INSERT dbo.PaymentKeys
+	(ID_PAYMENT_FACT, ChildPersonKey, CaseKey, WorkerPersonKey)
+SELECT DISTINCT
+	PF.ID_PAYMENT_FACT
+	,CPM.PersonKey [ChildPersonKey]
+	,C.CaseKey
+	,WPM.PersonKey [WorkerPersonKey]
+FROM ca.PAYMENT_FACT PF
+INNER JOIN dbo.PersonMapping CPM ON
+	CPM.ID_PEOPLE_DIM = PF.ID_PEOPLE_DIM_CHILD
+INNER JOIN dbo.Household H ON
+	H.HeadPersonKey = CPM.PersonKey
+INNER JOIN dbo.[Case] C ON
+	C.HouseholdKey = H.HouseholdKey
+INNER JOIN ca.WORKER_DIM WD ON
+	WD.ID_WORKER_DIM = PF.ID_WORKER_DIM
+INNER JOIN dbo.PersonMapping WPM ON
+	WPM.ID_PRSN = WD.ID_PRSN
+
+UPDATE PK
+SET ActivityTypeKey = AT.ActivityTypeKey
+FROM dbo.PaymentKeys PK
+INNER JOIN ca.PAYMENT_FACT PF ON
+	PF.ID_PAYMENT_FACT = PK.ID_PAYMENT_FACT
+INNER JOIN dbo.ServiceTypeHierarchy STH ON
+	STH.ID_SERVICE_TYPE_DIM = PF.ID_SERVICE_TYPE_DIM
+INNER JOIN dbo.ActivityType AT ON
+	AT.ActivityTypeName = STH.TX_SRVC_CTGRY
+
+INSERT dbo.Activity
+	(DateRequested, ActivityStatus, CaseKey, ActivityTypeKey, RequestorPersonKey, AssignedPersonKey)
+SELECT
+	CONVERT(DATE, ISNULL(CD.CALENDAR_DATE, GETDATE())) [DateRequested]
+	,'Active' [ActivityStatus]
+	,R.CaseKey
+	,R.ActivityTypeKey
+	,PK.WorkerPersonKey [RequestorPersonKey]
+	,PK.WorkerPersonKey [AssignedPersonKey]
+FROM (
+	SELECT
+		R.CaseKey
+		,R.ActivityTypeKey
+		,MIN(PK.ID_PAYMENT_FACT) [ID_PAYMENT_FACT]
+	FROM (
+		SELECT DISTINCT
+			CaseKey
+			,ActivityTypeKey
+		FROM dbo.PaymentKeys
+		WHERE ActivityKey IS NULL
+	) R
+	INNER JOIN dbo.PaymentKeys PK ON
+		PK.CaseKey = R.CaseKey
+			AND PK.ActivityTypeKey = PK.ActivityTypeKey
+	GROUP BY
+		R.CaseKey
+		,R.ActivityTypeKey
+) R
+INNER JOIN dbo.PaymentKeys PK ON 
+	PK.ID_PAYMENT_FACT = R.ID_PAYMENT_FACT
+INNER JOIN ca.PAYMENT_FACT PF ON
+	PF.ID_PAYMENT_FACT = PK.ID_PAYMENT_FACT
+INNER JOIN ca.CALENDAR_DIM CD ON
+	CD.ID_CALENDAR_DIM = PF.ID_CALENDAR_DIM_PAYMENT_START
+
+UPDATE PK
+SET ActivityKey = A.ActivityKey
+FROM dbo.PaymentKeys PK
+INNER JOIN dbo.Activity A ON
+	A.CaseKey = PK.CaseKey
+		AND A.ActivityTypeKey = PK.ActivityTypeKey
+
+ALTER TABLE dbo.FormSubmission ADD ID_PAYMENT_FACT INT NULL
+
+INSERT dbo.FormSubmission
+	(CreatedDate, FormKey, ActivityKey, PersonKey, LocationKey, ID_PAYMENT_FACT)
+SELECT DISTINCT
+	CONVERT(DATETIMEOFFSET(7), CONVERT(VARCHAR, ISNULL(CD.CALENDAR_DATE, GETDATE()), 120) + ' -07:00') [CreatedDate]
+	,FN.CurrentVersionFormKey [FormKey]
+	,PK.ActivityKey
+	,PK.WorkerPersonKey [PersonKey]
+	,LM.LocationKey
+	,PK.ID_PAYMENT_FACT
+FROM dbo.PaymentKeys PK
+INNER JOIN ca.PAYMENT_FACT PF ON
+	PF.ID_PAYMENT_FACT = PK.ID_PAYMENT_FACT
+INNER JOIN ca.CALENDAR_DIM CD ON
+	CD.ID_CALENDAR_DIM = PF.ID_CALENDAR_DIM_WARRANT
+INNER JOIN dbo.ServiceTypeHierarchy STH ON
+	STH.ID_SERVICE_TYPE_DIM = PF.ID_SERVICE_TYPE_DIM
+INNER JOIN dbo.FormName FN ON
+	FN.FormTitle = STH.TX_SRVC
+INNER JOIN dbo.LocationMapping LM ON
+	LM.ID_LOCATION_DIM = PF.ID_LOCATION_DIM
+
+UPDATE PK
+SET FormSubmissionKey = FS.FormSubmissionKey
+FROM dbo.PaymentKeys PK
+INNER JOIN dbo.FormSubmission FS ON
+	FS.ID_PAYMENT_FACT = PK.ID_PAYMENT_FACT
+
+ALTER TABLE dbo.FormSubmission DROP COLUMN ID_PAYMENT_FACT
+
+
+INSERT dbo.ActivityRecipient
+	(PersonKey, FormSubmissionKey)
+SELECT
+	ChildPersonKey [PersonKey]
+	,FormSubmissionKey
+FROM dbo.PaymentKeys
+
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+SELECT COUNT(*) FROM dbo.FormData
