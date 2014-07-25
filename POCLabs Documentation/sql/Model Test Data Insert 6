@@ -1,0 +1,343 @@
+SELECT * FROM dbo.Question
+
+SELECT * FROM dbo.DataItem
+
+SELECT * FROM dbo.DataInteger
+
+INSERT dbo.DataInteger
+	(IntegerValue)
+SELECT DISTINCT
+	AM_UNITS
+FROM ca.PAYMENT_FACT
+
+SELECT * FROM dbo.DataMoney
+
+INSERT dbo.DataMoney
+	(MoneyValue)
+SELECT DISTINCT
+	AM_TOTAL_PAID
+FROM ca.PAYMENT_FACT
+
+SELECT * FROM dbo.DataFloat
+
+INSERT dbo.DataFloat
+	(FloatValue)
+SELECT DISTINCT
+	AM_RATE
+FROM ca.PAYMENT_FACT
+
+SELECT * FROM dbo.DataDate
+
+INSERT dbo.DataDate
+	(DateValue)
+SELECT DISTINCT
+	CONVERT(DATE, ISNULL(CD.CALENDAR_DATE, GETDATE())) [DateValue]
+FROM (
+	SELECT DISTINCT
+		ID_CALENDAR_DIM_AUTHORIZATION_BEGIN [ID_CALENDAR_DIM]
+	FROM ca.PAYMENT_FACT
+
+	UNION
+
+	SELECT DISTINCT
+		ID_CALENDAR_DIM_AUTHORIZATION_END
+	FROM ca.PAYMENT_FACT
+
+	UNION
+
+	SELECT DISTINCT
+		ID_CALENDAR_DIM_PAYMENT_START
+	FROM ca.PAYMENT_FACT
+
+	UNION
+
+	SELECT DISTINCT
+		ID_CALENDAR_DIM_PAYMENT_END
+	FROM ca.PAYMENT_FACT
+
+	UNION
+
+	SELECT DISTINCT
+		ID_CALENDAR_DIM_SERVICE_BEGIN
+	FROM ca.PAYMENT_FACT
+
+	UNION
+
+	SELECT DISTINCT
+		ID_CALENDAR_DIM_SERVICE_END
+	FROM ca.PAYMENT_FACT
+
+	UNION
+
+	SELECT DISTINCT
+		ID_CALENDAR_DIM_WARRANT
+	FROM ca.PAYMENT_FACT
+) D
+INNER JOIN ca.CALENDAR_DIM CD ON
+	CD.ID_CALENDAR_DIM = D.ID_CALENDAR_DIM
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DIT.DataItemKey [DataValueKey]
+	,Q.DataTypeKey
+	,PK.FormSubmissionKey
+	,Q.QuestionKey
+FROM dbo.PaymentKeys PK
+INNER JOIN ca.PAYMENT_FACT PF ON
+	PF.ID_PAYMENT_FACT = PK.ID_PAYMENT_FACT
+INNER JOIN ca.SERVICE_TYPE_DIM ST ON
+	ST.ID_SERVICE_TYPE_DIM = PF.ID_SERVICE_TYPE_DIM
+INNER JOIN dbo.DataItem DIT ON
+	DIT.ItemName = ST.TX_PAYMENT_TYPE
+CROSS JOIN (SELECT QuestionKey, DataTypeKey FROM dbo.Question WHERE QuestionKey = 1) Q
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DIT.DataItemKey [DataValueKey]
+	,Q.DataTypeKey
+	,PK.FormSubmissionKey
+	,Q.QuestionKey
+FROM dbo.PaymentKeys PK
+INNER JOIN ca.PAYMENT_FACT PF ON
+	PF.ID_PAYMENT_FACT = PK.ID_PAYMENT_FACT
+INNER JOIN ca.SERVICE_TYPE_DIM ST ON
+	ST.ID_SERVICE_TYPE_DIM = PF.ID_SERVICE_TYPE_DIM
+INNER JOIN dbo.DataItem DIT ON
+	DIT.ItemName = ST.TX_SERVICE_CONCURRENCY
+CROSS JOIN (SELECT QuestionKey, DataTypeKey FROM dbo.Question WHERE QuestionKey = 2) Q
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DIT.DataItemKey [DataValueKey]
+	,Q.DataTypeKey
+	,PK.FormSubmissionKey
+	,Q.QuestionKey
+FROM dbo.PaymentKeys PK
+INNER JOIN ca.PAYMENT_FACT PF ON
+	PF.ID_PAYMENT_FACT = PK.ID_PAYMENT_FACT
+INNER JOIN ca.SERVICE_TYPE_DIM ST ON
+	ST.ID_SERVICE_TYPE_DIM = PF.ID_SERVICE_TYPE_DIM
+INNER JOIN dbo.DataItem DIT ON
+	DIT.ItemName = ST.TX_UNIT_RATE_TYPE
+CROSS JOIN (SELECT QuestionKey, DataTypeKey FROM dbo.Question WHERE QuestionKey = 3) Q
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DIT.DataItemKey [DataValueKey]
+	,Q.DataTypeKey
+	,PK.FormSubmissionKey
+	,Q.QuestionKey
+FROM dbo.PaymentKeys PK
+INNER JOIN ca.PAYMENT_FACT PF ON
+	PF.ID_PAYMENT_FACT = PK.ID_PAYMENT_FACT
+INNER JOIN ca.SERVICE_TYPE_DIM ST ON
+	ST.ID_SERVICE_TYPE_DIM = PF.ID_SERVICE_TYPE_DIM
+INNER JOIN dbo.DataItem DIT ON
+	DIT.ItemName = IIF(ST.FL_ELIGIBLE_IVE = 'Y', 'Yes', IIF(ST.FL_ELIGIBLE_IVE = 'N', 'No', 'Unspecified'))
+CROSS JOIN (SELECT QuestionKey, DataTypeKey FROM dbo.Question WHERE QuestionKey = 4) Q
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DIT.DataItemKey [DataValueKey]
+	,Q.DataTypeKey
+	,PK.FormSubmissionKey
+	,Q.QuestionKey
+FROM dbo.PaymentKeys PK
+INNER JOIN ca.PAYMENT_FACT PF ON
+	PF.ID_PAYMENT_FACT = PK.ID_PAYMENT_FACT
+INNER JOIN ca.SERVICE_TYPE_DIM ST ON
+	ST.ID_SERVICE_TYPE_DIM = PF.ID_SERVICE_TYPE_DIM
+INNER JOIN dbo.DataItem DIT ON
+	DIT.ItemName = IIF(ST.FL_FUNDING_IV_E = 'Y', 'Yes', IIF(ST.FL_FUNDING_IV_E = 'N', 'No', 'Unspecified'))
+CROSS JOIN (SELECT QuestionKey, DataTypeKey FROM dbo.Question WHERE QuestionKey = 5) Q
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DIT.DataItemKey [DataValueKey]
+	,Q.DataTypeKey
+	,PK.FormSubmissionKey
+	,Q.QuestionKey
+FROM dbo.PaymentKeys PK
+INNER JOIN ca.PAYMENT_FACT PF ON
+	PF.ID_PAYMENT_FACT = PK.ID_PAYMENT_FACT
+INNER JOIN ca.SERVICE_TYPE_DIM ST ON
+	ST.ID_SERVICE_TYPE_DIM = PF.ID_SERVICE_TYPE_DIM
+INNER JOIN dbo.DataItem DIT ON
+	DIT.ItemName = IIF(ST.FL_IV_E_PENETRATION_RATE = 'Y', 'Yes', IIF(ST.FL_IV_E_PENETRATION_RATE = 'N', 'No', 'Unspecified'))
+CROSS JOIN (SELECT QuestionKey, DataTypeKey FROM dbo.Question WHERE QuestionKey = 6) Q
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DIT.DataItemKey [DataValueKey]
+	,Q.DataTypeKey
+	,PK.FormSubmissionKey
+	,Q.QuestionKey
+FROM dbo.PaymentKeys PK
+INNER JOIN ca.PAYMENT_FACT PF ON
+	PF.ID_PAYMENT_FACT = PK.ID_PAYMENT_FACT
+INNER JOIN ca.SERVICE_TYPE_DIM ST ON
+	ST.ID_SERVICE_TYPE_DIM = PF.ID_SERVICE_TYPE_DIM
+INNER JOIN dbo.DataItem DIT ON
+	DIT.ItemName = IIF(ST.FL_RGAP = 'N', 'No', 'Unspecified')
+CROSS JOIN (SELECT QuestionKey, DataTypeKey FROM dbo.Question WHERE QuestionKey = 7) Q
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DDT.DataDateKey [DataValueKey]
+	,Q.DataTypeKey
+	,PK.FormSubmissionKey
+	,Q.QuestionKey
+FROM dbo.PaymentKeys PK
+INNER JOIN ca.PAYMENT_FACT PF ON
+	PF.ID_PAYMENT_FACT = PK.ID_PAYMENT_FACT
+INNER JOIN ca.CALENDAR_DIM CD ON
+	CD.ID_CALENDAR_DIM = PF.ID_CALENDAR_DIM_AUTHORIZATION_BEGIN
+INNER JOIN dbo.DataDate DDT ON
+	DDT.DateValue = CONVERT(DATE, ISNULL(CD.CALENDAR_DATE, GETDATE()))
+CROSS JOIN (SELECT QuestionKey, DataTypeKey FROM dbo.Question WHERE QuestionKey = 8) Q
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DDT.DataDateKey [DataValueKey]
+	,Q.DataTypeKey
+	,PK.FormSubmissionKey
+	,Q.QuestionKey
+FROM dbo.PaymentKeys PK
+INNER JOIN ca.PAYMENT_FACT PF ON
+	PF.ID_PAYMENT_FACT = PK.ID_PAYMENT_FACT
+INNER JOIN ca.CALENDAR_DIM CD ON
+	CD.ID_CALENDAR_DIM = PF.ID_CALENDAR_DIM_AUTHORIZATION_END
+INNER JOIN dbo.DataDate DDT ON
+	DDT.DateValue = CONVERT(DATE, ISNULL(CD.CALENDAR_DATE, GETDATE()))
+CROSS JOIN (SELECT QuestionKey, DataTypeKey FROM dbo.Question WHERE QuestionKey = 9) Q
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DDT.DataDateKey [DataValueKey]
+	,Q.DataTypeKey
+	,PK.FormSubmissionKey
+	,Q.QuestionKey
+FROM dbo.PaymentKeys PK
+INNER JOIN ca.PAYMENT_FACT PF ON
+	PF.ID_PAYMENT_FACT = PK.ID_PAYMENT_FACT
+INNER JOIN ca.CALENDAR_DIM CD ON
+	CD.ID_CALENDAR_DIM = PF.ID_CALENDAR_DIM_PAYMENT_START
+INNER JOIN dbo.DataDate DDT ON
+	DDT.DateValue = CONVERT(DATE, ISNULL(CD.CALENDAR_DATE, GETDATE()))
+CROSS JOIN (SELECT QuestionKey, DataTypeKey FROM dbo.Question WHERE QuestionKey = 10) Q
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DDT.DataDateKey [DataValueKey]
+	,Q.DataTypeKey
+	,PK.FormSubmissionKey
+	,Q.QuestionKey
+FROM dbo.PaymentKeys PK
+INNER JOIN ca.PAYMENT_FACT PF ON
+	PF.ID_PAYMENT_FACT = PK.ID_PAYMENT_FACT
+INNER JOIN ca.CALENDAR_DIM CD ON
+	CD.ID_CALENDAR_DIM = PF.ID_CALENDAR_DIM_PAYMENT_END
+INNER JOIN dbo.DataDate DDT ON
+	DDT.DateValue = CONVERT(DATE, ISNULL(CD.CALENDAR_DATE, GETDATE()))
+CROSS JOIN (SELECT QuestionKey, DataTypeKey FROM dbo.Question WHERE QuestionKey = 11) Q
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DDT.DataDateKey [DataValueKey]
+	,Q.DataTypeKey
+	,PK.FormSubmissionKey
+	,Q.QuestionKey
+FROM dbo.PaymentKeys PK
+INNER JOIN ca.PAYMENT_FACT PF ON
+	PF.ID_PAYMENT_FACT = PK.ID_PAYMENT_FACT
+INNER JOIN ca.CALENDAR_DIM CD ON
+	CD.ID_CALENDAR_DIM = PF.ID_CALENDAR_DIM_SERVICE_BEGIN
+INNER JOIN dbo.DataDate DDT ON
+	DDT.DateValue = CONVERT(DATE, ISNULL(CD.CALENDAR_DATE, GETDATE()))
+CROSS JOIN (SELECT QuestionKey, DataTypeKey FROM dbo.Question WHERE QuestionKey = 12) Q
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DDT.DataDateKey [DataValueKey]
+	,Q.DataTypeKey
+	,PK.FormSubmissionKey
+	,Q.QuestionKey
+FROM dbo.PaymentKeys PK
+INNER JOIN ca.PAYMENT_FACT PF ON
+	PF.ID_PAYMENT_FACT = PK.ID_PAYMENT_FACT
+INNER JOIN ca.CALENDAR_DIM CD ON
+	CD.ID_CALENDAR_DIM = PF.ID_CALENDAR_DIM_SERVICE_END
+INNER JOIN dbo.DataDate DDT ON
+	DDT.DateValue = CONVERT(DATE, ISNULL(CD.CALENDAR_DATE, GETDATE()))
+CROSS JOIN (SELECT QuestionKey, DataTypeKey FROM dbo.Question WHERE QuestionKey = 13) Q
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DDT.DataDateKey [DataValueKey]
+	,Q.DataTypeKey
+	,PK.FormSubmissionKey
+	,Q.QuestionKey
+FROM dbo.PaymentKeys PK
+INNER JOIN ca.PAYMENT_FACT PF ON
+	PF.ID_PAYMENT_FACT = PK.ID_PAYMENT_FACT
+INNER JOIN ca.CALENDAR_DIM CD ON
+	CD.ID_CALENDAR_DIM = PF.ID_CALENDAR_DIM_WARRANT
+INNER JOIN dbo.DataDate DDT ON
+	DDT.DateValue = CONVERT(DATE, ISNULL(CD.CALENDAR_DATE, GETDATE()))
+CROSS JOIN (SELECT QuestionKey, DataTypeKey FROM dbo.Question WHERE QuestionKey = 14) Q
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DFL.DataFloatKey [DataValueKey]
+	,Q.DataTypeKey
+	,PK.FormSubmissionKey
+	,Q.QuestionKey
+FROM dbo.PaymentKeys PK
+INNER JOIN ca.PAYMENT_FACT PF ON
+	PF.ID_PAYMENT_FACT = PK.ID_PAYMENT_FACT
+INNER JOIN dbo.DataFloat DFL ON
+	DFL.FloatValue = PF.AM_RATE
+CROSS JOIN (SELECT QuestionKey, DataTypeKey FROM dbo.Question WHERE QuestionKey = 15) Q
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DMY.DataMoneyKey [DataValueKey]
+	,Q.DataTypeKey
+	,PK.FormSubmissionKey
+	,Q.QuestionKey
+FROM dbo.PaymentKeys PK
+INNER JOIN ca.PAYMENT_FACT PF ON
+	PF.ID_PAYMENT_FACT = PK.ID_PAYMENT_FACT
+INNER JOIN dbo.DataMoney DMY ON
+	DMY.MoneyValue = CONVERT(MONEY, PF.AM_TOTAL_PAID)
+CROSS JOIN (SELECT QuestionKey, DataTypeKey FROM dbo.Question WHERE QuestionKey = 16) Q
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DIN.DataIntegerKey [DataValueKey]
+	,Q.DataTypeKey
+	,PK.FormSubmissionKey
+	,Q.QuestionKey
+FROM dbo.PaymentKeys PK
+INNER JOIN ca.PAYMENT_FACT PF ON
+	PF.ID_PAYMENT_FACT = PK.ID_PAYMENT_FACT
+INNER JOIN dbo.DataInteger DIN ON
+	DIN.IntegerValue = CONVERT(INT, PF.AM_UNITS)
+CROSS JOIN (SELECT QuestionKey, DataTypeKey FROM dbo.Question WHERE QuestionKey = 17) Q
