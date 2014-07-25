@@ -1,0 +1,343 @@
+/*
+Previously, each child had his/her own household, which had it's own case. I now have a blend of too many and too few cases because some children have been consolidated into their households, 
+but some children are also part of more than one household over time.
+I need to get the data down to one case per household. However, payments are assigned to activities for these existing cases, and I can't remove unneeded cases until the activities and payments are reassigned.
+I still have a relational table that ties the payments directly to the recipient children.
+1. Create a case for each household and populate the case team information.
+	a. Remove the constraints that tie cases to activities, teams, and households.
+	b. Remove the constraints that tie team members to teams and to persons.
+	c. Truncate and reset the seeds on the Team Member, Team, and Case tables.
+	d. Restore the constraints that tie team members to teams and to persons.
+	e. Restore the constraints that tie cases to teams and households.
+	f. Create a case for each household and assign the household to the case.
+	g. Create teams based on the unique groups of workers that serviced the cases and assign the teams to the cases.
+2. Create activities for each payment type disbursed to each household/case.
+	a. Remove the constraints that tie activities to persons, to activity types, and to form submissions.
+	b. Truncate and reset the seed on the Activity table.
+	c. Restore the constraints that tie the cases to activities and that tie activities to persons and to activity types.
+	d. Create an activity for each payment category/activity type paid to a household/case.
+3. Reassign the payment to the activity by matching the child's parent at the time of payment to the head of household on the case for the activity that matches the payment category.
+	a. Update the Activity Key on the Form Submission table to point to the correct activity.
+	b. Restore the constraint that ties form submissions to activities.
+	c. Delete cases that are no longer needed or referenced.
+*/
+-- 1.a. Remove the constraints that tie cases to activities, teams, and households.
+/*
+ALTER TABLE [dbo].[Activity] DROP CONSTRAINT [FK_Activity_Case]
+GO
+
+ALTER TABLE [dbo].[Case] DROP CONSTRAINT [FK_Case_Team]
+GO
+
+ALTER TABLE [dbo].[Case] DROP CONSTRAINT [FK_Case_Household]
+GO
+--*/
+-- 1.b. Remove the constraints that tie team members to teams and to persons.
+/*
+ALTER TABLE [dbo].[TeamMember] DROP CONSTRAINT [FK_TeamMember_Team]
+GO
+
+ALTER TABLE [dbo].[TeamMember] DROP CONSTRAINT [FK_TeamMember_Person]
+GO
+--*/
+-- 1.c. Truncate and reset the seeds on the Team Member, Team, and Case tables.
+/*
+TRUNCATE TABLE [dbo].[TeamMember]
+GO
+
+DBCC CHECKIDENT('[dbo].[TeamMember]', RESEED)
+GO
+
+TRUNCATE TABLE [dbo].[Team]
+GO
+
+DBCC CHECKIDENT('[dbo].[Team]', RESEED)
+GO
+
+TRUNCATE TABLE [dbo].[Case]
+GO
+
+DBCC CHECKIDENT('[dbo].[Case]', RESEED)
+GO
+--*/
+-- 1.d. Restore the constraints that tie team members to teams and to persons.
+/*
+ALTER TABLE [dbo].[TeamMember]  WITH CHECK ADD  CONSTRAINT [FK_TeamMember_Team] FOREIGN KEY([TeamKey])
+REFERENCES [dbo].[Team] ([TeamKey])
+GO
+
+ALTER TABLE [dbo].[TeamMember] CHECK CONSTRAINT [FK_TeamMember_Team]
+GO
+
+ALTER TABLE [dbo].[TeamMember]  WITH CHECK ADD  CONSTRAINT [FK_TeamMember_Person] FOREIGN KEY([PersonKey])
+REFERENCES [dbo].[Person] ([PersonKey])
+GO
+
+ALTER TABLE [dbo].[TeamMember] CHECK CONSTRAINT [FK_TeamMember_Person]
+GO
+--*/
+-- 1.e. Restore the constraints that tie cases to teams and households.
+/*
+ALTER TABLE [dbo].[Case]  WITH CHECK ADD  CONSTRAINT [FK_Case_Household] FOREIGN KEY([HouseholdKey])
+REFERENCES [dbo].[Household] ([HouseholdKey])
+GO
+
+ALTER TABLE [dbo].[Case] CHECK CONSTRAINT [FK_Case_Household]
+GO
+
+ALTER TABLE [dbo].[Case]  WITH CHECK ADD  CONSTRAINT [FK_Case_Team] FOREIGN KEY([TeamKey])
+REFERENCES [dbo].[Team] ([TeamKey])
+GO
+
+ALTER TABLE [dbo].[Case] CHECK CONSTRAINT [FK_Case_Team]
+GO
+--*/
+-- 1.f. Create a case for each household and assign the household to the case.
+/*
+INSERT dbo.[Case]
+	([Status], BeginDate, HouseholdAssignmentDate, HouseholdKey)
+SELECT
+	'Active' [Status]
+	,CONVERT(DATE, ISNULL(MIN(CD.CALENDAR_DATE), GETDATE())) [BeginDate]
+	,CONVERT(DATE, ISNULL(MIN(CD.CALENDAR_DATE), GETDATE())) [HouseholdAssignmentDate]
+	,PK.HouseholdKey
+FROM ca.PAYMENT_FACT PF
+INNER JOIN ca.CALENDAR_DIM CD ON
+	CD.ID_CALENDAR_DIM = PF.ID_CALENDAR_DIM_WARRANT
+INNER JOIN dbo.PaymentKeys PK ON
+	PK.ID_PAYMENT_FACT = PF.ID_PAYMENT_FACT
+GROUP BY PK.HouseholdKey
+GO
+
+UPDATE PK
+SET CaseKey = C.CaseKey
+--SELECT COUNT(PK.ID_PAYMENT_FACT), COUNT(DISTINCT PK.HouseholdKey), COUNT(DISTINCT C.CaseKey)
+FROM dbo.PaymentKeys PK
+INNER JOIN dbo.[Case] C ON
+	C.HouseholdKey = PK.HouseholdKey
+GO
+--*/
+-- 1.g. Create teams based on the unique groups of workers that serviced the cases (made payments) and assign the teams to the cases.
+/*
+SELECT
+	PK.HouseholdKey
+	,PM.PersonKey
+	,MIN(CD.CALENDAR_DATE) [MinPaymentDate]
+INTO dbo.HouseholdTeamMemberList
+FROM ca.PAYMENT_FACT PF
+INNER JOIN dbo.PaymentKeys PK ON
+	PK.ID_PAYMENT_FACT = PF.ID_PAYMENT_FACT
+INNER JOIN ca.CALENDAR_DIM CD ON
+	CD.ID_CALENDAR_DIM = PF.ID_CALENDAR_DIM_WARRANT
+INNER JOIN ca.WORKER_DIM WD ON
+	WD.ID_WORKER_DIM = PF.ID_WORKER_DIM
+INNER JOIN dbo.PersonMapping PM ON
+	PM.ID_PRSN = WD.ID_PRSN
+GROUP BY
+	PK.HouseholdKey
+	,PM.PersonKey
+ORDER BY
+	PK.HouseholdKey
+	,PM.PersonKey
+GO
+
+SELECT
+	ST2.HouseholdKey
+	,SUBSTRING(
+        (
+            SELECT ','+ CONVERT(VARCHAR, ST1.PersonKey) AS [text()]
+            FROM dbo.HouseholdTeamMemberList ST1
+            WHERE ST1.HouseholdKey = ST2.HouseholdKey
+            ORDER BY ST1.HouseholdKey, ST1.PersonKey
+            FOR XML PATH ('')
+        ), 2, 1000) [TeamMembers]
+	,MIN(ST2.MinPaymentDate) [MinPaymentDate]
+INTO dbo.HouseholdTeamList
+FROM dbo.HouseholdTeamMemberList ST2
+GROUP BY ST2.HouseholdKey
+ORDER BY
+	ST2.HouseholdKey
+	,TeamMembers
+GO
+
+CREATE TABLE [dbo].[TeamMemberList](
+	[TeamMemberListKey] [int] IDENTITY(1,1) NOT NULL,
+	[MemberKeyList] [varchar](1000) NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+ CONSTRAINT [PK_TeamMemberList] PRIMARY KEY CLUSTERED 
+(
+	[TeamMemberListKey] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+INSERT dbo.TeamMemberList
+	(MemberKeyList, CreatedDate)
+SELECT
+	TeamMembers
+	,MIN(MinPaymentDate) [CreatedDate]
+FROM dbo.HouseholdTeamList
+GROUP BY TeamMembers
+ORDER BY TeamMembers
+GO
+
+INSERT dbo.Team
+	(CreatedDate)
+SELECT CONVERT(DATETIMEOFFSET(7), CONVERT(VARCHAR, CreatedDate, 120) + ' -08:00') [CreatedDate]
+FROM dbo.TeamMemberList
+ORDER BY TeamMemberListKey
+GO
+
+INSERT dbo.TeamMember
+	(BeginDate, TeamKey, PersonKey)
+SELECT DISTINCT
+	CONVERT(DATE, MIN(HTML.MinPaymentDate)) [BeginDate]
+	,TML.TeamMemberListKey [TeamKey]
+	,HTML.PersonKey
+FROM dbo.HouseholdTeamMemberList HTML
+INNER JOIN dbo.HouseholdTeamList HTL ON
+	HTL.HouseholdKey = HTML.HouseholdKey
+INNER JOIN dbo.TeamMemberList TML ON
+	TML.MemberKeyList = HTL.TeamMembers
+GROUP BY
+	TML.TeamMemberListKey
+	,HTML.PersonKey
+ORDER BY
+	TML.TeamMemberListKey
+	,HTML.PersonKey
+GO
+
+UPDATE C
+SET TeamKey = TML.TeamMemberListKey
+--SELECT TML.TeamMemberListKey
+FROM dbo.[Case] C
+INNER JOIN dbo.HouseholdTeamList HTL ON
+	HTL.HouseholdKey = C.HouseholdKey
+INNER JOIN dbo.TeamMemberList TML ON
+	TML.MemberKeyList = HTL.TeamMembers
+GO
+
+DROP TABLE dbo.HouseholdTeamMemberList
+DROP TABLE dbo.HouseholdTeamList
+DROP TABLE dbo.TeamMemberList
+--*/
+-- 2.a. Remove the constraints that tie activities to persons, to activity types, and to form submissions.
+/*
+ALTER TABLE [dbo].[Activity] DROP CONSTRAINT [FK_Activity_Person1]
+GO
+
+ALTER TABLE [dbo].[Activity] DROP CONSTRAINT [FK_Activity_Person]
+GO
+
+ALTER TABLE [dbo].[Activity] DROP CONSTRAINT [FK_Activity_ActivityType]
+GO
+
+ALTER TABLE [dbo].[FormSubmission] DROP CONSTRAINT [FK_FormSubmission_Activity]
+GO
+--*/
+-- 2.b. Truncate and reset the seed on the Activity table.
+/*
+TRUNCATE TABLE [dbo].[Activity]
+GO
+
+DBCC CHECKIDENT('[dbo].[Activity]', RESEED)
+GO
+--*/
+-- 2.c. Restore the constraints that tie the cases to activities and that tie activities to persons and to activity types.
+/*
+ALTER TABLE [dbo].[Activity]  WITH CHECK ADD  CONSTRAINT [FK_Activity_Case] FOREIGN KEY([CaseKey])
+REFERENCES [dbo].[Case] ([CaseKey])
+GO
+
+ALTER TABLE [dbo].[Activity] CHECK CONSTRAINT [FK_Activity_Case]
+GO
+
+ALTER TABLE [dbo].[Activity]  WITH CHECK ADD  CONSTRAINT [FK_Activity_ActivityType] FOREIGN KEY([ActivityTypeKey])
+REFERENCES [dbo].[ActivityType] ([ActivityTypeKey])
+GO
+
+ALTER TABLE [dbo].[Activity] CHECK CONSTRAINT [FK_Activity_ActivityType]
+GO
+
+ALTER TABLE [dbo].[Activity]  WITH CHECK ADD  CONSTRAINT [FK_Activity_Person_Requestor] FOREIGN KEY([RequestorPersonKey])
+REFERENCES [dbo].[Person] ([PersonKey])
+GO
+
+ALTER TABLE [dbo].[Activity] CHECK CONSTRAINT [FK_Activity_Person_Requestor]
+GO
+
+ALTER TABLE [dbo].[Activity]  WITH CHECK ADD  CONSTRAINT [FK_Activity_Person_Assigned] FOREIGN KEY([AssignedPersonKey])
+REFERENCES [dbo].[Person] ([PersonKey])
+GO
+
+ALTER TABLE [dbo].[Activity] CHECK CONSTRAINT [FK_Activity_Person_Assigned]
+GO
+--*/
+-- 2.d. Create an activity for each payment category/activity type paid to a household/case.
+/*
+INSERT dbo.Activity
+	(DateRequested, ActivityStatus, CaseKey, ActivityTypeKey, RequestorPersonKey, AssignedPersonKey)
+SELECT
+	CONVERT(DATE, ISNULL(CD.CALENDAR_DATE, GETDATE())) [DateRequested]
+	,'Active' [ActivityStatus]
+	,PK.CaseKey
+	,PK.ActivityTypeKey
+	,PKA.WorkerPersonKey [RequestorPersonKey]
+	,PKZ.WorkerPersonKey [AssignedPersonKey]
+FROM (
+	SELECT
+		MIN(ID_PAYMENT_FACT) [Min_ID_PAYMENT_FACT]
+		,MAX(ID_PAYMENT_FACT) [Max_ID_PAYMENT_FACT]
+		,CaseKey
+		,ActivityTypeKey
+	FROM dbo.PaymentKeys
+	GROUP BY
+		CaseKey
+		,ActivityTypeKey
+) PK
+INNER JOIN dbo.PaymentKeys PKA ON
+	PKA.ID_PAYMENT_FACT = PK.Min_ID_PAYMENT_FACT
+INNER JOIN dbo.PaymentKeys PKZ ON
+	PKZ.ID_PAYMENT_FACT = PK.Max_ID_PAYMENT_FACT
+INNER JOIN ca.PAYMENT_FACT PF ON
+	PF.ID_PAYMENT_FACT = PK.Min_ID_PAYMENT_FACT
+INNER JOIN ca.CALENDAR_DIM CD ON
+	CD.ID_CALENDAR_DIM = PF.ID_CALENDAR_DIM_WARRANT
+GO
+
+UPDATE PK
+SET ActivityKey = A.ActivityKey
+--SELECT DISTINCT A.CaseKey, A.ActivityTypeKey, A.ActivityKey
+FROM dbo.PaymentKeys PK
+INNER JOIN dbo.Activity A ON
+	A.CaseKey = PK.CaseKey
+		AND A.ActivityTypeKey = PK.ActivityTypeKey
+GO
+--*/
+-- 3.a. Update the Activity Key on the Form Submission table to point to the correct activity.
+/*
+UPDATE FS
+SET ActivityKey = PK.ActivityKey
+--SELECT FS.FormSubmissionKey, PK.ActivityKey
+FROM dbo.FormSubmission FS
+INNER JOIN dbo.PaymentKeys PK ON
+	PK.FormSubmissionKey = FS.FormSubmissionKey
+GO
+--*/
+-- 3.b. Restore the constraint that ties form submissions to activities.
+/*
+ALTER TABLE [dbo].[FormSubmission]  WITH CHECK ADD  CONSTRAINT [FK_FormSubmission_Activity] FOREIGN KEY([ActivityKey])
+REFERENCES [dbo].[Activity] ([ActivityKey])
+GO
+
+ALTER TABLE [dbo].[FormSubmission] CHECK CONSTRAINT [FK_FormSubmission_Activity]
+GO
+--*/
+--3.c. Delete cases that are no longer needed or referenced.
+/*
+DELETE FROM dbo.[Case]
+--SELECT C.*
+FROM dbo.[Case] C
+WHERE C.TeamKey IS NULL AND NOT EXISTS (SELECT A.ActivityKey FROM dbo.Activity A WHERE A.CaseKey = C.CaseKey)
+	AND NOT EXISTS (SELECT PK.ID_PAYMENT_FACT FROM dbo.PaymentKeys PK WHERE PK.CaseKey = C.CaseKey)
+--*/
