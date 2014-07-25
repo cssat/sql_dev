@@ -1,0 +1,69 @@
+SELECT
+	P.PersonKey
+	,P.FirstName
+	,P.MiddleName
+	,P.LastName
+	,P.Suffix
+	,P.NameDataQuality
+	,P.SocialSecurityNumber
+	,P.SsnDataQuality
+	,P.DateOfBirth
+	,P.DateOfBirthType
+	,P.Race
+	,P.Ethnicity
+	,P.Gender
+	,MAX(IIF(C.CharacteristicTypeKey = 1, C.CharacteristicName, NULL)) [BRAAM Race]
+	,MAX(IIF(C.CharacteristicTypeKey = 2, C.CharacteristicName, NULL)) [Combined Ethnicity]
+	,MAX(IIF(C.CharacteristicTypeKey = 3, C.CharacteristicName, NULL)) [Citizenship]
+	,MAX(IIF(C.CharacteristicTypeKey = 4, C.CharacteristicName, NULL)) [LICWAC]
+	,MAX(IIF(C.CharacteristicTypeKey = 5, C.CharacteristicName, NULL)) [Language Preference]
+	,MAX(IIF(C.CharacteristicTypeKey = 6, C.CharacteristicName, NULL)) [Secondary Language]
+	,MAX(IIF(C.CharacteristicTypeKey = 7, C.CharacteristicName, NULL)) [Limited English Skills]
+	,MAX(IIF(C.CharacteristicTypeKey = 8, C.CharacteristicName, NULL)) [Marital Status]
+	,MAX(IIF(C.CharacteristicTypeKey = 9, C.CharacteristicName, NULL)) [Multirace]
+	,MAX(IIF(C.CharacteristicTypeKey = 10, C.CharacteristicName, NULL)) [Race Two]
+	,MAX(IIF(C.CharacteristicTypeKey = 11, C.CharacteristicName, NULL)) [Race Three]
+	,MAX(IIF(C.CharacteristicTypeKey = 12, C.CharacteristicName, NULL)) [Race Four]
+	,MAX(IIF(C.CharacteristicTypeKey = 13, C.CharacteristicName, NULL)) [Race Five]
+	,MAX(IIF(C.CharacteristicTypeKey = 14, C.CharacteristicName, NULL)) [Religion]
+	,MAX(IIF(C.CharacteristicTypeKey = 15, C.CharacteristicName, NULL)) [SSI SSA Status]
+	,MAX(IIF(C.CharacteristicTypeKey = 16, C.CharacteristicName, NULL)) [State Resident]
+	,MAX(IIF(C.CharacteristicTypeKey = 17, C.CharacteristicName, NULL)) [Registered Sex Offender Level]
+	,MAX(IIF(C.CharacteristicTypeKey = 18, C.CharacteristicName, NULL)) [Sexual Behavior]
+	,MAX(IIF(C.CharacteristicTypeKey = 19, C.CharacteristicName, NULL)) [Risky Behavior]
+	,MAX(IIF(C.CharacteristicTypeKey = 20, C.CharacteristicName, NULL)) [Multirace Ethnicity]
+	,MAX(IIF(C.CharacteristicTypeKey = 21, C.CharacteristicName, NULL)) [Adoption Match]
+	,MAX(IIF(C.CharacteristicTypeKey = 22, C.CharacteristicName, NULL)) [Danger to Worker]
+	,MAX(IIF(C.CharacteristicTypeKey = 23, C.CharacteristicName, NULL)) [Deceased]
+	,MAX(IIF(C.CharacteristicTypeKey = 24, C.CharacteristicName, NULL)) [Date of Birth Estimated]
+	,MAX(IIF(C.CharacteristicTypeKey = 25, C.CharacteristicName, NULL)) [ICW Involvement]
+	,MAX(IIF(C.CharacteristicTypeKey = 26, C.CharacteristicName, NULL)) [Physically Disabled]
+	,MAX(IIF(C.CharacteristicTypeKey = 27, C.CharacteristicName, NULL)) [Sexually Aggressive Youth]
+	,MAX(IIF(C.CharacteristicTypeKey = 28, C.CharacteristicName, NULL)) [Teen Parent]
+	,MAX(IIF(C.CharacteristicTypeKey = 29, C.CharacteristicName, NULL)) [Visually or Hearing Impaired]
+	,MAX(IIF(C.CharacteristicTypeKey = 30, C.CharacteristicName, NULL)) [Mental Retardation]
+	,MAX(IIF(C.CharacteristicTypeKey = 31, C.CharacteristicName, NULL)) [Emotionally Disturbed]
+	,MAX(IIF(C.CharacteristicTypeKey = 32, C.CharacteristicName, NULL)) [Other Special Care]
+	,MAX(IIF(C.CharacteristicTypeKey = 33, C.CharacteristicName, NULL)) [Physically Aggressive Youth]
+	,MAX(IIF(C.CharacteristicTypeKey = 34, C.CharacteristicName, NULL)) [Litigation Hold]
+	,MAX(IIF(C.CharacteristicTypeKey = 35, C.CharacteristicName, NULL)) [Paternity Status Known]
+FROM dbo.Person P
+LEFT JOIN dbo.PersonCharacteristic PC ON
+	PC.PersonKey = P.PersonKey
+LEFT JOIN dbo.Characteristic C ON
+	C.CharacteristicKey = PC.CharacteristicKey
+WHERE P.PersonKey = 17
+GROUP BY
+	P.PersonKey
+	,P.FirstName
+	,P.MiddleName
+	,P.LastName
+	,P.Suffix
+	,P.NameDataQuality
+	,P.SocialSecurityNumber
+	,P.SsnDataQuality
+	,P.DateOfBirth
+	,P.DateOfBirthType
+	,P.Race
+	,P.Ethnicity
+	,P.Gender
