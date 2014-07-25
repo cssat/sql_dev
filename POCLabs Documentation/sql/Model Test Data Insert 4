@@ -1,0 +1,23 @@
+INSERT dbo.Household
+	(HeadPersonKey)
+SELECT DISTINCT
+	PM.PersonKey
+FROM ca.PAYMENT_FACT PF
+INNER JOIN ca.WORKER_DIM WD ON
+	WD.ID_WORKER_DIM = PF.ID_WORKER_DIM
+INNER JOIN dbo.PersonMapping PM ON
+	PM.ID_PRSN = WD.ID_PRSN
+
+INSERT dbo.[Case]
+	([Status], BeginDate, HouseholdAssignmentDate, HouseholdKey)
+SELECT
+	'Active' [Status]
+	,CONVERT(DATE, GETDATE()) [BeginDate]
+	,CONVERT(DATE, GETDATE()) [HouseholdAssignmentDate]
+	,HouseholdKey
+FROM dbo.Household
+
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+SELECT COUNT(*) [UncreatedActivities] FROM dbo.PaymentKeys WHERE ActivityKey IS NULL
+SELECT COUNT(*) [CreatedActivities] FROM dbo.PaymentKeys WHERE ActivityKey IS NOT NULL
+
