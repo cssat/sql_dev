@@ -1,0 +1,1272 @@
+/*
+Requirements and steps for inserting Authorizations into the database:
+1. Create AuthorizationKeys table to assist with data insertion and populate the table
+	a. Create AuthorizationKeys table
+	b. Popluate AuthorizationKeys table with records using minimum required values (ID_AUTHORIZATION_FACT, ChildPersonKey, WorkerPersonKey)
+	c. Popluate records in Authorization keys with foreign key values where applicable (HouseholdKey, CaseKey, ActivityTypeKey, ActivityKey, LocationKey)
+2. Add missing households, cases, and teams, and update teams that may be missing members relevant for authorizations
+	a. Add missing households needed for authorizations and update AuthorizationKeys and PersonMapping
+	b. Add cases for the missing households and update AuthorizationKeys, and update the begin date for cases that have earlier authorization dates than what we have from payments
+	c. Realign team assignments on cases to include new team members, or add new teams or new team members to complete teams appropriately
+3. Add missing activities relevant for authorizations
+	a. Add missing activities needed for authorizations and update AuthorizationKeys
+4. Prepare new authorizations form
+	a. Add new form name and versioned form
+	b. Add new and existing questions to the form, taking data items into account that may require similar but new questions to be created
+	c. Add data item values where new and associate data items to applicable questions
+	d. Add integer, money, float, varchar, and date values where new to the data tables
+5. Add form data for authorizations
+	a. Add form submissions for authorization records and update AuthorizationKeys
+	b. Add activity recipients records
+	c. Add form data records
+*/
+
+-- 1.a. Create AuthorizationKeys table
+/*
+CREATE TABLE [dbo].[AuthorizationKeys](
+	[ID_AUTHORIZATION_FACT] [int] NOT NULL,
+	[ChildPersonKey] [int] NOT NULL,
+	[WorkerPersonKey] [int] NOT NULL,
+	[CaseKey] [int] NULL,
+	[ActivityKey] [int] NULL,
+	[FormSubmissionKey] [int] NULL,
+	[ActivityTypeKey] [int] NULL,
+	[HouseholdKey] [int] NULL,
+	[TeamKey] [int] NULL,
+	[CandidateTeamKey] [int] NULL,
+	[LocationKey] [int] NULL,
+ CONSTRAINT [PK_AuthorizationKeys] PRIMARY KEY CLUSTERED 
+(
+	[ID_AUTHORIZATION_FACT] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+--*/
+
+-- 1.b. Popluate AuthorizationKeys table with records using minimum required values (ID_AUTHORIZATION_FACT, ChildPersonKey, WorkerPersonKey)
+/*
+INSERT dbo.AuthorizationKeys
+	(ID_AUTHORIZATION_FACT, ChildPersonKey, WorkerPersonKey)
+SELECT DISTINCT
+	AF.ID_AUTHORIZATION_FACT
+	,PMC.PersonKey [ChildPersonKey]
+	,PMW.PersonKey [WorkerPersonKey]
+FROM ca.AUTHORIZATION_FACT AF
+INNER JOIN dbo.PersonMapping PMC ON
+	PMC.ID_PEOPLE_DIM = AF.ID_PEOPLE_DIM_CHILD
+INNER JOIN ca.WORKER_DIM WD ON
+	WD.ID_WORKER_DIM = AF.ID_WORKER_DIM
+INNER JOIN dbo.PersonMapping PMW ON
+	PMW.ID_PRSN = WD.ID_PRSN
+GO
+--*/
+
+-- 1.c. Popluate records in Authorization keys with foreign key values where applicable (HouseholdKey, CaseKey, ActivityTypeKey, ActivityKey, LocationKey)
+/*
+UPDATE AK
+SET HouseholdKey = PM.HouseholdKey
+	,CaseKey = PM.CaseKey
+FROM dbo.AuthorizationKeys AK
+INNER JOIN ca.AUTHORIZATION_FACT AF ON
+	AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+INNER JOIN dbo.PersonMapping PM ON
+	PM.ID_PEOPLE_DIM = AF.ID_PEOPLE_DIM_CHILD
+GO
+
+UPDATE AK
+SET ActivityTypeKey = AT.ActivityTypeKey
+FROM dbo.AuthorizationKeys AK
+INNER JOIN ca.AUTHORIZATION_FACT AF ON
+	AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+INNER JOIN dbo.ServiceTypeHierarchy STH ON
+	STH.ID_SERVICE_TYPE_DIM = AF.ID_SERVICE_TYPE_DIM
+INNER JOIN dbo.ActivityType AT ON
+	AT.ActivityTypeName = STH.TX_SRVC_CTGRY
+GO
+
+UPDATE AK
+SET ActivityKey = A.ActivityKey
+FROM dbo.AuthorizationKeys AK
+INNER JOIN dbo.Activity A ON
+	A.CaseKey = AK.CaseKey
+		AND A.ActivityTypeKey = AK.ActivityTypeKey
+GO
+
+UPDATE AK
+SET LocationKey = LM.LocationKey
+--SELECT AK.ID_AUTHORIZATION_FACT, AF.ID_LOCATION_DIM, LM.LocationKey
+FROM dbo.AuthorizationKeys AK
+INNER JOIN ca.AUTHORIZATION_FACT AF ON
+	AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+INNER JOIN dbo.LocationMapping LM ON
+	LM.ID_LOCATION_DIM = AF.ID_LOCATION_DIM
+GO
+--*/
+
+-- 2.a. Add missing households needed for authorizations and update AuthorizationKeys and PersonMapping
+/*
+INSERT dbo.Household
+	(HeadPersonKey)
+SELECT DISTINCT PM.PersonKey
+FROM ca.AUTHORIZATION_FACT AF
+INNER JOIN dbo.PersonMapping PM ON
+	PM.ID_PEOPLE_DIM = AF.ID_PEOPLE_DIM_CHILD
+		AND PM.HouseholdKey IS NULL
+GO
+
+INSERT dbo.HouseholdMember
+	(EntryDate, Resident, HouseholdKey, PersonKey)
+SELECT
+	MIN(IIF(PD.DT_ROW_BEGIN = '1/1/1901 00:00:01', PD.DT_BIRTH, PD.DT_ROW_BEGIN)) [EntryDate]
+	,1 [Resident]
+	,H.HouseholdKey
+	,PM.PersonKey
+FROM ca.AUTHORIZATION_FACT AF
+INNER JOIN ca.PEOPLE_DIM PD ON
+	PD.ID_PEOPLE_DIM = AF.ID_PEOPLE_DIM_CHILD
+INNER JOIN dbo.PersonMapping PM ON
+	PM.ID_PEOPLE_DIM = AF.ID_PEOPLE_DIM_CHILD
+		AND PM.HouseholdKey IS NULL
+INNER JOIN dbo.Household H ON
+	H.HeadPersonKey = PM.PersonKey
+GROUP BY
+	H.HouseholdKey
+	,PM.PersonKey
+GO
+
+UPDATE AK
+SET HouseholdKey = H.HouseholdKey
+--SELECT AK.ID_AUTHORIZATION_FACT, H.HouseholdKey
+FROM dbo.AuthorizationKeys AK
+INNER JOIN dbo.Household H ON
+	H.HeadPersonKey = AK.ChildPersonKey
+WHERE AK.HouseholdKey IS NULL
+GO
+
+UPDATE PM
+SET HouseholdKey = H.HouseholdKey
+--SELECT DISTINCT PM.PersonKey, H.HouseholdKey
+FROM ca.AUTHORIZATION_FACT AF
+INNER JOIN dbo.PersonMapping PM ON
+	PM.ID_PEOPLE_DIM = AF.ID_PEOPLE_DIM_CHILD
+		AND PM.HouseholdKey IS NULL
+INNER JOIN dbo.Household H ON
+	H.HeadPersonKey = PM.PersonKey
+GO
+--*/
+
+-- 2.b. Add cases for the missing households and update AuthorizationKeys, and update the begin date for cases that have earlier authorization dates than what we have from payments
+/*
+UPDATE C
+SET BeginDate = S.ServiceBeginDate
+FROM dbo.[Case] C
+INNER JOIN (
+	SELECT
+		AK.CaseKey
+		,CONVERT(DATE, IIF(MIN(CDA.CALENDAR_DATE) < MIN(CDS.CALENDAR_DATE), MIN(CDA.CALENDAR_DATE), MIN(CDS.CALENDAR_DATE))) [ServiceBeginDate]
+		,C.BeginDate
+	FROM dbo.AuthorizationKeys AK
+	INNER JOIN dbo.[Case] C ON
+		C.CaseKey = AK.CaseKey
+	INNER JOIN ca.AUTHORIZATION_FACT AF ON
+		AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+	INNER JOIN ca.CALENDAR_DIM CDS ON
+		CDS.ID_CALENDAR_DIM = AF.ID_CALENDAR_DIM_SERVICE_BEGIN
+	INNER JOIN ca.CALENDAR_DIM CDA ON
+		CDA.ID_CALENDAR_DIM = AF.ID_CALENDAR_DIM_AUTH_BEGIN
+	GROUP BY
+		AK.CaseKey
+		,C.BeginDate
+	HAVING CONVERT(DATE, IIF(MIN(CDA.CALENDAR_DATE) < MIN(CDS.CALENDAR_DATE), MIN(CDA.CALENDAR_DATE), MIN(CDS.CALENDAR_DATE))) < C.BeginDate
+) S ON
+	S.CaseKey = C.CaseKey
+GO
+
+INSERT dbo.[Case]
+	([Status], BeginDate, HouseholdAssignmentDate, HouseholdKey)
+SELECT
+	'Active' [Status]
+	,CONVERT(DATE, MIN(CD.CALENDAR_DATE)) [BeginDate]
+	,CONVERT(DATE, MIN(CD.CALENDAR_DATE)) [HouseholdAssignmentDate]
+	,AK.HouseholdKey
+FROM dbo.AuthorizationKeys AK
+INNER JOIN ca.AUTHORIZATION_FACT AF ON
+	AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+INNER JOIN ca.CALENDAR_DIM CD ON
+	CD.ID_CALENDAR_DIM = AF.ID_CALENDAR_DIM_SERVICE_BEGIN
+WHERE AK.CaseKey IS NULL
+GROUP BY AK.HouseholdKey
+GO
+
+UPDATE AK
+SET CaseKey = C.CaseKey
+--SELECT AK.ID_AUTHORIZATION_FACT, AK.HouseholdKey, C.CaseKey
+FROM dbo.AuthorizationKeys AK
+INNER JOIN dbo.[Case] C ON
+	C.HouseholdKey = AK.HouseholdKey
+WHERE AK.CaseKey IS NULL
+GO
+--*/
+
+-- 2.c. Realign team assignments on cases to include new team members, or add new teams or new team members to complete teams appropriately
+/*
+-- Compile the list of workers associated with cases.
+SELECT
+	AK.CaseKey
+	,PM.PersonKey
+	,IIF(MIN(CDA.CALENDAR_DATE) < MIN(CDS.CALENDAR_DATE), MIN(CDA.CALENDAR_DATE), MIN(CDS.CALENDAR_DATE)) [MinPaymentDate]
+	,CONVERT(INT, NULL) [TempTeamKey]
+INTO dbo.AuthTeamMemberList
+FROM ca.AUTHORIZATION_FACT AF
+INNER JOIN dbo.AuthorizationKeys AK ON
+	AK.ID_AUTHORIZATION_FACT = AF.ID_AUTHORIZATION_FACT
+INNER JOIN ca.CALENDAR_DIM CDS ON
+	CDS.ID_CALENDAR_DIM = AF.ID_CALENDAR_DIM_SERVICE_BEGIN
+INNER JOIN ca.CALENDAR_DIM CDA ON
+	CDA.ID_CALENDAR_DIM = AF.ID_CALENDAR_DIM_AUTH_BEGIN
+INNER JOIN ca.WORKER_DIM WD ON
+	WD.ID_WORKER_DIM = AF.ID_WORKER_DIM
+INNER JOIN dbo.PersonMapping PM ON
+	PM.ID_PRSN = WD.ID_PRSN
+GROUP BY
+	AK.CaseKey
+	,PM.PersonKey
+ORDER BY
+	AK.CaseKey
+	,PM.PersonKey
+GO
+
+-- Group the authorization worker person keys into a single field for comparison to teams.
+SELECT
+	ST2.CaseKey
+	,SUBSTRING(
+        (
+            SELECT ','+ CONVERT(VARCHAR, ST1.PersonKey) AS [text()]
+            FROM dbo.AuthTeamMemberList ST1
+            WHERE ST1.CaseKey = ST2.CaseKey
+            ORDER BY ST1.CaseKey, ST1.PersonKey
+            FOR XML PATH ('')
+        ), 2, 1000) [TeamMembers]
+	,MIN(ST2.MinPaymentDate) [MinAuthorizationDate]
+	,CONVERT(INT, NULL) [TempTeamKey]
+INTO dbo.AuthTeamList
+FROM dbo.AuthTeamMemberList ST2
+GROUP BY ST2.CaseKey
+ORDER BY
+	ST2.CaseKey
+	,TeamMembers
+GO
+
+-- Group the person keys for each team into a single field for comparison to authorization teams.
+SELECT
+	ST2.TeamKey
+	,SUBSTRING(
+        (
+            SELECT ','+ CONVERT(VARCHAR, ST1.PersonKey) AS [text()]
+            FROM dbo.TeamMember ST1
+            WHERE ST1.TeamKey = ST2.TeamKey
+            ORDER BY ST1.TeamKey, ST1.PersonKey
+            FOR XML PATH ('')
+        ), 2, 1000) [TeamMembers]
+	,MIN(ST2.BeginDate) [MinJoinDate]
+INTO dbo.TeamList
+FROM dbo.TeamMember ST2
+GROUP BY ST2.TeamKey
+ORDER BY
+	ST2.TeamKey
+	,TeamMembers
+GO
+
+-- When the case has the same team as the authorization, update authorization keys with that team.
+UPDATE AK
+SET TeamKey = C.TeamKey
+--SELECT AK.ID_AUTHORIZATION_FACT, AK.CaseKey, C.TeamKey, ATL.TeamMembers, TL.TeamMembers
+FROM dbo.AuthorizationKeys AK
+INNER JOIN dbo.[Case] C ON
+	C.CaseKey = AK.CaseKey
+INNER JOIN dbo.AuthTeamList ATL ON
+	ATL.CaseKey = AK.CaseKey
+INNER JOIN dbo.TeamList TL ON
+	TL.TeamKey = C.TeamKey
+		AND TL.TeamMembers = ATL.TeamMembers
+GO
+
+-- When the case team hasn't been determined to match, update authorization keys with the candidate team for comparison.
+UPDATE AK
+SET CandidateTeamKey = TL.TeamKey
+--SELECT AK.ID_AUTHORIZATION_FACT, AK.CaseKey, TL.TeamKey, ATL.TeamMembers, TL.TeamMembers
+FROM dbo.AuthorizationKeys AK
+INNER JOIN dbo.[Case] C ON
+	C.CaseKey = AK.CaseKey
+INNER JOIN dbo.AuthTeamList ATL ON
+	ATL.CaseKey = AK.CaseKey
+INNER JOIN dbo.TeamList TL ON
+	TL.TeamMembers = ATL.TeamMembers
+WHERE AK.TeamKey IS NULL
+GO
+
+-- When the case doesn't have a team, use the team that services the authorization
+UPDATE AK
+SET TeamKey = AK.CandidateTeamKey
+--SELECT AK.ID_AUTHORIZATION_FACT, AK.CaseKey, AK.CandidateTeamKey
+FROM dbo.AuthorizationKeys AK
+INNER JOIN dbo.[Case] C ON
+	C.CaseKey = AK.CaseKey
+		AND C.TeamKey IS NULL
+WHERE AK.TeamKey IS NULL
+	AND AK.CandidateTeamKey IS NOT NULL
+GO
+
+UPDATE AK
+SET TeamKey = RC.RecommendedTeamKey
+--SELECT AK.ID_AUTHORIZATION_FACT, AK.CaseKey, RC.RecommendedTeamKey, AK.CandidateTeamKey
+FROM (
+	SELECT
+		AK.ID_AUTHORIZATION_FACT
+		,CTM.CaseKey
+		,CASE
+			WHEN CTM.PaymentTeamMembers != CTM.SharedTeamMembers AND CTM.AuthorizationTeamMembers = CTM.SharedTeamMembers THEN C.TeamKey
+			WHEN CTM.AuthorizationTeamMembers != CTM.SharedTeamMembers AND CTM.PaymentTeamMembers = CTM.SharedTeamMembers THEN AK.CandidateTeamKey
+			ELSE NULL
+		END [RecommendedTeamKey]
+		,C.TeamKey
+		,AK.CandidateTeamKey
+	FROM (
+		SELECT
+			AK.CaseKey
+			,COUNT(DISTINCT PTM.PersonKey) [PaymentTeamMembers]
+			,COUNT(DISTINCT ATM.PersonKey) [AuthorizationTeamMembers]
+			,COUNT(DISTINCT IIF(PTM.PersonKey = ATM.PersonKey, PTM.PersonKey, NULL)) [SharedTeamMembers]
+		FROM dbo.AuthorizationKeys AK
+		INNER JOIN dbo.[Case] C ON
+			C.CaseKey = AK.CaseKey
+		INNER JOIN dbo.TeamMember PTM ON
+			PTM.TeamKey = C.TeamKey
+		FULL JOIN dbo.TeamMember ATM ON
+			ATM.TeamKey = AK.CandidateTeamKey
+		WHERE AK.TeamKey IS NULL
+			AND AK.CandidateTeamKey IS NOT NULL
+		GROUP BY AK.CaseKey
+	) CTM
+	INNER JOIN dbo.AuthorizationKeys AK ON
+		AK.CaseKey = CTM.CaseKey
+	INNER JOIN dbo.[Case] C ON
+		C.CaseKey = CTM.CaseKey
+) RC
+INNER JOIN dbo.AuthorizationKeys AK ON
+	AK.ID_AUTHORIZATION_FACT = RC.ID_AUTHORIZATION_FACT
+GO
+
+--SELECT COUNT(*) FROM dbo.AuthorizationKeys WHERE TeamKey IS NULL AND CandidateTeamKey IS NOT NULL
+
+UPDATE T
+SET CreatedDate = AK.MinAuthorizationDate
+--SELECT T.TeamKey, T.CreatedDate, AK.MinAuthorizationDate
+FROM dbo.Team T
+INNER JOIN (
+	SELECT
+		AK.TeamKey
+		,T.CreatedDate
+		,CONVERT(DATETIMEOFFSET(7), CONVERT(VARCHAR, MIN(ATL.MinAuthorizationDate), 121) + ' -08:00') [MinAuthorizationDate]
+	FROM dbo.AuthorizationKeys AK
+	INNER JOIN dbo.AuthTeamList ATL ON
+		ATL.CaseKey = AK.CaseKey
+	INNER JOIN dbo.Team T ON
+		T.TeamKey = AK.TeamKey
+	GROUP BY
+		AK.TeamKey
+		,T.CreatedDate
+	HAVING MIN(ATL.MinAuthorizationDate) < T.CreatedDate
+) AK ON
+	AK.TeamKey = T.TeamKey
+GO
+
+UPDATE TM
+SET BeginDate = AK.MinAuthorizationDate
+--SELECT TM.TeamKey, TM.PersonKey, TM.BeginDate, AK.MinAuthorizationDate
+FROM dbo.TeamMember TM
+INNER JOIN (
+	SELECT
+		AK.TeamKey
+		,ATML.PersonKey
+		,TM.BeginDate
+		,CONVERT(DATE, MIN(ATML.MinAuthorizationDate)) [MinAuthorizationDate]
+	FROM dbo.AuthorizationKeys AK
+	INNER JOIN dbo.AuthTeamMemberList ATML ON
+		ATML.CaseKey = AK.CaseKey
+	INNER JOIN dbo.TeamMember TM ON
+		TM.TeamKey = AK.TeamKey
+			AND TM.PersonKey = ATML.PersonKey
+	GROUP BY
+		AK.TeamKey
+		,ATML.PersonKey
+		,TM.BeginDate
+	HAVING MIN(ATML.MinAuthorizationDate) < TM.BeginDate
+) AK ON
+	AK.TeamKey = TM.TeamKey
+		AND AK.PersonKey = TM.PersonKey
+GO
+
+-- CREATE teams for the new teams that need to go in
+SELECT
+	ROW_NUMBER() OVER(PARTITION BY 1 ORDER BY ATL.TeamMembers) [TeamTempKey]
+	,ATL.TeamMembers
+	,MIN(ATL.MinAuthorizationDate) [MinAuthorizationDate]
+	,CONVERT(INT, NULL) [TeamKey]
+--INTO dbo.AuthTeamListUnique
+FROM dbo.AuthorizationKeys AK
+INNER JOIN dbo.AuthTeamList ATL ON
+	AK.CaseKey = ATL.CaseKey
+WHERE AK.TeamKey IS NULL
+	AND AK.CandidateTeamKey IS NULL
+GROUP BY ATL.TeamMembers
+ORDER BY TeamMembers
+GO
+
+UPDATE ATL
+SET TempTeamKey = ATLU.TempTeamKey
+--SELECT ATLU.TempTeamKey, ATL.CaseKey, ATL.TeamMembers
+FROM dbo.AuthTeamList ATL
+INNER JOIN dbo.AuthTeamListUnique ATLU ON
+	ATLU.TeamMembers = ATL.TeamMembers
+--ORDER BY TempTeamKey, CaseKey
+GO
+
+UPDATE ATML
+SET TempTeamKey = ATL.TempTeamKey
+--SELECT ATL.TempTeamKey, ATML.CaseKey, ATML.PersonKey, ATL.TeamMembers
+FROM dbo.AuthTeamMemberList ATML
+INNER JOIN dbo.AuthTeamList ATL ON
+	ATL.CaseKey = ATML.CaseKey
+		AND ATL.TempTeamKey IS NOT NULL
+--ORDER BY TempTeamKey, CaseKey, PersonKey
+GO
+
+DECLARE @NewTeamKey INT
+	,@TempTeamKey INT
+	,@CreatedDate DATETIME
+
+DECLARE @TeamKeys TABLE (TeamKey INT)
+
+DECLARE TeamInsertCursor CURSOR FOR
+SELECT
+	TempTeamKey
+	,MinAuthorizationDate
+FROM dbo.AuthTeamListUnique
+ORDER BY TempTeamKey
+
+OPEN TeamInsertCursor
+
+FETCH NEXT FROM TeamInsertCursor
+INTO @TempTeamKey, @CreatedDate
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+	INSERT dbo.Team (CreatedDate)
+	OUTPUT inserted.TeamKey
+	INTO @TeamKeys
+	VALUES (@CreatedDate)
+
+	SET @NewTeamKey = (SELECT TOP 1 TeamKey FROM @TeamKeys)
+
+	UPDATE dbo.AuthTeamListUnique
+	SET TeamKey = @NewTeamKey
+	WHERE TempTeamKey = @TempTeamKey
+
+	DELETE FROM @TeamKeys
+
+	FETCH NEXT FROM TeamInsertCursor
+	INTO @TempTeamKey, @CreatedDate
+END
+
+CLOSE TeamInsertCursor
+
+DEALLOCATE TeamInsertCursor
+GO
+
+-- ADD team members to the new teams
+INSERT dbo.TeamMember
+	(BeginDate, TeamKey, PersonKey)
+SELECT
+	MIN(ATLU.MinAuthorizationDate) [BeginDate]
+	,ATLU.TeamKey
+	,ATML.PersonKey
+FROM dbo.AuthTeamListUnique ATLU
+INNER JOIN dbo.AuthTeamMemberList ATML ON
+	ATML.TempTeamKey = ATLU.TempTeamKey
+GROUP BY
+	ATLU.TeamKey
+	,ATML.PersonKey
+ORDER BY
+	TeamKey
+	,PersonKey
+GO
+
+-- UPDATE authorization keys with the team keys for the new teams
+UPDATE AK
+SET TeamKey = ATLU.TeamKey
+--SELECT AK.ID_AUTHORIZATION_FACT, AK.CaseKey, ATL.TempTeamKey, ATLU.TeamKey
+FROM dbo.AuthorizationKeys AK
+INNER JOIN dbo.AuthTeamList ATL ON
+	ATL.CaseKey = AK.CaseKey
+INNER JOIN dbo.AuthTeamListUnique ATLU ON
+	ATLU.TempTeamKey = ATL.TempTeamKey
+WHERE AK.TeamKey IS NULL
+GO
+
+-- UPDATE case with the team keys in authorization keys
+UPDATE C
+SET TeamKey = AK.TeamKey
+--SELECT AK.ID_AUTHORIZATION_FACT, AK.CaseKey, AK.TeamKey
+FROM dbo.[Case] C
+INNER JOIN dbo.AuthorizationKeys AK ON
+	AK.CaseKey = C.CaseKey
+WHERE C.TeamKey IS NULL
+GO
+
+DROP TABLE dbo.AuthTeamMemberList
+DROP TABLE dbo.AuthTeamList
+DROP TABLE dbo.TeamList
+DROP TABLE dbo.AuthTeamListUnique
+--*/
+
+-- 3.a. Add missing activities needed for authorizations and update AuthorizationKeys
+/*
+INSERT dbo.Activity
+	(DateRequested, ActivityStatus, CaseKey, ActivityTypeKey, RequestorPersonKey, AssignedPersonKey)
+SELECT
+	IIF(AF.AuthBeginDate < AF.ServiceBeginDate, AF.AuthBeginDate, AF.ServiceBeginDate) [DateRequested]
+	,'Active' [ActivityStatus]
+	,AF.CaseKey
+	,AF.ActivityTypeKey
+	,AKRP.WorkerPersonKey [RequestorPersonKey]
+	,AKAP.WorkerPersonKey [AssignedPersonKey]
+FROM (
+	SELECT
+		MIN(ACD.CALENDAR_DATE) [AuthBeginDate]
+		,MIN(SCD.CALENDAR_DATE) [ServiceBeginDate]
+		,AK.CaseKey
+		,AK.ActivityTypeKey
+		,MIN(AK.ID_AUTHORIZATION_FACT) [Min_ID_AUTHORIZATION_FACT]
+		,MAX(AK.ID_AUTHORIZATION_FACT) [Max_ID_AUTHORIZATION_FACT]
+	FROM dbo.AuthorizationKeys AK
+	INNER JOIN ca.AUTHORIZATION_FACT AF ON
+		AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+	LEFT JOIN ca.CALENDAR_DIM ACD ON
+		ACD.ID_CALENDAR_DIM = AF.ID_CALENDAR_DIM_AUTH_BEGIN
+	LEFT JOIN ca.CALENDAR_DIM SCD ON
+		SCD.ID_CALENDAR_DIM = AF.ID_CALENDAR_DIM_SERVICE_BEGIN
+	WHERE AK.ActivityKey IS NULL
+	GROUP BY
+		AK.CaseKey
+		,AK.ActivityTypeKey
+) AF
+INNER JOIN dbo.AuthorizationKeys AKRP ON
+	AKRP.ID_AUTHORIZATION_FACT = AF.Min_ID_AUTHORIZATION_FACT
+INNER JOIN dbo.AuthorizationKeys AKAP ON
+	AKAP.ID_AUTHORIZATION_FACT = AF.Max_ID_AUTHORIZATION_FACT
+GO
+
+UPDATE AK
+SET ActivityKey = A.ActivityKey
+--SELECT DISTINCT AK.ID_AUTHORIZATION_FACT, AK.CaseKey, AK.ActivityTypeKey, A.ActivityKey
+FROM dbo.AuthorizationKeys AK
+INNER JOIN dbo.Activity A ON
+	A.CaseKey = AK.CaseKey
+		AND A.ActivityTypeKey = AK.ActivityTypeKey
+WHERE AK.ActivityKey IS NULL
+GO
+--*/
+
+-- 4.a. Add new form name and versioned form
+/*
+INSERT dbo.FormName
+	(FormTitle, IsActive)
+VALUES
+	('Authorization Form', 1)
+GO
+
+INSERT dbo.Form
+	(VersionNumber, UseBeginDate, FormNameKey)
+SELECT
+	1 [VersionNumber]
+	,IIF(MD.MinAuthorizationDate < MD.MinServiceDate, MD.MinAuthorizationDate, MD.MinServiceDate) [UseBeginDate]
+	,FN.FormNameKey
+FROM dbo.FormName FN
+CROSS JOIN (
+	SELECT
+		MIN(ACD.CALENDAR_DATE) [MinAuthorizationDate]
+		,MIN(SCD.CALENDAR_DATE) [MinServiceDate]
+	FROM ca.AUTHORIZATION_FACT AF
+	INNER JOIN ca.CALENDAR_DIM ACD ON
+		ACD.ID_CALENDAR_DIM = AF.ID_CALENDAR_DIM_AUTH_BEGIN
+	INNER JOIN ca.CALENDAR_DIM SCD ON
+		SCD.ID_CALENDAR_DIM = AF.ID_CALENDAR_DIM_SERVICE_BEGIN
+) MD
+WHERE FN.CurrentVersionFormKey IS NULL
+	AND FN.IsActive = 1
+GO
+
+UPDATE FN
+SET CurrentVersionFormKey = F.FormKey
+--SELECT FN.FormNameKey, F.FormKey
+FROM dbo.FormName FN
+INNER JOIN dbo.Form F ON
+	F.FormNameKey = FN.FormNameKey
+		AND F.UseEndDate IS NULL
+WHERE FN.CurrentVersionFormKey IS NULL
+GO
+--*/
+
+-- 4.b. Add new and existing questions to the form, taking data items into account that may require similar but new questions to be created
+/*
+-- Form 2
+INSERT dbo.Question
+	(QuestionName, DataTypeKey)
+VALUES
+	('Authorization Status', 1),
+	('PCA Status', 1),
+	('Tribe', 1),
+	('Eligibility Status', 1),
+	('Source of Funds', 1)
+GO
+
+INSERT dbo.FormQuestion
+	(LayoutXCoordinate, LayoutYCoordinate, FormKey, QuestionKey)
+VALUES
+	(0, 0, 2, 1),
+	(0, 0, 2, 2),
+	(0, 0, 2, 8),
+	(0, 0, 2, 9),
+	(0, 0, 2, 12),
+	(0, 0, 2, 13),
+	(0, 0, 2, 15),
+	(0, 0, 2, 16),
+	(0, 0, 2, 17),
+	(0, 0, 2, 18),
+	(0, 0, 2, 19),
+	(0, 0, 2, 20),
+	(0, 0, 2, 21),
+	(0, 0, 2, 22),
+	(0, 0, 2, 23),
+	(0, 0, 2, 24),
+	(0, 0, 2, 25),
+	(0, 0, 2, 26)
+GO
+--*/
+
+-- 4.c. Add data item values where new and associate data items to applicable questions
+/*
+INSERT dbo.DataItem
+	(ItemName)
+SELECT DISTINCT A.TX_AUTH_STATUS [ItemName]
+FROM ca.AUTHORIZATION_DIM A
+WHERE A.CD_AUTH_STATUS != -99
+	AND NOT EXISTS(
+		SELECT DIT.ItemName
+		FROM dbo.DataItem DIT
+		WHERE DIT.ItemName = A.TX_AUTH_STATUS
+	)
+ORDER BY ItemName
+GO
+
+INSERT dbo.QuestionItem
+	(QuestionKey, DataItemKey)
+SELECT DISTINCT
+	22 [QuestionKey]
+	,DIT.DataItemKey [DataItemKey]
+FROM ca.AUTHORIZATION_DIM A
+INNER JOIN dbo.DataItem DIT ON
+	DIT.ItemName = A.TX_AUTH_STATUS
+ORDER BY DIT.DataItemKey
+GO
+
+INSERT dbo.DataItem
+	(ItemName)
+SELECT DISTINCT A.TX_PLACEMENT_CARE_AUTH [ItemName]
+FROM ca.PLACEMENT_CARE_AUTH_DIM A
+WHERE A.CD_PLACEMENT_CARE_AUTH != -99
+	AND A.CD_PLACEMENT_CARE_AUTH IS NOT NULL
+	AND NOT EXISTS(
+		SELECT DIT.ItemName
+		FROM dbo.DataItem DIT
+		WHERE DIT.ItemName = A.TX_PLACEMENT_CARE_AUTH
+	)
+ORDER BY ItemName
+GO
+
+INSERT dbo.QuestionItem
+	(QuestionKey, DataItemKey)
+SELECT DISTINCT
+	23 [QuestionKey]
+	,DIT.DataItemKey [DataItemKey]
+FROM ca.PLACEMENT_CARE_AUTH_DIM A
+INNER JOIN dbo.DataItem DIT ON
+	DIT.ItemName = A.TX_PLACEMENT_CARE_AUTH
+ORDER BY DIT.DataItemKey
+GO
+
+INSERT dbo.DataItem
+	(ItemName)
+SELECT DISTINCT A.TX_TRIBE [ItemName]
+FROM ca.PLACEMENT_CARE_AUTH_DIM A
+WHERE A.CD_TRIBE != -99
+	AND A.CD_TRIBE IS NOT NULL
+	AND NOT EXISTS(
+		SELECT DIT.ItemName
+		FROM dbo.DataItem DIT
+		WHERE DIT.ItemName = A.TX_TRIBE
+	)
+ORDER BY ItemName
+GO
+
+INSERT dbo.QuestionItem
+	(QuestionKey, DataItemKey)
+SELECT DISTINCT
+	24 [QuestionKey]
+	,DIT.DataItemKey [DataItemKey]
+FROM ca.PLACEMENT_CARE_AUTH_DIM A
+INNER JOIN dbo.DataItem DIT ON
+	DIT.ItemName = A.TX_TRIBE
+ORDER BY DIT.DataItemKey
+GO
+
+INSERT dbo.DataItem
+	(ItemName)
+SELECT DISTINCT A.TX_ELIG_STATUS [ItemName]
+FROM ca.SOURCE_FUNDS_DIM A
+WHERE A.CD_ELIG_STATUS != -99
+	AND NOT EXISTS(
+		SELECT DIT.ItemName
+		FROM dbo.DataItem DIT
+		WHERE DIT.ItemName = A.TX_ELIG_STATUS
+	)
+ORDER BY ItemName
+GO
+
+INSERT dbo.QuestionItem
+	(QuestionKey, DataItemKey)
+SELECT DISTINCT
+	25 [QuestionKey]
+	,DIT.DataItemKey [DataItemKey]
+FROM ca.SOURCE_FUNDS_DIM A
+INNER JOIN dbo.DataItem DIT ON
+	DIT.ItemName = A.TX_ELIG_STATUS
+ORDER BY DIT.DataItemKey
+GO
+
+INSERT dbo.DataItem
+	(ItemName)
+SELECT DISTINCT A.TX_SOURCE_FUNDS [ItemName]
+FROM ca.SOURCE_FUNDS_DIM A
+WHERE A.CD_SOURCE_FUNDS != '-'
+	AND NOT EXISTS(
+		SELECT DIT.ItemName
+		FROM dbo.DataItem DIT
+		WHERE DIT.ItemName = A.TX_SOURCE_FUNDS
+	)
+ORDER BY ItemName
+GO
+
+INSERT dbo.QuestionItem
+	(QuestionKey, DataItemKey)
+SELECT DISTINCT
+	26 [QuestionKey]
+	,DIT.DataItemKey [DataItemKey]
+FROM ca.SOURCE_FUNDS_DIM A
+INNER JOIN dbo.DataItem DIT ON
+	DIT.ItemName = A.TX_SOURCE_FUNDS
+ORDER BY DIT.DataItemKey
+GO
+
+INSERT dbo.DataItem
+	(ItemName)
+SELECT DISTINCT A.TX_SRVC [ItemName]
+FROM dbo.ServiceTypeHierarchy A
+WHERE A.CD_SRVC != -99
+	AND A.CD_SRVC IS NOT NULL
+	AND NOT EXISTS(
+		SELECT DIT.ItemName
+		FROM dbo.DataItem DIT
+		WHERE DIT.ItemName = A.TX_SRVC
+	)
+ORDER BY ItemName
+GO
+
+INSERT dbo.QuestionItem
+	(QuestionKey, DataItemKey)
+SELECT DISTINCT
+	18 [QuestionKey]
+	,DIT.DataItemKey [DataItemKey]
+FROM dbo.ServiceTypeHierarchy A
+INNER JOIN dbo.DataItem DIT ON
+	DIT.ItemName = A.TX_SRVC
+EXCEPT
+SELECT
+	QI.QuestionKey
+	,QI.DataItemKey
+FROM dbo.QuestionItem QI
+WHERE QI.QuestionKey = 18
+ORDER BY DIT.DataItemKey
+GO
+--*/
+
+-- 4.d. Add integer, money, float, varchar, and date values where new to the data tables
+/*
+INSERT dbo.DataInteger
+	(IntegerValue)
+SELECT DISTINCT A.AM_UNITS [IntegerValue]
+FROM ca.AUTHORIZATION_FACT A
+WHERE A.AM_UNITS IS NOT NULL
+	AND NOT EXISTS(
+		SELECT DIN.IntegerValue
+		FROM dbo.DataInteger DIN
+		WHERE DIN.IntegerValue = A.AM_UNITS
+	)
+UNION
+SELECT DISTINCT A.CHILD_AGE [IntegerValue]
+FROM ca.AUTHORIZATION_FACT A
+WHERE A.CHILD_AGE IS NOT NULL
+	AND NOT EXISTS(
+		SELECT DIN.IntegerValue
+		FROM dbo.DataInteger DIN
+		WHERE DIN.IntegerValue = A.CHILD_AGE
+	)
+ORDER BY IntegerValue
+GO
+
+INSERT dbo.DataMoney
+	(MoneyValue)
+SELECT DISTINCT CONVERT(MONEY, A.AM_TOTAL_PAID) [MoneyValue]
+FROM ca.AUTHORIZATION_FACT A
+WHERE A.AM_TOTAL_PAID IS NOT NULL
+	AND NOT EXISTS(
+		SELECT DMY.MoneyValue
+		FROM dbo.DataMoney DMY
+		WHERE DMY.MoneyValue = CONVERT(MONEY, A.AM_TOTAL_PAID)
+	)
+ORDER BY MoneyValue
+GO
+
+INSERT dbo.DataFloat
+	(FloatValue)
+SELECT DISTINCT A.AM_RATE [FloatValue]
+FROM ca.AUTHORIZATION_FACT A
+WHERE A.AM_RATE IS NOT NULL
+	AND NOT EXISTS(
+		SELECT DFL.FloatValue
+		FROM dbo.DataFloat DFL
+		WHERE DFL.FloatValue = A.AM_RATE
+	)
+ORDER BY FloatValue
+GO
+
+INSERT dbo.DataDate
+	(DateValue)
+SELECT DISTINCT CONVERT(DATE, CD.CALENDAR_DATE) [DateValue]
+FROM ca.AUTHORIZATION_FACT A
+INNER JOIN ca.CALENDAR_DIM CD ON
+	CD.ID_CALENDAR_DIM = A.ID_CALENDAR_DIM_AUTH_BEGIN
+		AND CD.CALENDAR_DATE IS NOT NULL
+WHERE NOT EXISTS(
+	SELECT DDT.DateValue
+	FROM dbo.DataDate DDT
+	WHERE DDT.DateValue = CONVERT(DATE, CD.CALENDAR_DATE)
+)
+UNION
+SELECT DISTINCT CONVERT(DATE, CD.CALENDAR_DATE) [DateValue]
+FROM ca.AUTHORIZATION_FACT A
+INNER JOIN ca.CALENDAR_DIM CD ON
+	CD.ID_CALENDAR_DIM = A.ID_CALENDAR_DIM_AUTH_END
+		AND CD.CALENDAR_DATE IS NOT NULL
+WHERE NOT EXISTS(
+	SELECT DDT.DateValue
+	FROM dbo.DataDate DDT
+	WHERE DDT.DateValue = CONVERT(DATE, CD.CALENDAR_DATE)
+)
+UNION
+SELECT DISTINCT CONVERT(DATE, CD.CALENDAR_DATE) [DateValue]
+FROM ca.AUTHORIZATION_FACT A
+INNER JOIN ca.CALENDAR_DIM CD ON
+	CD.ID_CALENDAR_DIM = A.ID_CALENDAR_DIM_SERVICE_BEGIN
+		AND CD.CALENDAR_DATE IS NOT NULL
+WHERE NOT EXISTS(
+	SELECT DDT.DateValue
+	FROM dbo.DataDate DDT
+	WHERE DDT.DateValue = CONVERT(DATE, CD.CALENDAR_DATE)
+)
+UNION
+SELECT DISTINCT CONVERT(DATE, CD.CALENDAR_DATE) [DateValue]
+FROM ca.AUTHORIZATION_FACT A
+INNER JOIN ca.CALENDAR_DIM CD ON
+	CD.ID_CALENDAR_DIM = A.ID_CALENDAR_DIM_SERVICE_END
+		AND CD.CALENDAR_DATE IS NOT NULL
+WHERE NOT EXISTS(
+	SELECT DDT.DateValue
+	FROM dbo.DataDate DDT
+	WHERE DDT.DateValue = CONVERT(DATE, CD.CALENDAR_DATE)
+)
+ORDER BY DateValue
+GO
+--*/
+
+-- 5.a. Add form submissions for authorization records and update AuthorizationKeys
+/*
+ALTER TABLE dbo.FormSubmission ADD ID_AUTHORIZATION_FACT INT NULL
+GO
+
+INSERT dbo.FormSubmission
+	(CreatedDate, FormKey, ActivityKey, PersonKey, LocationKey, ID_AUTHORIZATION_FACT)
+SELECT
+	CONVERT(DATETIMEOFFSET(7), CONVERT(VARCHAR, IIF(ACD.CALENDAR_DATE < SCD.CALENDAR_DATE, ACD.CALENDAR_DATE, SCD.CALENDAR_DATE), 121) + ' -08:00') [CreatedDate]
+	,2 [FormKey]
+	,AK.ActivityKey
+	,AK.WorkerPersonKey [PersonKey]
+	,AK.LocationKey
+	,AK.ID_AUTHORIZATION_FACT
+FROM dbo.AuthorizationKeys AK
+INNER JOIN ca.AUTHORIZATION_FACT AF ON
+	AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+INNER JOIN ca.CALENDAR_DIM ACD ON
+	ACD.ID_CALENDAR_DIM = AF.ID_CALENDAR_DIM_AUTH_BEGIN
+INNER JOIN ca.CALENDAR_DIM SCD ON
+	SCD.ID_CALENDAR_DIM = AF.ID_CALENDAR_DIM_SERVICE_BEGIN
+WHERE AK.FormSubmissionKey IS NULL
+ORDER BY AK.ID_AUTHORIZATION_FACT
+GO
+
+UPDATE AK
+SET FormSubmissionKey = FS.FormSubmissionKey
+--SELECT AK.ID_AUTHORIZATION_FACT, FS.FormSubmissionKey
+FROM dbo.AuthorizationKeys AK
+INNER JOIN dbo.FormSubmission FS ON
+	FS.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+GO
+
+ALTER TABLE dbo.FormSubmission DROP COLUMN ID_AUTHORIZATION_FACT
+GO
+--*/
+
+-- 5.b. Add activity recipients records
+/*
+INSERT dbo.ActivityRecipient
+	(FormSubmissionKey, PersonKey)
+SELECT
+	AK.FormSubmissionKey
+	,AK.ChildPersonKey
+FROM dbo.AuthorizationKeys AK
+GO
+--*/
+
+-- 5.c. Add form data records
+/*
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DIT.DataItemKey [DataValueKey]
+	,1 [DataTypeKey]
+	,AK.FormSubmissionKey
+	,1 [QuestionKey]
+	--,STD.TX_PAYMENT_TYPE
+FROM dbo.AuthorizationKeys AK
+INNER JOIN ca.AUTHORIZATION_FACT AF ON
+	AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+INNER JOIN ca.SERVICE_TYPE_DIM STD ON
+	STD.ID_SERVICE_TYPE_DIM = AF.ID_SERVICE_TYPE_DIM
+INNER JOIN dbo.DataItem DIT ON
+	DIT.ItemName = STD.TX_PAYMENT_TYPE
+GO
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DIT.DataItemKey [DataValueKey]
+	,1 [DataTypeKey]
+	,AK.FormSubmissionKey
+	,2 [QuestionKey]
+	--,STD.TX_SERVICE_CONCURRENCY
+FROM dbo.AuthorizationKeys AK
+INNER JOIN ca.AUTHORIZATION_FACT AF ON
+	AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+INNER JOIN ca.SERVICE_TYPE_DIM STD ON
+	STD.ID_SERVICE_TYPE_DIM = AF.ID_SERVICE_TYPE_DIM
+INNER JOIN dbo.DataItem DIT ON
+	DIT.ItemName = STD.TX_SERVICE_CONCURRENCY
+GO
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DIT.DataItemKey [DataValueKey]
+	,1 [DataTypeKey]
+	,AK.FormSubmissionKey
+	,18 [QuestionKey]
+	--,STH.TX_SRVC
+FROM dbo.AuthorizationKeys AK
+INNER JOIN ca.AUTHORIZATION_FACT AF ON
+	AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+INNER JOIN dbo.ServiceTypeHierarchy STH ON
+	STH.ID_SERVICE_TYPE_DIM = AF.ID_SERVICE_TYPE_DIM
+INNER JOIN dbo.DataItem DIT ON
+	DIT.ItemName = STH.TX_SRVC
+GO
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DIT.DataItemKey [DataValueKey]
+	,1 [DataTypeKey]
+	,AK.FormSubmissionKey
+	,20 [QuestionKey]
+	--,PTD.TX_PLCM_SETNG
+FROM dbo.AuthorizationKeys AK
+INNER JOIN ca.AUTHORIZATION_FACT AF ON
+	AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+INNER JOIN ca.PLACEMENT_TYPE_DIM PTD ON
+	PTD.ID_PLACEMENT_TYPE_DIM = AF.ID_PLACEMENT_TYPE_DIM
+INNER JOIN dbo.DataItem DIT ON
+	DIT.ItemName = PTD.TX_PLCM_SETNG
+GO
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DIT.DataItemKey [DataValueKey]
+	,1 [DataTypeKey]
+	,AK.FormSubmissionKey
+	,21 [QuestionKey]
+	--,PTD.TX_EPSD_TYPE
+FROM dbo.AuthorizationKeys AK
+INNER JOIN ca.AUTHORIZATION_FACT AF ON
+	AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+INNER JOIN ca.PLACEMENT_TYPE_DIM PTD ON
+	PTD.ID_PLACEMENT_TYPE_DIM = AF.ID_PLACEMENT_TYPE_DIM
+INNER JOIN dbo.DataItem DIT ON
+	DIT.ItemName = PTD.TX_EPSD_TYPE
+GO
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DIT.DataItemKey [DataValueKey]
+	,1 [DataTypeKey]
+	,AK.FormSubmissionKey
+	,22 [QuestionKey]
+	--,AD.TX_AUTH_STATUS
+FROM dbo.AuthorizationKeys AK
+INNER JOIN ca.AUTHORIZATION_FACT AF ON
+	AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+INNER JOIN ca.AUTHORIZATION_DIM AD ON
+	AD.ID_AUTHORIZATION_DIM = AF.ID_AUTHORIZATION_DIM
+INNER JOIN dbo.DataItem DIT ON
+	DIT.ItemName = AD.TX_AUTH_STATUS
+GO
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DIT.DataItemKey [DataValueKey]
+	,1 [DataTypeKey]
+	,AK.FormSubmissionKey
+	,23 [QuestionKey]
+	--,PCAD.TX_PLACEMENT_CARE_AUTH
+FROM dbo.AuthorizationKeys AK
+INNER JOIN ca.AUTHORIZATION_FACT AF ON
+	AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+INNER JOIN ca.PLACEMENT_CARE_AUTH_DIM PCAD ON
+	PCAD.ID_PLACEMENT_CARE_AUTH_DIM = AF.ID_PLACEMENT_CARE_AUTH_DIM
+INNER JOIN dbo.DataItem DIT ON
+	DIT.ItemName = PCAD.TX_PLACEMENT_CARE_AUTH
+GO
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DIT.DataItemKey [DataValueKey]
+	,1 [DataTypeKey]
+	,AK.FormSubmissionKey
+	,24 [QuestionKey]
+	--,PCAD.TX_TRIBE
+FROM dbo.AuthorizationKeys AK
+INNER JOIN ca.AUTHORIZATION_FACT AF ON
+	AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+INNER JOIN ca.PLACEMENT_CARE_AUTH_DIM PCAD ON
+	PCAD.ID_PLACEMENT_CARE_AUTH_DIM = AF.ID_PLACEMENT_CARE_AUTH_DIM
+INNER JOIN dbo.DataItem DIT ON
+	DIT.ItemName = PCAD.TX_TRIBE
+GO
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DIT.DataItemKey [DataValueKey]
+	,1 [DataTypeKey]
+	,AK.FormSubmissionKey
+	,25 [QuestionKey]
+	--,SFD.TX_ELIG_STATUS
+FROM dbo.AuthorizationKeys AK
+INNER JOIN ca.AUTHORIZATION_FACT AF ON
+	AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+INNER JOIN ca.SOURCE_FUNDS_DIM SFD ON
+	SFD.ID_SOURCE_FUNDS_DIM = AF.ID_SOURCE_FUNDS_DIM
+INNER JOIN dbo.DataItem DIT ON
+	DIT.ItemName = SFD.TX_ELIG_STATUS
+GO
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DIT.DataItemKey [DataValueKey]
+	,1 [DataTypeKey]
+	,AK.FormSubmissionKey
+	,26 [QuestionKey]
+	--,SFD.TX_SOURCE_FUNDS
+FROM dbo.AuthorizationKeys AK
+INNER JOIN ca.AUTHORIZATION_FACT AF ON
+	AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+INNER JOIN ca.SOURCE_FUNDS_DIM SFD ON
+	SFD.ID_SOURCE_FUNDS_DIM = AF.ID_SOURCE_FUNDS_DIM
+INNER JOIN dbo.DataItem DIT ON
+	DIT.ItemName = SFD.TX_SOURCE_FUNDS
+GO
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DIN.DataIntegerKey [DataValueKey]
+	,3 [DataTypeKey]
+	,AK.FormSubmissionKey
+	,17 [QuestionKey]
+	--,AF.AM_UNITS
+FROM dbo.AuthorizationKeys AK
+INNER JOIN ca.AUTHORIZATION_FACT AF ON
+	AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+INNER JOIN dbo.DataInteger DIN ON
+	DIN.IntegerValue = CONVERT(INT, AF.AM_UNITS)
+GO
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DIN.DataIntegerKey [DataValueKey]
+	,3 [DataTypeKey]
+	,AK.FormSubmissionKey
+	,19 [QuestionKey]
+	--,AF.CHILD_AGE
+FROM dbo.AuthorizationKeys AK
+INNER JOIN ca.AUTHORIZATION_FACT AF ON
+	AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+INNER JOIN dbo.DataInteger DIN ON
+	DIN.IntegerValue = AF.CHILD_AGE
+GO
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DMY.DataMoneyKey [DataValueKey]
+	,4 [DataTypeKey]
+	,AK.FormSubmissionKey
+	,16 [QuestionKey]
+	--,AF.AM_TOTAL_PAID
+FROM dbo.AuthorizationKeys AK
+INNER JOIN ca.AUTHORIZATION_FACT AF ON
+	AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+INNER JOIN dbo.DataMoney DMY ON
+	DMY.MoneyValue = CONVERT(MONEY, AF.AM_TOTAL_PAID)
+GO
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DFT.DataFloatKey [DataValueKey]
+	,5 [DataTypeKey]
+	,AK.FormSubmissionKey
+	,15 [QuestionKey]
+	--,AF.AM_RATE
+FROM dbo.AuthorizationKeys AK
+INNER JOIN ca.AUTHORIZATION_FACT AF ON
+	AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+INNER JOIN dbo.DataFloat DFT ON
+	DFT.FloatValue = AF.AM_RATE
+GO
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DDT.DataDateKey [DataValueKey]
+	,8 [DataTypeKey]
+	,AK.FormSubmissionKey
+	,8 [QuestionKey]
+	--,CD.CALENDAR_DATE [AUTH_BEGIN_DATE]
+FROM dbo.AuthorizationKeys AK
+INNER JOIN ca.AUTHORIZATION_FACT AF ON
+	AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+INNER JOIN ca.CALENDAR_DIM CD ON
+	CD.ID_CALENDAR_DIM = AF.ID_CALENDAR_DIM_AUTH_BEGIN
+INNER JOIN dbo.DataDate DDT ON
+	DDT.DateValue = CONVERT(DATE, CD.CALENDAR_DATE)
+GO
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DDT.DataDateKey [DataValueKey]
+	,8 [DataTypeKey]
+	,AK.FormSubmissionKey
+	,9 [QuestionKey]
+	--,CD.CALENDAR_DATE [AUTH_END_DATE]
+FROM dbo.AuthorizationKeys AK
+INNER JOIN ca.AUTHORIZATION_FACT AF ON
+	AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+INNER JOIN ca.CALENDAR_DIM CD ON
+	CD.ID_CALENDAR_DIM = AF.ID_CALENDAR_DIM_AUTH_END
+INNER JOIN dbo.DataDate DDT ON
+	DDT.DateValue = CONVERT(DATE, CD.CALENDAR_DATE)
+GO
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DDT.DataDateKey [DataValueKey]
+	,8 [DataTypeKey]
+	,AK.FormSubmissionKey
+	,12 [QuestionKey]
+	--,CD.CALENDAR_DATE [SERVICE_BEGIN_DATE]
+FROM dbo.AuthorizationKeys AK
+INNER JOIN ca.AUTHORIZATION_FACT AF ON
+	AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+INNER JOIN ca.CALENDAR_DIM CD ON
+	CD.ID_CALENDAR_DIM = AF.ID_CALENDAR_DIM_SERVICE_BEGIN
+INNER JOIN dbo.DataDate DDT ON
+	DDT.DateValue = CONVERT(DATE, CD.CALENDAR_DATE)
+GO
+
+INSERT dbo.FormData
+	(DataValueKey, DataTypeKey, FormSubmissionKey, QuestionKey)
+SELECT
+	DDT.DataDateKey [DataValueKey]
+	,8 [DataTypeKey]
+	,AK.FormSubmissionKey
+	,13 [QuestionKey]
+	--,CD.CALENDAR_DATE [SERVICE_END_DATE]
+FROM dbo.AuthorizationKeys AK
+INNER JOIN ca.AUTHORIZATION_FACT AF ON
+	AF.ID_AUTHORIZATION_FACT = AK.ID_AUTHORIZATION_FACT
+INNER JOIN ca.CALENDAR_DIM CD ON
+	CD.ID_CALENDAR_DIM = AF.ID_CALENDAR_DIM_SERVICE_END
+INNER JOIN dbo.DataDate DDT ON
+	DDT.DateValue = CONVERT(DATE, CD.CALENDAR_DATE)
+GO
+--*/
+
+SELECT
+	COUNT(ID_AUTHORIZATION_FACT) [Authorizations]
+	,COUNT(ChildPersonKey) [Children Populated]
+	,COUNT(WorkerPersonKey) [Workers Populated]
+	,COUNT(CaseKey) [Cases Populated]
+	,COUNT(ActivityKey) [Activities Populated]
+	,COUNT(FormSubmissionKey) [FormSubmissions Populated]
+	,COUNT(ActivityTypeKey) [ActivityTypes Populated]
+	,COUNT(HouseholdKey) [Households Populated]
+	,COUNT(TeamKey) [Teams Populated]
+FROM dbo.AuthorizationKeys
