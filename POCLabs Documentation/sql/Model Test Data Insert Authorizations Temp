@@ -1,0 +1,68 @@
+DECLARE @NewTeamKey INT
+	,@TempTeamKey INT
+	,@CreatedDate DATETIME
+
+DECLARE @TeamKeys TABLE (TeamKey INT)
+
+DECLARE TeamInsertCursor CURSOR FOR
+SELECT
+	TempTeamKey
+	,MinAuthorizationDate
+FROM dbo.AuthTeamListUnique
+ORDER BY TempTeamKey
+
+OPEN TeamInsertCursor
+
+FETCH NEXT FROM TeamInsertCursor
+INTO @TempTeamKey, @CreatedDate
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+	INSERT dbo.Team (CreatedDate)
+	OUTPUT inserted.TeamKey
+	INTO @TeamKeys
+	VALUES (@CreatedDate)
+
+	SET @NewTeamKey = (SELECT TOP 1 TeamKey FROM @TeamKeys)
+
+	UPDATE dbo.AuthTeamListUnique
+	SET TeamKey = @NewTeamKey
+	WHERE TempTeamKey = @TempTeamKey
+
+	DELETE FROM @TeamKeys
+
+	FETCH NEXT FROM TeamInsertCursor
+	INTO @TempTeamKey, @CreatedDate
+END
+
+CLOSE TeamInsertCursor
+
+DEALLOCATE TeamInsertCursor
+GO
+
+INSERT dbo.TeamMember
+	(BeginDate, TeamKey, PersonKey)
+SELECT
+	MIN(ATLU.MinAuthorizationDate) [BeginDate]
+	,ATLU.TeamKey
+	,ATML.PersonKey
+FROM dbo.AuthTeamListUnique ATLU
+INNER JOIN dbo.AuthTeamMemberList ATML ON
+	ATML.TempTeamKey = ATLU.TempTeamKey
+GROUP BY
+	ATLU.TeamKey
+	,ATML.PersonKey
+ORDER BY
+	TeamKey
+	,PersonKey
+GO
+
+UPDATE AK
+SET TeamKey = ATLU.TeamKey
+--SELECT AK.ID_AUTHORIZATION_FACT, AK.CaseKey, ATL.TempTeamKey, ATLU.TeamKey
+FROM dbo.AuthorizationKeys AK
+INNER JOIN dbo.AuthTeamList ATL ON
+	ATL.CaseKey = AK.CaseKey
+INNER JOIN dbo.AuthTeamListUnique ATLU ON
+	ATLU.TempTeamKey = ATL.TempTeamKey
+WHERE AK.TeamKey IS NULL
