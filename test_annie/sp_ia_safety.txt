@@ -606,7 +606,7 @@ end if;
         
     end if; -- not in cache
 
-			SELECT  	 pbcs2.month as  "Months Since 1st Screened-In Case"
+			SELECT  	 pbcs2.month as  "Months Since 1st Investigation/Assessment"
                 ,pbcs2.qry_type   
 								, pbcs2.start_year  as "Cohort Period"
 								, pbcs2.cd_sib_age_grp as  "age_grouping_cd"
