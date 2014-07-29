@@ -1,26 +1,16 @@
 USE [CA_ODS]
 GO
 
-/****** Object:  View [dbo].[vw_legally_free]    Script Date: 7/28/2014 10:07:08 AM ******/
-DROP VIEW [dbo].[vw_legally_free]
-GO
-
-/****** Object:  View [dbo].[vw_legally_free]    Script Date: 7/28/2014 10:07:08 AM ******/
+/****** Object:  View [dbo].[vw_legally_free]    Script Date: 7/28/2014 1:03:32 PM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-
-
-
-
-
-
 --if OBJECT_ID('tempDB..##legfree') is not null drop table ##legfree
 
-CREATE view [dbo].[vw_legally_free]
+alter view [dbo].[vw_legally_free]
 as 
 with cte_legally_free as (
 		SELECT         tce.id_prsn_child 
@@ -37,12 +27,20 @@ with cte_legally_free as (
                       , federal_discharge_date
 					  , Federal_Discharge_Date_Force_18
 					  , count(DISTINCT lf.id_legal_fact) [count_of_results] 
+					  , max(iif(cd_result=47,1,0)) [fl_maternal_relinquish]
+					  , max(iif(cd_result=48,1,0)) [fl_paternal_relinquish]
+					  , max(iif(cd_result=56,1,0)) [fl_maternal_term]
+					  , max(iif(cd_result=57,1,0)) [fl_paternal_term]
+					  , max(iif(cd_result=58,1,0)) [fl_maternal_term_reversed]
+					  , max(iif(cd_result=59,1,0)) [fl_paternal_term_reversed]
+					  , max(iif(cd_result=60,1,0)) [fl_unknown_father_term]
                       , tce.federal_discharge_reason_code
 					  , tce.state_discharge_reason_code
-					  , tce.state_discharge_reason
+					  , tce.state_discharge_reason 
 					  , ljd.cd_jurisdiction
 					  , ljd.tx_jurisdiction
-					  , IIF(Federal_Discharge_Date_Force_18 < = cutoff_date AND Federal_Discharge_Date > cutoff_date
+					  , IIF(Federal_Discharge_Date_Force_18 < = cutoff_date 
+								AND Federal_Discharge_Date > cutoff_date
 					  , 'Emancipation' 
 					  , Federal_Discharge_Reason) [Federal_Discharge_Reason_Force]
 					  , tce.federal_discharge_reason
@@ -55,18 +53,17 @@ with cte_legally_free as (
 								, datediff(dd, max(dbo.IntDate_to_CalDate(lf.id_calendar_dim_effective)),cutoff_date) +1
 								, datediff(dd, max(dbo.IntDate_to_CalDate(lf.id_calendar_dim_effective)), Federal_Discharge_Date_Force_18) + 1 
 							) [term_to_perm]
-							, IIF(Federal_Discharge_Date_Force_18 > cutoff_date 
-									AND federal_discharge_date > cutoff_date , 0,1) [discharge_flag]
+						, IIF(Federal_Discharge_Date_Force_18 > cutoff_date 
+								AND federal_discharge_date > cutoff_date , 0,1) [discharge_flag]
 FROM            base.tbl_child_episodes tce
 		JOIN ref_last_dw_transfer on 1=1
 		JOIN		dbo.legal_fact lf ON tce.id_prsn_child = lf.id_prsn
 				 AND dbo.IntDate_to_CalDate(lf.id_calendar_dim_effective) > tce.state_custody_start_date  
-				--			and dbo.IntDate_to_CalDate(lf.id_calendar_dim_effective) < =coalesce(federal_discharge_date,federal_discharge_date_force_18,cutoff_date)
 				 AND dbo.IntDate_to_CalDate(ID_CALENDAR_DIM_EFFECTIVE) > '1998-01-29' 
 		JOIN       dbo.legal_result_dim lrd ON lrd.id_legal_result_dim = lf.id_legal_result_dim 
-					AND lrd.cd_result IN (47, 48, 56, 57, 58, 59, 60) --termination of parental rights
+					AND lrd.cd_result IN (47, 48,56,57,58,59,60) --termination of parental rights
 		LEFT JOIN     dbo.legal_jurisdiction_dim ljd ON ljd.id_legal_jurisdiction_dim = lf.id_legal_jurisdiction_dim
-GROUP BY tce.id_prsn_child
+GROUP BY tce.id_prsn_child 
 				, state_custody_start_date
 				, state_discharge_date
 				, Federal_Discharge_Date_Force_18
@@ -77,7 +74,7 @@ GROUP BY tce.id_prsn_child
 				, federal_discharge_date
 				, tce.cnt_plcm
 				, ljd.tx_jurisdiction
-				,ljd.CD_JURISDICTION
+				,ljd.cd_jurisdiction
 				, tce.eps_total
 				, tce.cd_race_census
 				, tce.child_age_removal_begin
@@ -106,6 +103,8 @@ GROUP BY tce.id_prsn_child
 						 , lf.state_discharge_reason_code
 						 , lf.cd_jurisdiction
 						 , lf.tx_jurisdiction
+						 ,iif(fl_maternal_relinquish=1 and fl_paternal_relinquish=1,1,0) fl_both_parent_relinquish
+						 ,iif( fl_maternal_term =1 and fl_maternal_term_reversed=0 and (fl_paternal_term=1  or fl_unknown_father_term=1)and fl_paternal_term_reversed=0 ,1,0) both_parents_termed
                          , iif(lf.Federal_Discharge_Reason_Force  IN ('Deceased', 'Transfer to Private Agency Authority', '-' ) 
 									,'Other'
 									,lf.Federal_Discharge_Reason_Force) [Federal_Discharge_Reason_Force]
@@ -116,11 +115,14 @@ GROUP BY tce.id_prsn_child
 						 ,  iif(lf.Federal_Discharge_Reason_Force  IN ('Deceased', 'Transfer to Private Agency Authority', '-' ) ,1,lf.discharge_flag) [discharge_flag]
 --				into ##legfree
 				from cte_legally_free lf
-				where lf.row_num=1 and (lf.federal_discharge_reason_code <> 1  )
-				and lf.term_to_perm >= 0 
+				where lf.row_num=1 and (lf.federal_discharge_reason_code <> 1  ) 
+				and lf.term_to_perm >= 0  
 				--and not exists(select * from vw_legally_free vlf where vlf.id_prsn_child=lf.id_prsn_child);
+				
 
 				
+
+
 
 
 GO
