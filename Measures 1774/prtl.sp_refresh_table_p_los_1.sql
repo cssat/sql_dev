@@ -1,10 +1,20 @@
 /******************************************************************************************************
-Name:  CFSR Permanency ExitsBefore1Yr.sql
+Name:  prtl.sp_refresh_table_p_los_1
+The cohorts are defined in CFSR Permanency ExitsBefore1Yr.sql
 Page 22607 of Federal Registry Volume 79 No. 78
 Permanency Performance Area 1: Permanency in 12 Months for Children  Entering Foster Care
+In the Condensed 1774/1556 Measurement Overview this measure is described as:
+Length of time to permanence for children in out-of-home-care
+Expected Percentage of Children Exiting Care Before 1 year (1 minuts the estimated survival function at 1 year
+Use Exit county
 Author: Jane Messerly
+truncates & populates table prtl.p_los_1
 *********************************************************************************************************/
-
+use ca_ods
+go 
+alter procedure prtl.sp_refresh_table_p_los_1 
+as
+set nocount on
 declare @surv_data surv_table;
 declare @filtercode int;
 declare @state_fiscal_year datetime;
@@ -98,18 +108,18 @@ begin
 			set @mysql=''
 	end
 
-if object_id(N'prtl.cfsr_permanency_exits_wi_1yr ',N'U') is not null truncate table prtl.cfsr_permanency_exits_wi_1yr 
-insert into prtl.cfsr_permanency_exits_wi_1yr 
+if object_id(N'prtl.p_los_1 ',N'U') is not null truncate table prtl.p_los_1 
+insert into prtl.p_los_1 
 select  state_fiscal_year,filtername ,filtercode,dur_days,num,n_i,q_i,s_i,1.0000 - s_i  as [1-s]  from @results 
 --where filtercode <> -99
  order by state_fiscal_year,filtercode;
 
-select iif(filtercode<>0,1,0) filtercode,sum(n_i)  from prtl.cfsr_permanency_exits_wi_1yr  where dur_days=365
- and year(state_fiscal_year)=2010
- group by  iif(filtercode<>0,1,0)
-  order by filtercode asc;
+--select iif(filtercode<>0,1,0) filtercode,sum(n_i)  from prtl.p_los_1  where dur_days=365
+-- and year(state_fiscal_year)=2010
+-- group by  iif(filtercode<>0,1,0)
+--  order by filtercode asc;
 
-  select * from  prtl.cfsr_permanency_exits_wi_1yr where filtercode <> -99 and dur_days=365 order by state_fiscal_year,filtercode,dur_days
+--  select * from  prtl.p_los_1 where filtercode <> -99 and dur_days=365 order by state_fiscal_year,filtercode,dur_days
 
 
 

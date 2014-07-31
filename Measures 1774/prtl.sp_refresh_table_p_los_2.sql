@@ -1,10 +1,16 @@
 /******************************************************************************************************
-Name:  M1774 Permanency LegallyFreeAdoptionsAt1Yr.sql
+Name:   prtl.sp_refresh_table_p_los_2
 From: Condensed 1774/1566 Measurement Overview
  Expected Percentage of Legallly Free Children Experiencing Adoption Before 1 yr (1 minus the estimated survival function at 1 yr
 Author: Jane Messerly
-*********************************************************************************************************/
 
+truncates & populates table prtl.p_los_2
+*********************************************************************************************************/
+use ca_ods
+go 
+alter procedure prtl.sp_refresh_table_p_los_2 
+as
+set nocount on
 declare @surv_data surv_table;
 declare @filtercode int;
 declare @state_fiscal_year datetime;
@@ -120,19 +126,20 @@ begin
 			set @mysql=''
 	end
 
-if object_id(N'prtl.m1774_permanency_outcome_legallyfree ',N'U') is not null truncate table prtl.m1774_permanency_outcome_legallyfree 
-insert  into prtl.m1774_permanency_outcome_legallyfree 
+if object_id(N'prtl.p_los_2 ',N'U') is not null truncate table prtl.p_los_2 
+insert  into prtl.p_los_2 
 select  state_fiscal_year,filtername ,filtercode,dur_days,num,n_i,q_i,s_i,1.0000 - s_i  as [1-s] from @results 
 --  where filtercode<>-99
  order by state_fiscal_year,filtercode;
 
- select iif(filtercode<>0,1,0) filtercode,sum(n_i)  from prtl.m1774_permanency_outcome_legallyfree  where dur_days=365
- and year(state_fiscal_year)=2010
- group by  iif(filtercode<>0,1,0)
-  order by filtercode asc;
+  delete from  prtl.p_los_2 where dur_days <> 365 or  filtercode = -99
+-- select iif(filtercode<>0,1,0) filtercode,sum(n_i)  from prtl.p_los_2  where dur_days=365
+-- and year(state_fiscal_year)=2010
+-- group by  iif(filtercode<>0,1,0)
+--  order by filtercode asc;
 
 
-select * from  prtl.m1774_permanency_outcome_legallyfree  where dur_days=365 and filtercode <> -99 order by state_fiscal_year,filtercode,dur_days;
+--select * from  prtl.p_los_2  where dur_days=365 and filtercode <> -99 order by state_fiscal_year,filtercode,dur_days;
 
 
 

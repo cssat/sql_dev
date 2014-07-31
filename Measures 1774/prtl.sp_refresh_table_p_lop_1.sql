@@ -1,9 +1,19 @@
 /******************************************************************************************************
-Name:  CFSR Permanency ExitsWithinYr_Reentry.sql
+Name:  prtl.sp_refresh_table_p_lop_1 
+Cohort described in 
 Page 22608of Federal Registry Volume 79 No. 78
 Permanency Performance Area 3: Re-Entry fo Foster Care
+Measurement described in Condensed 1774/1566 Measurement Overview
+Expected Percentage of Children Re-entering Care Before 1 yr (1 minus the estimated survival function at 1 yr)
+truncates and populates prtl.p_lop_1
 Author: Jane Messerly
 *********************************************************************************************************/
+
+use ca_ods
+go 
+alter procedure prtl.sp_refresh_table_p_lop_1 
+as
+set nocount on
 set nocount on
 declare @surv_data surv_table;
 declare @filtercode int;
@@ -109,21 +119,23 @@ begin
 			set @mysql=''
 	end
 
-if object_id(N'prtl.cfsr_permanency_reunification_within1yr_reentry ',N'U') is not null truncate table prtl.cfsr_permanency_reunification_within1yr_reentry 
-insert into prtl.cfsr_permanency_reunification_within1yr_reentry
+if object_id(N'prtl.p_lop_1 ',N'U') is not null truncate table prtl.p_lop_1 
+insert into prtl.p_lop_1
 select  state_fiscal_year,filtername ,filtercode,dur_days,num,n_i,q_i,s_i,1.0000 - s_i  as [1-s]  
 from @results 
 --where filtercode <> -99
  order by state_fiscal_year,filtercode;
 
- select iif(filtercode=0,filtercode,1),state_fiscal_year,dur_days,sum(n_i) n_i
-  from  prtl.cfsr_permanency_reunification_within1yr_reentry  where dur_days=365 
-   group  by iif(filtercode=0,filtercode,1),state_fiscal_year,dur_days
-  order by state_fiscal_year, iif(filtercode=0,filtercode,1),dur_days
 
-  select * from prtl.cfsr_permanency_reunification_within1yr_reentry  where dur_days=365  
- ---- and filtercode <> -99
-  order by state_fiscal_year,filtercode
+ delete from  prtl.p_lop_1 where dur_days <> 365 or  filtercode = -99
+ --select iif(filtercode=0,filtercode,1),state_fiscal_year,dur_days,sum(n_i) n_i
+ -- from  prtl.p_lop_1  where dur_days=365 
+ --  group  by iif(filtercode=0,filtercode,1),state_fiscal_year,dur_days
+ -- order by state_fiscal_year, iif(filtercode=0,filtercode,1),dur_days
+
+ -- select * from prtl.p_los_3  where dur_days=365  
+ ------ and filtercode <> -99
+ -- order by state_fiscal_year,filtercode
   
   
 
