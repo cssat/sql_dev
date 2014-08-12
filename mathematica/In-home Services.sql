@@ -64,19 +64,6 @@ group by  power(10.0, 16) + cnty.county_cd * power(10.0,10)  + age.cd_sib_age_gr
 			, cd.[QUARTER_OF_YEAR] 
 			, age.cd_sib_age_grp
 			, age.tx_sib_age_grp
-order by [CountyCd],qry_seq,[Year],[Quarter],[Filter ID]
-
-select start_date,cd_sib_age_grp,cnt_opened,qry_id  from prtl.cache_poc3ab_aggr where qry_type=0 and date_type=1  and cd_sib_age_grp=1 and cd_county=0 and cd_access_type=0 and cd_allegation=0 and cd_budget_type=0 and cd_finding=0 and cd_reporter_type=0 and cd_race_census=0
-and bin_ihs_svc_cd=0 and cd_service_type=0 order by start_date
-
-select * from prtl.cache_poc3ab_aggr where qry_id=30 and cd_sib_age_grp=1
-
-
-
-select  start_date,sum(cnt_opened)  from prtl.prtl_poc3ab where qry_type=0 and date_type=1  and  cd_sib_age_group=1  and start_date >='2009-01-01' group by start_date
-
-select distinct county_cd from prtl.prtl_poc3ab order by county_cd
-
 union all
 select   county_cd [CountyCd] 
 			,county_desc [CountyID]
@@ -88,90 +75,98 @@ select   county_cd [CountyCd]
 			, isnull(max(p3.cnt_opened),0) cnt_opened
 			, isnull(max(p3.cnt_closed),0) cnt_closed
 			, isnull(max(s3.placed),0) placed
-from (select min_date_any,max_date_any from ref_lookup_max_date where id=6  ) dt
+from (select min_date_any,max_date_any from ref_lookup_max_date where id=22  ) dt
 join  calendar_dim  cd on cd.CALENDAR_DATE between min_date_any and max_date_any  
 cross join (select county_cd,county_desc from ref_lookup_county where county_cd between 0 and 39) cnty
-cross join  (select cd_race_census,tx_race_census from ref_lookup_ethnicity_census where cd_race_census <> 7  ) eth -- exclude unknown
-left join prtl.cache_poc3ab_aggr p3 on p3.start_date=cd.CALENDAR_DATE and p3.cd_county=cnty.county_cd and p3.cd_race=eth.cd_race_census
-		and p3.qry_id in (13,17)  and p3.qry_type=0 and p3.date_type=1   
-left join prtl.cache_pbcs3_aggr s3 on  s3.start_date=cd.CALENDAR_DATE and s3.cd_county=cnty.county_cd 	and s3.cd_race=eth.cd_race_census
+cross join  (select cd_race_census,tx_race_census from ref_lookup_ethnicity_census where cd_race_census <> 7  ) eth
+left join prtl.cache_poc3ab_aggr p3 on  p3.int_hash_key = convert(decimal(22,0),power(10.0, 16) + cnty.county_cd * power(10.0,10)  +  eth.cd_race_census * power(10.0,13 ))
+		and  p3.start_date=cd.CALENDAR_DATE 
+		and p3.cd_county=cnty.county_cd
+		and p3.cd_race_census=eth.cd_race_census
+		 and p3.qry_type=0
+		 and p3.date_type=1   
+left join prtl.cache_pbcs3_aggr s3 on  s3.int_hash_key = convert(decimal(22,0),power(10.0, 16) + cnty.county_cd * power(10.0,10)  +  eth.cd_race_census * power(10.0,13 ))
+			and s3.start_date=cd.CALENDAR_DATE
+			 and s3.cd_county=cnty.county_cd 	
+			 and s3.cd_race_census=eth.cd_race_census
+			 and s3.qry_type=0
 			and s3.date_type=2
-			and s3.qry_type=0
 			and s3.month=12
-			and s3.qry_id  in (13,17)  
-group by county_cd
+group by  power(10.0, 16) + cnty.county_cd * power(10.0,10)  +  eth.cd_race_census * power(10.0,13 )
+			,county_cd
 			,county_desc 
 			, cd.YEAR_YYYY 
 			, cd.[QUARTER_OF_YEAR] 
 			,  eth.cd_race_census
-			, eth.tx_race_census 
+			,  eth.tx_race_census
 union all
 select   county_cd [CountyCd] 
 			,county_desc [CountyID]
 			, cd.YEAR_YYYY [Year]
 			, cd.[QUARTER_OF_YEAR]  [Quarter]
 			, 4 [qry_seq]
-			,  alg.cd_allegation [Filter ID]
+			, alg.cd_allegation [Filter ID]
 			, alg.tx_allegation [Filter Category]
 			, isnull(max(p3.cnt_opened),0) cnt_opened
 			, isnull(max(p3.cnt_closed),0) cnt_closed
 			, isnull(max(s3.placed),0) placed
-from (select min_date_any,max_date_any from ref_lookup_max_date where id=6  ) dt
+from (select min_date_any,max_date_any from ref_lookup_max_date where id=22  ) dt
 join  calendar_dim  cd on cd.CALENDAR_DATE between min_date_any and max_date_any  
 cross join (select county_cd,county_desc from ref_lookup_county where county_cd between 0 and 39) cnty
 cross join  ref_filter_allegation alg
-left join prtl.cache_poc3ab_aggr p3 on p3.start_date=cd.CALENDAR_DATE and p3.cd_county=cnty.county_cd and p3.cd_allegation=alg.cd_allegation
-		and p3.qry_type=0 
-		and p3.date_type=1   
-		and p3.qry_id in (3,8)  
-left join prtl.cache_pbcs3_aggr s3 on  s3.start_date=cd.CALENDAR_DATE and s3.cd_county=cnty.county_cd 	and s3.cd_allegation=alg.cd_allegation
+left join prtl.cache_poc3ab_aggr p3 on  p3.int_hash_key = convert(decimal(22,0),power(10.0, 16) + cnty.county_cd * power(10.0,10)  +  alg.cd_allegation * power(10.0, 5 ))
+		and  p3.start_date=cd.CALENDAR_DATE 
+		and p3.cd_county=cnty.county_cd
+		and p3.cd_allegation=alg.cd_allegation
+		 and p3.qry_type=0
+		 and p3.date_type=1   
+left join prtl.cache_pbcs3_aggr s3 on  s3.int_hash_key = convert(decimal(22,0),power(10.0, 16) + cnty.county_cd * power(10.0,10)  +  alg.cd_allegation *power(10.0, 5 ))
+			and s3.start_date=cd.CALENDAR_DATE
+			 and s3.cd_county=cnty.county_cd 	
+			 and s3.cd_allegation=alg.cd_allegation
+			 and s3.qry_type=0
 			and s3.date_type=2
-			and s3.qry_type=0
 			and s3.month=12
-			and s3.qry_id  in (3,8)
-group by county_cd
+group by  power(10.0, 16) + cnty.county_cd * power(10.0,10)  + alg.cd_allegation *power(10.0, 5 )
+			,county_cd
 			,county_desc 
 			, cd.YEAR_YYYY 
 			, cd.[QUARTER_OF_YEAR] 
-			,  alg.cd_allegation
+			, alg.cd_allegation
 			, alg.tx_allegation
-			union all
+union all
 select   county_cd [CountyCd] 
 			,county_desc [CountyID]
 			, cd.YEAR_YYYY [Year]
 			, cd.[QUARTER_OF_YEAR]  [Quarter]
-			, 4 [qry_seq]
-			,  fnd.cd_finding [Filter ID]
+			, 5 [qry_seq]
+			, fnd.cd_finding [Filter ID]
 			, fnd.tx_finding [Filter Category]
 			, isnull(max(p3.cnt_opened),0) cnt_opened
 			, isnull(max(p3.cnt_closed),0) cnt_closed
 			, isnull(max(s3.placed),0) placed
-from (select min_date_any,max_date_any from ref_lookup_max_date where id=6  ) dt
+from (select min_date_any,max_date_any from ref_lookup_max_date where id=22  ) dt
 join  calendar_dim  cd on cd.CALENDAR_DATE between min_date_any and max_date_any  
 cross join (select county_cd,county_desc from ref_lookup_county where county_cd between 0 and 39) cnty
 cross join  ref_filter_finding fnd
-left join prtl.cache_poc3ab_aggr p3 on p3.start_date=cd.CALENDAR_DATE and p3.cd_county=cnty.county_cd and p3.cd_finding=fnd.cd_finding
-		and p3.qry_type=0 
-		and p3.date_type=1   
-		and p3.qry_id in (2,7)  
-left join prtl.cache_pbcs3_aggr s3 on  s3.start_date=cd.CALENDAR_DATE and s3.cd_county=cnty.county_cd 	and s3.cd_finding=fnd.cd_finding
+left join prtl.cache_poc3ab_aggr p3 on  p3.int_hash_key = convert(decimal(22,0),power(10.0, 16) + cnty.county_cd * power(10.0,10)  +   fnd.cd_finding * power(10.0, 4 ))
+		and  p3.start_date=cd.CALENDAR_DATE 
+		and p3.cd_county=cnty.county_cd
+		and p3.cd_finding= fnd.cd_finding
+		 and p3.qry_type=0
+		 and p3.date_type=1   
+left join prtl.cache_pbcs3_aggr s3 on  s3.int_hash_key = convert(decimal(22,0),power(10.0, 16) + cnty.county_cd * power(10.0,10)  +   fnd.cd_finding *power(10.0, 4 ))
+			and s3.start_date=cd.CALENDAR_DATE
+			 and s3.cd_county=cnty.county_cd 	
+			 and s3.cd_finding= fnd.cd_finding
+			 and s3.qry_type=0
 			and s3.date_type=2
-			and s3.qry_type=0
 			and s3.month=12
-			and s3.qry_id  in (2,7)
-group by county_cd
+group by  power(10.0, 16) + cnty.county_cd * power(10.0,10)  +  fnd.cd_finding *power(10.0, 4 )
+			,county_cd
 			,county_desc 
 			, cd.YEAR_YYYY 
 			, cd.[QUARTER_OF_YEAR] 
-			,  fnd.cd_finding
+			, fnd.cd_finding
 			, fnd.tx_finding
-order by qry_seq,[CountyCd],[Year],[Quarter],[Filter ID]
-
---  select * from prtl.cache_poc3ab_params where cd_county <> '0' order by qry_id  
-
-
-
-
-
-
-
+order by [CountyCd],qry_seq,[Year],[Quarter],[Filter ID]
