@@ -336,14 +336,14 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 					,0');
 		end if;
 		set @incl=concat(@incl,char(13),'
-  					, coalesce(sum(prtl_poc1ab.cnt_start_date),0) as cnt_start_date');
+  					, coalesce(sum(prtl_poc1ab.cnt_child_unique),0) `cnt_start_date`');
 		set @incl=concat(@incl,char(13),', DATE',char(39), p_minmonthstart,char(39));
 		set @incl=concat(@incl,char(13),', DATE',char(39), p_maxmonthstart,char(39));
 		set @incl=concat(@incl,char(13),', ',char(39), x1,char(39));
 		set @incl=concat(@incl,char(13),', ',char(39), x2,char(39));    
 		set @incl=concat(@incl,char(13),', DATE',char(39), now() ,char(39),' as insert_date'); 
 		set @incl=concat(@incl,char(13),',  ck.qry_id',char(13),'
-            , prtl_poc1ab.start_year');
+            , year(prtl_poc1ab.start_date)');
 		if NOT(trim(p_age_grouping_cd) ='0' 
             and trim(p_gender_cd) ='0'
             and trim(p_ethnicity_cd)='0'
@@ -398,7 +398,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
             +  bud.cd_budget_poc_frc * ',@mult_cd_budget_poc_frc);
         end if;	
 		set @incl=concat(@incl,char(13),'
-  			FROM prtl_poc1ab_ram prtl_poc1ab  ');
+  			FROM ooh_point_in_time_measures prtl_poc1ab  ');
 		if NOT(trim(p_age_grouping_cd) ='0' 
             and trim(p_gender_cd) ='0'
             and trim(p_ethnicity_cd)='0'
@@ -407,7 +407,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
             and trim(p_county_cd) = '0'  )  then
 			set @incl=concat(@incl,char(13),
 			'join tblprmlocdem mtch 
-            on mtch.int_match_param_key=prtl_poc1ab.int_match_param_key 
+            on mtch.int_match_param_key=prtl_poc1ab.int_match_param_key_census 
             and mtch.cd_race_census in (select cd_race from tbleth)');
 		end if;
 			if trim(p_bin_dep_cd)<>'0' then
@@ -508,7 +508,8 @@ if  var_row_cnt_param <> var_row_cnt_cache then
         end if;	
         set @incl=concat(@incl,char(13),' and ck.in_cache=0',char(13));            
 			set @incl=concat(@incl,char(13),'
-         			group by  prtl_poc1ab.qry_type
+         		where fl_poc1ab=1	
+				group by  prtl_poc1ab.qry_type
   					, prtl_poc1ab.date_type 
   					, prtl_poc1ab.start_date');
 if NOT(trim(p_age_grouping_cd) ='0' 
@@ -519,7 +520,7 @@ if NOT(trim(p_age_grouping_cd) ='0'
             and trim(p_county_cd) = '0'  )  then
 			set @incl=concat(@incl,char(13),'
 					, mtch.int_param_key
-  					, mtch.age_grouping_cd 
+  					, mtch.age_grouping_cd
   					, mtch.pk_gndr
   					, mtch.cd_race_census
   					, mtch.init_cd_plcm_setng
@@ -571,8 +572,8 @@ if NOT(trim(p_age_grouping_cd) ='0'
         set @incl=concat(@incl,' , ck.qry_id;',char(13));
         
 
-  --       drop temporary table if exists mycode_poc1ab;
-     --    create temporary table mycode_poc1ab as select @incl ;
+         drop temporary table if exists mycode_poc1ab;
+         create temporary table mycode_poc1ab as select @incl ;
         
         PREPARE stmt FROM @incl;
         EXECUTE stmt;

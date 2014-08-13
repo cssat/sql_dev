@@ -1,8 +1,14 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
 CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `create_prtl_poc1ab_ram_table`()
 BEGIN
-drop table if exists prtl_poc1ab_ram;
-create table prtl_poc1ab_ram   (
-int_match_param_key bigint,
+drop table if exists ooh_point_in_time_measures_ram;
+create table ooh_point_in_time_measures_ram   (
+int_match_param_key_census bigint,
 max_bin_los_cd int,
 bin_placement_cd int,
 bin_ihs_svc_cd int,
@@ -17,14 +23,15 @@ qry_type int,
 date_type int,
 start_date datetime,
 bin_dep_cd int,
-cnt_start_date int,
-cnt_entries int,
-cnt_exits int,
+cnt_child_unique int,
 start_year int,
-key(int_match_param_key)) engine = memory;
+fl_poc1ab int,
+fl_w3 int,
+fl_w4 int,
+key(fl_poc1ab,int_match_param_key_census)) engine = memory;
 
-insert into prtl_poc1ab_ram
-select int_match_param_key,
+insert into ooh_point_in_time_measures_ram
+select int_match_param_key_census,
 max_bin_los_cd,
 bin_placement_cd,
 bin_ihs_svc_cd,
@@ -39,11 +46,12 @@ qry_type,
 date_type,
 start_date,
 bin_dep_cd,
-cnt_start_date,
-cnt_entries,
-cnt_exits,
-start_year 
-from prtl_poc1ab;
+cnt_child_unique,
+year(start_date), 
+fl_poc1ab,
+fl_w3,
+fl_w4
+from ooh_point_in_time_measures;
 
   
   

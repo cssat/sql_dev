@@ -424,14 +424,14 @@ SELECT
 		, case poc2ab.cd_allegation  when 0  then @alg0 when 1  then @alg1 when 2  then @alg2 when 3  then @alg3 when 4  then @alg4 end as "Allegation"
 		, poc2ab.cd_finding
 		, case poc2ab.cd_finding  when 0  then @fnd0 when 1  then @fnd1 when 2  then @fnd2 when 3  then @fnd3 when 4  then @fnd4 end as "Finding"
-        ,case when poc2ab.cnt_start_date > 0 /* jitter all above 0 */  
-                    then 
-                        case when round(poc2ab.cnt_start_date + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0)  < 1
-                        then 1
-                        else round(poc2ab.cnt_start_date + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0) 
-                        end
-                    else poc2ab.cnt_start_date
-            end as "Total Investigations & Assessments 1st Day"
+--         ,case when poc2ab.cnt_start_date > 0 /* jitter all above 0 */  
+--                     then 
+--                         case when round(poc2ab.cnt_start_date + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0)  < 1
+--                         then 1
+--                         else round(poc2ab.cnt_start_date + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0) 
+--                         end
+--                     else poc2ab.cnt_start_date
+--             end as "Total Investigations & Assessments 1st Day"
         ,case when (poc2ab.cnt_opened) > 0 /* jitter all above 0 */  
                     then 
                         case when round((poc2ab.cnt_opened) + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0)  < 1
