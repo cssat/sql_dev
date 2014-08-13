@@ -239,7 +239,7 @@ if  flg_procedure_off =0 then
 
 		SELECT    prtl_pbcw4.qry_type
 				, prtl_pbcw4.date_type 
-				, prtl_pbcw4.pit_date';
+				, prtl_pbcw4.start_date';
        
        if NOT(trim(p_age_grouping_cd) ='0' 
             and trim(p_gender_cd) ='0'
@@ -315,9 +315,9 @@ if  flg_procedure_off =0 then
 				, mtch.county_cd
 				, kin.kincare
 				, sib.bin_sibling_group_size
-				, round(sum(all_sib_together)/(sum(total)* 1.0000) * 100,2) as All_Together
-				, round(sum(some_sib_together)/(sum(total)* 1.0000) * 100,2) as Some_Together
-				, round(sum(no_sib_together)/(sum(total)* 1.0000) * 100,2) as None_Together
+				, round(sum(all_sib_together)/(sum(cnt_child)* 1.0000) * 100,2) as All_Together
+				, round(sum(some_sib_together)/(sum(cnt_child)* 1.0000) * 100,2) as Some_Together
+				, round(sum(no_sib_together)/(sum(cnt_child)* 1.0000) * 100,2) as None_Together
 				, DATE',char(39));
         set @incl=concat(@incl,p_minmonthstart,char(39));
         set @incl=concat(@incl,' as minmonthstart');
@@ -327,19 +327,19 @@ if  flg_procedure_off =0 then
 				set @incl=concat(@incl, ',',char(39),x2,char(39));
 				set @incl=concat(@incl, ', DATE',char(39), now(),char(39),' as insert_date');
 				set @incl=concat(@incl, ', che.qry_id ',char(13));
-				set @incl=concat(@incl, ',year(prtl_pbcw4.pit_date)
+				set @incl=concat(@incl, ',year(prtl_pbcw4.start_date)
 				,int_hash_key
-        , sum(total)
-			FROM prtl_pbcw4  
-				join tblprmlocdem mtch on mtch.int_match_param_key=prtl_pbcw4.int_match_param_key 
+        , sum(cnt_child)
+			FROM ooh_point_in_time_measures `prtl_pbcw4`  
+				join tblprmlocdem mtch on mtch.int_match_param_key=prtl_pbcw4.int_match_param_key_mix
 				and mtch.cd_race_census in (select distinct cd_race from tbleth)');
         else
         set @incl=concat(@incl,', 0, 0, 0, 0, 0, 0
 				, kin.kincare
 				, sib.bin_sibling_group_size
-				, round(sum(all_sib_together)/(sum(total)* 1.0000) * 100,2) as All_Together
-				, round(sum(some_sib_together)/(sum(total)* 1.0000) * 100,2) as Some_Together
-				, round(sum(no_sib_together)/(sum(total)* 1.0000) * 100,2) as None_Together
+				, round(sum(all_sib_together)/(sum(cnt_child)* 1.0000) * 100,2) as All_Together
+				, round(sum(some_sib_together)/(sum(cnt_child)* 1.0000) * 100,2) as Some_Together
+				, round(sum(no_sib_together)/(sum(cnt_child)* 1.0000) * 100,2) as None_Together
 				, DATE',char(39));
         set @incl=concat(@incl,p_minmonthstart,char(39));
         set @incl=concat(@incl,' as minmonthstart');
@@ -351,8 +351,8 @@ if  flg_procedure_off =0 then
 				set @incl=concat(@incl, ',',char(39),@qry_id,char(39));
 				set @incl=concat(@incl, ',year(prtl_pbcw4.pit_date)
 				,int_hash_key
-        , sum(total)
-			FROM prtl_pbcw4  ');
+        , sum(cnt_child)
+			FROM ooh_point_in_time_measures `prtl_pbcw4`  ');
         end if;
          if trim(p_bin_dep_cd)<>'0' then
         set @incl=concat(@incl,' 
@@ -454,11 +454,12 @@ if  flg_procedure_off =0 then
         end if;	
     				set @incl=concat(@incl,'
                 and che.in_cache=0
+		where fl_w4=1
         group by  kin.kincare
           ,prtl_pbcw4.qry_type
 					,prtl_pbcw4.date_type 
-					,prtl_pbcw4.pit_date
-					,year(prtl_pbcw4.pit_date)
+					,prtl_pbcw4.start_date
+					,year(prtl_pbcw4.start_date)
 					,sib.bin_sibling_group_size');
         if NOT(trim(p_age_grouping_cd) ='0' 
             and trim(p_gender_cd) ='0'
@@ -660,9 +661,9 @@ if  flg_procedure_off =0 then
             , case when kincare=1 then @kin1 else @kin0 end as "Placement Type"
             , pbcw4.bin_sibling_group_size
             , ref_sib.Sibling_Group_Name "Sibling Group Size"
-            , all_together  as All_Together
-            , some_together as Some_Together
-            , none_together as None_Together
+            , all_together   "All Together"
+            , some_together  "Some Together"
+            , none_together  "None Together"
             , case when cnt_cohort < 10 then null
                 else cnt_cohort
                 end as "Number in Cohort"
