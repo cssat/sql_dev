@@ -1,36 +1,36 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="5/22/2014 12:51:28 PM"
   DTS:CreationName="SSIS.Package.3"
   DTS:CreatorComputerName="MXL2230QJY"
   DTS:CreatorName="NEBULA2\messej"
-  DTS:DTSID="{1D7A2D79-6D2C-42AA-8CA8-6A2865453EB8}"
+  DTS:DTSID="{2EFE9737-656C-4C28-95A2-F5F04FFBF9E0}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="11.0.3369.0"
+  DTS:LastModifiedProductVersion="11.0.5058.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="16"
-  DTS:VersionGUID="{1EA99A08-C8FA-41CE-9EED-66DC5197D1AE}">
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{1F04FDA7-10A5-4AAD-8097-66B6D7011FCE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[poc2.CA_ODS]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{12B2E9CC-3430-41DC-B8DA-3C30C36FC6C2}"
+      DTS:DTSID="{36A93C88-5E5F-426F-B9CC-5D42EEE4EF9C}"
       DTS:ObjectName="poc2.CA_ODS">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=poc2;Initial Catalog=CA_ODS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{12B2E9CC-3430-41DC-B8DA-3C30C36FC6C2}poc2.CA_ODS;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=poc2;Initial Catalog=CA_ODS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{36A93C88-5E5F-426F-B9CC-5D42EEE4EF9C}poc2.CA_ODS;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{82E66AE5-371F-4A45-AD03-4B1553447C9A}"
+      DTS:DTSID="{961C9113-E4E2-49F4-B2E5-F8DB77370096}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="cutoff_date">
@@ -39,7 +39,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{73B63E8A-B329-455B-B2F6-5F6CFF549458}"
+      DTS:DTSID="{46E5254C-39A6-4D37-BF15-3A897F9FF89A}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="procedure_id">
@@ -52,7 +52,7 @@
       DTS:refId="Package\cache_pbcs2_aggr - Referrals Rereffered (safety)"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{6317D18A-A7D0-4D6C-BCF0-E7515CFE5AC8}"
+      DTS:DTSID="{1FC2806F-DA49-499E-B409-DE6FD3A07A1A}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="cache_pbcs2_aggr - Referrals Rereffered (safety)"
@@ -61,7 +61,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{12B2E9CC-3430-41DC-B8DA-3C30C36FC6C2}"
+          SQLTask:Connection="{36A93C88-5E5F-426F-B9CC-5D42EEE4EF9C}"
           SQLTask:SqlStatementSource="exec prtl.prod_build_cache_pbcs2_aggr ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
             SQLTask:ParameterName="0"
@@ -76,7 +76,7 @@
       DTS:refId="Package\cache_pbcs3_aggr - safety (ihs)"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{C322BC88-459D-4DF8-8843-E088C0D71FA4}"
+      DTS:DTSID="{E50145AE-62C1-4B0A-AFA1-8670655EFE76}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="cache_pbcs3_aggr - safety (ihs)"
@@ -85,7 +85,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{12B2E9CC-3430-41DC-B8DA-3C30C36FC6C2}"
+          SQLTask:Connection="{36A93C88-5E5F-426F-B9CC-5D42EEE4EF9C}"
           SQLTask:SqlStatementSource="exec prtl.prod_build_cache_pbcs3_aggr ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
             SQLTask:ParameterName="0"
@@ -100,7 +100,7 @@
       DTS:refId="Package\cache_poc2ab_aggr - Screened In Referrals"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{93932822-EB19-4230-82FF-4E064880B4C4}"
+      DTS:DTSID="{FDF9F32E-F553-48CB-9DF8-031186B6503F}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="cache_poc2ab_aggr - Screened In Referrals"
@@ -109,23 +109,16 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{12B2E9CC-3430-41DC-B8DA-3C30C36FC6C2}"
+          SQLTask:Connection="{36A93C88-5E5F-426F-B9CC-5D42EEE4EF9C}"
           SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource="exec prtl.prod_build_cache_poc2ab_aggr ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-          <SQLTask:ParameterBinding
-            SQLTask:ParameterName="0"
-            SQLTask:DtsVariableName="User::cutoff_date"
-            SQLTask:ParameterDirection="Input"
-            SQLTask:DataType="7"
-            SQLTask:ParameterSize="-1" />
-        </SQLTask:SqlTaskData>
+          SQLTask:SqlStatementSource="exec prtl.prod_build_all_cache_poc2ab" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\cache_poc3ab_aggr - trends (ihs) placement prevention"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{343E9D75-0365-4498-8311-9DEA9E10C438}"
+      DTS:DTSID="{4FE4AA50-F47A-4364-AA98-3696068EFB49}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="cache_poc3ab_aggr - trends (ihs) placement prevention"
@@ -134,22 +127,15 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{12B2E9CC-3430-41DC-B8DA-3C30C36FC6C2}"
-          SQLTask:SqlStatementSource="exec prtl.prod_build_cache_poc3ab_aggr ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-          <SQLTask:ParameterBinding
-            SQLTask:ParameterName="0"
-            SQLTask:DtsVariableName="User::cutoff_date"
-            SQLTask:ParameterDirection="Input"
-            SQLTask:DataType="7"
-            SQLTask:ParameterSize="-1" />
-        </SQLTask:SqlTaskData>
+          SQLTask:Connection="{36A93C88-5E5F-426F-B9CC-5D42EEE4EF9C}"
+          SQLTask:SqlStatementSource="exec prtl.prod_build_all_cache_poc3ab" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\prod_build_ooh_cache_tables"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{AF8B1DB0-50D6-4D9F-9994-3F1F981D3686}"
+      DTS:DTSID="{BA7AD3AA-3251-4543-A141-951F3BD59781}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="prod_build_ooh_cache_tables"
@@ -158,7 +144,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{12B2E9CC-3430-41DC-B8DA-3C30C36FC6C2}"
+          SQLTask:Connection="{36A93C88-5E5F-426F-B9CC-5D42EEE4EF9C}"
           SQLTask:SqlStatementSource="EXECUTE  [prtl].[prod_build_ooh_cache_tables] ?,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
             SQLTask:ParameterName="0"
@@ -179,7 +165,7 @@
       DTS:refId="Package\Retrieve cutoff_date"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{8B86BE38-B5C1-42E5-BA10-90DABA2772DF}"
+      DTS:DTSID="{64CBC2E8-9957-41FF-9086-257BADB02717}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Retrieve cutoff_date"
@@ -188,7 +174,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{12B2E9CC-3430-41DC-B8DA-3C30C36FC6C2}"
+          SQLTask:Connection="{36A93C88-5E5F-426F-B9CC-5D42EEE4EF9C}"
           SQLTask:BypassPrepare="False"
           SQLTask:SqlStatementSource="exec dbo.sp_get_str_cutoff_date"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
@@ -203,7 +189,7 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{1ED2A0B2-ECB8-4DA8-A733-DF4D21F58E1D}"
+      DTS:DTSID="{3E634981-31AB-44E1-8875-4B4C1C8729FE}"
       DTS:From="Package\Retrieve cutoff_date"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
@@ -211,7 +197,7 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
-      DTS:DTSID="{810EE6E2-1EB6-4D6E-8A4B-78D00A3C0D18}"
+      DTS:DTSID="{BF62BF87-805B-43EA-A387-3059C226DAA4}"
       DTS:From="Package\prod_build_ooh_cache_tables"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
@@ -219,7 +205,7 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
       DTS:CreationName=""
-      DTS:DTSID="{86C539B6-5F0F-409A-9062-A15C9A6F5C57}"
+      DTS:DTSID="{403D681E-3164-4644-8073-656DD636A4F9}"
       DTS:From="Package\cache_poc3ab_aggr - trends (ihs) placement prevention"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 10"
@@ -227,7 +213,7 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
       DTS:CreationName=""
-      DTS:DTSID="{6B9B37E2-8701-4204-8A00-5AB84140C7A0}"
+      DTS:DTSID="{FB7C1B7D-23F5-43F6-B418-F9E420E31D29}"
       DTS:From="Package\cache_poc2ab_aggr - Screened In Referrals"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 7"
@@ -235,7 +221,7 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
       DTS:CreationName=""
-      DTS:DTSID="{BA56CE9D-B57A-4995-BBB5-7A60D33DB889}"
+      DTS:DTSID="{8AFB1217-7079-46FE-9005-7E762226DAC1}"
       DTS:From="Package\cache_pbcs2_aggr - Referrals Rereffered (safety)"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 9"
@@ -256,10 +242,10 @@
         <NodeLayout
           Size="176,42"
           Id="Package\Retrieve cutoff_date"
-          TopLeft="124.338986598023,1103.89076975388" />
+          TopLeft="124.338986598023,93.89076975388" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="300.338986598023,1124.89076975388">
+          TopLeft="300.338986598023,114.89076975388">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -292,8 +278,42 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="719,157">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="311,42"
+              Start="0,0"
+              End="303.5,42">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="151.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="151.5,0"
+                    Point2="155.5,0"
+                    Point3="155.5,4" />
+                  <mssgle:LineSegment
+                    End="155.5,38" />
+                  <mssgle:CubicBezierSegment
+                    Point1="155.5,38"
+                    Point2="155.5,42"
+                    Point3="159.5,42" />
+                  <mssgle:LineSegment
+                    End="303.5,42" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 9]"
-          TopLeft="1192.5,1280">
+          TopLeft="1192.5,270">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -337,7 +357,7 @@
           PanelSize="326,295"
           Size="326,338"
           Id="ea74a80e-e681-481d-b66b-d9bef2cd383d"
-          TopLeft="480.838986598023,1103.47564598021">
+          TopLeft="480.838986598023,93.4756459802099">
           <GroupLayout.ChildrenIds>
             <s:String>Package\prod_build_ooh_cache_tables</s:String>
           </GroupLayout.ChildrenIds>
@@ -392,7 +412,7 @@
           PanelSize="330,195"
           Size="330,238"
           Id="c9bee273-9944-45af-b82f-2874559f1117"
-          TopLeft="1023.5,1138.87503987">
+          TopLeft="1023.5,128.87503987">
           <GroupLayout.ChildrenIds>
             <s:String>Package\cache_poc2ab_aggr - Screened In Referrals</s:String>
             <s:String>Package\cache_pbcs2_aggr - Referrals Rereffered (safety)</s:String>
@@ -449,47 +469,13 @@
           PanelSize="356,210"
           Size="356,253"
           Id="aad7c870-b118-4c75-9ab0-fc4e09534513"
-          TopLeft="1498.5,1145.87503987">
+          TopLeft="1498.5,135.87503987">
           <GroupLayout.ChildrenIds>
             <s:String>Package\cache_poc3ab_aggr - trends (ihs) placement prevention</s:String>
             <s:String>Package\cache_pbcs3_aggr - safety (ihs)</s:String>
             <s:String>Package.PrecedenceConstraints[Constraint 10]</s:String>
           </GroupLayout.ChildrenIds>
         </GroupLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="719,1167">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="311,42"
-              Start="0,0"
-              End="303.5,42">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="151.5,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="151.5,0"
-                    Point2="155.5,0"
-                    Point3="155.5,4" />
-                  <mssgle:LineSegment
-                    End="155.5,38" />
-                  <mssgle:CubicBezierSegment
-                    Point1="155.5,38"
-                    Point2="155.5,42"
-                    Point3="159.5,42" />
-                  <mssgle:LineSegment
-                    End="303.5,42" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
