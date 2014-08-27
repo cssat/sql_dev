@@ -199,7 +199,7 @@ order by
  ----group by fiscal_yr	
  --order by fiscal_yr,years_in_care
 
-  truncate table base.care_day_count
+ truncate table base.care_day_count
  insert into base.care_day_count(fiscal_yr,age_removal,age_exit,county_cd
  ,cd_race,years_in_care,exclude_7day,exclude_trh,care_days)
  select fiscal_yr,age_removal,age_exit,cd_cnty,cd_race,years_in_care,excludes_7day,excludes_trh,care_days from #care_day_count
@@ -209,7 +209,6 @@ order by
 	
 select 
 	sfy fiscal_yr
-	,count(distinct rp.id_placement_fact) placement_moves
 	,iif(dbo.fnc_datediff_yrs(rp.removal_dt, cd.fy_stop_date) >= 10
 		,10
 		,dbo.fnc_datediff_yrs(rp.removal_dt, cd.fy_stop_date)) years_in_care
@@ -219,9 +218,10 @@ select
 		, cnty.cd_cnty
 		,ss.excludes_7day
 		,trh.excludes_trh
-		,sum(iif(rp.current_setng =  'Kin',1,0)) kin_count
-		,sum(iif(rp.current_setng= 'Foster',1,0)) foster_count
-		,sum(iif(rp.current_setng= 'Group',1,0)) group_count
+		,count(distinct rp.id_placement_fact) placement_moves
+		,sum(iif(rp.current_setng =  'Kin',1,0)) kin_cnt
+		,sum(iif(rp.current_setng= 'Foster',1,0)) foster_cnt
+		,sum(iif(rp.current_setng= 'Group',1,0)) group_cnt
 into #mobility_count
 from (select distinct state_fiscal_yyyy sfy
 			,min(ID_CALENDAR_DIM)  over (partition by state_fiscal_yyyy order by ID_CALENDAR_DIM) fy_start_date_int
@@ -277,6 +277,31 @@ order by
 	--		and removal_dt_int between 20100701 and 20110630
 --   select * into base.placement_mobility_counts from #mobility_count
 truncate table base.placement_mobility_counts
-insert into base.placement_mobility_counts
-select *
+INSERT INTO [base].[placement_mobility_counts]
+           ([fiscal_yr]
+           ,[years_in_care]
+           ,[age_removal]
+           ,[age_exit]
+           ,[cd_race]
+           ,[cd_cnty]
+           ,[excludes_7day]
+           ,[excludes_trh]
+           ,[placement_moves]
+           ,[kin_cnt]
+           ,[foster_cnt]
+           ,[group_cnt])
+
+
+select [fiscal_yr]
+           ,[years_in_care]
+           ,[age_removal]
+           ,[age_exit]
+           ,[cd_race]
+           ,[cd_cnty]
+           ,[excludes_7day]
+           ,[excludes_trh]
+           ,[placement_moves]
+           ,[kin_cnt]
+           ,[foster_cnt]
+           ,[group_cnt]
  from #mobility_count
