@@ -1,0 +1,2956 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/5/2014 11:07:58 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MXL2230QJY"
+  DTS:CreatorName="NEBULA2\messej"
+  DTS:DTSID="{54F55777-9AD6-4FE7-86A4-A66130E840CE}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5058.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="30"
+  DTS:VersionGUID="{A02C9DE6-2214-45FA-BFD1-9EBE1CCA2E15}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ia_rates_counties_closed]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{61a358c1-57e8-478d-b517-e351b3c4b96d}"
+      DTS:ObjectName="ia_rates_counties_closed">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\poc2\POCshare\Data Portal\data\files for test_annie\ia_rates_counties_closed.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="start_date"
+              DTS:DTSID="{75526BED-9D4D-4C25-98F3-E5BF264C6D17}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="19"
+              DTS:TextQualified="True"
+              DTS:ObjectName="cd_sib_age_grp"
+              DTS:DTSID="{832779DB-1C7B-4811-A37F-7F1A019BDB45}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="19"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ethnicity_cd"
+              DTS:DTSID="{FBBE308C-5AFC-4C05-850A-03AD395C8379}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="cd_reporter_type"
+              DTS:DTSID="{4749A91A-DA6E-46C9-9B28-A05124215A26}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="cd_allegation"
+              DTS:DTSID="{53649D9E-8311-4C9C-BD83-7EF54E01F634}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="cd_finding"
+              DTS:DTSID="{14251E17-2307-4C1F-B968-A20A09034B3B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="geography"
+              DTS:DTSID="{D398E912-94F9-4257-B160-6B2270CF6557}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="131"
+              DTS:DataPrecision="9"
+              DTS:DataScale="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="data"
+              DTS:DTSID="{4C9E34B2-C3B6-46DA-B74F-589900797FE5}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ia_rates_counties_open]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{7BD48B5C-9274-4A24-951E-4377637F5442}"
+      DTS:ObjectName="ia_rates_counties_open">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\poc2\POCshare\Data Portal\data\files for test_annie\ia_rates_counties_opened.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="start_date"
+              DTS:DTSID="{59AA4ECB-61CA-4906-8161-F81945016658}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="19"
+              DTS:TextQualified="True"
+              DTS:ObjectName="cd_sib_age_grp"
+              DTS:DTSID="{82DAFC4E-A4FD-44C4-8011-6F25C4178B0D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="19"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ethnicity_cd"
+              DTS:DTSID="{3BFB786E-171C-4727-A7CD-B8DEF1B6B23F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="cd_reporter_type"
+              DTS:DTSID="{BC742E16-AE85-4CF0-BECE-1B56A92F050E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="cd_allegation"
+              DTS:DTSID="{6570F620-B961-45B3-AD81-C5BC240CFBDB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="cd_finding"
+              DTS:DTSID="{01A038F9-BA5B-4BE7-8F9B-57CEBCCBE172}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="geography"
+              DTS:DTSID="{3C01E6FF-0370-4917-AAA7-9D5937D4E9F4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="131"
+              DTS:DataPrecision="9"
+              DTS:DataScale="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="data"
+              DTS:DTSID="{F9683D08-22B2-4D35-AC5A-84A029A1DF25}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ia_rates_regions_closed]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{8c1eedac-e649-401f-9c9e-cebdbb156137}"
+      DTS:ObjectName="ia_rates_regions_closed">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\poc2\POCshare\Data Portal\data\files for test_annie\ia_rates_regions_closed.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="start_date"
+              DTS:DTSID="{DB0138D7-8551-4C6C-AB5A-204FFCBC41E2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="19"
+              DTS:TextQualified="True"
+              DTS:ObjectName="cd_sib_age_grp"
+              DTS:DTSID="{28967C6E-F709-4B88-A6D4-FDFBB58BDCE9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="19"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ethnicity_cd"
+              DTS:DTSID="{A8269C7D-98BE-4FD6-987C-85D4AAB9C0FC}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="cd_reporter_type"
+              DTS:DTSID="{9E472F2B-1484-4DDE-914C-82914D9EB69B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="cd_allegation"
+              DTS:DTSID="{9ECE9F8A-3D27-4A71-B7CB-318442DD5C99}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="cd_finding"
+              DTS:DTSID="{6E067A8A-88C7-4128-B520-8C260898A2FD}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="19"
+              DTS:TextQualified="True"
+              DTS:ObjectName="geography"
+              DTS:DTSID="{27F19597-8DCF-4138-9C16-33F639E9EBCE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="131"
+              DTS:DataPrecision="9"
+              DTS:DataScale="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="data"
+              DTS:DTSID="{2C98DBC8-56F0-4B0A-B134-DC3221D70504}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ia_rates_regions_opened]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{17dc501e-4024-478f-bf73-dc4e84359110}"
+      DTS:ObjectName="ia_rates_regions_opened">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\poc2\POCshare\Data Portal\data\files for test_annie\ia_rates_regions_opened.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="start_date"
+              DTS:DTSID="{0B291687-36FD-4FEC-B676-FA95AD19D667}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="19"
+              DTS:TextQualified="True"
+              DTS:ObjectName="cd_sib_age_grp"
+              DTS:DTSID="{E1767177-07F6-42B4-AB46-5E136982D726}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="19"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ethnicity_cd"
+              DTS:DTSID="{FF54C688-67FB-4356-8651-AABDE0E96D2C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="cd_reporter_type"
+              DTS:DTSID="{FD4F4ED1-4FC3-483E-9CCA-3CC4CDDEBA5A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="cd_allegation"
+              DTS:DTSID="{9E448720-1F87-40DF-BF45-A20D5E7DA7A3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="cd_finding"
+              DTS:DTSID="{CB563B48-299F-4219-B619-90C6E0F7394F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="geography"
+              DTS:DTSID="{A6474673-24E3-42FD-BAA9-9A65222BB8E2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="131"
+              DTS:DataPrecision="9"
+              DTS:DataScale="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="data"
+              DTS:DTSID="{95C3EAE5-218E-4AB6-B10E-E5FB7EEFD360}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[poc2.CA_ODS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{73E65CBC-01C9-4674-B328-B867CF74D26A}"
+      DTS:ObjectName="poc2.CA_ODS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=poc2;Initial Catalog=CA_ODS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{73E65CBC-01C9-4674-B328-B867CF74D26A}poc2.CA_ODS;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\i&amp;a by county closed"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{af837158-e894-4865-a929-15db17f591e4}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="i&amp;a by county closed"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\i&amp;a by county closed\Data Conversion"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\i&amp;a by county closed\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\i&amp;a by county closed\Data Conversion.Inputs[Data Conversion Input].Columns[data]"
+                      cachedDataType="r8"
+                      cachedName="data"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\i&amp;a by county closed\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\i&amp;a by county closed\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\i&amp;a by county closed\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\i&amp;a by county closed\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]"
+                      name="Copy of data"
+                      precision="9"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\i&amp;a by county closed\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\i&amp;a by county closed\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\i&amp;a by county closed\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by county closed\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county closed\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by county closed\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\i&amp;a by county closed\Flat File Destination"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\i&amp;a by county closed\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ia_rates_counties_closed]"
+                  connectionManagerRefId="Package.ConnectionManagers[ia_rates_counties_closed]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].Columns[cd_reporter_type]"
+                      cachedDataType="i4"
+                      cachedName="cd_reporter_type"
+                      externalMetadataColumnId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_reporter_type]"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_reporter_type]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].Columns[cd_allegation]"
+                      cachedDataType="i4"
+                      cachedName="cd_allegation"
+                      externalMetadataColumnId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_allegation]"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_allegation]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].Columns[cd_finding]"
+                      cachedDataType="i4"
+                      cachedName="cd_finding"
+                      externalMetadataColumnId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_finding]"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_finding]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].Columns[ethnicity_cd]"
+                      cachedDataType="i4"
+                      cachedName="ethnicity_cd"
+                      externalMetadataColumnId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ethnicity_cd]"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].Columns[start_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="start_date"
+                      externalMetadataColumnId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[start_date]"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].Columns[cd_sib_age_grp]"
+                      cachedDataType="i4"
+                      cachedName="cd_sib_age_grp"
+                      externalMetadataColumnId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_sib_age_grp]"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_sib_age_grp]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].Columns[geography]"
+                      cachedDataType="i4"
+                      cachedName="geography"
+                      externalMetadataColumnId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[geography]"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].Columns[Copy of data]"
+                      cachedDataType="numeric"
+                      cachedName="Copy of data"
+                      cachedPrecision="9"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[data]"
+                      lineageId="Package\i&amp;a by county closed\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_reporter_type]"
+                      dataType="i4"
+                      name="cd_reporter_type" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_allegation]"
+                      dataType="i4"
+                      name="cd_allegation" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_finding]"
+                      dataType="i4"
+                      name="cd_finding" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ethnicity_cd]"
+                      dataType="ui4"
+                      name="ethnicity_cd" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_sib_age_grp]"
+                      dataType="ui4"
+                      name="cd_sib_age_grp" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[start_date]"
+                      dataType="dbTimeStamp"
+                      name="start_date" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[geography]"
+                      dataType="i4"
+                      name="geography" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[data]"
+                      dataType="numeric"
+                      name="data"
+                      precision="9"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\i&amp;a by county closed\OLE DB Source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select [start_date], poc2ab.cd_sib_age_grp , poc2ab.cd_race ethnicity_cd, 
+                           poc2ab.cd_reporter_type, poc2ab.cd_allegation, 
+                         poc2ab.cd_finding,cd_county [geography],
+			convert(decimal(9,2),round(((case when
+            (
+                (case when poc2ab.cnt_start_date &gt; 0   
+                    then 
+                        case when round(poc2ab.cnt_start_date + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0)  &lt; 1
+                        then 1
+                        else round(poc2ab.cnt_start_date + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0) 
+                        end
+                    else poc2ab.cnt_start_date
+                    end)		
+                + 
+                (case when (poc2ab.cnt_opened) &gt; 0   
+                    then 
+                        case when round((poc2ab.cnt_opened) + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0)  &lt; 1
+                        then 1
+                        else round((poc2ab.cnt_opened) + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0) 
+                        end
+                    else (poc2ab.cnt_opened) 
+                end))
+                &lt;  
+                (case when (poc2ab.cnt_closed) &gt; 0   
+                    then 
+                        case when round(poc2ab.cnt_closed + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0)  &lt; 1
+                        then 1
+                        else round(poc2ab.cnt_closed + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0) 
+                        end
+                    else (poc2ab.cnt_closed) 
+                        end)
+        then 
+            (
+                (case when poc2ab.cnt_start_date &gt; 0   
+                    then 
+                        case when round(poc2ab.cnt_start_date + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0)  &lt; 1
+                        then 1
+                        else round(poc2ab.cnt_start_date + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0) 
+                        end
+                    else poc2ab.cnt_start_date
+                    end)		
+                + 
+                (case when (poc2ab.cnt_opened) &gt; 0   
+                    then 
+                        case when round((poc2ab.cnt_opened) + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0)  &lt; 1
+                        then 1
+                        else round((poc2ab.cnt_opened) + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0) 
+                        end
+                    else (poc2ab.cnt_opened) 
+                end))
+        else 
+                    (case when (poc2ab.cnt_closed) &gt; 0   
+                    then 
+                        case when round(poc2ab.cnt_closed + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0)  &lt; 1
+                        then 1
+                        else round(poc2ab.cnt_closed + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0) 
+                        end
+                    else (poc2ab.cnt_closed) 
+                        end)
+        end)/(pop.pop_cnt * 1.00) * 1000),2))  data
+from prtl.cache_poc2ab_aggr poc2ab
+join [dbo].[prm_household_census_population] pop on pop.cd_race=poc2ab.cd_race
+and poc2ab.cd_county=pop.county_cd
+and poc2ab.cd_sib_age_grp=pop.cd_sib_age_grp
+and poc2ab.start_year=pop.measurement_year
+and pop.pop_cnt &gt; 0
+where qry_type=2 and date_type=2 and cd_access_type=0  and poc2ab.fl_include_perCapita=1
+order by [start_date], poc2ab.cd_sib_age_grp,poc2ab.cd_race, 
+                     cd_county, poc2ab.cd_reporter_type, poc2ab.cd_allegation, 
+                         poc2ab.cd_finding</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\i&amp;a by county closed\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[poc2.CA_ODS]"
+                  connectionManagerRefId="Package.ConnectionManagers[poc2.CA_ODS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_reporter_type]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_reporter_type]"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_reporter_type]"
+                      name="cd_reporter_type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_allegation]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_allegation]"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_allegation]"
+                      name="cd_allegation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_finding]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_finding]"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_finding]"
+                      name="cd_finding"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ethnicity_cd]"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]"
+                      name="ethnicity_cd"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[start_date]"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]"
+                      name="start_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_sib_age_grp]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_sib_age_grp]"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_sib_age_grp]"
+                      name="cd_sib_age_grp"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[geography]"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]"
+                      name="geography"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[data]"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]"
+                      name="data"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_reporter_type]"
+                      dataType="i4"
+                      name="cd_reporter_type" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_allegation]"
+                      dataType="i4"
+                      name="cd_allegation" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_finding]"
+                      dataType="i4"
+                      name="cd_finding" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ethnicity_cd]"
+                      dataType="i4"
+                      name="ethnicity_cd" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[start_date]"
+                      dataType="dbTimeStamp"
+                      name="start_date" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_sib_age_grp]"
+                      dataType="i4"
+                      name="cd_sib_age_grp" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[geography]"
+                      dataType="i4"
+                      name="geography" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[data]"
+                      dataType="numeric"
+                      name="data"
+                      precision="9"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[start_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[start_date]"
+                      name="start_date" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_sib_age_grp]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_sib_age_grp]"
+                      name="cd_sib_age_grp" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ethnicity_cd]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ethnicity_cd]"
+                      name="ethnicity_cd" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_reporter_type]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_reporter_type]"
+                      name="cd_reporter_type" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_allegation]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_allegation]"
+                      name="cd_allegation" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_finding]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_finding]"
+                      name="cd_finding" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[geography]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[geography]"
+                      name="geography" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[data]"
+                      dataType="numeric"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[data]"
+                      name="data"
+                      precision="9"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\i&amp;a by county closed.Paths[Data Conversion Output]"
+              endId="Package\i&amp;a by county closed\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\i&amp;a by county closed\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\i&amp;a by county closed.Paths[OLE DB Source Output]"
+              endId="Package\i&amp;a by county closed\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\i&amp;a by county closed\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\i&amp;a by county opened"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{948E100B-2FD7-4CAD-B9A6-8E7F98D1430E}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="i&amp;a by county opened"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\i&amp;a by county opened\Data Conversion"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\i&amp;a by county opened\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\i&amp;a by county opened\Data Conversion.Inputs[Data Conversion Input].Columns[data]"
+                      cachedDataType="r8"
+                      cachedName="data"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\i&amp;a by county opened\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\i&amp;a by county opened\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\i&amp;a by county opened\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\i&amp;a by county opened\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]"
+                      name="Copy of data"
+                      precision="9"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\i&amp;a by county opened\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\i&amp;a by county opened\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\i&amp;a by county opened\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by county opened\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county opened\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by county opened\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\i&amp;a by county opened\Flat File Destination"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\i&amp;a by county opened\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ia_rates_counties_open]"
+                  connectionManagerRefId="Package.ConnectionManagers[ia_rates_counties_open]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].Columns[cd_reporter_type]"
+                      cachedDataType="i4"
+                      cachedName="cd_reporter_type"
+                      externalMetadataColumnId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_reporter_type]"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_reporter_type]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].Columns[cd_allegation]"
+                      cachedDataType="i4"
+                      cachedName="cd_allegation"
+                      externalMetadataColumnId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_allegation]"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_allegation]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].Columns[cd_finding]"
+                      cachedDataType="i4"
+                      cachedName="cd_finding"
+                      externalMetadataColumnId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_finding]"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_finding]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].Columns[ethnicity_cd]"
+                      cachedDataType="i4"
+                      cachedName="ethnicity_cd"
+                      externalMetadataColumnId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ethnicity_cd]"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].Columns[start_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="start_date"
+                      externalMetadataColumnId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[start_date]"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].Columns[cd_sib_age_grp]"
+                      cachedDataType="i4"
+                      cachedName="cd_sib_age_grp"
+                      externalMetadataColumnId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_sib_age_grp]"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_sib_age_grp]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].Columns[geography]"
+                      cachedDataType="i4"
+                      cachedName="geography"
+                      externalMetadataColumnId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[geography]"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].Columns[Copy of data]"
+                      cachedDataType="numeric"
+                      cachedName="Copy of data"
+                      cachedPrecision="9"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[data]"
+                      lineageId="Package\i&amp;a by county opened\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_reporter_type]"
+                      dataType="i4"
+                      name="cd_reporter_type" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_allegation]"
+                      dataType="i4"
+                      name="cd_allegation" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_finding]"
+                      dataType="i4"
+                      name="cd_finding" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ethnicity_cd]"
+                      dataType="ui4"
+                      name="ethnicity_cd" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_sib_age_grp]"
+                      dataType="ui4"
+                      name="cd_sib_age_grp" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[start_date]"
+                      dataType="dbTimeStamp"
+                      name="start_date" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[geography]"
+                      dataType="i4"
+                      name="geography" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[data]"
+                      dataType="numeric"
+                      name="data"
+                      precision="9"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\i&amp;a by county opened\OLE DB Source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select [start_date], poc2ab.cd_sib_age_grp , poc2ab.cd_race ethnicity_cd, 
+                           poc2ab.cd_reporter_type, poc2ab.cd_allegation, 
+                         poc2ab.cd_finding,cd_county [geography],
+			convert(decimal(9,2),round((case when (poc2ab.cnt_opened) &gt; 0 /* jitter all above 0 */  
+                    then 
+                        case when round((poc2ab.cnt_opened) + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0)  &lt; 1
+                        then 1
+                        else round((poc2ab.cnt_opened) + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0) 
+                        end
+                    else (poc2ab.cnt_opened) 
+            end/(pop.pop_cnt * 1.00) * 1000),2))  data
+from prtl.cache_poc2ab_aggr poc2ab
+join [dbo].[prm_household_census_population] pop on pop.cd_race=poc2ab.cd_race
+and poc2ab.cd_county=pop.county_cd
+and poc2ab.cd_sib_age_grp=pop.cd_sib_age_grp
+and poc2ab.start_year=pop.measurement_year
+and pop.pop_cnt &gt; 0
+where qry_type=2 and date_type=2 and cd_access_type=0  and poc2ab.fl_include_perCapita=1 
+order by [start_date], poc2ab.cd_sib_age_grp,poc2ab.cd_race, 
+                     cd_county, poc2ab.cd_reporter_type, poc2ab.cd_allegation, 
+                         poc2ab.cd_finding</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\i&amp;a by county opened\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[poc2.CA_ODS]"
+                  connectionManagerRefId="Package.ConnectionManagers[poc2.CA_ODS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_reporter_type]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_reporter_type]"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_reporter_type]"
+                      name="cd_reporter_type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_allegation]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_allegation]"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_allegation]"
+                      name="cd_allegation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_finding]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_finding]"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_finding]"
+                      name="cd_finding"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ethnicity_cd]"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]"
+                      name="ethnicity_cd"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[start_date]"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]"
+                      name="start_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_sib_age_grp]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_sib_age_grp]"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_sib_age_grp]"
+                      name="cd_sib_age_grp"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[geography]"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]"
+                      name="geography"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[data]"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]"
+                      name="data"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_reporter_type]"
+                      dataType="i4"
+                      name="cd_reporter_type" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_allegation]"
+                      dataType="i4"
+                      name="cd_allegation" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_finding]"
+                      dataType="i4"
+                      name="cd_finding" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ethnicity_cd]"
+                      dataType="i4"
+                      name="ethnicity_cd" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[start_date]"
+                      dataType="dbTimeStamp"
+                      name="start_date" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_sib_age_grp]"
+                      dataType="i4"
+                      name="cd_sib_age_grp" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[geography]"
+                      dataType="i4"
+                      name="geography" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[data]"
+                      dataType="numeric"
+                      name="data"
+                      precision="9"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[start_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[start_date]"
+                      name="start_date" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_sib_age_grp]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_sib_age_grp]"
+                      name="cd_sib_age_grp" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ethnicity_cd]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ethnicity_cd]"
+                      name="ethnicity_cd" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_reporter_type]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_reporter_type]"
+                      name="cd_reporter_type" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_allegation]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_allegation]"
+                      name="cd_allegation" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_finding]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_finding]"
+                      name="cd_finding" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[geography]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[geography]"
+                      name="geography" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[data]"
+                      dataType="numeric"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[data]"
+                      name="data"
+                      precision="9"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\i&amp;a by county opened.Paths[Data Conversion Output]"
+              endId="Package\i&amp;a by county opened\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\i&amp;a by county opened\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\i&amp;a by county opened.Paths[OLE DB Source Output]"
+              endId="Package\i&amp;a by county opened\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\i&amp;a by county opened\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\i&amp;a by region closed"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{15d959de-8c9b-4fe5-b653-433f861a3249}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="i&amp;a by region closed"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\i&amp;a by region closed\Data Conversion"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\i&amp;a by region closed\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\i&amp;a by region closed\Data Conversion.Inputs[Data Conversion Input].Columns[data]"
+                      cachedDataType="r8"
+                      cachedName="data"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\i&amp;a by region closed\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\i&amp;a by region closed\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\i&amp;a by region closed\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\i&amp;a by region closed\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]"
+                      name="Copy of data"
+                      precision="9"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\i&amp;a by region closed\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\i&amp;a by region closed\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\i&amp;a by region closed\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by region closed\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region closed\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by region closed\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\i&amp;a by region closed\Flat File Destination"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\i&amp;a by region closed\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ia_rates_regions_closed]"
+                  connectionManagerRefId="Package.ConnectionManagers[ia_rates_regions_closed]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].Columns[cd_reporter_type]"
+                      cachedDataType="i4"
+                      cachedName="cd_reporter_type"
+                      externalMetadataColumnId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_reporter_type]"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_reporter_type]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].Columns[cd_allegation]"
+                      cachedDataType="i4"
+                      cachedName="cd_allegation"
+                      externalMetadataColumnId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_allegation]"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_allegation]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].Columns[cd_finding]"
+                      cachedDataType="i4"
+                      cachedName="cd_finding"
+                      externalMetadataColumnId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_finding]"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_finding]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].Columns[ethnicity_cd]"
+                      cachedDataType="i4"
+                      cachedName="ethnicity_cd"
+                      externalMetadataColumnId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ethnicity_cd]"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].Columns[start_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="start_date"
+                      externalMetadataColumnId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[start_date]"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].Columns[cd_sib_age_grp]"
+                      cachedDataType="i4"
+                      cachedName="cd_sib_age_grp"
+                      externalMetadataColumnId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_sib_age_grp]"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_sib_age_grp]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].Columns[geography]"
+                      cachedDataType="i4"
+                      cachedName="geography"
+                      externalMetadataColumnId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[geography]"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].Columns[Copy of data]"
+                      cachedDataType="numeric"
+                      cachedName="Copy of data"
+                      cachedPrecision="9"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[data]"
+                      lineageId="Package\i&amp;a by region closed\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_reporter_type]"
+                      dataType="i4"
+                      name="cd_reporter_type" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_allegation]"
+                      dataType="i4"
+                      name="cd_allegation" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_finding]"
+                      dataType="i4"
+                      name="cd_finding" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ethnicity_cd]"
+                      dataType="ui4"
+                      name="ethnicity_cd" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[start_date]"
+                      dataType="dbTimeStamp"
+                      name="start_date" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_sib_age_grp]"
+                      dataType="ui4"
+                      name="cd_sib_age_grp" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[geography]"
+                      dataType="ui4"
+                      name="geography" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[data]"
+                      dataType="numeric"
+                      name="data"
+                      precision="9"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\i&amp;a by region closed\OLE DB Source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select [start_date], poc2ab.cd_sib_age_grp , poc2ab.cd_race ethnicity_cd, 
+                           poc2ab.cd_reporter_type, poc2ab.cd_allegation, 
+                         poc2ab.cd_finding,old_region_cd  [geography],
+convert(decimal(9,2),round(((case when
+            (
+                (case when sum(poc2ab.cnt_start_date) &gt; 0   
+                    then 
+                        case when round(sum(poc2ab.cnt_start_date) + (2 * sqrt(-2 * log(max(poc2ab.x1))) * cos(2*pi()*max(poc2ab.x2))),0)  &lt; 1
+                        then 1
+                        else round(sum(poc2ab.cnt_start_date) + (2 * sqrt(-2 * log(max(poc2ab.x1))) * cos(2*pi()*max(poc2ab.x2))),0) 
+                        end
+                    else sum(poc2ab.cnt_start_date)
+                    end)		
+                + 
+                (case when (sum(poc2ab.cnt_opened)) &gt; 0   
+                    then 
+                        case when round((sum(poc2ab.cnt_opened)) + (2 * sqrt(-2 * log(max(poc2ab.x1))) * cos(2*pi()*max(poc2ab.x2))),0)  &lt; 1
+                        then 1
+                        else round((sum(poc2ab.cnt_opened)) + (2 * sqrt(-2 * log(max(poc2ab.x1))) * cos(2*pi()*max(poc2ab.x2))),0) 
+                        end
+                    else (sum(poc2ab.cnt_opened)) 
+                end))
+                &lt;  
+                (case when (sum(poc2ab.cnt_closed)) &gt; 0   
+                    then 
+                        case when round(sum(poc2ab.cnt_closed) + (2 * sqrt(-2 * log(max(poc2ab.x1))) * cos(2*pi()*max(poc2ab.x2))),0)  &lt; 1
+                        then 1
+                        else round(sum(poc2ab.cnt_closed) + (2 * sqrt(-2 * log(max(poc2ab.x1))) * cos(2*pi()*max(poc2ab.x2))),0) 
+                        end
+                    else (sum(poc2ab.cnt_closed)) 
+                        end)
+        then 
+            (
+                (case when sum(poc2ab.cnt_start_date) &gt; 0   
+                    then 
+                        case when round(sum(poc2ab.cnt_start_date) + (2 * sqrt(-2 * log(max(poc2ab.x1))) * cos(2*pi()*max(poc2ab.x2))),0)  &lt; 1
+                        then 1
+                        else round(sum(poc2ab.cnt_start_date) + (2 * sqrt(-2 * log(max(poc2ab.x1))) * cos(2*pi()*max(poc2ab.x2))),0) 
+                        end
+                    else sum(poc2ab.cnt_start_date)
+                    end)		
+                + 
+                (case when (sum(poc2ab.cnt_opened)) &gt; 0   
+                    then 
+                        case when round((sum(poc2ab.cnt_opened)) + (2 * sqrt(-2 * log(max(poc2ab.x1))) * cos(2*pi()*max(poc2ab.x2))),0)  &lt; 1
+                        then 1
+                        else round((sum(poc2ab.cnt_opened)) + (2 * sqrt(-2 * log(max(poc2ab.x1))) * cos(2*pi()*max(poc2ab.x2))),0) 
+                        end
+                    else (sum(poc2ab.cnt_opened)) 
+                end))
+        else 
+                    (case when (sum(poc2ab.cnt_closed)) &gt; 0   
+                    then 
+                        case when round(sum(poc2ab.cnt_closed) + (2 * sqrt(-2 * log(max(poc2ab.x1))) * cos(2*pi()*max(poc2ab.x2))),0)  &lt; 1
+                        then 1
+                        else round(sum(poc2ab.cnt_closed) + (2 * sqrt(-2 * log(max(poc2ab.x1))) * cos(2*pi()*max(poc2ab.x2))),0) 
+                        end
+                    else (sum(poc2ab.cnt_closed)) 
+                        end)
+        end)/(sum(pop.pop_cnt) * 1.00) * 1000),2))  data
+-- into #temp
+from prtl.cache_poc2ab_aggr poc2ab
+join [dbo].[prm_household_census_population] pop on pop.cd_race=poc2ab.cd_race
+and poc2ab.cd_county=pop.county_cd
+and poc2ab.cd_sib_age_grp=pop.cd_sib_age_grp
+and poc2ab.start_year=pop.measurement_year
+and pop.pop_cnt &gt; 0
+join ref_lookup_county cnty on cnty.county_cd=poc2ab.cd_county
+where qry_type=2 and date_type=2 and cd_access_type=0  and poc2ab.fl_include_perCapita=1  
+group by [start_date], poc2ab.cd_sib_age_grp,poc2ab.cd_race, 
+                     cnty.old_region_cd, poc2ab.cd_reporter_type, poc2ab.cd_allegation, 
+                         poc2ab.cd_finding
+order by [start_date], poc2ab.cd_sib_age_grp,poc2ab.cd_race, 
+                       cnty.old_region_cd, poc2ab.cd_reporter_type, poc2ab.cd_allegation, 
+                         poc2ab.cd_finding</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\i&amp;a by region closed\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[poc2.CA_ODS]"
+                  connectionManagerRefId="Package.ConnectionManagers[poc2.CA_ODS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_reporter_type]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_reporter_type]"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_reporter_type]"
+                      name="cd_reporter_type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_allegation]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_allegation]"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_allegation]"
+                      name="cd_allegation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_finding]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_finding]"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_finding]"
+                      name="cd_finding"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ethnicity_cd]"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]"
+                      name="ethnicity_cd"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[start_date]"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]"
+                      name="start_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_sib_age_grp]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_sib_age_grp]"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_sib_age_grp]"
+                      name="cd_sib_age_grp"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[geography]"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]"
+                      name="geography"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[data]"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]"
+                      name="data"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_reporter_type]"
+                      dataType="i4"
+                      name="cd_reporter_type" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_allegation]"
+                      dataType="i4"
+                      name="cd_allegation" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_finding]"
+                      dataType="i4"
+                      name="cd_finding" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ethnicity_cd]"
+                      dataType="i4"
+                      name="ethnicity_cd" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[start_date]"
+                      dataType="dbTimeStamp"
+                      name="start_date" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_sib_age_grp]"
+                      dataType="i4"
+                      name="cd_sib_age_grp" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[geography]"
+                      dataType="i4"
+                      name="geography" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[data]"
+                      dataType="numeric"
+                      name="data"
+                      precision="9"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[start_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[start_date]"
+                      name="start_date" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_sib_age_grp]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_sib_age_grp]"
+                      name="cd_sib_age_grp" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ethnicity_cd]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ethnicity_cd]"
+                      name="ethnicity_cd" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_reporter_type]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_reporter_type]"
+                      name="cd_reporter_type" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_allegation]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_allegation]"
+                      name="cd_allegation" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_finding]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_finding]"
+                      name="cd_finding" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[geography]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[geography]"
+                      name="geography" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[data]"
+                      dataType="numeric"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[data]"
+                      name="data"
+                      precision="9"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\i&amp;a by region closed.Paths[Data Conversion Output]"
+              endId="Package\i&amp;a by region closed\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\i&amp;a by region closed\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\i&amp;a by region closed.Paths[OLE DB Source Output]"
+              endId="Package\i&amp;a by region closed\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\i&amp;a by region closed\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\i&amp;a by region opened"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{0EA92A25-CCF0-4DF2-8B4C-F9ECFB663E72}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="i&amp;a by region opened"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\i&amp;a by region opened\Data Conversion"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\i&amp;a by region opened\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\i&amp;a by region opened\Data Conversion.Inputs[Data Conversion Input].Columns[data]"
+                      cachedDataType="r8"
+                      cachedName="data"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\i&amp;a by region opened\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\i&amp;a by region opened\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\i&amp;a by region opened\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\i&amp;a by region opened\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]"
+                      name="Copy of data"
+                      precision="9"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\i&amp;a by region opened\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\i&amp;a by region opened\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\i&amp;a by region opened\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by region opened\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region opened\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by region opened\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\i&amp;a by region opened\Flat File Destination"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\i&amp;a by region opened\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ia_rates_regions_opened]"
+                  connectionManagerRefId="Package.ConnectionManagers[ia_rates_regions_opened]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].Columns[cd_reporter_type]"
+                      cachedDataType="i4"
+                      cachedName="cd_reporter_type"
+                      externalMetadataColumnId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_reporter_type]"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_reporter_type]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].Columns[cd_allegation]"
+                      cachedDataType="i4"
+                      cachedName="cd_allegation"
+                      externalMetadataColumnId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_allegation]"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_allegation]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].Columns[cd_finding]"
+                      cachedDataType="i4"
+                      cachedName="cd_finding"
+                      externalMetadataColumnId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_finding]"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_finding]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].Columns[ethnicity_cd]"
+                      cachedDataType="i4"
+                      cachedName="ethnicity_cd"
+                      externalMetadataColumnId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ethnicity_cd]"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].Columns[start_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="start_date"
+                      externalMetadataColumnId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[start_date]"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].Columns[cd_sib_age_grp]"
+                      cachedDataType="i4"
+                      cachedName="cd_sib_age_grp"
+                      externalMetadataColumnId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_sib_age_grp]"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_sib_age_grp]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].Columns[geography]"
+                      cachedDataType="i4"
+                      cachedName="geography"
+                      externalMetadataColumnId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[geography]"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]" />
+                    <inputColumn
+                      refId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].Columns[Copy of data]"
+                      cachedDataType="numeric"
+                      cachedName="Copy of data"
+                      cachedPrecision="9"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[data]"
+                      lineageId="Package\i&amp;a by region opened\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_reporter_type]"
+                      dataType="i4"
+                      name="cd_reporter_type" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_allegation]"
+                      dataType="i4"
+                      name="cd_allegation" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_finding]"
+                      dataType="i4"
+                      name="cd_finding" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ethnicity_cd]"
+                      dataType="ui4"
+                      name="ethnicity_cd" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[start_date]"
+                      dataType="dbTimeStamp"
+                      name="start_date" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cd_sib_age_grp]"
+                      dataType="ui4"
+                      name="cd_sib_age_grp" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[geography]"
+                      dataType="i4"
+                      name="geography" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[data]"
+                      dataType="numeric"
+                      name="data"
+                      precision="9"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\i&amp;a by region opened\OLE DB Source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select [start_date], poc2ab.cd_sib_age_grp , poc2ab.cd_race ethnicity_cd, 
+                           poc2ab.cd_reporter_type, poc2ab.cd_allegation, 
+                         poc2ab.cd_finding,old_region_cd  [geography],
+			convert(decimal(9,2),round((case when (sum(poc2ab.cnt_opened)) &gt; 0 /* jitter all above 0 */  
+                    then 
+                        case when round((sum(poc2ab.cnt_opened)) + (2 * sqrt(-2 * log(max(poc2ab.x1))) * cos(2*pi()*max(poc2ab.x2))),0)  &lt; 1
+                        then 1
+                        else round((sum(poc2ab.cnt_opened)) + (2 * sqrt(-2 * log(max(poc2ab.x1))) * cos(2*pi()*max(poc2ab.x2))),0) 
+                        end
+                    else (sum(poc2ab.cnt_opened) )
+            end/(sum(pop.pop_cnt) * 1.00) * 1000),2))  data
+from prtl.cache_poc2ab_aggr poc2ab
+join [dbo].[prm_household_census_population] pop on pop.cd_race=poc2ab.cd_race
+and poc2ab.cd_county=pop.county_cd
+and poc2ab.cd_sib_age_grp=pop.cd_sib_age_grp
+and poc2ab.start_year=pop.measurement_year
+and pop.pop_cnt &gt; 0
+join ref_lookup_county cnty on cnty.county_cd=poc2ab.cd_county
+where qry_type=2 and date_type=2 and cd_access_type=0  and poc2ab.fl_include_perCapita=1  
+group by [start_date], poc2ab.cd_sib_age_grp,poc2ab.cd_race, 
+                     cnty.old_region_cd, poc2ab.cd_reporter_type, poc2ab.cd_allegation, 
+                         poc2ab.cd_finding
+order by [start_date], poc2ab.cd_sib_age_grp,poc2ab.cd_race, 
+                       cnty.old_region_cd, poc2ab.cd_reporter_type, poc2ab.cd_allegation, 
+                         poc2ab.cd_finding</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\i&amp;a by region opened\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[poc2.CA_ODS]"
+                  connectionManagerRefId="Package.ConnectionManagers[poc2.CA_ODS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_reporter_type]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_reporter_type]"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_reporter_type]"
+                      name="cd_reporter_type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_allegation]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_allegation]"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_allegation]"
+                      name="cd_allegation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_finding]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_finding]"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_finding]"
+                      name="cd_finding"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ethnicity_cd]"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]"
+                      name="ethnicity_cd"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[start_date]"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]"
+                      name="start_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_sib_age_grp]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_sib_age_grp]"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[cd_sib_age_grp]"
+                      name="cd_sib_age_grp"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[geography]"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]"
+                      name="geography"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[data]"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]"
+                      name="data"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_reporter_type]"
+                      dataType="i4"
+                      name="cd_reporter_type" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_allegation]"
+                      dataType="i4"
+                      name="cd_allegation" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_finding]"
+                      dataType="i4"
+                      name="cd_finding" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ethnicity_cd]"
+                      dataType="i4"
+                      name="ethnicity_cd" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[start_date]"
+                      dataType="dbTimeStamp"
+                      name="start_date" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cd_sib_age_grp]"
+                      dataType="i4"
+                      name="cd_sib_age_grp" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[geography]"
+                      dataType="i4"
+                      name="geography" />
+                    <externalMetadataColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[data]"
+                      dataType="numeric"
+                      name="data"
+                      precision="9"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[start_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[start_date]"
+                      name="start_date" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_sib_age_grp]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_sib_age_grp]"
+                      name="cd_sib_age_grp" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ethnicity_cd]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ethnicity_cd]"
+                      name="ethnicity_cd" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_reporter_type]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_reporter_type]"
+                      name="cd_reporter_type" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_allegation]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_allegation]"
+                      name="cd_allegation" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_finding]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cd_finding]"
+                      name="cd_finding" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[geography]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[geography]"
+                      name="geography" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[data]"
+                      dataType="numeric"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[data]"
+                      name="data"
+                      precision="9"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\i&amp;a by region opened.Paths[Data Conversion Output]"
+              endId="Package\i&amp;a by region opened\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\i&amp;a by region opened\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\i&amp;a by region opened.Paths[OLE DB Source Output]"
+              endId="Package\i&amp;a by region opened\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\i&amp;a by region opened\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{3CC1E7A0-900F-4C29-8BCA-E4D777B90840}"
+      DTS:From="Package\i&amp;a by county opened"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\i&amp;a by county closed" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{95E9EF41-F6AD-4A6D-8B70-3DA30550833C}"
+      DTS:From="Package\i&amp;a by county closed"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\i&amp;a by region opened" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{E5121770-077B-4831-BDC8-B194C483CD50}"
+      DTS:From="Package\i&amp;a by region opened"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\i&amp;a by region closed" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="184,42"
+          Id="Package\i&amp;a by county opened"
+          TopLeft="188.504744742357,355.356489792991" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\i&amp;a by region opened"
+          TopLeft="559.151224055661,353.314127046084" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\i&amp;a by county closed"
+          TopLeft="188.504744742357,607.861234535348" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="280.504744742357,397.356489792991">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-31.3333333333333,210.504744742357"
+              Start="0,0"
+              End="-31.3333333333333,203.004744742357">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,121.1776544459" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,121.1776544459"
+                    Point2="0,125.1776544459"
+                    Point3="-4,125.1776544459" />
+                  <mssgle:LineSegment
+                    End="-27.3333333333333,125.1776544459" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-27.3333333333333,125.1776544459"
+                    Point2="-31.3333333333333,125.1776544459"
+                    Point3="-31.3333333333333,129.1776544459" />
+                  <mssgle:LineSegment
+                    End="-31.3333333333333,203.004744742357" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="305.83807807569,607.861234535348">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="344.31314597997,-212.547107489264"
+              Start="0,0"
+              End="344.31314597997,-205.047107489264">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-82.1549522562271" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-82.1549522562271"
+                    Point2="0,-86.1549522562271"
+                    Point3="4,-86.1549522562271" />
+                  <mssgle:LineSegment
+                    End="340.31314597997,-86.1549522562271" />
+                  <mssgle:CubicBezierSegment
+                    Point1="340.31314597997,-86.1549522562271"
+                    Point2="344.31314597997,-86.1549522562271"
+                    Point3="344.31314597997,-90.1549522562271" />
+                  <mssgle:LineSegment
+                    End="344.31314597997,-205.047107489264" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="176,42"
+          Id="Package\i&amp;a by region closed"
+          TopLeft="845,356" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="741.151224055661,375.657063523042">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="103.848775944339,0"
+              Start="0,0"
+              End="96.3487759443394,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="96.3487759443394,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\i&amp;a by county opened">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\i&amp;a by county opened\OLE DB Source"
+          TopLeft="106.713940242869,41.9231266936784" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\i&amp;a by county opened\Flat File Destination"
+          TopLeft="255.129592304899,266.7617200214" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\i&amp;a by county opened\Data Conversion"
+          TopLeft="224,163" />
+        <EdgeLayout
+          Id="Package\i&amp;a by county opened.Paths[OLE DB Source Output]"
+          TopLeft="182.713940242869,83.9231266936784">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="120.286059757131,79.0768733063216"
+              Start="0,0"
+              End="120.286059757131,71.5768733063216">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5384366531608" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.5384366531608"
+                    Point2="0,39.5384366531608"
+                    Point3="4,39.5384366531608" />
+                  <mssgle:LineSegment
+                    End="116.286059757131,39.5384366531608" />
+                  <mssgle:CubicBezierSegment
+                    Point1="116.286059757131,39.5384366531608"
+                    Point2="120.286059757131,39.5384366531608"
+                    Point3="120.286059757131,43.5384366531608" />
+                  <mssgle:LineSegment
+                    End="120.286059757131,71.5768733063216" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\i&amp;a by county opened.Paths[Data Conversion Output]"
+          TopLeft="303,205">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="39.129592304899,61.7617200214"
+              Start="0,0"
+              End="39.129592304899,54.2617200214">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.8808600107" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.8808600107"
+                    Point2="0,30.8808600107"
+                    Point3="4,30.8808600107" />
+                  <mssgle:LineSegment
+                    End="35.129592304899,30.8808600107" />
+                  <mssgle:CubicBezierSegment
+                    Point1="35.129592304899,30.8808600107"
+                    Point2="39.129592304899,30.8808600107"
+                    Point3="39.129592304899,34.8808600107" />
+                  <mssgle:LineSegment
+                    End="39.129592304899,54.2617200214" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\i&amp;a by county opened\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\i&amp;a by region opened">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\i&amp;a by region opened\OLE DB Source"
+          TopLeft="41.9014068289726,62" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\i&amp;a by region opened\Flat File Destination"
+          TopLeft="144,225" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\i&amp;a by region opened\Data Conversion"
+          TopLeft="318,109" />
+        <EdgeLayout
+          Id="Package\i&amp;a by region opened.Paths[OLE DB Source Output]"
+          TopLeft="193.901406828973,83">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="124.098593171027,47"
+              Start="0,0"
+              End="116.598593171027,47">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="58.0492965855137,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="58.0492965855137,0"
+                    Point2="62.0492965855137,0"
+                    Point3="62.0492965855137,4" />
+                  <mssgle:LineSegment
+                    End="62.0492965855137,43" />
+                  <mssgle:CubicBezierSegment
+                    Point1="62.0492965855137,43"
+                    Point2="62.0492965855137,47"
+                    Point3="66.0492965855137,47" />
+                  <mssgle:LineSegment
+                    End="116.598593171027,47" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\i&amp;a by region opened.Paths[Data Conversion Output]"
+          TopLeft="397,151">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-166,74"
+              Start="0,0"
+              End="-166,66.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33"
+                    Point2="0,37"
+                    Point3="-4,37" />
+                  <mssgle:LineSegment
+                    End="-162,37" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-162,37"
+                    Point2="-166,37"
+                    Point3="-166,41" />
+                  <mssgle:LineSegment
+                    End="-166,66.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\i&amp;a by region opened\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\i&amp;a by county closed">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="174,42"
+          Id="Package\i&amp;a by county closed\Flat File Destination"
+          TopLeft="255.129592304899,266.7617200214" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\i&amp;a by county closed\OLE DB Source"
+          TopLeft="106.713940242869,40.9231266936784" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\i&amp;a by county closed\Data Conversion"
+          TopLeft="197,119" />
+        <EdgeLayout
+          Id="Package\i&amp;a by county closed.Paths[OLE DB Source Output]"
+          TopLeft="182.713940242869,82.9231266936784">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="93.286059757131,36.0768733063216"
+              Start="0,0"
+              End="93.286059757131,28.5768733063216">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.0384366531608" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.0384366531608"
+                    Point2="0,18.0384366531608"
+                    Point3="4,18.0384366531608" />
+                  <mssgle:LineSegment
+                    End="89.286059757131,18.0384366531608" />
+                  <mssgle:CubicBezierSegment
+                    Point1="89.286059757131,18.0384366531608"
+                    Point2="93.286059757131,18.0384366531608"
+                    Point3="93.286059757131,22.0384366531608" />
+                  <mssgle:LineSegment
+                    End="93.286059757131,28.5768733063216" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\i&amp;a by county closed.Paths[Data Conversion Output]"
+          TopLeft="276,161">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="66.129592304899,105.7617200214"
+              Start="0,0"
+              End="66.129592304899,98.2617200214">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.8808600107" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,48.8808600107"
+                    Point2="0,52.8808600107"
+                    Point3="4,52.8808600107" />
+                  <mssgle:LineSegment
+                    End="62.129592304899,52.8808600107" />
+                  <mssgle:CubicBezierSegment
+                    Point1="62.129592304899,52.8808600107"
+                    Point2="66.129592304899,52.8808600107"
+                    Point3="66.129592304899,56.8808600107" />
+                  <mssgle:LineSegment
+                    End="66.129592304899,98.2617200214" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\i&amp;a by county closed\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\i&amp;a by region closed">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="174,42"
+          Id="Package\i&amp;a by region closed\Flat File Destination"
+          TopLeft="144,225" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\i&amp;a by region closed\OLE DB Source"
+          TopLeft="41.9014068289726,62" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\i&amp;a by region closed\Data Conversion"
+          TopLeft="341,134" />
+        <EdgeLayout
+          Id="Package\i&amp;a by region closed.Paths[OLE DB Source Output]"
+          TopLeft="117.901406828973,104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="302.098593171027,30"
+              Start="0,0"
+              End="302.098593171027,22.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11"
+                    Point2="0,15"
+                    Point3="4,15" />
+                  <mssgle:LineSegment
+                    End="298.098593171027,15" />
+                  <mssgle:CubicBezierSegment
+                    Point1="298.098593171027,15"
+                    Point2="302.098593171027,15"
+                    Point3="302.098593171027,19" />
+                  <mssgle:LineSegment
+                    End="302.098593171027,22.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\i&amp;a by region closed.Paths[Data Conversion Output]"
+          TopLeft="420,176">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-189,49"
+              Start="0,0"
+              End="-189,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.5"
+                    Point2="0,24.5"
+                    Point3="-4,24.5" />
+                  <mssgle:LineSegment
+                    End="-185,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-185,24.5"
+                    Point2="-189,24.5"
+                    Point3="-189,28.5" />
+                  <mssgle:LineSegment
+                    End="-189,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\i&amp;a by region closed\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
