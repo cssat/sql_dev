@@ -637,34 +637,29 @@ end if; -- all not in cache
                    when pbcw3.long_cd_plcm_setng = 6 then @lpl6
                    when pbcw3.long_cd_plcm_setng = 7 then @lpl7
               end as  "Longest Placement"
-						, pbcw3.county_cd
-						, ref_cnty.county as "County"
-						, pbcw3.bin_dep_cd as  "dependency_cd"
-						, ref_dep.bin_dep_desc as "Dependency"
-						, pbcw3.bin_los_cd
-						, ref_los.bin_los_desc as "Length of Service Desc"
-						, pbcw3.bin_placement_cd
-						, case pbcw3.bin_placement_cd
-                when 0 then @plc0
-                when 1 then @plc1
-                when 2 then @plc2
-                when 3 then @plc3
-                when 4 then @plc4
-                when 5 then @plc5
-              end   as "Placement Count Desc"
-						, pbcw3.bin_ihs_svc_cd
-						, case pbcw3.bin_ihs_svc_cd
-                when 0 then @ihs0
-                when 1 then @ihs1
-                when 2 then @ihs2
-                when 3 then @ihs3
-              end as "In-Home Service Desc"
-						, pbcw3.cd_reporter_type
-						, ref_rpt.tx_reporter_type as "Reporter Desc"
-						, pbcw3.cd_access_type
-						, ref_acc.tx_access_type as "Access type desc"
-						, pbcw3.cd_allegation
-						, case pbcw3.cd_allegation
+				, pbcw3.county_cd
+				, ref_cnty.county as "County"
+				, pbcw3.bin_dep_cd as  "dependency_cd"
+				, ref_dep.bin_dep_desc as "Dependency"
+				, pbcw3.bin_los_cd
+				, ref_los.bin_los_desc as "Length of Service Desc"
+				, pbcw3.bin_placement_cd
+				, case pbcw3.bin_placement_cd
+					when 0 then @plc0
+					when 1 then @plc1
+					when 2 then @plc2
+					when 3 then @plc3
+					when 4 then @plc4
+					when 5 then @plc5
+				  end   as "Placement Count Desc"
+				, pbcw3.bin_ihs_svc_cd
+				, ihs.bin_ihs_svc_tx as "In-Home Service Desc"
+				, pbcw3.cd_reporter_type
+				, ref_rpt.tx_reporter_type as "Reporter Desc"
+				, pbcw3.cd_access_type
+				, ref_acc.tx_access_type as "Access type desc"
+				, pbcw3.cd_allegation
+				, case pbcw3.cd_allegation
                    when 0 then @alg0
                    when 1 then @alg1
                    when 2 then @alg2
@@ -680,9 +675,9 @@ end if; -- all not in cache
                    when 4 then @fnd4
                 end as "Finding"
 						, pbcw3.cd_subctgry_poc_frc as "service_type_cd"
-						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw3.cd_budget_poc_frc   "budget_cd"
-						, ref_bud.tx_budget_poc_frc  "Budget"
+			, ref_srv.tx_subctgry_poc_frc as "Service Type"
+			, pbcw3.cd_budget_poc_frc   "budget_cd"
+			, ref_bud.tx_budget_poc_frc  "Budget"
             , family_setting_dcfs_prcntg as "Family Setting (State Foster Home)"
             , family_setting_private_agency_prcntg as "Family Setting (Private Foster Home)"
             , relative_prcntg  as "Family Setting (Kin Placement)"
@@ -700,6 +695,7 @@ end if; -- all not in cache
 						INTERVAL - 1 DAY),
 							INTERVAL abs(ref_los.lag) DAY),cutoff_date) <= cutoff_date
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw3.county_cd
+			join ref_filter_ihs_services ihs on ihs.bin_ihs_svc_cd=pbcw3.bin_ihs_svc_cd and pbcw3.cohort_entry_date>=min_display_date
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw3.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw3.cd_access_type
              join ref_lookup_service_category ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw3.cd_subctgry_poc_frc

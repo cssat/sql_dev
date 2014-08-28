@@ -915,12 +915,7 @@ select
         when 5 then @plc5
     end as 'Placement Count Desc',
     outcomes.bin_ihs_svc_cd,
-    case outcomes.bin_ihs_svc_cd
-        when 0 then @ihs0
-        when 1 then @ihs1
-        when 2 then @ihs2
-        when 3 then @ihs3
-    end as 'In-Home Service Desc',
+    ihs.bin_ihs_svc_tx as 'In-Home Service Desc',
     outcomes.cd_reporter_type,
     ref_rpt.tx_reporter_type as 'Reporter Desc',
     outcomes.cd_access_type,
@@ -968,6 +963,7 @@ from
 						INTERVAL abs(ref_los.lag) DAY),cutoff_date) <= cutoff_date
         join
     ref_lookup_county ref_cnty ON ref_cnty.county_cd = outcomes.county_cd
+join ref_filter_ihs_services ihs on ihs.bin_ihs_svc_cd=outcomes.bin_ihs_svc_cd and outcomes.cohort_entry_date>=min_display_date
         join
     ref_filter_reporter_type ref_rpt ON ref_rpt.cd_reporter_type = outcomes.cd_reporter_type
         join

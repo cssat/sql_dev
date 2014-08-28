@@ -897,12 +897,7 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
                                     when 5 then @plc5
                                   end   as "Placement Count Desc"
                             , pbcp5.bin_ihs_svc_cd
-                            , case pbcp5.bin_ihs_svc_cd
-                                    when 0 then @ihs0
-                                    when 1 then @ihs1
-                                    when 2 then @ihs2
-                                    when 3 then @ihs3
-                                  end as "In-Home Service Desc"
+                            , ihs.bin_ihs_svc_tx as "In-Home Service Desc"
                             , pbcp5.cd_reporter_type
                             , ref_rpt.tx_reporter_type as "Reporter Desc"
                             , pbcp5.cd_access_type
@@ -948,6 +943,7 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
 			join ref_lookup_county_all ref_cnty on ref_cnty.county_cd=pbcp5.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcp5.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcp5.cd_access_type
+			join ref_filter_ihs_services ihs on ihs.bin_ihs_svc_cd=pbcp5.bin_ihs_svc_cd and pbcp5.Cohort_Entry_date>=min_display_date
             join ref_lookup_service_category ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
              and cohort_entry_date>=min_service_date
             join ref_lookup_service_budget ref_bud on ref_bud.cd_budget_poc_frc =pbcp5.cd_budget_poc_frc

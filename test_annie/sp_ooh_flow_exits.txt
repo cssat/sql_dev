@@ -675,12 +675,7 @@ end if; -- not all rows exist in cache
                     when 5 then @plc5
                   end as "Placement Count Desc"
                 , poc1ab.bin_ihs_svc_cd
-                , case poc1ab.bin_ihs_svc_cd
-                    when 0 then @ihs0
-                    when 1 then @ihs1
-                    when 2 then @ihs2
-                    when 3 then @ihs3
-                  end as "In-Home Service Desc"
+                , ihs.bin_ihs_svc_tx as "In-Home Service Desc"
                 , poc1ab.cd_reporter_type
                 , ref_rpt.tx_reporter_type as "Reporter Desc"
                 , poc1ab.cd_access_type
@@ -714,6 +709,7 @@ end if; -- not all rows exist in cache
                         and poc1ab.start_date between ref_dep.min_filter_date and max_filter_date
             join ref_filter_los ref_los on ref_los.bin_los_cd=poc1ab.bin_los_cd
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=poc1ab.county_cd
+			join ref_filter_ihs_services ihs on ihs.bin_ihs_svc_cd=poc1ab.bin_ihs_svc_cd and poc1ab.start_date>=min_display_date
              join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=poc1ab.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=poc1ab.cd_access_type
             join ref_lookup_service_category ref_srv 

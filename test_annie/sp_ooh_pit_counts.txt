@@ -687,12 +687,7 @@ end if; -- not all rows exist in cache
                 when 5 then @plc5
               end as "Placement Count Desc"
             , poc1ab.bin_ihs_svc_cd
-            , case poc1ab.bin_ihs_svc_cd
-                when 0 then @ihs0
-                when 1 then @ihs1
-                when 2 then @ihs2
-                when 3 then @ihs3
-              end as "In-Home Service Desc"
+            , ihs.bin_ihs_svc_tx as "In-Home Service Desc"
             , poc1ab.cd_reporter_type
             , ref_rpt.tx_reporter_type as "Reporter Desc"
             , poc1ab.cd_access_type
@@ -721,6 +716,7 @@ end if; -- not all rows exist in cache
             join vw_ref_dependency_lag ref_dep on ref_dep.bin_dep_cd=poc1ab.bin_dep_cd
                 and poc1ab.date_type=ref_dep.date_type
                 and poc1ab.start_date between min_filter_date and max_filter_date
+			join ref_filter_ihs_services ihs on ihs.bin_ihs_svc_cd=poc1ab.bin_ihs_svc_cd and poc1ab.start_date>=min_display_date
 			join ref_filter_los ref_los ON ref_los.bin_los_cd = poc1ab.bin_los_cd
 				and if(poc1ab.bin_los_cd!=0,date_add(date_add(date_add(poc1ab.start_date,
                     INTERVAL 1 year),

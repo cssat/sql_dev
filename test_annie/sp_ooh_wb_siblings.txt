@@ -626,19 +626,14 @@ if  flg_procedure_off =0 then
                                 when 4 then @plc4
                                 when 5 then @plc5
                               end   as "Placement Count Desc"
-						, pbcw4.bin_ihs_svc_cd
-						, case pbcw4.bin_ihs_svc_cd
-                                when 0 then @ihs0
-                                when 1 then @ihs1
-                                when 2 then @ihs2
-                                when 3 then @ihs3
-                              end as "In-Home Service Desc"
-						, pbcw4.cd_reporter_type
-						, ref_rpt.tx_reporter_type as "Reporter Desc"
-						, pbcw4.cd_access_type
-						, ref_acc.tx_access_type as "Access type desc"
-						, pbcw4.cd_allegation
-						, case pbcw4.cd_allegation
+				, pbcw4.bin_ihs_svc_cd
+				, ihs.bin_ihs_svc_tx as "In-Home Service Desc"
+				, pbcw4.cd_reporter_type
+				, ref_rpt.tx_reporter_type as "Reporter Desc"
+				, pbcw4.cd_access_type
+				, ref_acc.tx_access_type as "Access type desc"
+				, pbcw4.cd_allegation
+				, case pbcw4.cd_allegation
                    when 0 then @alg0
                    when 1 then @alg1
                    when 2 then @alg2
@@ -686,7 +681,7 @@ if  flg_procedure_off =0 then
 					and pbcw4.cohort_entry_date>=ref_srv.min_service_date 
             join ref_lookup_service_budget ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
 					and pbcw4.cohort_entry_date>=ref_bud.min_budget_date 
-
+			join ref_filter_ihs_services ihs on ihs.bin_ihs_svc_cd=pbcw4.bin_ihs_svc_cd and pbcw4.cohort_entry_date>=min_display_date
             join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
             where pbcw4.cohort_entry_date between p_mindate and p_maxdate
             order by kincare asc,
