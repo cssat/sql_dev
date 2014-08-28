@@ -1,4 +1,5 @@
-
+create view prtl.p_stab_1
+as
 
 
  select  cd.fiscal_yr
@@ -33,6 +34,3 @@ where cd.exclude_7day=1
 group by 
 cd.fiscal_yr
 ,cd.years_in_care
-order by 
-	fiscal_yr
-	,years_in_care

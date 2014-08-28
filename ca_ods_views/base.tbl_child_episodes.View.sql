@@ -1,16 +1,17 @@
 USE [CA_ODS]
 GO
 
-/****** Object:  View [base].[tbl_child_episodes]    Script Date: 7/24/2014 9:21:24 AM ******/
+/****** Object:  View [base].[tbl_child_episodes]    Script Date: 8/27/2014 1:26:59 PM ******/
 DROP VIEW [base].[tbl_child_episodes]
 GO
 
-/****** Object:  View [base].[tbl_child_episodes]    Script Date: 7/24/2014 9:21:24 AM ******/
+/****** Object:  View [base].[tbl_child_episodes]    Script Date: 8/27/2014 1:26:59 PM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
 
 
 
@@ -37,7 +38,8 @@ SELECT
 	,IIF( DATEADD(YEAR, 18, P.birthdate) < P.discharge_dt , DATEADD(YEAR, 18, P.birthdate) , p.discharge_dt )  [federal_discharge_date_force_18]
 	,COALESCE(DRD.CD_DSCH_RSN, PRD.CD_END_RSN) [federal_discharge_reason_code]
 	,COALESCE(DRD.tx_dsch_rsn, PRD.tx_end_rsn) [federal_discharge_reason]
-	,P.init_cd_plcm_setng [initial_plcm_setting_for_removal_cd]
+	--,P.init_cd_plcm_setng [initial_plcm_setting_for_removal_cd]
+	,fp.cd_plcm_setng  [initial_plcm_setting_for_removal_cd]
 	,PTD.TX_PLCM_SETNG [initial_plcm_setting_for_removal]
 	,FP.id_plcmnt_evnt [init_id_plcmnt_evnt]
 	,FP.cd_plcmnt_evnt [init_cd_plcmnt_evnt]
@@ -143,13 +145,15 @@ LEFT JOIN (
 		,TX_PLCM_SETNG
 		
 ) PTD ON
-	PTD.CD_PLCM_SETNG = P.init_cd_plcm_setng
+	--PTD.CD_PLCM_SETNG = P.init_cd_plcm_setng
+	ptd.CD_PLCM_SETNG=fp.cd_plcm_setng
 LEFT JOIN dbo.PEOPLE_DIM PD ON
 	PD.ID_PEOPLE_DIM = REF.ID_PEOPLE_DIM_CHILD
 LEFT JOIN dbo.ref_braam_race BR ON
 	BR.tx_braam_race = P.tx_braam_race
 left join base.rptPlacement_Events lngplc on lngplc.id_placement_fact=p.longest_id_placement_fact
 left join (select child,count(distinct id_removal_episode_fact) as eps_cnt from base.rptPlacement group by child) eps_tot on eps_tot.child=p.child
+
 
 
 
