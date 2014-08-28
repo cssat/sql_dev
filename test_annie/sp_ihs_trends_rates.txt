@@ -571,6 +571,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
                 and pop.age_grouping_cd=poc3ab.cd_sib_age_grp
                 and pop.cd_race=poc3ab.cd_race_census
                 and pop.county_cd=poc3ab.cd_county
+				and pop.pop_cnt <> 0
             join ref_lookup_sib_age_grp ref_age on ref_age.cd_sib_age_grp=poc3ab.cd_sib_age_grp
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=poc3ab.cd_county
              join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=poc3ab.cd_reporter_type
