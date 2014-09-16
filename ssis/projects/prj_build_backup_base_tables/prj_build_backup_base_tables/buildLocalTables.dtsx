@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="buildLocalTables"
   DTS:PackageType="5"
-  DTS:VersionBuild="192"
-  DTS:VersionGUID="{87C6B514-AC00-4B75-A59C-039583BEAD84}">
+  DTS:VersionBuild="194"
+  DTS:VersionGUID="{3B0B14B2-AD73-42BB-A99A-6BB6ABD63CD5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -39,7 +39,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="id_prsn_child"
-              DTS:DTSID="{FDF936B3-BAC1-4FB9-87AA-66061D046BB4}"
+              DTS:DTSID="{88C3A2B7-5579-4565-B064-5A11C9D5525A}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -47,7 +47,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="id_removal_episode_fact"
-              DTS:DTSID="{F372F470-3317-4538-9470-7D2EAC6FCD7C}"
+              DTS:DTSID="{6514C44E-A845-41FD-AAE9-C3CFAA21CDCA}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -55,7 +55,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="id_case"
-              DTS:DTSID="{D6AB1C2E-56A7-4ABE-9661-68A8FF83D4E7}"
+              DTS:DTSID="{5A0116BE-1DA8-4F67-B659-62017E2E4103}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -63,7 +63,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="min_id_payment_fact"
-              DTS:DTSID="{CF6C9CA0-D988-4C57-B702-7BE4DA967126}"
+              DTS:DTSID="{7F1D93D2-5D1E-49FE-B71E-DC815B72CC55}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -71,7 +71,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="max_id_payment_fact"
-              DTS:DTSID="{83549E6D-F34C-4416-A1E2-6F672C3AE062}"
+              DTS:DTSID="{FD3CD869-08F9-474B-8869-8CD5EE986439}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -79,7 +79,7 @@
               DTS:DataType="133"
               DTS:TextQualified="True"
               DTS:ObjectName="min_svc_begin_date"
-              DTS:DTSID="{D9227F96-0DC9-4105-A738-2785F635CBC2}"
+              DTS:DTSID="{D8BAEF9B-37F6-450A-AC10-9853B13ECDEB}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -87,7 +87,7 @@
               DTS:DataType="133"
               DTS:TextQualified="True"
               DTS:ObjectName="max_svc_end_date"
-              DTS:DTSID="{01898BE2-9EF4-437E-9A97-1941C5C384BB}"
+              DTS:DTSID="{10ABC66B-E432-4B60-A20A-1C20226AF10D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -95,7 +95,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="nbr_services"
-              DTS:DTSID="{6F38F6B4-7254-4F60-BE3B-A666DFF026B8}"
+              DTS:DTSID="{13C6C35A-85CB-4CEF-A701-18370474044E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -103,7 +103,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_family_focused_services"
-              DTS:DTSID="{8BED5B38-309C-40DC-8D9F-AC70503BC5CE}"
+              DTS:DTSID="{A477F68A-8559-49DA-B230-47C9AA06F290}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -111,7 +111,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_child_care"
-              DTS:DTSID="{B2811FC2-BFFC-4E22-B931-D64D06571535}"
+              DTS:DTSID="{381FEE48-719A-4713-AFF3-6F02CDA51F82}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -119,7 +119,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_therapeutic_services"
-              DTS:DTSID="{C492B58D-FCD5-4404-A470-0B4F51EF0739}"
+              DTS:DTSID="{F9DD3E36-4BC2-4633-A89B-FD9AB839701B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -127,7 +127,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_mh_services"
-              DTS:DTSID="{17E2CE29-86D7-493D-9497-A171FD982EC7}"
+              DTS:DTSID="{45CD0198-EDE7-40F4-A6E6-76BF00F88651}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -135,7 +135,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_receiving_care"
-              DTS:DTSID="{DC849907-1F6B-47A1-8390-A8125BAFA7F8}"
+              DTS:DTSID="{AC232CF6-8498-4B64-A19C-5BE9AFD61DDB}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -143,7 +143,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_family_home_placements"
-              DTS:DTSID="{B00A4178-3D02-424C-979D-2FB5D04A41A7}"
+              DTS:DTSID="{968E0372-C4CF-42A8-B158-6401F361C2FA}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -151,7 +151,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_behavioral_rehabiliation_services"
-              DTS:DTSID="{E3C08F50-3150-4915-83B9-BAFB9A76D5DD}"
+              DTS:DTSID="{00EF91A3-70DC-4436-8CB2-2F85469855D4}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -159,7 +159,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_other_therapeutic_living_situations"
-              DTS:DTSID="{2D43393E-2C9E-466F-99A9-9010C35920DB}"
+              DTS:DTSID="{41CF70CD-7178-480A-9986-2CD17874A7F1}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -167,7 +167,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_specialty_adolescent_services"
-              DTS:DTSID="{2F72038C-89AB-4BCA-969D-8CBE3BA88DF5}"
+              DTS:DTSID="{4EE8E3C4-6E37-4215-A92E-870CCB0C06FA}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -175,7 +175,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_respite"
-              DTS:DTSID="{21EC0A9B-D9B1-4797-AEDB-3539FB10E2DF}"
+              DTS:DTSID="{F16CBF7E-86F0-4632-8307-8C578BE529A2}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -183,7 +183,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_transportation"
-              DTS:DTSID="{25E55027-5A4B-40B8-BAEC-6F3A78E92E15}"
+              DTS:DTSID="{2660D753-B3D4-41DD-836A-BE95008CA796}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -191,7 +191,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_clothing_incidentals"
-              DTS:DTSID="{A2879DD0-7295-4F14-9DA0-213AC50A697C}"
+              DTS:DTSID="{54799497-C2DC-4419-B74D-79CF2367A36B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -199,7 +199,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_sexually_aggressive_youth"
-              DTS:DTSID="{CBF1CAE5-F597-43C2-88B8-63EC942B3B7C}"
+              DTS:DTSID="{1D852E5D-E817-4A89-9CF5-50B4BE2F657D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -207,7 +207,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_adoption_support"
-              DTS:DTSID="{3BBA8D5A-F522-4CC0-8891-904BB4110596}"
+              DTS:DTSID="{38759061-E47C-47DB-A41D-5B616DECA1F4}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -215,7 +215,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_various"
-              DTS:DTSID="{33E1680F-2C1B-4A44-B573-046E59A3D8BE}"
+              DTS:DTSID="{5AA595F3-28B8-41D0-BCA3-573247521A69}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -223,7 +223,23 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_medical"
-              DTS:DTSID="{21EB13A0-C62F-40E8-A05C-1D5A439F8388}"
+              DTS:DTSID="{00166037-04B3-4DF8-A5FC-78416BF20B1C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="19"
+              DTS:TextQualified="True"
+              DTS:ObjectName="fl_ihs_reun"
+              DTS:DTSID="{3CFBC64D-7BB5-41FE-90C0-E744FB00EAA9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="19"
+              DTS:TextQualified="True"
+              DTS:ObjectName="fl_concrete_goods"
+              DTS:DTSID="{95CB8BDF-7295-40A0-A242-D4881AC6938D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -231,7 +247,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_budget_C12"
-              DTS:DTSID="{7957CF9E-B1DB-46AC-BE24-32714F060616}"
+              DTS:DTSID="{343EBA67-1AB2-47AF-9190-BC1FA8C1C7B8}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -239,7 +255,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_budget_C14"
-              DTS:DTSID="{7019D9AC-45B2-4761-A2F2-92B826AC8B9D}"
+              DTS:DTSID="{C5F82367-FC2B-4662-9B48-B46DAA9BD6A8}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -247,7 +263,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_budget_C15"
-              DTS:DTSID="{686BC554-C25A-4D23-8A31-712DFBC8717B}"
+              DTS:DTSID="{7F9C81E2-239E-472D-97DD-EE4442D49DB9}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -255,7 +271,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_budget_C16"
-              DTS:DTSID="{1B759B84-3CC8-4B9E-B5A4-B4C76E9663DF}"
+              DTS:DTSID="{C93F177C-8A4E-4536-A497-661B465851C7}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -263,7 +279,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_budget_C18"
-              DTS:DTSID="{20BCBA75-1278-45B7-A139-219AAAE830C9}"
+              DTS:DTSID="{95BB8F56-932F-48B0-8866-2D88F597B902}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -271,7 +287,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_budget_C19"
-              DTS:DTSID="{93D9617A-EA59-4E4C-BF6A-1491E28B8A2B}"
+              DTS:DTSID="{057E28DB-D418-4F41-861B-382C0C73CC72}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -279,7 +295,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_uncat_svc"
-              DTS:DTSID="{D440FD91-970F-4E42-B023-3079CE9CC9D9}"
+              DTS:DTSID="{C2705FFE-C68B-4BE6-B69A-93575A874F1B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -287,7 +303,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_family_focused_services"
-              DTS:DTSID="{B489A66C-7581-46FF-88D7-550D2829980B}"
+              DTS:DTSID="{B5714E39-8EAF-4B56-AEEE-98769F89A771}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -295,7 +311,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_child_care"
-              DTS:DTSID="{498DF7CE-4FBB-4979-890F-A9FD8282BA75}"
+              DTS:DTSID="{6F1961AC-EA72-4234-A338-408DD6365CEE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -303,7 +319,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_therapeutic_services"
-              DTS:DTSID="{8A1D85EC-F1B6-4772-962A-7CD46B33604F}"
+              DTS:DTSID="{0558DD85-BDB5-408A-818E-05DEFAA5D572}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -311,7 +327,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_mh_services"
-              DTS:DTSID="{0CF7FDAC-609F-471F-AADB-7476ED970774}"
+              DTS:DTSID="{19583888-7360-4101-B07C-D9AE6173CAD1}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -319,7 +335,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_receiving_care"
-              DTS:DTSID="{51C729FD-6197-41DE-9910-34E517425086}"
+              DTS:DTSID="{F1417768-E8A3-4B2A-84D9-BFF140178C03}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -327,7 +343,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_family_home_placements"
-              DTS:DTSID="{17A2BBD3-AF4C-4FA1-9E60-7640825077A4}"
+              DTS:DTSID="{3DE6AEB9-B42A-42FF-B8C3-F6AC1230416B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -335,7 +351,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_behavioral_rehabiliation_services"
-              DTS:DTSID="{D25928F8-4D50-42FE-8D74-F59CA46ABF1B}"
+              DTS:DTSID="{6812DC92-30D6-48E4-8E90-DA17A6DF1CB7}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -343,7 +359,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_other_therapeutic_living_situations"
-              DTS:DTSID="{3E8218A8-0E88-4999-BC24-3102D14E9C96}"
+              DTS:DTSID="{2B9EF074-154E-47C6-9BCF-F24CC3367C99}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -351,7 +367,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_specialty_adolescent_services"
-              DTS:DTSID="{473463DC-11E9-4C3C-8FDC-B37BD5D9B4E9}"
+              DTS:DTSID="{CE9362E9-D6D8-49FF-9534-E44A6D5F4531}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -359,7 +375,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_respite"
-              DTS:DTSID="{F04B1C5E-FDFB-4496-A7B5-A78A2E9272B2}"
+              DTS:DTSID="{C3DE2841-8702-485E-B18D-37CCBB1117C3}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -367,7 +383,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_transportation"
-              DTS:DTSID="{F0764E5B-AF1E-45EF-8473-E2F0E35AA18F}"
+              DTS:DTSID="{E54E8D9F-88D2-48F5-AD33-B4B784A7CCCA}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -375,7 +391,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_clothing_incidentals"
-              DTS:DTSID="{3DB0B5B8-B6DF-4FBC-9474-8C3450BD428C}"
+              DTS:DTSID="{89C5E2A2-272E-4CE2-9885-31C6F399D1DD}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -383,7 +399,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_sexually_aggressive_youth"
-              DTS:DTSID="{FE54D076-641F-491B-9EEC-F1B621789848}"
+              DTS:DTSID="{0643EEE5-76FD-4C4D-B425-8CC610216D1C}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -391,7 +407,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_adoption_support"
-              DTS:DTSID="{FA4C58DB-9E87-4861-B65A-0AC3EE54D757}"
+              DTS:DTSID="{5990E95D-5A9F-40E0-89AF-B42565D616D9}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -399,7 +415,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_various"
-              DTS:DTSID="{981BF455-E60A-429B-BD9F-3801CACE3E9D}"
+              DTS:DTSID="{BF2663C7-15F7-4222-9E51-86A0DBC833AE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -407,7 +423,23 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_medical"
-              DTS:DTSID="{598EB197-F619-458C-9153-F2A64B24F65F}"
+              DTS:DTSID="{608B5095-47E2-4F9F-B50C-2E90855FFCEC}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="cnt_ihs_reun"
+              DTS:DTSID="{BAE901AD-B313-4D42-BA9E-2DD2126B4445}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="cnt_concrete_goods"
+              DTS:DTSID="{D6071662-6013-4E64-9AB4-B0364F7DD1EE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -415,7 +447,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_budget_C12"
-              DTS:DTSID="{38CFF46A-D364-4535-BF4A-76F6F4162649}"
+              DTS:DTSID="{D1177793-E32D-4C26-B766-2DFCD3A28077}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -423,7 +455,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_budget_C14"
-              DTS:DTSID="{91557878-BC24-4857-A390-A6543D21DE73}"
+              DTS:DTSID="{9C99C428-C1AC-4058-9F15-E918596229EA}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -431,7 +463,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_budget_C15"
-              DTS:DTSID="{86936B79-BBEB-41A7-858D-93B3C2D8988E}"
+              DTS:DTSID="{96501BB5-9D11-41A2-B39C-E4105CED518E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -439,7 +471,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_budget_C16"
-              DTS:DTSID="{A83AB25C-89A8-49A4-9D10-231B24176A95}"
+              DTS:DTSID="{F60D316F-BAA6-418B-A647-670DB3243768}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -447,7 +479,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_budget_C18"
-              DTS:DTSID="{E99DC8FD-10F1-4B36-AFC2-7947A571BF22}"
+              DTS:DTSID="{97A9FA5C-5F72-4637-80B3-DC270F315CDE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -455,7 +487,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_budget_C19"
-              DTS:DTSID="{BE3C6E81-C5F8-4DFD-B05F-39B7AB1F289A}"
+              DTS:DTSID="{21610448-BA1A-41BA-A91B-D883E084F8AA}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -463,7 +495,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_uncat_svc"
-              DTS:DTSID="{237C401B-DAF2-458D-AC2A-8067D47D5EDE}"
+              DTS:DTSID="{66145EAD-3A7C-475E-9290-3E978AABE462}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -473,7 +505,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="amt_pd_family_focused_services"
-              DTS:DTSID="{5D6367B6-3DB3-4BD7-86AC-19BD51550276}"
+              DTS:DTSID="{7E640ACC-448E-4999-8F89-F0F568ADCFA2}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -483,7 +515,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="amt_pd_child_care"
-              DTS:DTSID="{2031D5B7-20CC-4DBC-BDBD-09BF1B1110A0}"
+              DTS:DTSID="{360A1679-5AFD-4CD9-A030-417B1A5FD70B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -493,7 +525,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="amt_pd_therapeutic_services"
-              DTS:DTSID="{724E1818-0A03-4572-8101-809B79BC748C}"
+              DTS:DTSID="{529B349F-1A22-41E3-AFF4-80040CC84E50}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -503,7 +535,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="amt_pd_mh_services"
-              DTS:DTSID="{34063784-F408-4AA4-817A-D9838D749F92}"
+              DTS:DTSID="{32E92306-8A12-490D-8851-FA9988308BF6}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -513,7 +545,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="amt_pd_receiving_care"
-              DTS:DTSID="{EA210151-F813-4766-B932-4C2946FDEC77}"
+              DTS:DTSID="{D5ED7777-AA84-45E1-842B-21D694065B93}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -523,7 +555,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="amt_pd_family_home_placements"
-              DTS:DTSID="{1CED7922-501A-4B44-8FC3-D0E0A1014A5C}"
+              DTS:DTSID="{D7E09C66-279D-4F50-BBB1-72ED1A2B8DCA}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -533,7 +565,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="amt_pd_behavioral_rehabiliation_services"
-              DTS:DTSID="{A85223C5-E290-40A4-BC20-E6D33B3790A7}"
+              DTS:DTSID="{2CAD258B-6497-4F9A-ADE5-B4F1C14E3218}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -543,7 +575,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="amt_pd_other_therapeutic_living_situations"
-              DTS:DTSID="{C34C33B2-74F3-4979-BFF3-06988C245050}"
+              DTS:DTSID="{CC59D629-2CF5-42BD-B9E9-867723EA2B5B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -553,7 +585,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="amt_pd_specialty_adolescent_services"
-              DTS:DTSID="{C7A9CEB3-0644-4708-B268-684C881F3B23}"
+              DTS:DTSID="{4D977C8D-3F80-49A4-A053-E09A4E87A0D6}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -563,7 +595,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="amt_pd_respite"
-              DTS:DTSID="{78E95440-5030-4CAC-8706-FDDE3182F884}"
+              DTS:DTSID="{F5F24F4F-BECF-457A-90BC-08C8ADAA1201}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -573,7 +605,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="amt_pd_transportation"
-              DTS:DTSID="{4632C88C-07D7-4795-9F4B-7B34AFC05229}"
+              DTS:DTSID="{030A558F-F6D6-4E17-96DC-A4713599BB12}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -583,7 +615,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="amt_pd_clothing_incidentals"
-              DTS:DTSID="{F231B040-6A16-4EDA-A7D4-D2167573AD88}"
+              DTS:DTSID="{619DC07C-5FF9-40E0-9AA9-DE0FF2A10A2F}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -593,7 +625,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="amt_pd_sexually_aggressive_youth"
-              DTS:DTSID="{5429BF37-80E8-4047-B69B-ED63878525B7}"
+              DTS:DTSID="{AA8DE25B-C383-48B7-9C9B-A5DEC8F992CE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -603,7 +635,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="amt_pd_adoption_support"
-              DTS:DTSID="{5987789A-A1F7-47F7-B5D9-1AC111E1862F}"
+              DTS:DTSID="{192DE654-E114-4304-A0E3-BEE25A67F1BE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -613,7 +645,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="amt_pd_various"
-              DTS:DTSID="{AF173FD2-A862-4681-8A5F-59F225DFCD21}"
+              DTS:DTSID="{8B97DC83-DC83-4CE4-AB31-E20B8BE3B50E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -623,7 +655,27 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="amt_pd_medical"
-              DTS:DTSID="{970784F8-0438-40D8-B12E-74424F9D1964}"
+              DTS:DTSID="{94C39FEC-E57E-455C-8AE1-3AAEBAD68E8C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="131"
+              DTS:DataPrecision="18"
+              DTS:DataScale="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="amt_pd_ihs_reun"
+              DTS:DTSID="{C73BFD12-86BC-423D-9C0A-2129B856DFE8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="131"
+              DTS:DataPrecision="18"
+              DTS:DataScale="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="amt_pd_concrete_goods"
+              DTS:DTSID="{5CAE5FBF-7D8C-486A-B02C-940EC8CC343F}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -633,7 +685,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="amt_pd_budget_C12"
-              DTS:DTSID="{A6156C52-5368-402C-98EB-3FC9921D9B4D}"
+              DTS:DTSID="{E22FB799-7A62-43A7-B725-7106DDF09DCC}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -643,7 +695,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="amt_pd_budget_C14"
-              DTS:DTSID="{A245125A-B23D-4512-9BBD-A9E366D6D55A}"
+              DTS:DTSID="{1D6A44CE-3E09-402D-A985-837F1C5236D2}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -653,7 +705,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="amt_pd_budget_C15"
-              DTS:DTSID="{BC700A86-267F-46E2-8441-C12120E40381}"
+              DTS:DTSID="{9EB05F5C-9245-438F-957A-F48567CE53DE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -663,7 +715,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="amt_pd_budget_C16"
-              DTS:DTSID="{DA4BFE59-A431-4452-A0A7-C8F536547598}"
+              DTS:DTSID="{34F34C47-518B-47EE-8E07-A3974AA06127}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -673,7 +725,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="amt_pd_budget_C18"
-              DTS:DTSID="{A3C3E2A6-F525-4BC4-9340-E174A01626F3}"
+              DTS:DTSID="{382144AE-A439-4C93-8DE1-F85488964114}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -683,7 +735,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="amt_pd_budget_C19"
-              DTS:DTSID="{B84370C6-FF76-45D0-867A-8AF021F800D4}"
+              DTS:DTSID="{C786DEB8-5352-4179-9D58-DCA989CE2A58}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -693,7 +745,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="amt_pd_uncat_svc"
-              DTS:DTSID="{45BCFF6F-814C-4123-B8D7-305143B8A395}"
+              DTS:DTSID="{974B12CC-FE5D-4EF5-9E38-76E46482E57D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -703,7 +755,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="total_paid"
-              DTS:DTSID="{05D97C24-3150-4933-ACD2-A87E5843AD97}"
+              DTS:DTSID="{68C2B620-B4AB-4BC0-86D0-D52085DF16B0}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -732,7 +784,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="id_prsn_child"
-              DTS:DTSID="{A0A27F81-1FB9-4C93-8F69-A67871F64C82}"
+              DTS:DTSID="{95DDCBD9-2819-47AA-AA36-1542446A4799}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -740,7 +792,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="id_removal_episode_fact"
-              DTS:DTSID="{57718970-8357-439A-875E-952D54D95F34}"
+              DTS:DTSID="{AF92E3AC-0CB4-490C-8FB9-21D7A4F6F33A}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -748,7 +800,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="id_placement_fact"
-              DTS:DTSID="{AD1F88D1-D446-400D-AF16-AE228285E393}"
+              DTS:DTSID="{9E69A39D-8277-461C-858B-A9BD52D3A48C}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -756,7 +808,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="dur_days"
-              DTS:DTSID="{FF9DFD2F-5BF0-47B9-AC6B-13FA7044A3FB}"
+              DTS:DTSID="{EBBC560E-2AC6-4446-B65F-31DBE380DDD8}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -764,7 +816,7 @@
               DTS:DataType="2"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_close"
-              DTS:DTSID="{4A6070E6-1D65-4C33-A29C-3A05A9B96CA3}"
+              DTS:DTSID="{701ED693-05D0-4B3F-883C-3C55966BA498}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -772,7 +824,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="id_case"
-              DTS:DTSID="{0899259D-F563-45F9-9B61-A339692741D5}"
+              DTS:DTSID="{6BE2B2DF-1B41-4955-BE1C-8E30B5802CC3}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -780,7 +832,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="id_payment_fact"
-              DTS:DTSID="{EDBEC79B-4022-4885-84DD-121B8DE4CDD2}"
+              DTS:DTSID="{2299E286-3ABD-4B51-B4A1-EDDE067354A8}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -788,7 +840,7 @@
               DTS:DataType="133"
               DTS:TextQualified="True"
               DTS:ObjectName="svc_begin_date"
-              DTS:DTSID="{A19B0FD9-90D0-4C57-935F-0F4E6A40F069}"
+              DTS:DTSID="{DC8DFCB1-F331-476F-8816-FB73E4B888A2}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -796,7 +848,7 @@
               DTS:DataType="133"
               DTS:TextQualified="True"
               DTS:ObjectName="svc_end_date"
-              DTS:DTSID="{41EA2DDA-13CB-4D48-B6E4-439F1F3ED941}"
+              DTS:DTSID="{FA00CD1F-32C5-4E58-B669-CEAFBC5F55DC}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -804,7 +856,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="pymt_cd_srvc"
-              DTS:DTSID="{3B668574-AD74-4E35-BC86-EDF0CE015373}"
+              DTS:DTSID="{29091930-9AB5-4D8C-A631-C4410A55CB63}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -813,7 +865,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="pymt_tx_srvc"
-              DTS:DTSID="{8BD8A999-9316-43F9-B79D-AB948EF04221}"
+              DTS:DTSID="{25BE4943-C7CA-4255-AD04-9B6A52DB0F4A}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -821,7 +873,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_primary_srvc"
-              DTS:DTSID="{86A314E9-8F0D-4E28-9762-7EF75A5651B3}"
+              DTS:DTSID="{B3516718-61E4-47D0-8685-2960D9E4F2DE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -829,7 +881,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="srvc_match"
-              DTS:DTSID="{AB1A4F92-9BC7-4684-898E-78C4F46F10DA}"
+              DTS:DTSID="{015ECC9E-D6B0-45CD-A84A-F43D13F0D245}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -837,7 +889,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="prov_match"
-              DTS:DTSID="{A6EC792B-D13B-40E4-ACCD-D43057249ECE}"
+              DTS:DTSID="{09967BCE-A26F-4DB0-856B-F11953A7A43E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -847,7 +899,7 @@
               DTS:DataScale="6"
               DTS:TextQualified="True"
               DTS:ObjectName="rate"
-              DTS:DTSID="{A85323A4-B015-4AC3-95C8-068C4F1B4E41}"
+              DTS:DTSID="{D8B4E168-77A3-4506-BFB5-7D7E39312DA0}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -857,7 +909,7 @@
               DTS:DataScale="6"
               DTS:TextQualified="True"
               DTS:ObjectName="unit"
-              DTS:DTSID="{7FEAB3DF-B552-4515-B6AE-4D0F5530A285}"
+              DTS:DTSID="{2B91C4A5-585E-48A9-A539-370E30120C87}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -867,7 +919,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="total_paid"
-              DTS:DTSID="{01D53F01-8E7B-4F58-867C-61DC35E94BE9}"
+              DTS:DTSID="{8411A52D-39C2-48A8-810D-AAE39AB600BF}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -875,7 +927,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cd_budget_poc_frc"
-              DTS:DTSID="{54F3C08D-C997-4161-80FA-A7ACAD74C338}"
+              DTS:DTSID="{C9A7BE76-25D7-4617-AA2C-4D2DC021B420}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -884,7 +936,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="tx_budget_poc_frc"
-              DTS:DTSID="{1B80DD5D-F6C2-4B2D-A1A4-1B0034366279}"
+              DTS:DTSID="{B57FC08C-831D-4DDA-B0E3-34CFF3BB89F2}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -892,7 +944,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cd_subctgry_poc_frc"
-              DTS:DTSID="{69831E27-BDD4-4B6A-B3DC-C0C899478623}"
+              DTS:DTSID="{0FCBD4FD-809F-4D5D-AE80-F5A1F4905A66}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -901,7 +953,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="tx_subctgry_poc_frc"
-              DTS:DTSID="{AA0964D3-C3BF-42A0-BB29-DDEF3519001F}"
+              DTS:DTSID="{4BF459B3-10A5-4570-B8EC-4D5F5AF88ADC}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -909,7 +961,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_plc_svc"
-              DTS:DTSID="{99965B92-767D-48E7-A870-29CCF8765A3F}"
+              DTS:DTSID="{8219408F-6CF0-4EBF-A79C-42AE338A3A40}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -917,7 +969,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_dup_payment"
-              DTS:DTSID="{D6526FB8-C7B8-44A9-800E-89174647CEF8}"
+              DTS:DTSID="{1A035F7E-F7DD-4AE1-8397-ECF0B827003B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -925,7 +977,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="begin_date"
-              DTS:DTSID="{01BA6736-8120-462C-8623-BB710773A17B}"
+              DTS:DTSID="{B4B339B6-D78D-4B81-8ABE-AC82E8B99E84}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -933,7 +985,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="end_date"
-              DTS:DTSID="{54AE5D77-3DC2-4A97-A726-401C7CD17E04}"
+              DTS:DTSID="{C3A91B77-0FA4-4BF0-BBDB-4F0B2A5CC9DE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -941,7 +993,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="id_provider_dim_caregiver"
-              DTS:DTSID="{763B4266-7F25-4732-BD9F-9D19D4C4D4B1}"
+              DTS:DTSID="{F0525B20-CAF1-4F50-905C-24F6BC1620F7}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -949,7 +1001,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="plcm_pymnt_sort_asc"
-              DTS:DTSID="{260F59F0-5E6B-42A6-8D32-3D0E1516CC37}"
+              DTS:DTSID="{4031631D-9ECC-48A6-829C-783471DD6BEC}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -957,7 +1009,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_family_focused_services"
-              DTS:DTSID="{DF1FA6E9-E3A0-4F1B-BFAF-A5674C19E54C}"
+              DTS:DTSID="{A55D88DB-B120-4129-8813-352301E650CD}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -965,7 +1017,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_child_care"
-              DTS:DTSID="{5BF86ADA-EA0E-4356-8406-DD095A63865A}"
+              DTS:DTSID="{1AFE9174-EFC4-437E-BFDE-BC034DD03203}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -973,7 +1025,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_therapeutic_services"
-              DTS:DTSID="{BBE22753-CBA2-4148-8DA1-D2CA335F86EF}"
+              DTS:DTSID="{0EF2285B-7225-4111-B407-10B7D42294A7}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -981,7 +1033,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_mh_services"
-              DTS:DTSID="{E77723F9-2F40-41A4-9E02-EA7BF86F3798}"
+              DTS:DTSID="{BF1509FB-0ACC-4F44-B4CC-655F7ED376AC}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -989,7 +1041,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_receiving_care"
-              DTS:DTSID="{5B7F6E79-16AD-4CBE-88DB-BF0CE7CCD650}"
+              DTS:DTSID="{0A6B136A-1EE8-4053-A494-C615AA2CD1AB}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -997,7 +1049,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_family_home_placements"
-              DTS:DTSID="{8DC378D1-4981-4A80-8C07-DC794A9B5270}"
+              DTS:DTSID="{5544C13C-556C-4DC9-A4E6-D62432AB3D75}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1005,7 +1057,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_behavioral_rehabiliation_services"
-              DTS:DTSID="{5357FC1B-57C1-4A6F-9EC7-10D36705B48F}"
+              DTS:DTSID="{55479884-9D3E-47C4-BB85-B4ED304FF717}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1013,7 +1065,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_other_therapeutic_living_situations"
-              DTS:DTSID="{264D9036-B868-46C7-A850-336E764BBC7F}"
+              DTS:DTSID="{336D1ADD-991E-4179-B8B9-6DC057BF4B26}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1021,7 +1073,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_specialty_adolescent_services"
-              DTS:DTSID="{FF21D717-906C-4D0F-87DC-B61CDBBC0EFC}"
+              DTS:DTSID="{B38ABCD4-C40E-4949-9BAA-10352E2C3AEB}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1029,7 +1081,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_respite"
-              DTS:DTSID="{84F89935-D3A0-440C-82FE-077DC51560BF}"
+              DTS:DTSID="{2ECF952B-AD3F-4C3B-BD6C-72AB7112085B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1037,7 +1089,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_transportation"
-              DTS:DTSID="{51829D68-D266-4229-8036-00557822EA37}"
+              DTS:DTSID="{C9FA31BB-B741-4265-AF09-57CB7B2B3ABB}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1045,7 +1097,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_clothing_incidentals"
-              DTS:DTSID="{0C64D609-0822-4A7E-B12A-1AE45946A2C7}"
+              DTS:DTSID="{71A12982-252C-45E9-B876-8F2EE646F69C}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1053,7 +1105,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_sexually_aggressive_youth"
-              DTS:DTSID="{BACD6973-3AE7-4D0E-8B38-06188513C362}"
+              DTS:DTSID="{D0309282-48FC-4839-B1BB-B904955ACA0D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1061,7 +1113,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_adoption_support"
-              DTS:DTSID="{430D43F7-7FF5-4557-B85C-4F1DE4132C25}"
+              DTS:DTSID="{4DEB3947-A04B-430A-91D7-178C3A91F4DF}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1069,7 +1121,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_various"
-              DTS:DTSID="{3D20ABC5-1B36-4C3E-AC60-50E59045BD8B}"
+              DTS:DTSID="{6DE19115-F618-4F7A-BA9E-D36B8975698D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1077,16 +1129,32 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_medical"
-              DTS:DTSID="{450D6663-6A62-421B-8D53-8A464AD4586B}"
+              DTS:DTSID="{9A11B86E-3A25-4E76-9BEB-BF40E2B983B9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="fl_ihs_reun"
+              DTS:DTSID="{3DF4EE07-E3A1-4C37-9E8C-5A1E6E441E82}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="fl_concrete_goods"
+              DTS:DTSID="{E32D2F30-076D-44CD-A814-F7ADBF7FF8B8}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
               DTS:ColumnDelimiter="_x002C_"
               DTS:DataType="131"
-              DTS:DataPrecision="18"
+              DTS:DataPrecision="21"
               DTS:TextQualified="True"
               DTS:ObjectName="filter_service_category_todate"
-              DTS:DTSID="{F8D78CAA-DF6C-4228-A150-8317843D6125}"
+              DTS:DTSID="{777B5FFF-27A3-44D2-BA4B-01072A9EAC98}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1094,7 +1162,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_budget_C12"
-              DTS:DTSID="{5283A005-7EF6-4EFF-B25D-B468E9B2CD9E}"
+              DTS:DTSID="{62FEACB0-E51C-4D0C-96A2-84BFD287B506}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1102,7 +1170,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_budget_C14"
-              DTS:DTSID="{2600C085-687B-4DA7-BEE8-E1C58A1769CD}"
+              DTS:DTSID="{40414941-BC9B-4850-AA92-C465C7BA2C91}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1110,7 +1178,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_budget_C15"
-              DTS:DTSID="{8D6BEF2A-0C43-4F38-A61C-460FFBE2F448}"
+              DTS:DTSID="{0951673F-D2D5-45E2-A661-A38E86AD4785}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1118,7 +1186,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_budget_C16"
-              DTS:DTSID="{68B9F77D-F199-4140-B119-FDE8A55B0CA7}"
+              DTS:DTSID="{81EAB91A-0521-4777-9FFF-695A1C8217E3}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1126,7 +1194,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_budget_C18"
-              DTS:DTSID="{6EAE671B-4A26-4A07-A5B9-E8CFA34C2CB6}"
+              DTS:DTSID="{27FCE043-D4E7-4A5C-AAB1-FF959394C04D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1134,7 +1202,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_budget_C19"
-              DTS:DTSID="{770CE4EB-DF00-4953-A3B9-AD22A84A0542}"
+              DTS:DTSID="{E5F69064-FB80-4F27-A1B3-048858BAD30B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1142,7 +1210,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_uncat_svc"
-              DTS:DTSID="{AC096543-062F-4758-A462-7DBDEEBC5A67}"
+              DTS:DTSID="{9758605D-7B27-4E69-BAF1-8F22EA8802C3}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1151,7 +1219,7 @@
               DTS:DataPrecision="9"
               DTS:TextQualified="True"
               DTS:ObjectName="filter_service_budget_todate"
-              DTS:DTSID="{2087B4E0-7EBC-4902-825D-4D4D49AA1E05}"
+              DTS:DTSID="{978B7FC4-FCFE-4744-8EB8-4EA236795360}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -5946,6 +6014,46 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       cachedScale="2"
                       externalMetadataColumnId="Package\dump episode_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[total_paid]"
                       lineageId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[total_paid]" />
+                    <inputColumn
+                      refId="Package\dump episode_payment_services\Flat File Destination.Inputs[Flat File Destination Input].Columns[fl_ihs_reun]"
+                      cachedDataType="i4"
+                      cachedName="fl_ihs_reun"
+                      externalMetadataColumnId="Package\dump episode_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_ihs_reun]"
+                      lineageId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_ihs_reun]" />
+                    <inputColumn
+                      refId="Package\dump episode_payment_services\Flat File Destination.Inputs[Flat File Destination Input].Columns[fl_concrete_goods]"
+                      cachedDataType="i4"
+                      cachedName="fl_concrete_goods"
+                      externalMetadataColumnId="Package\dump episode_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_concrete_goods]"
+                      lineageId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_concrete_goods]" />
+                    <inputColumn
+                      refId="Package\dump episode_payment_services\Flat File Destination.Inputs[Flat File Destination Input].Columns[cnt_ihs_reun]"
+                      cachedDataType="i4"
+                      cachedName="cnt_ihs_reun"
+                      externalMetadataColumnId="Package\dump episode_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cnt_ihs_reun]"
+                      lineageId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[cnt_ihs_reun]" />
+                    <inputColumn
+                      refId="Package\dump episode_payment_services\Flat File Destination.Inputs[Flat File Destination Input].Columns[cnt_concrete_goods]"
+                      cachedDataType="i4"
+                      cachedName="cnt_concrete_goods"
+                      externalMetadataColumnId="Package\dump episode_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cnt_concrete_goods]"
+                      lineageId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[cnt_concrete_goods]" />
+                    <inputColumn
+                      refId="Package\dump episode_payment_services\Flat File Destination.Inputs[Flat File Destination Input].Columns[amt_pd_ihs_reun]"
+                      cachedDataType="numeric"
+                      cachedName="amt_pd_ihs_reun"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\dump episode_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[amt_pd_ihs_reun]"
+                      lineageId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[amt_pd_ihs_reun]" />
+                    <inputColumn
+                      refId="Package\dump episode_payment_services\Flat File Destination.Inputs[Flat File Destination Input].Columns[amt_pd_concrete_goods]"
+                      cachedDataType="numeric"
+                      cachedName="amt_pd_concrete_goods"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\dump episode_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[amt_pd_concrete_goods]"
+                      lineageId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[amt_pd_concrete_goods]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -6308,6 +6416,34 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       dataType="numeric"
                       name="total_paid"
                       precision="38"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\dump episode_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_ihs_reun]"
+                      dataType="ui4"
+                      name="fl_ihs_reun" />
+                    <externalMetadataColumn
+                      refId="Package\dump episode_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_concrete_goods]"
+                      dataType="ui4"
+                      name="fl_concrete_goods" />
+                    <externalMetadataColumn
+                      refId="Package\dump episode_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cnt_ihs_reun]"
+                      dataType="i4"
+                      name="cnt_ihs_reun" />
+                    <externalMetadataColumn
+                      refId="Package\dump episode_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cnt_concrete_goods]"
+                      dataType="i4"
+                      name="cnt_concrete_goods" />
+                    <externalMetadataColumn
+                      refId="Package\dump episode_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[amt_pd_ihs_reun]"
+                      dataType="numeric"
+                      name="amt_pd_ihs_reun"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\dump episode_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[amt_pd_concrete_goods]"
+                      dataType="numeric"
+                      name="amt_pd_concrete_goods"
+                      precision="18"
                       scale="2" />
                   </externalMetadataColumns>
                 </input>
@@ -7124,6 +7260,64 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       precision="38"
                       scale="2"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_ihs_reun]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_ihs_reun]"
+                      lineageId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_ihs_reun]"
+                      name="fl_ihs_reun"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_concrete_goods]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_concrete_goods]"
+                      lineageId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_concrete_goods]"
+                      name="fl_concrete_goods"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[cnt_ihs_reun]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cnt_ihs_reun]"
+                      lineageId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[cnt_ihs_reun]"
+                      name="cnt_ihs_reun"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[cnt_concrete_goods]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cnt_concrete_goods]"
+                      lineageId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[cnt_concrete_goods]"
+                      name="cnt_concrete_goods"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[amt_pd_ihs_reun]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[amt_pd_ihs_reun]"
+                      lineageId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[amt_pd_ihs_reun]"
+                      name="amt_pd_ihs_reun"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[amt_pd_concrete_goods]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[amt_pd_concrete_goods]"
+                      lineageId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[amt_pd_concrete_goods]"
+                      name="amt_pd_concrete_goods"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -7487,6 +7681,34 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       name="total_paid"
                       precision="38"
                       scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_ihs_reun]"
+                      dataType="i4"
+                      name="fl_ihs_reun" />
+                    <externalMetadataColumn
+                      refId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_concrete_goods]"
+                      dataType="i4"
+                      name="fl_concrete_goods" />
+                    <externalMetadataColumn
+                      refId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cnt_ihs_reun]"
+                      dataType="i4"
+                      name="cnt_ihs_reun" />
+                    <externalMetadataColumn
+                      refId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cnt_concrete_goods]"
+                      dataType="i4"
+                      name="cnt_concrete_goods" />
+                    <externalMetadataColumn
+                      refId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[amt_pd_ihs_reun]"
+                      dataType="numeric"
+                      name="amt_pd_ihs_reun"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[amt_pd_concrete_goods]"
+                      dataType="numeric"
+                      name="amt_pd_concrete_goods"
+                      precision="18"
+                      scale="2" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -7615,6 +7837,16 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       lineageId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_medical]"
                       name="fl_medical" />
                     <outputColumn
+                      refId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_ihs_reun]"
+                      dataType="i4"
+                      lineageId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_ihs_reun]"
+                      name="fl_ihs_reun" />
+                    <outputColumn
+                      refId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_concrete_goods]"
+                      dataType="i4"
+                      lineageId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_concrete_goods]"
+                      name="fl_concrete_goods" />
+                    <outputColumn
                       refId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_budget_C12]"
                       dataType="i4"
                       lineageId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_budget_C12]"
@@ -7729,6 +7961,16 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       dataType="i4"
                       lineageId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cnt_medical]"
                       name="cnt_medical" />
+                    <outputColumn
+                      refId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cnt_ihs_reun]"
+                      dataType="i4"
+                      lineageId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cnt_ihs_reun]"
+                      name="cnt_ihs_reun" />
+                    <outputColumn
+                      refId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cnt_concrete_goods]"
+                      dataType="i4"
+                      lineageId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cnt_concrete_goods]"
+                      name="cnt_concrete_goods" />
                     <outputColumn
                       refId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cnt_budget_C12]"
                       dataType="i4"
@@ -7875,6 +8117,20 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       lineageId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[amt_pd_medical]"
                       name="amt_pd_medical"
                       precision="38"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[amt_pd_ihs_reun]"
+                      dataType="numeric"
+                      lineageId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[amt_pd_ihs_reun]"
+                      name="amt_pd_ihs_reun"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[amt_pd_concrete_goods]"
+                      dataType="numeric"
+                      lineageId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[amt_pd_concrete_goods]"
+                      name="amt_pd_concrete_goods"
+                      precision="18"
                       scale="2" />
                     <outputColumn
                       refId="Package\dump episode_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[amt_pd_budget_C12]"
@@ -8033,7 +8289,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[dur_days]" />
                     <inputColumn
                       refId="Package\dump placement_payment_services\Flat File Destination.Inputs[Flat File Destination Input].Columns[fl_close]"
-                      cachedDataType="i2"
+                      cachedDataType="i4"
                       cachedName="fl_close"
                       externalMetadataColumnId="Package\dump placement_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_close]"
                       lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_close]" />
@@ -8051,13 +8307,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_payment_fact]" />
                     <inputColumn
                       refId="Package\dump placement_payment_services\Flat File Destination.Inputs[Flat File Destination Input].Columns[svc_begin_date]"
-                      cachedDataType="dbDate"
+                      cachedDataType="dbTimeStamp"
                       cachedName="svc_begin_date"
                       externalMetadataColumnId="Package\dump placement_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[svc_begin_date]"
                       lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[svc_begin_date]" />
                     <inputColumn
                       refId="Package\dump placement_payment_services\Flat File Destination.Inputs[Flat File Destination Input].Columns[svc_end_date]"
-                      cachedDataType="dbDate"
+                      cachedDataType="dbTimeStamp"
                       cachedName="svc_end_date"
                       externalMetadataColumnId="Package\dump placement_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[svc_end_date]"
                       lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[svc_end_date]" />
@@ -8097,16 +8353,16 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       refId="Package\dump placement_payment_services\Flat File Destination.Inputs[Flat File Destination Input].Columns[rate]"
                       cachedDataType="numeric"
                       cachedName="rate"
-                      cachedPrecision="18"
-                      cachedScale="6"
+                      cachedPrecision="9"
+                      cachedScale="4"
                       externalMetadataColumnId="Package\dump placement_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[rate]"
                       lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[rate]" />
                     <inputColumn
                       refId="Package\dump placement_payment_services\Flat File Destination.Inputs[Flat File Destination Input].Columns[unit]"
                       cachedDataType="numeric"
                       cachedName="unit"
-                      cachedPrecision="18"
-                      cachedScale="6"
+                      cachedPrecision="9"
+                      cachedScale="2"
                       externalMetadataColumnId="Package\dump placement_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[unit]"
                       lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[unit]" />
                     <inputColumn
@@ -8281,7 +8537,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       refId="Package\dump placement_payment_services\Flat File Destination.Inputs[Flat File Destination Input].Columns[filter_service_category_todate]"
                       cachedDataType="numeric"
                       cachedName="filter_service_category_todate"
-                      cachedPrecision="18"
+                      cachedPrecision="21"
                       externalMetadataColumnId="Package\dump placement_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[filter_service_category_todate]"
                       lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_service_category_todate]" />
                     <inputColumn
@@ -8333,6 +8589,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       cachedPrecision="9"
                       externalMetadataColumnId="Package\dump placement_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[filter_service_budget_todate]"
                       lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_service_budget_todate]" />
+                    <inputColumn
+                      refId="Package\dump placement_payment_services\Flat File Destination.Inputs[Flat File Destination Input].Columns[fl_ihs_reun]"
+                      cachedDataType="i4"
+                      cachedName="fl_ihs_reun"
+                      externalMetadataColumnId="Package\dump placement_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_ihs_reun]"
+                      lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_ihs_reun]" />
+                    <inputColumn
+                      refId="Package\dump placement_payment_services\Flat File Destination.Inputs[Flat File Destination Input].Columns[fl_concrete_goods]"
+                      cachedDataType="i4"
+                      cachedName="fl_concrete_goods"
+                      externalMetadataColumnId="Package\dump placement_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_concrete_goods]"
+                      lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_concrete_goods]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -8524,7 +8792,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       refId="Package\dump placement_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[filter_service_category_todate]"
                       dataType="numeric"
                       name="filter_service_category_todate"
-                      precision="18" />
+                      precision="21" />
                     <externalMetadataColumn
                       refId="Package\dump placement_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_budget_C12]"
                       dataType="i4"
@@ -8558,6 +8826,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       dataType="numeric"
                       name="filter_service_budget_todate"
                       precision="9" />
+                    <externalMetadataColumn
+                      refId="Package\dump placement_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_ihs_reun]"
+                      dataType="i4"
+                      name="fl_ihs_reun" />
+                    <externalMetadataColumn
+                      refId="Package\dump placement_payment_services\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_concrete_goods]"
+                      dataType="i4"
+                      name="fl_concrete_goods" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -8661,7 +8937,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_close]"
-                      dataType="i2"
+                      dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_close]"
@@ -8688,7 +8964,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[svc_begin_date]"
-                      dataType="dbDate"
+                      dataType="dbTimeStamp"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[svc_begin_date]"
@@ -8697,7 +8973,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[svc_end_date]"
-                      dataType="dbDate"
+                      dataType="dbTimeStamp"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[svc_end_date]"
@@ -8759,8 +9035,8 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       externalMetadataColumnId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rate]"
                       lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[rate]"
                       name="rate"
-                      precision="18"
-                      scale="6"
+                      precision="9"
+                      scale="4"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[unit]"
@@ -8770,8 +9046,8 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       externalMetadataColumnId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[unit]"
                       lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[unit]"
                       name="unit"
-                      precision="18"
-                      scale="6"
+                      precision="9"
+                      scale="2"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[total_paid]"
@@ -9030,7 +9306,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       externalMetadataColumnId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_service_category_todate]"
                       lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_service_category_todate]"
                       name="filter_service_category_todate"
-                      precision="18"
+                      precision="21"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_budget_C12]"
@@ -9105,6 +9381,24 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       name="filter_service_budget_todate"
                       precision="9"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_ihs_reun]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_ihs_reun]"
+                      lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_ihs_reun]"
+                      name="fl_ihs_reun"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_concrete_goods]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_concrete_goods]"
+                      lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_concrete_goods]"
+                      name="fl_concrete_goods"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -9126,7 +9420,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       name="dur_days" />
                     <externalMetadataColumn
                       refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_close]"
-                      dataType="i2"
+                      dataType="i4"
                       name="fl_close" />
                     <externalMetadataColumn
                       refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_case]"
@@ -9138,11 +9432,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       name="id_payment_fact" />
                     <externalMetadataColumn
                       refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[svc_begin_date]"
-                      dataType="dbDate"
+                      dataType="dbTimeStamp"
                       name="svc_begin_date" />
                     <externalMetadataColumn
                       refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[svc_end_date]"
-                      dataType="dbDate"
+                      dataType="dbTimeStamp"
                       name="svc_end_date" />
                     <externalMetadataColumn
                       refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[pymt_cd_srvc]"
@@ -9170,14 +9464,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rate]"
                       dataType="numeric"
                       name="rate"
-                      precision="18"
-                      scale="6" />
+                      precision="9"
+                      scale="4" />
                     <externalMetadataColumn
                       refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[unit]"
                       dataType="numeric"
                       name="unit"
-                      precision="18"
-                      scale="6" />
+                      precision="9"
+                      scale="2" />
                     <externalMetadataColumn
                       refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[total_paid]"
                       dataType="numeric"
@@ -9296,7 +9590,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_service_category_todate]"
                       dataType="numeric"
                       name="filter_service_category_todate"
-                      precision="18" />
+                      precision="21" />
                     <externalMetadataColumn
                       refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_budget_C12]"
                       dataType="i4"
@@ -9330,6 +9624,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       dataType="numeric"
                       name="filter_service_budget_todate"
                       precision="9" />
+                    <externalMetadataColumn
+                      refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_ihs_reun]"
+                      dataType="i4"
+                      name="fl_ihs_reun" />
+                    <externalMetadataColumn
+                      refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_concrete_goods]"
+                      dataType="i4"
+                      name="fl_concrete_goods" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -9374,7 +9676,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       name="dur_days" />
                     <outputColumn
                       refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_close]"
-                      dataType="i2"
+                      dataType="i4"
                       lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_close]"
                       name="fl_close" />
                     <outputColumn
@@ -9389,12 +9691,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       name="id_payment_fact" />
                     <outputColumn
                       refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[svc_begin_date]"
-                      dataType="dbDate"
+                      dataType="dbTimeStamp"
                       lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[svc_begin_date]"
                       name="svc_begin_date" />
                     <outputColumn
                       refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[svc_end_date]"
-                      dataType="dbDate"
+                      dataType="dbTimeStamp"
                       lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[svc_end_date]"
                       name="svc_end_date" />
                     <outputColumn
@@ -9429,15 +9731,15 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       dataType="numeric"
                       lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rate]"
                       name="rate"
-                      precision="18"
-                      scale="6" />
+                      precision="9"
+                      scale="4" />
                     <outputColumn
                       refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[unit]"
                       dataType="numeric"
                       lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[unit]"
                       name="unit"
-                      precision="18"
-                      scale="6" />
+                      precision="9"
+                      scale="2" />
                     <outputColumn
                       refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[total_paid]"
                       dataType="numeric"
@@ -9569,12 +9871,22 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       dataType="numeric"
                       lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_service_category_todate]"
                       name="filter_service_category_todate"
-                      precision="18" />
+                      precision="21" />
                     <outputColumn
                       refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_budget_C12]"
                       dataType="i4"
                       lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_budget_C12]"
                       name="fl_budget_C12" />
+                    <outputColumn
+                      refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_ihs_reun]"
+                      dataType="i4"
+                      lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_ihs_reun]"
+                      name="fl_ihs_reun" />
+                    <outputColumn
+                      refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_concrete_goods]"
+                      dataType="i4"
+                      lineageId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_concrete_goods]"
+                      name="fl_concrete_goods" />
                     <outputColumn
                       refId="Package\dump placement_payment_services\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_budget_C14]"
                       dataType="i4"
@@ -17700,7 +18012,7 @@ FROM            base.tbl_ihs_episodes</property>
     design-time-name="Package\dump episode_payment_services">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="152,42"
           Id="Package\dump episode_payment_services\OLE DB Source"
@@ -17740,9 +18052,7 @@ FROM            base.tbl_ihs_episodes</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -17765,7 +18075,7 @@ FROM            base.tbl_ihs_episodes</property>
     design-time-name="Package\dump placement_payment_services">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="152,42"
           Id="Package\dump placement_payment_services\OLE DB Source"
@@ -17805,9 +18115,7 @@ FROM            base.tbl_ihs_episodes</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

@@ -10,6 +10,7 @@ fields terminated by '|'
  ,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc,age_grouping_cd,cd_race
 ,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,qry_id,int_hash_key);
 
+
 analyze table cache_qry_param_pbcp5;
 
   update prtl_tables_last_update
@@ -29,7 +30,11 @@ analyze table cache_pbcp5_params;
   set load_date=now(),row_count=(select count(*) from cache_pbcp5_params)
   where tbl_name='cache_pbcp5_params';
 
+  
 truncate table test_annie.cache_pbcp5_aggr;
+
+SET autocommit=0;
+SET foreign_key_checks=0;
 LOAD DATA LOCAL INFILE '/data/pocweb/cache_pbcp5_aggr.txt'
 into table cache_pbcp5_aggr
 fields terminated by '|'
@@ -39,6 +44,9 @@ fields terminated by '|'
 ,reentry_within_month,reentry_rate
 ,min_start_date,max_start_date,x1,x2,insert_date,qry_id,start_year,int_hash_key);
 
+commit;
+SET foreign_key_checks=1;
+
 analyze table cache_pbcp5_aggr;
 
   update prtl_tables_last_update
@@ -46,6 +54,10 @@ analyze table cache_pbcp5_aggr;
   where tbl_name='cache_pbcp5_aggr';
 
 truncate table test_annie.prtl_pbcp5;
+
+SET autocommit=0;
+SET foreign_key_checks=0;
+
 LOAD DATA LOCAL INFILE '/data/pocweb/prtl_pbcp5.txt'
 into table prtl_pbcp5
 FIELDS TERMINATED by '|'
@@ -57,6 +69,10 @@ pk_gndr,cd_race_census,census_hispanic_latino_origin_cd
 ,filter_service_budget,mnth
 ,discharge_count
 ,cohort_count);
+
+commit;
+SET foreign_key_checks=1;
+
 analyze table prtl_pbcp5;
 
   update prtl_tables_last_update

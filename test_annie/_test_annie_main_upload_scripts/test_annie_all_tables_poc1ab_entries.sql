@@ -50,6 +50,11 @@ analyze table prtl_poc1ab_entries;
 
  
 truncate table cache_poc1ab_entries_aggr;
+
+SET autocommit=0;
+SET foreign_key_checks=0;
+
+
 LOAD DATA LOCAL INFILE '/data/pocweb/cache_poc1ab_entries_aggr.txt'
 into table cache_poc1ab_entries_aggr
 fields terminated by '|'
@@ -61,6 +66,9 @@ cd_reporter_type, cd_access_type, cd_allegation
 init_cd_plcm_setng, long_cd_plcm_setng, county_cd
 , cnt_entries, min_start_date, 
 max_start_date, x1, x2, insert_date,int_hash_key,qry_id,start_year,fl_include_perCapita);
+
+commit;
+SET foreign_key_checks=1;
 
 analyze table cache_poc1ab_entries_aggr;
   update prtl_tables_last_update
