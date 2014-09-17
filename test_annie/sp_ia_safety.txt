@@ -4,7 +4,7 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_ia_safety`(  
+CREATE DEFINER=`annie`@`localhost` PROCEDURE `sp_ia_safety`(  
 p_age_grouping_cd varchar(30)
 ,  p_ethnicity_cd varchar(30)
 ,  p_cd_county varchar(250) 
@@ -13,7 +13,7 @@ p_age_grouping_cd varchar(30)
 ,  p_filter_allegation  varchar(30)
 , p_filter_finding varchar(30))
 begin
- -- procedure begins here
+ 
 
     declare p_mindate datetime;
     declare p_maxdate datetime;
@@ -31,7 +31,7 @@ begin
     declare var_calling_procedure int;
    
 	DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
-    -- initialize variables
+    
     set flg_procedure_off =0;
     
     if  flg_procedure_off =0 then    
@@ -39,7 +39,7 @@ begin
             set x2=rand();
             
 
-        --  initialize variables
+        
         set var_calling_procedure=6;
         
         call sp_ia_assign_desc (var_calling_procedure);
@@ -133,13 +133,13 @@ end if;
         ,  p_filter_access_type 
         ,  p_filter_allegation  
         ,  p_filter_finding 
-        ,  0 -- load perCapita
-        ,  1 -- load tblprmlocdem
+        ,  0 
+        ,  1 
         ,  p_mindate
         ,  p_maxdate
         ,  var_calling_procedure);    
         
-    -- intialize constants
+    
     
         call sp_ia_assign_param_multiplier;
 
@@ -604,7 +604,7 @@ end if;
 											from tblprmlocdem) q on q.int_param_key=ck.int_param_key
 						where ck.in_cache=0;
         
-    end if; -- not in cache
+    end if; 
 
 			SELECT  	 pbcs2.month as  "Months Since 1st Investigation/Assessment"
                 ,pbcs2.qry_type   
@@ -623,7 +623,7 @@ end if;
 								, case pbcs2.cd_allegation  when 0  then @alg0 when 1  then @alg1 when 2  then @alg2 when 3  then @alg3 when 4  then @alg4 end as "Allegation"
 								, pbcs2.cd_finding
               , case pbcs2.cd_finding  when 0  then @fnd0 when 1  then @fnd1 when 2  then @fnd2 when 3  then @fnd3 when 4  then @fnd4 end as "Finding"								
-								, among_first_cmpt_rereferred as "Among first referrals, percent that are re-referred"
+								, pbcs2.among_first_cmpt_rereferred as "Among first referrals, percent that are re-referred"
         from cache_pbcs2_aggr pbcs2
 		 					join cachekeys ck on ck.int_hash_key=pbcs2.int_hash_key
 							and pbcs2.qry_id=ck.qry_id
@@ -634,7 +634,7 @@ end if;
 						join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcs2.cd_access_type
            where date_add(start_date,INTERVAL (15 + pbcs2.month) MONTH) <= cutoff_date
  						order by pbcs2.qry_type   
--- 								, pbcs2.date_type
+
 								, pbcs2.start_year
 								, pbcs2.cd_sib_age_grp
 								, pbcs2.cd_race
@@ -645,5 +645,5 @@ end if;
 								, pbcs2.cd_finding
 								, pbcs2.month;
 		
-    end if; -- turn procedure off
+    end if; 
 end

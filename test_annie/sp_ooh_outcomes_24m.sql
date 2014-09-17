@@ -4,7 +4,7 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_ooh_outcomes`( p_age_grouping_cd varchar(30)
+CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_ooh_outcomes_24m`( p_age_grouping_cd varchar(30)
 ,  p_ethnicity_cd varchar(30)
 ,  p_gender_cd varchar(10)
 ,  p_init_cd_plcm_setng varchar(30)
@@ -843,10 +843,8 @@ if  var_row_cnt_param <> var_row_cnt_cache then
          
         end if;--  all rows not in cache
    
-   
 select 
-    outcomes.mnth as "Months Since Entering Out-of-Home Care",
-    outcomes.start_year as "Cohort Period",
+    outcomes.cohort_entry_date as "Cohort Period",
     qry_type "qry_type_poc1_first_unique",
     outcomes.age_grouping_cd,
     case outcomes.age_grouping_cd
@@ -975,9 +973,9 @@ join ref_filter_ihs_services ihs on ihs.bin_ihs_svc_cd=outcomes.bin_ihs_svc_cd a
         join
     ref_lookup_service_budget ref_bud ON ref_bud.cd_budget_poc_frc = outcomes.cd_budget_poc_frc
 			and outcomes.cohort_entry_date>=min_budget_date
-where
-    date_add(cohort_entry_date,
+where  outcomes.mnth=24
+    and date_add(cohort_entry_date,
         INTERVAL (15 + outcomes.mnth) MONTH) <= cutoff_date
-order by outcomes.start_year asc , qry_type , age_grouping_cd asc , gender_cd asc , ethnicity_cd asc , init_cd_plcm_setng asc , long_cd_plcm_setng asc , county_cd asc , outcomes.bin_dep_cd asc , outcomes.bin_los_cd asc , outcomes.bin_placement_cd asc , outcomes.bin_ihs_svc_cd asc , outcomes.cd_reporter_type , outcomes.cd_access_type , outcomes.cd_allegation , outcomes.cd_finding , outcomes.cd_subctgry_poc_frc , outcomes.cd_budget_poc_frc , outcomes.mnth asc , outcomes.cd_discharge_type asc;
+order by outcomes.cohort_entry_date asc , qry_type , age_grouping_cd asc , gender_cd asc , ethnicity_cd asc , init_cd_plcm_setng asc , long_cd_plcm_setng asc , county_cd asc , outcomes.bin_dep_cd asc , outcomes.bin_los_cd asc , outcomes.bin_placement_cd asc , outcomes.bin_ihs_svc_cd asc , outcomes.cd_reporter_type , outcomes.cd_access_type , outcomes.cd_allegation , outcomes.cd_finding , outcomes.cd_subctgry_poc_frc , outcomes.cd_budget_poc_frc , outcomes.mnth asc , outcomes.cd_discharge_type asc;
 end if;
 end
