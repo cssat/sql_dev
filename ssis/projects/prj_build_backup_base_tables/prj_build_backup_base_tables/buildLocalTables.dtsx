@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="buildLocalTables"
   DTS:PackageType="5"
-  DTS:VersionBuild="194"
-  DTS:VersionGUID="{3B0B14B2-AD73-42BB-A99A-6BB6ABD63CD5}">
+  DTS:VersionBuild="196"
+  DTS:VersionGUID="{5A352056-8389-455E-8C06-9ED7A814DC4E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -2613,7 +2613,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[tbl_ihs_episodes]"
       DTS:CreationName="FLATFILE"
-      DTS:DTSID="{0B488D6D-2CC2-4585-AA71-EAFAF748FA37}"
+      DTS:DTSID="{033CC5FF-7D79-496E-88E5-31016337827B}"
       DTS:ObjectName="tbl_ihs_episodes">
       <DTS:PropertyExpression
         DTS:Name="ConnectionString">@[User::dir] + "tbl_ihs_episodes.txt"</DTS:PropertyExpression>
@@ -2634,7 +2634,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="id_case"
-              DTS:DTSID="{75F1F2B3-7D22-42F9-9F06-552559748534}"
+              DTS:DTSID="{48A5C13C-88C5-4C6D-80F9-7D447A8C15C6}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2642,7 +2642,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="id_ihs_episode"
-              DTS:DTSID="{EE54BCAA-5429-4C65-BF12-93574AAAB536}"
+              DTS:DTSID="{FAFAF7B2-136F-427F-9379-EC6409696330}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2650,7 +2650,7 @@
               DTS:DataType="20"
               DTS:TextQualified="True"
               DTS:ObjectName="case_sort"
-              DTS:DTSID="{6A3E8705-717A-4264-81F1-711CADFA2DA9}"
+              DTS:DTSID="{E88EA436-58BB-4748-9253-5B911B778B33}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2658,7 +2658,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="ihs_begin_date"
-              DTS:DTSID="{07192A23-FA81-405A-836B-AC8D8C0EDDE7}"
+              DTS:DTSID="{64944717-F737-4277-8655-46D7E9AE4B84}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2666,7 +2666,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="ihs_end_date"
-              DTS:DTSID="{FF86714C-997B-4C97-AECC-15B0F74332DB}"
+              DTS:DTSID="{EF1FD4C0-0ACE-466A-832D-9BF97E72FA0B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2674,7 +2674,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="first_ihs_date"
-              DTS:DTSID="{33CCD5B0-AF35-47A8-85E7-082ECB808FEC}"
+              DTS:DTSID="{DB3E1BC5-C602-4F24-B5F3-D4DA8E290870}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2682,7 +2682,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="latest_ihs_date"
-              DTS:DTSID="{F7B5A4E3-6BB0-4E11-B764-A94C813BA7D8}"
+              DTS:DTSID="{DB287F6F-19DF-4287-AE5B-A454530EA857}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2690,7 +2690,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_plcmnt_prior_ihs"
-              DTS:DTSID="{B74D8CC2-2789-4CDA-AC87-DA35A30B2B13}"
+              DTS:DTSID="{C8102C6A-023D-468F-8B53-9855103ED8CB}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2698,7 +2698,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="plcmnt_date"
-              DTS:DTSID="{0116395F-8BF0-4918-8F53-F0191180000F}"
+              DTS:DTSID="{90D149D5-AE34-471E-8BDE-915ED3E3A29B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2706,7 +2706,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="nbr_svc_paid"
-              DTS:DTSID="{E6604EC9-6357-425C-9F30-487DBD5216BB}"
+              DTS:DTSID="{50E5D9A5-1AEE-45A2-86EF-E3A188D59557}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2716,7 +2716,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="total_amt_paid"
-              DTS:DTSID="{C669BE80-4F62-4C76-B51D-CC2290D3A62B}"
+              DTS:DTSID="{3C4ACC91-A2B6-45D0-B2AD-73FADB763204}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2724,7 +2724,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="most_exp_cd_srvc"
-              DTS:DTSID="{BF888677-A054-4E84-8308-3F670BF44A05}"
+              DTS:DTSID="{77AFE3AF-8644-458E-A576-50E25E5CD7D5}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2733,7 +2733,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="most_exp_tx_srvc"
-              DTS:DTSID="{65443008-D133-47D5-ADD5-6BD631461C69}"
+              DTS:DTSID="{97177F8D-4E12-41E2-8171-D61F5C10F487}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2743,7 +2743,7 @@
               DTS:DataScale="2"
               DTS:TextQualified="True"
               DTS:ObjectName="total_most_exp_srvc"
-              DTS:DTSID="{E2FD4F76-F09B-4D31-B80F-0B453C193548}"
+              DTS:DTSID="{8FFDD0B4-AA10-4775-83C7-9AF66BD72DF7}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2751,7 +2751,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_family_focused_services"
-              DTS:DTSID="{193F2E71-10E6-4375-8995-3252859D1037}"
+              DTS:DTSID="{ABB27818-8F3E-4A61-963E-30E34C7D55EE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2759,7 +2759,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_child_care"
-              DTS:DTSID="{B612B853-7535-45BD-B257-598F5E0B15F1}"
+              DTS:DTSID="{EF847CAB-3282-49E7-B654-C9DACC049E7B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2767,31 +2767,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_therapeutic_services"
-              DTS:DTSID="{62B17A93-CFEC-4A98-AB69-9E99F5B82F51}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="fl_mh_services"
-              DTS:DTSID="{69433EAD-989F-4BFA-B7A6-A995B6516970}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="fl_receiving_care"
-              DTS:DTSID="{2ED667A7-91B9-4777-9AD4-C6784335E8E4}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="fl_family_home_placements"
-              DTS:DTSID="{59673E6A-5DFA-4D7E-97B5-D79D1F59917E}"
+              DTS:DTSID="{48D70EDF-8CC6-48A0-A8D8-83B6745E1A4A}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2799,7 +2775,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_behavioral_rehabiliation_services"
-              DTS:DTSID="{00DDF77D-4544-488C-AE4B-E08AB0868312}"
+              DTS:DTSID="{F9932133-AC49-4939-B7AC-BCE3CE0B723E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2807,7 +2783,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_other_therapeutic_living_situations"
-              DTS:DTSID="{3CF156FC-D0FD-4E9F-8425-67A33F5EA08E}"
+              DTS:DTSID="{DD5B85D9-2F42-45D8-B63D-A5D06B68860E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2815,7 +2791,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_specialty_adolescent_services"
-              DTS:DTSID="{46E8B65D-1B13-43EF-B278-B3EF9607370C}"
+              DTS:DTSID="{996DB77D-277B-4632-9BF4-6037D55E9A81}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2823,7 +2799,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_respite"
-              DTS:DTSID="{7568F515-5EB5-418B-88C9-E05A48420B11}"
+              DTS:DTSID="{66CDEB2D-1A86-4386-AE8D-FAB320B9A5ED}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2831,47 +2807,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_transportation"
-              DTS:DTSID="{B4D91E11-304F-4E58-A222-D5A940536032}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="fl_clothing_incidentals"
-              DTS:DTSID="{08D366AF-630A-4DA3-8749-E946494A84F8}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="fl_sexually_aggressive_youth"
-              DTS:DTSID="{460A938A-C24F-45FF-BADA-C73C860BD47D}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="fl_adoption_support"
-              DTS:DTSID="{EB1E516D-A0CA-4DE0-B142-7E913FA4318A}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="fl_various"
-              DTS:DTSID="{7C59B088-BFDF-4919-9D5F-D7A5C839758E}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="fl_medical"
-              DTS:DTSID="{73EF8FF1-CF4F-4763-9E8D-0F0460DB1681}"
+              DTS:DTSID="{4A136282-7156-49E2-AE26-CA77BBA4A31F}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2879,7 +2815,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_budget_C12"
-              DTS:DTSID="{889DF1F5-BA49-4890-9E4F-B6AC95BB4830}"
+              DTS:DTSID="{029F4452-B942-42FC-AD11-BF6EB7153CB6}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2887,31 +2823,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_budget_C14"
-              DTS:DTSID="{54F65581-A428-465F-A05A-5AC37D88FBAD}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="fl_budget_C15"
-              DTS:DTSID="{415E058D-5B6A-428B-9DBA-AADA198D6EC7}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="fl_budget_C16"
-              DTS:DTSID="{A1D10C52-DEA0-4C98-B088-3D3024EA4111}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="fl_budget_C18"
-              DTS:DTSID="{5683E904-8A24-4CC0-A8B9-F35EA5F28A14}"
+              DTS:DTSID="{247C8EC4-D80D-4390-9C6F-FB28C369936D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2919,7 +2831,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_budget_C19"
-              DTS:DTSID="{E0780B3C-6FE0-4A81-9E22-5D59821938C2}"
+              DTS:DTSID="{5719E328-C17C-4CD9-A83C-274B97440C23}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2927,7 +2839,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cd_asgn_type"
-              DTS:DTSID="{8A362C7E-97C5-43FC-88C6-A33BA29AF38E}"
+              DTS:DTSID="{BFDB6C46-9BFB-4B73-AF3C-EDF858CB077E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2936,7 +2848,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="tx_asgn_type"
-              DTS:DTSID="{8FE5289F-C265-49EC-B5F5-06648624A80D}"
+              DTS:DTSID="{2358F82B-AB02-4B9E-AC6D-2B4567D3B4BC}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2944,7 +2856,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_force_end_date"
-              DTS:DTSID="{3A473187-906F-41F2-8163-15DF720EA3A1}"
+              DTS:DTSID="{8EE54733-D829-4561-ACD0-705EA02D92A7}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2952,7 +2864,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="min_id_table_origin"
-              DTS:DTSID="{935532C0-614C-47C7-AE53-B320B077538F}"
+              DTS:DTSID="{7403DEA9-3116-4BAA-8BE8-4F8F7B2FDDE1}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2960,7 +2872,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="max_id_table_origin"
-              DTS:DTSID="{F277EBA8-8642-40DE-AD21-54C733AB377E}"
+              DTS:DTSID="{DA470EC1-38E1-4EDD-B9E1-499266D710F9}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2968,7 +2880,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_id_table_origin"
-              DTS:DTSID="{87E4F8B0-5BA7-4BA7-ADF8-E67FE3D04597}"
+              DTS:DTSID="{BF4A978D-1474-4E62-BBDF-ADEB76AF5547}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2977,7 +2889,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="tbl_origin"
-              DTS:DTSID="{C46553B4-C167-4828-805F-C0AD5399B10A}"
+              DTS:DTSID="{EF3C7E8D-93BE-4DC4-AD3A-2CC2B1E11E7D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2985,7 +2897,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="tbl_origin_cd"
-              DTS:DTSID="{8EAF0FE7-D840-497B-A551-0588E6306AB1}"
+              DTS:DTSID="{2A61A481-D01B-4664-BE26-52B1A79B8C65}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2993,7 +2905,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="id_intake_fact"
-              DTS:DTSID="{825D627E-D246-4C63-9BE7-73C65D3D168C}"
+              DTS:DTSID="{EDF66E4C-8842-46F6-B344-533BD2D45B88}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -3001,7 +2913,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cd_sib_age_grp"
-              DTS:DTSID="{0DC89480-1EB7-43D4-BC9B-B6913F56EB97}"
+              DTS:DTSID="{2BC8F2DC-30D9-431E-8E23-0F8B1CFAE7B5}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -3009,7 +2921,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cd_race_census_hh"
-              DTS:DTSID="{E916D516-68CB-403F-A2B2-ABBEBB9D7427}"
+              DTS:DTSID="{EC0A059D-3295-4F30-89CA-B85A7F281BAA}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -3017,7 +2929,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="census_hispanic_latino_origin_cd_hh"
-              DTS:DTSID="{B5FF72E1-8D62-45E5-98DD-B429EF7DBEA6}"
+              DTS:DTSID="{E99CA9B7-8EEB-4922-BA15-40ED44F43FBA}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -3025,7 +2937,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="days_from_rfrd_date"
-              DTS:DTSID="{CAB2536F-05C4-407D-BC13-B3E008945E82}"
+              DTS:DTSID="{3BD3ACED-22C2-461A-82B9-F09638BF8359}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -3033,7 +2945,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_uncat_svc"
-              DTS:DTSID="{10C25F2C-8034-4747-BAC4-50D0F3D1630D}"
+              DTS:DTSID="{2477F69A-4222-4660-83C8-A5514474129F}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -3041,7 +2953,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="dtl_min_id_payment_fact"
-              DTS:DTSID="{016BBC62-DF5D-4572-8702-2AA39E8FC5B6}"
+              DTS:DTSID="{C6EAED54-1994-446F-90CA-37A631D35B42}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -3049,7 +2961,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="dtl_max_id_payment_fact"
-              DTS:DTSID="{2A5AE331-AF6A-4932-84B4-4E3C3280873D}"
+              DTS:DTSID="{4ABC73AC-D444-4D67-8B4E-22D079DA1C26}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -3057,7 +2969,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="rfrd_date"
-              DTS:DTSID="{EC7D2153-BDB2-4BB0-A073-254806BDBC3F}"
+              DTS:DTSID="{5C286EA0-B582-4A12-80C4-90E0DD8AB0E7}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -3065,7 +2977,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_first_IHS_after_intake"
-              DTS:DTSID="{16DCD54E-9107-47CD-9127-11474E353BEA}"
+              DTS:DTSID="{C15D69B1-AAAC-416C-B3E2-4A0C90A356BD}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -3073,15 +2985,39 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="nxt_placement_date"
-              DTS:DTSID="{1B546442-4D60-42F6-81BC-94377A72D995}"
+              DTS:DTSID="{546B37FD-D625-449F-9D67-53EC08D52C13}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="intake_county_cd"
+              DTS:DTSID="{0EAE1A0E-32AD-4A3B-AB51-02D386FB2020}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="fl_ihs_reun"
+              DTS:DTSID="{AF7896D3-C4AD-4C92-B0D3-8E14CF7CFA35}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="fl_concrete_goods"
+              DTS:DTSID="{53756160-1113-4721-80E4-7F733F54A56B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
               DTS:ColumnDelimiter="_x000D__x000A_"
               DTS:DataType="3"
               DTS:TextQualified="True"
-              DTS:ObjectName="intake_county_cd"
-              DTS:DTSID="{728C02F9-D6C2-4601-A08A-CE75C5884D9C}"
+              DTS:ObjectName="int_filter_service_category"
+              DTS:DTSID="{A513DD7E-22FD-440A-A91C-8ADA2BE340DC}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -4755,6 +4691,23 @@
         <SQLTask:SqlTaskData
           SQLTask:Connection="{66AF7615-30EF-4D17-8E51-342714FB79C1}"
           SQLTask:SqlStatementSource="exec [prtl].[prod_build_match_srvc_type_category]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\build_placement_care_days_mobility"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{520720DC-AEAF-483B-8888-19542AFB0E93}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="build_placement_care_days_mobility"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{66AF7615-30EF-4D17-8E51-342714FB79C1}"
+          SQLTask:SqlStatementSource="exec prtl.[prod_build_placement_care_days_mobility]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -10582,24 +10535,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       externalMetadataColumnId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_therapeutic_services]"
                       lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_therapeutic_services]" />
                     <inputColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].Columns[fl_mh_services]"
-                      cachedDataType="i4"
-                      cachedName="fl_mh_services"
-                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_mh_services]"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_mh_services]" />
-                    <inputColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].Columns[fl_receiving_care]"
-                      cachedDataType="i4"
-                      cachedName="fl_receiving_care"
-                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_receiving_care]"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_receiving_care]" />
-                    <inputColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].Columns[fl_family_home_placements]"
-                      cachedDataType="i4"
-                      cachedName="fl_family_home_placements"
-                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_family_home_placements]"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_family_home_placements]" />
-                    <inputColumn
                       refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].Columns[fl_behavioral_rehabiliation_services]"
                       cachedDataType="i4"
                       cachedName="fl_behavioral_rehabiliation_services"
@@ -10630,36 +10565,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       externalMetadataColumnId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_transportation]"
                       lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_transportation]" />
                     <inputColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].Columns[fl_clothing_incidentals]"
-                      cachedDataType="i4"
-                      cachedName="fl_clothing_incidentals"
-                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_clothing_incidentals]"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_clothing_incidentals]" />
-                    <inputColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].Columns[fl_sexually_aggressive_youth]"
-                      cachedDataType="i4"
-                      cachedName="fl_sexually_aggressive_youth"
-                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_sexually_aggressive_youth]"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_sexually_aggressive_youth]" />
-                    <inputColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].Columns[fl_adoption_support]"
-                      cachedDataType="i4"
-                      cachedName="fl_adoption_support"
-                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_adoption_support]"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_adoption_support]" />
-                    <inputColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].Columns[fl_various]"
-                      cachedDataType="i4"
-                      cachedName="fl_various"
-                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_various]"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_various]" />
-                    <inputColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].Columns[fl_medical]"
-                      cachedDataType="i4"
-                      cachedName="fl_medical"
-                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_medical]"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_medical]" />
-                    <inputColumn
                       refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].Columns[fl_budget_C12]"
                       cachedDataType="i4"
                       cachedName="fl_budget_C12"
@@ -10671,24 +10576,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       cachedName="fl_budget_C14"
                       externalMetadataColumnId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_budget_C14]"
                       lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_budget_C14]" />
-                    <inputColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].Columns[fl_budget_C15]"
-                      cachedDataType="i4"
-                      cachedName="fl_budget_C15"
-                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_budget_C15]"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_budget_C15]" />
-                    <inputColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].Columns[fl_budget_C16]"
-                      cachedDataType="i4"
-                      cachedName="fl_budget_C16"
-                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_budget_C16]"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_budget_C16]" />
-                    <inputColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].Columns[fl_budget_C18]"
-                      cachedDataType="i4"
-                      cachedName="fl_budget_C18"
-                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_budget_C18]"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_budget_C18]" />
                     <inputColumn
                       refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].Columns[fl_budget_C19]"
                       cachedDataType="i4"
@@ -10808,17 +10695,35 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       externalMetadataColumnId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_first_IHS_after_intake]"
                       lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_first_IHS_after_intake]" />
                     <inputColumn
+                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].Columns[nxt_placement_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="nxt_placement_date"
+                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[nxt_placement_date]"
+                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[nxt_placement_date]" />
+                    <inputColumn
                       refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].Columns[intake_county_cd]"
                       cachedDataType="i4"
                       cachedName="intake_county_cd"
                       externalMetadataColumnId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[intake_county_cd]"
                       lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[intake_county_cd]" />
                     <inputColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].Columns[nxt_placement_date]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="nxt_placement_date"
-                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[nxt_placement_date]"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[nxt_placement_date]" />
+                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].Columns[fl_ihs_reun]"
+                      cachedDataType="i4"
+                      cachedName="fl_ihs_reun"
+                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_ihs_reun]"
+                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_ihs_reun]" />
+                    <inputColumn
+                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].Columns[fl_concrete_goods]"
+                      cachedDataType="i4"
+                      cachedName="fl_concrete_goods"
+                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_concrete_goods]"
+                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_concrete_goods]" />
+                    <inputColumn
+                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].Columns[int_filter_service_category]"
+                      cachedDataType="i4"
+                      cachedName="int_filter_service_category"
+                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[int_filter_service_category]"
+                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[int_filter_service_category]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -10897,18 +10802,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       dataType="i4"
                       name="fl_therapeutic_services" />
                     <externalMetadataColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_mh_services]"
-                      dataType="i4"
-                      name="fl_mh_services" />
-                    <externalMetadataColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_receiving_care]"
-                      dataType="i4"
-                      name="fl_receiving_care" />
-                    <externalMetadataColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_family_home_placements]"
-                      dataType="i4"
-                      name="fl_family_home_placements" />
-                    <externalMetadataColumn
                       refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_behavioral_rehabiliation_services]"
                       dataType="i4"
                       name="fl_behavioral_rehabiliation_services" />
@@ -10929,26 +10822,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       dataType="i4"
                       name="fl_transportation" />
                     <externalMetadataColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_clothing_incidentals]"
-                      dataType="i4"
-                      name="fl_clothing_incidentals" />
-                    <externalMetadataColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_sexually_aggressive_youth]"
-                      dataType="i4"
-                      name="fl_sexually_aggressive_youth" />
-                    <externalMetadataColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_adoption_support]"
-                      dataType="i4"
-                      name="fl_adoption_support" />
-                    <externalMetadataColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_various]"
-                      dataType="i4"
-                      name="fl_various" />
-                    <externalMetadataColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_medical]"
-                      dataType="i4"
-                      name="fl_medical" />
-                    <externalMetadataColumn
                       refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_budget_C12]"
                       dataType="i4"
                       name="fl_budget_C12" />
@@ -10956,18 +10829,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_budget_C14]"
                       dataType="i4"
                       name="fl_budget_C14" />
-                    <externalMetadataColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_budget_C15]"
-                      dataType="i4"
-                      name="fl_budget_C15" />
-                    <externalMetadataColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_budget_C16]"
-                      dataType="i4"
-                      name="fl_budget_C16" />
-                    <externalMetadataColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_budget_C18]"
-                      dataType="i4"
-                      name="fl_budget_C18" />
                     <externalMetadataColumn
                       refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_budget_C19]"
                       dataType="i4"
@@ -11049,13 +10910,25 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       dataType="i4"
                       name="fl_first_IHS_after_intake" />
                     <externalMetadataColumn
+                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[nxt_placement_date]"
+                      dataType="dbTimeStamp"
+                      name="nxt_placement_date" />
+                    <externalMetadataColumn
                       refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[intake_county_cd]"
                       dataType="i4"
                       name="intake_county_cd" />
                     <externalMetadataColumn
-                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[nxt_placement_date]"
-                      dataType="dbTimeStamp"
-                      name="nxt_placement_date" />
+                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_ihs_reun]"
+                      dataType="i4"
+                      name="fl_ihs_reun" />
+                    <externalMetadataColumn
+                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_concrete_goods]"
+                      dataType="i4"
+                      name="fl_concrete_goods" />
+                    <externalMetadataColumn
+                      refId="Package\dump tbl_ihs_episodes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[int_filter_service_category]"
+                      dataType="i4"
+                      name="int_filter_service_category" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -11087,12 +10960,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT        id_ihs_episode, id_case, case_sort, ihs_begin_date, ihs_end_date, first_ihs_date, latest_ihs_date, intake_county_cd, intake_zip, fl_plcmnt_prior_ihs, plcmnt_date, 
                          days_from_rfrd_date, nbr_svc_paid, total_amt_paid, most_exp_cd_srvc, most_exp_tx_srvc, total_most_exp_srvc, fl_family_focused_services, fl_child_care, 
-                         fl_therapeutic_services, fl_mh_services, fl_receiving_care, fl_family_home_placements, fl_behavioral_rehabiliation_services, 
-                         fl_other_therapeutic_living_situations, fl_specialty_adolescent_services, fl_respite, fl_transportation, fl_clothing_incidentals, fl_sexually_aggressive_youth, 
-                         fl_adoption_support, fl_various, fl_medical, fl_budget_C12, fl_budget_C14, fl_budget_C15, fl_budget_C16, fl_budget_C18, fl_budget_C19, fl_uncat_svc, 
-                         cd_asgn_type, tx_asgn_type, fl_force_end_date, min_id_table_origin, max_id_table_origin, cnt_id_table_origin, dtl_min_id_payment_fact, dtl_max_id_payment_fact, 
-                         tbl_origin, tbl_origin_cd, id_intake_fact, rfrd_date, cd_sib_age_grp, cd_race_census_hh, census_hispanic_latino_origin_cd_hh, fl_first_IHS_after_intake, 
-                         nxt_placement_date
+                         fl_therapeutic_services, fl_behavioral_rehabiliation_services, fl_other_therapeutic_living_situations, fl_specialty_adolescent_services, fl_respite, fl_transportation, 
+                         fl_ihs_reun, fl_concrete_goods, fl_budget_C12, fl_budget_C14, fl_budget_C19, fl_uncat_svc, cd_asgn_type, tx_asgn_type, fl_force_end_date, min_id_table_origin, 
+                         max_id_table_origin, cnt_id_table_origin, dtl_min_id_payment_fact, dtl_max_id_payment_fact, tbl_origin, tbl_origin_cd, id_intake_fact, rfrd_date, cd_sib_age_grp, 
+                         cd_race_census_hh, census_hispanic_latino_origin_cd_hh, fl_first_IHS_after_intake, nxt_placement_date, int_filter_service_category
 FROM            base.tbl_ihs_episodes</property>
                 <property
                   dataType="System.String"
@@ -11289,33 +11160,6 @@ FROM            base.tbl_ihs_episodes</property>
                       name="fl_therapeutic_services"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_mh_services]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_mh_services]"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_mh_services]"
-                      name="fl_mh_services"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_receiving_care]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_receiving_care]"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_receiving_care]"
-                      name="fl_receiving_care"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_family_home_placements]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_family_home_placements]"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_family_home_placements]"
-                      name="fl_family_home_placements"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_behavioral_rehabiliation_services]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
@@ -11361,51 +11205,6 @@ FROM            base.tbl_ihs_episodes</property>
                       name="fl_transportation"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_clothing_incidentals]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_clothing_incidentals]"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_clothing_incidentals]"
-                      name="fl_clothing_incidentals"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_sexually_aggressive_youth]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_sexually_aggressive_youth]"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_sexually_aggressive_youth]"
-                      name="fl_sexually_aggressive_youth"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_adoption_support]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_adoption_support]"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_adoption_support]"
-                      name="fl_adoption_support"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_various]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_various]"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_various]"
-                      name="fl_various"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_medical]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_medical]"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_medical]"
-                      name="fl_medical"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_budget_C12]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
@@ -11422,33 +11221,6 @@ FROM            base.tbl_ihs_episodes</property>
                       externalMetadataColumnId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_budget_C14]"
                       lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_budget_C14]"
                       name="fl_budget_C14"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_budget_C15]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_budget_C15]"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_budget_C15]"
-                      name="fl_budget_C15"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_budget_C16]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_budget_C16]"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_budget_C16]"
-                      name="fl_budget_C16"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_budget_C18]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_budget_C18]"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_budget_C18]"
-                      name="fl_budget_C18"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_budget_C19]"
@@ -11643,6 +11415,33 @@ FROM            base.tbl_ihs_episodes</property>
                       lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[intake_county_cd]"
                       name="intake_county_cd"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_ihs_reun]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_ihs_reun]"
+                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_ihs_reun]"
+                      name="fl_ihs_reun"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_concrete_goods]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_concrete_goods]"
+                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_concrete_goods]"
+                      name="fl_concrete_goods"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[int_filter_service_category]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[int_filter_service_category]"
+                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].Columns[int_filter_service_category]"
+                      name="int_filter_service_category"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -11721,18 +11520,6 @@ FROM            base.tbl_ihs_episodes</property>
                       dataType="i4"
                       name="fl_therapeutic_services" />
                     <externalMetadataColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_mh_services]"
-                      dataType="i4"
-                      name="fl_mh_services" />
-                    <externalMetadataColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_receiving_care]"
-                      dataType="i4"
-                      name="fl_receiving_care" />
-                    <externalMetadataColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_family_home_placements]"
-                      dataType="i4"
-                      name="fl_family_home_placements" />
-                    <externalMetadataColumn
                       refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_behavioral_rehabiliation_services]"
                       dataType="i4"
                       name="fl_behavioral_rehabiliation_services" />
@@ -11753,26 +11540,6 @@ FROM            base.tbl_ihs_episodes</property>
                       dataType="i4"
                       name="fl_transportation" />
                     <externalMetadataColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_clothing_incidentals]"
-                      dataType="i4"
-                      name="fl_clothing_incidentals" />
-                    <externalMetadataColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_sexually_aggressive_youth]"
-                      dataType="i4"
-                      name="fl_sexually_aggressive_youth" />
-                    <externalMetadataColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_adoption_support]"
-                      dataType="i4"
-                      name="fl_adoption_support" />
-                    <externalMetadataColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_various]"
-                      dataType="i4"
-                      name="fl_various" />
-                    <externalMetadataColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_medical]"
-                      dataType="i4"
-                      name="fl_medical" />
-                    <externalMetadataColumn
                       refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_budget_C12]"
                       dataType="i4"
                       name="fl_budget_C12" />
@@ -11780,18 +11547,6 @@ FROM            base.tbl_ihs_episodes</property>
                       refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_budget_C14]"
                       dataType="i4"
                       name="fl_budget_C14" />
-                    <externalMetadataColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_budget_C15]"
-                      dataType="i4"
-                      name="fl_budget_C15" />
-                    <externalMetadataColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_budget_C16]"
-                      dataType="i4"
-                      name="fl_budget_C16" />
-                    <externalMetadataColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_budget_C18]"
-                      dataType="i4"
-                      name="fl_budget_C18" />
                     <externalMetadataColumn
                       refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_budget_C19]"
                       dataType="i4"
@@ -11885,6 +11640,18 @@ FROM            base.tbl_ihs_episodes</property>
                       dataType="wstr"
                       length="10"
                       name="intake_zip" />
+                    <externalMetadataColumn
+                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_ihs_reun]"
+                      dataType="i4"
+                      name="fl_ihs_reun" />
+                    <externalMetadataColumn
+                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_concrete_goods]"
+                      dataType="i4"
+                      name="fl_concrete_goods" />
+                    <externalMetadataColumn
+                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[int_filter_service_category]"
+                      dataType="i4"
+                      name="int_filter_service_category" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -11994,21 +11761,6 @@ FROM            base.tbl_ihs_episodes</property>
                       lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_therapeutic_services]"
                       name="fl_therapeutic_services" />
                     <outputColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_mh_services]"
-                      dataType="i4"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_mh_services]"
-                      name="fl_mh_services" />
-                    <outputColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_receiving_care]"
-                      dataType="i4"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_receiving_care]"
-                      name="fl_receiving_care" />
-                    <outputColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_family_home_placements]"
-                      dataType="i4"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_family_home_placements]"
-                      name="fl_family_home_placements" />
-                    <outputColumn
                       refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_behavioral_rehabiliation_services]"
                       dataType="i4"
                       lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_behavioral_rehabiliation_services]"
@@ -12034,55 +11786,25 @@ FROM            base.tbl_ihs_episodes</property>
                       lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_transportation]"
                       name="fl_transportation" />
                     <outputColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_clothing_incidentals]"
-                      dataType="i4"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_clothing_incidentals]"
-                      name="fl_clothing_incidentals" />
-                    <outputColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_sexually_aggressive_youth]"
-                      dataType="i4"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_sexually_aggressive_youth]"
-                      name="fl_sexually_aggressive_youth" />
-                    <outputColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_adoption_support]"
-                      dataType="i4"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_adoption_support]"
-                      name="fl_adoption_support" />
-                    <outputColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_various]"
-                      dataType="i4"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_various]"
-                      name="fl_various" />
-                    <outputColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_medical]"
-                      dataType="i4"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_medical]"
-                      name="fl_medical" />
-                    <outputColumn
                       refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_budget_C12]"
                       dataType="i4"
                       lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_budget_C12]"
                       name="fl_budget_C12" />
                     <outputColumn
+                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_ihs_reun]"
+                      dataType="i4"
+                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_ihs_reun]"
+                      name="fl_ihs_reun" />
+                    <outputColumn
+                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_concrete_goods]"
+                      dataType="i4"
+                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_concrete_goods]"
+                      name="fl_concrete_goods" />
+                    <outputColumn
                       refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_budget_C14]"
                       dataType="i4"
                       lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_budget_C14]"
                       name="fl_budget_C14" />
-                    <outputColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_budget_C15]"
-                      dataType="i4"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_budget_C15]"
-                      name="fl_budget_C15" />
-                    <outputColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_budget_C16]"
-                      dataType="i4"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_budget_C16]"
-                      name="fl_budget_C16" />
-                    <outputColumn
-                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_budget_C18]"
-                      dataType="i4"
-                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_budget_C18]"
-                      name="fl_budget_C18" />
                     <outputColumn
                       refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fl_budget_C19]"
                       dataType="i4"
@@ -12188,6 +11910,11 @@ FROM            base.tbl_ihs_episodes</property>
                       lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[int_filter_service_category]"
+                      dataType="i4"
+                      lineageId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[int_filter_service_category]"
+                      name="int_filter_service_category" />
                     <outputColumn
                       refId="Package\dump tbl_ihs_episodes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
@@ -16802,11 +16529,19 @@ FROM            base.tbl_ihs_episodes</property>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 21]"
       DTS:CreationName=""
-      DTS:DTSID="{F67636D7-7078-4DAF-959C-3BEA48DDD098}"
-      DTS:From="Package\15 build episode payment services"
+      DTS:DTSID="{80338979-9AB5-411C-9BBC-EFE4D0099C02}"
+      DTS:From="Package\build_placement_care_days_mobility"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 21"
       DTS:To="Package\16 prod_update_rptPlacement_after_basetables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 22]"
+      DTS:CreationName=""
+      DTS:DTSID="{095620A4-1CB7-4A86-A9F0-9727B3821868}"
+      DTS:From="Package\15 build episode payment services"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 22"
+      DTS:To="Package\build_placement_care_days_mobility" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 23]"
       DTS:CreationName=""
@@ -17023,9 +16758,9 @@ FROM            base.tbl_ihs_episodes</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="78.5566037735849,24.1386634679482"
+              EndConnector="78.5566037735849,24.13866346795"
               Start="0,0"
-              End="71.0566037735849,24.1386634679482">
+              End="71.0566037735849,24.13866346795">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -17036,47 +16771,13 @@ FROM            base.tbl_ihs_episodes</property>
                     Point2="39.2783018867924,0"
                     Point3="39.2783018867924,4" />
                   <mssgle:LineSegment
-                    End="39.2783018867924,20.1386634679482" />
+                    End="39.2783018867924,20.13866346795" />
                   <mssgle:CubicBezierSegment
-                    Point1="39.2783018867924,20.1386634679482"
-                    Point2="39.2783018867924,24.1386634679482"
-                    Point3="43.2783018867924,24.1386634679482" />
+                    Point1="39.2783018867924,20.13866346795"
+                    Point2="39.2783018867924,24.13866346795"
+                    Point3="43.2783018867924,24.13866346795" />
                   <mssgle:LineSegment
-                    End="71.0566037735849,24.1386634679482" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 21]"
-          TopLeft="721.5,2133">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="486,-165"
-              Start="0,0"
-              End="486,-157.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-78.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,-78.5"
-                    Point2="0,-82.5"
-                    Point3="4,-82.5" />
-                  <mssgle:LineSegment
-                    End="482,-82.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="482,-82.5"
-                    Point2="486,-82.5"
-                    Point3="486,-86.5" />
-                  <mssgle:LineSegment
-                    End="486,-157.5" />
+                    End="71.0566037735849,24.13866346795" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -17800,13 +17501,39 @@ FROM            base.tbl_ihs_episodes</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="254,42"
+          Id="Package\build_placement_care_days_mobility"
+          TopLeft="60,1108" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 22]"
+          TopLeft="142,1080.18867924528">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.8113207547201"
+              Start="0,0"
+              End="0,20.3113207547201">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3113207547201" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <GroupLayout
           Text="Build - update base tables"
           ParentId="Package"
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="343,1135"
-          Size="343,1178"
+          PanelSize="343,1205"
+          Size="343,1248"
           Id="0401822c-52a3-4682-bfc1-8d5b81573019"
           TopLeft="580,1051.86629572713">
           <GroupLayout.ChildrenIds>
@@ -17833,6 +17560,8 @@ FROM            base.tbl_ihs_episodes</property>
             <s:String>Package.PrecedenceConstraints[Constraint 16]</s:String>
             <s:String>Package.PrecedenceConstraints[Constraint 1]</s:String>
             <s:String>Package.PrecedenceConstraints[Constraint 19]</s:String>
+            <s:String>Package\build_placement_care_days_mobility</s:String>
+            <s:String>Package.PrecedenceConstraints[Constraint 22]</s:String>
           </GroupLayout.ChildrenIds>
         </GroupLayout>
         <NodeLayout
@@ -17993,6 +17722,40 @@ FROM            base.tbl_ihs_episodes</property>
             <s:String>Package.PrecedenceConstraints[Constraint 11]</s:String>
           </GroupLayout.ChildrenIds>
         </GroupLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 21]"
+          TopLeft="722.5,2203">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="485,-235"
+              Start="0,0"
+              End="485,-227.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-113.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-113.5"
+                    Point2="0,-117.5"
+                    Point3="4,-117.5" />
+                  <mssgle:LineSegment
+                    End="481,-117.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="481,-117.5"
+                    Point2="485,-117.5"
+                    Point3="485,-121.5" />
+                  <mssgle:LineSegment
+                    End="485,-227.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -18211,33 +17974,33 @@ FROM            base.tbl_ihs_episodes</property>
         <NodeLayout
           Size="174,42"
           Id="Package\dump tbl_ihs_episodes\Flat File Destination"
-          TopLeft="92,234" />
+          TopLeft="122,239" />
         <EdgeLayout
           Id="Package\dump tbl_ihs_episodes.Paths[OLE DB Source Output]"
           TopLeft="143,120">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="36,114"
+              EndConnector="66,119"
               Start="0,0"
-              End="36,106.5">
+              End="66,111.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,53" />
+                    End="0,55.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,53"
-                    Point2="0,57"
-                    Point3="4,57" />
+                    Point1="0,55.5"
+                    Point2="0,59.5"
+                    Point3="4,59.5" />
                   <mssgle:LineSegment
-                    End="32,57" />
+                    End="62,59.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="32,57"
-                    Point2="36,57"
-                    Point3="36,61" />
+                    Point1="62,59.5"
+                    Point2="66,59.5"
+                    Point3="66,63.5" />
                   <mssgle:LineSegment
-                    End="36,106.5" />
+                    End="66,111.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

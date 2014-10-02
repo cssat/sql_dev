@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="buildPortalTables"
   DTS:PackageType="5"
-  DTS:VersionBuild="153"
-  DTS:VersionGUID="{8B4278F6-646E-4A1A-9DAD-4AD759C074E5}">
+  DTS:VersionBuild="160"
+  DTS:VersionGUID="{BD12C7BA-90DE-4E78-9991-BC19BCE3C534}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -32,7 +32,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\backup_portal_tables\20140917\ooh_dcfs_eps.txt">
+          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\backup_portal_tables\20140930\ooh_dcfs_eps.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -40,7 +40,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="cohort_entry_year"
-              DTS:DTSID="{299AFF9F-F8D4-441F-A667-E77DBFD107BD}"
+              DTS:DTSID="{D65ED811-CED8-4026-8925-26B8E3F72C72}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -48,7 +48,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="cohort_entry_month"
-              DTS:DTSID="{E91043A9-49F4-4C57-AC3E-58EF5FCBDF56}"
+              DTS:DTSID="{897F2564-2F40-4DB5-A7C9-BDCEE54FEAA1}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -56,7 +56,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="cohort_exit_year"
-              DTS:DTSID="{1C8BDD50-896A-45A7-906F-93C70969652B}"
+              DTS:DTSID="{CB538AA3-E6EE-4B45-A5F7-82CFDA112FD7}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -64,7 +64,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="cohort_exit_month"
-              DTS:DTSID="{94DC9C82-EDFC-4EE1-9438-A5D21D1A8E8C}"
+              DTS:DTSID="{D5D86575-4008-472D-81A7-9EA3D8658EB1}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -72,7 +72,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="id_prsn_child"
-              DTS:DTSID="{D150EADF-0D7B-48D5-9098-D5A9B9CAE9C2}"
+              DTS:DTSID="{EFEE3A2F-E287-4137-849A-A7801F92A9EB}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -80,7 +80,7 @@
               DTS:DataType="133"
               DTS:TextQualified="True"
               DTS:ObjectName="birth_dt"
-              DTS:DTSID="{8B304D98-4CAF-4B86-BA34-86BFF38E341B}"
+              DTS:DTSID="{90473FF5-4429-42C9-80E8-A9E99D47E306}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -88,7 +88,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="id_removal_episode_fact"
-              DTS:DTSID="{BBAD47E1-0F91-4653-81F8-816109E12FA3}"
+              DTS:DTSID="{B4E4578D-8A37-4101-ADA4-E99FD804E7A5}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -97,7 +97,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="discharge_type"
-              DTS:DTSID="{0D789EC4-6395-4E9C-8AE5-3762EA5F1D2C}"
+              DTS:DTSID="{92664706-A065-4FAA-A258-A2A4AD34A9ED}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -105,7 +105,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cd_discharge_type"
-              DTS:DTSID="{8D5C3C2D-7561-4E17-A41C-BFC7AD39298B}"
+              DTS:DTSID="{7952131A-574A-4B76-A890-945A42755FD1}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -113,7 +113,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="first_removal_dt"
-              DTS:DTSID="{BE613DF6-F148-421F-A2E1-FF2A6E61400C}"
+              DTS:DTSID="{50134903-F6EE-4BD1-9F42-1F5E5201FBAA}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -121,7 +121,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_first_removal"
-              DTS:DTSID="{597BB340-0954-4B50-A749-72304362EE3A}"
+              DTS:DTSID="{963D3109-2505-4E3D-8B1D-9BBC54FCCA0F}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -129,7 +129,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="removal_dt"
-              DTS:DTSID="{AC2216DA-04EF-4395-943F-602C411D2624}"
+              DTS:DTSID="{3D51C892-7347-45FD-AA1E-B9C58354411A}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -137,7 +137,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="orig_removal_dt"
-              DTS:DTSID="{42F82C06-1979-4F5B-BC55-C8D6E88617CB}"
+              DTS:DTSID="{744BD041-7F9B-4340-A7E2-99DC16205908}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -145,7 +145,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="Federal_Discharge_Date"
-              DTS:DTSID="{06FEDBC4-597D-442F-931B-03D9DD016CF8}"
+              DTS:DTSID="{E288482C-F2CE-4B99-85B2-2C9A3EC18771}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -153,7 +153,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="orig_federal_discharge_date"
-              DTS:DTSID="{A419435E-25CB-4AD9-833D-274FE4F722D8}"
+              DTS:DTSID="{A3B3990E-935D-46AF-AAF3-1EA765BE4688}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -161,7 +161,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="last_placement_discharge_date"
-              DTS:DTSID="{8066C85C-68B1-4507-9DEA-50EA59BEB0DA}"
+              DTS:DTSID="{C9713FEF-C94B-435E-910D-BDE940D0AA52}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -169,7 +169,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="entry_cdc_census_mix_age_cd"
-              DTS:DTSID="{298B9632-AB3F-4870-A2EC-797AA27FC762}"
+              DTS:DTSID="{0499AA9D-40EA-4A17-8C28-BFE02A3F8116}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -177,7 +177,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="entry_census_child_group_cd"
-              DTS:DTSID="{6A3C419D-8D87-411C-89AE-BBDF8AFCAFDD}"
+              DTS:DTSID="{8062A654-2412-42A8-A947-F2A96272F5C3}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -185,7 +185,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="entry_developmental_age_cd"
-              DTS:DTSID="{49EB06AA-6E08-4E4C-970A-75E6A17F1D00}"
+              DTS:DTSID="{8A7A3277-1342-4406-A8BD-6E26F36B1847}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -193,7 +193,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="exit_cdc_census_mix_age_cd"
-              DTS:DTSID="{732E71C4-D5E1-40EA-8FA7-555E922A57A8}"
+              DTS:DTSID="{131DA497-8314-4A20-A21E-9A2F67C6ACA4}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -201,7 +201,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="exit_census_child_group_cd"
-              DTS:DTSID="{88D92503-FF2C-4F67-8E40-A995F005655A}"
+              DTS:DTSID="{C9FC8887-94BF-4FF1-BC3B-F0977713EF30}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -209,7 +209,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="exit_developmental_age_cd"
-              DTS:DTSID="{E8E98074-88CB-48ED-AA40-9D4EBC1F2462}"
+              DTS:DTSID="{22014F97-2BF6-410D-B600-D9E8FF3930F9}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -217,7 +217,7 @@
               DTS:DataType="2"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_exit_over_17"
-              DTS:DTSID="{0FE104EE-EC86-424A-9EB5-A946207A5431}"
+              DTS:DTSID="{D0B92FC3-5323-4763-96B1-5A0B0946372C}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -225,7 +225,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="pk_gndr"
-              DTS:DTSID="{2CB09780-B0BB-4598-AFA9-E12B3B4A1A5C}"
+              DTS:DTSID="{DA5D55D3-556F-429F-AE37-E8A3BF286A3A}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -233,7 +233,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cd_race_census"
-              DTS:DTSID="{72DF0413-AA5F-42B6-91D6-D5313196798F}"
+              DTS:DTSID="{F3BB6194-94BA-4F95-B36B-431F9685447C}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -241,7 +241,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="census_Hispanic_Latino_Origin_cd"
-              DTS:DTSID="{1B0F1BA3-9561-48B2-B9ED-C7585B252EE2}"
+              DTS:DTSID="{620F006C-E153-4A1C-9511-F2F8A1CA2FE6}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -249,7 +249,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="init_cd_plcm_setng"
-              DTS:DTSID="{19C4AD0D-57BF-4FF3-8B41-6347C1E77EE1}"
+              DTS:DTSID="{AC727B0C-4937-4F66-9AA6-709C1BA26BA1}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -257,7 +257,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="long_cd_plcm_setng"
-              DTS:DTSID="{AA13B328-ACEC-4745-8CAB-37EF886BEA28}"
+              DTS:DTSID="{FA2606AE-7B6E-4B4F-B032-85A6DB80E00B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -265,7 +265,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="Removal_County_Cd"
-              DTS:DTSID="{D1E6D382-D2C7-46B8-9B78-5D4525329C35}"
+              DTS:DTSID="{437593D5-59D0-4B81-B9C5-432A9C73B459}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -273,7 +273,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="exit_county_cd"
-              DTS:DTSID="{66187582-E632-41A0-B36A-8C532FF9A7C1}"
+              DTS:DTSID="{FD33D0B7-ECA2-4921-AC92-3A5216BB81ED}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -282,7 +282,7 @@
               DTS:DataPrecision="9"
               DTS:TextQualified="True"
               DTS:ObjectName="entry_int_match_param_key_cdc_census_mix"
-              DTS:DTSID="{F0344C89-A6F4-4F54-B1AA-92C67BD6AD3A}"
+              DTS:DTSID="{36495FB4-0B55-442E-87B8-594B290F21D8}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -291,7 +291,7 @@
               DTS:DataPrecision="9"
               DTS:TextQualified="True"
               DTS:ObjectName="entry_int_match_param_key_census_child_group"
-              DTS:DTSID="{A495CDCC-C59A-4297-9ABB-0C3B958F6735}"
+              DTS:DTSID="{1EBBC359-0679-4A86-8944-E378948BE05A}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -300,7 +300,7 @@
               DTS:DataPrecision="9"
               DTS:TextQualified="True"
               DTS:ObjectName="entry_int_match_param_key_developmental"
-              DTS:DTSID="{B6D8F315-2795-406D-A4F1-129695136ADE}"
+              DTS:DTSID="{92332938-8D6F-4E58-9ADB-76555C460781}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -309,7 +309,7 @@
               DTS:DataPrecision="9"
               DTS:TextQualified="True"
               DTS:ObjectName="exit_int_match_param_key_cdc_census_mix"
-              DTS:DTSID="{35F09590-76B0-4EA4-AB5B-E953847C7117}"
+              DTS:DTSID="{FB151E62-A5B2-4101-B709-1EDC694224D6}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -318,7 +318,7 @@
               DTS:DataPrecision="9"
               DTS:TextQualified="True"
               DTS:ObjectName="exit_int_match_param_key_census_child_group"
-              DTS:DTSID="{E9C8652B-E8F0-4053-85CB-6588886CB661}"
+              DTS:DTSID="{E67977AE-D2B7-432F-9BEB-A20BC8BD3ADA}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -327,7 +327,7 @@
               DTS:DataPrecision="9"
               DTS:TextQualified="True"
               DTS:ObjectName="exit_int_match_param_key_developmental"
-              DTS:DTSID="{B03425F6-395C-42BF-A2D0-FB323DCB41B4}"
+              DTS:DTSID="{EC5579A0-2659-43C3-86E3-907FDC08C127}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -335,7 +335,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="bin_dep_cd"
-              DTS:DTSID="{715603A6-A64E-44ED-94B3-6B23885F8F94}"
+              DTS:DTSID="{FC61EE3B-A190-426B-BB8B-7669FC4D455F}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -343,7 +343,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="max_bin_los_cd"
-              DTS:DTSID="{343A56EE-D987-428E-9817-62FA38BF9E4E}"
+              DTS:DTSID="{D3A786F3-301E-4A40-9ABF-5C07F76BAB2E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -351,7 +351,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="bin_placement_cd"
-              DTS:DTSID="{7C51092B-53E8-485A-A4F1-795773EB82B8}"
+              DTS:DTSID="{4DB405E3-280B-4172-8AAE-9168C6F60F83}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -359,7 +359,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cd_reporter_type"
-              DTS:DTSID="{4972CEA8-4341-475B-A102-41B73CE1D566}"
+              DTS:DTSID="{15878F9A-C6BA-402A-B21F-D29B621BA0B7}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -367,7 +367,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_cps_invs"
-              DTS:DTSID="{F5EC4BA5-B570-44F8-9509-C11B7A960D6D}"
+              DTS:DTSID="{A09CC8EC-B1A3-4B9E-99B9-5A4963136A0B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -375,7 +375,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_cfws"
-              DTS:DTSID="{0D81F30F-B19F-4129-8938-174428D31B37}"
+              DTS:DTSID="{86C2DA8B-A0D7-4F5E-8650-ADAD424C6A64}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -383,7 +383,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_risk_only"
-              DTS:DTSID="{F4BAA5BD-5468-477D-AE10-51027D798514}"
+              DTS:DTSID="{2EC53BE4-245F-4C9E-8403-AAA9F7C957D4}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -391,7 +391,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_alternate_intervention"
-              DTS:DTSID="{22D816FF-EE8E-4238-9E3D-C250775A4F2F}"
+              DTS:DTSID="{5501C604-1006-41E2-8491-B1B2C8EC6881}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -399,7 +399,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_frs"
-              DTS:DTSID="{F18C3638-88AD-42A1-9B97-EC5E7ADF7161}"
+              DTS:DTSID="{2FD24E71-EA0D-465C-94EC-C566B1A8ED7E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -407,7 +407,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_dlr"
-              DTS:DTSID="{141EE53D-DE60-4CE7-B9BE-6F1F1DD28F79}"
+              DTS:DTSID="{B3273B81-4563-4921-AD6F-D7FAE1C02593}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -415,7 +415,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_far"
-              DTS:DTSID="{31FF005C-ADFA-4769-968E-DE677165218A}"
+              DTS:DTSID="{672E9766-8D7A-4845-9612-FD3E681D59BC}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -423,7 +423,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_phys_abuse"
-              DTS:DTSID="{A24FF8E1-6483-415E-8A68-27C4319D4E2D}"
+              DTS:DTSID="{9A11EC2B-BBCF-45C2-88CB-6C97D510F49B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -431,7 +431,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_sexual_abuse"
-              DTS:DTSID="{D8C71738-B108-420A-B369-2E4A7B911C78}"
+              DTS:DTSID="{1E5D4E04-2324-46C8-AE39-88D9AF0AF3DA}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -439,7 +439,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_neglect"
-              DTS:DTSID="{5F75D465-BADB-484B-8B49-CD22C2AB1440}"
+              DTS:DTSID="{7A9B3E60-7038-4738-B5A9-7ADAC8B16DD3}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -447,7 +447,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_any_legal"
-              DTS:DTSID="{029E6A5F-4A3B-4FC4-ADFC-738F55526657}"
+              DTS:DTSID="{0CEB5FD3-70AB-4223-A46E-8B1053F894D6}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -455,7 +455,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_founded_phys_abuse"
-              DTS:DTSID="{D91F3F95-F73D-4344-A519-245F8FB21E20}"
+              DTS:DTSID="{B6B5B09E-0664-4C5D-913D-71ABBD01206A}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -463,7 +463,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_founded_sexual_abuse"
-              DTS:DTSID="{276F27AD-E20D-4B3A-8525-99A9D7F99450}"
+              DTS:DTSID="{1C04F0E7-1A3F-40F0-B7D7-D8548EFE99DB}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -471,7 +471,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_founded_neglect"
-              DTS:DTSID="{2D3F9E66-74D1-49E8-9E59-6972FF80FE0D}"
+              DTS:DTSID="{4B44ED18-C695-47F9-9AE5-06E81225B482}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -479,7 +479,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_found_any_legal"
-              DTS:DTSID="{90827E3A-B816-4014-93A5-16B730DDC065}"
+              DTS:DTSID="{9EFF65A8-EF70-4E15-9616-609D08AB0AAE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -487,25 +487,23 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="bin_ihs_svc_cd"
-              DTS:DTSID="{FFFDCBD4-E4AF-48DD-947E-8A372AA03093}"
+              DTS:DTSID="{8502BFBF-266D-41B8-A153-4F29167638FE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
               DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="131"
-              DTS:DataPrecision="18"
+              DTS:DataType="19"
               DTS:TextQualified="True"
               DTS:ObjectName="filter_service_category"
-              DTS:DTSID="{A4D72132-BC93-4E96-97E3-320D8A0FC4BA}"
+              DTS:DTSID="{AD6A34F3-6EA6-4C4C-B284-9055166ED2FB}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
               DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="131"
-              DTS:DataPrecision="18"
+              DTS:DataType="19"
               DTS:TextQualified="True"
               DTS:ObjectName="filter_service_budget"
-              DTS:DTSID="{24744584-7EDE-4355-8266-794BDB0C8447}"
+              DTS:DTSID="{28D7B662-9A82-4F53-BC9D-6B5755FC70D3}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -513,7 +511,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="prsn_cnt"
-              DTS:DTSID="{4E34196E-3195-4055-A5B0-271F71921D78}"
+              DTS:DTSID="{3ACB1E99-F7EB-4411-BB86-3F2AC8A126DF}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -521,7 +519,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="exit_within_month_mult3"
-              DTS:DTSID="{03B05E11-4CB7-4E98-A338-A84634FD0407}"
+              DTS:DTSID="{748A2261-7F5A-4215-8AD7-6DCC060F821D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -529,7 +527,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="nxt_reentry_within_min_month_mult3"
-              DTS:DTSID="{6127C2E2-1044-4989-B6FA-2E289D4AF892}"
+              DTS:DTSID="{C08FA402-FE6B-4D18-B902-62B2AA38F668}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -537,7 +535,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_nondcfs_eps"
-              DTS:DTSID="{B2F88C26-06BE-408E-8D57-5804363A9F16}"
+              DTS:DTSID="{C187417D-CBA8-4740-A687-7232C0FD3425}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -545,7 +543,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_nondcfs_within_eps"
-              DTS:DTSID="{80123A1B-F0A1-4F75-8493-DBCE57DCBF15}"
+              DTS:DTSID="{289C0961-BD73-475E-8A5D-441C3F371E32}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -553,7 +551,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_nondcfs_overlap_eps"
-              DTS:DTSID="{AB2BFAEB-1FE3-4CF0-A62C-89640EEE0703}"
+              DTS:DTSID="{D2B70DDA-D1AE-445D-B39C-1B74A4A1BA79}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -561,7 +559,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="dependency_dt"
-              DTS:DTSID="{28AC4F21-8DE1-4AFB-8CEF-142B3F809E7A}"
+              DTS:DTSID="{F444B31E-3B1C-4177-BD30-55FAC4DEA6F0}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -569,7 +567,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_dep_exist"
-              DTS:DTSID="{1B4F4CCD-4667-4067-82C8-E5D141B38207}"
+              DTS:DTSID="{57236462-9DC9-4B11-A021-4ABBF80E1F32}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -577,7 +575,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_reentry"
-              DTS:DTSID="{7A6CDA89-A43B-4CCB-93AE-7B3157A4FAE9}"
+              DTS:DTSID="{9E488507-88C7-4FB3-A728-D8CABED2F2DD}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -585,7 +583,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="next_reentry_date"
-              DTS:DTSID="{4ADF8BD4-6F18-4F51-A8D3-661BC1F01D16}"
+              DTS:DTSID="{009E9353-07A9-4423-B798-C4DB46BA2015}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -593,15 +591,24 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="child_eps_rank_asc"
-              DTS:DTSID="{5E7C4ADB-516C-4077-8CE8-8BF49B1B89B0}"
+              DTS:DTSID="{4B7BB35C-289E-4C9E-B21B-0240DE68AE33}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="child_eps_rank_desc"
+              DTS:DTSID="{1BA3651A-B13E-4F72-B9FB-5086B746F430}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
               DTS:ColumnDelimiter="_x000D__x000A_"
-              DTS:DataType="3"
+              DTS:DataType="131"
+              DTS:DataPrecision="18"
               DTS:TextQualified="True"
-              DTS:ObjectName="child_eps_rank_desc"
-              DTS:DTSID="{AFDEC59C-B84D-4ED8-B0D9-BC79942D0E49}"
+              DTS:ObjectName="id_case"
+              DTS:DTSID="{E8B31665-CDB9-4747-A6F9-7E0F6A497D1C}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -623,7 +630,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\backup_portal_tables\20140917\ooh_point_in_time_child.txt">
+          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\backup_portal_tables\20140930\ooh_point_in_time_child.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -631,7 +638,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="id_prsn_child"
-              DTS:DTSID="{DB8706F5-038B-45F4-B9C0-F23256AA7DC4}"
+              DTS:DTSID="{0BE4DD23-02D9-4A76-944F-836F0B1A82CC}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -639,7 +646,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="point_in_time_date"
-              DTS:DTSID="{7D7B7B2B-5B27-4A85-A7C2-E6551710B407}"
+              DTS:DTSID="{FB48390F-967D-4B64-A0D9-D8B839807248}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -647,7 +654,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="id_removal_episode_fact"
-              DTS:DTSID="{ADCD6B69-DAAA-4CAD-A40D-CB67D2A514FB}"
+              DTS:DTSID="{0EBB4333-7DC9-4478-8950-628B8C7D89BE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -655,7 +662,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="id_placement_fact"
-              DTS:DTSID="{3B68DA5A-FC3A-44CC-BA70-6375DF8A839F}"
+              DTS:DTSID="{493A1C92-5AE3-4D25-A102-BBF03460751C}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -663,7 +670,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="removal_dt"
-              DTS:DTSID="{1D0F75F9-DEBA-4FF1-9118-7E8E3A30A432}"
+              DTS:DTSID="{17877D38-99CC-4087-8564-3C4C94541109}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -671,7 +678,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="discharge_dt"
-              DTS:DTSID="{921B80A1-662D-4485-9AC2-4717D181E800}"
+              DTS:DTSID="{65880209-D4B3-43E6-A6CE-4CA7B408A94D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -679,7 +686,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="begin_date"
-              DTS:DTSID="{CA0DDBB7-1E64-4B89-A539-8C06CA836CD0}"
+              DTS:DTSID="{B71262A0-C0F0-4745-8876-B8229127F874}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -687,7 +694,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="end_date"
-              DTS:DTSID="{94929DEB-9555-41AF-ADFD-2E27ACF56A84}"
+              DTS:DTSID="{69F1D796-905E-40AB-974C-483EFA115D18}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -695,7 +702,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="date_type"
-              DTS:DTSID="{D3423297-4A7C-4052-B181-7186609A8B33}"
+              DTS:DTSID="{F4E07347-041F-4B96-8274-20F076A40086}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -703,7 +710,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="qry_type"
-              DTS:DTSID="{7538EC65-7263-49C0-8C67-5885DF6268BC}"
+              DTS:DTSID="{E04FF466-F8B5-4D18-888E-E3C4D07F7CA7}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -711,7 +718,7 @@
               DTS:DataType="20"
               DTS:TextQualified="True"
               DTS:ObjectName="row_num"
-              DTS:DTSID="{2B9AF18D-1D8B-4481-BD65-3E2359D188D4}"
+              DTS:DTSID="{6F895531-8D6D-48C4-8E53-D9C957D832EF}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -719,7 +726,7 @@
               DTS:DataType="133"
               DTS:TextQualified="True"
               DTS:ObjectName="birth_dt"
-              DTS:DTSID="{4DFEB970-0EF5-403A-BA9F-59A688E43177}"
+              DTS:DTSID="{BE3AF6C0-1970-44F1-ACC1-4D19D5D8A768}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -727,7 +734,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="bin_dep_cd"
-              DTS:DTSID="{15D210F2-77C0-41F5-9306-A3745D4CB67D}"
+              DTS:DTSID="{9EBD7358-4640-4F8A-B76A-BED301C08198}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -735,7 +742,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="bin_placement_cd"
-              DTS:DTSID="{EC304513-82ED-442D-BC59-8B99F69580AB}"
+              DTS:DTSID="{63F46527-20FC-4A64-ADEF-28427CE580A7}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -743,7 +750,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="max_bin_los_cd"
-              DTS:DTSID="{F5AF8BCE-B0C4-41B3-8759-467C4D51AF54}"
+              DTS:DTSID="{CE52BAAB-A7FF-479E-B6AF-25493AB75842}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -751,7 +758,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="bin_ihs_svc_cd"
-              DTS:DTSID="{F9E5D4D0-A659-425B-A047-E066AA19004C}"
+              DTS:DTSID="{773F8924-0B58-45FB-88FE-82C6E7EAB2B5}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -759,7 +766,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cd_reporter_type"
-              DTS:DTSID="{95681BF0-6324-45C2-8B16-CCC583FDC88D}"
+              DTS:DTSID="{73C4321E-5B86-45DD-834F-436D9BA5C9B7}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -768,7 +775,7 @@
               DTS:DataPrecision="9"
               DTS:TextQualified="True"
               DTS:ObjectName="filter_access_type"
-              DTS:DTSID="{4C2D0D49-23E4-4AFE-A206-967D8CB8B6A9}"
+              DTS:DTSID="{2016E634-43A6-40D1-9B74-81C8E35A0A1F}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -776,7 +783,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="filter_allegation"
-              DTS:DTSID="{81429622-1255-4C80-A060-C650C5A522C8}"
+              DTS:DTSID="{DD6B2C51-AEB7-443A-A433-D14B7F6FEAA7}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -784,7 +791,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="filter_finding"
-              DTS:DTSID="{C2127A0E-78C6-4BED-A3BC-8A7CF4201624}"
+              DTS:DTSID="{7771F6EC-D4CE-4088-A8D8-C18E17ED7F50}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -792,7 +799,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="pk_gndr"
-              DTS:DTSID="{356E66B4-5AD9-4CD0-9A75-442A46C0FE5A}"
+              DTS:DTSID="{2A728D6C-6230-49C3-A2AC-7744FCE9A2EA}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -800,7 +807,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cd_race_census"
-              DTS:DTSID="{574B4C04-1D41-414B-BFA5-B485BC0660D2}"
+              DTS:DTSID="{BB9C523D-E59E-407F-94AE-5D6A73ACADB6}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -808,7 +815,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="census_Hispanic_Latino_Origin_cd"
-              DTS:DTSID="{1A84AB90-6C19-4CFB-896B-82B9BABFFAC1}"
+              DTS:DTSID="{A3E12A47-A6C2-43AF-8E5C-8E978D62EF8E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -816,7 +823,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="init_cd_plcm_setng"
-              DTS:DTSID="{3AB8BD70-CBB0-4646-A3F5-331AB5B7DB8F}"
+              DTS:DTSID="{1668D8D6-CD45-440C-B2CA-D8EC1AB4ECA6}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -824,7 +831,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="long_cd_plcm_setng"
-              DTS:DTSID="{9054C314-A210-407D-8422-6232149DB8EB}"
+              DTS:DTSID="{D551E7D0-76B8-4C28-87F3-D5ACF0755922}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -832,7 +839,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="pit_county_cd"
-              DTS:DTSID="{7E259AF8-4AC9-43FA-B182-AC3CE13AF13C}"
+              DTS:DTSID="{45BA4C8A-6F61-442A-813C-E012D1820A32}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -840,7 +847,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="age_grouping_cd_census"
-              DTS:DTSID="{D18D26A8-0E96-41BC-B063-DC87D959EC0E}"
+              DTS:DTSID="{3B2DABAB-F057-4205-A428-76BE2BBD0B1E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -848,7 +855,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="age_grouping_cd_mix"
-              DTS:DTSID="{013AE0D6-B004-4614-8E63-7C267259E8B9}"
+              DTS:DTSID="{E993A5FB-1EFA-4245-9864-9771C93D2BDF}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -856,7 +863,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="dur_days"
-              DTS:DTSID="{5CF0C421-FAD8-49C9-A764-B155395A5BB2}"
+              DTS:DTSID="{E8036DA7-49C5-4B0D-B42C-BB0B6D0ABCFE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -864,7 +871,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="int_match_param_key_census"
-              DTS:DTSID="{17C78FAC-9EA2-434D-B4CC-8F5D5A4EDDAC}"
+              DTS:DTSID="{8ADF6EEB-C33D-4E2C-995C-BCD1DD2CFCB4}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -872,16 +879,15 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="int_match_param_key_mix"
-              DTS:DTSID="{0A3518A5-564E-4042-99F6-65A93C68CD79}"
+              DTS:DTSID="{3F8810D3-B32B-4480-803C-4DE21D196B3E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
               DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="131"
-              DTS:DataPrecision="18"
+              DTS:DataType="19"
               DTS:TextQualified="True"
               DTS:ObjectName="filter_service_category"
-              DTS:DTSID="{C2F5790C-D80F-43FD-A53E-801CED9BA233}"
+              DTS:DTSID="{64534032-19A6-46D1-BEDC-169BAC3C78A4}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -890,7 +896,7 @@
               DTS:DataPrecision="9"
               DTS:TextQualified="True"
               DTS:ObjectName="filter_service_budget"
-              DTS:DTSID="{39EA2B7B-616D-45A9-8562-DB161357131F}"
+              DTS:DTSID="{4E96C84D-40D5-4CB2-AE7A-E9EA899FAFC1}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -898,7 +904,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="plctypc"
-              DTS:DTSID="{07331609-036A-4104-B755-77D6EC9FE004}"
+              DTS:DTSID="{ACB04CB2-75AF-4E3A-A16A-BD44C4A3ED70}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -907,7 +913,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="plctypc_desc"
-              DTS:DTSID="{9FA1BE3F-6B01-4E0B-BAC8-7750B7AAE435}"
+              DTS:DTSID="{07E826AC-5521-49A6-A0ED-4A7CEC179DC1}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -915,7 +921,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="qualevt_w3w4"
-              DTS:DTSID="{3608D3DC-63BD-40F4-80A5-97AC01E347A3}"
+              DTS:DTSID="{12AE7069-7C34-4DF7-8DCF-5E19384A153E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -923,7 +929,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="kinmark"
-              DTS:DTSID="{4C862406-7336-46D9-A7CD-5D75DCC050CC}"
+              DTS:DTSID="{7E7D8C6B-D996-46A2-9416-E8506CA8C15F}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -931,7 +937,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="tempevt"
-              DTS:DTSID="{69121C49-166B-479F-9B39-BA8EF0C832D6}"
+              DTS:DTSID="{4E41C18C-45D7-49DA-A1E5-2F5BA72B9851}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -939,7 +945,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cd_plcm_setng"
-              DTS:DTSID="{9E51EADC-EE93-467A-9FF2-9E823A5259D6}"
+              DTS:DTSID="{F64688F0-12D8-4E4C-9565-185149E2D8D2}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -947,7 +953,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="curr_prtl_cd_plcm_setng"
-              DTS:DTSID="{FB8CC972-C840-48F3-970C-A5282A04D517}"
+              DTS:DTSID="{017212AD-FB46-42BE-9986-749FAA60ABEA}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -955,7 +961,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="fl_out_trial_return_home"
-              DTS:DTSID="{6D0B8982-1161-4DB8-A39A-25DCFACD4423}"
+              DTS:DTSID="{48715316-944B-4A15-A3F9-9C970B2436FF}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -995,7 +1001,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="dir">
       <DTS:VariableValue
-        DTS:DataType="8">\\poc2\pocshare\Data Portal\data\backup_portal_tables\20140917\</DTS:VariableValue>
+        DTS:DataType="8">\\poc2\pocshare\Data Portal\data\backup_portal_tables\20140930\</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -1510,11 +1516,11 @@
                       externalMetadataColumnId="Package\drop oof_dcfs_eps\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[orig_removal_dt]"
                       lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[orig_removal_dt]" />
                     <inputColumn
-                      refId="Package\drop oof_dcfs_eps\Flat File Destination.Inputs[Flat File Destination Input].Columns[Federal_Discharge_Date]"
+                      refId="Package\drop oof_dcfs_eps\Flat File Destination.Inputs[Flat File Destination Input].Columns[federal_discharge_date]"
                       cachedDataType="dbTimeStamp"
-                      cachedName="Federal_Discharge_Date"
+                      cachedName="federal_discharge_date"
                       externalMetadataColumnId="Package\drop oof_dcfs_eps\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Federal_Discharge_Date]"
-                      lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[Federal_Discharge_Date]" />
+                      lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[federal_discharge_date]" />
                     <inputColumn
                       refId="Package\drop oof_dcfs_eps\Flat File Destination.Inputs[Flat File Destination Input].Columns[orig_federal_discharge_date]"
                       cachedDataType="dbTimeStamp"
@@ -1774,17 +1780,9 @@
                       externalMetadataColumnId="Package\drop oof_dcfs_eps\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[bin_ihs_svc_cd]"
                       lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[bin_ihs_svc_cd]" />
                     <inputColumn
-                      refId="Package\drop oof_dcfs_eps\Flat File Destination.Inputs[Flat File Destination Input].Columns[filter_service_category]"
-                      cachedDataType="numeric"
-                      cachedName="filter_service_category"
-                      cachedPrecision="18"
-                      externalMetadataColumnId="Package\drop oof_dcfs_eps\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[filter_service_category]"
-                      lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_service_category]" />
-                    <inputColumn
                       refId="Package\drop oof_dcfs_eps\Flat File Destination.Inputs[Flat File Destination Input].Columns[filter_service_budget]"
-                      cachedDataType="numeric"
+                      cachedDataType="i4"
                       cachedName="filter_service_budget"
-                      cachedPrecision="18"
                       externalMetadataColumnId="Package\drop oof_dcfs_eps\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[filter_service_budget]"
                       lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_service_budget]" />
                     <inputColumn
@@ -1859,6 +1857,18 @@
                       cachedName="child_eps_rank_desc"
                       externalMetadataColumnId="Package\drop oof_dcfs_eps\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[child_eps_rank_desc]"
                       lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[child_eps_rank_desc]" />
+                    <inputColumn
+                      refId="Package\drop oof_dcfs_eps\Flat File Destination.Inputs[Flat File Destination Input].Columns[int_filter_service_category]"
+                      cachedDataType="i4"
+                      cachedName="int_filter_service_category"
+                      externalMetadataColumnId="Package\drop oof_dcfs_eps\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[filter_service_category]"
+                      lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[int_filter_service_category]" />
+                    <inputColumn
+                      refId="Package\drop oof_dcfs_eps\Flat File Destination.Inputs[Flat File Destination Input].Columns[id_case]"
+                      cachedDataType="i4"
+                      cachedName="id_case"
+                      externalMetadataColumnId="Package\drop oof_dcfs_eps\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[id_case]"
+                      lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_case]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -2095,15 +2105,9 @@
                       dataType="i4"
                       name="bin_ihs_svc_cd" />
                     <externalMetadataColumn
-                      refId="Package\drop oof_dcfs_eps\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[filter_service_category]"
-                      dataType="numeric"
-                      name="filter_service_category"
-                      precision="18" />
-                    <externalMetadataColumn
                       refId="Package\drop oof_dcfs_eps\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[filter_service_budget]"
-                      dataType="numeric"
-                      name="filter_service_budget"
-                      precision="18" />
+                      dataType="ui4"
+                      name="filter_service_budget" />
                     <externalMetadataColumn
                       refId="Package\drop oof_dcfs_eps\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[prsn_cnt]"
                       dataType="i4"
@@ -2152,6 +2156,15 @@
                       refId="Package\drop oof_dcfs_eps\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[child_eps_rank_desc]"
                       dataType="i4"
                       name="child_eps_rank_desc" />
+                    <externalMetadataColumn
+                      refId="Package\drop oof_dcfs_eps\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[filter_service_category]"
+                      dataType="ui4"
+                      name="filter_service_category" />
+                    <externalMetadataColumn
+                      refId="Package\drop oof_dcfs_eps\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[id_case]"
+                      dataType="numeric"
+                      name="id_case"
+                      precision="18" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -2335,15 +2348,6 @@
                       externalMetadataColumnId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[orig_removal_dt]"
                       lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[orig_removal_dt]"
                       name="orig_removal_dt"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[Federal_Discharge_Date]"
-                      dataType="dbTimeStamp"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Federal_Discharge_Date]"
-                      lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[Federal_Discharge_Date]"
-                      name="Federal_Discharge_Date"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[orig_federal_discharge_date]"
@@ -2730,24 +2734,13 @@
                       name="bin_ihs_svc_cd"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_service_category]"
-                      dataType="numeric"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_service_category]"
-                      lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_service_category]"
-                      name="filter_service_category"
-                      precision="18"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_service_budget]"
-                      dataType="numeric"
+                      dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_service_budget]"
                       lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_service_budget]"
                       name="filter_service_budget"
-                      precision="18"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[prsn_cnt]"
@@ -2857,6 +2850,33 @@
                       lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[child_eps_rank_desc]"
                       name="child_eps_rank_desc"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[federal_discharge_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[federal_discharge_date]"
+                      lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[federal_discharge_date]"
+                      name="federal_discharge_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[int_filter_service_category]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[int_filter_service_category]"
+                      lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[int_filter_service_category]"
+                      name="int_filter_service_category"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_case]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_case]"
+                      lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_case]"
+                      name="id_case"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -2914,10 +2934,6 @@
                       refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[orig_removal_dt]"
                       dataType="dbTimeStamp"
                       name="orig_removal_dt" />
-                    <externalMetadataColumn
-                      refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Federal_Discharge_Date]"
-                      dataType="dbTimeStamp"
-                      name="Federal_Discharge_Date" />
                     <externalMetadataColumn
                       refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[orig_federal_discharge_date]"
                       dataType="dbTimeStamp"
@@ -3093,15 +3109,9 @@
                       dataType="i4"
                       name="bin_ihs_svc_cd" />
                     <externalMetadataColumn
-                      refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_service_category]"
-                      dataType="numeric"
-                      name="filter_service_category"
-                      precision="18" />
-                    <externalMetadataColumn
                       refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_service_budget]"
-                      dataType="numeric"
-                      name="filter_service_budget"
-                      precision="18" />
+                      dataType="i4"
+                      name="filter_service_budget" />
                     <externalMetadataColumn
                       refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[prsn_cnt]"
                       dataType="i4"
@@ -3150,6 +3160,18 @@
                       refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[child_eps_rank_desc]"
                       dataType="i4"
                       name="child_eps_rank_desc" />
+                    <externalMetadataColumn
+                      refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[federal_discharge_date]"
+                      dataType="dbTimeStamp"
+                      name="federal_discharge_date" />
+                    <externalMetadataColumn
+                      refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[int_filter_service_category]"
+                      dataType="i4"
+                      name="int_filter_service_category" />
+                    <externalMetadataColumn
+                      refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_case]"
+                      dataType="i4"
+                      name="id_case" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -3225,10 +3247,10 @@
                       lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[orig_removal_dt]"
                       name="orig_removal_dt" />
                     <outputColumn
-                      refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Federal_Discharge_Date]"
+                      refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[federal_discharge_date]"
                       dataType="dbTimeStamp"
-                      lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Federal_Discharge_Date]"
-                      name="Federal_Discharge_Date" />
+                      lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[federal_discharge_date]"
+                      name="federal_discharge_date" />
                     <outputColumn
                       refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[orig_federal_discharge_date]"
                       dataType="dbTimeStamp"
@@ -3446,17 +3468,15 @@
                       lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[bin_ihs_svc_cd]"
                       name="bin_ihs_svc_cd" />
                     <outputColumn
-                      refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_service_category]"
-                      dataType="numeric"
-                      lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_service_category]"
-                      name="filter_service_category"
-                      precision="18" />
+                      refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[int_filter_service_category]"
+                      dataType="i4"
+                      lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[int_filter_service_category]"
+                      name="int_filter_service_category" />
                     <outputColumn
                       refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_service_budget]"
-                      dataType="numeric"
+                      dataType="i4"
                       lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_service_budget]"
-                      name="filter_service_budget"
-                      precision="18" />
+                      name="filter_service_budget" />
                     <outputColumn
                       refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[prsn_cnt]"
                       dataType="i4"
@@ -3517,6 +3537,11 @@
                       dataType="i4"
                       lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[child_eps_rank_desc]"
                       name="child_eps_rank_desc" />
+                    <outputColumn
+                      refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_case]"
+                      dataType="i4"
+                      lineageId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_case]"
+                      name="id_case" />
                     <outputColumn
                       refId="Package\drop oof_dcfs_eps\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -3778,13 +3803,6 @@
                       externalMetadataColumnId="Package\drop ooh_point_in_time_child\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[int_match_param_key_mix]"
                       lineageId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Output].Columns[int_match_param_key_mix]" />
                     <inputColumn
-                      refId="Package\drop ooh_point_in_time_child\Flat File Destination.Inputs[Flat File Destination Input].Columns[filter_service_category]"
-                      cachedDataType="numeric"
-                      cachedName="filter_service_category"
-                      cachedPrecision="18"
-                      externalMetadataColumnId="Package\drop ooh_point_in_time_child\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[filter_service_category]"
-                      lineageId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_service_category]" />
-                    <inputColumn
                       refId="Package\drop ooh_point_in_time_child\Flat File Destination.Inputs[Flat File Destination Input].Columns[filter_service_budget]"
                       cachedDataType="numeric"
                       cachedName="filter_service_budget"
@@ -3841,6 +3859,12 @@
                       cachedName="fl_out_trial_return_home"
                       externalMetadataColumnId="Package\drop ooh_point_in_time_child\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_out_trial_return_home]"
                       lineageId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_out_trial_return_home]" />
+                    <inputColumn
+                      refId="Package\drop ooh_point_in_time_child\Flat File Destination.Inputs[Flat File Destination Input].Columns[int_filter_service_category]"
+                      cachedDataType="i4"
+                      cachedName="int_filter_service_category"
+                      externalMetadataColumnId="Package\drop ooh_point_in_time_child\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[filter_service_category]"
+                      lineageId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Output].Columns[int_filter_service_category]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -3970,11 +3994,6 @@
                       dataType="i4"
                       name="int_match_param_key_mix" />
                     <externalMetadataColumn
-                      refId="Package\drop ooh_point_in_time_child\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[filter_service_category]"
-                      dataType="numeric"
-                      name="filter_service_category"
-                      precision="18" />
-                    <externalMetadataColumn
                       refId="Package\drop ooh_point_in_time_child\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[filter_service_budget]"
                       dataType="numeric"
                       name="filter_service_budget"
@@ -4013,6 +4032,10 @@
                       refId="Package\drop ooh_point_in_time_child\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[fl_out_trial_return_home]"
                       dataType="i4"
                       name="fl_out_trial_return_home" />
+                    <externalMetadataColumn
+                      refId="Package\drop ooh_point_in_time_child\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[filter_service_category]"
+                      dataType="ui4"
+                      name="filter_service_category" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -4359,16 +4382,6 @@
                       name="int_match_param_key_mix"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_service_category]"
-                      dataType="numeric"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_service_category]"
-                      lineageId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_service_category]"
-                      name="filter_service_category"
-                      precision="18"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Output].Columns[filter_service_budget]"
                       dataType="numeric"
                       errorOrTruncationOperation="Conversion"
@@ -4452,6 +4465,15 @@
                       lineageId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Output].Columns[fl_out_trial_return_home]"
                       name="fl_out_trial_return_home"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Output].Columns[int_filter_service_category]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[int_filter_service_category]"
+                      lineageId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Output].Columns[int_filter_service_category]"
+                      name="int_filter_service_category"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -4525,9 +4547,8 @@
                       name="cd_reporter_type" />
                     <externalMetadataColumn
                       refId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_access_type]"
-                      dataType="numeric"
-                      name="filter_access_type"
-                      precision="9" />
+                      dataType="i4"
+                      name="filter_access_type" />
                     <externalMetadataColumn
                       refId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_allegation]"
                       dataType="i4"
@@ -4581,15 +4602,9 @@
                       dataType="i4"
                       name="int_match_param_key_mix" />
                     <externalMetadataColumn
-                      refId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_service_category]"
-                      dataType="numeric"
-                      name="filter_service_category"
-                      precision="18" />
-                    <externalMetadataColumn
                       refId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[filter_service_budget]"
-                      dataType="numeric"
-                      name="filter_service_budget"
-                      precision="9" />
+                      dataType="i4"
+                      name="filter_service_budget" />
                     <externalMetadataColumn
                       refId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[plctypc]"
                       dataType="i4"
@@ -4624,6 +4639,10 @@
                       refId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fl_out_trial_return_home]"
                       dataType="i4"
                       name="fl_out_trial_return_home" />
+                    <externalMetadataColumn
+                      refId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[int_filter_service_category]"
+                      dataType="i4"
+                      name="int_filter_service_category" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -4718,10 +4737,9 @@
                       name="cd_reporter_type" />
                     <outputColumn
                       refId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_access_type]"
-                      dataType="numeric"
+                      dataType="i4"
                       lineageId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_access_type]"
-                      name="filter_access_type"
-                      precision="9" />
+                      name="filter_access_type" />
                     <outputColumn
                       refId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_allegation]"
                       dataType="i4"
@@ -4788,17 +4806,15 @@
                       lineageId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[int_match_param_key_mix]"
                       name="int_match_param_key_mix" />
                     <outputColumn
-                      refId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_service_category]"
-                      dataType="numeric"
-                      lineageId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_service_category]"
-                      name="filter_service_category"
-                      precision="18" />
+                      refId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[int_filter_service_category]"
+                      dataType="i4"
+                      lineageId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[int_filter_service_category]"
+                      name="int_filter_service_category" />
                     <outputColumn
                       refId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_service_budget]"
-                      dataType="numeric"
+                      dataType="i4"
                       lineageId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[filter_service_budget]"
-                      name="filter_service_budget"
-                      precision="9" />
+                      name="filter_service_budget" />
                     <outputColumn
                       refId="Package\drop ooh_point_in_time_child\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[plctypc]"
                       dataType="i4"
@@ -5107,73 +5123,39 @@
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib">
         <NodeLayout
+          Size="155,42"
+          Id="Package\create directory"
+          TopLeft="224,401.077829039176" />
+        <NodeLayout
           Size="136,44"
           Id="Package\Retrieve cutoff_date"
-          TopLeft="19.4770067777764,9.02881079359289" />
-        <NodeLayout
-          Size="219,42"
-          Id="Package\update ref_lookup_max_date"
-          TopLeft="898.864771925038,586.405660377358" />
+          TopLeft="19.4770067777764,353.106639832769" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="181,542">
+          TopLeft="181,886">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="327,-445"
+              EndConnector="387,-446"
               Start="0,0"
-              End="327,-437.5">
+              End="387,-438.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-218.5" />
+                    End="0,-219" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,-218.5"
-                    Point2="0,-222.5"
-                    Point3="4,-222.5" />
+                    Point1="0,-219"
+                    Point2="0,-223"
+                    Point3="4,-223" />
                   <mssgle:LineSegment
-                    End="323,-222.5" />
+                    End="383,-223" />
                   <mssgle:CubicBezierSegment
-                    Point1="323,-222.5"
-                    Point2="327,-222.5"
-                    Point3="327,-226.5" />
+                    Point1="383,-223"
+                    Point2="387,-223"
+                    Point3="387,-227" />
                   <mssgle:LineSegment
-                    End="327,-437.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 5]"
-          TopLeft="515,753">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="493.364771925038,-124.594339622642"
-              Start="0,0"
-              End="493.364771925038,-117.094339622642">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-58.297169811321" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,-58.297169811321"
-                    Point2="0,-62.297169811321"
-                    Point3="4,-62.297169811321" />
-                  <mssgle:LineSegment
-                    End="489.364771925038,-62.297169811321" />
-                  <mssgle:CubicBezierSegment
-                    Point1="489.364771925038,-62.297169811321"
-                    Point2="493.364771925038,-62.297169811321"
-                    Point3="493.364771925038,-66.297169811321" />
-                  <mssgle:LineSegment
-                    End="493.364771925038,-117.094339622642" />
+                    End="387,-438.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5184,84 +5166,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 6]"
-          TopLeft="134.5,291">
+          TopLeft="134.5,636">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="25,152"
+              EndConnector="25,151"
               Start="0,0"
-              End="25,144.5">
+              End="25,143.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,72" />
+                    End="0,71.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,72"
-                    Point2="0,76"
-                    Point3="4,76" />
+                    Point1="0,71.5"
+                    Point2="0,75.5"
+                    Point3="4,75.5" />
                   <mssgle:LineSegment
-                    End="21,76" />
+                    End="21,75.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="21,76"
-                    Point2="25,76"
-                    Point3="25,80" />
+                    Point1="21,75.5"
+                    Point2="25,75.5"
+                    Point3="25,79.5" />
                   <mssgle:LineSegment
-                    End="25,144.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="162,42"
-          Id="Package\build PRTL_POC3"
-          TopLeft="49.9210180145715,703.916461853021" />
-        <NodeLayout
-          Size="162,42"
-          Id="Package\build PRTL_POC2"
-          TopLeft="9.46226415094304,610.400971157451" />
-        <NodeLayout
-          Size="180,44"
-          Id="Package\build PRTL_POC1AB"
-          TopLeft="5.5,534.646254176319" />
-        <NodeLayout
-          Size="245,42"
-          Id="Package\build ooh_point_in_time_measures"
-          TopLeft="14.481132075472,354.929273044244" />
-        <NodeLayout
-          Size="180,44"
-          Id="Package\build PRTL_PBCS3"
-          TopLeft="13.462264150943,270.061348515942" />
-        <NodeLayout
-          Size="167,42"
-          Id="Package\build PRTL_PBCS2"
-          TopLeft="23.462264150943,185.174556063111" />
-        <NodeLayout
-          Size="180,44"
-          Id="Package\build prtl_pbcp5"
-          TopLeft="31.462264150943,83.8018867924532" />
-        <NodeLayout
-          Size="174,42"
-          Id="Package\build prtl_outcomes"
-          TopLeft="37.424528301887,5.5" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 19]"
-          TopLeft="92.9811320754715,578.646254176319">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,31.754716981132"
-              Start="0,0"
-              End="0,24.254716981132">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,24.254716981132" />
+                    End="25,143.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5271,31 +5199,31 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="107.481132075472,396.929273044244">
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="155.477006777776,375.106639832769">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-11.981132075472,137.716981132075"
+              EndConnector="68.5229932222236,41.3045225397404"
               Start="0,0"
-              End="-11.981132075472,130.216981132075">
+              End="61.0229932222236,41.3045225397404">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,64.8584905660375" />
+                    End="35.6050327798173,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,64.8584905660375"
-                    Point2="0,68.8584905660375"
-                    Point3="-4,68.8584905660375" />
+                    Point1="35.6050327798173,0"
+                    Point2="39.6050327798173,0"
+                    Point3="39.6050327798173,4" />
                   <mssgle:LineSegment
-                    End="-7.981132075472,68.8584905660375" />
+                    End="39.6050327798173,37.3045225397404" />
                   <mssgle:CubicBezierSegment
-                    Point1="-7.981132075472,68.8584905660375"
-                    Point2="-11.981132075472,68.8584905660375"
-                    Point3="-11.981132075472,72.8584905660375" />
+                    Point1="39.6050327798173,37.3045225397404"
+                    Point2="39.6050327798173,41.3045225397404"
+                    Point3="43.6050327798173,41.3045225397404" />
                   <mssgle:LineSegment
-                    End="-11.981132075472,130.216981132075" />
+                    End="61.0229932222236,41.3045225397404" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5305,31 +5233,31 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 16]"
-          TopLeft="103.462264150943,314.061348515942">
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="301.5,443.077829039176">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="33.518867924529,40.867924528302"
+              EndConnector="-185.5,64.9221709608242"
               Start="0,0"
-              End="33.518867924529,33.367924528302">
+              End="-185.5,57.4221709608242">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16.433962264151" />
+                    End="0,28.4610854804121" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,16.433962264151"
-                    Point2="0,20.433962264151"
-                    Point3="4,20.433962264151" />
+                    Point1="0,28.4610854804121"
+                    Point2="0,32.4610854804121"
+                    Point3="-4,32.4610854804121" />
                   <mssgle:LineSegment
-                    End="29.518867924529,20.433962264151" />
+                    End="-181.5,32.4610854804121" />
                   <mssgle:CubicBezierSegment
-                    Point1="29.518867924529,20.433962264151"
-                    Point2="33.518867924529,20.433962264151"
-                    Point3="33.518867924529,24.433962264151" />
+                    Point1="-181.5,32.4610854804121"
+                    Point2="-185.5,32.4610854804121"
+                    Point3="-185.5,36.4610854804121" />
                   <mssgle:LineSegment
-                    End="33.518867924529,33.367924528302" />
+                    End="-185.5,57.4221709608242" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5338,145 +5266,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 15]"
-          TopLeft="105.212264150943,227.174556063111">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,42.886792452831"
-              Start="0,0"
-              End="0,35.386792452831">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.386792452831" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 14]"
-          TopLeft="121.462264150943,127.801886792453">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-14.5,57.3726692706574"
-              Start="0,0"
-              End="-14.5,49.8726692706574">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,24.6863346353287" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,24.6863346353287"
-                    Point2="0,28.6863346353287"
-                    Point3="-4,28.6863346353287" />
-                  <mssgle:LineSegment
-                    End="-10.5,28.6863346353287" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-10.5,28.6863346353287"
-                    Point2="-14.5,28.6863346353287"
-                    Point3="-14.5,32.6863346353287" />
-                  <mssgle:LineSegment
-                    End="-14.5,49.8726692706574" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 13]"
-          TopLeft="122.943396226415,47.5000000000002">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,36.3018867924532"
-              Start="0,0"
-              End="0,28.8018867924532">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,28.8018867924532" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="90.462264150943,652.400971157451">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="40.4587538636285,51.5154906955707"
-              Start="0,0"
-              End="40.4587538636285,44.0154906955707">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,21.7577453477854" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,21.7577453477854"
-                    Point2="0,25.7577453477854"
-                    Point3="4,25.7577453477854" />
-                  <mssgle:LineSegment
-                    End="36.4587538636285,25.7577453477854" />
-                  <mssgle:CubicBezierSegment
-                    Point1="36.4587538636285,25.7577453477854"
-                    Point2="40.4587538636285,25.7577453477854"
-                    Point3="40.4587538636285,29.7577453477854" />
-                  <mssgle:LineSegment
-                    End="40.4587538636285,44.0154906955707" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <GroupLayout
-          Text="Build web portal tables"
-          ParentId="Package"
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="446,803"
-          Size="446,846"
-          Id="0616f82b-01f0-4b90-95f7-a837d5299634"
-          TopLeft="383.938707006508,6.5">
-          <GroupLayout.ChildrenIds>
-            <s:String>Package\build PRTL_POC3</s:String>
-            <s:String>Package\build PRTL_POC2</s:String>
-            <s:String>Package\build PRTL_POC1AB</s:String>
-            <s:String>Package\build ooh_point_in_time_measures</s:String>
-            <s:String>Package\build PRTL_PBCS3</s:String>
-            <s:String>Package\build PRTL_PBCS2</s:String>
-            <s:String>Package\build prtl_pbcp5</s:String>
-            <s:String>Package\build prtl_outcomes</s:String>
-            <s:String>Package.PrecedenceConstraints[Constraint 19]</s:String>
-            <s:String>Package.PrecedenceConstraints[Constraint 1]</s:String>
-            <s:String>Package.PrecedenceConstraints[Constraint 16]</s:String>
-            <s:String>Package.PrecedenceConstraints[Constraint 15]</s:String>
-            <s:String>Package.PrecedenceConstraints[Constraint 14]</s:String>
-            <s:String>Package.PrecedenceConstraints[Constraint 13]</s:String>
-            <s:String>Package.PrecedenceConstraints[Constraint 4]</s:String>
-          </GroupLayout.ChildrenIds>
-        </GroupLayout>
         <NodeLayout
           Size="171,42"
           Id="Package\build ooh_dcfs_eps"
@@ -5527,85 +5316,13 @@
           PanelSize="220,224"
           Size="220,267"
           Id="4e80a57a-1d14-4a25-86f9-a5f02090968c"
-          TopLeft="64.3103235415942,372.272826161236">
+          TopLeft="64.3103235415942,716.350655200412">
           <GroupLayout.ChildrenIds>
             <s:String>Package\build ooh_dcfs_eps</s:String>
             <s:String>Package\build ooh_point_in_time_child</s:String>
             <s:String>Package.PrecedenceConstraints[Constraint 3]</s:String>
           </GroupLayout.ChildrenIds>
         </GroupLayout>
-        <NodeLayout
-          Size="155,42"
-          Id="Package\create directory"
-          TopLeft="224,57" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 7]"
-          TopLeft="155.477006777776,31.0288107935929">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="68.5229932222236,41.3045225397404"
-              Start="0,0"
-              End="61.0229932222236,41.3045225397404">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="35.6050327798173,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="35.6050327798173,0"
-                    Point2="39.6050327798173,0"
-                    Point3="39.6050327798173,4" />
-                  <mssgle:LineSegment
-                    End="39.6050327798173,37.3045225397404" />
-                  <mssgle:CubicBezierSegment
-                    Point1="39.6050327798173,37.3045225397404"
-                    Point2="39.6050327798173,41.3045225397404"
-                    Point3="43.6050327798173,41.3045225397404" />
-                  <mssgle:LineSegment
-                    End="61.0229932222236,41.3045225397404" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 8]"
-          TopLeft="301.5,99">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-185.5,64"
-              Start="0,0"
-              End="-185.5,56.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,28" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,28"
-                    Point2="0,32"
-                    Point3="-4,32" />
-                  <mssgle:LineSegment
-                    End="-181.5,32" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-181.5,32"
-                    Point2="-185.5,32"
-                    Point3="-185.5,36" />
-                  <mssgle:LineSegment
-                    End="-185.5,56.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <NodeLayout
           Size="168,42"
           Id="Package\drop oof_dcfs_eps"
@@ -5656,11 +5373,312 @@
           PanelSize="232,190"
           Size="232,233"
           Id="21cb9412-3c71-4369-93f0-43560e41784d"
-          TopLeft="18.5,114.5">
+          TopLeft="18.5,458.577829039176">
           <GroupLayout.ChildrenIds>
             <s:String>Package\drop oof_dcfs_eps</s:String>
             <s:String>Package\drop ooh_point_in_time_child</s:String>
             <s:String>Package.PrecedenceConstraints[Constraint 2]</s:String>
+          </GroupLayout.ChildrenIds>
+        </GroupLayout>
+        <NodeLayout
+          Size="174,42"
+          Id="Package\build prtl_outcomes"
+          TopLeft="37.424528301887,5.5" />
+        <NodeLayout
+          Size="180,44"
+          Id="Package\build prtl_pbcp5"
+          TopLeft="31.4622641509429,83.8018867924532" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\build PRTL_PBCS2"
+          TopLeft="23.4622641509429,185.174556063111" />
+        <NodeLayout
+          Size="180,44"
+          Id="Package\build PRTL_PBCS3"
+          TopLeft="13.4622641509429,270.061348515942" />
+        <NodeLayout
+          Size="245,42"
+          Id="Package\build ooh_point_in_time_measures"
+          TopLeft="14.481132075472,354.929273044244" />
+        <NodeLayout
+          Size="180,44"
+          Id="Package\build PRTL_POC1AB"
+          TopLeft="5.5,534.646254176319" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\build PRTL_POC2"
+          TopLeft="9.46226415094304,610.400971157451" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\build PRTL_POC3"
+          TopLeft="49.9210180145715,703.916461853021" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\update ref_lookup_max_date"
+          TopLeft="237.42606491853,600.405660377358" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 13]"
+          TopLeft="122.943396226415,47.5000000000002">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.3018867924532"
+              Start="0,0"
+              End="0,28.8018867924532">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.8018867924532" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 14]"
+          TopLeft="121.462264150943,127.801886792453">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-14.5,57.3726692706574"
+              Start="0,0"
+              End="-14.5,49.8726692706574">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.6863346353286" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.6863346353286"
+                    Point2="0,28.6863346353286"
+                    Point3="-4,28.6863346353286" />
+                  <mssgle:LineSegment
+                    End="-10.5,28.6863346353286" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-10.5,28.6863346353286"
+                    Point2="-14.5,28.6863346353286"
+                    Point3="-14.5,32.6863346353286" />
+                  <mssgle:LineSegment
+                    End="-14.5,49.8726692706574" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 15]"
+          TopLeft="105.212264150943,227.174556063111">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.8867924528309"
+              Start="0,0"
+              End="0,35.3867924528309">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.3867924528309" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 16]"
+          TopLeft="103.462264150943,314.061348515942">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="33.518867924529,40.867924528302"
+              Start="0,0"
+              End="33.518867924529,33.367924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.433962264151" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.433962264151"
+                    Point2="0,20.433962264151"
+                    Point3="4,20.433962264151" />
+                  <mssgle:LineSegment
+                    End="29.518867924529,20.433962264151" />
+                  <mssgle:CubicBezierSegment
+                    Point1="29.518867924529,20.433962264151"
+                    Point2="33.518867924529,20.433962264151"
+                    Point3="33.518867924529,24.433962264151" />
+                  <mssgle:LineSegment
+                    End="33.518867924529,33.367924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="107.481132075472,396.929273044244">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-11.981132075472,137.716981132075"
+              Start="0,0"
+              End="-11.981132075472,130.216981132075">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,64.8584905660375" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,64.8584905660375"
+                    Point2="0,68.8584905660375"
+                    Point3="-4,68.8584905660375" />
+                  <mssgle:LineSegment
+                    End="-7.98113207547203,68.8584905660375" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-7.98113207547203,68.8584905660375"
+                    Point2="-11.981132075472,68.8584905660375"
+                    Point3="-11.981132075472,72.8584905660375" />
+                  <mssgle:LineSegment
+                    End="-11.981132075472,130.216981132075" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 19]"
+          TopLeft="92.9811320754715,578.646254176319">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.7547169811321"
+              Start="0,0"
+              End="0,24.2547169811321">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.2547169811321" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="90.462264150943,652.400971157451">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="40.4587538636285,51.5154906955706"
+              Start="0,0"
+              End="40.4587538636285,44.0154906955706">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.7577453477854" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.7577453477854"
+                    Point2="0,25.7577453477854"
+                    Point3="4,25.7577453477854" />
+                  <mssgle:LineSegment
+                    End="36.4587538636285,25.7577453477854" />
+                  <mssgle:CubicBezierSegment
+                    Point1="36.4587538636285,25.7577453477854"
+                    Point2="40.4587538636285,25.7577453477854"
+                    Point3="40.4587538636285,29.7577453477854" />
+                  <mssgle:LineSegment
+                    End="40.4587538636285,44.0154906955706" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="156.587684681238,703.916461853021">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="190.338380237292,-61.5108014756631"
+              Start="0,0"
+              End="190.338380237292,-54.0108014756631">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-20.9652641686066" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-20.9652641686066"
+                    Point2="0,-24.9652641686066"
+                    Point3="4,-24.9652641686066" />
+                  <mssgle:LineSegment
+                    End="186.338380237292,-24.9652641686066" />
+                  <mssgle:CubicBezierSegment
+                    Point1="186.338380237292,-24.9652641686066"
+                    Point2="190.338380237292,-24.9652641686066"
+                    Point3="190.338380237292,-28.9652641686066" />
+                  <mssgle:LineSegment
+                    End="190.338380237292,-54.0108014756631" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <GroupLayout
+          Text="build portal tables - update ref_lookup_max_date"
+          ParentId="Package"
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="461,801"
+          Size="461,844"
+          Id="c1ab2741-08a8-4a69-833a-60e6f7830f89"
+          TopLeft="444,349">
+          <GroupLayout.ChildrenIds>
+            <s:String>Package\build prtl_outcomes</s:String>
+            <s:String>Package\build prtl_pbcp5</s:String>
+            <s:String>Package\build PRTL_PBCS2</s:String>
+            <s:String>Package\build PRTL_PBCS3</s:String>
+            <s:String>Package\build ooh_point_in_time_measures</s:String>
+            <s:String>Package\build PRTL_POC1AB</s:String>
+            <s:String>Package\build PRTL_POC2</s:String>
+            <s:String>Package\build PRTL_POC3</s:String>
+            <s:String>Package\update ref_lookup_max_date</s:String>
+            <s:String>Package.PrecedenceConstraints[Constraint 13]</s:String>
+            <s:String>Package.PrecedenceConstraints[Constraint 14]</s:String>
+            <s:String>Package.PrecedenceConstraints[Constraint 15]</s:String>
+            <s:String>Package.PrecedenceConstraints[Constraint 16]</s:String>
+            <s:String>Package.PrecedenceConstraints[Constraint 1]</s:String>
+            <s:String>Package.PrecedenceConstraints[Constraint 19]</s:String>
+            <s:String>Package.PrecedenceConstraints[Constraint 4]</s:String>
+            <s:String>Package.PrecedenceConstraints[Constraint 5]</s:String>
           </GroupLayout.ChildrenIds>
         </GroupLayout>
       </GraphLayout>
@@ -5682,7 +5700,7 @@
     design-time-name="Package\drop oof_dcfs_eps">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="174,42"
           Id="Package\drop oof_dcfs_eps\Flat File Destination"
@@ -5722,9 +5740,7 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5747,7 +5763,7 @@
     design-time-name="Package\drop ooh_point_in_time_child">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="152,42"
           Id="Package\drop ooh_point_in_time_child\OLE DB Source"
@@ -5787,9 +5803,7 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
