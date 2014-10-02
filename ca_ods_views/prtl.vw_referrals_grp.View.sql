@@ -1,19 +1,25 @@
 USE [CA_ODS]
 GO
 
-/****** Object:  View [prtl].[vw_referrals_grp]    Script Date: 9/23/2014 1:11:40 PM ******/
+/****** Object:  View [prtl].[vw_referrals_grp]    Script Date: 9/30/2014 10:16:09 AM ******/
+DROP VIEW [prtl].[vw_referrals_grp]
+GO
+
+/****** Object:  View [prtl].[vw_referrals_grp]    Script Date: 9/30/2014 10:16:09 AM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
+
+
 -- QA
 -- select * from [prtl].[vw_referrals_grp] where intake_grouper=200431
 -- select * from  [prtl].[vw_referrals_grp]   where id_case=438122
 --  select intake_grouper,count(*)  from base.tbl_intake_grouper group by intake_grouper order by count(*) desc
 
-alter  view [prtl].[vw_referrals_grp] as 
+CREATE  view [prtl].[vw_referrals_grp] as 
 
 
 	select		distinct
@@ -30,6 +36,11 @@ alter  view [prtl].[vw_referrals_grp] as
 				,grp.intk_grp_seq_nbr
 				,grp_filters.intk_grp_id_intake_fact  "grp_id_intake_fact"
 				,grp_filters.rfrd_date "grp_rfrd_date"
+				,grp_filters.intk_grp_fl_cps_invs
+				,grp_filters.intk_grp_fl_far
+				,grp_filters.intk_grp_fl_risk_only
+				,grp_filters.intk_grp_fl_dlr fl_dlr
+				,iif(grp_filters.intake_grouper is null,tce.cd_access_type,grp_filters.intk_grp_cd_access_type) cd_access_type
 				,iif(grp_filters.intake_grouper is null,tce.intake_county_cd,grp_filters.intk_grp_intake_county_cd) intake_county_cd
 				,iif(grp_filters.intake_grouper is null,tce.inv_ass_start,grp_filters.intk_grp_inv_ass_start) inv_ass_start
 				,iif(grp_filters.intake_grouper is null,tce.rfrd_date,grp_filters.rfrd_date) rfrd_date
@@ -50,11 +61,6 @@ alter  view [prtl].[vw_referrals_grp] as
 																order by coalesce(grp_filters.rfrd_date,tce.rfrd_date)
 																				,coalesce(grp.intake_grouper,tce.id_intake_fact )asc) case_nth_order
 		from base.tbl_intakes  tce 
-		join (select distinct 0 date_type,[month]startDate,EOMONTH([month]) endDate
-					from calendar_dim cd
-					,ref_last_dw_transfer
-					where cd.CALENDAR_DATE>='2000-01-01' and EOMONTH([month]) < cutoff_date
-				) md on tce.inv_ass_start between md.startDate and md.endDate
 		left join base.tbl_intake_grouper grp on grp.id_intake_fact=tce.id_intake_fact
 		left join (
 					select grp.intake_grouper
@@ -64,6 +70,7 @@ alter  view [prtl].[vw_referrals_grp] as
 								, max(iif(grp.intk_grp_seq_nbr=1,fl_risk_only,0)) intk_grp_fl_risk_only
 								, max(iif(grp.intk_grp_seq_nbr=1,fl_far,0)) intk_grp_fl_far
 								, max(iif(grp.intk_grp_seq_nbr=1,fl_dlr,0)) intk_grp_fl_dlr
+								,  max(iif(grp.intk_grp_seq_nbr=1,intk.cd_access_type,0)) intk_grp_cd_access_type
 								, max(iif(grp.intk_grp_seq_nbr=1,fl_alternate_intervention,0)) intk_grp_fl_alternate_intervention
 								, max(iif(grp.intk_grp_seq_nbr=1,fl_cfws,0)) intk_grp_fl_cfws
 								, max(iif(grp.intk_grp_seq_nbr=1,fl_frs,0)) intk_grp_fl_frs
@@ -103,12 +110,16 @@ alter  view [prtl].[vw_referrals_grp] as
 										) hh_under_18 on hh_under_18.id_intake_fact=intk.id_intake_fact
 					group by grp.intake_grouper
 					) grp_filters on grp.intake_grouper=grp_filters.intake_grouper
+		join (select distinct 0 date_type,[month]startDate,EOMONTH([month]) endDate
+					from calendar_dim cd
+					,ref_last_dw_transfer
+					where cd.CALENDAR_DATE>='2000-01-01' and EOMONTH([month]) < cutoff_date
+				) md on grp_filters.intk_grp_inv_ass_start between  md.startDate and md.endDate
+
 
 
 
 
 GO
-
-
 
 
