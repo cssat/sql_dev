@@ -1,16 +1,17 @@
 USE [CA_ODS]
 GO
 
-/****** Object:  View [prtl].[vw_referrals_grp]    Script Date: 9/30/2014 10:16:09 AM ******/
+/****** Object:  View [prtl].[vw_referrals_grp]    Script Date: 10/3/2014 5:49:53 AM ******/
 DROP VIEW [prtl].[vw_referrals_grp]
 GO
 
-/****** Object:  View [prtl].[vw_referrals_grp]    Script Date: 9/30/2014 10:16:09 AM ******/
+/****** Object:  View [prtl].[vw_referrals_grp]    Script Date: 10/3/2014 5:49:53 AM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
 
 
 
@@ -41,7 +42,10 @@ CREATE  view [prtl].[vw_referrals_grp] as
 				,grp_filters.intk_grp_fl_risk_only
 				,grp_filters.intk_grp_fl_dlr fl_dlr
 				,iif(grp_filters.intake_grouper is null,tce.cd_access_type,grp_filters.intk_grp_cd_access_type) cd_access_type
-				,iif(grp_filters.intake_grouper is null,tce.intake_county_cd,grp_filters.intk_grp_intake_county_cd) intake_county_cd
+				,IIF(iif(grp_filters.intake_grouper is null,tce.intake_county_cd,grp_filters.intk_grp_intake_county_cd)=0
+						,-99
+						,iif(grp_filters.intake_grouper is null,tce.intake_county_cd,grp_filters.intk_grp_intake_county_cd)
+						) intake_county_cd
 				,iif(grp_filters.intake_grouper is null,tce.inv_ass_start,grp_filters.intk_grp_inv_ass_start) inv_ass_start
 				,iif(grp_filters.intake_grouper is null,tce.rfrd_date,grp_filters.rfrd_date) rfrd_date
 				, iif(grp_filters.intake_grouper is null,tce.fl_phys_abuse,iif(cnt_intk_grp_phys_abuse>0,1,0)) fl_phys_abuse
@@ -115,6 +119,7 @@ CREATE  view [prtl].[vw_referrals_grp] as
 					,ref_last_dw_transfer
 					where cd.CALENDAR_DATE>='2000-01-01' and EOMONTH([month]) < cutoff_date
 				) md on grp_filters.intk_grp_inv_ass_start between  md.startDate and md.endDate
+
 
 
 
