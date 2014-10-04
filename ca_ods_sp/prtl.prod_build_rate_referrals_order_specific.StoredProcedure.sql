@@ -110,9 +110,5 @@ left join (select measurement_year,county_cd,sum(pop_cnt) tot_pop
 order by refC.county_cd,mnth.[MONTH],n.nth_order
 		
 
-select * from prtl.rate_referrals_order_specific order by county_cd,start_date,nth_order
+--select * from prtl.rate_referrals_order_specific order by county_cd,start_date,nth_order
 
-
-
-
---  

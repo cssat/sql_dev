@@ -36,7 +36,7 @@ as
 -- this table is the "AT RISK of NTH ORDER"  aggregate Screened-in Referrals
 -- the intakes included here are from households that  have N-1 SCREENED IN Referrals
 --check to be sure the kids are still under 18 and at risk
--- LOH 
+
 	if OBJECT_ID('tempDB..#priorOrder') is not null drop table #priorOrder;
 	select [month]
 			,n.nth_order
@@ -114,8 +114,7 @@ as
 		ON #scrn_in ([intake_county_cd])
 		INCLUDE ([cohort_entry_date],[intake_grouper],[id_case],[nth_order])
 
-		--this is the count by order of referrals and prior referrals where the case is at risk for an "Nth" order screened in referral...
-		-- this includes "N-1 order"
+		--this is the count by  "Nth" order screened in referral...
 			if OBJECT_ID('tempDB..#referrals') is not null drop table #referrals;
 			select   0 date_type
 						, 2 qry_type
