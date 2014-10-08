@@ -37,10 +37,26 @@ CREATE  view [prtl].[vw_referrals_grp] as
 				,grp.intk_grp_seq_nbr
 				,grp_filters.intk_grp_id_intake_fact  "grp_id_intake_fact"
 				,grp_filters.rfrd_date "grp_rfrd_date"
-				,grp_filters.intk_grp_fl_cps_invs
-				,grp_filters.intk_grp_fl_far
-				,grp_filters.intk_grp_fl_risk_only
-				,grp_filters.intk_grp_fl_dlr fl_dlr
+				, case when coalesce( grp_filters.intk_grp_fl_dlr,fl_dlr) >0 then 7
+							when coalesce( grp_filters.intk_grp_fl_cps_invs,fl_cps_invs)>0 then 1
+							when coalesce( grp_filters.intk_grp_fl_risk_only,fl_risk_only)>0 then 4
+							when coalesce( grp_filters.intk_grp_fl_far,fl_far)>0 then 6
+							when coalesce( grp_filters.intk_grp_fl_alternate_intervention,fl_alternate_intervention)>0 then 2
+							when coalesce( grp_filters.intk_grp_fl_frs,fl_frs)>0 then 3
+							when coalesce( grp_filters.intk_grp_fl_cfws,fl_cfws)>0 then 5
+							when tce.cd_access_type=1 then 1
+							when tce.cd_access_type=4 then 4
+							when tce.cd_access_type=2 and tx_asgn_type='FRS' then 3
+							when tce.cd_access_type=2 and tx_asgn_type='CFWS' then 5
+							when tce.cd_access_type=2 and tx_asgn_type='CFWS' then 5
+							end   [entry_point]
+				,iif(grp_filters.intake_grouper is not null and grp_filters.intk_grp_fl_cps_invs>=1,1,0) intk_grp_fl_cps_invs
+				,iif(grp_filters.intake_grouper is not null and grp_filters.intk_grp_fl_far>=1,1,0) intk_grp_fl_far
+				,iif(grp_filters.intake_grouper is not null and grp_filters.intk_grp_fl_risk_only>=1,1,0) intk_grp_fl_risk_only
+				,iif(grp_filters.intake_grouper is not null and grp_filters.intk_grp_fl_cfws>=1,1,0)  intk_grp_fl_cfws
+				,iif(grp_filters.intake_grouper is not null and grp_filters.intk_grp_fl_dlr>=1,1,0)  fl_dlr
+				,iif(grp_filters.intake_grouper is not null and grp_filters.intk_grp_fl_alternate_intervention>=1,1,0)  intk_grp_fl_alternate_intervention
+				,iif(grp_filters.intake_grouper is not null and grp_filters.intk_grp_fl_frs>=1,1,0)  intk_grp_fl_frs
 				,iif(grp_filters.intake_grouper is null,tce.cd_access_type,grp_filters.intk_grp_cd_access_type) cd_access_type
 				,IIF(iif(grp_filters.intake_grouper is null,tce.intake_county_cd,grp_filters.intk_grp_intake_county_cd)=0
 						,-99
@@ -66,18 +82,17 @@ CREATE  view [prtl].[vw_referrals_grp] as
 																				,coalesce(grp.intake_grouper,tce.id_intake_fact )asc) case_nth_order
 		from base.tbl_intakes  tce 
 		left join base.tbl_intake_grouper grp on grp.id_intake_fact=tce.id_intake_fact
-		left join (
-					select grp.intake_grouper
+		left join (select grp.intake_grouper
 								, max(iif(grp.intk_grp_seq_nbr=1,grp.id_case,null)) grp_id_case
 								, max(iif(grp.intk_grp_seq_nbr=1,rfrd_date,null)) rfrd_date
-								, max(iif(grp.intk_grp_seq_nbr=1,fl_cps_invs,0)) intk_grp_fl_cps_invs
-								, max(iif(grp.intk_grp_seq_nbr=1,fl_risk_only,0)) intk_grp_fl_risk_only
-								, max(iif(grp.intk_grp_seq_nbr=1,fl_far,0)) intk_grp_fl_far
-								, max(iif(grp.intk_grp_seq_nbr=1,fl_dlr,0)) intk_grp_fl_dlr
-								,  max(iif(grp.intk_grp_seq_nbr=1,intk.cd_access_type,0)) intk_grp_cd_access_type
-								, max(iif(grp.intk_grp_seq_nbr=1,fl_alternate_intervention,0)) intk_grp_fl_alternate_intervention
-								, max(iif(grp.intk_grp_seq_nbr=1,fl_cfws,0)) intk_grp_fl_cfws
-								, max(iif(grp.intk_grp_seq_nbr=1,fl_frs,0)) intk_grp_fl_frs
+								, sum(coalesce(fl_cps_invs,0)) intk_grp_fl_cps_invs
+								, sum(coalesce(fl_risk_only,0)) intk_grp_fl_risk_only
+								, sum(coalesce(fl_far,0)) intk_grp_fl_far
+								, sum(coalesce(fl_dlr,0)) intk_grp_fl_dlr
+								, sum(coalesce(fl_alternate_intervention,0)) intk_grp_fl_alternate_intervention
+								, sum(coalesce(fl_cfws,0)) intk_grp_fl_cfws
+								, sum(coalesce(fl_frs,0)) intk_grp_fl_frs
+								,  min(coalesce(intk.cd_access_type,0)) intk_grp_cd_access_type
 								, max(iif(grp.intk_grp_seq_nbr=1,cd_reporter,0)) intk_grp_cd_reporter_type
 								, max(iif(grp.intk_grp_seq_nbr=1,cd_race_census,0)) intk_grp_cd_race_census
 								,max(iif(grp.intk_grp_seq_nbr=1,census_hispanic_latino_origin_cd,0)) intk_grp_census_hispanic_latino_origin_cd
@@ -117,12 +132,26 @@ CREATE  view [prtl].[vw_referrals_grp] as
 		join (select distinct 0 date_type,[month]startDate,EOMONTH([month]) endDate
 					from calendar_dim cd
 					,ref_last_dw_transfer
-					where cd.CALENDAR_DATE>='2000-01-01' and EOMONTH([month]) < cutoff_date
-				) md on grp_filters.intk_grp_inv_ass_start between  md.startDate and md.endDate
+					where cd.CALENDAR_DATE>='1999-07-01' and EOMONTH([month]) < cutoff_date
+				) md on tce.inv_ass_start between  md.startDate and md.endDate
+			where tce.id_case>0 and tce.tx_spvr_rsn not in ('*INVALID*','Provider Infraction','Information Only')
+			and case when coalesce( grp_filters.intk_grp_fl_dlr,fl_dlr) >0 then 7
+							when coalesce( grp_filters.intk_grp_fl_cps_invs,fl_cps_invs)>0 then 1
+							when coalesce( grp_filters.intk_grp_fl_risk_only,fl_risk_only)>0 then 4
+							when coalesce( grp_filters.intk_grp_fl_far,fl_far)>0 then 6
+							when coalesce( grp_filters.intk_grp_fl_alternate_intervention,fl_alternate_intervention)>0 then 2
+							when coalesce( grp_filters.intk_grp_fl_frs,fl_frs)>0 then 3
+							when coalesce( grp_filters.intk_grp_fl_cfws,fl_cfws)>0 then 5
+							when tce.cd_access_type=1 then 1
+							when tce.cd_access_type=4 then 4
+							when tce.cd_access_type=2 and tx_asgn_type='FRS' then 3
+							when tce.cd_access_type=2 and tx_asgn_type='CFWS' then 5
+							when tce.cd_access_type=2 and tx_asgn_type='CFWS' then 5
+							end is not null
 
 
 
-
+				
 
 
 GO

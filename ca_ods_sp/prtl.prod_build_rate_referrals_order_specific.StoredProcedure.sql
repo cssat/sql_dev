@@ -1,32 +1,31 @@
-----  exec prtl.prod_build_rate_referrals_order_specific
+----    exec prtl.prod_build_rate_referrals_order_specific
 
 alter procedure prtl.prod_build_rate_referrals_order_specific
 as
 
 	if OBJECT_ID('tempDB..#referrals') is not null drop table #referrals;
 	select tce.* 
-			,DENSE_RANK() over (partition by coalesce(grp_id_case,tce.id_intake_fact) 
-										order by coalesce(grp_rfrd_date,tce.rfrd_date)
-														,coalesce(intake_grouper,tce.id_intake_fact )asc) nth_order
+			,DENSE_RANK() over (partition by id_case
+							order by 
+								grp_rfrd_date
+								,intake_grouper asc) nth_order
 			,cast(null as datetime)  nxt_rfrd_date
 	into #referrals
 	from [prtl].[vw_referrals_grp] tce
-	where  tce.cd_access_type in (1,4) and fl_dlr=0
+	where  tce.entry_point!=7
 	and hh_with_children_under_18=1 
 
 	-- get next cps referral
-		update ref
-		set nxt_rfrd_date=nxt.rfrd_date
-		from #referrals ref
-		join #referrals nxt on ref.id_case=nxt.id_case and nxt.nth_order=ref.nth_order+1
+	update ref
+	set nxt_rfrd_date=nxt.rfrd_date
+	from #referrals ref
+	join #referrals nxt on ref.id_case=nxt.id_case and nxt.nth_order=ref.nth_order+1
 
-		--select count(*) from #referrals where cd_final_decision=1 541793
+	--select count(*) from #referrals where cd_final_decision=1 541793
 
-
-
-CREATE NONCLUSTERED INDEX idx_start_date_nxt_rfrd_date_id_case_nth_order_scrn
-ON #referrals (cohort_entry_date,[nxt_rfrd_date])
-INCLUDE ([id_case],[nth_order])
+	CREATE NONCLUSTERED INDEX idx_start_date_nxt_rfrd_date_id_case_nth_order_scrn
+	ON #referrals (cohort_entry_date,[nxt_rfrd_date])
+	INCLUDE ([id_case],[nth_order])
 
 
 --- get nth order At Risk households

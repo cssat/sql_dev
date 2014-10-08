@@ -1,27 +1,51 @@
 -- exec prtl.[prod_build_rate_placement_order_specific]
 
---alter procedure prtl.[prod_build_rate_placement_order_specific]
---as
+alter procedure prtl.[prod_build_rate_placement_order_specific]
+as
 
 		if OBJECT_ID('tempDB..#scrn_in') is not null drop table #scrn_in;
-		select  
+		select distinct 
 				  cohort_entry_date
 				, intake_grouper
 				, grp_id_intake_fact
 				, grp_rfrd_date "rfrd_date"
+				, id_intake_fact
 				, id_case
 				, intake_county_cd
-				, id_intake_fact
+				, cd_final_decision
 				, DENSE_RANK() over 
 					(partition by id_case
 							order by 
 								grp_rfrd_date
 								,intake_grouper asc) nth_order
+			,cast(null as datetime) as nxt_rfrd_date
+			,cast(null as datetime) as prior_scrn_in_rfrd_date
+			,cast(null as int) as running_plcm_cnt
 		into #scrn_in
 		from [prtl].[vw_referrals_grp] tce
-		where  tce.cd_access_type in (1,4) and fl_dlr=0
-		and hh_with_children_under_18=1  and cd_final_decision=1
+		where  entry_point<>7 -- DLR
+		and hh_with_children_under_18=1  
+		and cd_final_decision=1
+	
 
+		--get next screened in referral
+		update ref
+		set nxt_rfrd_date=nxt.rfrd_date
+		from #scrn_in ref
+		join #scrn_in nxt on ref.id_case=nxt.id_case 
+		and nxt.nth_order=ref.nth_order+1
+	 
+		
+		-- first set prior screened in for all screened in intakes
+		update ref
+		set prior_scrn_in_rfrd_date=pri.rfrd_date
+		from #scrn_in ref
+		join #scrn_in pri on ref.id_case=pri.id_case 
+		and pri.nth_order=ref.nth_order-1
+		and pri.cd_final_decision=1
+		and ref.cd_final_decision=1
+
+	
 if OBJECT_ID('tempDB..#cases_intakes_placements') is not null drop table #cases_intakes_placements
 select distinct 0 date_type,2 qry_type
 				,intk.grp_id_intake_fact
@@ -32,14 +56,14 @@ select distinct 0 date_type,2 qry_type
 				,q.id_removal_episode_fact
 				,intk.rfrd_date
 				,q.removal_dt
-				,q.federal_discharge_date
-				,q.trh_begin_date
-				,q.trh_end_date
+				,q.discharge_dt
+				--,q.trh_begin_date
+				--,q.trh_end_date
 				,DATEFROMPARTS(year(q.removal_dt),month(q.removal_dt),1) cohort_date
-				,DENSE_RANK() over (partition by q.id_case order by q.removal_dt asc) nth_order
+				,DENSE_RANK() over (partition by intk.id_case order by q.removal_dt asc) nth_order
 into #cases_intakes_placements
 from #scrn_in intk
- join (
+  join (
 	select eps.id_case
 		,id_intake_fact
 		,eps.id_removal_episode_fact
@@ -48,12 +72,12 @@ from #scrn_in intk
 		,IIF(eps.discharge_dt>dateadd(yy,18,eps.birthdate) 
 						and dateadd(yy,18,eps.birthdate)  < cutoff_date
 				,dateadd(yy,18,eps.birthdate) 
-				,eps.discharge_dt) federal_discharge_date
-				,trh.trh_begin_date
-				,trh.trh_end_date
+				,eps.discharge_dt) discharge_dt
+				--,trh.trh_begin_date
+				--,trh.trh_end_date
 	 from  base.rptPlacement   eps
 	 join ref_last_dw_transfer dw on dw.cutoff_date=dw.cutoff_date
-	 left join trial_return_home_placement_spans trh on trh.id_removal_episode_fact=eps.id_removal_episode_fact
+	 --left join trial_return_home_placement_spans trh on trh.id_removal_episode_fact=eps.id_removal_episode_fact
 	 where id_intake_fact is not null 
 		and age_at_removal_mos< (18*12)
 		and not exists(select * from  vw_nondcfs_combine_adjacent_segments nd 
@@ -61,32 +85,132 @@ from #scrn_in intk
 							and eps.removal_dt between nd.cust_begin and nd.cust_end
 							and  eps.discharge_dt between nd.cust_begin and  nd.cust_end) 
 		 ) q on q.id_intake_fact=intk.id_intake_fact
-
--- select * from #cases_intakes_placements order by id_case_removal,nth_order
-
-select count(*) from base.rptPlacement eps where id_intake_fact is not null 
-and  age_at_removal_mos< (18*12)
-and not exists(select * from  vw_nondcfs_combine_adjacent_segments nd 
-					where  nd.id_prsn=eps.child 
-							and eps.removal_dt between nd.cust_begin and nd.cust_end
-							and  eps.discharge_dt between nd.cust_begin and  nd.cust_end) 
-
-truncate table prtl.rate_placement_order_specific
-insert into prtl.rate_placement_order_specific(date_type,qry_type,cohort_date,nth_order,county_cd,cnt_nth_order_placement_cases,cnt_prior_order_placement_cases,placement_rate)
-select  0 date_type
-		,2 qry_type
-		,mnth.cohort_date
-		,nth_order.number nth_order
-		,cnty.county_cd
-		,coalesce(cnt_case,0) cnt_nth_order_placement_cases
-		,coalesce(cnt_prior_case,0) cnt_prior_order_placement_cases
-		,IIF(cnt_prior_case!=0 and cnt_case!=0,cnt_case/(cnt_prior_case * 1.0000) * 1000,null) placement_rate
-from  (select distinct [Month] cohort_date from Calendar_dim ,ref_last_dw_transfer
-			where [Month] between '2000-01-01' and dateadd(mm,-1,cutoff_date)) mnth
-join ref_lookup_county cnty on cnty.county_cd between 0 and 39
-join numbers nth_order on nth_order.number between 1 and 5
-
-	where mnth.cohort_date >='2004-01-01'
-order by cnty.county_cd,number,mnth.cohort_date
+		join ref_last_dw_transfer d on d.cutoff_date=d.cutoff_date
+	where not exists(--exclude families with a child already in care
+								select id_case from base.rptPlacement sic where sic.id_case=q.id_case
+									and sic.removal_dt < DATEFROMPARTS(year(q.removal_dt),month(q.removal_dt),1)
+									and --discharge date greater than removal date
+										 iif(sic.[18bday]<sic.discharge_dt 
+													and sic.discharge_dt <=d.cutoff_date , sic.[18bday] ,sic.discharge_dt)> q.removal_dt)
 
 
+update #scrn_in
+set running_plcm_cnt=plcm.nth_order
+from #cases_intakes_placements plcm 
+where plcm.id_intake_fact=#scrn_in.id_intake_fact
+
+--remove intakes where placement between removal_dt & discharge_dt
+delete si 
+--select si.*
+from #scrn_in  si 
+where exists(select * from #cases_intakes_placements si2 where si2.id_case=si.id_case
+					and convert(varchar(10),si.rfrd_date,121) between si2.removal_dt and si2.discharge_dt
+					and si2.id_intake_fact!=si.id_intake_fact)
+and running_plcm_cnt is null
+
+--update prior next & nth order
+
+update si
+set si.nth_order=scrn_rev.nth_order_rev
+from #scrn_in si 
+join (select *,	 DENSE_RANK() over 
+					(partition by id_case
+							order by 
+								rfrd_date
+								,intake_grouper asc) nth_order_rev
+			from #scrn_in) scrn_rev on scrn_rev.id_intake_fact=si.id_intake_fact
+
+
+
+		--get next screened in referral
+		update ref
+		set nxt_rfrd_date=nxt.rfrd_date
+		from #scrn_in ref
+		join #scrn_in nxt on ref.id_case=nxt.id_case 
+		and nxt.nth_order=ref.nth_order+1
+	 
+		
+		-- first set prior screened in for all screened in intakes
+		update ref
+		set prior_scrn_in_rfrd_date=pri.rfrd_date
+		from #scrn_in ref
+		join #scrn_in pri on ref.id_case=pri.id_case 
+		and pri.nth_order=ref.nth_order-1
+		and pri.cd_final_decision=1
+		and ref.cd_final_decision=1
+
+
+
+set nocount off
+declare @rowcount int=1
+while @rowcount > 0
+begin
+		update nxt
+		set running_plcm_cnt=curr.running_plcm_cnt
+		from #scrn_in curr
+		join #scrn_in nxt on nxt.id_case=curr.id_case
+		and nxt.nth_order=curr.nth_order + 1
+		where curr.running_plcm_cnt is not null
+		and nxt.running_plcm_cnt is null;
+		set @rowcount=@@ROWCOUNT
+end
+update  #scrn_in 
+set running_plcm_cnt=0
+where running_plcm_cnt is null;
+
+
+
+
+alter table prtl.rate_placement_order_specific NOCHECK constraint ALL;
+truncate table prtl.rate_placement_order_specific;
+insert into prtl.rate_placement_order_specific(date_type,qry_type,cohort_date,county_cd,nth_order,cnt_nth_order_placement_cases,cnt_prior_order_si_referrals,placement_rate)
+select  0 date_type,2 qry_type,mnth.[MONTH] [start_date],refC.county_cd,n.nth_order
+		,coalesce(plc.cnt_hh_w_plcm,0) cnt_hh_w_plcm
+		,coalesce(cnt_referrals,0) cnt_referrals
+		,iif(cnt_referrals>0,cnt_hh_w_plcm/(cnt_referrals*1.0000) * 1000,null) rate
+from    (select distinct [month] from calendar_dim 
+				where calendar_date between '2004-01-01' and (select dateadd(m,-1,(select cutoff_date from ref_last_dw_transfer)))
+				) mnth
+ join ref_lookup_county refC on refC.county_cd between 0 and 39
+ join (select number nth_order from numbers ) n on n.nth_order between 1 and 3
+left  join (
+ 		select cohort_date,cnty.cd_cnty county_cd
+		,count(distinct id_case)   cnt_hh_w_plcm
+		,nth_order
+		from #cases_intakes_placements 
+		join prm_cnty cnty on cnty.match_code=intake_county_cd
+		group by cohort_date,cnty.cd_cnty,nth_order
+		) plc on plc.cohort_date=mnth.[MONTH]
+		and plc.county_cd=refC.county_cd
+		and plc.nth_order=n.nth_order
+left join  (
+		select  cohort_entry_date cohort_date,cnty.cd_cnty county_cd,count(distinct intake_grouper) cnt_referrals
+		,n.nth_order
+		from #scrn_in si
+		join prm_cnty cnty on cnty.match_code=si.intake_county_cd
+		 join (select number nth_order from numbers ) n on n.nth_order between 1 and 3
+		where (si.running_plcm_cnt=n.nth_order-1  or (si.running_plcm_cnt=n.nth_order and si.nth_order=n.nth_order))
+			group by cohort_entry_date ,cnty.cd_cnty,n.nth_order
+		--order by cohort_date
+			) intk on intk.cohort_date=mnth.[MONTH]
+		and intk.county_cd=refC.county_cd
+		and intk.nth_order=n.nth_order
+		order by refC.county_cd,start_date,nth_order
+
+alter table prtl.rate_placement_order_specific CHECK constraint ALL;
+-- select * from #cases_intakes_placements where id_case=9 order by id_case_removal,nth_order
+
+--select distinct id_removal_episode_fact from base.rptPlacement eps where id_intake_fact is not null 
+--and  age_at_removal_mos< (18*12)
+--and not exists(select * from  vw_nondcfs_combine_adjacent_segments nd 
+--					where  nd.id_prsn=eps.child 
+--							and eps.removal_dt between nd.cust_begin and nd.cust_end
+--							and  eps.discharge_dt between nd.cust_begin and  nd.cust_end) 
+--and id_intake_fact in (select id_intake_fact from #scrn_in)
+
+
+--select * from  prtl.rate_placement_order_specific  order by county_cd,cohort_date,nth_order
+
+--select  *  from #scrn_in  order by id_case,nth_order
+
+select * from ref_filter_access_type
