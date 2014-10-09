@@ -213,4 +213,3 @@ alter table prtl.rate_placement_order_specific CHECK constraint ALL;
 
 --select  *  from #scrn_in  order by id_case,nth_order
 
-select * from ref_filter_access_type

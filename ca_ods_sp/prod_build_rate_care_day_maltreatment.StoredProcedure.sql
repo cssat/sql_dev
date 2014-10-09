@@ -1,8 +1,7 @@
 
---drop procedure prtl.prod_build_rate_care_day_finding
---as
 
-truncate table prtl.rate_care_day_maltreatment
+create procedure prtl.prod_build_rate_care_day_maltreatment
+as 
 insert into  prtl.rate_care_day_maltreatment(date_type,qry_type,fiscal_yr,county_cd
 	,care_days,cnt_incidents,care_day_finding_rate)
 select  0 date_type,2 qry_type

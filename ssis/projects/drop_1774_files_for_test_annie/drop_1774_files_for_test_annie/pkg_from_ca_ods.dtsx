@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="pkg_from_ca_ods"
   DTS:PackageType="5"
-  DTS:VersionBuild="314"
-  DTS:VersionGUID="{AD7AFD65-B393-4973-9DF6-621CF858FE99}">
+  DTS:VersionBuild="316"
+  DTS:VersionGUID="{D52BDB52-2853-44A2-BB80-487C36AB7928}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -32,7 +32,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\files for test_annie\20141002\rate_referrals_order_specific.txt">
+          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\files for test_annie\20141008\rate_referrals_order_specific.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -143,7 +143,7 @@
           <DTS:Password
             DTS:Name="password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAhI38TGEhtEyEWgJNF8222gAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAZ4LVtgQNg6DjVJJsElwDCAAAAAASAAACgAAAAEAAAAI1ZctR7fGI18ildUwwwp/kYAAAAqDuk8aHIhS0YkDXJWqg6Yx36Lebj3Vv6FAAAALcTb3Hxm9kPMHeQd8MaC1BMBlbx</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAhI38TGEhtEyEWgJNF8222gAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADP+w49SRGbg8DPBRPqfDhqAAAAAASAAACgAAAAEAAAAO2te7jrEExChYGtrjG1JVwYAAAAONk9Q5OoXLBYuProsbJ7cawDvS96OPXrFAAAAKPJQv1J2bQ95aJkUL0KVC8+Ccgv</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -162,7 +162,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\files for test_annie\20141002\rate_care_day_finding.txt">
+          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\files for test_annie\20141008\rate_care_day_finding.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -241,7 +241,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\files for test_annie\20141002\rate_placement.txt">
+          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\files for test_annie\20141008\rate_placement.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -249,7 +249,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="date_type"
-              DTS:DTSID="{159BE12E-88AB-405A-966C-36DB784B1C06}"
+              DTS:DTSID="{87EF2F6D-C28F-4750-A2D5-7721BC35FA7D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -257,7 +257,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="qry_type"
-              DTS:DTSID="{29DF14D3-9623-4FCA-B59C-4F21ED163E1E}"
+              DTS:DTSID="{75BE97F8-8CCA-40BF-A741-F98E78C0B7A1}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -265,7 +265,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="cohort_date"
-              DTS:DTSID="{55B4D76E-D2B5-4194-8EBF-87FFF76E6885}"
+              DTS:DTSID="{B2CAF465-8053-4FAD-A1A9-523E50DB0ED0}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -273,15 +273,23 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="county_cd"
-              DTS:DTSID="{3321B838-FA87-4733-9325-E4922302861D}"
+              DTS:DTSID="{478B1CEA-7D10-4256-9099-ABA547FAAC92}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="entry_point"
+              DTS:DTSID="{29382CAF-C18D-4F95-9DF1-0150D916054D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
               DTS:ColumnDelimiter="_x007C_"
               DTS:DataType="3"
               DTS:TextQualified="True"
-              DTS:ObjectName="cnt_placement"
-              DTS:DTSID="{F976B9E5-0F92-4F8D-98A9-70A8FF381B35}"
+              DTS:ObjectName="cnt_hh_w_plcm"
+              DTS:DTSID="{E45D2CE6-9F6D-4BAB-A9A0-D14AFC63845F}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -289,7 +297,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_referrals_u18"
-              DTS:DTSID="{0E19B344-D422-4BC5-8E71-D64E5F1DF6B9}"
+              DTS:DTSID="{E53734F0-8B5D-4E4F-B489-177746A4FFAA}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -299,7 +307,7 @@
               DTS:DataScale="9"
               DTS:TextQualified="True"
               DTS:ObjectName="rate_placement"
-              DTS:DTSID="{8C99017F-0C91-4BA6-BFB4-E407CDDBEE29}"
+              DTS:DTSID="{656A1466-2DF7-4883-8571-6DA305B8FFFB}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -320,7 +328,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\files for test_annie\20141002\rate_placement_order_specific.txt">
+          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\files for test_annie\20141008\rate_placement_order_specific.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -328,7 +336,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="date_type"
-              DTS:DTSID="{F388A3C0-0E48-4A33-B17E-9351F200733D}"
+              DTS:DTSID="{AF22C1D0-CE6E-46B9-939B-BF857A8B6AC7}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -336,7 +344,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="qry_type"
-              DTS:DTSID="{5660B83D-8D2C-43E3-B076-61EF6DD78677}"
+              DTS:DTSID="{DA45C3E1-51BE-4C0E-8CD9-5C11FDAAF57C}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -344,7 +352,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="cohort_date"
-              DTS:DTSID="{A556EC7E-B3AF-4C9C-8AB7-F1259225AA31}"
+              DTS:DTSID="{24724DF9-46E3-4F3E-A974-FD6A238143E8}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -352,7 +360,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="nth_order"
-              DTS:DTSID="{2BB783CC-EEB7-4BB8-BE96-0E75DC84F448}"
+              DTS:DTSID="{6C2FB32E-DF61-4CDD-BF78-C6D0F254F4E2}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -360,7 +368,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="county_cd"
-              DTS:DTSID="{BF7CE236-ACF4-4A31-BA2B-E8E0E4AA8653}"
+              DTS:DTSID="{6ED625CA-E977-4ECE-9F7A-8A54A66FB7AC}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -368,15 +376,15 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_nth_order_placement_cases"
-              DTS:DTSID="{FB542BB0-C879-4CC8-B396-D7DFE6A7E104}"
+              DTS:DTSID="{911C2014-C85C-4B2F-A442-9DE15124D9D5}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
               DTS:ColumnDelimiter="_x007C_"
               DTS:DataType="3"
               DTS:TextQualified="True"
-              DTS:ObjectName="cnt_prior_order_placement_cases"
-              DTS:DTSID="{CA0D936D-0C15-415B-B05E-4EC279091DAA}"
+              DTS:ObjectName="cnt_prior_order_si_referrals"
+              DTS:DTSID="{2D0B26D4-FD84-4858-A267-A2618C9F88BD}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -386,7 +394,7 @@
               DTS:DataScale="9"
               DTS:TextQualified="True"
               DTS:ObjectName="placement_rate"
-              DTS:DTSID="{D5096EDE-3E3C-408C-894B-07470C1B8A70}"
+              DTS:DTSID="{A1B69CD3-A33C-4C49-9E82-33A321FF74C1}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -408,7 +416,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\files for test_annie\20141002\rate_referrals.txt">
+          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\files for test_annie\20141008\rate_referrals.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -416,7 +424,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="qry_type"
-              DTS:DTSID="{3598C7B0-E3B5-4C88-8816-BE6BC7175CEF}"
+              DTS:DTSID="{0A4587EF-1ABB-491E-A746-19C57035E128}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -424,7 +432,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="date_type"
-              DTS:DTSID="{B320474F-F02A-43D9-8360-FB43DF65639D}"
+              DTS:DTSID="{8CDB308A-A859-4560-BC3A-17C13908665B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -432,7 +440,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="start_date"
-              DTS:DTSID="{89798F00-B7E8-4816-8475-4BCFF3F74B31}"
+              DTS:DTSID="{539A578D-DA84-4D62-8FB0-EB77CB694407}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -440,7 +448,15 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="county_cd"
-              DTS:DTSID="{525C4ABB-A30F-4753-AD10-D6516674FD10}"
+              DTS:DTSID="{92A6EC88-8602-4B08-8948-A4691FCFE779}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="entry_point"
+              DTS:DTSID="{833A340D-28C9-436B-B038-FED57C982CDB}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -448,7 +464,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_referrals"
-              DTS:DTSID="{5E2744BD-A6A7-40C7-A1AA-D3D6B847DC76}"
+              DTS:DTSID="{D2D4B8E4-90F9-4A51-AC57-52480ADAF0A8}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -456,7 +472,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="tot_pop"
-              DTS:DTSID="{36544BE5-4DF5-47BB-9DED-69FE460C1B58}"
+              DTS:DTSID="{2945636B-3FFB-48A3-A14B-EA3EAF866638}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -466,7 +482,7 @@
               DTS:DataScale="4"
               DTS:TextQualified="True"
               DTS:ObjectName="referral_rate"
-              DTS:DTSID="{3F68756D-DC3A-488D-B293-5FBB7B3CF427}"
+              DTS:DTSID="{15FDD705-504D-48F1-98D7-010311B7D3BC}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -487,7 +503,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\files for test_annie\20141002\rate_referrals_order_specific.txt">
+          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\files for test_annie\20141008\rate_referrals_order_specific.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -574,7 +590,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\files for test_annie\20141002\rate_referrals_scrn_in.txt">
+          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\files for test_annie\20141008\rate_referrals_scrn_in.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -582,7 +598,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="qry_type"
-              DTS:DTSID="{800CEACA-2240-40C6-913E-2D7F59078DD1}"
+              DTS:DTSID="{344F8554-792B-4D6E-B67A-00CA3F25D757}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -590,7 +606,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="date_type"
-              DTS:DTSID="{DDC648FA-6249-4E4F-A501-B09C3C56D0FD}"
+              DTS:DTSID="{DC7A5421-E5B4-4113-B0F6-2D2C342D336C}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -598,7 +614,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="start_date"
-              DTS:DTSID="{65B175C4-1744-41FC-B85C-948B55222F32}"
+              DTS:DTSID="{734B11A4-06E3-41E9-832B-E12B0ED562FA}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -606,7 +622,15 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="county_cd"
-              DTS:DTSID="{065ED945-6571-4D80-9532-D2BF72574878}"
+              DTS:DTSID="{5FE01DEC-E5E7-4054-AA9A-FD060C5FA1BB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="entry_point"
+              DTS:DTSID="{52F0DADE-94D0-49D9-BDC5-15EA0032B5CB}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -614,7 +638,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="cnt_referrals"
-              DTS:DTSID="{C571F168-313E-4831-9FB5-0A688ED21F28}"
+              DTS:DTSID="{5494C34A-55E9-49E2-A394-3408D0205C5A}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -622,7 +646,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="tot_pop"
-              DTS:DTSID="{22DD2596-A3A4-4DA8-BEF9-5FFBA73A634D}"
+              DTS:DTSID="{4D490477-3E3D-4D4E-A5C2-625F51B181C7}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -632,7 +656,7 @@
               DTS:DataScale="4"
               DTS:TextQualified="True"
               DTS:ObjectName="referral_rate"
-              DTS:DTSID="{C235C769-1460-47AC-A63A-E66119291BC6}"
+              DTS:DTSID="{073898A0-9CB0-4D99-B061-3A4461268259}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -653,7 +677,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\files for test_annie\20141002\rate_referrals_scrn_in_order_specific.txt">
+          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\files for test_annie\20141008\rate_referrals_scrn_in_order_specific.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -725,174 +749,6 @@
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[rate_referral_findings]"
-      DTS:CreationName="FLATFILE"
-      DTS:DTSID="{F7E8903D-BB2B-4A33-AF43-2492D19EE8FB}"
-      DTS:ObjectName="rate_referral_findings">
-      <DTS:PropertyExpression
-        DTS:Name="ConnectionString">@[User::dir] + "rate_referral_findings.txt"</DTS:PropertyExpression>
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:Format="Delimited"
-          DTS:LocaleID="1033"
-          DTS:HeaderRowDelimiter="_x000D__x000A_"
-          DTS:ColumnNamesInFirstDataRow="True"
-          DTS:RowDelimiter=""
-          DTS:TextQualifier="_x003C_none_x003E_"
-          DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\files for test_annie\20141002\rate_referral_findings.txt">
-          <DTS:FlatFileColumns>
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="qry_type"
-              DTS:DTSID="{DE697F50-EFA4-443F-841E-3E2C3506306F}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="date_type"
-              DTS:DTSID="{7481F046-FC4A-4B2D-A556-DC5BA8904BE7}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="135"
-              DTS:TextQualified="True"
-              DTS:ObjectName="start_date"
-              DTS:DTSID="{B4A56C53-5D75-4823-AA1C-2F51292094B7}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="county_cd"
-              DTS:DTSID="{49C5AF23-16D0-40D2-B72C-D4597DCBF8AC}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="cnt_referrals"
-              DTS:DTSID="{700E02EE-6097-4D3E-899F-858690CBFF9E}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="tot_pop"
-              DTS:DTSID="{A1F7BF41-92F1-4A5E-8C40-B61F23EC95C7}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x000D__x000A_"
-              DTS:DataType="131"
-              DTS:DataPrecision="9"
-              DTS:DataScale="4"
-              DTS:TextQualified="True"
-              DTS:ObjectName="referral_rate"
-              DTS:DTSID="{54819CDD-BB51-4AAF-B4A6-C7A50F79B0A1}"
-              DTS:CreationName="" />
-          </DTS:FlatFileColumns>
-        </DTS:ConnectionManager>
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[rate_referral_order_specific_findings]"
-      DTS:CreationName="FLATFILE"
-      DTS:DTSID="{99BDC17E-5EEF-44E6-B32B-D35D652B3B4B}"
-      DTS:ObjectName="rate_referral_order_specific_findings">
-      <DTS:PropertyExpression
-        DTS:Name="ConnectionString">@[User::dir] + "rate_referrals_order_specific_findings.txt"</DTS:PropertyExpression>
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:Format="Delimited"
-          DTS:LocaleID="1033"
-          DTS:HeaderRowDelimiter="_x000D__x000A_"
-          DTS:ColumnNamesInFirstDataRow="True"
-          DTS:RowDelimiter=""
-          DTS:TextQualifier="_x003C_none_x003E_"
-          DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\files for test_annie\20141002\rate_referrals_order_specific_findings.txt">
-          <DTS:FlatFileColumns>
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="nth_order"
-              DTS:DTSID="{90A4F2CA-91DF-47A6-8133-A00C9B19B6C1}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="135"
-              DTS:TextQualified="True"
-              DTS:ObjectName="cohort_entry_date"
-              DTS:DTSID="{34D8D8E5-E740-4C9D-8BCF-13155EE44B26}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="date_type"
-              DTS:DTSID="{710E7758-FCE6-41D0-8A1F-0802DCB944CA}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="qry_type"
-              DTS:DTSID="{2369BA43-99E1-402D-9A9E-4C20F3A2C77C}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="county_cd"
-              DTS:DTSID="{77144BB7-ADBD-4588-A972-6335DAD7859C}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="nth_order_cnt_referrals"
-              DTS:DTSID="{C26BBA60-30B8-43A2-B89E-222717BE3A8A}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="prior_order_cnt_households"
-              DTS:DTSID="{371F1EE0-1333-4B91-B92F-3825C9703ED4}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x000D__x000A_"
-              DTS:DataType="131"
-              DTS:DataPrecision="18"
-              DTS:DataScale="9"
-              DTS:TextQualified="True"
-              DTS:ObjectName="referral_rate"
-              DTS:DTSID="{97081B39-5F93-4943-91BE-F36DBDFCF4E8}"
-              DTS:CreationName="" />
-          </DTS:FlatFileColumns>
-        </DTS:ConnectionManager>
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables>
     <DTS:Variable
@@ -904,7 +760,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="dir">
       <DTS:VariableValue
-        DTS:DataType="8">\\poc2\pocshare\Data Portal\data\files for test_annie\20141002\</DTS:VariableValue>
+        DTS:DataType="8">\\poc2\pocshare\Data Portal\data\files for test_annie\20141008\</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -953,7 +809,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="localPath">
       <DTS:VariableValue
-        DTS:DataType="8">\\poc2\pocshare\Data Portal\data\files for test_annie\20141002\ref_match_allegation.txt</DTS:VariableValue>
+        DTS:DataType="8">\\poc2\pocshare\Data Portal\data\files for test_annie\20141008\ref_match_allegation.txt</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -1010,7 +866,7 @@
         <DTS:ObjectData>
           <ForEachFileEnumeratorProperties>
             <FEFEProperty
-              Folder="\\poc2\pocshare\Data Portal\data\files for test_annie\20141002\" />
+              Folder="\\poc2\pocshare\Data Portal\data\files for test_annie\20141008\" />
             <FEFEProperty
               FileSpec="*.txt" />
             <FEFEProperty
@@ -2158,7 +2014,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       DTS:refId="Package\rate_placement"
       DTS:CreationName="SSIS.Pipeline.3"
       DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
       DTS:DTSID="{70EC3DC3-D01C-4F77-B68B-08A9AFB90690}"
       DTS:ExecutableType="SSIS.Pipeline.3"
       DTS:LocaleID="-1"
@@ -2225,12 +2080,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       externalMetadataColumnId="Package\rate_placement\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[county_cd]"
                       lineageId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Output].Columns[county_cd]" />
                     <inputColumn
-                      refId="Package\rate_placement\Flat File Destination.Inputs[Flat File Destination Input].Columns[cnt_placement]"
-                      cachedDataType="i4"
-                      cachedName="cnt_placement"
-                      externalMetadataColumnId="Package\rate_placement\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cnt_placement]"
-                      lineageId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Output].Columns[cnt_placement]" />
-                    <inputColumn
                       refId="Package\rate_placement\Flat File Destination.Inputs[Flat File Destination Input].Columns[cnt_referrals_u18]"
                       cachedDataType="i4"
                       cachedName="cnt_referrals_u18"
@@ -2244,6 +2093,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       cachedScale="9"
                       externalMetadataColumnId="Package\rate_placement\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[rate_placement]"
                       lineageId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Output].Columns[rate_placement]" />
+                    <inputColumn
+                      refId="Package\rate_placement\Flat File Destination.Inputs[Flat File Destination Input].Columns[entry_point]"
+                      cachedDataType="i4"
+                      cachedName="entry_point"
+                      externalMetadataColumnId="Package\rate_placement\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[entry_point]"
+                      lineageId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Output].Columns[entry_point]" />
+                    <inputColumn
+                      refId="Package\rate_placement\Flat File Destination.Inputs[Flat File Destination Input].Columns[cnt_households_w_plcm]"
+                      cachedDataType="i4"
+                      cachedName="cnt_households_w_plcm"
+                      externalMetadataColumnId="Package\rate_placement\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cnt_hh_w_plcm]"
+                      lineageId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Output].Columns[cnt_households_w_plcm]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -2264,10 +2125,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       dataType="i4"
                       name="county_cd" />
                     <externalMetadataColumn
-                      refId="Package\rate_placement\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cnt_placement]"
-                      dataType="i4"
-                      name="cnt_placement" />
-                    <externalMetadataColumn
                       refId="Package\rate_placement\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cnt_referrals_u18]"
                       dataType="i4"
                       name="cnt_referrals_u18" />
@@ -2277,6 +2134,16 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       name="rate_placement"
                       precision="18"
                       scale="9" />
+                    <externalMetadataColumn
+                      refId="Package\rate_placement\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[entry_point]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="entry_point" />
+                    <externalMetadataColumn
+                      refId="Package\rate_placement\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cnt_hh_w_plcm]"
+                      dataType="i4"
+                      name="cnt_hh_w_plcm" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -2379,13 +2246,22 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       name="county_cd"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Output].Columns[cnt_placement]"
+                      refId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Output].Columns[entry_point]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cnt_placement]"
-                      lineageId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Output].Columns[cnt_placement]"
-                      name="cnt_placement"
+                      externalMetadataColumnId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[entry_point]"
+                      lineageId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Output].Columns[entry_point]"
+                      name="entry_point"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Output].Columns[cnt_households_w_plcm]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cnt_households_w_plcm]"
+                      lineageId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Output].Columns[cnt_households_w_plcm]"
+                      name="cnt_households_w_plcm"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Output].Columns[cnt_referrals_u18]"
@@ -2427,10 +2303,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       dataType="i4"
                       name="county_cd" />
                     <externalMetadataColumn
-                      refId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cnt_placement]"
-                      dataType="i4"
-                      name="cnt_placement" />
-                    <externalMetadataColumn
                       refId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cnt_referrals_u18]"
                       dataType="i4"
                       name="cnt_referrals_u18" />
@@ -2440,6 +2312,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       name="rate_placement"
                       precision="18"
                       scale="9" />
+                    <externalMetadataColumn
+                      refId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[entry_point]"
+                      dataType="i4"
+                      name="entry_point" />
+                    <externalMetadataColumn
+                      refId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cnt_households_w_plcm]"
+                      dataType="i4"
+                      name="cnt_households_w_plcm" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -2468,10 +2348,27 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       lineageId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[county_cd]"
                       name="county_cd" />
                     <outputColumn
-                      refId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cnt_placement]"
+                      refId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cnt_placement]"
-                      name="cnt_placement" />
+                      lineageId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[entry_point]"
+                      dataType="i4"
+                      lineageId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[entry_point]"
+                      name="entry_point" />
+                    <outputColumn
+                      refId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cnt_households_w_plcm]"
+                      dataType="i4"
+                      lineageId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cnt_households_w_plcm]"
+                      name="cnt_households_w_plcm" />
                     <outputColumn
                       refId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cnt_referrals_u18]"
                       dataType="i4"
@@ -2484,18 +2381,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       name="rate_placement"
                       precision="18"
                       scale="9" />
-                    <outputColumn
-                      refId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\rate_placement\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -2516,7 +2401,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       DTS:refId="Package\rate_placement_order_specific"
       DTS:CreationName="SSIS.Pipeline.3"
       DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
       DTS:DTSID="{6A5218CD-67FD-4C99-A44C-75310925A62A}"
       DTS:ExecutableType="SSIS.Pipeline.3"
       DTS:LocaleID="-1"
@@ -2595,12 +2479,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       externalMetadataColumnId="Package\rate_placement_order_specific\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cnt_nth_order_placement_cases]"
                       lineageId="Package\rate_placement_order_specific\OLE DB Source.Outputs[OLE DB Source Output].Columns[cnt_nth_order_placement_cases]" />
                     <inputColumn
-                      refId="Package\rate_placement_order_specific\Flat File Destination.Inputs[Flat File Destination Input].Columns[cnt_prior_order_placement_cases]"
-                      cachedDataType="i4"
-                      cachedName="cnt_prior_order_placement_cases"
-                      externalMetadataColumnId="Package\rate_placement_order_specific\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cnt_prior_order_placement_cases]"
-                      lineageId="Package\rate_placement_order_specific\OLE DB Source.Outputs[OLE DB Source Output].Columns[cnt_prior_order_placement_cases]" />
-                    <inputColumn
                       refId="Package\rate_placement_order_specific\Flat File Destination.Inputs[Flat File Destination Input].Columns[placement_rate]"
                       cachedDataType="numeric"
                       cachedName="placement_rate"
@@ -2608,6 +2486,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       cachedScale="9"
                       externalMetadataColumnId="Package\rate_placement_order_specific\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[placement_rate]"
                       lineageId="Package\rate_placement_order_specific\OLE DB Source.Outputs[OLE DB Source Output].Columns[placement_rate]" />
+                    <inputColumn
+                      refId="Package\rate_placement_order_specific\Flat File Destination.Inputs[Flat File Destination Input].Columns[cnt_prior_order_si_referrals]"
+                      cachedDataType="i4"
+                      cachedName="cnt_prior_order_si_referrals"
+                      externalMetadataColumnId="Package\rate_placement_order_specific\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cnt_prior_order_si_referrals]"
+                      lineageId="Package\rate_placement_order_specific\OLE DB Source.Outputs[OLE DB Source Output].Columns[cnt_prior_order_si_referrals]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -2636,15 +2520,15 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       dataType="i4"
                       name="cnt_nth_order_placement_cases" />
                     <externalMetadataColumn
-                      refId="Package\rate_placement_order_specific\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cnt_prior_order_placement_cases]"
-                      dataType="i4"
-                      name="cnt_prior_order_placement_cases" />
-                    <externalMetadataColumn
                       refId="Package\rate_placement_order_specific\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[placement_rate]"
                       dataType="numeric"
                       name="placement_rate"
                       precision="18"
                       scale="9" />
+                    <externalMetadataColumn
+                      refId="Package\rate_placement_order_specific\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[cnt_prior_order_si_referrals]"
+                      dataType="i4"
+                      name="cnt_prior_order_si_referrals" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -2765,15 +2649,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       name="cnt_nth_order_placement_cases"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\rate_placement_order_specific\OLE DB Source.Outputs[OLE DB Source Output].Columns[cnt_prior_order_placement_cases]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\rate_placement_order_specific\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cnt_prior_order_placement_cases]"
-                      lineageId="Package\rate_placement_order_specific\OLE DB Source.Outputs[OLE DB Source Output].Columns[cnt_prior_order_placement_cases]"
-                      name="cnt_prior_order_placement_cases"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\rate_placement_order_specific\OLE DB Source.Outputs[OLE DB Source Output].Columns[placement_rate]"
                       dataType="numeric"
                       errorOrTruncationOperation="Conversion"
@@ -2783,6 +2658,15 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       name="placement_rate"
                       precision="18"
                       scale="9"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\rate_placement_order_specific\OLE DB Source.Outputs[OLE DB Source Output].Columns[cnt_prior_order_si_referrals]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\rate_placement_order_specific\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cnt_prior_order_si_referrals]"
+                      lineageId="Package\rate_placement_order_specific\OLE DB Source.Outputs[OLE DB Source Output].Columns[cnt_prior_order_si_referrals]"
+                      name="cnt_prior_order_si_referrals"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
@@ -2812,15 +2696,15 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       dataType="i4"
                       name="cnt_nth_order_placement_cases" />
                     <externalMetadataColumn
-                      refId="Package\rate_placement_order_specific\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cnt_prior_order_placement_cases]"
-                      dataType="i4"
-                      name="cnt_prior_order_placement_cases" />
-                    <externalMetadataColumn
                       refId="Package\rate_placement_order_specific\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[placement_rate]"
                       dataType="numeric"
                       name="placement_rate"
                       precision="18"
                       scale="9" />
+                    <externalMetadataColumn
+                      refId="Package\rate_placement_order_specific\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cnt_prior_order_si_referrals]"
+                      dataType="i4"
+                      name="cnt_prior_order_si_referrals" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -2859,10 +2743,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       lineageId="Package\rate_placement_order_specific\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cnt_nth_order_placement_cases]"
                       name="cnt_nth_order_placement_cases" />
                     <outputColumn
-                      refId="Package\rate_placement_order_specific\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cnt_prior_order_placement_cases]"
+                      refId="Package\rate_placement_order_specific\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cnt_prior_order_si_referrals]"
                       dataType="i4"
-                      lineageId="Package\rate_placement_order_specific\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cnt_prior_order_placement_cases]"
-                      name="cnt_prior_order_placement_cases" />
+                      lineageId="Package\rate_placement_order_specific\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cnt_prior_order_si_referrals]"
+                      name="cnt_prior_order_si_referrals" />
                     <outputColumn
                       refId="Package\rate_placement_order_specific\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[placement_rate]"
                       dataType="numeric"
@@ -2987,6 +2871,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       cachedScale="4"
                       externalMetadataColumnId="Package\rate_referrals\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[referral_rate]"
                       lineageId="Package\rate_referrals\OLE DB Source.Outputs[OLE DB Source Output].Columns[referral_rate]" />
+                    <inputColumn
+                      refId="Package\rate_referrals\Flat File Destination.Inputs[Flat File Destination Input].Columns[entry_point]"
+                      cachedDataType="i4"
+                      cachedName="entry_point"
+                      externalMetadataColumnId="Package\rate_referrals\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[entry_point]"
+                      lineageId="Package\rate_referrals\OLE DB Source.Outputs[OLE DB Source Output].Columns[entry_point]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -3020,6 +2910,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       name="referral_rate"
                       precision="9"
                       scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\rate_referrals\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[entry_point]"
+                      dataType="i4"
+                      name="entry_point" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -3150,6 +3044,15 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       precision="9"
                       scale="4"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\rate_referrals\OLE DB Source.Outputs[OLE DB Source Output].Columns[entry_point]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\rate_referrals\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[entry_point]"
+                      lineageId="Package\rate_referrals\OLE DB Source.Outputs[OLE DB Source Output].Columns[entry_point]"
+                      name="entry_point"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -3183,6 +3086,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       name="referral_rate"
                       precision="9"
                       scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\rate_referrals\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[entry_point]"
+                      dataType="i4"
+                      name="entry_point" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -3210,6 +3117,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       dataType="i4"
                       lineageId="Package\rate_referrals\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[county_cd]"
                       name="county_cd" />
+                    <outputColumn
+                      refId="Package\rate_referrals\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[entry_point]"
+                      dataType="i4"
+                      lineageId="Package\rate_referrals\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[entry_point]"
+                      name="entry_point" />
                     <outputColumn
                       refId="Package\rate_referrals\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cnt_referrals]"
                       dataType="i4"
@@ -3729,6 +3641,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       cachedScale="4"
                       externalMetadataColumnId="Package\rate_referrals_scrn_in\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[referral_rate]"
                       lineageId="Package\rate_referrals_scrn_in\OLE DB Source.Outputs[OLE DB Source Output].Columns[referral_rate]" />
+                    <inputColumn
+                      refId="Package\rate_referrals_scrn_in\Flat File Destination.Inputs[Flat File Destination Input].Columns[entry_point]"
+                      cachedDataType="i4"
+                      cachedName="entry_point"
+                      externalMetadataColumnId="Package\rate_referrals_scrn_in\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[entry_point]"
+                      lineageId="Package\rate_referrals_scrn_in\OLE DB Source.Outputs[OLE DB Source Output].Columns[entry_point]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -3762,6 +3680,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       name="referral_rate"
                       precision="9"
                       scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\rate_referrals_scrn_in\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[entry_point]"
+                      dataType="i4"
+                      name="entry_point" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -3892,6 +3814,15 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       precision="9"
                       scale="4"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\rate_referrals_scrn_in\OLE DB Source.Outputs[OLE DB Source Output].Columns[entry_point]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\rate_referrals_scrn_in\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[entry_point]"
+                      lineageId="Package\rate_referrals_scrn_in\OLE DB Source.Outputs[OLE DB Source Output].Columns[entry_point]"
+                      name="entry_point"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -3925,6 +3856,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       name="referral_rate"
                       precision="9"
                       scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\rate_referrals_scrn_in\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[entry_point]"
+                      dataType="i4"
+                      name="entry_point" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -3952,6 +3887,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       dataType="i4"
                       lineageId="Package\rate_referrals_scrn_in\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[county_cd]"
                       name="county_cd" />
+                    <outputColumn
+                      refId="Package\rate_referrals_scrn_in\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[entry_point]"
+                      dataType="i4"
+                      lineageId="Package\rate_referrals_scrn_in\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[entry_point]"
+                      name="entry_point" />
                     <outputColumn
                       refId="Package\rate_referrals_scrn_in\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cnt_referrals]"
                       dataType="i4"
@@ -4489,6 +4429,40 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           Id="Package\get UserName &amp; password"
           TopLeft="596.920825540851,97.8874256775654" />
         <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="695.5,608">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="421.5,-289"
+              Start="0,0"
+              End="421.5,-281.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-140.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-140.5"
+                    Point2="0,-144.5"
+                    Point3="4,-144.5" />
+                  <mssgle:LineSegment
+                    End="417.5,-144.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="417.5,-144.5"
+                    Point2="421.5,-144.5"
+                    Point3="421.5,-148.5" />
+                  <mssgle:LineSegment
+                    End="421.5,-281.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
           TopLeft="944.108378452387,198.499064661125">
           <EdgeLayout.Curve>
@@ -4806,40 +4780,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             <s:String>Package.PrecedenceConstraints[Constraint 6]</s:String>
           </GroupLayout.ChildrenIds>
         </GroupLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="695.5,608">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="421.5,-289"
-              Start="0,0"
-              End="421.5,-281.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-140.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,-140.5"
-                    Point2="0,-144.5"
-                    Point3="4,-144.5" />
-                  <mssgle:LineSegment
-                    End="417.5,-144.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="417.5,-144.5"
-                    Point2="421.5,-144.5"
-                    Point3="421.5,-148.5" />
-                  <mssgle:LineSegment
-                    End="421.5,-281.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -4912,7 +4852,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     design-time-name="Package\rate_placement">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="174,42"
           Id="Package\rate_placement\Flat File Destination"
@@ -4952,9 +4892,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4977,7 +4915,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     design-time-name="Package\rate_placement_order_specific">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="152,42"
           Id="Package\rate_placement_order_specific\OLE DB Source"
@@ -5017,9 +4955,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5042,7 +4978,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     design-time-name="Package\rate_referrals">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="174,42"
           Id="Package\rate_referrals\Flat File Destination"
@@ -5082,9 +5018,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5169,81 +5103,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     </Properties>
   </PipelineComponentMetadata>
   <TaskHost
-    design-time-name="Package\rate_referrals_scrn_in_order_specific">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="152,42"
-          Id="Package\rate_referrals_scrn_in_order_specific\OLE DB Source"
-          TopLeft="134,198" />
-        <NodeLayout
-          Size="174,42"
-          Id="Package\rate_referrals_scrn_in_order_specific\Flat File Destination"
-          TopLeft="161,392" />
-        <EdgeLayout
-          Id="Package\rate_referrals_scrn_in_order_specific.Paths[OLE DB Source Output]"
-          TopLeft="210,240">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="38,152"
-              Start="0,0"
-              End="38,144.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,72" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,72"
-                    Point2="0,76"
-                    Point3="4,76" />
-                  <mssgle:LineSegment
-                    End="34,76" />
-                  <mssgle:CubicBezierSegment
-                    Point1="34,76"
-                    Point2="38,76"
-                    Point3="38,80" />
-                  <mssgle:LineSegment
-                    End="38,144.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\rate_referrals_scrn_in_order_specific\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
     design-time-name="Package\rate_referrals_scrn_in">
     <LayoutInfo>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="152,42"
-          Id="Package\rate_referrals_scrn_in\OLE DB Source"
-          TopLeft="176,151" />
-        <NodeLayout
           Size="174,42"
           Id="Package\rate_referrals_scrn_in\Flat File Destination"
           TopLeft="180,279" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\rate_referrals_scrn_in\OLE DB Source"
+          TopLeft="176,151" />
         <EdgeLayout
           Id="Package\rate_referrals_scrn_in.Paths[OLE DB Source Output]"
           TopLeft="252,193">
@@ -5283,6 +5154,71 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
   </TaskHost>
   <PipelineComponentMetadata
     design-time-name="Package\rate_referrals_scrn_in\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\rate_referrals_scrn_in_order_specific">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\rate_referrals_scrn_in_order_specific\OLE DB Source"
+          TopLeft="134,198" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\rate_referrals_scrn_in_order_specific\Flat File Destination"
+          TopLeft="161,392" />
+        <EdgeLayout
+          Id="Package\rate_referrals_scrn_in_order_specific.Paths[OLE DB Source Output]"
+          TopLeft="210,240">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="38,152"
+              Start="0,0"
+              End="38,144.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,72" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,72"
+                    Point2="0,76"
+                    Point3="4,76" />
+                  <mssgle:LineSegment
+                    End="34,76" />
+                  <mssgle:CubicBezierSegment
+                    Point1="34,76"
+                    Point2="38,76"
+                    Point3="38,80" />
+                  <mssgle:LineSegment
+                    End="38,144.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\rate_referrals_scrn_in_order_specific\OLE DB Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
