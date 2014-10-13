@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="buildLocalTables"
   DTS:PackageType="5"
-  DTS:VersionBuild="196"
-  DTS:VersionGUID="{5A352056-8389-455E-8C06-9ED7A814DC4E}">
+  DTS:VersionBuild="197"
+  DTS:VersionGUID="{725BFCCE-8E6D-435A-AA06-6AC2D829D409}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -4694,6 +4694,24 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\build_episode_care_days"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6304625D-20E8-4C6F-901E-440D6FEC01AC}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="build_episode_care_days"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{66AF7615-30EF-4D17-8E51-342714FB79C1}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="exec base.[prod_build_episode_care_days]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\build_placement_care_days_mobility"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
@@ -4707,7 +4725,8 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{66AF7615-30EF-4D17-8E51-342714FB79C1}"
-          SQLTask:SqlStatementSource="exec prtl.[prod_build_placement_care_days_mobility]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="exec base.[prod_build_placement_care_days_mobility]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -16527,14 +16546,6 @@ FROM            base.tbl_ihs_episodes</property>
       DTS:ObjectName="Constraint 20"
       DTS:To="Package\7 prod_update_tbl_intakes" />
     <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 21]"
-      DTS:CreationName=""
-      DTS:DTSID="{80338979-9AB5-411C-9BBC-EFE4D0099C02}"
-      DTS:From="Package\build_placement_care_days_mobility"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 21"
-      DTS:To="Package\16 prod_update_rptPlacement_after_basetables" />
-    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 22]"
       DTS:CreationName=""
       DTS:DTSID="{095620A4-1CB7-4A86-A9F0-9727B3821868}"
@@ -16566,6 +16577,22 @@ FROM            base.tbl_ihs_episodes</property>
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 25"
       DTS:To="Package\9 prod_build_tbls_ihs_episode_services" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 26]"
+      DTS:CreationName=""
+      DTS:DTSID="{FFCF73C4-091B-4788-B46B-A6F77EBB04A7}"
+      DTS:From="Package\build_placement_care_days_mobility"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 26"
+      DTS:To="Package\build_episode_care_days" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 27]"
+      DTS:CreationName=""
+      DTS:DTSID="{6F4244CE-9F30-481E-9325-7E598B39E66F}"
+      DTS:From="Package\build_episode_care_days"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 27"
+      DTS:To="Package\16 prod_update_rptPlacement_after_basetables" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 28]"
       DTS:CreationName=""
@@ -16822,18 +16849,18 @@ FROM            base.tbl_ihs_episodes</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 5]"
-          TopLeft="1202.75,1855">
+          TopLeft="1202.75,1837">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,-286"
+              EndConnector="0,-268"
               Start="0,0"
-              End="0,-278.5">
+              End="0,-260.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-278.5" />
+                    End="0,-260.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -17106,11 +17133,11 @@ FROM            base.tbl_ihs_episodes</property>
         <NodeLayout
           Size="263,42"
           Id="Package\14 build_placement_payment_services"
-          TopLeft="20,938.18867924528" />
+          TopLeft="20,894.18867924528" />
         <NodeLayout
           Size="243,42"
           Id="Package\15 build episode payment services"
-          TopLeft="20,1038.18867924528" />
+          TopLeft="20,964.18867924528" />
         <NodeLayout
           Size="201,42"
           Id="Package\13 build WRK_TRHEvents"
@@ -17439,26 +17466,26 @@ FROM            base.tbl_ihs_episodes</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="23.5188679245283,81.8584905660372"
+              EndConnector="23.5188679245283,37.8584905660372"
               Start="0,0"
-              End="23.5188679245283,74.3584905660372">
+              End="23.5188679245283,30.3584905660372">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,36.9292452830186" />
+                    End="0,14.9292452830186" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,36.9292452830186"
-                    Point2="0,40.9292452830186"
-                    Point3="4,40.9292452830186" />
+                    Point1="0,14.9292452830186"
+                    Point2="0,18.9292452830186"
+                    Point3="4,18.9292452830186" />
                   <mssgle:LineSegment
-                    End="19.5188679245283,40.9292452830186" />
+                    End="19.5188679245283,18.9292452830186" />
                   <mssgle:CubicBezierSegment
-                    Point1="19.5188679245283,40.9292452830186"
-                    Point2="23.5188679245283,40.9292452830186"
-                    Point3="23.5188679245283,44.9292452830186" />
+                    Point1="19.5188679245283,18.9292452830186"
+                    Point2="23.5188679245283,18.9292452830186"
+                    Point3="23.5188679245283,22.9292452830186" />
                   <mssgle:LineSegment
-                    End="23.5188679245283,74.3584905660372" />
+                    End="23.5188679245283,30.3584905660372" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -17469,30 +17496,30 @@ FROM            base.tbl_ihs_episodes</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 19]"
-          TopLeft="151.5,980.18867924528">
+          TopLeft="151.5,936.18867924528">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-10,58.0000000000027"
+              EndConnector="-10,27.9999999999995"
               Start="0,0"
-              End="-10,50.5000000000027">
+              End="-10,20.4999999999995">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,25.0000000000014" />
+                    End="0,9.99999999999977" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,25.0000000000014"
-                    Point2="0,29.0000000000014"
-                    Point3="-4,29.0000000000014" />
+                    Point1="0,9.99999999999977"
+                    Point2="0,13.9999999999998"
+                    Point3="-4,13.9999999999998" />
                   <mssgle:LineSegment
-                    End="-6,29.0000000000014" />
+                    End="-6,13.9999999999998" />
                   <mssgle:CubicBezierSegment
-                    Point1="-6,29.0000000000014"
-                    Point2="-10,29.0000000000014"
-                    Point3="-10,33.0000000000014" />
+                    Point1="-6,13.9999999999998"
+                    Point2="-10,13.9999999999998"
+                    Point3="-10,17.9999999999998" />
                   <mssgle:LineSegment
-                    End="-10,50.5000000000027" />
+                    End="-10,20.4999999999995" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -17504,21 +17531,47 @@ FROM            base.tbl_ihs_episodes</property>
         <NodeLayout
           Size="254,42"
           Id="Package\build_placement_care_days_mobility"
-          TopLeft="60,1108" />
+          TopLeft="20,1040" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 22]"
-          TopLeft="142,1080.18867924528">
+          TopLeft="144.25,1006.18867924528">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,27.8113207547201"
+              EndConnector="0,33.8113207547203"
               Start="0,0"
-              End="0,20.3113207547201">
+              End="0,26.3113207547203">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,20.3113207547201" />
+                    End="0,26.3113207547203" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="199,42"
+          Id="Package\build_episode_care_days"
+          TopLeft="59.9788809081505,1136.25443339162" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 26]"
+          TopLeft="144.739440454075,1082">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54.2544333916198"
+              Start="0,0"
+              End="0,46.7544333916198">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.7544333916198" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -17532,8 +17585,8 @@ FROM            base.tbl_ihs_episodes</property>
           ParentId="Package"
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="343,1205"
-          Size="343,1248"
+          PanelSize="343,1233"
+          Size="343,1276"
           Id="0401822c-52a3-4682-bfc1-8d5b81573019"
           TopLeft="580,1051.86629572713">
           <GroupLayout.ChildrenIds>
@@ -17562,30 +17615,32 @@ FROM            base.tbl_ihs_episodes</property>
             <s:String>Package.PrecedenceConstraints[Constraint 19]</s:String>
             <s:String>Package\build_placement_care_days_mobility</s:String>
             <s:String>Package.PrecedenceConstraints[Constraint 22]</s:String>
+            <s:String>Package\build_episode_care_days</s:String>
+            <s:String>Package.PrecedenceConstraints[Constraint 26]</s:String>
           </GroupLayout.ChildrenIds>
         </GroupLayout>
         <NodeLayout
           Size="307,42"
           Id="Package\16 prod_update_rptPlacement_after_basetables"
-          TopLeft="11,156.5" />
+          TopLeft="11,144.5" />
         <NodeLayout
           Size="314,42"
           Id="Package\22 Execute   prod_update_ref_last_month_qtr_yr"
-          TopLeft="5.5,84.64150943396" />
+          TopLeft="5.5,66.64150943396" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 28]"
-          TopLeft="163.5,156.5">
+          TopLeft="163.5,144.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,-29.85849056604"
+              EndConnector="0,-35.85849056604"
               Start="0,0"
-              End="0,-22.35849056604">
+              End="0,-28.35849056604">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-22.35849056604" />
+                    End="0,-28.35849056604" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -17599,8 +17654,8 @@ FROM            base.tbl_ihs_episodes</property>
           ParentId="Package"
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="325,204"
-          Size="325,247"
+          PanelSize="325,254"
+          Size="325,296"
           Id="6a88d1f6-17a2-470e-a185-65fccbc964db"
           TopLeft="1043,1726.78586483394">
           <GroupLayout.ChildrenIds>
@@ -17723,31 +17778,31 @@ FROM            base.tbl_ihs_episodes</property>
           </GroupLayout.ChildrenIds>
         </GroupLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 21]"
-          TopLeft="722.5,2203">
+          Id="Package.PrecedenceConstraints[Constraint 27]"
+          TopLeft="739.5,2231">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="485,-235"
+              EndConnector="517.833333333333,-275"
               Start="0,0"
-              End="485,-227.5">
+              End="517.833333333333,-267.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-113.5" />
+                    End="0,-160.144523655217" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,-113.5"
-                    Point2="0,-117.5"
-                    Point3="4,-117.5" />
+                    Point1="0,-160.144523655217"
+                    Point2="0,-164.144523655217"
+                    Point3="4,-164.144523655217" />
                   <mssgle:LineSegment
-                    End="481,-117.5" />
+                    End="513.833333333333,-164.144523655217" />
                   <mssgle:CubicBezierSegment
-                    Point1="481,-117.5"
-                    Point2="485,-117.5"
-                    Point3="485,-121.5" />
+                    Point1="513.833333333333,-164.144523655217"
+                    Point2="517.833333333333,-164.144523655217"
+                    Point3="517.833333333333,-168.144523655217" />
                   <mssgle:LineSegment
-                    End="485,-227.5" />
+                    End="517.833333333333,-267.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

@@ -48,3 +48,10 @@ LOAD DATA LOCAL INFILE '/data/pocweb/rate_placement_order_specific.txt'
 into table rate_placement_order_specific
 fields terminated by '|';
 analyze table rate_placement_order_specific;
+
+
+truncate table rate_care_day_maltreatment;
+LOAD DATA LOCAL INFILE '/data/pocweb/rate_care_day_maltreatment.txt'
+into table rate_care_day_maltreatment
+fields terminated by '|';
+analyze table rate_care_day_maltreatment;
