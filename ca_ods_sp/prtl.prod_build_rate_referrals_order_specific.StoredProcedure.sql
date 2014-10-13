@@ -12,16 +12,15 @@ as
 			,cast(null as datetime)  nxt_rfrd_date
 	into #referrals
 	from [prtl].[vw_referrals_grp] tce
-	where  tce.entry_point!=7
-	and hh_with_children_under_18=1 
+	where  tce.entry_point!=7 -- exclude DLR
+	and hh_with_children_under_18=1  -- intake has at least one child under age 18
 
-	-- get next cps referral
+	-- get next  referral
 	update ref
 	set nxt_rfrd_date=nxt.rfrd_date
 	from #referrals ref
 	join #referrals nxt on ref.id_case=nxt.id_case and nxt.nth_order=ref.nth_order+1
 
-	--select count(*) from #referrals where cd_final_decision=1 541793
 
 	CREATE NONCLUSTERED INDEX idx_start_date_nxt_rfrd_date_id_case_nth_order_scrn
 	ON #referrals (cohort_entry_date,[nxt_rfrd_date])
@@ -44,6 +43,7 @@ from 	 #referrals   curr
 	join prm_cnty cnty on cnty.match_code=curr.intake_county_cd
     where exists(select intake_grouper from  base.tbl_household_children chld 
 								where  chld.id_intake_fact=curr.id_intake_fact 
+								--  function for calculating age in months correctly
 								and IIF(day([month]) < day(chld.dt_birth) and chld.[dt_birth]<[month]
 												, datediff(mm,chld.dt_birth,[month]) - 1
 												,datediff(mm,chld.dt_birth,[month])) < (18*12))
