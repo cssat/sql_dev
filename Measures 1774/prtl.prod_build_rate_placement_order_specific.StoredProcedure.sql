@@ -3,6 +3,22 @@
 alter procedure prtl.[prod_build_rate_placement_order_specific]
 as
 
+/**
+R0 is defined as follows:
+Numerator:  Households with at least 1 removal this month with no children already in episode this month
+and there are 0 prior removals ever
+Denomintaor: Referrals this month that are screened-in where the household has 0 prior removals ever
+
+R1 is defined as follows:
+Numerator:  Households with at least 1 removal this month with no children already in episode this month
+and there are 1 prior removals ever
+Denomintaor: Referrals this month that are screened-in where the household has 1 prior removals ever
+
+R2 is defined as follows:
+Numerator:  Households with at least 1 removal this month with no children already in episode this month
+and there are 2 prior removals ever
+Denomintaor: Referrals this month that are screened-in where the household has 2 prior removals ever
+**/
 		if OBJECT_ID('tempDB..#scrn_in') is not null drop table #scrn_in;
 		select distinct 
 				  cohort_entry_date
@@ -23,9 +39,9 @@ as
 			,cast(null as int) as running_plcm_cnt
 		into #scrn_in
 		from [prtl].[vw_referrals_grp] tce
-		where  entry_point<>7 -- DLR
-		and hh_with_children_under_18=1  
-		and cd_final_decision=1
+		where  entry_point<>7 --  exclude DLR
+		and hh_with_children_under_18=1  --has children under 18
+		and cd_final_decision=1  --  screened in
 	
 
 		--get next screened in referral
@@ -47,6 +63,7 @@ as
 
 	
 if OBJECT_ID('tempDB..#cases_intakes_placements') is not null drop table #cases_intakes_placements
+-- the id_case from removal & intake are not always an exact match so include them both in placements for matching later
 select distinct 0 date_type,2 qry_type
 				,intk.grp_id_intake_fact
 				,intk.id_intake_fact
@@ -63,29 +80,34 @@ select distinct 0 date_type,2 qry_type
 				,DENSE_RANK() over (partition by intk.id_case order by q.removal_dt asc) nth_order
 into #cases_intakes_placements
 from #scrn_in intk
-  join (
-	select eps.id_case
-		,id_intake_fact
-		,eps.id_removal_episode_fact
-		,(select top 1 rfrd_date from base.tbl_intakes intk where intk.id_intake_fact=eps.id_intake_fact) rfrd_date
-		,eps.removal_dt
-		,IIF(eps.discharge_dt>dateadd(yy,18,eps.birthdate) 
-						and dateadd(yy,18,eps.birthdate)  < cutoff_date
-				,dateadd(yy,18,eps.birthdate) 
-				,eps.discharge_dt) discharge_dt
-				--,trh.trh_begin_date
-				--,trh.trh_end_date
-	 from  base.rptPlacement   eps
-	 join ref_last_dw_transfer dw on dw.cutoff_date=dw.cutoff_date
-	 --left join trial_return_home_placement_spans trh on trh.id_removal_episode_fact=eps.id_removal_episode_fact
-	 where id_intake_fact is not null 
-		and age_at_removal_mos< (18*12)
-		and not exists(select * from  vw_nondcfs_combine_adjacent_segments nd 
-					where  nd.id_prsn=eps.child
-							and eps.removal_dt between nd.cust_begin and nd.cust_end
-							and  eps.discharge_dt between nd.cust_begin and  nd.cust_end) 
-		 ) q on q.id_intake_fact=intk.id_intake_fact
-		join ref_last_dw_transfer d on d.cutoff_date=d.cutoff_date
+join ref_last_dw_transfer d on d.cutoff_date=d.cutoff_date
+join (
+			select eps.id_case
+				,eps.id_intake_fact
+				,eps.id_removal_episode_fact
+				,(select top 1 rfrd_date from base.tbl_intakes intk where intk.id_intake_fact=eps.id_intake_fact) rfrd_date
+				,eps.removal_dt
+				,IIF(eps.discharge_dt> eps.[18bday]
+								and eps.[18bday] < cutoff_date
+						,eps.[18bday]
+						,eps.discharge_dt) discharge_dt
+						--,trh.trh_begin_date
+						--,trh.trh_end_date
+			 from  base.rptPlacement   eps
+			 join ref_last_dw_transfer dw on dw.cutoff_date=dw.cutoff_date
+			 -- don't agree with this .. need to talk to Joe & Gregor about this.
+			  --join (select intk.id_case,intk.id_intake_fact,min(removal_dt) intk_grp_removal_dt 
+					--			from base.rptPlacement rpt
+					--			join #scrn_in intk on intk.id_intake_fact=rpt.id_intake_fact
+					--			group by intk.id_case,intk.id_intake_fact
+					--			) grp on grp.id_intake_fact=eps.id_intake_fact and grp.intk_grp_removal_dt=eps.removal_dt
+			 where eps.id_intake_fact is not null 
+				and age_at_removal_mos< (18*12)
+				and not exists(select * from  vw_nondcfs_combine_adjacent_segments nd 
+							where  nd.id_prsn=eps.child
+									and eps.removal_dt between nd.cust_begin and nd.cust_end
+									and  eps.discharge_dt between nd.cust_begin and  nd.cust_end) 
+				 ) q on q.id_intake_fact=intk.id_intake_fact
 	where not exists(--exclude families with a child already in care
 								select id_case from base.rptPlacement sic where sic.id_case=q.id_case
 									and sic.removal_dt < DATEFROMPARTS(year(q.removal_dt),month(q.removal_dt),1)
@@ -93,13 +115,14 @@ from #scrn_in intk
 										 iif(sic.[18bday]<sic.discharge_dt 
 													and sic.discharge_dt <=d.cutoff_date , sic.[18bday] ,sic.discharge_dt)> q.removal_dt)
 
+--  select * from #cases_intakes_placements order by id_case,nth_order
 
 update #scrn_in
 set running_plcm_cnt=plcm.nth_order
 from #cases_intakes_placements plcm 
 where plcm.id_intake_fact=#scrn_in.id_intake_fact
 
---remove intakes where placement between removal_dt & discharge_dt
+--remove intakes where referral date between removal_dt & discharge_dt
 delete si 
 --select si.*
 from #scrn_in  si 
@@ -154,6 +177,9 @@ begin
 		and nxt.running_plcm_cnt is null;
 		set @rowcount=@@ROWCOUNT
 end
+--  select * from #scrn_in order by id_case,rfrd_date
+
+
 update  #scrn_in 
 set running_plcm_cnt=0
 where running_plcm_cnt is null;

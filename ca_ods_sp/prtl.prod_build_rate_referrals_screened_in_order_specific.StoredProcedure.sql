@@ -4,7 +4,7 @@ alter procedure prtl.prod_build_rate_referrals_screened_in_order_specific
 as
 
 
--- this table is for all cps intakes
+-- this table is for all  intakes
 
 		if OBJECT_ID('tempDB..#ref') is not null drop table #ref;
 		select distinct 
@@ -30,8 +30,8 @@ as
 			,cast(null as datetime) as prior_scrn_in_rfrd_date
 		into #ref
 		from [prtl].[vw_referrals_grp] tce
-		where  tce.entry_point!=7
-		and hh_with_children_under_18=1  
+		where  tce.entry_point!=7  -- exlcude dlr
+		and hh_with_children_under_18=1   -- household has child under 18
 
 	
 
@@ -43,7 +43,7 @@ as
 		and nxt.referral_order=ref.referral_order+1
 	 
 		
-		-- first set prior screened in for all screened in intakes
+		-- first set prior screened in date  for all screened in intakes
 		update ref
 		set prior_scrn_in_rfrd_date=pri.rfrd_date
 		from #ref ref
@@ -53,6 +53,7 @@ as
 		and ref.cd_final_decision=1
 		
 		--set NEXT referrals for those where the prior referral is screened in and next referral is NOT screened in
+		--  this is the first step to setting up a "running screened in count" for all referrals between the "screened in referrals"
 		update nxt
 		set nth_order=ref.nth_order
 				,prior_scrn_in_rfrd_date=iif(nxt.prior_scrn_in_rfrd_date is null,ref.rfrd_date,nxt.prior_scrn_in_rfrd_date)
@@ -68,7 +69,8 @@ as
 		while @rowcount>0
 		begin
 			update nxt
-			set nth_order=ref.nth_order,prior_scrn_in_rfrd_date=iif(nxt.prior_scrn_in_rfrd_date is null,ref.prior_scrn_in_rfrd_date,nxt.prior_scrn_in_rfrd_date)
+			set nth_order=ref.nth_order
+					,prior_scrn_in_rfrd_date=iif(nxt.prior_scrn_in_rfrd_date is null,ref.prior_scrn_in_rfrd_date,nxt.prior_scrn_in_rfrd_date)
 		--	select ref.id_case,ref.rfrd_date,ref.nth_order,ref.prior_scrn_in_rfrd_date,nxt.rfrd_date
 			from #ref ref
 			join #ref nxt on ref.id_case=nxt.id_case 
@@ -79,6 +81,11 @@ as
 			set @rowcount=@@ROWCOUNT;
 		end
 
+		-- look at those remaining with null values
+		-- these are initial "non-screened in" intakes & those who never had a screened-in intake
+		--qa
+		--select * From #ref where exists  (select id_case from #ref r2 where r2.id_case=#ref.id_case and r2.nth_order is null)
+		-- order by id_case,referral_order
 		--set remaining to 0
 		update ref
 		set nth_order=0
@@ -87,13 +94,15 @@ as
 		and ref.cd_final_decision=0 ;
 
 		--	select count(distinct intake_grouper) from #ref where cohort_entry_date='2010-03-01'
-			--denominator
-	-- this table is the "AT RISK of NTH ORDER"  aggregate Screened-in Referrals
--- the intakes included here are from households that  have N-1 SCREENED IN Referrals
---check to be sure the kids are still under 18 and at risk and they must have a referral in this month
+	
+	
+-- denominator
+-- this table is the at risk for "nth  screened in referral"  
+-- These referrals are from households that  have N-1 SCREENED IN Referrals
+-- no need to check if kids are still under 18 since only referrals with kids under 18 are counted
 
 		if OBJECT_ID('tempDB..#priorOrder') is not null drop table #priorOrder;
-	--		insert 	into #priorOrder  			 --- has exactly "n" prior screened in intakes
+	--		
 			select [month]
 					,cnty.cd_cnty county_cd
 					,count(distinct curr.intake_grouper) cnt_referrals
@@ -105,6 +114,8 @@ as
 								and (select dateadd(m,-1,(select cutoff_date from ref_last_dw_transfer)))
 					) mnth  on mnth.[month]=curr.cohort_entry_date 
 				join (select 1 nth_order union select 2  union select 3 union select 4) n 
+				-- if they are having their nth screened in referral , they were are risk for the "nth"  screened in referral (must have an n-1 prior or this month)
+				-- OR they have  "n-1" screened-in referral  and THIS referral is NOT screened in so they were at risk of their "nth screened in referral"
 				on ((n.nth_order=curr.nth_order   and curr.cd_final_decision=1)
 							or (n.nth_order = curr.nth_order+1 and curr.cd_final_decision=0 ))
 			join prm_cnty cnty on cnty.match_code=curr.intake_county_cd

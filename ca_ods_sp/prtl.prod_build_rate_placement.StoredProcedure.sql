@@ -5,7 +5,8 @@ as
 	
 
 alter table prtl.rate_placement  NOCHECK CONSTRAINT ALL;
-
+--  The numerator is Households with at least 1 removal this month with no children already in episode this month
+--- The denominator is referrals this month that are screened-in
 truncate table prtl.rate_placement
 insert into prtl.rate_placement(date_type,qry_type,cohort_date,county_cd,entry_point,cnt_households_w_plcm,cnt_referrals_u18,rate_placement)
 select  0 "date_type"
@@ -29,7 +30,9 @@ left join (
 						join ref_last_dw_transfer dw on dw.cutoff_date=dw.cutoff_date
 						join calendar_dim cd on cd.CALENDAR_DATE=plc.removal_dt and cd.MONTH between '2000-01-01'  and  dateadd(mm,-1,cutoff_date)
 						join prm_cnty cnty on cnty.match_code=plc.removal_county_cd
+						--if the entry point is null meaning the id_intake_fact is null in rptPlacement -- default it as a CPS referrals
 						 join prm_entry_point ep on ep.match_code=coalesce(ref.entry_point,1)
+				--age in months is less than 18 * 12
 				where  IIF(day([month]) < day(plc.birthdate) and plc.birthdate<[month]
 												, datediff(mm,plc.birthdate,[month]) - 1
 												,datediff(mm,plc.birthdate,[month])) < (18*12)
