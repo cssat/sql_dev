@@ -9,23 +9,23 @@ as
 		if OBJECT_ID('tempDB..#ref') is not null drop table #ref;
 		select distinct 
 				  cohort_entry_date
-				, intake_grouper
+				,  intake_grouper
 				, grp_id_intake_fact
 				, grp_rfrd_date "rfrd_date"
 				, id_intake_fact
 				, id_case
 				, intake_county_cd
 				, cd_final_decision
-				, IIF(cd_final_decision=1,DENSE_RANK() over 
+				, iif(cd_final_decision=1,DENSE_RANK() over 
 					(partition by id_case,cd_final_decision
 							order by 
-								grp_rfrd_date
-								,intake_grouper asc) ,null)  nth_order
+								coalesce(grp_rfrd_date,rfrd_date)
+								,coalesce(intake_grouper,id_intake_fact) asc) ,null)  nth_order
 				, DENSE_RANK() over 
 					(partition by id_case
 							order by 
-								grp_rfrd_date
-								,intake_grouper asc) referral_order
+								coalesce(grp_rfrd_date,rfrd_date)
+								,coalesce(intake_grouper,id_intake_fact) asc) referral_order
 			,cast(null as datetime) as nxt_rfrd_date
 			,cast(null as datetime) as prior_scrn_in_rfrd_date
 		into #ref
@@ -33,16 +33,16 @@ as
 		where  tce.entry_point!=7  -- exlcude dlr
 		and hh_with_children_under_18=1   -- household has child under 18
 
-	
+		
 
-		--get next screened in referral
+		--get next referral
 		update ref
 		set nxt_rfrd_date=nxt.rfrd_date
 		from #ref ref
 		join #ref nxt on ref.id_case=nxt.id_case 
 		and nxt.referral_order=ref.referral_order+1
 	 
-		
+
 		-- first set prior screened in date  for all screened in intakes
 		update ref
 		set prior_scrn_in_rfrd_date=pri.rfrd_date
@@ -51,6 +51,9 @@ as
 		and pri.nth_order=ref.nth_order-1
 		and pri.cd_final_decision=1
 		and ref.cd_final_decision=1
+
+
+		
 		
 		--set NEXT referrals for those where the prior referral is screened in and next referral is NOT screened in
 		--  this is the first step to setting up a "running screened in count" for all referrals between the "screened in referrals"
@@ -61,7 +64,8 @@ as
 		join #ref nxt on ref.id_case=nxt.id_case 
 		and nxt.referral_order=ref.referral_order+1
 		where nxt.nth_order is null
-		and ref.cd_final_decision=1 and nxt.cd_final_decision=0;
+		and ref.cd_final_decision=1 and nxt.cd_final_decision!=1;
+
 
 		-- now update those referrals where the prior referral is not screened in (but it has a prior screened in from preceding step)
 		set nocount off;
@@ -77,24 +81,22 @@ as
 			and nxt.referral_order=ref.referral_order+1
 			where nxt.nth_order is null
 			and ref.nth_order is not null
-			and ref.cd_final_decision=0 and nxt.cd_final_decision=0;
+			and ref.cd_final_decision!=1 and nxt.cd_final_decision!=1;
 			set @rowcount=@@ROWCOUNT;
 		end
 
+	
 		-- look at those remaining with null values
 		-- these are initial "non-screened in" intakes & those who never had a screened-in intake
-		--qa
-		--select * From #ref where exists  (select id_case from #ref r2 where r2.id_case=#ref.id_case and r2.nth_order is null)
-		-- order by id_case,referral_order
+
 		--set remaining to 0
 		update ref
 		set nth_order=0
 		from #ref ref
 		where ref.nth_order is null
-		and ref.cd_final_decision=0 ;
+		and ref.cd_final_decision!=1 ;
 
-		--	select count(distinct intake_grouper) from #ref where cohort_entry_date='2010-03-01'
-	
+
 	
 -- denominator
 -- this table is the at risk for "nth  screened in referral"  
@@ -116,35 +118,13 @@ as
 				join (select 1 nth_order union select 2  union select 3 union select 4) n 
 				-- if they are having their nth screened in referral , they were are risk for the "nth"  screened in referral (must have an n-1 prior or this month)
 				-- OR they have  "n-1" screened-in referral  and THIS referral is NOT screened in so they were at risk of their "nth screened in referral"
-				on ((n.nth_order=curr.nth_order   and curr.cd_final_decision=1)
-							or (n.nth_order = curr.nth_order+1 and curr.cd_final_decision=0 ))
+				on (n.nth_order=curr.nth_order and curr.cd_final_decision=1
+							or n.nth_order-1 =curr.nth_order and curr.cd_final_decision!=1)
 			join prm_cnty cnty on cnty.match_code=curr.intake_county_cd
 			group by 	[month],cnty.cd_cnty,n.nth_order
 
-/**  QA
-		select * from #ref ref join (
-						select intake_grouper from #ref where prior_scrn_in_rfrd_date is null
-			and  cohort_entry_date='2010-01-01' 
-
-		except
-			  select intake_grouper
-		 from #ref  where cohort_entry_date='2010-01-01' 
-		and  ( (nth_order=0 and cd_final_decision=0)
-		or (nth_order=1 and cd_final_decision=1 ))
-		) q on q.intake_grouper=ref.intake_grouper
-		where cohort_entry_date='2010-01-01'  
-
-		select * from #ref where id_case= and cohort_entry_date<='2010-01-01'  order by rfrd_date 
-
-		select count(distinct intake_grouper)
-		 from #ref  where cohort_entry_date='2010-01-01' 
-		 and prior_scrn_in_rfrd_date is null
+			select * from #ref order by id_case,referral_order
 			
-	 select count(distinct intake_grouper) from #ref where cohort_entry_date='2010-01-01' 
-	 SELECT *   from #priorOrder where county_cd=0 and month='2010-01-01'  order by nth_order
-	 **/
-	
-
 		--this is the count by  "Nth" order screened in referral...
 			if OBJECT_ID('tempDB..#referrals') is not null drop table #referrals;
 			select   0 date_type
@@ -159,8 +139,8 @@ as
 			where scrn.cd_final_decision=1
 			group by scrn.cohort_entry_date,scrn.nth_order,cnty.cd_cnty
 
---			select * from #referrals order by county_cd,cohort_date,nth_order
---select * from #priorOrder order by county_cd,MONTH,nth_order
+	--select * from #referrals where county_cd=0 and cohort_date='2010-01-01' order by county_cd,cohort_date,nth_order
+ --    select * from #priorOrder where county_cd=0 and month='2010-01-01'   order by county_cd,MONTH,nth_order
 
 
 alter table prtl.rate_referrals_scrn_in_order_specific NOCHECK CONSTRAINT ALL
@@ -177,7 +157,7 @@ select  n.nth_order "nth_order"
 			,coalesce(pO.cnt_referrals,0)    "prior_order_cnt_referrals"
 			,IIF(coalesce(pO.cnt_referrals,0) >0
 									,nth_order.cnt_referrals /
-									((coalesce(pO.cnt_referrals,0)) *1.0000)
+									((coalesce(pO.cnt_referrals,0)) *1.000000)
 						,null) * 1000 "referral_rate"
 from    (select distinct [month] from calendar_dim 
 				where calendar_date between '2004-01-01' and (select dateadd(m,-1,(select cutoff_date from ref_last_dw_transfer)))
@@ -194,10 +174,10 @@ left join #referrals nth_order  on nth_order.nth_order=n.nth_order
 order by refC.county_cd, mnth.[MONTH],"nth_order"
 		
 alter table prtl.rate_referrals_scrn_in_order_specific CHECK CONSTRAINT ALL
--- select *  from prtl.rate_referrals_scrn_in_order_specific
+-- 
 
---select * from prtl.rate_referrals_scrn_in_order_specific --where start_date='2013-03-01'   
---order by county_cd,start_date,nth_order
+--select * from prtl.rate_referrals_scrn_in_order_specific  where county_cd=0 order by start_date,nth_order  
+
 
 
 --select * from #ref r

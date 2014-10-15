@@ -5,9 +5,13 @@ as
 	
 
 alter table prtl.rate_placement  NOCHECK CONSTRAINT ALL;
---  The numerator is Households with at least 1 removal this month with no children already in episode this month
+
+--  The numerator is Households with at least 1 removal this month 
+--           with no children already in episode this month
 --- The denominator is referrals this month that are screened-in
 truncate table prtl.rate_placement
+
+
 insert into prtl.rate_placement(date_type,qry_type,cohort_date,county_cd,entry_point,cnt_households_w_plcm,cnt_referrals_u18,rate_placement)
 select  0 "date_type"
 			, 2 "qry_type"

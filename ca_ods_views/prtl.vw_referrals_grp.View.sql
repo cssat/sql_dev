@@ -16,15 +16,12 @@ GO
 
 
 -- QA
--- select * from [prtl].[vw_referrals_grp] where intake_grouper=200431
--- select * from  [prtl].[vw_referrals_grp]   where id_case=438122
---  select intake_grouper,count(*)  from base.tbl_intake_grouper group by intake_grouper order by count(*) desc
 
 CREATE  view [prtl].[vw_referrals_grp] as 
 
 
 	select		distinct
-				2as qry_type -- unique
+				2 as qry_type -- unique
 				,date_type  as date_type --month
 				,startDate  cohort_entry_date
 				,endDate 
@@ -36,20 +33,30 @@ CREATE  view [prtl].[vw_referrals_grp] as
 				,grp.intake_grouper
 				,grp.intk_grp_seq_nbr
 				,grp_filters.intk_grp_id_intake_fact  "grp_id_intake_fact"
-				,grp_filters.rfrd_date "grp_rfrd_date"
-				, case when coalesce( grp_filters.intk_grp_fl_dlr,fl_dlr) >0 then 7
-							when coalesce( grp_filters.intk_grp_fl_cps_invs,fl_cps_invs)>0 then 1
+				,coalesce(grp_filters.rfrd_date ,tce.rfrd_date) "grp_rfrd_date"
+				, case 	when coalesce( grp_filters.intk_grp_fl_cps_invs,fl_cps_invs)>0 then 1
 							when coalesce( grp_filters.intk_grp_fl_risk_only,fl_risk_only)>0 then 4
 							when coalesce( grp_filters.intk_grp_fl_far,fl_far)>0 then 6
 							when coalesce( grp_filters.intk_grp_fl_alternate_intervention,fl_alternate_intervention)>0 then 2
 							when coalesce( grp_filters.intk_grp_fl_frs,fl_frs)>0 then 3
 							when coalesce( grp_filters.intk_grp_fl_cfws,fl_cfws)>0 then 5
-							when tce.cd_access_type=1 then 1
-							when tce.cd_access_type=4 then 4
+							when coalesce( grp_filters.intk_grp_fl_dlr,fl_dlr) >0 then 7
+							when tce.cd_access_type=4 
+											and tx_spvr_rsn in ('Risk Only' ,'CPS-Risk Only','Victim move out of Subject home' ) then 4
+							when tce.cd_access_type=1 
+									and tx_spvr_rsn in ('Referred to Tribal Jurisdiction'
+																	,'Other'
+																	,'Third Party-Referred to Law Enforcement'
+																	,'No specific CA/N allegation or Risk'
+																	,'CPS-Investigation') then 1
+							when tce.cd_access_type=1
+									and tx_spvr_rsn = 'Anonymous Referrer-Risk Low' then 4
+							when tce.cd_access_type=2 and tx_spvr_rsn='Child Family Welfare Services' then 5
+							when tce.cd_access_type in (1,4) 
+									and charindex('DLR',tx_spvr_rsn)>0 then 7
 							when tce.cd_access_type=2 and tx_asgn_type='FRS' then 3
 							when tce.cd_access_type=2 and tx_asgn_type='CFWS' then 5
-							when tce.cd_access_type=2 and tx_asgn_type='CFWS' then 5
-							end   [entry_point]
+							end  		 [entry_point]
 				,iif(grp_filters.intake_grouper is not null and grp_filters.intk_grp_fl_cps_invs>=1,1,0) intk_grp_fl_cps_invs
 				,iif(grp_filters.intake_grouper is not null and grp_filters.intk_grp_fl_far>=1,1,0) intk_grp_fl_far
 				,iif(grp_filters.intake_grouper is not null and grp_filters.intk_grp_fl_risk_only>=1,1,0) intk_grp_fl_risk_only
@@ -76,8 +83,8 @@ CREATE  view [prtl].[vw_referrals_grp] as
 				, iif(grp_filters.intake_grouper is null,tce.fl_founded_any_legal,iif(cnt_intk_grp_founded_any_legal>0,1,0)) fl_founded_any_legal
 				, 0 as fl_initref_cohort_date
 				,iif(grp_filters.intake_grouper is null,tce.cd_final_decision,grp_filters.grp_cd_final_decision) cd_final_decision
-				,iif(grp_filters.intake_grouper is not null,fl_hh_under_18,0) hh_with_children_under_18
-				,DENSE_RANK() over (partition by coalesce(grp_filters.grp_id_case,tce.id_intake_fact) 
+				,iif(grp_filters.intake_grouper is not null,grp_filters.fl_hh_under_18,iif(hh_under_18_ng.id_intake_fact is not null,1,0)) hh_with_children_under_18
+				,DENSE_RANK() over (partition by coalesce(grp_filters.grp_id_case,tce.id_case) 
 																order by coalesce(grp_filters.rfrd_date,tce.rfrd_date)
 																				,coalesce(grp.intake_grouper,tce.id_intake_fact )asc) case_nth_order
 		from base.tbl_intakes  tce 
@@ -122,7 +129,7 @@ CREATE  view [prtl].[vw_referrals_grp] as
 								, SUM(fl_founded_prior_other_maltreatment) as cnt_intk_grp_founded_prior_other_maltreatment
 								, SUM(fl_founded_prior_any_legal) as cnt_intk_grp_founded_prior_any_legal
 								, IIF(SUM(IIF(hh_under_18.id_intake_fact is not null,1,0))>0,1,0) fl_hh_under_18
-								, IIF(SUM(iif(cd_final_decision=1,1,0)) > 0,1,0)  as grp_cd_final_decision
+								, IIF(SUM(iif(cd_final_decision=1,1,0)) > 0,1,2)  as grp_cd_final_decision
 					 from base.tbl_intake_grouper grp
 					join base.tbl_intakes intk on grp.id_intake_fact=intk.id_intake_fact 
 					left join (select distinct id_intake_fact from base.tbl_household_children where age_at_referral_dt<18
@@ -132,22 +139,29 @@ CREATE  view [prtl].[vw_referrals_grp] as
 		join (select distinct 0 date_type,[month]startDate,EOMONTH([month]) endDate
 					from calendar_dim cd
 					,ref_last_dw_transfer
-					where cd.CALENDAR_DATE>='1999-07-01' and EOMONTH([month]) < cutoff_date
+					where cd.MONTH>='1999-07-01' and ([month]) <= cutoff_date
 				) md on tce.inv_ass_start between  md.startDate and md.endDate
-			where tce.id_case>0 and tce.tx_spvr_rsn not in ('*INVALID*','Provider Infraction','Information Only')
-			and case when coalesce( grp_filters.intk_grp_fl_dlr,fl_dlr) >0 then 7
-							when coalesce( grp_filters.intk_grp_fl_cps_invs,fl_cps_invs)>0 then 1
-							when coalesce( grp_filters.intk_grp_fl_risk_only,fl_risk_only)>0 then 4
-							when coalesce( grp_filters.intk_grp_fl_far,fl_far)>0 then 6
-							when coalesce( grp_filters.intk_grp_fl_alternate_intervention,fl_alternate_intervention)>0 then 2
-							when coalesce( grp_filters.intk_grp_fl_frs,fl_frs)>0 then 3
-							when coalesce( grp_filters.intk_grp_fl_cfws,fl_cfws)>0 then 5
-							when tce.cd_access_type=1 then 1
-							when tce.cd_access_type=4 then 4
-							when tce.cd_access_type=2 and tx_asgn_type='FRS' then 3
-							when tce.cd_access_type=2 and tx_asgn_type='CFWS' then 5
-							when tce.cd_access_type=2 and tx_asgn_type='CFWS' then 5
-							end is not null
+			left join (select distinct id_intake_fact from base.tbl_household_children where age_at_referral_dt<18
+										) hh_under_18_ng  on hh_under_18_ng.id_intake_fact=tce.id_intake_fact
+			where tce.id_case>0 
+					and tce.tx_spvr_rsn not in (
+							'*INVALID*'
+							,'Failed'
+							,'Provider Infraction'
+							,'Information Only'
+							,'Child Fatality-DLR/DEL Related',
+							'Child Fatality',
+							'LE Placement Request - Youth not Placed',
+							'Unborn Victim',
+							'Private Adoption - ASP',
+							'-',
+							'Allegation documented in previous intake',
+							'Re-Open Closed Case',
+							'Home Study',
+							'Family Voluntary Services',
+							'Adoption - ICAMA',
+							'ICPC')
+			
 
 
 

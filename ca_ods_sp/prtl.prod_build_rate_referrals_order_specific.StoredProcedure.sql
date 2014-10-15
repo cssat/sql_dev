@@ -39,7 +39,8 @@ from 	 #referrals   curr  -- all referrals
 				and curr.nth_order=n.nth_order-1
 	join (select distinct [month] from calendar_dim 
 			where calendar_date between '2000-01-01' and (select dateadd(m,-1,(select cutoff_date from ref_last_dw_transfer)))
-			) mnth
+			) mnth -- household is at risk for the nth order from the month they receive the nth order 
+			-- referral until the next referral date or the last referral date of record
 			on mnth.[month]>=curr.cohort_entry_date 
 				and (mnth.[month]<= cast(convert(varchar(10),nxt_rfrd_date,121) as datetime)
 											or nxt_rfrd_date is null)
@@ -51,15 +52,10 @@ from 	 #referrals   curr  -- all referrals
 								and IIF(day([month]) < day(chld.dt_birth) and chld.[dt_birth]<[month]
 												, datediff(mm,chld.dt_birth,[month]) - 1
 												,datediff(mm,chld.dt_birth,[month])) < (18*12))
-		--exclude households that have an nth order prior to month
-		and not exists(select * from #referrals nRef
-				where nRef.id_case=curr.id_case
-				and nRef.cohort_entry_date<curr.cohort_entry_date
-				and nRef.nth_order>curr.nth_order)
 	 group by [month],n.nth_order,cnty.cd_cnty
 	order by  cnty.cd_cnty,[month],n.nth_order
 
---	select * from #nthOrderAtRiskHH order by county_cd,month,nth_order
+--	 select * from #nthOrderAtRiskHH order by county_cd,month,nth_order
 	
 
 alter table prtl.rate_referrals_order_specific NOCHECK CONSTRAINT ALL
@@ -109,7 +105,6 @@ left join (select measurement_year,county_cd,sum(pop_cnt) tot_pop
 							from public_data.census_population_household where cd_race<9
 							group by measurement_year
 						) pop on measurement_year=year(ref.cohort_date) and pop.county_cd=ref.cd_cnty
---where year(mnth.MONTH)=2010 and refc.county_cd=0
 order by refC.county_cd,mnth.[MONTH],n.nth_order
 		
 
