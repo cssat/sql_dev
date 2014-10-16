@@ -493,7 +493,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
                             else round(cnt_start_date + 2 * sqrt(-2 * log(poc3ab.x1)) * cos(2*pi()*poc3ab.x2),0)
                             end
                         else (cnt_start_date) 
-                    end/(pop.pop_cnt * 1.00) * 1000),2)   as    "Total PPS Cases 1st Day"
+                    end/(pop.pop_cnt * 1.00) * 1000),2)   as    "Total Placement Prevention Service Cases 1st Day"
                 , round((case when (cnt_opened) > 0 /* jitter all above 0 */ 
                         then 
                             case when (round(cnt_opened + 2 * sqrt(-2 * log(poc3ab.x1)) 
