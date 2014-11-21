@@ -349,7 +349,7 @@ if  flg_procedure_off =0 then
 				set @incl=concat(@incl, ',',char(39),x2,char(39));
 				set @incl=concat(@incl, ', DATE',char(39), now(),char(39),' as insert_date');
 				set @incl=concat(@incl, ',',char(39),@qry_id,char(39));
-				set @incl=concat(@incl, ',year(prtl_pbcw4.pit_date)
+				set @incl=concat(@incl, ',year(prtl_pbcw4.start_date)
 				,int_hash_key
         , sum(cnt_child)
 			FROM ooh_point_in_time_measures `prtl_pbcw4`  ');
