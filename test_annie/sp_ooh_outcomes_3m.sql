@@ -39,6 +39,12 @@ declare x2 float;
 
 declare var_row_cnt_param int;
 declare var_row_cnt_cache int;
+
+
+declare min_filter_date datetime;
+
+
+
 declare unq_qry_id int;
 declare var_cutoff_date datetime;
 
@@ -49,6 +55,29 @@ set x1=rand();
 set x2=rand();
 
 set var_calling_procedure=23;
+
+select max(a.db_min_filter_date) into min_filter_date
+from (
+	select max(d.min_filter_date) as 'db_min_filter_date'
+	from ref_filter_dependency d
+	where find_in_set(d.bin_dep_cd,p_bin_dep_cd)>0
+
+	union
+
+	select max(a.min_filter_date) as 'db_min_filter_date'
+	from ref_filter_allegation a
+	where find_in_set(a.cd_allegation,p_filter_allegation)>0
+
+	union
+
+	select max(f.min_filter_date) as 'db_min_filter_date'
+	from ref_filter_finding f
+	where find_in_set(f.cd_finding,p_filter_finding)>0
+
+	union
+
+	select cast('2000-01-01' as datetime) as 'db_min_filter_date'
+) as a;
 
 
 /***  turn procedure on / off for loading data ***************************************/
@@ -953,7 +982,7 @@ from
     join
     vw_ref_dependency_lag ref_dep ON ref_dep.bin_dep_cd = outcomes.bin_dep_cd
         and ref_dep.date_type = outcomes.date_type
-        and outcomes.cohort_entry_date between min_filter_date and cohort_max_filter_date
+        and outcomes.cohort_entry_date between min_filter_date and ref_dep.cohort_max_filter_date
 	join ref_filter_los ref_los ON ref_los.bin_los_cd = outcomes.bin_los_cd
 			and if(outcomes.bin_los_cd!=0,date_add(date_add(date_add(date_add(outcomes.cohort_entry_date,
 				INTERVAL 1 year),
