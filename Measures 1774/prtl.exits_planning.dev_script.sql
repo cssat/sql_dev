@@ -81,7 +81,7 @@ exits int,
 exits_with_plans int,
 planning_rate numeric);
 
-insert into base.exits_planning
+insert into prtl.exits_planning
 
 select 
 	STATE_FISCAL_YYYY fiscal_yr 
