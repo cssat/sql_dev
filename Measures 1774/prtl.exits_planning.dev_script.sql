@@ -1,56 +1,28 @@
-declare @fystart int
-declare @fystop int
+if object_id('tempdb..##placement_prep17_5') is not null
+	drop table ##placement_prep17_5
 
-set @fystart = 2012
-set @fystop = 2014;
-
-if object_id('tempdb..##calendar_dim_sub') is not null
-	drop table ##calendar_dim_sub
-
-select distinct 
-	id_calendar_dim
-	,state_fiscal_yyyy
-	,CALENDAR_DATE
-into ##calendar_dim_sub
-from ca_ods.dbo.calendar_dim 
-where 
-	state_fiscal_yyyy between @fystart and @fystop;
-
-
-if object_id('tempdb..##placement_prep17') is not null
-	drop table ##placement_prep17
-
-select distinct 
-	rp.removal_dt
-	,rp.birthdate
-	,convert(int, convert(varchar, rp.removal_dt, 112)) removal_dt_int
-	,convert
-	(
-	int
-	,convert(int
-		,convert(
-		varchar
-			,case 
-				when iif(rp.[18bday] < rp.discharge_dt
-					,rp.[18bday]
-					,rp.discharge_dt) = '9999-12-31'
-				then datefromparts(@fystop, 06, 30)
-				else iif(rp.[18bday] < rp.discharge_dt
-					,rp.[18bday]
-					,rp.discharge_dt)
-			end
-			,112
-		)
-		)
-		) discharg_frc_18_int
-	,convert(int, convert(varchar, dateadd(dd, 365.25*17.5, birthdate), 112)) bday17_int
-	,rp.id_removal_episode_fact as exit_cntr
+select 
+	child id_prsn
+	,removal_dt
+	,discharge_dt
+	,birthdate dt_birth
+	,dbo.fnc_datediff_yrs(birthdate, removal) age_removal
+	,dateadd(yy, 17.5, birthdate) dt_17_5
+	,dateadd(dd, 30, dateadd(yy, 17.5, birthdate)) dt_17_5_plus_30
 	,epf.id_prsn_child as plan_cntr
 	,epf.first_plan_act 
-	,rp.episode_los
-	,iif(nd.id_prsn is not null,1,0) fl_nondcfs_custody
-into ##placement_prep17
-from ca_ods.base.rptPlacement_Events rp
+	,max(pcad.cd_placement_care_auth) single_pca --not informative...just to stop dups
+	,state_fiscal_yyyy cohort_fy
+into ##placement_prep17_5
+from base.rptPlacement rp
+	join placement_care_auth_fact pca
+		on child = pca.id_prsn 
+		and dateadd(yy, 17.5, birthdate) between 
+			dbo.IntDate_to_CalDate(pca.id_calendar_dim_begin) and 
+			isnull(dbo.IntDate_to_CalDate(pca.id_calendar_dim_end), dateadd(yy, 17.5 , birthdate))
+	join placement_care_auth_dim pcad
+		on pca.id_placement_care_auth_dim = pcad.id_placement_care_auth_dim
+			and pcad.cd_placement_care_auth in (1,2,7,8,9)
 	left join (select 
 					min(id_calendar_dim_plan_date) first_plan_act
 					,id_prsn_child 
@@ -58,43 +30,49 @@ from ca_ods.base.rptPlacement_Events rp
 					ca_ods.dbo.EDUCATION_PLAN_FACT epf
 						join ca_ods.dbo.people_dim pd 
 							on pd.id_prsn = epf.id_prsn_child 
-						--where 
-						--	iif(isnull(fl_applications, 0) + 
-						--			isnull(fl_assistance, 0) + 
-						--			isnull(fl_college_tour, 0) +
-						--			isnull(fl_other, 0) +
-						--			isnull(fl_post_planning,0) >= 1
-						--		,1
-						--		,0
-						--		) = 1 
-							and id_calendar_dim_plan_date < convert(int, convert(varchar, dateadd(yy, 18, pd.DT_BIRTH), 112)) 
+							and id_calendar_dim_plan_date <= convert(int, convert(varchar, dateadd(yy, 18, dt_birth),112))
 						group by 
 							id_prsn_child) epf
 		on rp.child = epf.id_prsn_child 
-	left join dbo.vw_nondcfs_combine_adjacent_segments nd on nd.id_prsn=rp.child
-			and nd.cust_begin<=rp.begin_date
-			and rp.end_date<=nd.cust_end
-
-create table prtl.exits_planning
-(fiscal_yr int,
-exits int,
-exits_with_plans int,
-planning_rate numeric);
-
-insert into prtl.exits_planning
-
-select 
-	STATE_FISCAL_YYYY fiscal_yr 
-	,count(exit_cntr) exits 
-	,count(plan_cntr) exits_with_plans
-	,iif(count(exit_cntr) = 0, null, count(plan_cntr)*1.0/count(exit_cntr)) planning_rate 
-from ##calendar_dim_sub cd
-	left join ##placement_prep17 rp
-		on cd.id_calendar_dim = rp.discharg_frc_18_int
-			and cd.id_calendar_dim >= rp.bday17_int
-			and episode_los > 7
-			and fl_nondcfs_custody = 0
+	join calendar_dim cd 
+		on cd.CALENDAR_DATE = dateadd(yy, 17.5, birthdate)
+where 
+	--remove erroneous placements or fc to 21 placements
+	dbo.fnc_datediff_yrs(birthdate, removal_dt) < 18
+	--select a 17.5 year old cohort over our observation window
+	and dateadd(yy, 17.5, birthdate) between  '2011-07-01' and  '2014-06-30'
+	--where kids are still in care on their 17.5 bday 
+	and discharge_dt > dateadd(yy, 17.5, birthdate)
+	--where kids are in for 30 days on their 17.5 bday
+	and datediff(dd, removal_dt, dateadd(yy, 17.5, birthdate)) >= 30 
 group by 
-	STATE_FISCAL_YYYY 
-order by 
-	STATE_FISCAL_YYYY 
+	child 
+	,removal_dt
+	,discharge_dt
+	,birthdate 
+	,dbo.fnc_datediff_yrs(birthdate, removal) 
+	,dateadd(yy, 17.5, birthdate) 
+	,epf.id_prsn_child
+	,epf.first_plan_act 
+	,state_fiscal_yyyy 
+order by id_prsn 
+
+--for production 
+
+select
+	count(id_prsn) kids 
+	,sum(iif(plan_cntr is null, 0, 1)) kids_with_plans
+	,sum(iif(plan_cntr is null, 0, 1))*1.0/count(id_prsn) prp_kids_with_plans
+	,cohort_fy
+from ##placement_prep17_5
+group by 
+	cohort_fy
+order by
+	cohort_fy
+
+
+
+
+
+
+	
