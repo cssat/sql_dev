@@ -399,7 +399,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
         end if;
         if trim(p_cd_reporter_type)<>'0' then
 	        set @incl=concat(@incl,'
-            + cast((rpt.cd_reporter_type * ',@mult_cd_reporter_type,') ) as decimal(22,0)) ');
+            + cast((rpt.cd_reporter_type * ',@mult_cd_reporter_type,') as decimal(22,0)) ');
         end if;					
         if trim(p_filter_access_type)<>'0' then
 	        set @incl=concat(@incl,' 
