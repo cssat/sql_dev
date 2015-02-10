@@ -1,6 +1,5 @@
-
 DELIMITER $$
-CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_mp_college_enrollment_pvt`(p_cd_grade varchar(200))
+CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_mp_college_enrollment_pvt`()
 BEGIN
 SELECT 
 	IF(cd_grade != 0, ce.year - 3, ce.year) AS 'Cohort Period'
@@ -10,7 +9,7 @@ SELECT
 	,MAX(IF(cd_student_type = 2, ROUND(enrollment_percent, 2), NULL)) AS 'Not in Care: Receiving Free or Reduced-Price Lunch'
 	,MAX(IF(cd_student_type = 3, ROUND(enrollment_percent, 2), NULL)) AS 'In Out-of-Home Care'
 FROM test_annie.prtl_college_enrollment AS ce
-WHERE find_in_set(cd_grade, p_cd_grade) > 0
+WHERE cd_grade = 1
 GROUP By
 	ce.year
 	,ce.fl_disability
@@ -21,6 +20,4 @@ ORDER BY
 	,ce.fl_disability DESC;
 END$$
 DELIMITER ;
-
-
 
