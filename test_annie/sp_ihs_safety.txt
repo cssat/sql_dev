@@ -704,7 +704,7 @@ end if; --  not in cache
                 , pbcs3.cd_budget_type as "budget_cd"
                 , ref_bud.tx_budget_poc_frc as "Budget"
  --               , pbcs3.not_placed as "Not Placed"
-                , pbcs3.placed  "Placed"
+                , pbcs3.placed  "Percent Placed"
             FROM cache_pbcs3_aggr pbcs3  
             join cachekeys ck on ck.int_hash_key=pbcs3.int_hash_key
                 and pbcs3.qry_id=ck.qry_id
