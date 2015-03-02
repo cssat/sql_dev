@@ -1,7 +1,4 @@
 
-
-DROP PROCEDURE `test_annie`.`sp_mp_post_secondary_completion_pvt`;
-
 DELIMITER $$
 CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_mp_post_secondary_completion_pvt`()
 BEGIN
