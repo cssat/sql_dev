@@ -1,6 +1,7 @@
 use review_annie;
- truncate table ooh_point_in_time_measures;
-LOAD DATA LOCAL INFILE '/data/pocweb/ooh_point_in_time_measures.txt'
+
+truncate table ooh_point_in_time_measures;
+LOAD DATA INFILE '/data/pocweb/ooh_point_in_time_measures.txt'
 into table ooh_point_in_time_measures
 fields terminated by ','
 LINES TERMINATED BY '\n' 

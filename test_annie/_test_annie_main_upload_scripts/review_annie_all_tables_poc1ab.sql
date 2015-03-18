@@ -1,6 +1,7 @@
 use review_annie;
+
 truncate table cache_poc1ab_params;
-LOAD DATA LOCAL INFILE '/data/pocweb/cache_poc1ab_params.txt'
+LOAD DATA INFILE '/data/pocweb/cache_poc1ab_params.txt'
 into table cache_poc1ab_params
 fields terminated by '|'
 (qry_ID, age_grouping_cd, cd_race_census, pk_gndr, init_cd_plcm_setng, long_cd_plcm_setng, county_cd
@@ -19,7 +20,7 @@ fields terminated by '|'
 
 
  truncate table cache_qry_param_poc1ab;
- LOAD DATA LOCAL INFILE '/data/pocweb/cache_qry_param_poc1ab.txt'
+ LOAD DATA INFILE '/data/pocweb/cache_qry_param_poc1ab.txt'
  into table cache_qry_param_poc1ab
  fields terminated by '|'
  (qry_id,int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd
@@ -36,7 +37,7 @@ fields terminated by '|'
 
  
 truncate table cache_poc1ab_aggr;
-LOAD DATA LOCAL INFILE '/data/pocweb/cache_poc1ab_aggr.txt'
+LOAD DATA INFILE '/data/pocweb/cache_poc1ab_aggr.txt'
 into table cache_poc1ab_aggr
 fields terminated by '|'
 (qry_type, date_type,start_date, int_param_key, bin_dep_cd

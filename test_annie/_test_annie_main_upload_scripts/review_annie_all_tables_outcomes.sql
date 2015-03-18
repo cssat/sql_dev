@@ -1,6 +1,6 @@
 use review_annie;
 truncate table cache_outcomes_params;
-LOAD DATA LOCAL INFILE '/data/pocweb/cache_outcomes_params.txt'
+LOAD DATA INFILE '/data/pocweb/cache_outcomes_params.txt'
 into table cache_outcomes_params
 fields terminated by '|'
 (qry_ID, age_grouping_cd, cd_race_census, pk_gndr
@@ -17,7 +17,7 @@ fields terminated by '|'
 
 
  truncate table cache_qry_param_outcomes;
- LOAD DATA LOCAL INFILE '/data/pocweb/cache_qry_param_outcomes.txt'
+ LOAD DATA INFILE '/data/pocweb/cache_qry_param_outcomes.txt'
  into table cache_qry_param_outcomes
  fields terminated by '|'
  (int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd
@@ -32,7 +32,7 @@ fields terminated by '|'
   where tbl_name='cache_qry_param_outcomes';
  
  truncate table prtl_outcomes;
-LOAD DATA LOCAL INFILE '/data/pocweb/prtl_outcomes.txt'
+LOAD DATA INFILE '/data/pocweb/prtl_outcomes.txt'
 into table prtl_outcomes
 fields terminated by '|'
 LINES TERMINATED BY '\n' 
@@ -51,7 +51,7 @@ analyze table prtl_outcomes;
 
  
 truncate table cache_outcomes_aggr;
-LOAD DATA LOCAL INFILE '/data/pocweb/cache_outcomes_aggr.txt'
+LOAD DATA INFILE '/data/pocweb/cache_outcomes_aggr.txt'
 into table cache_outcomes_aggr
 fields terminated by '|'
 (qry_type, date_type,cohort_entry_date, cd_discharge_type
@@ -61,9 +61,9 @@ cd_reporter_type, cd_access_type, cd_allegation
 , cd_finding, cd_subctgry_poc_frc, cd_budget_poc_frc
 ,  age_grouping_cd, cd_race, pk_gndr, 
 init_cd_plcm_setng, long_cd_plcm_setng, county_cd
-, mnth,rate, min_start_date, 
+, month,rate, min_start_date, 
 max_start_date, x1, x2, insert_date
-,qry_id,start_year,int_hash_key);
+,qry_id,start_year,int_hash_key, discharge_count, cohort_count);
 
 analyze table cache_outcomes_aggr;
   update prtl_tables_last_update

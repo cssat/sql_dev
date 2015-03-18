@@ -2,8 +2,8 @@ use review_annie;
 
 
 
-truncate table review_annie.cache_qry_param_pbcw4;
-LOAD DATA LOCAL INFILE '/data/pocweb/cache_qry_param_pbcw4.txt'
+truncate table cache_qry_param_pbcw4;
+LOAD DATA INFILE '/data/pocweb/cache_qry_param_pbcw4.txt'
 into table cache_qry_param_pbcw4
 fields terminated by '|'
 (int_param_key, bin_dep_cd,bin_los_cd, bin_placement_cd, bin_ihs_svc_cd, cd_reporter_type
@@ -17,8 +17,8 @@ analyze table cache_qry_param_pbcw4;
   set load_date=now(),row_count=(select count(*) from cache_qry_param_pbcw4)
   where tbl_name='cache_qry_param_pbcw4';
 
-truncate table review_annie.cache_pbcw4_params;
-LOAD DATA LOCAL INFILE '/data/pocweb/cache_pbcw4_params.txt'
+truncate table cache_pbcw4_params;
+LOAD DATA INFILE '/data/pocweb/cache_pbcw4_params.txt'
 into table cache_pbcw4_params
 fields terminated by '|'
 ( qry_ID, age_grouping_cd, cd_race_census, pk_gndr, init_cd_plcm_setng, long_cd_plcm_setng, county_cd, bin_los_cd, bin_placement_cd, bin_ihs_svc_cd, 
@@ -31,8 +31,8 @@ analyze table cache_pbcw4_params;
   where tbl_name='cache_pbcw4_params';
 
 
-truncate table review_annie.cache_pbcw4_aggr;
-LOAD DATA LOCAL INFILE '/data/pocweb/cache_pbcw4_aggr.txt'
+truncate table cache_pbcw4_aggr;
+LOAD DATA INFILE '/data/pocweb/cache_pbcw4_aggr.txt'
 into table cache_pbcw4_aggr
 fields terminated by '|'
 (qry_type,date_type,cohort_entry_date,int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,
