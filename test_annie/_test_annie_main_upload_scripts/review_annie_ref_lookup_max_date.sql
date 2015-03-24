@@ -4,7 +4,7 @@ drop table if exists bkp_ref_lookup_max_date ;
 create table bkp_ref_lookup_max_date as select * from ref_lookup_max_date;
 
 truncate table ref_lookup_max_date;
-LOAD DATA LOCAL INFILE '/data/pocweb/ref_lookup_max_date.txt'
+LOAD DATA INFILE '/data/pocweb/ref_lookup_max_date.txt'
 into table ref_lookup_max_date
 fields terminated by '|'
 (id,procedure_name,max_date_all,max_date_any,max_date_qtr,max_date_yr,min_date_any,is_current);
