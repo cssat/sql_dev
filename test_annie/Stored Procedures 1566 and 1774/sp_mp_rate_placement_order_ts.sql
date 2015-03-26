@@ -1,5 +1,3 @@
-
-
 DELIMITER $$
 CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_mp_rate_placement_order_ts`(p_date varchar(3000))
 BEGIN
