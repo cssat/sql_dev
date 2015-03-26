@@ -1,11 +1,8 @@
-
-
-
 DELIMITER $$
 CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_mp_college_enrollment_pvt`()
 BEGIN
 SELECT 
-	IF(cd_grade != 0, ce.year - 3, ce.year) AS 'Cohort Period'
+	IF(cd_grade != 0, ce.year, ce.year) AS 'Cohort Period'
 	,ce.fl_disability
 	,MAX(IF(cd_student_type = 1, ROUND(enrollment_percent, 2), NULL)) AS 'Not in Out-of-Home Care'
 	,MAX(IF(cd_student_type = 2, ROUND(enrollment_percent, 2), NULL)) AS 'Not in Care: Receiving Free or Reduced-Price Lunch'
@@ -22,4 +19,3 @@ ORDER BY
 	,ce.fl_disability DESC;
 END$$
 DELIMITER ;
-
