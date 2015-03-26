@@ -1,5 +1,7 @@
+
+
 DELIMITER $$
-CREATE DEFINER=`test_annie` PROCEDURE `sp_mp_rate_placement_order_ts`(p_date varchar(3000))
+CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_mp_rate_placement_order_ts`(p_date varchar(3000))
 BEGIN
 SELECT 
 	CONVERT(cohort_date, DATE) AS 'Month/Year of Ordered Placement'
@@ -7,7 +9,7 @@ SELECT
 	,nth_order - 1 as 'Order'
 	-- ,o.tx_order AS 'Order'
 	,ROUND(placement_rate, 2) AS 'Scatterplot (Actual Values)'
-	,ROUND(trend, 2) AS 'Trend Line (Seasonal Variation)'
+	,ROUND(trend, 2) AS 'Trend Line (Seasonally Adjusted)'
 FROM rate_placement_order_specific_ts AS RPO
 	JOIN ref_filter_order AS O
 		ON RPO.nth_order = O.cd_order
