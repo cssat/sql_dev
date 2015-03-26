@@ -1,7 +1,7 @@
 
 
 DELIMITER $$
-CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_mp_rate_placement_ts`(p_date varchar(3000))
+CREATE DEFINER=`test_annie` PROCEDURE `sp_mp_rate_placement_ts`(p_date varchar(3000))
 BEGIN
 SELECT 
 	CONVERT(cohort_date, DATE) AS 'Cohort Date'
