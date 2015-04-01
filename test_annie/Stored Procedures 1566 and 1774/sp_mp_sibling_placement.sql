@@ -1,4 +1,4 @@
-
+DROP PROCEDURE `test_annie`.`sp_mp_sibling_placement`;
 
 DELIMITER $$
 CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_mp_sibling_placement`()
