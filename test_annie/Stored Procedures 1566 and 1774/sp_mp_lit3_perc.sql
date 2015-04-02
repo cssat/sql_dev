@@ -18,3 +18,4 @@ GROUP BY
 	,lp.fl_disability desc;
 END$$
 DELIMITER ;
+
