@@ -3,7 +3,7 @@ DELIMITER $$
 CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_mp_placement_care_days_mobility_limits_ds`()
 BEGIN
 SELECT
-	CONVERT(CONCAT(fiscal_yr, '-07-01'), DATETIME)  AS 'Fiscal Year'
+	CONVERT(CONCAT(fiscal_yr, '-07-01'), DATETIME)  AS 'Fiscal Year/Year in Out-of-Home Care'
 	,old_region_cd AS 'Region'
 	,years_in_care AS 'Years in Care'
 	,ROUND(movement_rate, 2) AS 'Rate'

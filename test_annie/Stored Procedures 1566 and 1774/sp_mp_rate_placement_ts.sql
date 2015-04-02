@@ -1,5 +1,4 @@
 
-DROP PROCEDURE `test_annie`.`sp_mp_rate_placement_ts`;
 
 DELIMITER $$
 CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_mp_rate_placement_ts`(p_date varchar(3000))

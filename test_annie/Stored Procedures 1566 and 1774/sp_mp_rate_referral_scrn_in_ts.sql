@@ -1,4 +1,4 @@
-DROP PROCEDURE `sp_mp_rate_referral_scrn_in_ts`;
+
 
 DELIMITER $$
 CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_mp_rate_referral_scrn_in_ts`(p_date varchar(3000))
