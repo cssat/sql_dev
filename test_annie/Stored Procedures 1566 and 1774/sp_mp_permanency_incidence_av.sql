@@ -1,7 +1,8 @@
 
+DROP PROCEDURE `test_annie`.`sp_mp_permanency_incidence_av`;
 
 DELIMITER $$
-CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_mp_permanency_incidence_av`()
+CREATE DEFINER=`test_annie` PROCEDURE `sp_mp_permanency_incidence_av`(p_date varchar(3000))
 BEGIN
 SELECT
 	CONVERT(CONCAT(P.state_fiscal_yyyy, '-07-01'), DATETIME)  AS 'Fiscal Year/Removal Year'
