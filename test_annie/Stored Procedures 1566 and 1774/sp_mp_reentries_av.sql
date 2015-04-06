@@ -1,7 +1,7 @@
 DROP PROCEDURE `test_annie`.`sp_mp_reentries_av`;
 
 DELIMITER $$
-CREATE DEFINER=`test_annie` PROCEDURE `sp_mp_reentries_av`()
+CREATE DEFINER=`test_annie` PROCEDURE `sp_mp_reentries_av`(p_date varchar(3000))
 BEGIN
 SELECT
 	CONVERT(CONCAT(state_fiscal_yyyy, '-07-01'), DATETIME) AS 'Fiscal Year/Year Exited Out-of-Home Care'
