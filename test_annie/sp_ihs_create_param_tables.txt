@@ -58,7 +58,7 @@ BEGIN
         
         DROP TEMPORARY TABLE IF EXISTS tblsrvc;
         create temporary table tblsrvc(cd_subctgry_poc_frc int
-        ,filter_srvc_type decimal(18,0),match_code decimal(18,0)
+        ,filter_srvc_type decimal(18,0),match_code decimal(21,0)
         ,primary key(cd_subctgry_poc_frc,match_code) 
         ,index using btree(match_code))engine = memory;
       
