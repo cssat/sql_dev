@@ -36,6 +36,13 @@
 #*.wwaproj   merge=binary
 
 ###############################################################################
+# behavior for sql
+#
+# sql files are treated as binary by default.
+###############################################################################
+#*.sql   diff
+
+###############################################################################
 # behavior for image files
 #
 # image files are treated as binary by default.
