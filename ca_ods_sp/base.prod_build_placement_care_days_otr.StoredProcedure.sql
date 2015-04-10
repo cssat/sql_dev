@@ -1,4 +1,5 @@
-﻿/****** Object:  StoredProcedure [base].[prod_build_placement_care_days_otr]    Script Date: 4/7/2015 5:04:42 PM ******/
+﻿
+/****** Object:  StoredProcedure [base].[prod_build_placement_care_days_otr]    Script Date: 3/13/2015 2:33:30 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -86,7 +87,7 @@ from (select  distinct state_fiscal_yyyy sfy
 							,max(ID_CALENDAR_DIM)  over (partition by state_fiscal_yyyy order by ID_CALENDAR_DIM asc RANGE between current row and UNBOUNDED FOLLOWING) fy_stop_date_int
 							,min(calendar_date)  over (partition by state_fiscal_yyyy order by calendar_date)  fy_start_date
 							,max(calendar_date)  over (partition by state_fiscal_yyyy order by calendar_date asc RANGE between current row and UNBOUNDED FOLLOWING)   fy_stop_date 
-						from ca_ods.dbo.calendar_dim 
+						from .dbo.calendar_dim 
 						where state_fiscal_yyyy between @fystart and @fystop
 				) cd
 join ref_last_dw_transfer dw on dw.cutoff_date=dw.cutoff_date
@@ -175,7 +176,7 @@ select
 	,begin_date plc_begin_otr
 	,end_date plc_end_otr 
 into #otr_spells
-from ca_ods.base.rptPlacement_Events
+from .base.rptPlacement_Events
 where tx_srvc in ('On The Run', 'OR: On the Run')
 
 update #placements 
