@@ -1,10 +1,11 @@
-﻿alter  procedure prtl.prod_build_all_cache_poc2ab
-as	
-		
+﻿ALTER procedure prtl.prod_build_all_cache_ia_poc2ab
+as
+		set nocount on
 		
 		truncate table prtl.cache_poc2ab_aggr;
 		truncate table prtl.cache_poc2ab_params;
 		truncate table prtl.cache_qry_param_poc2ab;
+
 
 
 		declare @age_grouping_cd  varchar(30) = N'1,2,3,4,0'
@@ -275,7 +276,7 @@ as
 	
 
 				-- see if results are in cache as a subset of previously run query
-		if OBJECT_ID('tempDB..##cachekeys') is not null drop table ##cachekeys;
+		if OBJECT_ID('tempDB..#cachekeys') is not null drop table #cachekeys;
 
 		   select cast((int_param_key  * power(10.0,5)) as decimal(12,0))
 			+ cast((rpt.cd_reporter_type  * power(10.0,3)) as decimal(12,0))
@@ -291,7 +292,7 @@ as
 					 ,@qry_id as qry_id
 					 ,rand(cast(newid() as varbinary)) x1
 					 ,rand(cast(newid() as varbinary)) x2
-				into ##cachekeys
+				into #cachekeys
 				from (select distinct int_param_key from #prmlocdem) prm
 				cross join (select distinct cd_reporter_type from #rpt) rpt
 				cross join (select distinct cd_access_type from #access_type) acc
@@ -299,14 +300,14 @@ as
 				cross join (select distinct cd_finding from #find) fnd
 
 
-			create index idx_int_hash_key on ##cachekeys(int_hash_key,in_cache);
-			create index idx_qryid_params on ##cachekeys(qry_id,int_hash_key);
-			create index  idx_params on ##cachekeys(int_param_key,cd_reporter_type,cd_access_type,cd_allegation	,cd_finding,in_cache);                   
+			create index idx_int_hash_key on #cachekeys(int_hash_key,in_cache);
+			create index idx_qryid_params on #cachekeys(qry_id,int_hash_key);
+			create index  idx_params on #cachekeys(int_param_key,cd_reporter_type,cd_access_type,cd_allegation	,cd_finding,in_cache);                   
 
 				
 			update cache
 			set in_cache=1,qry_id=poc2ab.qry_id
-			from ##cachekeys cache
+			from #cachekeys cache
 			join [prtl].[cache_qry_param_poc2ab] poc2ab
 			on poc2ab.[int_all_param_key]=cache.int_hash_key
 			
@@ -376,7 +377,7 @@ as
 								join #access_type acc on acc.match_code=prtl_poc2ab.filter_access_type
 								join #algtn alg on alg.match_code=prtl_poc2ab.filter_allegation
 								join #find fnd on fnd.match_code=prtl_poc2ab.filter_finding
-								join ##cachekeys ck on ck.int_hash_key=cast((mtch.int_param_key  * power(10.0,5)) as decimal(12,0))
+								join #cachekeys ck on ck.int_hash_key=cast((mtch.int_param_key  * power(10.0,5)) as decimal(12,0))
 									+ cast((rpt.cd_reporter_type  * power(10.0,3)) as decimal(12,0))
 									+  cast((acc.cd_access_type  * power(10.0,2)) as decimal(12,0))
 									+  cast((alg.cd_allegation  * power(10.0,1)) as decimal(12,0))
@@ -408,7 +409,7 @@ as
 						set cache_poc2ab_aggr.fl_include_perCapita=0
 						-- select pop_cnt, cache_poc1ab_aggr.*
 						from prtl.cache_poc2ab_aggr,prm_household_census_population   
-						where exists(select * from ##cachekeys ck where cache_poc2ab_aggr.qry_id=ck.qry_id)
+						where exists(select * from #cachekeys ck where cache_poc2ab_aggr.qry_id=ck.qry_id)
 						and prm_household_census_population.measurement_year=start_year
 						and prm_household_census_population.county_cd=cache_poc2ab_aggr.cd_county 
 						and prm_household_census_population.cd_race=cache_poc2ab_aggr.cd_race
@@ -445,7 +446,7 @@ as
 						,[cd_finding]
 						,ck.qry_id
 						,ck.int_hash_key
-						from ##cachekeys ck
+						from #cachekeys ck
 						join (select distinct int_param_key
 											, [age_grouping_cd] 
 											, cd_race_census
@@ -473,3 +474,4 @@ as
 						set last_build_date=getdate()
 						,row_count=(select count(*)  from prtl.cache_qry_param_poc2ab )
 						where tbl_name='cache_qry_param_poc2ab'			
+
