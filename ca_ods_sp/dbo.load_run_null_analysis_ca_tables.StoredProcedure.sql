@@ -1,7 +1,4 @@
-USE [CA_ODS]
-GO
-
-/****** Object:  StoredProcedure [dbo].[load_run_null_analysis_ca_tables]    Script Date: 8/26/2014 5:21:48 AM ******/
+﻿/****** Object:  StoredProcedure [dbo].[load_run_null_analysis_ca_tables]    Script Date: 8/26/2014 5:21:48 AM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -11,7 +8,7 @@ GO
 ALTER procedure [dbo].[load_run_null_analysis_ca_tables]
 as
 
-update [CA_ODS].[dbo].[ca_table_id]
+update [dbo].[ca_table_id]
   set last_update =date_loaded
   from dbo.CA_DATA_LOADED cdl where cdl.ca_tbl_id=[ca_table_id].ca_tbl_id
   and cdl.date_loaded > getdate()-2
