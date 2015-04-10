@@ -1,4 +1,4 @@
-alter procedure base.prod_build_episode_care_days
+﻿alter procedure base.prod_build_episode_care_days
 as
 
 			declare @fystart int= 2000;
@@ -54,7 +54,7 @@ as
 			from (select  distinct state_fiscal_yyyy sfy
 										,min(calendar_date)  over (partition by state_fiscal_yyyy order by calendar_date)  fy_start_date
 										,max(calendar_date)  over (partition by state_fiscal_yyyy order by calendar_date asc RANGE between current row and UNBOUNDED FOLLOWING)   fy_stop_date 
-									from ca_ods.dbo.calendar_dim 
+									from dbo.calendar_dim 
 									where state_fiscal_yyyy between @fystart and @fystop
 							) cd
 			join ref_last_dw_transfer dw on dw.cutoff_date=dw.cutoff_date
@@ -200,7 +200,7 @@ group by
 --		,sum(iif(plcmnt_seq > 1 and begin_date between fy_start_date and fy_stop_date,1,0)) placement_moves
 --	from #dates cd
 --			join ref_last_dw_transfer dw on dw.cutoff_date=dw.cutoff_date
---			join ca_ods.base.rptPlacement_Events rp 
+--			join base.rptPlacement_Events rp 
 --					on removal_dt <= cd.fy_stop_date
 --			and  iif(dbo.lessorDate( [18bday],rp.discharge_dt) > cutoff_date
 --				, cutoff_date
