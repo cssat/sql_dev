@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[RESPONSE_TIME_EXP_DIM] (
+    [ID_RESPONSE_TIME_EXP_DIM] INT           NOT NULL,
+    [CD_RESPONSE_TIME_CAT]     INT           NULL,
+    [TX_RESPONSE_TIME_CAT]     VARCHAR (200) NULL,
+    [DT_ROW_BEGIN]             DATETIME      NULL,
+    [DT_ROW_END]               DATETIME      NULL,
+    [ID_CYCLE]                 INT           NULL,
+    [IS_CURRENT]               INT           NULL,
+    CONSTRAINT [PK_ID_RESPONSE_TIME_EXP_DIM] PRIMARY KEY CLUSTERED ([ID_RESPONSE_TIME_EXP_DIM] ASC)
+);
+

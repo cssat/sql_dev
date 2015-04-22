@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [aoc]
+    AUTHORIZATION [dbo];
+

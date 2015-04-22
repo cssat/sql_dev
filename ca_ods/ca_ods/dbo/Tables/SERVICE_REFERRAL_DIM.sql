@@ -1,0 +1,14 @@
+﻿CREATE TABLE [dbo].[SERVICE_REFERRAL_DIM] (
+    [ID_SERVICE_REFERRAL_DIM]       INT           NOT NULL,
+    [CD_SERVICE_REFERRAL_TYPE]      INT           NULL,
+    [TX_SERVICE_REFERRAL_TYPE]      VARCHAR (200) NULL,
+    [CD_SPECIFIC_SERVICE_REQUESTED] INT           NULL,
+    [NM_SPECIFIC_SERVICE_REQUESTED] VARCHAR (200) NULL,
+    [TX_RQST_SRVC_POSITION]         INT           NULL,
+    [DT_ROW_BEGIN]                  DATETIME      NULL,
+    [DT_ROW_END]                    DATETIME      NULL,
+    [ID_CYCLE]                      INT           NULL,
+    [IS_CURRENT]                    INT           NULL,
+    CONSTRAINT [PK_ID_SERVICE_REFERRAL_DIM] PRIMARY KEY CLUSTERED ([ID_SERVICE_REFERRAL_DIM] ASC)
+);
+

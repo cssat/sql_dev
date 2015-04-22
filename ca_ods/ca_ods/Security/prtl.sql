@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [prtl]
+    AUTHORIZATION [dbo];
+

@@ -1,0 +1,10 @@
+﻿ALTER ROLE [db_ddladmin] ADD MEMBER [NEBULA2\POC_DBO];
+
+
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [NEBULA2\POC_DBO];
+
+
+GO
+ALTER ROLE [db_datawriter] ADD MEMBER [NEBULA2\POC_DBO];
+

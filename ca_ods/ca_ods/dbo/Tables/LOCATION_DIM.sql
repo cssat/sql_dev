@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[LOCATION_DIM] (
+    [ID_LOCATION_DIM] INT           NOT NULL,
+    [CD_CNTY]         VARCHAR (4)   NULL,
+    [TX_CNTY]         VARCHAR (200) NULL,
+    [CD_LCTN]         INT           NULL,
+    [TX_LCTN]         VARCHAR (40)  NULL,
+    [CD_OFFICE]       INT           NULL,
+    [TX_OFFICE]       VARCHAR (200) NULL,
+    [CD_REGION]       INT           NULL,
+    [TX_REGION]       VARCHAR (200) NULL,
+    [CD_TOWN]         INT           NULL,
+    [TX_TOWN]         VARCHAR (40)  NULL,
+    [CD_UNIT]         INT           NULL,
+    [TX_UNIT]         VARCHAR (200) NULL,
+    [CD_ACTIVE]       CHAR (1)      NULL,
+    [CD_RGN]          INT           NULL,
+    [CD_STATE]        VARCHAR (2)   NULL,
+    [CD_ZIP]          VARCHAR (9)   NULL,
+    [DT_ROW_BEGIN]    DATETIME      NULL,
+    [DT_ROW_END]      DATETIME      NULL,
+    [ID_CYCLE]        INT           NULL,
+    [IS_CURRENT]      INT           NULL,
+    [zip_5]           VARCHAR (5)   NULL,
+    [CD_CITY_TYPE]    VARCHAR (1)   NULL,
+    [TX_CITY_TYPE]    VARCHAR (200) NULL,
+    CONSTRAINT [PK_LOCATION_DIM] PRIMARY KEY CLUSTERED ([ID_LOCATION_DIM] ASC)
+);
+

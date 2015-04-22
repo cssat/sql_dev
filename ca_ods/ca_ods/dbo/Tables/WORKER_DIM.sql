@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[WORKER_DIM] (
+    [ID_WORKER_DIM]            INT           NOT NULL,
+    [ID_PRSN]                  INT           NULL,
+    [ID_PRSN_SPRV]             INT           NULL,
+    [ID_RMTS_GROUP_COORD]      INT           NULL,
+    [ID_LOCATION_DIM_WORKER]   INT           NULL,
+    [ID_WORKER_DIM_SUPERVISOR] INT           NULL,
+    [CD_JOB_CLS]               INT           NULL,
+    [TX_JOB_CLS]               VARCHAR (200) NULL,
+    [CD_RMTS_WRKR_TYP]         INT           NULL,
+    [TX_RMTS_WRKR_TYP]         VARCHAR (200) NULL,
+    [CD_STAT]                  CHAR (1)      NULL,
+    [TX_STAT]                  VARCHAR (200) NULL,
+    [CD_UNT]                   INT           NULL,
+    [QT_WRK_MEASURE]           INT           NULL,
+    [DT_BRTH]                  DATETIME      NULL,
+    [DT_END]                   DATETIME      NULL,
+    [DT_START]                 DATETIME      NULL,
+    [DT_ROW_BEGIN]             DATETIME      NULL,
+    [DT_ROW_END]               DATETIME      NULL,
+    [ID_CYCLE]                 INT           NULL,
+    [IS_CURRENT]               INT           NULL,
+    CONSTRAINT [PK_ID_WORKER_DIM] PRIMARY KEY CLUSTERED ([ID_WORKER_DIM] ASC),
+    CONSTRAINT [fk_WORKER_DIM_ID_LOCATION_DIM_WORKER] FOREIGN KEY ([ID_LOCATION_DIM_WORKER]) REFERENCES [dbo].[LOCATION_DIM] ([ID_LOCATION_DIM]),
+    CONSTRAINT [fk_WORKER_DIM_ID_WORKER_DIM_SUPERVISOR] FOREIGN KEY ([ID_WORKER_DIM_SUPERVISOR]) REFERENCES [dbo].[WORKER_DIM] ([ID_WORKER_DIM])
+);
+

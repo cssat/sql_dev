@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[DISPOSITION_DIM] (
+    [ID_DISPOSITION_DIM] INT           NOT NULL,
+    [CD_INVS_DISP]       INT           NULL,
+    [TX_INVS_DISP]       VARCHAR (200) NULL,
+    [DT_ROW_BEGIN]       DATETIME      NULL,
+    [DT_ROW_END]         DATETIME      NULL,
+    [ID_CYCLE]           INT           NULL,
+    [IS_CURRENT]         INT           NULL,
+    CONSTRAINT [PK_ID_DISPOSITION_DIM] PRIMARY KEY CLUSTERED ([ID_DISPOSITION_DIM] ASC)
+);
+

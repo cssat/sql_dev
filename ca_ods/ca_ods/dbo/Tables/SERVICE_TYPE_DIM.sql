@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[SERVICE_TYPE_DIM] (
+    [ID_SERVICE_TYPE_DIM]                INT           NOT NULL,
+    [CD_PAYMENT_TYPE]                    INT           NULL,
+    [TX_PAYMENT_TYPE]                    VARCHAR (200) NULL,
+    [CD_SERVICE_CONCURRENCY]             INT           NULL,
+    [TX_SERVICE_CONCURRENCY]             VARCHAR (200) NULL,
+    [CD_SOCIAL_SRV_PAYMENT_SYS_SRV_CODE] INT           NULL,
+    [CD_SRVC]                            INT           NULL,
+    [TX_SRVC]                            VARCHAR (40)  NULL,
+    [CD_SRVC_CTGRY]                      INT           NULL,
+    [TX_SRVC_CTGRY]                      VARCHAR (200) NULL,
+    [CD_SSPS_REASON]                     CHAR (1)      NULL,
+    [CD_SUBCTGRY]                        INT           NULL,
+    [TX_SUBCTGRY]                        VARCHAR (200) NULL,
+    [CD_UNIT_RATE_TYPE]                  INT           NULL,
+    [TX_UNIT_RATE_TYPE]                  VARCHAR (200) NULL,
+    [FL_ELIGIBLE_IVE]                    CHAR (1)      NULL,
+    [FL_FUNDING_IV_E]                    CHAR (1)      NULL,
+    [FL_IV_E_PENETRATION_RATE]           CHAR (1)      NULL,
+    [DT_ROW_BEGIN]                       DATETIME      NULL,
+    [DT_ROW_END]                         DATETIME      NULL,
+    [ID_CYCLE]                           INT           NULL,
+    [IS_CURRENT]                         INT           NULL,
+    [FL_RGAP]                            CHAR (1)      NULL,
+    CONSTRAINT [PK_ID_SERVICE_TYPE_DIM] PRIMARY KEY CLUSTERED ([ID_SERVICE_TYPE_DIM] ASC)
+);
+

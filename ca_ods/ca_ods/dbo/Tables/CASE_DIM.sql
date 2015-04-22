@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[CASE_DIM] (
+    [ID_CASE_DIM]                   INT           NOT NULL,
+    [ID_CASE]                       INT           NULL,
+    [ID_CALENDAR_DIM_LAST_ACTIVITY] INT           NULL,
+    [ID_LOCATION_DIM]               INT           NULL,
+    [CD_CASE_STAT]                  CHAR (1)      NULL,
+    [TX_CASE_STAT]                  VARCHAR (200) NULL,
+    [CD_CASE_TYPE]                  INT           NULL,
+    [TX_CASE_TYPE]                  VARCHAR (200) NULL,
+    [CD_DCF_WRK_INV]                CHAR (1)      NULL,
+    [TX_DCF_WRK_INV]                VARCHAR (200) NULL,
+    [DT_CASE_CLS]                   DATETIME      NULL,
+    [DT_CASE_OPN]                   DATETIME      NULL,
+    [DT_ROW_BEGIN]                  DATETIME      NULL,
+    [DT_ROW_END]                    DATETIME      NULL,
+    [ID_CYCLE]                      INT           NULL,
+    [IS_CURRENT]                    INT           NULL,
+    [FL_DELETED]                    CHAR (1)      NULL,
+    [FL_EXPUNGED]                   CHAR (1)      NULL,
+    [FL_TRIBAL_IVE]                 CHAR (1)      NULL,
+    CONSTRAINT [PK_CASE_DIM] PRIMARY KEY CLUSTERED ([ID_CASE_DIM] ASC),
+    CONSTRAINT [fk_CASE_DIM_ID_CALENDAR_DIM_LAST_ACTIVITY] FOREIGN KEY ([ID_CALENDAR_DIM_LAST_ACTIVITY]) REFERENCES [dbo].[CALENDAR_DIM] ([ID_CALENDAR_DIM]),
+    CONSTRAINT [fk_CASE_DIM_ID_LOCATION_DIM] FOREIGN KEY ([ID_LOCATION_DIM]) REFERENCES [dbo].[LOCATION_DIM] ([ID_LOCATION_DIM])
+);
+

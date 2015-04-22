@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[REMOVAL_DIM] (
+    [ID_REMOVAL_DIM] INT           NOT NULL,
+    [CD_RMVL_MNR]    INT           NULL,
+    [TX_RMVL_MNR]    VARCHAR (200) NULL,
+    [DT_ROW_BEGIN]   DATETIME      NULL,
+    [DT_ROW_END]     DATETIME      NULL,
+    [ID_CYCLE]       INT           NULL,
+    [IS_CURRENT]     INT           NULL,
+    CONSTRAINT [PK_ID_REMOVAL_DIM] PRIMARY KEY CLUSTERED ([ID_REMOVAL_DIM] ASC)
+);
+

@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[FINDINGS_DIM] (
+    [ID_FINDINGS_DIM] INT           NOT NULL,
+    [CD_FINDING]      INT           NULL,
+    [TX_FINDING]      VARCHAR (200) NULL,
+    [DT_ROW_BEGIN]    DATETIME      NULL,
+    [DT_ROW_END]      DATETIME      NULL,
+    [ID_CYCLE]        INT           NULL,
+    [IS_CURRENT]      INT           NULL,
+    CONSTRAINT [PK_FINDINGS_DIM] PRIMARY KEY CLUSTERED ([ID_FINDINGS_DIM] ASC)
+);
+

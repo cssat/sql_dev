@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[WORKER_DIM_HISTORY] (
+    [ID_WORKER_DIM_HISTORY]            INT           IDENTITY (1, 1) NOT NULL,
+    [ID_WORKER_DIM]                    INT           NOT NULL,
+    [ID_PRSN]                          INT           NULL,
+    [ID_PRSN_SPRV]                     INT           NULL,
+    [ID_RMTS_GROUP_COORD]              INT           NULL,
+    [ID_LOCATION_DIM_WORKER]           INT           NULL,
+    [ID_WORKER_DIM_HISTORY_SUPERVISOR] INT           NULL,
+    [ID_WORKER_DIM_SUPERVISOR]         INT           NULL,
+    [CD_JOB_CLS]                       INT           NULL,
+    [TX_JOB_CLS]                       VARCHAR (200) NULL,
+    [CD_RMTS_WRKR_TYP]                 INT           NULL,
+    [TX_RMTS_WRKR_TYP]                 VARCHAR (200) NULL,
+    [CD_STAT]                          CHAR (1)      NULL,
+    [TX_STAT]                          VARCHAR (200) NULL,
+    [CD_UNT]                           INT           NULL,
+    [QT_WRK_MEASURE]                   INT           NULL,
+    [DT_BRTH]                          DATETIME      NULL,
+    [DT_END]                           DATETIME      NULL,
+    [DT_START]                         DATETIME      NULL,
+    [DT_ROW_BEGIN]                     DATETIME      NULL,
+    [DT_ROW_END]                       DATETIME      NULL,
+    [ID_CYCLE]                         INT           NULL,
+    [IS_CURRENT]                       INT           NULL,
+    [LOAD_DATE]                        INT           NOT NULL,
+    CONSTRAINT [PK_ID_WORKER_DIM_HISTORY] PRIMARY KEY CLUSTERED ([ID_WORKER_DIM_HISTORY] ASC)
+);
+

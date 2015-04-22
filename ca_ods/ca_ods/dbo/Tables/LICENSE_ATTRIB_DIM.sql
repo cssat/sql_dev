@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[LICENSE_ATTRIB_DIM] (
+    [ID_LICENSE_ATTRIB_DIM]         INT           NOT NULL,
+    [ID_LCNS]                       INT           NULL,
+    [CD_APPLICATION_STATUS]         INT           NULL,
+    [TX_LICENSE_APPLICATION_STATUS] VARCHAR (200) NULL,
+    [CD_CHILD_SPECIFIC_FOSTER_HOME] CHAR (1)      NULL,
+    [TX_LICENSE_CHILD_SPECIFIC]     VARCHAR (200) NULL,
+    [CD_FACILITY_TYPE]              INT           NULL,
+    [TX_LICENSE_FACILITY_TYPE]      VARCHAR (200) NULL,
+    [CD_LCNS_STAT]                  INT           NULL,
+    [TX_LCNS_STAT]                  VARCHAR (200) NULL,
+    [CD_LCNS_TYPE]                  INT           NULL,
+    [TX_LCNS_TYPE]                  VARCHAR (200) NULL,
+    [CD_LICENSE_CERTIFICATE]        INT           NULL,
+    [TX_LICENSE_CERTIFICATE]        VARCHAR (200) NULL,
+    [CD_LICENSE_REASON]             INT           NULL,
+    [TX_LICENSE_REASON]             VARCHAR (200) NULL,
+    [TX_GENDER]                     VARCHAR (20)  NULL,
+    [DT_ROW_BEGIN]                  DATETIME      NULL,
+    [DT_ROW_END]                    DATETIME      NULL,
+    [ID_CYCLE]                      INT           NULL,
+    [IS_CURRENT]                    INT           NULL,
+    CONSTRAINT [PK_LICENSE_ATTRIB_DIM] PRIMARY KEY CLUSTERED ([ID_LICENSE_ATTRIB_DIM] ASC)
+);
+

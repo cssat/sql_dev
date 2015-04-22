@@ -1,0 +1,21 @@
+﻿CREATE TABLE [dbo].[INTAKE_TYPE_DIM] (
+    [ID_INTAKE_TYPE_DIM]         INT           NOT NULL,
+    [CD_ACCESS_TYPE]             INT           NULL,
+    [TX_ACCESS_TYPE]             VARCHAR (200) NULL,
+    [CD_CPS_SUPERVISOR_DECISION] INT           NULL,
+    [TX_CPS_SUPERVISOR_DECISION] VARCHAR (200) NULL,
+    [CD_FINAL_DECISION]          INT           NULL,
+    [TX_FINAL_DECISION]          VARCHAR (200) NULL,
+    [CD_SUPERVISOR_DECISION]     INT           NULL,
+    [TX_SUPERVISOR_DECISION]     VARCHAR (200) NULL,
+    [CD_WORKER_DECISION]         INT           NULL,
+    [TX_WORKER_DECISION]         VARCHAR (200) NULL,
+    [DT_ROW_BEGIN]               DATETIME      NULL,
+    [DT_ROW_END]                 DATETIME      NULL,
+    [ID_CYCLE]                   INT           NULL,
+    [IS_CURRENT]                 INT           NULL,
+    [CD_INTAKE_TYPE_DERIVED]     INT           NULL,
+    [TX_INTAKE_TYPE_DERIVED]     VARCHAR (200) NULL,
+    CONSTRAINT [PK_ID_INTAKE_TYPE_DIM] PRIMARY KEY CLUSTERED ([ID_INTAKE_TYPE_DIM] ASC)
+);
+

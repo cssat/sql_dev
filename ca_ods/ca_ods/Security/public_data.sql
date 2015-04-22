@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [public_data]
+    AUTHORIZATION [NEBULA2\POC_DBO];
+
