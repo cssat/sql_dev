@@ -1,10 +1,5 @@
--- --------------------------------------------------------------------------------
--- Routine DDL
--- Note: comments before and after the routine body will not be stored by the server
--- --------------------------------------------------------------------------------
 DELIMITER $$
-
-CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_ia_trends_counts`( p_date varchar(3000)
+CREATE DEFINER=`test_annie`@`%` PROCEDURE `sp_ia_trends_counts`( p_date varchar(3000)
 ,  p_age_grouping_cd varchar(30)
 ,  p_ethnicity_cd varchar(30)
 ,  p_cd_county varchar(250) 
@@ -19,6 +14,7 @@ begin
     declare p_maxdate datetime;
     declare p_maxmonthstart datetime;
     declare p_minmonthstart datetime;
+    declare p_maxdateyear datetime;
     declare p_qry_id bigint;
     
     
@@ -48,7 +44,8 @@ begin
      
       --  set dates 
         
-        select min_date_any ,max_date_any,min_date_any ,max_date_any into p_minmonthstart,p_maxmonthstart ,p_mindate,p_maxdate 
+        select min_date_any ,max_date_any,min_date_any ,max_date_any, max_date_yr
+        into p_minmonthstart ,p_maxmonthstart ,p_mindate ,p_maxdate, p_maxdateyear
         FROM ref_lookup_max_date where id=var_calling_procedure;
 
         
@@ -505,7 +502,7 @@ SELECT
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=poc2ab.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=poc2ab.cd_access_type
             where poc2ab.start_date 
-            between p_mindate and p_maxdate
+            between p_mindate and case when poc2ab.date_type = 2 then p_maxdateyear else p_maxdate end
             order by qry_type,date_type,start_date,poc2ab.cd_sib_age_grp 
             ,poc2ab.cd_race
             ,poc2ab.cd_county
@@ -515,4 +512,5 @@ SELECT
             ,poc2ab.cd_finding;        
 	
           end if; -- turn procedure off
-    end
+    end$$
+DELIMITER ;

@@ -1,7 +1,7 @@
 DROP PROCEDURE `test_annie`.`sp_mp_rate_referral_scrn_in_ts`;
 
 DELIMITER $$
-CREATE DEFINER=`test_annie` PROCEDURE `sp_mp_rate_referral_scrn_in_ts`(p_date varchar(3000))
+CREATE DEFINER=`test_annie` PROCEDURE `sp_mp_rate_referral_scrn_in_ts`()
 BEGIN
 SELECT 
 	CONVERT(start_date, DATE) AS 'Month/Year of Screened-In Report'

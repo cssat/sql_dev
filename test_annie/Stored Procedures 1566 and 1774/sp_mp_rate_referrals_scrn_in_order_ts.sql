@@ -1,7 +1,7 @@
 DROP PROCEDURE `test_annie`.`sp_mp_rate_referrals_scrn_in_order_ts`;
 
 DELIMITER $$
-CREATE DEFINER=`test_annie` PROCEDURE `sp_mp_rate_referrals_scrn_in_order_ts`(p_date varchar(3000))
+CREATE DEFINER=`test_annie` PROCEDURE `sp_mp_rate_referrals_scrn_in_order_ts`()
 BEGIN
 
 SELECT 
