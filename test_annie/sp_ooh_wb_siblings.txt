@@ -3,8 +3,7 @@
 -- Note: comments before and after the routine body will not be stored by the server
 -- --------------------------------------------------------------------------------
 DELIMITER $$
-
-CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_ooh_wb_siblings`(  p_age_grouping_cd varchar(30)
+CREATE DEFINER=`test_annie`@`%` PROCEDURE `sp_ooh_wb_siblings`(  p_age_grouping_cd varchar(30)
 ,  p_ethnicity_cd varchar(30)
 ,  p_gender_cd varchar(10)
 ,  p_init_cd_plcm_setng varchar(30)
@@ -40,8 +39,6 @@ declare var_row_cnt_param int;
 declare var_row_cnt_cache int;
 
 declare min_filter_date datetime;
-
-
 
 declare unq_qry_id int;
 
@@ -434,15 +431,15 @@ if  flg_procedure_off =0 then
             and trim(p_long_cd_plcm_setng)='0' 
             and trim(p_county_cd) = '0'  )  then
             set @incl=concat(@incl,'      
-            cast((cast(mtch.int_param_key as decimal(22,0)) *  cast(',@mult_int_param_key,' as decimal(22,0))) as decimal(22,0)) +');
+            cast((cast(mtch.int_param_key as decimal(22,0)) *  cast(',@mult_int_param_key,' as decimal(22,0))) as decimal(22,0))');
         else
             set @incl=concat(@incl,'
             cast((',@constant,' ) as decimal(22,0))');
-            end if;
-            if trim(p_bin_dep_cd)<>'0' then
-                set @incl=concat(@incl,' 
-                + cast((dep.bin_dep_cd * ',@mult_bin_dep_cd,' )as decimal(22,0)) ');
-            end if;	
+		end if;
+		if trim(p_bin_dep_cd)<>'0' then
+			set @incl=concat(@incl,' 
+			+ cast((dep.bin_dep_cd * ',@mult_bin_dep_cd,' )as decimal(22,0)) ');
+		end if;	
         if trim(p_bin_los_cd)<>'0' then
                 set @incl=concat(@incl,' 
             + cast((los.bin_los_cd * ',@mult_bin_los_cd,' )as decimal(22,0)) ');
@@ -733,4 +730,5 @@ if  flg_procedure_off =0 then
                     , pbcw4.cd_budget_poc_frc
                     , pbcw4.bin_sibling_group_size;  
  end if; -- turn procedure off
-END
+END$$
+DELIMITER ;
