@@ -1,0 +1,3491 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/5/2014 11:07:58 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MXL2230QJY"
+  DTS:CreatorName="NEBULA2\messej"
+  DTS:DTSID="{54F55777-9AD6-4FE7-86A4-A66130E840CE}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5058.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="44"
+  DTS:VersionGUID="{7F31F834-F81A-47C7-AD2F-C574957B9851}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ooh_entry_rates_counties]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{45F6653C-40F7-475B-B992-2F12C4821C4C}"
+      DTS:ObjectName="ooh_entry_rates_counties">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::dir] + "ooh_entry_rates_counties.csv"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\files for test_annie\20141015\ooh_entry_rates_counties.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="start_date"
+              DTS:DTSID="{E5150118-A9CD-41E7-B0D8-D810F65112E0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="19"
+              DTS:TextQualified="True"
+              DTS:ObjectName="age_grouping_cd"
+              DTS:DTSID="{624D5487-46EB-4B69-822A-F5562CD64077}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="19"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ethnicity_cd"
+              DTS:DTSID="{91895918-C93B-4A44-86DE-AF62C62BA8E6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="geography"
+              DTS:DTSID="{00A56514-E47D-497C-84E8-AA98785CC3F9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="5"
+              DTS:TextQualified="True"
+              DTS:ObjectName="data"
+              DTS:DTSID="{96C783AC-2988-4026-A868-5D5A94745377}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ooh_entry_rates_regions]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{33526375-DB61-498C-A4A3-959AEBBC3D38}"
+      DTS:ObjectName="ooh_entry_rates_regions">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::dir] + "ooh_entry_rates_regions.csv"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\files for test_annie\20141015\ooh_entry_rates_regions.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="start_date"
+              DTS:DTSID="{090859D5-44E4-4DAE-83AB-1A6977F0419B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="19"
+              DTS:TextQualified="True"
+              DTS:ObjectName="age_grouping_cd"
+              DTS:DTSID="{FD8F6263-C6E1-4A33-8A91-184524ACA538}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="19"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ethnicity_cd"
+              DTS:DTSID="{6E5EAB7D-BEEE-41FE-81FA-37C567E8C2CF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="geography"
+              DTS:DTSID="{E3CFA4ED-BCCE-4211-B6A9-A03F218651C8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="5"
+              DTS:TextQualified="True"
+              DTS:ObjectName="data"
+              DTS:DTSID="{8223433A-029F-4EDA-9E75-61ED8345487D}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ooh_trends_rates_county]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{1887DEF8-CC97-4DCC-9432-9F9A9CAF483E}"
+      DTS:ObjectName="ooh_trends_rates_county">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::dir] + "ooh_trends_rates_counties.csv"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\files for test_annie\20141015\ooh_trends_rates_counties.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="start_date"
+              DTS:DTSID="{0CDBF50C-FFFF-4E98-9078-375FCE91F26C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="19"
+              DTS:TextQualified="True"
+              DTS:ObjectName="age_grouping_cd"
+              DTS:DTSID="{B3D2ED98-15D8-41EF-9D44-F046142E9CAC}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="19"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ethnicity_cd"
+              DTS:DTSID="{59A771A5-83A3-4A7C-A78A-E578CDDA7AED}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="geography"
+              DTS:DTSID="{234417B0-E325-419C-B2B2-8F8502C58FB0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="5"
+              DTS:TextQualified="True"
+              DTS:ObjectName="data"
+              DTS:DTSID="{E076CDAB-35F0-4466-AFE5-A788213E0D4D}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ooh_trends_rates_region]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{CC2F8985-B2A8-415A-81E0-95792A3E7B3F}"
+      DTS:ObjectName="ooh_trends_rates_region">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::dir] + "ooh_trends_rates_regions.csv"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\files for test_annie\20141015\ooh_trends_rates_regions.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="start_date"
+              DTS:DTSID="{3AF14249-F6FE-42F7-BBB9-DF847B704FDC}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="19"
+              DTS:TextQualified="True"
+              DTS:ObjectName="age_grouping_cd"
+              DTS:DTSID="{018FF391-4B98-4877-9D8C-E6E093DFE996}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ethnicity_cd"
+              DTS:DTSID="{C7FB757C-C62B-483D-B40C-DD0EA270961A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="geography"
+              DTS:DTSID="{1FAECC31-B412-421B-BD38-751F3C3C3E06}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="5"
+              DTS:TextQualified="True"
+              DTS:ObjectName="data"
+              DTS:DTSID="{569646CA-6FAE-4AD2-B73D-134A670FB774}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[poc2.CA_ODS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{73E65CBC-01C9-4674-B328-B867CF74D26A}"
+      DTS:ObjectName="poc2.CA_ODS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=poc2;Initial Catalog=CA_ODS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{73E65CBC-01C9-4674-B328-B867CF74D26A}poc2.CA_ODS;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6185E8A3-797F-4408-A0D4-D14141E602D8}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;\\\\poc2\\pocshare\\Data Portal\\data\\files for test_annie\\&quot; + (DT_WSTR, 4) YEAR( GETDATE() ) + RIGHT((DT_WSTR, 3) (100 + MONTH(GETDATE())), 2) + RIGHT((DT_WSTR, 3) (100 + DAY(GETDATE())), 2) + &quot;\\&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="dir">
+      <DTS:VariableValue
+        DTS:DataType="8">\\poc2\pocshare\Data Portal\data\files for test_annie\20141015\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2CCA2C25-E22B-4FB9-887C-FEA943BD8C1A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ftpFilename">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E8A46095-6867-45EF-8CB9-04E6FFE3A4C8}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ftpPassword">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3ECD3C8A-0AFE-4863-8163-5598C769BF10}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ftpSite">
+      <DTS:VariableValue
+        DTS:DataType="8">sftp://pocweb.cac.washington.edu</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FF248F17-A860-4FB2-9535-1ED613488CEF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ftpUsername">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{799A305C-4F6C-4E1A-8734-7827BC4A0378}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="localPath">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{08662ABA-A80B-4E46-A852-4B9454381CE4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="remoteFTPDirectory">
+      <DTS:VariableValue
+        DTS:DataType="8">/data/pocweb/maps</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FE3E92DE-123C-4DD9-9C28-EBE74DF3B727}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="sshKey">
+      <DTS:VariableValue
+        DTS:DataType="8">ssh-rsa 2048 62:18:57:a3:76:f9:54:d0:f1:10:89:be:0f:be:8d:25</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DA4B2F93-D7BF-40D0-BC95-7F01B3C758C6}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Variable">
+      <DTS:VariableValue
+        DTS:DataType="8">ftpfilename</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{93BFDC41-2B6C-41F4-8630-9C6CBFB2436A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="winSCPpath">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Program Files (x86)\WinSCP\winSCP.exe</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{0DADE678-3945-434A-93A6-F0963226788B}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="DTS.ForEachFileEnumerator.3"
+        DTS:DTSID="{6A655D27-B5D2-46B0-96A9-525B71997DDD}"
+        DTS:ObjectName="{6A655D27-B5D2-46B0-96A9-525B71997DDD}">
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="\\poc2\pocshare\Data Portal\data\files for test_annie\20141013\" />
+            <FEFEProperty
+              FileSpec="*.csv" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="-1" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\SFTP Task"
+          DTS:CreationName="SSISSFTPTask110.SSIS.SSISSFTTask, SSISSFTPTask110, Version=2.0.0.0, Culture=neutral, PublicKeyToken=f7871de73e053501"
+          DTS:Description="SFTP Task"
+          DTS:DTSID="{FD16BA9D-9A18-4A73-B09D-9F27A0AE051D}"
+          DTS:ExecutableType="SSISSFTPTask110.SSIS.SSISSFTTask, SSISSFTPTask110, Version=2.0.0.0, Culture=neutral, PublicKeyToken=f7871de73e053501"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SFTP Task"
+          DTS:TaskContact="cosmin.vlasiu@gmail.com"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SSISSFTPTask
+              SFTPServer="pocweb.cac.washington.edu"
+              SFTPUser="messej"
+              SFTPPassword="@[User::ftpPassword]"
+              SFTPPort="22"
+              EncryptionType="Password"
+              PublicKeyFile=""
+              PublicKeyFileIsConnectionFileType="True"
+              PassPhrase=""
+              LocalPath="@[User::ftpFilename]"
+              LocalPathIsConnectionFileType="False"
+              OverwriteLocalPath="True"
+              RemotePath="@[User::remoteFTPDirectory]"
+              TaskAction="Send File"
+              FilesList=""
+              SleepSeconds="0"
+              SleepOnDisconnect="False"
+              RecordsetColumnIndex="0"
+              RecordsetEnabled="False"
+              RecordsetVariable=""
+              ValueIsFullPath="False"
+              RecursiveCopy="False"
+              RecursiveCopyDepth="0" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{8B37E6B9-FB81-4FAA-9DC9-FA55C652DCB8}"
+          DTS:ObjectName="{8B37E6B9-FB81-4FAA-9DC9-FA55C652DCB8}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::ftpFilename" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\fst_create_directory"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="File System Task"
+      DTS:DTSID="{d831cddc-4980-4c46-9eb9-b57f8845b3d4}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="fst_create_directory"
+      DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskOperationType="CreateDirectory"
+          TaskOverwriteDestFile="True"
+          TaskSourcePath="User::dir"
+          TaskIsSourceVariable="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\get UserName &amp; password"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Script Task"
+      DTS:DTSID="{de54144c-b258-47e5-ba18-1b1126cf3dc5}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="get UserName &amp; password"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_99d732414a22427e8b012f9ec529b6e0"
+          VSTAMajorVersion="3"
+          VSTAMinorVersion="0"
+          Language="VisualBasic"
+          ReadWriteVariables="User::ftpPassword,User::ftpUsername">
+          <ProjectItem
+            Name="My Project\AssemblyInfo.vb"
+            Encoding="UTF8"><![CDATA[Imports System
+Imports System.Reflection
+Imports System.Runtime.InteropServices
+
+' General Information about an assembly is controlled through the following 
+' set of attributes. Change these attribute values to modify the information
+' associated with an assembly.
+
+' Review the values of the assembly attributes
+
+<Assembly: AssemblyTitle("ST_6775f2aeaff147d0b7bd5e6ca7fda174")> 
+<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyCompany("UW")> 
+<Assembly: AssemblyProduct("ST_6775f2aeaff147d0b7bd5e6ca7fda174")> 
+<Assembly: AssemblyCopyright("Copyright @ UW 2014")> 
+<Assembly: AssemblyTrademark("")> 
+<Assembly: CLSCompliant(True)> 
+
+<Assembly: ComVisible(False)> 
+
+'The following GUID is for the ID of the typelib if this project is exposed to COM
+<Assembly: Guid("0dd46a96-09a4-4921-99f6-f5880448b76b")> 
+
+' Version information for an assembly consists of the following four values:
+'
+'      Major Version
+'      Minor Version 
+'      Build Number
+'      Revision
+'
+' You can specify all the values or you can default the Build and Revision Numbers 
+' by using the '*' as shown below:
+' <Assembly: AssemblyVersion("1.0.*")>
+
+<Assembly: AssemblyVersion("1.0.0.0")> 
+<Assembly: AssemblyFileVersion("1.0.0.0")> ]]></ProjectItem>
+          <ProjectItem
+            Name="ScriptMain.vb"
+            Encoding="UTF8"><![CDATA[#Region "Help:  Introduction to the script task"
+'The Script Task allows you to perform virtually any operation that can be accomplished in
+'a .Net application within the context of an Integration Services control flow. 
+
+'Expand the other regions which have "Help" prefixes for examples of specific ways to use
+'Integration Services features within this script task.
+#End Region
+
+
+#Region "Imports"
+Imports System
+Imports System.Data
+Imports System.Math
+Imports Microsoft.SqlServer.Dts.Runtime
+#End Region
+
+'ScriptMain is the entry point class of the script.  Do not change the name, attributes,
+'or parent of this class.
+<Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute()> _
+<System.CLSCompliantAttribute(False)> _
+Partial Public Class ScriptMain
+    Inherits Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+
+#Region "Help:  Using Integration Services variables and parameters in a script"
+    'To use a variable in this script, first ensure that the variable has been added to 
+    'either the list contained in the ReadOnlyVariables property or the list contained in 
+    'the ReadWriteVariables property of this script task, according to whether or not your
+    'code needs to write to the variable.  To add the variable, save this script, close this instance of
+    'Visual Studio, and update the ReadOnlyVariables and 
+    'ReadWriteVariables properties in the Script Transformation Editor window.
+    'To use a parameter in this script, follow the same steps. Parameters are always read-only.
+
+    'Example of reading from a variable:
+    ' startTime = Dts.Variables("System::StartTime").Value
+
+    'Example of writing to a variable:
+    ' Dts.Variables("User::myStringVariable").Value = "new value"
+
+    'Example of reading from a package parameter:
+    ' batchId = Dts.Variables("$Package::batchId").Value
+
+    'Example of reading from a project parameter:
+    ' batchId = Dts.Variables("$Project::batchId").Value
+
+    'Example of reading from a sensitive project parameter:
+    ' batchId = Dts.Variables("$Project::batchId").GetSensitiveValue()
+#End Region
+
+#Region "Help:  Firing Integration Services events from a script"
+    'This script task can fire events for logging purposes.
+
+    'Example of firing an error event:
+    ' Dts.Events.FireError(18, "Process Values", "Bad value", "", 0)
+
+    'Example of firing an information event:
+    ' Dts.Events.FireInformation(3, "Process Values", "Processing has started", "", 0, fireAgain)
+
+    'Example of firing a warning event:
+    ' Dts.Events.FireWarning(14, "Process Values", "No values received for input", "", 0)
+#End Region
+
+#Region "Help:  Using Integration Services connection managers in a script"
+    'Some types of connection managers can be used in this script task.  See the topic 
+    '"Working with Connection Managers Programatically" for details.
+
+    'Example of using an ADO.Net connection manager:
+    ' Dim rawConnection As Object = Dts.Connections("Sales DB").AcquireConnection(Dts.Transaction)
+    ' Dim myADONETConnection As SqlConnection = CType(rawConnection, SqlConnection)
+    ' <Use the connection in some code here, then release the connection>
+    ' Dts.Connections("Sales DB").ReleaseConnection(rawConnection)
+
+    'Example of using a File connection manager
+    ' Dim rawConnection As Object = Dts.Connections("Prices.zip").AcquireConnection(Dts.Transaction)
+    ' Dim filePath As String = CType(rawConnection, String)
+    ' <Use the connection in some code here, then release the connection>
+    ' Dts.Connections("Prices.zip").ReleaseConnection(rawConnection)
+#End Region
+
+    'This method is called when this script task executes in the control flow.
+    'Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
+    'To open Help, press F1.
+
+    Public Sub Main()
+  
+        ' User::ftpPassword,User::ftpUsername
+        Dim uid As String
+        Dim pwd As String
+        uid = InputBox("Enter your UW User ID", "FTP USER ID")
+        pwd = InputBox("enter your UW password", "FTP PASSWORD")
+        Dts.Variables("ftpPassword").Value = pwd
+        Dts.Variables("ftpUsername").Value = uid
+        '  MsgBox(Dts.Variables("ftpPassword").Value)
+        '  MsgBox(Dts.Variables("ftpUsername").Value)
+        Dts.TaskResult = ScriptResults.Success
+    End Sub
+
+#Region "ScriptResults declaration"
+    'This enum provides a convenient shorthand within the scope of this class for setting the
+    'result of the script.
+
+    'This code was generated automatically.
+    Enum ScriptResults
+        Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success
+        Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+    End Enum
+
+#End Region
+
+End Class]]></ProjectItem>
+          <ProjectItem
+            Name="My Project\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)" GeneratedClassNamespace="$safeprojectname" GeneratedClassName="MySettings">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+          <ProjectItem
+            Name="My Project\Settings.Designer.vb"
+            Encoding="UTF8"><![CDATA['------------------------------------------------------------------------------
+' <autogenerated>
+'     This code was generated by a tool.
+'
+'     Changes to this file may cause incorrect behavior and will be lost if
+'     the code is regenerated.
+' </autogenerated>
+'------------------------------------------------------------------------------
+
+Option Strict Off
+Option Explicit On
+
+
+
+Partial Friend NotInheritable Class MySettings
+    Inherits System.Configuration.ApplicationSettingsBase
+
+    Private Shared m_Value As MySettings
+
+    Private Shared m_SyncObject As Object = New Object
+
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Public Shared ReadOnly Property Value() As MySettings
+        Get
+            If (MySettings.m_Value Is Nothing) Then
+                System.Threading.Monitor.Enter(MySettings.m_SyncObject)
+                If (MySettings.m_Value Is Nothing) Then
+                    Try
+                        MySettings.m_Value = New MySettings
+                    Finally
+                        System.Threading.Monitor.Exit(MySettings.m_SyncObject)
+                    End Try
+                End If
+            End If
+            Return MySettings.m_Value
+        End Get
+    End Property
+End Class]]></ProjectItem>
+          <ProjectItem
+            Name="Project"
+            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:Language>msBuild</msb:Language>
+		<msb:CodeName>ST_6775f2aeaff147d0b7bd5e6ca7fda174</msb:CodeName>
+		<msb:DisplayName>ST_6775f2aeaff147d0b7bd5e6ca7fda174</msb:DisplayName>
+		<msb:ProjectId>{7D0DB167-8E8D-40C1-ABEA-E74A961A498D}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="ST_99d732414a22427e8b012f9ec529b6e0.vbproj"/>
+		<msb:File Include="My Project\AssemblyInfo.vb"/>
+		<msb:File Include="ScriptMain.vb"/>
+		<msb:File Include="My Project\Resources.resx"/>
+		<msb:File Include="My Project\Resources.Designer.vb"/>
+		<msb:File Include="My Project\Settings.settings"/>
+		<msb:File Include="My Project\Settings.Designer.vb"/>
+	</msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+          <ProjectItem
+            Name="My Project\Resources.resx"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></ProjectItem>
+          <ProjectItem
+            Name="ST_99d732414a22427e8b012f9ec529b6e0.vbproj"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"><PropertyGroup><ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids><Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration><Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform><ProductVersion>8.0.30703</ProductVersion><SchemaVersion>2.0</SchemaVersion><ProjectGuid>{929a1706-5ebd-4826-adb9-7d4098f74834}</ProjectGuid><OutputType>Library</OutputType><AppDesignerFolder>My Project</AppDesignerFolder><RootNamespace>ST_6775f2aeaff147d0b7bd5e6ca7fda174</RootNamespace><AssemblyName>ST_99d732414a22427e8b012f9ec529b6e0</AssemblyName><TargetFrameworkVersion>v4.0</TargetFrameworkVersion><FileAlignment>512</FileAlignment><ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch></PropertyGroup><PropertyGroup Condition=" '$(Configuration)' == 'Debug' "><DebugSymbols>true</DebugSymbols><DebugType>full</DebugType><Optimize>false</Optimize><OutputPath>.\bin\Debug\</OutputPath><EnableUnmanagedDebugging>false</EnableUnmanagedDebugging><DefineDebug>true</DefineDebug><DefineTrace>true</DefineTrace><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel></PropertyGroup><PropertyGroup Condition=" '$(Configuration)' == 'Release' "><DebugSymbols>false</DebugSymbols><Optimize>true</Optimize><OutputPath>.\bin\Release\</OutputPath><EnableUnmanagedDebugging>false</EnableUnmanagedDebugging><DefineDebug>false</DefineDebug><DefineTrace>true</DefineTrace><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel></PropertyGroup><ItemGroup><Reference Include="System" /><Reference Include="System.Data" /><Reference Include="System.Windows.Forms" /><Reference Include="System.Xml" /><Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" /><Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" /></ItemGroup><ItemGroup><Import Include="Microsoft.VisualBasic" /><Import Include="System" /><Import Include="System.Collections" /><Import Include="System.Data" /><Import Include="System.Diagnostics" /><Import Include="System.Windows.Forms" /></ItemGroup><ItemGroup><AppDesigner Include="My Project\" /><Compile Include="My Project\AssemblyInfo.vb"><SubType>Code</SubType></Compile><EmbeddedResource Include="My Project\Resources.resx"><Generator>VbMyResourcesResXFileCodeGenerator</Generator><LastGenOutput>Resources.Designer.vb</LastGenOutput><CustomToolNamespace>My.Resources</CustomToolNamespace></EmbeddedResource><Compile Include="My Project\Resources.Designer.vb"><AutoGen>True</AutoGen><DesignTime>True</DesignTime><DependentUpon>Resources.resx</DependentUpon><SubType>Code</SubType></Compile><None Include="My Project\Settings.settings"><Generator>SettingsSingleFileGenerator</Generator><LastGenOutput>Settings.Designer.vb</LastGenOutput></None><Compile Include="My Project\Settings.Designer.vb"><AutoGen>True</AutoGen><DependentUpon>Settings.settings</DependentUpon><SubType>Code</SubType></Compile><Compile Include="ScriptMain.vb"><SubType>Code</SubType></Compile></ItemGroup><!-- Include the build rules for a VB project.--><Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" /><ProjectExtensions><VisualStudio><FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}"><ProjectProperties HostName="ScriptTask" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="vb" TemplatesPath="" DebugInfoExeName="#HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio\10.0\InstallDir#\devenv.exe" DebugInfoCommandLine="" DebugInfoWorkingDir="" IconImageList="" /><Host Name="ScriptTask" IconIndex=""></Host><ProjectClient><HostIdentifier>SSIS_ST110</HostIdentifier></ProjectClient></FlavorProperties></VisualStudio></ProjectExtensions></Project>]]></ProjectItem>
+          <ProjectItem
+            Name="My Project\Resources.Designer.vb"
+            Encoding="UTF8"><![CDATA['------------------------------------------------------------------------------
+' <autogenerated>
+'     This code was generated by a tool.
+'
+'     Changes to this file may cause incorrect behavior and will be lost if
+'     the code is regenerated.
+' </autogenerated>
+'------------------------------------------------------------------------------
+
+Option Strict Off
+Option Explicit On
+
+
+Namespace My.Resources
+    
+    '''<summary>
+    '''   A strongly-typed resource class, for looking up localized strings, etc.
+    '''</summary>
+    'This class was auto-generated by the Strongly Typed Resource Builder
+    'class via a tool like ResGen or Visual Studio.NET.
+    'To add or remove a member, edit your .ResX file then rerun ResGen
+    'with the /str option, or rebuild your VS project.
+    Class MyResources
+        
+        Private Shared _resMgr As System.Resources.ResourceManager
+        
+        Private Shared _resCulture As System.Globalization.CultureInfo
+        
+        Friend Sub New()
+            MyBase.New
+        End Sub
+        
+        '''<summary>
+        '''   Returns the cached ResourceManager instance used by this class.
+        '''</summary>
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+        Public Shared ReadOnly Property ResourceManager() As System.Resources.ResourceManager
+            Get
+                If (_resMgr Is Nothing) Then
+                    Dim temp As System.Resources.ResourceManager = New System.Resources.ResourceManager("My.Resources.MyResources", GetType(MyResources).Assembly)
+                    _resMgr = temp
+                End If
+                Return _resMgr
+            End Get
+        End Property
+        
+        '''<summary>
+        '''   Overrides the current thread's CurrentUICulture property for all
+        '''   resource lookups using this strongly typed resource class.
+        '''</summary>
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+        Public Shared Property Culture() As System.Globalization.CultureInfo
+            Get
+                Return _resCulture
+            End Get
+            Set
+                _resCulture = value
+            End Set
+        End Property
+    End Class
+End Namespace]]></ProjectItem>
+          <BinaryItem
+            Name="ST_99d732414a22427e8b012f9ec529b6e0.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDABwJPFQAAAAAAAAAAOAAAiELAQsAABwAAAAIAAAAAAAAbjoA
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAIAQIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAABw6AABPAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAdBoAAAAgAAAAHAAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAAgEAAAAQAAAAAYAAAAeAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAJAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAABQ
+OgAAAAAAAEgAAAACAAUA6CMAADQWAAABAAAAAAAAAC0jAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4CKAEAAAoqHgIoBAAACiqmcwYAAAqAAQAABHMHAAAKgAIA
+AARzCAAACoADAAAEcwkAAAqABAAABCoAABMwAQALAAAAAQAAEX4BAAAEbwoAAAoqABMwAQALAAAA
+AgAAEX4CAAAEbwsAAAoqABMwAQALAAAAAwAAEX4DAAAEbwwAAAoqABMwAQALAAAABAAAEX4EAAAE
+bw0AAAoqABMwAgANAAAABQAAEQIDKBEAAAooEgAACioAAAATMAEABwAAAAYAABECKBMAAAoqABMw
+AQALAAAABwAAEdAFAAACKBQAAAoqABMwAQAHAAAACAAAEQIoFQAACioAEzABABAAAAAJAAARAowB
+AAAbLQYoAQAAKyoCKhMwAgAQAAAACgAAEQMSAP4VAgAAGwaBAgAAGyoeAigXAAAKKhMwAgAoAAAA
+CwAAEQJ7GQAACm8aAAAKCweMAwAAGy0SKAIAACsLAnsZAAAKB28bAAAKBypKAigXAAAKAnMcAAAK
+fRkAAAoqAB4CKBcAAAoqEzACAC0AAAAMAAARfgYAAAQtIHIBAABw0AcAAAIoFAAACm8eAAAKcx8A
+AAoLB4AGAAAEfgYAAAQqAAAAEzABAAYAAAANAAARfgcAAAQqAAAeAoAHAAAEKkJzFwAACigRAAAK
+gAkAAAQqAAAAHgIoIAAACiobMAEAPwAAAA4AABF+CAAABC0yfgkAAAQoEQAACighAAAKfggAAAQt
+HHMWAAAGgAgAAATeEH4JAAAEKBEAAAooIgAACtx+CAAABCoAARAAAAIAHQAMKQAQAAAAAB4CKCQA
+AAoqEzAFAHEAAAAPAAARcjMAAHByXwAAcHJ3AABwFRUoJQAACgtyeQAAcHKnAABwcncAAHAVFSgl
+AAAKCgJvJgAACm8nAAAKcsEAAHBvKAAACgZvKQAACgJvJgAACm8nAAAKctkAAHBvKAAACgdvKQAA
+CgJvJgAAChZvKgAACiq0AAAAzsrvvgEAAACRAAAAbFN5c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VS
+ZWFkZXIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGlj
+S2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSNTeXN0ZW0uUmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJj
+ZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0AAAAAAAAQlNKQgEAAQAAAAAADAAAAHY0LjAuMzAzMTkA
+AAAABQBsAAAAtAcAACN+AAAgCAAAbAkAACNTdHJpbmdzAAAAAIwRAAD0AAAAI1VTAIASAAAQAAAA
+I0dVSUQAAACQEgAApAMAACNCbG9iAAAAAAAAAAIAAAFXHaIJCQ8AAAD6JTMAFgAAAQAAACsAAAAK
+AAAADAAAABkAAAAEAAAANwAAAAIAAAA2AAAADwAAAAQAAAAIAAAACQAAAAkAAAABAAAABQAAAAEA
+AAADAAAAAwAAAAIAAAAAAEQJAQAAAAAACgBLASEBCgB/AWEBBgCPAYgBCgDnASEBBgBlAogBCgDn
+Ar0CBgAdAwwDBgBKAzUDDgCxA5wDEgAwBAcEBgBRBIgBDgCEBG4EDgCdBG4EDgDKBLIEBgD0BOEE
+CgAzBQwFCgBLBRMADgCABWMFBgC1BZUFBgDTBYgBBgD3BYgBCgAQBhMABgBUBjUGBgB6BmgGBgCh
+BpAGBgC0BuEECgDRBhMAEgDmBgcEFgA/Bx8HFgBXBx8HBgB4B4gBEgCOBwcEBgDoB5UFBgAICJUF
+BgBACCYIBgBZCGgGBgB2CDUGBgCECGgGBgCfCGgGBgC6CGgGBgDTCGgGBgDsCGgGBgAJCWgGAAAA
+AAEAAAAAAAEAAQAAAAAAKQA3AAUAAQABAAAAAABeADcACQABAAIAAAEQAGkANwANAAEAAwAFAQAA
+cwAAAA0ABQAIAAUBAACBAAAADQAFAA8AAAAAAJwAqAANAAYAEQAAARAA2QDkACUACAAVAAEAAAAI
+AeQAKQAKABgAAgEAABMBAAAtAAoAGgAxAKoBIAAxANMBLQAxAPUBOgAxABoCRwAhAPYCkAARAC0D
+nQARAFYDoQARAMkDvwARANEDwwAGBlYE2QBWgF4E3ABWgGYE3ABQIAAAAAAGGFsBEwABAFggAAAA
+AAYYWwETAAEAYCAAAAAAERiWARcAAQCMIAAAAAATCJ0BGwABAKQgAAAAABMIwwEoAAEAvCAAAAAA
+EwjsATUAAQDUIAAAAAATCAoCQgABAOwgAAAAAEYCUAJjAAEACCEAAAAARgJZAmgAAgAcIQAAAACD
+AGoCbAACADQhAAAAAEYCcgJxAAIASCEAAAAAEQB7AngAAgBkIQAAAAABAJkCgAADAIAhAAAAAAYY
+WwETAAQAiCEAAAAAAwitAosABAC8IQAAAAAGGFsBEwAEANAhAAAAAAMYWwETAAQA2CEAAAAAFghi
+A6UABAAUIgAAAAAWCHYDqgAEACgiAAAAABYIggOvAAQAMCIAAAAAERiWARcABQBEIgAAAAAGGFsB
+EwAFAEwiAAAAABYI3gPGAAUAqCIAAAAABhhbARMABQCwIgAAAAAGAEwEEwAFAAAAAQBXAgAAAQCQ
+AgAAAQCQAgAAAQCOAwkAWwETAGEAWwHqAHEAWwH5ABEAWwETAHkAWwETACQAWwETACwAWwETADQA
+WwETADwAWwETACQArQKLACwArQKLADQArQKLADwArQKLAIEAWwETAIkAWwETAJEAWwFIAZkAxAWT
+ARkAUAJjABkAWQJoACkA5QWgARkAcgJxAKkAAQawARkAWwETALEAWwHAAUQA9gKQAEwA3gOLAEwA
+KwY9AkwAWwETALkAWwFMAikAgwZXAjkAWwFcAkkAWwETAMkAqQZ4AskArwZ4AtEAWwETAFEAWwET
+ANkA3QaCAlEA+AaLAuEASQeQAukAYAeVAvEAKwabAuEAaQegAvkAWwFMAgEBWwETAAkBWwGgAhEB
+WwETABkBWwFIASEBWwFIASkBWwFIATEBWwFIATkBWwFIAUEBWwFIAUkBWwFIAVEBWwFIAVkBWwFI
+AQgALADgAAgAMADlACkAgwBhAS4AqwGZAy4AowFwAy4AewHSAi4AmwFXAy4AswFRAi4AuwFwAy4A
+awGqAi4AcwGzAi4AgwEaAy4AiwEnAy4A6wBRAi4AWwFRAy4AkwFRAkAAKwDlAEAAEwDwAEMAEwDw
+AEMAGwD/AEkAgwB/AWMAGwD/AGMAEwDwAGkAgwByAYAAKwDlAIMAcwDlAIMAewDlAIMAGwD/AIkA
+gwBNAaAAKwDlAKMAwwDIAaMAEwDwAMAAKwDlAMMAEwDwAMMA6wBRAskAEwBvAuAAKwDlAOkAEwBv
+AgABKwDlAAABEwDwAAkBGwHlACABKwDlACABEwDwACMBYwHlACMBWwFRAkABEwDwAEABKwDlAGAB
+EwDwAGABKwDlAIABKwDlAKABKwDlAMABKwDlAMABEwDwAOABKwDlAAACKwDlAAACEwDwADQBOQE+
+AUMBmAGcAacBrAG7AbsBQwJjAmoCfQKlAgQAAQAGAAUABwAGAAgACAAAAH8BTwAAADgCVAAAAOcB
+WQAAAEQCXgAAAAADmAAAAB0DtQAAAJQDugAAAI4DywACAAQAAwACAAUABQACAAYABwACAAcACQAC
+AA8ACwACABIADQACABMADwABABQADwACABcAEQB1AHUAiAAYAR8BJgEtASoCMQIEgAAAAQAAAAAA
+AAAAAAAAAAAgCQAABAAAAAAAAAAAAAAAAQAKAAAAAAAKAAAAAAAAAAAAAAAKABMAAAAAAAQAAAAA
+AAAAAAAAAAEAiAEAAAAACwAAAAAAAAAAAAAA0ADoAwAAAAALAAAAAAAAAAAAAADQAAAHAAAAAAAA
+AAABAAAAsAcAAAUABAAGAAQACgAJAAAAEAAMAI4CAAAQABkAjgIAAAAAGwCOAi0AtgEtADgCAAAA
+AAA8TW9kdWxlPgBtc2NvcmxpYgBNaWNyb3NvZnQuVmlzdWFsQmFzaWMATXlBcHBsaWNhdGlvbgBT
+VF82Nzc1ZjJhZWFmZjE0N2QwYjdiZDVlNmNhN2ZkYTE3NC5NeQBNeUNvbXB1dGVyAE15UHJvamVj
+dABNeVdlYlNlcnZpY2VzAFRocmVhZFNhZmVPYmplY3RQcm92aWRlcmAxAE15UmVzb3VyY2VzAFNU
+XzY3NzVmMmFlYWZmMTQ3ZDBiN2JkNWU2Y2E3ZmRhMTc0Lk15LlJlc291cmNlcwBNeVNldHRpbmdz
+AFNUXzY3NzVmMmFlYWZmMTQ3ZDBiN2JkNWU2Y2E3ZmRhMTc0AFNjcmlwdE1haW4AU2NyaXB0UmVz
+dWx0cwBNaWNyb3NvZnQuVmlzdWFsQmFzaWMuQXBwbGljYXRpb25TZXJ2aWNlcwBBcHBsaWNhdGlv
+bkJhc2UALmN0b3IATWljcm9zb2Z0LlZpc3VhbEJhc2ljLkRldmljZXMAQ29tcHV0ZXIAU3lzdGVt
+AE9iamVjdAAuY2N0b3IAZ2V0X0NvbXB1dGVyAG1fQ29tcHV0ZXJPYmplY3RQcm92aWRlcgBnZXRf
+QXBwbGljYXRpb24AbV9BcHBPYmplY3RQcm92aWRlcgBVc2VyAGdldF9Vc2VyAG1fVXNlck9iamVj
+dFByb3ZpZGVyAGdldF9XZWJTZXJ2aWNlcwBtX015V2ViU2VydmljZXNPYmplY3RQcm92aWRlcgBB
+cHBsaWNhdGlvbgBXZWJTZXJ2aWNlcwBFcXVhbHMAbwBHZXRIYXNoQ29kZQBUeXBlAEdldFR5cGUA
+VG9TdHJpbmcAQ3JlYXRlX19JbnN0YW5jZV9fAFQAaW5zdGFuY2UARGlzcG9zZV9fSW5zdGFuY2Vf
+XwBnZXRfR2V0SW5zdGFuY2UATWljcm9zb2Z0LlZpc3VhbEJhc2ljLk15U2VydmljZXMuSW50ZXJu
+YWwAQ29udGV4dFZhbHVlYDEAbV9Db250ZXh0AEdldEluc3RhbmNlAFN5c3RlbS5SZXNvdXJjZXMA
+UmVzb3VyY2VNYW5hZ2VyAF9yZXNNZ3IAU3lzdGVtLkdsb2JhbGl6YXRpb24AQ3VsdHVyZUluZm8A
+X3Jlc0N1bHR1cmUAZ2V0X1Jlc291cmNlTWFuYWdlcgBnZXRfQ3VsdHVyZQBzZXRfQ3VsdHVyZQBW
+YWx1ZQBDdWx0dXJlAFN5c3RlbS5Db25maWd1cmF0aW9uAEFwcGxpY2F0aW9uU2V0dGluZ3NCYXNl
+AG1fVmFsdWUAbV9TeW5jT2JqZWN0AGdldF9WYWx1ZQBNaWNyb3NvZnQuU3FsU2VydmVyLlNjcmlw
+dFRhc2sATWljcm9zb2Z0LlNxbFNlcnZlci5EdHMuVGFza3MuU2NyaXB0VGFzawBWU1RBUlRTY3Jp
+cHRPYmplY3RNb2RlbEJhc2UATWFpbgBFbnVtAHZhbHVlX18AU3VjY2VzcwBGYWlsdXJlAFN5c3Rl
+bS5Db21wb25lbnRNb2RlbABFZGl0b3JCcm93c2FibGVBdHRyaWJ1dGUARWRpdG9yQnJvd3NhYmxl
+U3RhdGUAU3lzdGVtLkNvZGVEb20uQ29tcGlsZXIAR2VuZXJhdGVkQ29kZUF0dHJpYnV0ZQBTeXN0
+ZW0uRGlhZ25vc3RpY3MARGVidWdnZXJIaWRkZW5BdHRyaWJ1dGUATWljcm9zb2Z0LlZpc3VhbEJh
+c2ljLkNvbXBpbGVyU2VydmljZXMAU3RhbmRhcmRNb2R1bGVBdHRyaWJ1dGUASGlkZU1vZHVsZU5h
+bWVBdHRyaWJ1dGUAU3lzdGVtLkNvbXBvbmVudE1vZGVsLkRlc2lnbgBIZWxwS2V5d29yZEF0dHJp
+YnV0ZQBTeXN0ZW0uUnVudGltZS5Db21waWxlclNlcnZpY2VzAFJ1bnRpbWVIZWxwZXJzAEdldE9i
+amVjdFZhbHVlAFJ1bnRpbWVUeXBlSGFuZGxlAEdldFR5cGVGcm9tSGFuZGxlAEFjdGl2YXRvcgBD
+cmVhdGVJbnN0YW5jZQBNeUdyb3VwQ29sbGVjdGlvbkF0dHJpYnV0ZQBzZXRfVmFsdWUAU3lzdGVt
+LlJ1bnRpbWUuSW50ZXJvcFNlcnZpY2VzAENvbVZpc2libGVBdHRyaWJ1dGUAU3lzdGVtLlJlZmxl
+Y3Rpb24AQXNzZW1ibHkAZ2V0X0Fzc2VtYmx5AFN5c3RlbS5UaHJlYWRpbmcATW9uaXRvcgBFbnRl
+cgBFeGl0AERlYnVnZ2VyTm9uVXNlckNvZGVBdHRyaWJ1dGUASW50ZXJhY3Rpb24ASW5wdXRCb3gA
+U2NyaXB0T2JqZWN0TW9kZWwAZ2V0X0R0cwBNaWNyb3NvZnQuU3FsU2VydmVyLk1hbmFnZWREVFMA
+TWljcm9zb2Z0LlNxbFNlcnZlci5EdHMuUnVudGltZQBWYXJpYWJsZXMAZ2V0X1ZhcmlhYmxlcwBW
+YXJpYWJsZQBnZXRfSXRlbQBzZXRfVGFza1Jlc3VsdABDTFNDb21wbGlhbnRBdHRyaWJ1dGUAU1NJ
+U1NjcmlwdFRhc2tFbnRyeVBvaW50QXR0cmlidXRlAFNUXzY3NzVmMmFlYWZmMTQ3ZDBiN2JkNWU2
+Y2E3ZmRhMTc0LlJlc291cmNlcy5yZXNvdXJjZXMAQ29tcGlsYXRpb25SZWxheGF0aW9uc0F0dHJp
+YnV0ZQBSdW50aW1lQ29tcGF0aWJpbGl0eUF0dHJpYnV0ZQBTeXN0ZW0uUnVudGltZS5WZXJzaW9u
+aW5nAFRhcmdldEZyYW1ld29ya0F0dHJpYnV0ZQBBc3NlbWJseUZpbGVWZXJzaW9uQXR0cmlidXRl
+AEd1aWRBdHRyaWJ1dGUAQXNzZW1ibHlUcmFkZW1hcmtBdHRyaWJ1dGUAQXNzZW1ibHlDb3B5cmln
+aHRBdHRyaWJ1dGUAQXNzZW1ibHlQcm9kdWN0QXR0cmlidXRlAEFzc2VtYmx5Q29tcGFueUF0dHJp
+YnV0ZQBBc3NlbWJseURlc2NyaXB0aW9uQXR0cmlidXRlAEFzc2VtYmx5VGl0bGVBdHRyaWJ1dGUA
+U1RfOTlkNzMyNDE0YTIyNDI3ZThiMDEyZjllYzUyOWI2ZTAAU1RfOTlkNzMyNDE0YTIyNDI3ZThi
+MDEyZjllYzUyOWI2ZTAuZGxsAAAxTQB5AC4AUgBlAHMAbwB1AHIAYwBlAHMALgBNAHkAUgBlAHMA
+bwB1AHIAYwBlAHMAACtFAG4AdABlAHIAIAB5AG8AdQByACAAVQBXACAAVQBzAGUAcgAgAEkARAAA
+F0YAVABQACAAVQBTAEUAUgAgAEkARAAAAQAtZQBuAHQAZQByACAAeQBvAHUAcgAgAFUAVwAgAHAA
+YQBzAHMAdwBvAHIAZAAAGUYAVABQACAAUABBAFMAUwBXAE8AUgBEAAAXZgB0AHAAUABhAHMAcwB3
+AG8AcgBkAAAXZgB0AHAAVQBzAGUAcgBuAGEAbQBlAAAAAAAWfOm70zNwQojbAOtovNs+AAi3elxW
+GTTgiQiwP19/EdUKOgMgAAEDAAABBAAAEgwHBhUSGAESDAQAABIIBwYVEhgBEggEAAASEQcGFRIY
+ARIRBAAAEhQHBhUSGAESFAQIABIMBAgAEggECAASEQQIABIUBCABAhwDIAAIBCAAEhUDIAAOAh4A
+BxABAR4AHgAHMAEBARAeAAITAAQgABMABwYVEhkBEwAEKAATAAMGEh0DBhIhBAAAEh0EAAASIQUA
+AQESIQQIABIdBAgAEiEDBhIgAgYcBAAAEiAECAASIAiJhF3NgIDMkQIGCAMGESgEAAAAAAQBAAAA
+BSABARE1CAEAAQAAAAAABSACAQ4OGAEACk15VGVtcGxhdGUIMTAuMC4wLjAAAAYVEhgBEgwGFRIY
+ARIIBhUSGAESEQYVEhgBEhQEBwESDAQHARIIBAcBEhEEBwESFAQgAQEOEwEADk15LldlYlNlcnZp
+Y2VzAAAQAQALTXkuQ29tcHV0ZXIAAAwBAAdNeS5Vc2VyAAATAQAOTXkuQXBwbGljYXRpb24AAAQA
+ARwcAwcBAgMHAQgGAAESFRFRBAcBEhUDBwEOBRABAB4ABAoBHgAEBwEeAAcgBAEODg4OYQEANFN5
+c3RlbS5XZWIuU2VydmljZXMuUHJvdG9jb2xzLlNvYXBIdHRwQ2xpZW50UHJvdG9jb2wSQ3JlYXRl
+X19JbnN0YW5jZV9fE0Rpc3Bvc2VfX0luc3RhbmNlX18AAAAGFRIYARMABhUSGQETAAQKARMABSAB
+ARMACAcDEwATABMABCABAQIFAQAAAAAEIAASYQYgAgEOEmEGBwISHRIdBAcBEiEIAQACAAAAAAAE
+AAEBHAQHARIgCAAFDg4ODggIBCAAEnEEIAASdQUgARJ5HAQgAQEcBCABAQgEBwIODggBAAgAAAAA
+AB4BAAEAVAIWV3JhcE5vbkV4Y2VwdGlvblRocm93cwFHAQAaLk5FVEZyYW1ld29yayxWZXJzaW9u
+PXY0LjABAFQOFEZyYW1ld29ya0Rpc3BsYXlOYW1lEC5ORVQgRnJhbWV3b3JrIDQMAQAHMS4wLjAu
+MAAAKQEAJDBkZDQ2YTk2LTA5YTQtNDkyMS05OWY2LWY1ODgwNDQ4Yjc2YgAABQEAAQAAGAEAE0Nv
+cHlyaWdodCBAIFVXIDIwMTQAACgBACNTVF82Nzc1ZjJhZWFmZjE0N2QwYjdiZDVlNmNhN2ZkYTE3
+NAAABwEAAlVXAAAAAABEOgAAAAAAAAAAAABeOgAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUDoA
+AAAAAAAAAAAAAABfQ29yRGxsTWFpbgBtc2NvcmVlLmRsbAAAAAAA/yUAIAAQAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB
+ABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABIAAAA
+WEAAAKwDAAAAAAAAAAAAAKwDNAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAAAAC9
+BO/+AAABAAAAAQAAAAAAAAABAAAAAAA/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAAAAEA
+VgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4AAAAA
+AAAAsAQMAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAADoAgAAAQAwADAAMAAwADAA
+NABiADAAAAAoAAMAAQBDAG8AbQBwAGEAbgB5AE4AYQBtAGUAAAAAAFUAVwAAAAAAcAAkAAEARgBp
+AGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAAAFMAVABfADYANwA3ADUAZgAyAGEAZQBhAGYA
+ZgAxADQANwBkADAAYgA3AGIAZAA1AGUANgBjAGEANwBmAGQAYQAxADcANAAAADAACAABAEYAaQBs
+AGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgAwAC4AMAAAAHAAKAABAEkAbgB0AGUAcgBuAGEA
+bABOAGEAbQBlAAAAUwBUAF8AOQA5AGQANwAzADIANAAxADQAYQAyADIANAAyADcAZQA4AGIAMAAx
+ADIAZgA5AGUAYwA1ADIAOQBiADYAZQAwAC4AZABsAGwAAABMABQAAQBMAGUAZwBhAGwAQwBvAHAA
+eQByAGkAZwBoAHQAAABDAG8AcAB5AHIAaQBnAGgAdAAgAEAAIABVAFcAIAAyADAAMQA0AAAAeAAo
+AAEATwByAGkAZwBpAG4AYQBsAEYAaQBsAGUAbgBhAG0AZQAAAFMAVABfADkAOQBkADcAMwAyADQA
+MQA0AGEAMgAyADQAMgA3AGUAOABiADAAMQAyAGYAOQBlAGMANQAyADkAYgA2AGUAMAAuAGQAbABs
+AAAAaAAkAAEAUAByAG8AZAB1AGMAdABOAGEAbQBlAAAAAABTAFQAXwA2ADcANwA1AGYAMgBhAGUA
+YQBmAGYAMQA0ADcAZAAwAGIANwBiAGQANQBlADYAYwBhADcAZgBkAGEAMQA3ADQAAAA0AAgAAQBQ
+AHIAbwBkAHUAYwB0AFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADAALgAwAAAAOAAIAAEAQQBzAHMA
+ZQBtAGIAbAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4AMAAuADAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAwAAABwOgAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
+        </ScriptProject>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ooh_entry_rate_counties"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{0EA92A25-CCF0-4DF2-8B4C-F9ECFB663E72}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ooh_entry_rate_counties"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ooh_entry_rate_counties\Data Conversion"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\ooh_entry_rate_counties\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ooh_entry_rate_counties\Data Conversion.Inputs[Data Conversion Input].Columns[data]"
+                      cachedDataType="r8"
+                      cachedName="data"
+                      lineageId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ooh_entry_rate_counties\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\ooh_entry_rate_counties\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_counties\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\ooh_entry_rate_counties\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]"
+                      name="Copy of data"
+                      precision="9"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ooh_entry_rate_counties\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\ooh_entry_rate_counties\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_counties\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ooh_entry_rate_counties\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_counties\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ooh_entry_rate_counties\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ooh_entry_rate_counties\Flat File Destination"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ooh_entry_rate_counties\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ooh_entry_rates_counties]"
+                  connectionManagerRefId="Package.ConnectionManagers[ooh_entry_rates_counties]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ooh_entry_rate_counties\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ooh_entry_rate_counties\Flat File Destination.Inputs[Flat File Destination Input].Columns[ethnicity_cd]"
+                      cachedDataType="i4"
+                      cachedName="ethnicity_cd"
+                      externalMetadataColumnId="Package\ooh_entry_rate_counties\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ethnicity_cd]"
+                      lineageId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]" />
+                    <inputColumn
+                      refId="Package\ooh_entry_rate_counties\Flat File Destination.Inputs[Flat File Destination Input].Columns[start_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="start_date"
+                      externalMetadataColumnId="Package\ooh_entry_rate_counties\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[start_date]"
+                      lineageId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]" />
+                    <inputColumn
+                      refId="Package\ooh_entry_rate_counties\Flat File Destination.Inputs[Flat File Destination Input].Columns[geography]"
+                      cachedDataType="i4"
+                      cachedName="geography"
+                      externalMetadataColumnId="Package\ooh_entry_rate_counties\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[geography]"
+                      lineageId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]" />
+                    <inputColumn
+                      refId="Package\ooh_entry_rate_counties\Flat File Destination.Inputs[Flat File Destination Input].Columns[Copy of data]"
+                      cachedDataType="numeric"
+                      cachedName="Copy of data"
+                      cachedPrecision="9"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\ooh_entry_rate_counties\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[data]"
+                      lineageId="Package\ooh_entry_rate_counties\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]" />
+                    <inputColumn
+                      refId="Package\ooh_entry_rate_counties\Flat File Destination.Inputs[Flat File Destination Input].Columns[age_grouping_cd]"
+                      cachedDataType="i4"
+                      cachedName="age_grouping_cd"
+                      externalMetadataColumnId="Package\ooh_entry_rate_counties\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[age_grouping_cd]"
+                      lineageId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].Columns[age_grouping_cd]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ooh_entry_rate_counties\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ethnicity_cd]"
+                      dataType="ui4"
+                      name="ethnicity_cd" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_entry_rate_counties\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[start_date]"
+                      dataType="dbTimeStamp"
+                      name="start_date" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_entry_rate_counties\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[geography]"
+                      dataType="i4"
+                      name="geography" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_entry_rate_counties\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[data]"
+                      dataType="r8"
+                      name="data" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_entry_rate_counties\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[age_grouping_cd]"
+                      dataType="ui4"
+                      name="age_grouping_cd" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\ooh_entry_rate_counties\OLE DB Source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT distinct [start_date]
+	  ,poc1ab.age_grouping_cd
+	  ,poc1ab.cd_race ethnicity_cd
+	  ,poc1ab.county_cd [geography]
+	   , round((case when (cnt_entries) &gt; 0 /* jitter all above 0 */ 
+                                    then 
+                                        case when (round(cnt_entries + 2 * sqrt(-2 * log(poc1ab.x1)) 
+                                        * cos(2*pi()*poc1ab.x2),0) ) &lt;1
+                                        then 1
+                                        else round(cnt_entries + 2 * sqrt(-2 * log(poc1ab.x1)) * cos(2*pi()*poc1ab.x2),0)
+                                        end
+                                    else (cnt_entries) 
+                                end /(pop.pop_cnt * 1.00) * 1000),2)  data
+  FROM [prtl].[cache_poc1ab_entries_aggr]  poc1ab
+  join (
+		select measurement_year,age.age_grouping_cd
+		,eth.cd_race,cnty.cd_cnty  county_cd,sum(pop_cnt) as pop_cnt
+        from public_data.census_population cns
+		join prm_age_census age on age.match_code=cns.age_grouping_cd
+		join (select distinct cd_race,iif(cd_race=0,match_code ,cd_race) match_code from prm_eth_census eth  
+				) eth on  ( eth.match_code=cns.cd_race)
+		join prm_cnty cnty on cnty.match_code=cns.county_cd
+        where measurement_year between 2000 and 2013
+		group by measurement_year,age.age_grouping_cd
+        ,eth.cd_race,cnty.cd_cnty
+--	order by measurement_year,[age_grouping_cd],[cd_race],[county_cd]
+		) pop 
+                on pop.measurement_year=start_year
+				and pop.age_grouping_cd=poc1ab.age_grouping_cd
+				and pop.cd_race=poc1ab.cd_race
+				and pop.county_cd=poc1ab.county_cd
+				and pop.pop_cnt &lt;&gt; 0
+where fl_include_perCapita=1
+and  [bin_dep_cd] = 0
+      and [bin_los_cd] = 0
+      and [bin_placement_cd] = 0
+      and [bin_ihs_svc_cd] = 0
+      and [cd_reporter_type] = 0
+      and [cd_access_type] = 0
+      and [cd_allegation] = 0
+      and [cd_finding] = 0
+      and [cd_subctgry_poc_frc] = 0
+      and [cd_budget_poc_frc] = 0
+      and poc1ab.[age_grouping_cd] in (1,2,3,4,0)
+      and poc1ab.[cd_race]  in (1,2,3,4,5,6,7,8,9,10,11,12,0)
+      and poc1ab.[pk_gndr] = 0
+      and [init_cd_plcm_setng] = 0
+      and [long_cd_plcm_setng] = 0
+      and poc1ab.[county_cd] in (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,0)
+     and date_type=2 and qry_type=2
+	  order by start_date,poc1ab.county_cd,poc1ab.age_grouping_cd,poc1ab.cd_race</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ooh_entry_rate_counties\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[poc2.CA_ODS]"
+                  connectionManagerRefId="Package.ConnectionManagers[poc2.CA_ODS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ethnicity_cd]"
+                      lineageId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]"
+                      name="ethnicity_cd"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[start_date]"
+                      lineageId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]"
+                      name="start_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[geography]"
+                      lineageId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]"
+                      name="geography"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[data]"
+                      lineageId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]"
+                      name="data"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].Columns[age_grouping_cd]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[age_grouping_cd]"
+                      lineageId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].Columns[age_grouping_cd]"
+                      name="age_grouping_cd"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ethnicity_cd]"
+                      dataType="i4"
+                      name="ethnicity_cd" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[start_date]"
+                      dataType="dbTimeStamp"
+                      name="start_date" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[geography]"
+                      dataType="i4"
+                      name="geography" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[data]"
+                      dataType="r8"
+                      name="data" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[age_grouping_cd]"
+                      dataType="i4"
+                      name="age_grouping_cd" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[start_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[start_date]"
+                      name="start_date" />
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[age_grouping_cd]"
+                      dataType="i4"
+                      lineageId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[age_grouping_cd]"
+                      name="age_grouping_cd" />
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ethnicity_cd]"
+                      dataType="i4"
+                      lineageId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ethnicity_cd]"
+                      name="ethnicity_cd" />
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[geography]"
+                      dataType="i4"
+                      lineageId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[geography]"
+                      name="geography" />
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[data]"
+                      dataType="r8"
+                      lineageId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[data]"
+                      name="data" />
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ooh_entry_rate_counties.Paths[Data Conversion Output]"
+              endId="Package\ooh_entry_rate_counties\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\ooh_entry_rate_counties\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\ooh_entry_rate_counties.Paths[OLE DB Source Output]"
+              endId="Package\ooh_entry_rate_counties\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\ooh_entry_rate_counties\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ooh_entry_rate_regions"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{15d959de-8c9b-4fe5-b653-433f861a3249}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ooh_entry_rate_regions"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ooh_entry_rate_regions\Data Conversion"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\ooh_entry_rate_regions\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ooh_entry_rate_regions\Data Conversion.Inputs[Data Conversion Input].Columns[data]"
+                      cachedDataType="r8"
+                      cachedName="data"
+                      lineageId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ooh_entry_rate_regions\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\ooh_entry_rate_regions\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_regions\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\ooh_entry_rate_regions\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]"
+                      name="Copy of data"
+                      precision="9"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ooh_entry_rate_regions\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\ooh_entry_rate_regions\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_regions\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ooh_entry_rate_regions\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_regions\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ooh_entry_rate_regions\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ooh_entry_rate_regions\Flat File Destination"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ooh_entry_rate_regions\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ooh_entry_rates_regions]"
+                  connectionManagerRefId="Package.ConnectionManagers[ooh_entry_rates_regions]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ooh_entry_rate_regions\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ooh_entry_rate_regions\Flat File Destination.Inputs[Flat File Destination Input].Columns[ethnicity_cd]"
+                      cachedDataType="i4"
+                      cachedName="ethnicity_cd"
+                      externalMetadataColumnId="Package\ooh_entry_rate_regions\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ethnicity_cd]"
+                      lineageId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]" />
+                    <inputColumn
+                      refId="Package\ooh_entry_rate_regions\Flat File Destination.Inputs[Flat File Destination Input].Columns[start_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="start_date"
+                      externalMetadataColumnId="Package\ooh_entry_rate_regions\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[start_date]"
+                      lineageId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]" />
+                    <inputColumn
+                      refId="Package\ooh_entry_rate_regions\Flat File Destination.Inputs[Flat File Destination Input].Columns[geography]"
+                      cachedDataType="i4"
+                      cachedName="geography"
+                      externalMetadataColumnId="Package\ooh_entry_rate_regions\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[geography]"
+                      lineageId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]" />
+                    <inputColumn
+                      refId="Package\ooh_entry_rate_regions\Flat File Destination.Inputs[Flat File Destination Input].Columns[Copy of data]"
+                      cachedDataType="numeric"
+                      cachedName="Copy of data"
+                      cachedPrecision="9"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\ooh_entry_rate_regions\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[data]"
+                      lineageId="Package\ooh_entry_rate_regions\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]" />
+                    <inputColumn
+                      refId="Package\ooh_entry_rate_regions\Flat File Destination.Inputs[Flat File Destination Input].Columns[age_grouping_cd]"
+                      cachedDataType="i4"
+                      cachedName="age_grouping_cd"
+                      externalMetadataColumnId="Package\ooh_entry_rate_regions\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[age_grouping_cd]"
+                      lineageId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].Columns[age_grouping_cd]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ooh_entry_rate_regions\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ethnicity_cd]"
+                      dataType="ui4"
+                      name="ethnicity_cd" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_entry_rate_regions\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[start_date]"
+                      dataType="dbTimeStamp"
+                      name="start_date" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_entry_rate_regions\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[geography]"
+                      dataType="i4"
+                      name="geography" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_entry_rate_regions\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[data]"
+                      dataType="r8"
+                      name="data" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_entry_rate_regions\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[age_grouping_cd]"
+                      dataType="ui4"
+                      name="age_grouping_cd" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\ooh_entry_rate_regions\OLE DB Source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT distinct  [start_date]
+	  ,poc1ab.age_grouping_cd
+	  ,poc1ab.cd_race ethnicity_cd
+	  ,cnty.old_region_cd [geography]
+	   , round((case when (sum(cnt_entries)) &gt; 0 /* jitter all above 0 */ 
+                                    then 
+                                        case when (round(sum(cnt_entries) + 2 * sqrt(-2 * log(max(poc1ab.x1))) 
+                                        * cos(2*pi()*max(poc1ab.x2)),0) ) &lt;1
+                                        then 1
+                                        else round(sum(cnt_entries) + 2 * sqrt(-2 * log(max(poc1ab.x1))) * cos(2*pi()*max(poc1ab.x2)),0)
+                                        end
+                                    else (sum(cnt_entries)) 
+                                end /(sum(pop.pop_cnt )* 1.00) * 1000),2)  data
+  FROM [prtl].[cache_poc1ab_entries_aggr]  poc1ab
+  join (
+		select measurement_year,age.age_grouping_cd
+		,eth.cd_race,cnty.cd_cnty  county_cd,sum(pop_cnt) as pop_cnt
+        from public_data.census_population cns
+		join prm_age_census age on age.match_code=cns.age_grouping_cd
+		join (select distinct cd_race,iif(cd_race=0,match_code ,cd_race) match_code from prm_eth_census eth  
+				) eth on  ( eth.match_code=cns.cd_race)
+		join prm_cnty cnty on cnty.match_code=cns.county_cd
+        where measurement_year between 2000 and 2013
+		group by measurement_year,age.age_grouping_cd
+        ,eth.cd_race,cnty.cd_cnty
+--	order by measurement_year,[age_grouping_cd],[cd_race],[county_cd]
+		) pop 
+                on pop.measurement_year=start_year
+				and pop.age_grouping_cd=poc1ab.age_grouping_cd
+				and pop.cd_race=poc1ab.cd_race
+				and pop.county_cd=poc1ab.county_cd
+				and pop.pop_cnt &lt;&gt; 0
+join ref_lookup_county cnty on cnty.county_cd=poc1ab.county_cd
+where fl_include_perCapita=1
+and  [bin_dep_cd] = 0
+      and [bin_los_cd] = 0
+      and [bin_placement_cd] = 0
+      and [bin_ihs_svc_cd] = 0
+      and [cd_reporter_type] = 0
+      and [cd_access_type] = 0
+      and [cd_allegation] = 0
+      and [cd_finding] = 0
+      and [cd_subctgry_poc_frc] = 0
+      and [cd_budget_poc_frc] = 0
+      and poc1ab.[age_grouping_cd] in (1,2,3,4,0)
+      and poc1ab.[cd_race]  in (1,2,3,4,5,6,7,8,9,10,11,12,0)
+      and poc1ab.[pk_gndr] = 0
+      and [init_cd_plcm_setng] = 0
+      and [long_cd_plcm_setng] = 0
+      and poc1ab.[county_cd] in (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,0)
+     and date_type=2 and qry_type=2
+	 group by start_date,cnty.old_region_cd,poc1ab.age_grouping_cd,poc1ab.cd_race
+	  order by start_date,cnty.old_region_cd,poc1ab.age_grouping_cd,poc1ab.cd_race</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ooh_entry_rate_regions\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[poc2.CA_ODS]"
+                  connectionManagerRefId="Package.ConnectionManagers[poc2.CA_ODS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ethnicity_cd]"
+                      lineageId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]"
+                      name="ethnicity_cd"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[start_date]"
+                      lineageId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]"
+                      name="start_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[geography]"
+                      lineageId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]"
+                      name="geography"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[data]"
+                      lineageId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]"
+                      name="data"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].Columns[age_grouping_cd]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[age_grouping_cd]"
+                      lineageId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].Columns[age_grouping_cd]"
+                      name="age_grouping_cd"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ethnicity_cd]"
+                      dataType="i4"
+                      name="ethnicity_cd" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[start_date]"
+                      dataType="dbTimeStamp"
+                      name="start_date" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[geography]"
+                      dataType="i4"
+                      name="geography" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[data]"
+                      dataType="r8"
+                      name="data" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[age_grouping_cd]"
+                      dataType="i4"
+                      name="age_grouping_cd" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[start_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[start_date]"
+                      name="start_date" />
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[age_grouping_cd]"
+                      dataType="i4"
+                      lineageId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[age_grouping_cd]"
+                      name="age_grouping_cd" />
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ethnicity_cd]"
+                      dataType="i4"
+                      lineageId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ethnicity_cd]"
+                      name="ethnicity_cd" />
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[geography]"
+                      dataType="i4"
+                      lineageId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[geography]"
+                      name="geography" />
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[data]"
+                      dataType="r8"
+                      lineageId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[data]"
+                      name="data" />
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ooh_entry_rate_regions.Paths[Data Conversion Output]"
+              endId="Package\ooh_entry_rate_regions\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\ooh_entry_rate_regions\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\ooh_entry_rate_regions.Paths[OLE DB Source Output]"
+              endId="Package\ooh_entry_rate_regions\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\ooh_entry_rate_regions\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ooh_trends_by_county"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{948E100B-2FD7-4CAD-B9A6-8E7F98D1430E}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ooh_trends_by_county"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ooh_trends_by_county\Data Conversion"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\ooh_trends_by_county\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ooh_trends_by_county\Data Conversion.Inputs[Data Conversion Input].Columns[data]"
+                      cachedDataType="r8"
+                      cachedName="data"
+                      lineageId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ooh_trends_by_county\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\ooh_trends_by_county\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ooh_trends_by_county\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\ooh_trends_by_county\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]"
+                      name="Copy of data"
+                      precision="9"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ooh_trends_by_county\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\ooh_trends_by_county\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ooh_trends_by_county\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ooh_trends_by_county\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ooh_trends_by_county\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ooh_trends_by_county\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ooh_trends_by_county\Flat File Destination"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ooh_trends_by_county\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ooh_trends_rates_county]"
+                  connectionManagerRefId="Package.ConnectionManagers[ooh_trends_rates_county]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ooh_trends_by_county\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ooh_trends_by_county\Flat File Destination.Inputs[Flat File Destination Input].Columns[ethnicity_cd]"
+                      cachedDataType="i4"
+                      cachedName="ethnicity_cd"
+                      externalMetadataColumnId="Package\ooh_trends_by_county\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ethnicity_cd]"
+                      lineageId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]" />
+                    <inputColumn
+                      refId="Package\ooh_trends_by_county\Flat File Destination.Inputs[Flat File Destination Input].Columns[start_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="start_date"
+                      externalMetadataColumnId="Package\ooh_trends_by_county\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[start_date]"
+                      lineageId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]" />
+                    <inputColumn
+                      refId="Package\ooh_trends_by_county\Flat File Destination.Inputs[Flat File Destination Input].Columns[geography]"
+                      cachedDataType="i4"
+                      cachedName="geography"
+                      externalMetadataColumnId="Package\ooh_trends_by_county\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[geography]"
+                      lineageId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]" />
+                    <inputColumn
+                      refId="Package\ooh_trends_by_county\Flat File Destination.Inputs[Flat File Destination Input].Columns[Copy of data]"
+                      cachedDataType="numeric"
+                      cachedName="Copy of data"
+                      cachedPrecision="9"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\ooh_trends_by_county\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[data]"
+                      lineageId="Package\ooh_trends_by_county\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]" />
+                    <inputColumn
+                      refId="Package\ooh_trends_by_county\Flat File Destination.Inputs[Flat File Destination Input].Columns[age_grouping_cd]"
+                      cachedDataType="i4"
+                      cachedName="age_grouping_cd"
+                      externalMetadataColumnId="Package\ooh_trends_by_county\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[age_grouping_cd]"
+                      lineageId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].Columns[age_grouping_cd]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ooh_trends_by_county\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ethnicity_cd]"
+                      dataType="ui4"
+                      name="ethnicity_cd" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_trends_by_county\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[start_date]"
+                      dataType="dbTimeStamp"
+                      name="start_date" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_trends_by_county\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[geography]"
+                      dataType="i4"
+                      name="geography" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_trends_by_county\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[data]"
+                      dataType="r8"
+                      name="data" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_trends_by_county\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[age_grouping_cd]"
+                      dataType="ui4"
+                      name="age_grouping_cd" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\ooh_trends_by_county\OLE DB Source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT  [start_date]
+	  ,poc1ab.age_grouping_cd
+	  ,poc1ab.cd_race ethnicity_cd
+	  ,poc1ab.county_cd [geography]
+	   , round((case when (cnt_start_date) &gt; 0 /* jitter all above 0 */ 
+                                    then 
+                                        case when (round(cnt_start_date + 2 * sqrt(-2 * log(poc1ab.x1)) 
+                                        * cos(2*pi()*poc1ab.x2),0) ) &lt;1
+                                        then 1
+                                        else round(cnt_start_date + 2 * sqrt(-2 * log(poc1ab.x1)) * cos(2*pi()*poc1ab.x2),0)
+                                        end
+                                    else (cnt_start_date) 
+                                end /(pop.pop_cnt * 1.00) * 1000),2)  as   data
+  FROM [prtl].[cache_poc1ab_aggr]  poc1ab
+  join (
+		select measurement_year,age.age_grouping_cd
+		,eth.cd_race,cnty.cd_cnty  county_cd,sum(pop_cnt) as pop_cnt
+        from public_data.census_population cns
+		join prm_age_census age on age.match_code=cns.age_grouping_cd
+		join (select distinct cd_race,iif(cd_race=0,match_code ,cd_race) match_code from prm_eth_census eth  
+				) eth on  ( eth.match_code=cns.cd_race)
+		join prm_cnty cnty on cnty.match_code=cns.county_cd
+        where measurement_year between 2000 and 2013
+		group by measurement_year,age.age_grouping_cd
+        ,eth.cd_race,cnty.cd_cnty
+--	order by measurement_year,[age_grouping_cd],[cd_race],[county_cd]
+		) pop 
+                on pop.measurement_year=start_year
+				and pop.age_grouping_cd=poc1ab.age_grouping_cd
+				and pop.cd_race=poc1ab.cd_race
+				and pop.county_cd=poc1ab.county_cd
+				and pop.pop_cnt &lt;&gt; 0
+where fl_include_perCapita=1
+and  [bin_dep_cd] = 0
+      and [bin_los_cd] = 0
+      and [bin_placement_cd] = 0
+      and [bin_ihs_svc_cd] = 0
+      and [cd_reporter_type] = 0
+      and [cd_access_type] = 0
+      and [cd_allegation] = 0
+      and [cd_finding] = 0
+      and [cd_subctgry_poc_frc] = 0
+      and [cd_budget_poc_frc] = 0
+      and poc1ab.[age_grouping_cd] in (1,2,3,4,0)
+      and poc1ab.[cd_race]  in (1,2,3,4,5,6,7,8,9,10,11,12,0)
+      and poc1ab.[pk_gndr] = 0
+      and [init_cd_plcm_setng] = 0
+      and [long_cd_plcm_setng] = 0
+      and poc1ab.[county_cd] in (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,0)
+     and date_type=2 and qry_type=2
+	  order by start_date,poc1ab.county_cd,poc1ab.age_grouping_cd,poc1ab.cd_race</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ooh_trends_by_county\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[poc2.CA_ODS]"
+                  connectionManagerRefId="Package.ConnectionManagers[poc2.CA_ODS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ethnicity_cd]"
+                      lineageId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]"
+                      name="ethnicity_cd"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[start_date]"
+                      lineageId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]"
+                      name="start_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[geography]"
+                      lineageId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]"
+                      name="geography"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[data]"
+                      lineageId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]"
+                      name="data"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].Columns[age_grouping_cd]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[age_grouping_cd]"
+                      lineageId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].Columns[age_grouping_cd]"
+                      name="age_grouping_cd"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ethnicity_cd]"
+                      dataType="i4"
+                      name="ethnicity_cd" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[start_date]"
+                      dataType="dbTimeStamp"
+                      name="start_date" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[geography]"
+                      dataType="i4"
+                      name="geography" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[data]"
+                      dataType="r8"
+                      name="data" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[age_grouping_cd]"
+                      dataType="i4"
+                      name="age_grouping_cd" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[start_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[start_date]"
+                      name="start_date" />
+                    <outputColumn
+                      refId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[age_grouping_cd]"
+                      dataType="i4"
+                      lineageId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[age_grouping_cd]"
+                      name="age_grouping_cd" />
+                    <outputColumn
+                      refId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ethnicity_cd]"
+                      dataType="i4"
+                      lineageId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ethnicity_cd]"
+                      name="ethnicity_cd" />
+                    <outputColumn
+                      refId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[geography]"
+                      dataType="i4"
+                      lineageId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[geography]"
+                      name="geography" />
+                    <outputColumn
+                      refId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[data]"
+                      dataType="r8"
+                      lineageId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[data]"
+                      name="data" />
+                    <outputColumn
+                      refId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ooh_trends_by_county.Paths[Data Conversion Output]"
+              endId="Package\ooh_trends_by_county\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\ooh_trends_by_county\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\ooh_trends_by_county.Paths[OLE DB Source Output]"
+              endId="Package\ooh_trends_by_county\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\ooh_trends_by_county\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ooh_trends_by_region"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{af837158-e894-4865-a929-15db17f591e4}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ooh_trends_by_region"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ooh_trends_by_region\Data Conversion"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\ooh_trends_by_region\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ooh_trends_by_region\Data Conversion.Inputs[Data Conversion Input].Columns[data]"
+                      cachedDataType="r8"
+                      cachedName="data"
+                      lineageId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ooh_trends_by_region\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\ooh_trends_by_region\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ooh_trends_by_region\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\ooh_trends_by_region\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]"
+                      name="Copy of data"
+                      precision="9"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ooh_trends_by_region\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\ooh_trends_by_region\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ooh_trends_by_region\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ooh_trends_by_region\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ooh_trends_by_region\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ooh_trends_by_region\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ooh_trends_by_region\Flat File Destination"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ooh_trends_by_region\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ooh_trends_rates_region]"
+                  connectionManagerRefId="Package.ConnectionManagers[ooh_trends_rates_region]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ooh_trends_by_region\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ooh_trends_by_region\Flat File Destination.Inputs[Flat File Destination Input].Columns[ethnicity_cd]"
+                      cachedDataType="i4"
+                      cachedName="ethnicity_cd"
+                      externalMetadataColumnId="Package\ooh_trends_by_region\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ethnicity_cd]"
+                      lineageId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]" />
+                    <inputColumn
+                      refId="Package\ooh_trends_by_region\Flat File Destination.Inputs[Flat File Destination Input].Columns[start_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="start_date"
+                      externalMetadataColumnId="Package\ooh_trends_by_region\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[start_date]"
+                      lineageId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]" />
+                    <inputColumn
+                      refId="Package\ooh_trends_by_region\Flat File Destination.Inputs[Flat File Destination Input].Columns[geography]"
+                      cachedDataType="i4"
+                      cachedName="geography"
+                      externalMetadataColumnId="Package\ooh_trends_by_region\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[geography]"
+                      lineageId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]" />
+                    <inputColumn
+                      refId="Package\ooh_trends_by_region\Flat File Destination.Inputs[Flat File Destination Input].Columns[age_grouping_cd]"
+                      cachedDataType="i4"
+                      cachedName="age_grouping_cd"
+                      externalMetadataColumnId="Package\ooh_trends_by_region\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[age_grouping_cd]"
+                      lineageId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].Columns[age_grouping_cd]" />
+                    <inputColumn
+                      refId="Package\ooh_trends_by_region\Flat File Destination.Inputs[Flat File Destination Input].Columns[Copy of data]"
+                      cachedDataType="numeric"
+                      cachedName="Copy of data"
+                      cachedPrecision="9"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\ooh_trends_by_region\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[data]"
+                      lineageId="Package\ooh_trends_by_region\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of data]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ooh_trends_by_region\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[start_date]"
+                      dataType="dbTimeStamp"
+                      name="start_date" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_trends_by_region\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[age_grouping_cd]"
+                      dataType="ui4"
+                      name="age_grouping_cd" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_trends_by_region\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ethnicity_cd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="ethnicity_cd" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_trends_by_region\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[geography]"
+                      dataType="i4"
+                      name="geography" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_trends_by_region\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[data]"
+                      dataType="r8"
+                      name="data" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\ooh_trends_by_region\OLE DB Source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [start_date]
+	  ,poc1ab.age_grouping_cd
+	  ,poc1ab.cd_race ethnicity_cd
+	  ,cnty.old_region_cd [geography]
+	   , round((case when (sum(cnt_start_date)) &gt; 0 /* jitter all above 0 */ 
+                                    then 
+                                        case when (round(sum(cnt_start_date) + 2 * sqrt(-2 * log(max(poc1ab.x1))) 
+                                        * cos(2*pi()*max(poc1ab.x2)),0) ) &lt;1
+                                        then 1
+                                        else round(sum(cnt_start_date) + 2 * sqrt(-2 * log(max(poc1ab.x1))) * cos(2*pi()*max(poc1ab.x2)),0)
+                                        end
+                                    else (sum(cnt_start_date)) 
+                                end /(sum(pop.pop_cnt) * 1.00) * 1000),2)  as   data
+  FROM [prtl].[cache_poc1ab_aggr]  poc1ab
+  join (
+		select measurement_year,age.age_grouping_cd
+		,eth.cd_race,cnty.cd_cnty  county_cd,sum(pop_cnt) as pop_cnt
+        from public_data.census_population cns
+		join prm_age_census age on age.match_code=cns.age_grouping_cd
+		join (select distinct cd_race,iif(cd_race=0,match_code ,cd_race) match_code from prm_eth_census eth  
+				) eth on  ( eth.match_code=cns.cd_race)
+		join prm_cnty cnty on cnty.match_code=cns.county_cd
+        where measurement_year between 2000 and 2013
+		group by measurement_year,age.age_grouping_cd
+        ,eth.cd_race,cnty.cd_cnty
+--	order by measurement_year,[age_grouping_cd],[cd_race],[county_cd]
+		) pop 
+                on pop.measurement_year=start_year
+				and pop.age_grouping_cd=poc1ab.age_grouping_cd
+				and pop.cd_race=poc1ab.cd_race
+				and pop.county_cd=poc1ab.county_cd
+				and pop.pop_cnt &lt;&gt; 0
+join ref_lookup_county cnty on cnty.county_cd=poc1ab.county_cd
+where fl_include_perCapita=1
+and  [bin_dep_cd] = 0
+      and [bin_los_cd] = 0
+      and [bin_placement_cd] = 0
+      and [bin_ihs_svc_cd] = 0
+      and [cd_reporter_type] = 0
+      and [cd_access_type] = 0
+      and [cd_allegation] = 0
+      and [cd_finding] = 0
+      and [cd_subctgry_poc_frc] = 0
+      and [cd_budget_poc_frc] = 0
+      and poc1ab.[age_grouping_cd] in (1,2,3,4,0)
+      and poc1ab.[cd_race]  in (1,2,3,4,5,6,7,8,9,10,11,12,0)
+      and poc1ab.[pk_gndr] = 0
+      and [init_cd_plcm_setng] = 0
+      and [long_cd_plcm_setng] = 0
+      and poc1ab.[county_cd] in (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,0)
+     and date_type=2 and qry_type=2
+	 group by start_date,cnty.old_region_cd,poc1ab.age_grouping_cd,poc1ab.cd_race
+	  order by start_date,cnty.old_region_cd,poc1ab.age_grouping_cd,poc1ab.cd_race</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ooh_trends_by_region\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[poc2.CA_ODS]"
+                  connectionManagerRefId="Package.ConnectionManagers[poc2.CA_ODS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ethnicity_cd]"
+                      lineageId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].Columns[ethnicity_cd]"
+                      name="ethnicity_cd"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[start_date]"
+                      lineageId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].Columns[start_date]"
+                      name="start_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[geography]"
+                      lineageId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].Columns[geography]"
+                      name="geography"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[data]"
+                      lineageId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]"
+                      name="data"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].Columns[age_grouping_cd]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[age_grouping_cd]"
+                      lineageId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].Columns[age_grouping_cd]"
+                      name="age_grouping_cd"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ethnicity_cd]"
+                      dataType="i4"
+                      name="ethnicity_cd" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[start_date]"
+                      dataType="dbTimeStamp"
+                      name="start_date" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[geography]"
+                      dataType="i4"
+                      name="geography" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[data]"
+                      dataType="r8"
+                      name="data" />
+                    <externalMetadataColumn
+                      refId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[age_grouping_cd]"
+                      dataType="i4"
+                      name="age_grouping_cd" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[start_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[start_date]"
+                      name="start_date" />
+                    <outputColumn
+                      refId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[age_grouping_cd]"
+                      dataType="i4"
+                      lineageId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[age_grouping_cd]"
+                      name="age_grouping_cd" />
+                    <outputColumn
+                      refId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ethnicity_cd]"
+                      dataType="i4"
+                      lineageId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ethnicity_cd]"
+                      name="ethnicity_cd" />
+                    <outputColumn
+                      refId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[geography]"
+                      dataType="i4"
+                      lineageId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[geography]"
+                      name="geography" />
+                    <outputColumn
+                      refId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[data]"
+                      dataType="r8"
+                      lineageId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[data]"
+                      name="data" />
+                    <outputColumn
+                      refId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ooh_trends_by_region.Paths[Data Conversion Output]"
+              endId="Package\ooh_trends_by_region\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\ooh_trends_by_region\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\ooh_trends_by_region.Paths[OLE DB Source Output]"
+              endId="Package\ooh_trends_by_region\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\ooh_trends_by_region\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{3CC1E7A0-900F-4C29-8BCA-E4D777B90840}"
+      DTS:From="Package\ooh_trends_by_county"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\ooh_trends_by_region" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{95E9EF41-F6AD-4A6D-8B70-3DA30550833C}"
+      DTS:From="Package\ooh_trends_by_region"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\ooh_entry_rate_counties" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{E5121770-077B-4831-BDC8-B194C483CD50}"
+      DTS:From="Package\ooh_entry_rate_counties"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\ooh_entry_rate_regions" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{D46E84D6-9299-4569-9F63-5782F855E1F0}"
+      DTS:From="Package\ooh_entry_rate_regions"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Foreach Loop Container" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{51AD0F33-400D-4F22-B558-83C71A6E909E}"
+      DTS:From="Package\fst_create_directory"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\ooh_trends_by_county" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{1E347192-3105-4DA3-AC39-95763E3A62FE}"
+      DTS:From="Package\get UserName &amp; password"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\fst_create_directory" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib">
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Foreach Loop Container\SFTP Task"
+          TopLeft="73,26" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="216,123"
+          Size="216,166"
+          Id="Package\Foreach Loop Container"
+          TopLeft="860,567" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\fst_create_directory"
+          TopLeft="184,225" />
+        <NodeLayout
+          Size="206,42"
+          Id="Package\get UserName &amp; password"
+          TopLeft="148,106" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="291,459">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="243,-62"
+              Start="0,0"
+              End="243,-54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-27" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-27"
+                    Point2="0,-31"
+                    Point3="4,-31" />
+                  <mssgle:LineSegment
+                    End="239,-31" />
+                  <mssgle:CubicBezierSegment
+                    Point1="239,-31"
+                    Point2="243,-31"
+                    Point3="243,-35" />
+                  <mssgle:LineSegment
+                    End="243,-54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="555.5,507">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="412.5,60"
+              Start="0,0"
+              End="412.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="408.5,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="408.5,30"
+                    Point2="412.5,30"
+                    Point3="412.5,34" />
+                  <mssgle:LineSegment
+                    End="412.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="264,267">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="19,83"
+              Start="0,0"
+              End="19,75.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,37.5"
+                    Point2="0,41.5"
+                    Point3="4,41.5" />
+                  <mssgle:LineSegment
+                    End="15,41.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="15,41.5"
+                    Point2="19,41.5"
+                    Point3="19,45.5" />
+                  <mssgle:LineSegment
+                    End="19,75.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="251,148">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="13,77"
+              Start="0,0"
+              End="13,69.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.5"
+                    Point2="0,38.5"
+                    Point3="4,38.5" />
+                  <mssgle:LineSegment
+                    End="9,38.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9,38.5"
+                    Point2="13,38.5"
+                    Point3="13,42.5" />
+                  <mssgle:LineSegment
+                    End="13,69.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="188,42"
+          Id="Package\ooh_trends_by_county"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\ooh_trends_by_region"
+          TopLeft="15.4925954851763,115.415853864496" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="99.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-20.6740711814904,67.9158538644958"
+              Start="0,0"
+              End="-20.6740711814904,60.4158538644958">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.4019685036127" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.4019685036127"
+                    Point2="0,40.4019685036127"
+                    Point3="-4,40.4019685036127" />
+                  <mssgle:LineSegment
+                    End="-16.6740711814904,40.4019685036127" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-16.6740711814904,40.4019685036127"
+                    Point2="-20.6740711814904,40.4019685036127"
+                    Point3="-20.6740711814904,44.4019685036127" />
+                  <mssgle:LineSegment
+                    End="-20.6740711814904,60.4158538644958" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <GroupLayout
+          Text="trends"
+          ParentId="Package"
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="206,212"
+          Size="206,255"
+          Id="40081da6-db03-4972-b42f-e560cfa6799b"
+          TopLeft="183.004744742357,300.856489792991">
+          <GroupLayout.ChildrenIds>
+            <s:String>Package\ooh_trends_by_county</s:String>
+            <s:String>Package\ooh_trends_by_region</s:String>
+            <s:String>Package.PrecedenceConstraints[Constraint]</s:String>
+          </GroupLayout.ChildrenIds>
+        </GroupLayout>
+        <NodeLayout
+          Size="198,42"
+          Id="Package\ooh_entry_rate_counties"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\ooh_entry_rate_regions"
+          TopLeft="30.0342383654702,115.933018023265" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="104.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="22.0342383654702,68.4330180232652"
+              Start="0,0"
+              End="22.0342383654702,60.9330180232652">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2165090116326" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.2165090116326"
+                    Point2="0,34.2165090116326"
+                    Point3="4,34.2165090116326" />
+                  <mssgle:LineSegment
+                    End="18.0342383654702,34.2165090116326" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.0342383654702,34.2165090116326"
+                    Point2="22.0342383654702,34.2165090116326"
+                    Point3="22.0342383654702,38.2165090116326" />
+                  <mssgle:LineSegment
+                    End="22.0342383654702,60.9330180232652" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <GroupLayout
+          Text="entries"
+          ParentId="Package"
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="228,213"
+          Size="228,256"
+          Id="6cdb7d98-bee3-48cc-8e50-7a0bab9dfba6"
+          TopLeft="429.184448093996,305.709770947595">
+          <GroupLayout.ChildrenIds>
+            <s:String>Package\ooh_entry_rate_counties</s:String>
+            <s:String>Package\ooh_entry_rate_regions</s:String>
+            <s:String>Package.PrecedenceConstraints[Constraint 2]</s:String>
+          </GroupLayout.ChildrenIds>
+        </GroupLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\ooh_trends_by_region">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="158,42"
+          Id="Package\ooh_trends_by_region\Data Conversion"
+          TopLeft="197,119" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\ooh_trends_by_region\OLE DB Source"
+          TopLeft="106.713940242869,40.9231266936784" />
+        <EdgeLayout
+          Id="Package\ooh_trends_by_region.Paths[OLE DB Source Output]"
+          TopLeft="182.713940242869,82.9231266936784">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="93.286059757131,36.0768733063216"
+              Start="0,0"
+              End="93.286059757131,28.5768733063216">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.0384366531608" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.0384366531608"
+                    Point2="0,18.0384366531608"
+                    Point3="4,18.0384366531608" />
+                  <mssgle:LineSegment
+                    End="89.286059757131,18.0384366531608" />
+                  <mssgle:CubicBezierSegment
+                    Point1="89.286059757131,18.0384366531608"
+                    Point2="93.286059757131,18.0384366531608"
+                    Point3="93.286059757131,22.0384366531608" />
+                  <mssgle:LineSegment
+                    End="93.286059757131,28.5768733063216" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="174,42"
+          Id="Package\ooh_trends_by_region\Flat File Destination"
+          TopLeft="271,212" />
+        <EdgeLayout
+          Id="Package\ooh_trends_by_region.Paths[Data Conversion Output]"
+          TopLeft="276,161">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="82,51"
+              Start="0,0"
+              End="82,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.5"
+                    Point2="0,25.5"
+                    Point3="4,25.5" />
+                  <mssgle:LineSegment
+                    End="78,25.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="78,25.5"
+                    Point2="82,25.5"
+                    Point3="82,29.5" />
+                  <mssgle:LineSegment
+                    End="82,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ooh_trends_by_region\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\ooh_trends_by_county">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="174,42"
+          Id="Package\ooh_trends_by_county\Flat File Destination"
+          TopLeft="255.129592304899,266.7617200214" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\ooh_trends_by_county\Data Conversion"
+          TopLeft="224,163" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\ooh_trends_by_county\OLE DB Source"
+          TopLeft="106.713940242869,41.9231266936784" />
+        <EdgeLayout
+          Id="Package\ooh_trends_by_county.Paths[Data Conversion Output]"
+          TopLeft="303,205">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="39.129592304899,61.7617200214"
+              Start="0,0"
+              End="39.129592304899,54.2617200214">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.8808600107" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.8808600107"
+                    Point2="0,30.8808600107"
+                    Point3="4,30.8808600107" />
+                  <mssgle:LineSegment
+                    End="35.129592304899,30.8808600107" />
+                  <mssgle:CubicBezierSegment
+                    Point1="35.129592304899,30.8808600107"
+                    Point2="39.129592304899,30.8808600107"
+                    Point3="39.129592304899,34.8808600107" />
+                  <mssgle:LineSegment
+                    End="39.129592304899,54.2617200214" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ooh_trends_by_county.Paths[OLE DB Source Output]"
+          TopLeft="182.713940242869,83.9231266936784">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="120.286059757131,79.0768733063216"
+              Start="0,0"
+              End="120.286059757131,71.5768733063216">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5384366531608" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.5384366531608"
+                    Point2="0,39.5384366531608"
+                    Point3="4,39.5384366531608" />
+                  <mssgle:LineSegment
+                    End="116.286059757131,39.5384366531608" />
+                  <mssgle:CubicBezierSegment
+                    Point1="116.286059757131,39.5384366531608"
+                    Point2="120.286059757131,39.5384366531608"
+                    Point3="120.286059757131,43.5384366531608" />
+                  <mssgle:LineSegment
+                    End="120.286059757131,71.5768733063216" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ooh_trends_by_county\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\ooh_entry_rate_regions">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="174,42"
+          Id="Package\ooh_entry_rate_regions\Flat File Destination"
+          TopLeft="144,225" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\ooh_entry_rate_regions\Data Conversion"
+          TopLeft="341,134" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\ooh_entry_rate_regions\OLE DB Source"
+          TopLeft="41.9014068289726,62" />
+        <EdgeLayout
+          Id="Package\ooh_entry_rate_regions.Paths[Data Conversion Output]"
+          TopLeft="420,176">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-189,49"
+              Start="0,0"
+              End="-189,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.5"
+                    Point2="0,24.5"
+                    Point3="-4,24.5" />
+                  <mssgle:LineSegment
+                    End="-185,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-185,24.5"
+                    Point2="-189,24.5"
+                    Point3="-189,28.5" />
+                  <mssgle:LineSegment
+                    End="-189,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ooh_entry_rate_regions.Paths[OLE DB Source Output]"
+          TopLeft="117.901406828973,104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="302.098593171027,30"
+              Start="0,0"
+              End="302.098593171027,22.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11"
+                    Point2="0,15"
+                    Point3="4,15" />
+                  <mssgle:LineSegment
+                    End="298.098593171027,15" />
+                  <mssgle:CubicBezierSegment
+                    Point1="298.098593171027,15"
+                    Point2="302.098593171027,15"
+                    Point3="302.098593171027,19" />
+                  <mssgle:LineSegment
+                    End="302.098593171027,22.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ooh_entry_rate_regions\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\ooh_entry_rate_counties">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="174,42"
+          Id="Package\ooh_entry_rate_counties\Flat File Destination"
+          TopLeft="144,225" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\ooh_entry_rate_counties\Data Conversion"
+          TopLeft="318,109" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\ooh_entry_rate_counties\OLE DB Source"
+          TopLeft="41.9014068289726,62" />
+        <EdgeLayout
+          Id="Package\ooh_entry_rate_counties.Paths[Data Conversion Output]"
+          TopLeft="397,151">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-166,74"
+              Start="0,0"
+              End="-166,66.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33"
+                    Point2="0,37"
+                    Point3="-4,37" />
+                  <mssgle:LineSegment
+                    End="-162,37" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-162,37"
+                    Point2="-166,37"
+                    Point3="-166,41" />
+                  <mssgle:LineSegment
+                    End="-166,66.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ooh_entry_rate_counties.Paths[OLE DB Source Output]"
+          TopLeft="193.901406828973,83">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="124.098593171027,47"
+              Start="0,0"
+              End="116.598593171027,47">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="58.0492965855137,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="58.0492965855137,0"
+                    Point2="62.0492965855137,0"
+                    Point3="62.0492965855137,4" />
+                  <mssgle:LineSegment
+                    End="62.0492965855137,43" />
+                  <mssgle:CubicBezierSegment
+                    Point1="62.0492965855137,43"
+                    Point2="62.0492965855137,47"
+                    Point3="66.0492965855137,47" />
+                  <mssgle:LineSegment
+                    End="116.598593171027,47" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ooh_entry_rate_counties\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
