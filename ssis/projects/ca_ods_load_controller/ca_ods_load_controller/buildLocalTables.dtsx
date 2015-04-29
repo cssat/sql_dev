@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="buildLocalTables"
   DTS:PackageType="5"
-  DTS:VersionBuild="214"
-  DTS:VersionGUID="{58BFC346-F12C-4513-A3A4-B556613F1DA8}">
+  DTS:VersionBuild="215"
+  DTS:VersionGUID="{264B3DF5-38C0-408C-92EA-E65EBDFFCD13}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1230,6 +1230,10 @@
       DTS:CreationName="OLEDB"
       DTS:DTSID="{F2FE82E2-C41C-43E0-9425-1D2862637BEE}"
       DTS:ObjectName="POC2.CA_ODS">
+      <DTS:PropertyExpression
+        DTS:Name="InitialCatalog">@[$Project::DatabaseName]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Project::ServerName]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectionString="Data Source=POC2;Initial Catalog=CA_ODS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />

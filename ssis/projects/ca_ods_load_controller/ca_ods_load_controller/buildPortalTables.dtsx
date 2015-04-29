@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="buildPortalTables"
   DTS:PackageType="5"
-  DTS:VersionBuild="171"
-  DTS:VersionGUID="{172D85AC-7238-4876-9444-7B48A230C265}">
+  DTS:VersionBuild="172"
+  DTS:VersionGUID="{F75D5FC8-978D-46F3-802A-54A5431F7FBF}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -32,7 +32,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\backup_portal_tables\20150407\ooh_dcfs_eps.txt">
+          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\backup_portal_tables\20150429\ooh_dcfs_eps.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -630,7 +630,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\backup_portal_tables\20150407\ooh_point_in_time_child.txt">
+          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\backup_portal_tables\20150429\ooh_point_in_time_child.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -972,6 +972,10 @@
       DTS:CreationName="OLEDB"
       DTS:DTSID="{C48A1D98-D798-4ED6-BF68-B323ABE4FB40}"
       DTS:ObjectName="POC_OLEDB">
+      <DTS:PropertyExpression
+        DTS:Name="InitialCatalog">@[$Project::DatabaseName]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Project::ServerName]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:Retain="True"
@@ -1001,7 +1005,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="dir">
       <DTS:VariableValue
-        DTS:DataType="8">\\poc2\pocshare\Data Portal\data\backup_portal_tables\20150407\</DTS:VariableValue>
+        DTS:DataType="8">\\poc2\pocshare\Data Portal\data\backup_portal_tables\20150429\</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -1021,7 +1025,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="dir_dev">
       <DTS:VariableValue
-        DTS:DataType="8">d:\backup_portal_tables\20150407\</DTS:VariableValue>
+        DTS:DataType="8">d:\backup_portal_tables\20150429\</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""

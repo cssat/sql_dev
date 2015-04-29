@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="buildCacheTables"
   DTS:PackageType="5"
-  DTS:VersionBuild="42"
-  DTS:VersionGUID="{F8BF6035-3BEF-4974-A614-85C13FA70165}">
+  DTS:VersionBuild="43"
+  DTS:VersionGUID="{DF1F6756-FC47-42BD-B5B4-757D06C93994}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -21,6 +21,10 @@
       DTS:CreationName="OLEDB"
       DTS:DTSID="{1E5FBE0D-EBC9-4323-8AB6-92655538ACBF}"
       DTS:ObjectName="poc2.CA_ODS">
+      <DTS:PropertyExpression
+        DTS:Name="InitialCatalog">@[$Project::DatabaseName]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Project::ServerName]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectionString="Data Source=POC2;Initial Catalog=CA_ODS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package-{1E5FBE0D-EBC9-4323-8AB6-92655538ACBF}poc2.CA_ODS;" />
