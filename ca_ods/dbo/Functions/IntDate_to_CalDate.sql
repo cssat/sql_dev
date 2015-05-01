@@ -10,3 +10,9 @@ create function [dbo].[IntDate_to_CalDate](@id_calendar_dim integer) returns dat
 	end
 	return @myDate
 end
+
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[IntDate_to_CalDate] TO [NEBULA2\POC_DBO]
+    AS [dbo];
+

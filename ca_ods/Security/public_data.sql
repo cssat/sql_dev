@@ -1,3 +1,10 @@
 ﻿CREATE SCHEMA [public_data]
     AUTHORIZATION [NEBULA2\POC_DBO];
 
+
+
+
+GO
+GRANT SELECT
+    ON SCHEMA::[public_data] TO [NEBULA2\POC_CA];
+

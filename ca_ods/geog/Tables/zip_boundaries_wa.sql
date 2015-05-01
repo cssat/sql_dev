@@ -1,0 +1,25 @@
+﻿CREATE TABLE [geog].[zip_boundaries_wa] (
+    [ID]         INT              IDENTITY (1, 1) NOT NULL,
+    [ZIP]        NVARCHAR (5)     NULL,
+    [NAME]       VARCHAR (40)     NULL,
+    [ZIPTYPE]    VARCHAR (20)     NULL,
+    [STATE]      VARCHAR (2)      NULL,
+    [STATEFIPS]  VARCHAR (2)      NULL,
+    [COUNTYFIPS] VARCHAR (5)      NULL,
+    [COUNTYNAME] VARCHAR (60)     NULL,
+    [S3DZIP]     NVARCHAR (3)     NULL,
+    [LAT]        FLOAT (53)       NULL,
+    [LON]        FLOAT (53)       NULL,
+    [EMPTYCOL]   VARCHAR (5)      NULL,
+    [TOTRESCNT]  INT              NULL,
+    [MFDU]       INT              NULL,
+    [SFDU]       INT              NULL,
+    [BOXCNT]     INT              NULL,
+    [BIZCNT]     INT              NULL,
+    [RELVER]     VARCHAR (8)      NULL,
+    [COLOR]      INT              NULL,
+    [geom]       [sys].[geometry] NULL,
+    CONSTRAINT [PK__geog.ZIP__3214EC27E4102F9B] PRIMARY KEY CLUSTERED ([ID] ASC),
+    CONSTRAINT [enforce_srid_geometry_geog.ZIP_Boundaries_WA] CHECK ([geom].[STSrid]=(4326))
+);
+

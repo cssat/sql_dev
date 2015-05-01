@@ -1,3 +1,10 @@
 ﻿CREATE SCHEMA [prtl]
     AUTHORIZATION [dbo];
 
+
+
+
+GO
+GRANT EXECUTE
+    ON SCHEMA::[prtl] TO [NEBULA2\POC_DBO];
+
