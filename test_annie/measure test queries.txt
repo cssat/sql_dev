@@ -53,3 +53,15 @@ call sp_ooh_wb_familysettings('0','0','0','0','0','0','0','0','0','0','0','0','0
 call sp_ooh_wb_familysettings('0','1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- out-of-cache param group 1
 call sp_ooh_wb_familysettings('0','0','0','0','0','0','0','0','0','0','1','1','0','0','0','0','0'); -- out-of-cache param group 2
 call sp_ooh_wb_familysettings('0','1','0','0','0','0','0','0','0','0','1','1','0','0','0','0','0'); -- out-of-cache param all
+call sp_ooh_wb_familysettings('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+call sp_ooh_wb_familysettings('0','1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- out-of-cache param group 1
+call sp_ooh_wb_familysettings('0','0','0','0','0','0','0','0','0','0','1','1','0','0','0','0','0'); -- out-of-cache param group 2
+call sp_ooh_wb_familysettings('0','1','0','0','0','0','0','0','0','0','1','1','0','0','0','0','0'); -- out-of-cache param all
+call sp_ooh_wb_siblings('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+call sp_ooh_wb_siblings('1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- out-of-cache param group 1
+call sp_ooh_wb_siblings('0','0','0','0','0','0','0','0','0','1','1','0','0','0','0','0'); -- out-of-cache param group 2
+call sp_ooh_wb_siblings('1','0','0','0','0','0','0','0','0','1','1','0','0','0','0','0'); -- out-of-cache param all
+call sp_ooh_wb_siblings_pvt('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+call sp_ooh_wb_siblings_pvt('2','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- out-of-cache param group 1
+call sp_ooh_wb_siblings_pvt('0','0','0','0','0','0','0','0','0','2','2','0','0','0','0','0'); -- out-of-cache param group 2
+call sp_ooh_wb_siblings_pvt('2','0','0','0','0','0','0','0','0','2','2','0','0','0','0','0'); -- out-of-cache param all
