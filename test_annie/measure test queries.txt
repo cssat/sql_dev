@@ -1,67 +1,305 @@
 call sp_ia_trends_counts('0','0','0','0','0','0','0','0'); -- default in-cache -- all parameter sets are in-cache
+
 call sp_ia_trends_rates('0','0','0','0','0','0','0','0'); -- default in-cache -- all parameter sets are in-cache
+
 call sp_ia_safety('0','0','0','0','0','0','0'); -- default in-cache -- all group 1 parameter sets are included
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_pbcs2_params p where p.age_grouping_cd = '0' and p.cd_race_census = '0' and p.cd_county = '0' and p.cd_reporter_type = '1' and p.filter_access_type = '1' and p.filter_allegation = '0' and p.filter_finding = '0';
+delete from cache_pbcs2_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_pbcs2 where qry_id = @var_qry_id;
+delete from cache_pbcs2_params where qry_id = @var_qry_id;
 call sp_ia_safety('0','0','0','1','1','0','0'); -- out-of-cache param group 2
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_pbcs2_params p where p.age_grouping_cd = '1' and p.cd_race_census = '0' and p.cd_county = '0' and p.cd_reporter_type = '1' and p.filter_access_type = '1' and p.filter_allegation = '0' and p.filter_finding = '0';
+delete from cache_pbcs2_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_pbcs2 where qry_id = @var_qry_id;
+delete from cache_pbcs2_params where qry_id = @var_qry_id;
 call sp_ia_safety('1','0','0','1','1','0','0'); -- out-of-cache param all
+
 call sp_ihs_trends_counts('0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache -- all group 1 parameter sets are included
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_poc3ab_params p where p.cd_sib_age_grp = '0' and p.cd_race_census = '0' and p.cd_county = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '1' and p.filter_access_type = '1' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0';
+delete from cache_poc3ab_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_poc3ab where qry_id = @var_qry_id;
+delete from cache_poc3ab_params where qry_id = @var_qry_id;
 call sp_ihs_trends_counts('0','0','0','0','0','1','1','0','0','0','0'); -- out-of-cache param group 2
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_poc3ab_params p where p.cd_sib_age_grp = '1' and p.cd_race_census = '0' and p.cd_county = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '1' and p.filter_access_type = '1' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0';
+delete from cache_poc3ab_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_poc3ab where qry_id = @var_qry_id;
+delete from cache_poc3ab_params where qry_id = @var_qry_id;
 call sp_ihs_trends_counts('0','1','0','0','0','1','1','0','0','0','0'); -- out-of-cache param all
+
 call sp_ihs_trends_rates('0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache -- all group 1 parameter sets are included
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_poc3ab_params p where p.cd_sib_age_grp = '0' and p.cd_race_census = '0' and p.cd_county = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '2' and p.filter_access_type = '2' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0';
+delete from cache_poc3ab_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_poc3ab where qry_id = @var_qry_id;
+delete from cache_poc3ab_params where qry_id = @var_qry_id;
 call sp_ihs_trends_rates('0','0','0','0','0','2','2','0','0','0','0'); -- out-of-cache param group 2
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_poc3ab_params p where p.cd_sib_age_grp = '1' and p.cd_race_census = '0' and p.cd_county = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '2' and p.filter_access_type = '2' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0';
+delete from cache_poc3ab_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_poc3ab where qry_id = @var_qry_id;
+delete from cache_poc3ab_params where qry_id = @var_qry_id;
 call sp_ihs_trends_rates('0','1','0','0','0','2','2','0','0','0','0'); -- out-of-cache param all
+
 call sp_ooh_pit_counts('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_poc1ab_params p where p.age_grouping_cd = '1' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '0' and p.filter_access_type = '0' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_poc1ab_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_poc1ab where qry_id = @var_qry_id;
+delete from cache_poc1ab_params where qry_id = @var_qry_id;
 call sp_ooh_pit_counts('0','1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- out-of-cache param group 1
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_poc1ab_params p where p.age_grouping_cd = '0' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '1' and p.filter_access_type = '1' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_poc1ab_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_poc1ab where qry_id = @var_qry_id;
+delete from cache_poc1ab_params where qry_id = @var_qry_id;
 call sp_ooh_pit_counts('0','0','0','0','0','0','0','0','0','0','1','1','0','0','0','0','0'); -- out-of-cache param group 2
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_poc1ab_params p where p.age_grouping_cd = '1' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '1' and p.filter_access_type = '1' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_poc1ab_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_poc1ab where qry_id = @var_qry_id;
+delete from cache_poc1ab_params where qry_id = @var_qry_id;
 call sp_ooh_pit_counts('0','1','0','0','0','0','0','0','0','0','1','1','0','0','0','0','0'); -- out-of-cache param all
+
 call sp_ooh_pit_rates('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_poc1ab_params p where p.age_grouping_cd = 2 and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '0' and p.filter_access_type = '0' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_poc1ab_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_poc1ab where qry_id = @var_qry_id;
+delete from cache_poc1ab_params where qry_id = @var_qry_id;
 call sp_ooh_pit_rates('0','2','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- out-of-cache param group 1
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_poc1ab_params p where p.age_grouping_cd = '0' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '2' and p.filter_access_type = '2' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_poc1ab_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_poc1ab where qry_id = @var_qry_id;
+delete from cache_poc1ab_params where qry_id = @var_qry_id;
 call sp_ooh_pit_rates('0','0','0','0','0','0','0','0','0','0','2','2','0','0','0','0','0'); -- out-of-cache param group 2
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_poc1ab_params p where p.age_grouping_cd = '2' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '2' and p.filter_access_type = '2' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_poc1ab_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_poc1ab where qry_id = @var_qry_id;
+delete from cache_poc1ab_params where qry_id = @var_qry_id;
 call sp_ooh_pit_rates('0','2','0','0','0','0','0','0','0','0','2','2','0','0','0','0','0'); -- out-of-cache param all
+
 call sp_ooh_flow_entries_counts('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_poc1ab_entries_params p where p.age_grouping_cd = '1' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '0' and p.filter_access_type = '0' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_poc1ab_entries_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_poc1ab_entries where qry_id = @var_qry_id;
+delete from cache_poc1ab_entries_params where qry_id = @var_qry_id;
 call sp_ooh_flow_entries_counts('0','1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- out-of-cache param group 1
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_poc1ab_entries_params p where p.age_grouping_cd = '0' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '1' and p.filter_access_type = '1' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_poc1ab_entries_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_poc1ab_entries where qry_id = @var_qry_id;
+delete from cache_poc1ab_entries_params where qry_id = @var_qry_id;
 call sp_ooh_flow_entries_counts('0','0','0','0','0','0','0','0','0','0','1','1','0','0','0','0','0'); -- out-of-cache param group 2
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_poc1ab_entries_params p where p.age_grouping_cd = '1' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '1' and p.filter_access_type = '1' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_poc1ab_entries_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_poc1ab_entries where qry_id = @var_qry_id;
+delete from cache_poc1ab_entries_params where qry_id = @var_qry_id;
 call sp_ooh_flow_entries_counts('0','1','0','0','0','0','0','0','0','0','1','1','0','0','0','0','0'); -- out-of-cache param all
+
 call sp_ooh_flow_entries_rates('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_poc1ab_entries_params p where p.age_grouping_cd = '2' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '0' and p.filter_access_type = '0' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_poc1ab_entries_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_poc1ab_entries where qry_id = @var_qry_id;
+delete from cache_poc1ab_entries_params where qry_id = @var_qry_id;
 call sp_ooh_flow_entries_rates('0','2','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- out-of-cache param group 1
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_poc1ab_entries_params p where p.age_grouping_cd = '0' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '2' and p.filter_access_type = '2' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_poc1ab_entries_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_poc1ab_entries where qry_id = @var_qry_id;
+delete from cache_poc1ab_entries_params where qry_id = @var_qry_id;
 call sp_ooh_flow_entries_rates('0','0','0','0','0','0','0','0','0','0','2','2','0','0','0','0','0'); -- out-of-cache param group 2
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_poc1ab_entries_params p where p.age_grouping_cd = '2' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '2' and p.filter_access_type = '2' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_poc1ab_entries_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_poc1ab_entries where qry_id = @var_qry_id;
+delete from cache_poc1ab_entries_params where qry_id = @var_qry_id;
 call sp_ooh_flow_entries_rates('0','2','0','0','0','0','0','0','0','0','2','2','0','0','0','0','0'); -- out-of-cache param all
+
 call sp_ooh_flow_exits('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_poc1ab_exits_params p where p.age_grouping_cd = '1' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '0' and p.filter_access_type = '0' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_poc1ab_exits_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_poc1ab_exits where qry_id = @var_qry_id;
+delete from cache_poc1ab_exits_params where qry_id = @var_qry_id;
 call sp_ooh_flow_exits('0','1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- out-of-cache param group 1
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_poc1ab_exits_params p where p.age_grouping_cd = '0' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '1' and p.filter_access_type = '1' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_poc1ab_exits_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_poc1ab_exits where qry_id = @var_qry_id;
+delete from cache_poc1ab_exits_params where qry_id = @var_qry_id;
 call sp_ooh_flow_exits('0','0','0','0','0','0','0','0','0','0','1','1','0','0','0','0','0'); -- out-of-cache param group 2
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_poc1ab_exits_params p where p.age_grouping_cd = '1' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '1' and p.filter_access_type = '1' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_poc1ab_exits_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_poc1ab_exits where qry_id = @var_qry_id;
+delete from cache_poc1ab_exits_params where qry_id = @var_qry_id;
 call sp_ooh_flow_exits('0','1','0','0','0','0','0','0','0','0','1','1','0','0','0','0','0'); -- out-of-cache param all
+
 call sp_ooh_reentry('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_pbcp5_params p where p.age_grouping_cd = '1' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '0' and p.filter_access_type = '0' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_pbcp5_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_pbcp5 where qry_id = @var_qry_id;
+delete from cache_pbcp5_params where qry_id = @var_qry_id;
 call sp_ooh_reentry('1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- out-of-cache param group 1
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_pbcp5_params p where p.age_grouping_cd = '0' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '1' and p.filter_access_type = '1' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_pbcp5_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_pbcp5 where qry_id = @var_qry_id;
+delete from cache_pbcp5_params where qry_id = @var_qry_id;
 call sp_ooh_reentry('0','0','0','0','0','0','0','0','0','1','1','0','0','0','0','0'); -- out-of-cache param group 2
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_pbcp5_params p where p.age_grouping_cd = '1' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '1' and p.filter_access_type = '1' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_pbcp5_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_pbcp5 where qry_id = @var_qry_id;
+delete from cache_pbcp5_params where qry_id = @var_qry_id;
 call sp_ooh_reentry('1','0','0','0','0','0','0','0','0','1','1','0','0','0','0','0'); -- out-of-cache param all
+
 call sp_ooh_outcomes('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_outcomes_params p where p.age_grouping_cd = '1' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '0' and p.filter_access_type = '0' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_outcomes_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_outcomes where qry_id = @var_qry_id;
+delete from cache_outcomes_params where qry_id = @var_qry_id;
 call sp_ooh_outcomes('1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- out-of-cache param group 1
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_outcomes_params p where p.age_grouping_cd = '0' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '1' and p.filter_access_type = '1' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_outcomes_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_outcomes where qry_id = @var_qry_id;
+delete from cache_outcomes_params where qry_id = @var_qry_id;
 call sp_ooh_outcomes('0','0','0','0','0','0','0','0','0','1','1','0','0','0','0','0'); -- out-of-cache param group 2
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_outcomes_params p where p.age_grouping_cd = '1' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '1' and p.filter_access_type = '1' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_outcomes_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_outcomes where qry_id = @var_qry_id;
+delete from cache_outcomes_params where qry_id = @var_qry_id;
 call sp_ooh_outcomes('1','0','0','0','0','0','0','0','0','1','1','0','0','0','0','0'); -- out-of-cache param all
+
 call sp_ooh_outcomes_3m('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_outcomes_params p where p.age_grouping_cd = '2' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '0' and p.filter_access_type = '0' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_outcomes_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_outcomes where qry_id = @var_qry_id;
+delete from cache_outcomes_params where qry_id = @var_qry_id;
 call sp_ooh_outcomes_3m('2','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- out-of-cache param group 1
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_outcomes_params p where p.age_grouping_cd = '0' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '2' and p.filter_access_type = '2' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_outcomes_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_outcomes where qry_id = @var_qry_id;
+delete from cache_outcomes_params where qry_id = @var_qry_id;
 call sp_ooh_outcomes_3m('0','0','0','0','0','0','0','0','0','2','2','0','0','0','0','0'); -- out-of-cache param group 2
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_outcomes_params p where p.age_grouping_cd = '2' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '2' and p.filter_access_type = '2' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_outcomes_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_outcomes where qry_id = @var_qry_id;
+delete from cache_outcomes_params where qry_id = @var_qry_id;
 call sp_ooh_outcomes_3m('2','0','0','0','0','0','0','0','0','2','2','0','0','0','0','0'); -- out-of-cache param all
+
 call sp_ooh_outcomes_12m('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_outcomes_params p where p.age_grouping_cd = '3' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '0' and p.filter_access_type = '0' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_outcomes_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_outcomes where qry_id = @var_qry_id;
+delete from cache_outcomes_params where qry_id = @var_qry_id;
 call sp_ooh_outcomes_12m('3','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- out-of-cache param group 1
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_outcomes_params p where p.age_grouping_cd = '0' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '5' and p.filter_access_type = '5' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_outcomes_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_outcomes where qry_id = @var_qry_id;
+delete from cache_outcomes_params where qry_id = @var_qry_id;
 call sp_ooh_outcomes_12m('0','0','0','0','0','0','0','0','0','5','5','0','0','0','0','0'); -- out-of-cache param group 2
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_outcomes_params p where p.age_grouping_cd = '1' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '5' and p.filter_access_type = '4' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_outcomes_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_outcomes where qry_id = @var_qry_id;
+delete from cache_outcomes_params where qry_id = @var_qry_id;
 call sp_ooh_outcomes_12m('1','0','0','0','0','0','0','0','0','5','4','0','0','0','0','0'); -- out-of-cache param all
+
 call sp_ooh_outcomes_24m('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_outcomes_params p where p.age_grouping_cd = '4' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '0' and p.filter_access_type = '0' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_outcomes_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_outcomes where qry_id = @var_qry_id;
+delete from cache_outcomes_params where qry_id = @var_qry_id;
 call sp_ooh_outcomes_24m('4','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- out-of-cache param group 1
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_outcomes_params p where p.age_grouping_cd = '0' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '6' and p.filter_access_type = '4' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_outcomes_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_outcomes where qry_id = @var_qry_id;
+delete from cache_outcomes_params where qry_id = @var_qry_id;
 call sp_ooh_outcomes_24m('0','0','0','0','0','0','0','0','0','6','4','0','0','0','0','0'); -- out-of-cache param group 2
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_outcomes_params p where p.age_grouping_cd = '1' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '6' and p.filter_access_type = '4' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_outcomes_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_outcomes where qry_id = @var_qry_id;
+delete from cache_outcomes_params where qry_id = @var_qry_id;
 call sp_ooh_outcomes_24m('1','0','0','0','0','0','0','0','0','6','4','0','0','0','0','0'); -- out-of-cache param all
+
 call sp_ooh_wb_familysettings('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_pbcw3_params p where p.age_grouping_cd = '1' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '0' and p.filter_access_type = '0' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_pbcw3_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_pbcw3 where qry_id = @var_qry_id;
+delete from cache_pbcw3_params where qry_id = @var_qry_id;
 call sp_ooh_wb_familysettings('0','1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- out-of-cache param group 1
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_pbcw3_params p where p.age_grouping_cd = '0' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '1' and p.filter_access_type = '1' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_pbcw3_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_pbcw3 where qry_id = @var_qry_id;
+delete from cache_pbcw3_params where qry_id = @var_qry_id;
 call sp_ooh_wb_familysettings('0','0','0','0','0','0','0','0','0','0','1','1','0','0','0','0','0'); -- out-of-cache param group 2
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_pbcw3_params p where p.age_grouping_cd = '1' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '1' and p.filter_access_type = '1' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_pbcw3_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_pbcw3 where qry_id = @var_qry_id;
+delete from cache_pbcw3_params where qry_id = @var_qry_id;
 call sp_ooh_wb_familysettings('0','1','0','0','0','0','0','0','0','0','1','1','0','0','0','0','0'); -- out-of-cache param all
-call sp_ooh_wb_familysettings('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
-call sp_ooh_wb_familysettings('0','1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- out-of-cache param group 1
-call sp_ooh_wb_familysettings('0','0','0','0','0','0','0','0','0','0','1','1','0','0','0','0','0'); -- out-of-cache param group 2
-call sp_ooh_wb_familysettings('0','1','0','0','0','0','0','0','0','0','1','1','0','0','0','0','0'); -- out-of-cache param all
+
 call sp_ooh_wb_siblings('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_pbcw4_params p where p.age_grouping_cd = '1' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '0' and p.filter_access_type = '0' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_pbcw4_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_pbcw4 where qry_id = @var_qry_id;
+delete from cache_pbcw4_params where qry_id = @var_qry_id;
 call sp_ooh_wb_siblings('1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- out-of-cache param group 1
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_pbcw4_params p where p.age_grouping_cd = '0' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '1' and p.filter_access_type = '1' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_pbcw4_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_pbcw4 where qry_id = @var_qry_id;
+delete from cache_pbcw4_params where qry_id = @var_qry_id;
 call sp_ooh_wb_siblings('0','0','0','0','0','0','0','0','0','1','1','0','0','0','0','0'); -- out-of-cache param group 2
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_pbcw4_params p where p.age_grouping_cd = '1' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '1' and p.filter_access_type = '1' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_pbcw4_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_pbcw4 where qry_id = @var_qry_id;
+delete from cache_pbcw4_params where qry_id = @var_qry_id;
 call sp_ooh_wb_siblings('1','0','0','0','0','0','0','0','0','1','1','0','0','0','0','0'); -- out-of-cache param all
+
 call sp_ooh_wb_siblings_pvt('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_pbcw4_params p where p.age_grouping_cd = '2' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '0' and p.filter_access_type = '0' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_pbcw4_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_pbcw4 where qry_id = @var_qry_id;
+delete from cache_pbcw4_params where qry_id = @var_qry_id;
 call sp_ooh_wb_siblings_pvt('2','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- out-of-cache param group 1
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_pbcw4_params p where p.age_grouping_cd = '0' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '2' and p.filter_access_type = '2' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_pbcw4_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_pbcw4 where qry_id = @var_qry_id;
+delete from cache_pbcw4_params where qry_id = @var_qry_id;
 call sp_ooh_wb_siblings_pvt('0','0','0','0','0','0','0','0','0','2','2','0','0','0','0','0'); -- out-of-cache param group 2
+set @var_qry_id = 0;
+select p.qry_id into @var_qry_id from cache_pbcw4_params p where p.age_grouping_cd = '2' and p.cd_race_census = '0' and p.pk_gndr = '0' and p.init_cd_plcm_setng = '0' and p.long_cd_plcm_setng = '0' and p.county_cd = '0' and p.bin_los_cd = '0' and p.bin_placement_cd = '0' and p.bin_ihs_svc_cd = '0' and p.cd_reporter_type = '2' and p.filter_access_type = '2' and p.filter_allegation = '0' and p.filter_finding = '0' and p.filter_srvc_type = '0' and p.filter_budget = '0' and p.bin_dep_cd = '0';
+delete from cache_pbcw4_aggr where qry_id = @var_qry_id;
+delete from cache_qry_param_pbcw4 where qry_id = @var_qry_id;
+delete from cache_pbcw4_params where qry_id = @var_qry_id;
 call sp_ooh_wb_siblings_pvt('2','0','0','0','0','0','0','0','0','2','2','0','0','0','0','0'); -- out-of-cache param all
