@@ -1,5 +1,5 @@
 ﻿--  exec [prod_build_prtl_pbcs2] '2014-08-08'
-CREATE procedure [prtl].[prod_build_prtl_pbcs2](@permission_key datetime)
+alter procedure [prtl].[prod_build_prtl_pbcs2](@permission_key datetime)
 as 
 if @permission_key=(select cutoff_date from ref_last_DW_transfer) 
 begin
@@ -235,7 +235,7 @@ begin
 			,cd_sib_age_grp
 			,cd_race_census
 			,census_hispanic_latino_origin_cd
-			,intake_county_cd
+			,iif(intake_county_cd=99,-99,intake_county_cd) [intake_county_cd]
 		, (select cd_multiplier from ref_filter_access_type where cd_access_type=0 )
 			+  fl_far * (select cd_multiplier from ref_filter_access_type where fl_name='fl_far')
 			+  fl_cps_invs * (select cd_multiplier from ref_filter_access_type where fl_name='fl_cps_invs')
@@ -299,7 +299,7 @@ begin
 			,cd_sib_age_grp
 			,cd_race_census
 			,census_hispanic_latino_origin_cd
-			,intake_county_cd
+			,iif(intake_county_cd=99,-99,intake_county_cd) [intake_county_cd]
 		, (select cd_multiplier from ref_filter_access_type where cd_access_type=0 )
 			+  fl_far * (select cd_multiplier from ref_filter_access_type where fl_name='fl_far')
 			+  fl_cps_invs * (select cd_multiplier from ref_filter_access_type where fl_name='fl_cps_invs')
