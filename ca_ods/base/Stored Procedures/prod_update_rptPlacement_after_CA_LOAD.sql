@@ -1,5 +1,5 @@
 ﻿
-CREATE procedure [base].[prod_update_rptPlacement_after_CA_LOAD]
+alter procedure [base].[prod_update_rptPlacement_after_CA_LOAD]
 as
 
 		update base.rptPlacement_Events
@@ -37,7 +37,7 @@ as
 		and rptPlacement_Events.cd_plcm_setng is null;
 		
 		update base.rptPlacement
-		set removal_county_cd = cd_county
+		set removal_county_cd = iif(cd_cnty=41,40,cd_cnty) -- 41 = CONVERSION, 40 = Other/Out of State
 
 		--update rptPlacement
 		--set removal_county_cd=cnty.county_cd
