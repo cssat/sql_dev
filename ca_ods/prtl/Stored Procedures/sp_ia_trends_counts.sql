@@ -1,5 +1,4 @@
-﻿
-CREATE PROCEDURE [prtl].[sp_ia_trends_counts](
+ALTER PROCEDURE [prtl].[sp_ia_trends_counts](
   @age_grouping_cd varchar(30)
 ,  @race_cd varchar(30)
 ,  @cd_county varchar(1000)
@@ -460,120 +459,77 @@ as
 									set cnt_qry=cnt_qry + 1,last_run_date=getdate()
 									where @qry_id=qry_id
 			end
-							SELECT  
-								poc2ab.qry_type as   "qry_type_poc2"
-								, poc2ab.date_type
-								, poc2ab.start_date  as "Month"
-								, poc2ab.cd_sib_age_grp as  "Age_Grouping_Cd"
-								, ref_age.tx_sib_age_grp as "Age Grouping"
-								, poc2ab.cd_race  as "Ethnicity_Cd"
-								, ref_eth.tx_race_census as "Race/Ethnicity" 
-								, poc2ab.cd_county as County_Cd
-								, ref_cnty.county_desc as County
-								, poc2ab.cd_reporter_type
-								, ref_rpt.tx_reporter_type as Reporter_Desc
-								, poc2ab.cd_access_type
-								, ref_acc.tx_access_type as Access_type_desc
-								, poc2ab.cd_allegation
-								, ref_alg.tx_allegation as [Allegation]
-								, poc2ab.cd_finding
-								, ref_fnd.tx_finding as [Finding]
-								/* jitter all above 0 */ 
-								,IIF((cnt_start_date) > 0 
-										, IIF( (round(cnt_start_date + 2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2),0) ) <1
-											, 1
-											, round(cnt_start_date + 2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2),0)
-											)
-										, (cnt_start_date) 
-									)  as   "Total Cases First Day"
-								, IIF((cnt_opened) > 0 /* jitter all above 0 */ 
-										, IIF((round(cnt_opened + 2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2),0) ) <1
-											, 1
-											, round(cnt_opened + 2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2),0)
-											)
-										, (cnt_opened) 
-									) as "Opened Cases"
-								,  IIF( (
-									(IIF((cnt_start_date) > 0 
-										, IIF( (round(cnt_start_date + 2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2),0) ) <1
-											, 1
-											, round(cnt_start_date + 2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2),0)
-											)
-										, (cnt_start_date) 
-									) )
-									+
-									(IIF((cnt_opened) > 0 /* jitter all above 0 */ 
-										, IIF((round(cnt_opened + 2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2),0) ) <1
-											, 1
-											, round(cnt_opened + 2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2),0)
-											)
-										, (cnt_opened) 
-									))) >= -- exited care
-										(IIF( (cnt_closed) > 0 /* jitter all above 0 */ 
-											, IIF( (round(cnt_closed + 2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2),0) ) <1
-													, 1
-													, round(cnt_closed + 2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2),0)	)
-											, cnt_closed
-										))
-									, -- use exits as they are
-									(IIF( (cnt_closed) > 0 /* jitter all above 0 */ 
-											, 
-												IIF( (round(cnt_closed + 2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2),0) ) <1
-												, 1
-												, round(cnt_closed + 2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2),0)
-												)
-											, cnt_closed
-										))
-									, -- use first day plus entered
-									(IIF((cnt_start_date) > 0 
-										, IIF( (round(cnt_start_date + 2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2),0) ) <1
-											, 1
-											, round(cnt_start_date + 2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2),0)
-											)
-										, (cnt_start_date) 
-									)  )
-									+
-									(IIF((cnt_opened) > 0 /* jitter all above 0 */ 
-										, IIF((round(cnt_opened + 2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2),0) ) <1
-											, 1
-											, round(cnt_opened + 2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2),0)
-											)
-										, (cnt_opened) 
-									))
-								) as "Case Closures"
-						FROM prtl.cache_poc2ab_aggr poc2ab  
-						join #cachekeys ck on ck.int_hash_key=poc2ab.int_all_param_key
-						join (select distinct cd_reporter_type from #rpt) rpt on rpt.cd_reporter_type=poc2ab.cd_reporter_type
-						join (select distinct cd_access_type from #access_type) acc on acc.cd_access_type=poc2ab.cd_access_type
-						join (select distinct cd_allegation from #algtn) alg on alg.cd_allegation=poc2ab.cd_allegation
-						join (select distinct cd_finding from #find) fnd on fnd.cd_finding=poc2ab.cd_finding
-						join ref_lookup_sib_age_grp ref_age on ref_age.cd_sib_age_grp=poc2ab.cd_sib_age_grp
-						join ref_lookup_ethnicity_census ref_eth on ref_eth.cd_race_census=poc2ab.cd_race
-						join ref_lookup_county ref_cnty on ref_cnty.county_cd=poc2ab.cd_county
-						join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=poc2ab.cd_reporter_type
-						join ref_filter_access_type ref_acc on ref_acc.cd_access_type=poc2ab.cd_access_type
-						join ref_filter_allegation ref_alg on ref_alg.cd_allegation=poc2ab.cd_allegation
-						join ref_filter_finding ref_fnd on ref_fnd.cd_finding=poc2ab.cd_finding
-            where poc2ab.start_date   between @mindate and @maxdate
-			 order by qry_type,date_type,start_date,poc2ab.cd_sib_age_grp 
-            ,poc2ab.cd_race
-            ,poc2ab.cd_county
-            ,poc2ab.cd_reporter_type
-            ,poc2ab.cd_access_type
-            ,poc2ab.cd_allegation
-            ,poc2ab.cd_finding; 
 
-
-	
-						
-
-			
-
-
-
-
-
-
- 
- 
+select
+	a.qry_type_poc2
+	,a.date_type
+	,a.Month
+	,a.Age_Grouping_Cd
+	,a.[Age Grouping]
+	,a.Ethnicity_Cd
+	,a.[Race/Ethnicity]
+	,a.County_Cd
+	,a.County
+	,a.cd_reporter_type
+	,a.Reporter_Desc
+	,a.cd_access_type
+	,a.Access_type_desc
+	,a.cd_allegation
+	,a.Allegation
+	,a.cd_finding
+	,a.Finding
+	,a.[Total Cases First Day]
+	,a.[Opened Cases]
+	,IIF(a.[Total Cases First Day] + a.[Opened Cases] >= a.[Closed Cases],
+		a.[Closed Cases],
+		a.[Total Cases First Day] + a.[Opened Cases]
+	) [Case Closures]
+from (
+	select
+		poc2ab.qry_type [qry_type_poc2]
+		,poc2ab.date_type
+		,poc2ab.start_date [Month]
+		,poc2ab.cd_sib_age_grp [Age_Grouping_Cd]
+		,ref_age.tx_sib_age_grp [Age Grouping]
+		,poc2ab.cd_race [Ethnicity_Cd]
+		,ref_eth.tx_race_census [Race/Ethnicity]
+		,poc2ab.cd_county [County_Cd]
+		,ref_cnty.county_desc [County]
+		,poc2ab.cd_reporter_type
+		,ref_rpt.tx_reporter_type [Reporter_Desc]
+		,poc2ab.cd_access_type
+		,ref_acc.tx_access_type [Access_type_desc]
+		,poc2ab.cd_allegation
+		,ref_alg.tx_allegation [Allegation]
+		,poc2ab.cd_finding
+		,ref_fnd.tx_finding [Finding]
+		,dbo.fnc_jitter(poc2ab.cnt_start_date,poc2ab.x1,poc2ab.x2) [Total Cases First Day]
+		,dbo.fnc_jitter(poc2ab.cnt_opened,poc2ab.x1,poc2ab.x2) [Opened Cases]
+		,dbo.fnc_jitter(poc2ab.cnt_closed,poc2ab.x1,poc2ab.x2) [Closed Cases]
+	from prtl.cache_poc2ab_aggr poc2ab  
+	join #cachekeys ck on ck.int_hash_key=poc2ab.int_all_param_key
+	join (select distinct cd_reporter_type from #rpt) rpt on rpt.cd_reporter_type=poc2ab.cd_reporter_type
+	join (select distinct cd_access_type from #access_type) acc on acc.cd_access_type=poc2ab.cd_access_type
+	join (select distinct cd_allegation from #algtn) alg on alg.cd_allegation=poc2ab.cd_allegation
+	join (select distinct cd_finding from #find) fnd on fnd.cd_finding=poc2ab.cd_finding
+	join ref_lookup_sib_age_grp ref_age on ref_age.cd_sib_age_grp=poc2ab.cd_sib_age_grp
+	join ref_lookup_ethnicity_census ref_eth on ref_eth.cd_race_census=poc2ab.cd_race
+	join ref_lookup_county ref_cnty on ref_cnty.county_cd=poc2ab.cd_county
+	join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=poc2ab.cd_reporter_type
+	join ref_filter_access_type ref_acc on ref_acc.cd_access_type=poc2ab.cd_access_type
+	join ref_filter_allegation ref_alg on ref_alg.cd_allegation=poc2ab.cd_allegation
+	join ref_filter_finding ref_fnd on ref_fnd.cd_finding=poc2ab.cd_finding
+	where poc2ab.start_date between @mindate and @maxdate
+) a
+order by
+	qry_type_poc2
+	,date_type
+	,Month
+	,Age_Grouping_Cd 
+	,[Race/Ethnicity]
+	,County_Cd
+	,cd_reporter_type
+	,cd_access_type
+	,cd_allegation
+	,cd_finding; 
 
