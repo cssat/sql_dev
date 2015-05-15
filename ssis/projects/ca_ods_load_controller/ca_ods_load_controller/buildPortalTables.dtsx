@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="buildPortalTables"
   DTS:PackageType="5"
-  DTS:VersionBuild="172"
-  DTS:VersionGUID="{F75D5FC8-978D-46F3-802A-54A5431F7FBF}">
+  DTS:VersionBuild="180"
+  DTS:VersionGUID="{330060F5-B71B-416B-9D5E-C6452A534AAB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -32,7 +32,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\backup_portal_tables\20150429\ooh_dcfs_eps.txt">
+          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\backup_portal_tables\20150513\ooh_dcfs_eps.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -630,7 +630,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\backup_portal_tables\20150429\ooh_point_in_time_child.txt">
+          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\backup_portal_tables\20150513\ooh_point_in_time_child.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -973,13 +973,13 @@
       DTS:DTSID="{C48A1D98-D798-4ED6-BF68-B323ABE4FB40}"
       DTS:ObjectName="POC_OLEDB">
       <DTS:PropertyExpression
-        DTS:Name="InitialCatalog">@[$Project::DatabaseName]</DTS:PropertyExpression>
+        DTS:Name="InitialCatalog">@[$Project::sqlDatabaseName]</DTS:PropertyExpression>
       <DTS:PropertyExpression
-        DTS:Name="ServerName">@[$Project::ServerName]</DTS:PropertyExpression>
+        DTS:Name="ServerName">@[$Project::sqlServerName]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:Retain="True"
-          DTS:ConnectionString="Data Source=POC2;Initial Catalog=CA_ODS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-buildLocalTables-{C48A1D98-D798-4ED6-BF68-B323ABE4FB40}POC.dbCoreAdministrativeTables1;" />
+          DTS:ConnectionString="Data Source=(local);Initial Catalog=CA_ODS_A;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-buildLocalTables-{C48A1D98-D798-4ED6-BF68-B323ABE4FB40}POC.dbCoreAdministrativeTables1;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -1000,36 +1000,18 @@
       DTS:CreationName=""
       DTS:DTSID="{AD472291-639F-4798-BB30-A83EBB58E77E}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;\\\\poc2\\pocshare\\Data Portal\\data\\backup_portal_tables\\&quot; + (DT_WSTR, 4) YEAR( GETDATE() ) + RIGHT((DT_WSTR, 3) (100 + MONTH(GETDATE())), 2) + RIGHT((DT_WSTR, 3) (100 + DAY(GETDATE())), 2) + &quot;\\&quot;"
+      DTS:Expression="@[$Project::dirBackupPortal] + (DT_WSTR, 4) YEAR( GETDATE() ) + RIGHT((DT_WSTR, 3) (100 + MONTH(GETDATE())), 2) + RIGHT((DT_WSTR, 3) (100 + DAY(GETDATE())), 2) + &quot;\\&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="dir">
       <DTS:VariableValue
-        DTS:DataType="8">\\poc2\pocshare\Data Portal\data\backup_portal_tables\20150429\</DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{E035BDAF-5AF5-4BD7-8BD9-E3ECB644131C}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="dirpath">
-      <DTS:VariableValue
-        DTS:DataType="8">\\poc[unused?]\pocshare\Data Portal\data\backup_portal_tables</DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{65730851-E567-468F-9B5F-F92C9B8A6001}"
-      DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;d:\\backup_portal_tables\\&quot; + (DT_WSTR, 4) YEAR( GETDATE() ) + RIGHT((DT_WSTR, 3) (100 + MONTH(GETDATE())), 2) + RIGHT((DT_WSTR, 3) (100 + DAY(GETDATE())), 2) + &quot;\\&quot;"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="dir_dev">
-      <DTS:VariableValue
-        DTS:DataType="8">d:\backup_portal_tables\20150429\</DTS:VariableValue>
+        DTS:DataType="8">\\poc2\pocshare\Data Portal\data\backup_portal_tables\20150513\</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{5555798C-DFEF-4617-A74E-30770CE0CBFB}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::email1]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="email1">
@@ -1039,6 +1021,8 @@
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{0ACCA14E-4143-4AEC-9822-F57A13CE3A7A}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::email2]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="email2">
@@ -1061,7 +1045,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="permission_key">
       <DTS:VariableValue
-        DTS:DataType="7">11/26/2012 2:39:00 PM</DTS:VariableValue>
+        DTS:DataType="7">12:00:00 AM</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:LoggingOptions

@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="buildCacheTables"
   DTS:PackageType="5"
-  DTS:VersionBuild="43"
-  DTS:VersionGUID="{DF1F6756-FC47-42BD-B5B4-757D06C93994}">
+  DTS:VersionBuild="44"
+  DTS:VersionGUID="{B8689A01-1654-4397-A246-30E0E296CE96}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -22,12 +22,12 @@
       DTS:DTSID="{1E5FBE0D-EBC9-4323-8AB6-92655538ACBF}"
       DTS:ObjectName="poc2.CA_ODS">
       <DTS:PropertyExpression
-        DTS:Name="InitialCatalog">@[$Project::DatabaseName]</DTS:PropertyExpression>
+        DTS:Name="InitialCatalog">@[$Project::sqlDatabaseName]</DTS:PropertyExpression>
       <DTS:PropertyExpression
-        DTS:Name="ServerName">@[$Project::ServerName]</DTS:PropertyExpression>
+        DTS:Name="ServerName">@[$Project::sqlServerName]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=POC2;Initial Catalog=CA_ODS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package-{1E5FBE0D-EBC9-4323-8AB6-92655538ACBF}poc2.CA_ODS;" />
+          DTS:ConnectionString="Data Source=TEST!;Initial Catalog=CA_ODS_A;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package-{1E5FBE0D-EBC9-4323-8AB6-92655538ACBF}poc2.CA_ODS;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>

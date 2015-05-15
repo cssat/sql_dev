@@ -12,8 +12,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="import1"
   DTS:PackageType="5"
-  DTS:VersionBuild="234"
-  DTS:VersionGUID="{16886529-4047-42F6-B8F6-92E60B005B6D}">
+  DTS:VersionBuild="270"
+  DTS:VersionGUID="{D353D2B2-0879-499A-B563-CE8DE1308990}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -34,7 +34,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\POCshare\CA\Data\20150217\uncompressed\ABUSE_FACT.txt">
+          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150217\uncompressed\ABUSE_FACT.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -228,7 +228,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\POCshare\CA\Data\20150217\uncompressed\ABUSE_TYPE_DIM.txt">
+          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150217\uncompressed\ABUSE_TYPE_DIM.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -314,7 +314,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\POCshare\CA\Data\20150217\uncompressed\ADOPTION_FACT.txt">
+          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150217\uncompressed\ADOPTION_FACT.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -463,7 +463,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\POCshare\CA\Data\20150217\uncompressed\ADOPTION_STATUS_DIM.txt">
+          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150217\uncompressed\ADOPTION_STATUS_DIM.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -549,7 +549,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\POCshare\CA\Data\20150217\uncompressed\AGREEMENT_DIM.txt">
+          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150217\uncompressed\AGREEMENT_DIM.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -671,7 +671,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\POCshare\CA\Data\20150217\uncompressed\ALLEGATION_FACT.txt">
+          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150217\uncompressed\ALLEGATION_FACT.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -865,7 +865,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\POCshare\CA\Data\20150217\uncompressed\ASSIGNMENT_ATTRIBUTE_DIM.txt">
+          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150217\uncompressed\ASSIGNMENT_ATTRIBUTE_DIM.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1005,7 +1005,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\POCshare\CA\Data\20150217\uncompressed\ASSIGNMENT_FACT.txt">
+          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150217\uncompressed\ASSIGNMENT_FACT.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1163,7 +1163,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\POCshare\CA\Data\20150217\uncompressed\AUTHORIZATION_DIM.txt">
+          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150217\uncompressed\AUTHORIZATION_DIM.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1249,7 +1249,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\POCshare\CA\Data\20150217\uncompressed\AUTHORIZATION_FACT.txt">
+          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150217\uncompressed\AUTHORIZATION_FACT.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1542,7 +1542,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\POCshare\CA\Data\20150217\uncompressed\CALENDAR_DIM.txt">
+          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150217\uncompressed\CALENDAR_DIM.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2456,7 +2456,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\POCshare\CA\Data\20150217\uncompressed\CASE_DIM.txt">
+          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150217\uncompressed\CASE_DIM.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2650,12 +2650,12 @@
       DTS:DTSID="{ABB87184-5D10-4F2E-83DC-6C3F64FB4D98}"
       DTS:ObjectName="POC2">
       <DTS:PropertyExpression
-        DTS:Name="InitialCatalog">@[$Project::DatabaseName]</DTS:PropertyExpression>
+        DTS:Name="InitialCatalog">@[$Project::sqlDatabaseName]</DTS:PropertyExpression>
       <DTS:PropertyExpression
-        DTS:Name="ServerName">@[$Project::ServerName]</DTS:PropertyExpression>
+        DTS:Name="ServerName">@[$Project::sqlServerName]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=POC2;Initial Catalog=CA_ODS;Integrated Security=True;Application Name=SSIS-import-{ABB87184-5D10-4F2E-83DC-6C3F64FB4D98}POC.dbCoreAdministrativeTables;" />
+          DTS:ConnectionString="Data Source=(local);Initial Catalog=CA_ODS_A;Integrated Security=True;Application Name=SSIS-import-{ABB87184-5D10-4F2E-83DC-6C3F64FB4D98}POC.dbCoreAdministrativeTables;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -2664,13 +2664,13 @@
       DTS:DTSID="{35537598-BDC5-403D-913F-39F00F10F40B}"
       DTS:ObjectName="POC2_OLEDB">
       <DTS:PropertyExpression
-        DTS:Name="InitialCatalog">@[$Project::DatabaseName]</DTS:PropertyExpression>
+        DTS:Name="InitialCatalog">@[$Project::sqlDatabaseName]</DTS:PropertyExpression>
       <DTS:PropertyExpression
-        DTS:Name="ServerName">@[$Project::ServerName]</DTS:PropertyExpression>
+        DTS:Name="ServerName">@[$Project::sqlServerName]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:Retain="True"
-          DTS:ConnectionString="Data Source=POC2;Initial Catalog=CA_ODS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-import-{35537598-BDC5-403D-913F-39F00F10F40B}POC.dbCoreAdministrativeTables1;" />
+          DTS:ConnectionString="Data Source=(local);Initial Catalog=CA_ODS_A;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-import-{35537598-BDC5-403D-913F-39F00F10F40B}POC.dbCoreAdministrativeTables1;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -2710,15 +2710,19 @@
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{9025C4B9-7E2A-453B-98C8-C28DEC2CDA67}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::dirCA]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="dir">
       <DTS:VariableValue
-        DTS:DataType="8">\\poc2\POCshare\CA\Data\20150217\uncompressed\</DTS:VariableValue>
+        DTS:DataType="8">\\poc2\pocshare\CA\Data\20150217\uncompressed\</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{36D5E95A-CD51-4B5D-8F96-609EBD9989BF}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::email1]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="email1">
@@ -2728,6 +2732,8 @@
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{FC007BE9-2341-4D86-BB20-033DCB903968}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::email2]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="email2">
@@ -2737,6 +2743,8 @@
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{D45ACC54-1208-4B81-BBFA-44AFE6772F94}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::fileExtensionCA]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="ext">
@@ -2751,16 +2759,6 @@
       DTS:ObjectName="minutes">
       <DTS:VariableValue
         DTS:DataType="3">5</DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{361641CA-A6D9-40D4-AD8D-FA6C2EABC393}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="mysql">
-      <DTS:VariableValue
-        DTS:DataType="8"
-        xml:space="preserve"></DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:LoggingOptions
@@ -7964,6 +7962,75 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyVersion("1.0.0.0")> 
 <Assembly: AssemblyFileVersion("1.0.0.0")> ]]></ProjectItem>
                   <ProjectItem
+                    Name="ScriptMain.vb"
+                    Encoding="UTF8"><![CDATA[' Microsoft SQL Server Integration Services Script Task
+' Write scripts using Microsoft Visual Basic 2008.
+' The ScriptMain is the entry point class of the script.
+
+Imports System
+Imports System.Data
+Imports System.Math
+Imports Microsoft.SqlServer.Dts.Runtime
+Imports System.Net.Mail
+Imports System.Net
+
+
+<Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute> _
+<System.CLSCompliantAttribute(False)> _
+Partial Public Class ScriptMain
+	Inherits Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+
+	Enum ScriptResults
+		Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success
+		Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+	End Enum
+	
+
+	' The execution engine calls this method when the task executes.
+	' To access the object model, use the Dts property. Connections, variables, events,
+	' and logging features are available as members of the Dts property as shown in the following examples.
+	'
+	' To reference a variable, call Dts.Variables("MyCaseSensitiveVariableName").Value
+	' To post a log entry, call Dts.Log("This is my log text", 999, Nothing)
+	' To fire an event, call Dts.Events.FireInformation(99, "test", "hit the help message", "", 0, True)
+	'
+	' To use the connections collection use something like the following:
+	' ConnectionManager cm = Dts.Connections.Add("OLEDB")
+	' cm.ConnectionString = "Data Source=localhost;Initial Catalog=AdventureWorks;Provider=SQLNCLI10;Integrated Security=SSPI;Auto Translate=False;"
+	'
+	' Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
+	' 
+	' To open Help, press F1.
+
+	Public Sub Main()
+        Dim myHtmlMessage As MailMessage
+
+        Dim mySmtpClient As SmtpClient
+
+        'Dim vars As Variables
+
+        Dim mailAuthentication As System.Net.NetworkCredential
+
+        mailAuthentication = New System.Net.NetworkCredential(Dts.Variables("Username").Value.ToString(), Dts.Variables("Password").Value.ToString())
+
+        myHtmlMessage = New MailMessage(Dts.Variables("From").Value.ToString(), Dts.Variables("To").Value.ToString(), Dts.Variables("Subject").Value.ToString(), Dts.Variables("Body").Value.ToString())
+
+        mySmtpClient = New SmtpClient(Dts.Variables("SMTPServer").Value.ToString())
+
+        'mySmtpClient.UseDefaultCredentials = False
+
+        mySmtpClient.Credentials = mailAuthentication
+
+        mySmtpClient.EnableSsl = True
+
+        mySmtpClient.Send(myHtmlMessage)
+
+
+        Dts.TaskResult = ScriptResults.Success
+	End Sub
+
+End Class]]></ProjectItem>
+                  <ProjectItem
                     Name="st_ec089c774e0240eb9082fab07af8134f.vbproj"
                     Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="utf-16"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -8193,75 +8260,6 @@ End Class]]></ProjectItem>
 		<msb:Project Include="st_ec089c774e0240eb9082fab07af8134f.vbproj"/>
 	</msb:ItemGroup>
 </c:Project>]]></ProjectItem>
-                  <ProjectItem
-                    Name="ScriptMain.vb"
-                    Encoding="UTF8"><![CDATA[' Microsoft SQL Server Integration Services Script Task
-' Write scripts using Microsoft Visual Basic 2008.
-' The ScriptMain is the entry point class of the script.
-
-Imports System
-Imports System.Data
-Imports System.Math
-Imports Microsoft.SqlServer.Dts.Runtime
-Imports System.Net.Mail
-Imports System.Net
-
-
-<Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute> _
-<System.CLSCompliantAttribute(False)> _
-Partial Public Class ScriptMain
-	Inherits Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
-
-	Enum ScriptResults
-		Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success
-		Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
-	End Enum
-	
-
-	' The execution engine calls this method when the task executes.
-	' To access the object model, use the Dts property. Connections, variables, events,
-	' and logging features are available as members of the Dts property as shown in the following examples.
-	'
-	' To reference a variable, call Dts.Variables("MyCaseSensitiveVariableName").Value
-	' To post a log entry, call Dts.Log("This is my log text", 999, Nothing)
-	' To fire an event, call Dts.Events.FireInformation(99, "test", "hit the help message", "", 0, True)
-	'
-	' To use the connections collection use something like the following:
-	' ConnectionManager cm = Dts.Connections.Add("OLEDB")
-	' cm.ConnectionString = "Data Source=localhost;Initial Catalog=AdventureWorks;Provider=SQLNCLI10;Integrated Security=SSPI;Auto Translate=False;"
-	'
-	' Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
-	' 
-	' To open Help, press F1.
-
-	Public Sub Main()
-        Dim myHtmlMessage As MailMessage
-
-        Dim mySmtpClient As SmtpClient
-
-        'Dim vars As Variables
-
-        Dim mailAuthentication As System.Net.NetworkCredential
-
-        mailAuthentication = New System.Net.NetworkCredential(Dts.Variables("Username").Value.ToString(), Dts.Variables("Password").Value.ToString())
-
-        myHtmlMessage = New MailMessage(Dts.Variables("From").Value.ToString(), Dts.Variables("To").Value.ToString(), Dts.Variables("Subject").Value.ToString(), Dts.Variables("Body").Value.ToString())
-
-        mySmtpClient = New SmtpClient(Dts.Variables("SMTPServer").Value.ToString())
-
-        'mySmtpClient.UseDefaultCredentials = False
-
-        mySmtpClient.Credentials = mailAuthentication
-
-        mySmtpClient.EnableSsl = True
-
-        mySmtpClient.Send(myHtmlMessage)
-
-
-        Dts.TaskResult = ScriptResults.Success
-	End Sub
-
-End Class]]></ProjectItem>
                   <ProjectItem
                     Name="My Project\Resources.resx"
                     Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -38345,6 +38343,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       DTS:refId="Package\Get Directory Location - File Extension"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Script Task"
+      DTS:Disabled="True"
       DTS:DTSID="{8DDC4CCB-831C-42CC-BA07-822C4ACD29B1}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
@@ -38398,52 +38397,6 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyVersion("1.0.0.0")> 
 <Assembly: AssemblyFileVersion("1.0.0.0")> ]]></ProjectItem>
-          <ProjectItem
-            Name="ScriptMain.vb"
-            Encoding="UTF8"><![CDATA[' Microsoft SQL Server Integration Services Script Task
-' Write scripts using Microsoft Visual Basic 2008.
-' The ScriptMain is the entry point class of the script.
-
-Imports System
-Imports System.Data
-Imports System.Math
-Imports System.Windows.Forms.Form
-Imports Microsoft.SqlServer.Dts.Runtime
-
-<Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute> _
-<System.CLSCompliantAttribute(False)> _
-Partial Public Class ScriptMain
-	Inherits Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
-
-	Enum ScriptResults
-		Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success
-		Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
-	End Enum
-	
-
-    '
-
-	Public Sub Main()
-
-
-        Dim data As String = ""
-        Dim mysql As String
-        While System.IO.Directory.Exists(data) = False
-            data = InputBox("Please enter location of downloaded CA files.", "Data Input", Dts.Variables("dir").Value)
-            'data = "\\poc2\POCshare\CA\Data\20140820\uncompressed\"
-            If data.EndsWith("\") = False Then
-                data &= "\"
-            End If
-        End While
-        Dts.Variables("dir").Value = data
-        Dts.Variables("ext").Value = ".txt"
-        mysql = "insert into ca_file_location(dir,ext) select '" + data + "','.txt'"
-        Dts.Variables("mysql").Value = mysql
-        Dts.TaskResult = ScriptResults.Success
-    End Sub
-
-
-End Class]]></ProjectItem>
           <ProjectItem
             Name="st_6781e70fd75544cd90e18928b4d0ded3.vbproj"
             Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="utf-16"?>
@@ -38658,22 +38611,70 @@ End Class]]></ProjectItem>
             Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
-		<msb:CodeName>st_6781e70fd75544cd90e18928b4d0ded3</msb:CodeName>
 		<msb:Language>msBuild</msb:Language>
-		<msb:ProjectId>{BDE37A55-FFED-4197-98B3-81039899D378}</msb:ProjectId>
+		<msb:CodeName>st_6781e70fd75544cd90e18928b4d0ded3</msb:CodeName>
 		<msb:NoContent>Reference;Import;Folder</msb:NoContent>
+		<msb:ProjectId>{BDE37A55-FFED-4197-98B3-81039899D378}</msb:ProjectId>
 		<msb:DisplayName>st_6781e70fd75544cd90e18928b4d0ded3</msb:DisplayName>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:File Include="My Project\AssemblyInfo.vb"/>
 		<msb:File Include="My Project\Resources.Designer.vb"/>
 		<msb:File Include="My Project\Settings.Designer.vb"/>
-		<msb:File Include="ScriptMain.vb"/>
 		<msb:File Include="My Project\Resources.resx"/>
+		<msb:File Include="ScriptMain.vb"/>
 		<msb:File Include="My Project\Settings.settings"/>
 		<msb:Project Include="st_6781e70fd75544cd90e18928b4d0ded3.vbproj"/>
 	</msb:ItemGroup>
 </c:Project>]]></ProjectItem>
+          <ProjectItem
+            Name="ScriptMain.vb"
+            Encoding="UTF8"><![CDATA[' Microsoft SQL Server Integration Services Script Task
+' Write scripts using Microsoft Visual Basic 2008.
+' The ScriptMain is the entry point class of the script.
+
+Imports System
+Imports System.Data
+Imports System.Math
+Imports System.Windows.Forms.Form
+Imports Microsoft.SqlServer.Dts.Runtime
+
+<Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute> _
+<System.CLSCompliantAttribute(False)> _
+Partial Public Class ScriptMain
+	Inherits Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+
+	Enum ScriptResults
+		Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success
+		Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+	End Enum
+	
+
+    '
+
+    Public Sub Main()
+
+        Dim data As String = ""
+        Dim mysql As String
+
+        'MessageBox.Show(Dts.Variables("dirCA").Value.ToString())
+
+        While System.IO.Directory.Exists(data) = False
+            data = InputBox("Please enter location of downloaded CA files.", "Data Input", Dts.Variables("dir").Value)
+            'data = "\\poc2\POCshare\CA\Data\20140820\uncompressed\"
+            If data.EndsWith("\") = False Then
+                data &= "\"
+            End If
+        End While
+        Dts.Variables("dir").Value = data
+        Dts.Variables("ext").Value = ".txt"
+        mysql = "insert into ca_file_location(dir,ext) select '" + data + "','.txt'"
+        Dts.Variables("mysql").Value = mysql
+        Dts.TaskResult = ScriptResults.Success
+    End Sub
+
+
+End Class]]></ProjectItem>
           <ProjectItem
             Name="My Project\Resources.resx"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -38859,7 +38860,7 @@ End Namespace]]></ProjectItem>
           <BinaryItem
             Name="ST_6781e70fd75544cd90e18928b4d0ded3.vbproj.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAA2KGVUAAAAAAAAAAOAAAiELAQsAABwAAAAIAAAAAAAArjsA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAIWmUlUAAAAAAAAAAOAAAiELAQsAABwAAAAIAAAAAAAArjsA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAIAQIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAGA7AABLAAAAAEAAAEgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -38971,7 +38972,7 @@ ZQBhAHMAZQAgAGUAbgB0AGUAcgAgAGwAbwBjAGEAdABpAG8AbgAgAG8AZgAgAGQAbwB3AG4AbABv
 AGEAZABlAGQAIABDAEEAIABmAGkAbABlAHMALgAAFUQAYQB0AGEAIABJAG4AcAB1AHQAAAdkAGkA
 cgAAA1wAAAdlAHgAdAAACS4AdAB4AHQAAF1pAG4AcwBlAHIAdAAgAGkAbgB0AG8AIABjAGEAXwBm
 AGkAbABlAF8AbABvAGMAYQB0AGkAbwBuACgAZABpAHIALABlAHgAdAApACAAcwBlAGwAZQBjAHQA
-IAAnAAERJwAsACcALgB0AHgAdAAnAAELbQB5AHMAcQBsAAAAAACOi/+KbCG+RYH5e3ecFpn5AAi3
+IAAnAAERJwAsACcALgB0AHgAdAAnAAELbQB5AHMAcQBsAAAAAABzJdHxOCmbSbun6bVk2C5CAAi3
 elxWGTTgiQiwP19/EdUKOgMgAAEDAAABBAAAEgwHBhUSGAESDAQAABIIBwYVEhgBEggEAAASEQcG
 FRIYARIRBAAAEhQHBhUSGAESFAQIABIMBAgAEggECAASEQQIABIUBCABAhwDIAAIBCAAEhUDIAAO
 Ah4ABxABAR4AHgAHMAEBARAeAAITAAQgABMABwYVEhkBEwAEKAATAAMGEh0DBhIhBAAAEh0EAAAS
@@ -41678,6 +41679,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       DTS:refId="Package\insert ca_file_location"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{1EA3386C-F80B-4A0B-9AEB-ECF35D9EC5F2}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
@@ -41811,188 +41813,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           VSTAMinorVersion="0"
           Language="VisualBasic"
           ReadOnlyVariables="User::Body,User::CC,User::CC2,User::From,User::Password,User::SMTPServer,User::Subject,User::To,User::Username">
-          <ProjectItem
-            Name="ScriptMain.vb"
-            Encoding="UTF8"><![CDATA[' Microsoft SQL Server Integration Services Script Task
-' Write scripts using Microsoft Visual Basic 2008.
-' The ScriptMain is the entry point class of the script.
-
-Imports System
-Imports System.Data
-Imports System.Math
-Imports Microsoft.SqlServer.Dts.Runtime
-Imports System.Net.Mail
-Imports System.Net
-
-
-<Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute> _
-<System.CLSCompliantAttribute(False)> _
-Partial Public Class ScriptMain
-	Inherits Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
-
-	Enum ScriptResults
-		Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success
-		Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
-	End Enum
-	
-
-	' The execution engine calls this method when the task executes.
-	' To access the object model, use the Dts property. Connections, variables, events,
-	' and logging features are available as members of the Dts property as shown in the following examples.
-	'
-	' To reference a variable, call Dts.Variables("MyCaseSensitiveVariableName").Value
-	' To post a log entry, call Dts.Log("This is my log text", 999, Nothing)
-	' To fire an event, call Dts.Events.FireInformation(99, "test", "hit the help message", "", 0, True)
-	'
-	' To use the connections collection use something like the following:
-	' ConnectionManager cm = Dts.Connections.Add("OLEDB")
-	' cm.ConnectionString = "Data Source=localhost;Initial Catalog=AdventureWorks;Provider=SQLNCLI10;Integrated Security=SSPI;Auto Translate=False;"
-	'
-	' Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
-	' 
-	' To open Help, press F1.
-
-	Public Sub Main()
-        Dim myHtmlMessage As MailMessage
-
-        Dim mySmtpClient As SmtpClient
-
-        'Dim vars As Variables
-
-        Dim mailAuthentication As System.Net.NetworkCredential
-
-        mailAuthentication = New System.Net.NetworkCredential(Dts.Variables("Username").Value.ToString(), Dts.Variables("Password").Value.ToString())
-
-
-        myHtmlMessage = New MailMessage(Dts.Variables("From").Value.ToString(), Dts.Variables("To").Value.ToString(), Dts.Variables("Subject").Value.ToString(), Dts.Variables("Body").Value.ToString())
-        'Dts.Variables("CC").Value.ToString()
-        myHtmlMessage.To.Add(Dts.Variables("CC").Value.ToString())
-        myHtmlMessage.To.Add(Dts.Variables("CC2").Value.ToString())
-
-
-        mySmtpClient = New SmtpClient(Dts.Variables("SMTPServer").Value.ToString())
-
-        'mySmtpClient.UseDefaultCredentials = False
-
-        mySmtpClient.Credentials = mailAuthentication
-
-        mySmtpClient.EnableSsl = True
-
-        mySmtpClient.Send(myHtmlMessage)
-
-
-        Dts.TaskResult = ScriptResults.Success
-	End Sub
-
-End Class]]></ProjectItem>
-          <ProjectItem
-            Name="My Project\Settings.settings"
-            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)" GeneratedClassNamespace="$safeprojectname" GeneratedClassName="MySettings">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
-          <ProjectItem
-            Name="My Project\AssemblyInfo.vb"
-            Encoding="UTF8"><![CDATA[Imports System
-Imports System.Reflection
-Imports System.Runtime.InteropServices
-
-' General Information about an assembly is controlled through the following 
-' set of attributes. Change these attribute values to modify the information
-' associated with an assembly.
-
-' Review the values of the assembly attributes
-
-<Assembly: AssemblyTitle("ST_1a16b4e3834e4f568bb38048e0a375ab.vbproj")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("UW")> 
-<Assembly: AssemblyProduct("ST_1a16b4e3834e4f568bb38048e0a375ab.vbproj")> 
-<Assembly: AssemblyCopyright("Copyright @ UW 2012")> 
-<Assembly: AssemblyTrademark("")> 
-<Assembly: CLSCompliant(True)> 
-
-<Assembly: ComVisible(False)> 
-
-'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("e5b5adaa-2cde-453b-98f7-1327aefd8256")> 
-
-' Version information for an assembly consists of the following four values:
-'
-'      Major Version
-'      Minor Version 
-'      Build Number
-'      Revision
-'
-' You can specify all the values or you can default the Build and Revision Numbers 
-' by using the '*' as shown below:
-' <Assembly: AssemblyVersion("1.0.*")>
-
-<Assembly: AssemblyVersion("1.0.0.0")> 
-<Assembly: AssemblyFileVersion("1.0.0.0")> ]]></ProjectItem>
-          <ProjectItem
-            Name="My Project\Settings.Designer.vb"
-            Encoding="UTF8"><![CDATA['------------------------------------------------------------------------------
-' <autogenerated>
-'     This code was generated by a tool.
-'
-'     Changes to this file may cause incorrect behavior and will be lost if
-'     the code is regenerated.
-' </autogenerated>
-'------------------------------------------------------------------------------
-
-Option Strict Off
-Option Explicit On
-
-
-
-Partial Friend NotInheritable Class MySettings
-    Inherits System.Configuration.ApplicationSettingsBase
-
-    Private Shared m_Value As MySettings
-
-    Private Shared m_SyncObject As Object = New Object
-
-    <System.Diagnostics.DebuggerNonUserCode()> _
-    Public Shared ReadOnly Property Value() As MySettings
-        Get
-            If (MySettings.m_Value Is Nothing) Then
-                System.Threading.Monitor.Enter(MySettings.m_SyncObject)
-                If (MySettings.m_Value Is Nothing) Then
-                    Try
-                        MySettings.m_Value = New MySettings
-                    Finally
-                        System.Threading.Monitor.Exit(MySettings.m_SyncObject)
-                    End Try
-                End If
-            End If
-            Return MySettings.m_Value
-        End Get
-    End Property
-End Class]]></ProjectItem>
-          <ProjectItem
-            Name="Project"
-            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
-<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
-	<msb:PropertyGroup>
-		<msb:ProjectId>{F32BAB67-CCB2-4AFA-B2C4-4488A4FF0D02}</msb:ProjectId>
-		<msb:NoContent>Reference;Import;Folder</msb:NoContent>
-		<msb:Language>msBuild</msb:Language>
-		<msb:DisplayName>st_6986f58843b04a90aef0a5ecbeb79708</msb:DisplayName>
-		<msb:CodeName>st_6986f58843b04a90aef0a5ecbeb79708</msb:CodeName>
-	</msb:PropertyGroup>
-	<msb:ItemGroup>
-		<msb:File Include="My Project\Settings.Designer.vb"/>
-		<msb:File Include="My Project\Resources.Designer.vb"/>
-		<msb:File Include="My Project\AssemblyInfo.vb"/>
-		<msb:File Include="My Project\Resources.resx"/>
-		<msb:File Include="My Project\Settings.settings"/>
-		<msb:File Include="ScriptMain.vb"/>
-		<msb:Project Include="st_6986f58843b04a90aef0a5ecbeb79708.vbproj"/>
-	</msb:ItemGroup>
-</c:Project>]]></ProjectItem>
           <ProjectItem
             Name="st_6986f58843b04a90aef0a5ecbeb79708.vbproj"
             Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="utf-16"?>
@@ -42153,6 +41973,188 @@ End Class]]></ProjectItem>
     <TargetFrameworkProfile></TargetFrameworkProfile>
   </PropertyGroup>
 </Project>]]></ProjectItem>
+          <ProjectItem
+            Name="My Project\AssemblyInfo.vb"
+            Encoding="UTF8"><![CDATA[Imports System
+Imports System.Reflection
+Imports System.Runtime.InteropServices
+
+' General Information about an assembly is controlled through the following 
+' set of attributes. Change these attribute values to modify the information
+' associated with an assembly.
+
+' Review the values of the assembly attributes
+
+<Assembly: AssemblyTitle("ST_1a16b4e3834e4f568bb38048e0a375ab.vbproj")> 
+<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyCompany("UW")> 
+<Assembly: AssemblyProduct("ST_1a16b4e3834e4f568bb38048e0a375ab.vbproj")> 
+<Assembly: AssemblyCopyright("Copyright @ UW 2012")> 
+<Assembly: AssemblyTrademark("")> 
+<Assembly: CLSCompliant(True)> 
+
+<Assembly: ComVisible(False)> 
+
+'The following GUID is for the ID of the typelib if this project is exposed to COM
+<Assembly: Guid("e5b5adaa-2cde-453b-98f7-1327aefd8256")> 
+
+' Version information for an assembly consists of the following four values:
+'
+'      Major Version
+'      Minor Version 
+'      Build Number
+'      Revision
+'
+' You can specify all the values or you can default the Build and Revision Numbers 
+' by using the '*' as shown below:
+' <Assembly: AssemblyVersion("1.0.*")>
+
+<Assembly: AssemblyVersion("1.0.0.0")> 
+<Assembly: AssemblyFileVersion("1.0.0.0")> ]]></ProjectItem>
+          <ProjectItem
+            Name="ScriptMain.vb"
+            Encoding="UTF8"><![CDATA[' Microsoft SQL Server Integration Services Script Task
+' Write scripts using Microsoft Visual Basic 2008.
+' The ScriptMain is the entry point class of the script.
+
+Imports System
+Imports System.Data
+Imports System.Math
+Imports Microsoft.SqlServer.Dts.Runtime
+Imports System.Net.Mail
+Imports System.Net
+
+
+<Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute> _
+<System.CLSCompliantAttribute(False)> _
+Partial Public Class ScriptMain
+	Inherits Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+
+	Enum ScriptResults
+		Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success
+		Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+	End Enum
+	
+
+	' The execution engine calls this method when the task executes.
+	' To access the object model, use the Dts property. Connections, variables, events,
+	' and logging features are available as members of the Dts property as shown in the following examples.
+	'
+	' To reference a variable, call Dts.Variables("MyCaseSensitiveVariableName").Value
+	' To post a log entry, call Dts.Log("This is my log text", 999, Nothing)
+	' To fire an event, call Dts.Events.FireInformation(99, "test", "hit the help message", "", 0, True)
+	'
+	' To use the connections collection use something like the following:
+	' ConnectionManager cm = Dts.Connections.Add("OLEDB")
+	' cm.ConnectionString = "Data Source=localhost;Initial Catalog=AdventureWorks;Provider=SQLNCLI10;Integrated Security=SSPI;Auto Translate=False;"
+	'
+	' Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
+	' 
+	' To open Help, press F1.
+
+	Public Sub Main()
+        Dim myHtmlMessage As MailMessage
+
+        Dim mySmtpClient As SmtpClient
+
+        'Dim vars As Variables
+
+        Dim mailAuthentication As System.Net.NetworkCredential
+
+        mailAuthentication = New System.Net.NetworkCredential(Dts.Variables("Username").Value.ToString(), Dts.Variables("Password").Value.ToString())
+
+
+        myHtmlMessage = New MailMessage(Dts.Variables("From").Value.ToString(), Dts.Variables("To").Value.ToString(), Dts.Variables("Subject").Value.ToString(), Dts.Variables("Body").Value.ToString())
+        'Dts.Variables("CC").Value.ToString()
+        myHtmlMessage.To.Add(Dts.Variables("CC").Value.ToString())
+        myHtmlMessage.To.Add(Dts.Variables("CC2").Value.ToString())
+
+
+        mySmtpClient = New SmtpClient(Dts.Variables("SMTPServer").Value.ToString())
+
+        'mySmtpClient.UseDefaultCredentials = False
+
+        mySmtpClient.Credentials = mailAuthentication
+
+        mySmtpClient.EnableSsl = True
+
+        mySmtpClient.Send(myHtmlMessage)
+
+
+        Dts.TaskResult = ScriptResults.Success
+	End Sub
+
+End Class]]></ProjectItem>
+          <ProjectItem
+            Name="My Project\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)" GeneratedClassNamespace="$safeprojectname" GeneratedClassName="MySettings">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+          <ProjectItem
+            Name="My Project\Settings.Designer.vb"
+            Encoding="UTF8"><![CDATA['------------------------------------------------------------------------------
+' <autogenerated>
+'     This code was generated by a tool.
+'
+'     Changes to this file may cause incorrect behavior and will be lost if
+'     the code is regenerated.
+' </autogenerated>
+'------------------------------------------------------------------------------
+
+Option Strict Off
+Option Explicit On
+
+
+
+Partial Friend NotInheritable Class MySettings
+    Inherits System.Configuration.ApplicationSettingsBase
+
+    Private Shared m_Value As MySettings
+
+    Private Shared m_SyncObject As Object = New Object
+
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Public Shared ReadOnly Property Value() As MySettings
+        Get
+            If (MySettings.m_Value Is Nothing) Then
+                System.Threading.Monitor.Enter(MySettings.m_SyncObject)
+                If (MySettings.m_Value Is Nothing) Then
+                    Try
+                        MySettings.m_Value = New MySettings
+                    Finally
+                        System.Threading.Monitor.Exit(MySettings.m_SyncObject)
+                    End Try
+                End If
+            End If
+            Return MySettings.m_Value
+        End Get
+    End Property
+End Class]]></ProjectItem>
+          <ProjectItem
+            Name="Project"
+            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:ProjectId>{F32BAB67-CCB2-4AFA-B2C4-4488A4FF0D02}</msb:ProjectId>
+		<msb:NoContent>Reference;Import;Folder</msb:NoContent>
+		<msb:Language>msBuild</msb:Language>
+		<msb:DisplayName>st_6986f58843b04a90aef0a5ecbeb79708</msb:DisplayName>
+		<msb:CodeName>st_6986f58843b04a90aef0a5ecbeb79708</msb:CodeName>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:File Include="My Project\Settings.Designer.vb"/>
+		<msb:File Include="My Project\Resources.Designer.vb"/>
+		<msb:File Include="My Project\AssemblyInfo.vb"/>
+		<msb:File Include="My Project\Resources.resx"/>
+		<msb:File Include="My Project\Settings.settings"/>
+		<msb:File Include="ScriptMain.vb"/>
+		<msb:Project Include="st_6986f58843b04a90aef0a5ecbeb79708.vbproj"/>
+	</msb:ItemGroup>
+</c:Project>]]></ProjectItem>
           <ProjectItem
             Name="My Project\Resources.resx"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -42752,6 +42754,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       DTS:refId="Package\truncate table ca_file_location"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{615E8422-A5DE-4387-9DC8-23BC796562E4}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
@@ -44171,9 +44174,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="136,44"
+          Size="NaN,NaN"
           Id="Package.EventHandlers[OnError]\Send email"
-          TopLeft="5.5,5.5" />
+          TopLeft="NaN,NaN" />
       </GraphLayout>
     </LayoutInfo>
   </DtsEventHandler>
@@ -44183,9 +44186,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="135.773584905661,43.9245283018868"
+          Size="NaN,NaN"
           Id="Package.EventHandlers[OnTaskFailed]\Send email"
-          TopLeft="5.5,5.5" />
+          TopLeft="NaN,NaN" />
       </GraphLayout>
     </LayoutInfo>
   </DtsEventHandler>
@@ -44309,9 +44312,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -44369,9 +44370,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -44417,9 +44416,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -44673,42 +44670,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Abuse Type Dim.Paths[Derived Column Output]"
-          TopLeft="279,168">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-123.5,57"
-              Start="0,0"
-              End="-123.5,49.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,24.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,24.5"
-                    Point2="0,28.5"
-                    Point3="-4,28.5" />
-                  <mssgle:LineSegment
-                    End="-119.5,28.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-119.5,28.5"
-                    Point2="-123.5,28.5"
-                    Point3="-123.5,32.5" />
-                  <mssgle:LineSegment
-                    End="-123.5,49.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\Abuse Type Dim.Paths[Derived Column Output1]"
           TopLeft="182.5,344">
           <EdgeLayout.Curve>
@@ -44734,6 +44695,42 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                     Point3="-35.5,61.6165413533835" />
                   <mssgle:LineSegment
                     End="-35.5,89.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Abuse Type Dim.Paths[Derived Column Output]"
+          TopLeft="279,168">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-123.5,57"
+              Start="0,0"
+              End="-123.5,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.5"
+                    Point2="0,28.5"
+                    Point3="-4,28.5" />
+                  <mssgle:LineSegment
+                    End="-119.5,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-119.5,28.5"
+                    Point2="-123.5,28.5"
+                    Point3="-123.5,32.5" />
+                  <mssgle:LineSegment
+                    End="-123.5,49.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -44861,9 +44858,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="135.773584905661,43.9245283018868"
+          Size="NaN,NaN"
           Id="Package\Abuse Type Dim.EventHandlers[OnError]\Send Email"
-          TopLeft="5.5,5.5" />
+          TopLeft="NaN,NaN" />
       </GraphLayout>
     </LayoutInfo>
   </DtsEventHandler>
@@ -44952,42 +44949,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           Id="Package\adoption fact\OLE DB Destination"
           TopLeft="374,356" />
         <EdgeLayout
-          Id="Package\adoption fact.Paths[Derived Column Output]"
-          TopLeft="146,136">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="21.5,45"
-              Start="0,0"
-              End="21.5,37.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,18.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,18.5"
-                    Point2="0,22.5"
-                    Point3="4,22.5" />
-                  <mssgle:LineSegment
-                    End="17.5,22.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="17.5,22.5"
-                    Point2="21.5,22.5"
-                    Point3="21.5,26.5" />
-                  <mssgle:LineSegment
-                    End="21.5,37.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\adoption fact.Paths[Derived Column Output1]"
           TopLeft="162,337">
           <EdgeLayout.Curve>
@@ -45013,6 +44974,42 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                     Point3="31,27" />
                   <mssgle:LineSegment
                     End="31,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\adoption fact.Paths[Derived Column Output]"
+          TopLeft="146,136">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="21.5,45"
+              Start="0,0"
+              End="21.5,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.5"
+                    Point2="0,22.5"
+                    Point3="4,22.5" />
+                  <mssgle:LineSegment
+                    End="17.5,22.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="17.5,22.5"
+                    Point2="21.5,22.5"
+                    Point3="21.5,26.5" />
+                  <mssgle:LineSegment
+                    End="21.5,37.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -45260,9 +45257,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="135.773584905661,43.9245283018868"
+          Size="NaN,NaN"
           Id="Package\adoption fact.EventHandlers[OnError]\Send Email"
-          TopLeft="5.5,5.5" />
+          TopLeft="NaN,NaN" />
       </GraphLayout>
     </LayoutInfo>
   </DtsEventHandler>
@@ -45531,30 +45528,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\adoption status dim.Paths[Derived Column Output]"
-          TopLeft="225.75,134">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,34"
-              Start="0,0"
-              End="0,26.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\adoption status dim.Paths[Derived Column Output1]"
           TopLeft="224.5,290">
           <EdgeLayout.Curve>
@@ -45568,6 +45541,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\adoption status dim.Paths[Derived Column Output]"
+          TopLeft="225.75,134">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34"
+              Start="0,0"
+              End="0,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -45702,6 +45699,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           Id="Package\agreement_dim\Data Conversion"
           TopLeft="137,378" />
         <EdgeLayout
+          Id="Package\agreement_dim.Paths[Derived Column Output1]"
+          TopLeft="214.5,330">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package\agreement_dim.Paths[Derived Column Output]"
           TopLeft="208,141">
           <EdgeLayout.Curve>
@@ -45727,30 +45748,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                     Point3="9.5,27.5" />
                   <mssgle:LineSegment
                     End="9.5,39.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\agreement_dim.Paths[Derived Column Output1]"
-          TopLeft="214.5,330">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,48"
-              Start="0,0"
-              End="0,40.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,40.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -46149,42 +46146,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\assignment fact.Paths[Derived Column Output]"
-          TopLeft="124,187">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="16.5,52"
-              Start="0,0"
-              End="16.5,44.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,22" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,22"
-                    Point2="0,26"
-                    Point3="4,26" />
-                  <mssgle:LineSegment
-                    End="12.5,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="12.5,26"
-                    Point2="16.5,26"
-                    Point3="16.5,30" />
-                  <mssgle:LineSegment
-                    End="16.5,44.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\assignment fact.Paths[Derived Column Output1]"
           TopLeft="143,353">
           <EdgeLayout.Curve>
@@ -46210,6 +46171,42 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                     Point3="9,20" />
                   <mssgle:LineSegment
                     End="9,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\assignment fact.Paths[Derived Column Output]"
+          TopLeft="124,187">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="16.5,52"
+              Start="0,0"
+              End="16.5,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22"
+                    Point2="0,26"
+                    Point3="4,26" />
+                  <mssgle:LineSegment
+                    End="12.5,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="12.5,26"
+                    Point2="16.5,26"
+                    Point3="16.5,30" />
+                  <mssgle:LineSegment
+                    End="16.5,44.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -46608,30 +46605,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\assignment_attribute_dim.Paths[Derived Column Output]"
-          TopLeft="175.75,171">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,57"
-              Start="0,0"
-              End="0,49.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,49.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\assignment_attribute_dim.Paths[Derived Column Output1]"
           TopLeft="177.5,331">
           <EdgeLayout.Curve>
@@ -46645,6 +46618,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\assignment_attribute_dim.Paths[Derived Column Output]"
+          TopLeft="175.75,171">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57"
+              Start="0,0"
+              End="0,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -46859,30 +46856,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\authorization fact.Paths[Derived Column Output]"
-          TopLeft="153.25,329">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,45"
-              Start="0,0"
-              End="0,37.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,37.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\authorization fact.Paths[Derived Column Output1]"
           TopLeft="153,128">
           <EdgeLayout.Curve>
@@ -46908,6 +46881,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                     Point3="11.5,27.5" />
                   <mssgle:LineSegment
                     End="11.5,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\authorization fact.Paths[Derived Column Output]"
+          TopLeft="153.25,329">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45"
+              Start="0,0"
+              End="0,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -47234,30 +47231,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\authorization_dim.Paths[Derived Column Output]"
-          TopLeft="102.75,149">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,46"
-              Start="0,0"
-              End="0,38.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,38.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\authorization_dim.Paths[Derived Column Output1]"
           TopLeft="97,326">
           <EdgeLayout.Curve>
@@ -47283,6 +47256,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                     Point3="11,23" />
                   <mssgle:LineSegment
                     End="11,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\authorization_dim.Paths[Derived Column Output]"
+          TopLeft="102.75,149">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46"
+              Start="0,0"
+              End="0,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -47405,30 +47402,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           Id="Package\calendar dim\OLE DB Destination 4"
           TopLeft="353,154" />
         <EdgeLayout
-          Id="Package\calendar dim.Paths[Derived Column Output]"
-          TopLeft="138.25,119">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,45"
-              Start="0,0"
-              End="0,37.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,37.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\calendar dim.Paths[Derived Column Output1]"
           TopLeft="136,299">
           <EdgeLayout.Curve>
@@ -47442,6 +47415,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\calendar dim.Paths[Derived Column Output]"
+          TopLeft="138.25,119">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45"
+              Start="0,0"
+              End="0,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -47758,42 +47755,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           Id="Package\Case dim\IS_NUMERIC"
           TopLeft="28,102" />
         <EdgeLayout
-          Id="Package\Case dim.Paths[Derived Column Output]"
-          TopLeft="99,144">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="9.5,52"
-              Start="0,0"
-              End="9.5,44.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,22" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,22"
-                    Point2="0,26"
-                    Point3="4,26" />
-                  <mssgle:LineSegment
-                    End="5.5,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="5.5,26"
-                    Point2="9.5,26"
-                    Point3="9.5,30" />
-                  <mssgle:LineSegment
-                    End="9.5,44.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\Case dim.Paths[Derived Column Output1]"
           TopLeft="97,325">
           <EdgeLayout.Curve>
@@ -47819,6 +47780,42 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                     Point3="12,21.5" />
                   <mssgle:LineSegment
                     End="12,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Case dim.Paths[Derived Column Output]"
+          TopLeft="99,144">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9.5,52"
+              Start="0,0"
+              End="9.5,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22"
+                    Point2="0,26"
+                    Point3="4,26" />
+                  <mssgle:LineSegment
+                    End="5.5,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5.5,26"
+                    Point2="9.5,26"
+                    Point3="9.5,30" />
+                  <mssgle:LineSegment
+                    End="9.5,44.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -48253,6 +48250,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package\import ALLEGATION_FACT.Paths[Derived Column Output1]"
+          TopLeft="201.5,295">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42"
+              Start="0,0"
+              End="0,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package\import ALLEGATION_FACT.Paths[Derived Column Output]"
           TopLeft="177,134">
           <EdgeLayout.Curve>
@@ -48278,30 +48299,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                     Point3="16.5,20.5" />
                   <mssgle:LineSegment
                     End="16.5,25.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\import ALLEGATION_FACT.Paths[Derived Column Output1]"
-          TopLeft="201.5,295">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,42"
-              Start="0,0"
-              End="0,34.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,34.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
