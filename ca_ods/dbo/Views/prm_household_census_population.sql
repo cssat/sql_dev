@@ -25,7 +25,7 @@ where cd_race <=8
 group by measurement_year, county_cd
 union all
 select measurement_year,0 [cd_sib_age_grp],cd_race,0 [county_cd],sum(pop_cnt) [pop_cnt]
-from dbCoreAdministrativeTables.public_data.census_population_household
+from public_data.census_population_household
 group by measurement_year, cd_race
 union all
 select measurement_year,cd_sib_age_grp ,0 [cd_race],0 [county_cd],sum(pop_cnt) [pop_cnt]

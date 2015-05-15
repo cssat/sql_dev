@@ -1,5 +1,5 @@
 ﻿
-alter procedure [base].[prod_update_rptPlacement_after_CA_LOAD]
+create procedure [base].[prod_update_rptPlacement_after_CA_LOAD]
 as
 
 		update base.rptPlacement_Events

@@ -1,5 +1,5 @@
 ﻿--  exec [prod_build_prtl_pbcs2] '2014-08-08'
-alter procedure [prtl].[prod_build_prtl_pbcs2](@permission_key datetime)
+CREATE procedure [prtl].[prod_build_prtl_pbcs2](@permission_key datetime)
 as 
 if @permission_key=(select cutoff_date from ref_last_DW_transfer) 
 begin
