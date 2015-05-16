@@ -51,27 +51,36 @@ CREATE  view [prtl].[vw_referrals_grp] as
 				,iif(grp_filters.intake_grouper is not null and grp_filters.intk_grp_fl_alternate_intervention>=1,1,0)  intk_grp_fl_alternate_intervention
 				,iif(grp_filters.intake_grouper is not null and grp_filters.intk_grp_fl_frs>=1,1,0)  intk_grp_fl_frs
 				,iif(grp_filters.intake_grouper is null,tce.cd_access_type,grp_filters.intk_grp_cd_access_type) cd_access_type
-				,IIF(iif(grp_filters.intake_grouper is null,tce.intake_county_cd,grp_filters.intk_grp_intake_county_cd)=0
-						,-99
-						,iif(grp_filters.intake_grouper is null,tce.intake_county_cd,grp_filters.intk_grp_intake_county_cd)
-						) intake_county_cd
+				,case
+					when grp_filters.intake_grouper is null then iif(tce.intake_county_cd=0,-99,tce.intake_county_cd)
+					else iif(grp_filters.intk_grp_intake_county_cd=0,-99,grp_filters.intk_grp_intake_county_cd)
+				end intake_county_cd
 				,iif(grp_filters.intake_grouper is null,tce.inv_ass_start,grp_filters.intk_grp_inv_ass_start) inv_ass_start
 				,iif(grp_filters.intake_grouper is null,tce.rfrd_date,grp_filters.rfrd_date) rfrd_date
-				, iif(grp_filters.intake_grouper is null,tce.fl_phys_abuse,iif(cnt_intk_grp_phys_abuse>0,1,0)) fl_phys_abuse
-				, iif(grp_filters.intake_grouper is null,tce.fl_sexual_abuse,iif(cnt_intk_grp_sexual_abuse>0,1,0)) fl_sexual_abuse
-				, iif(grp_filters.intake_grouper is null,tce.fl_neglect,iif(cnt_intk_grp_neglect>0,1,0)) fl_neglect
-				, IIF( ( iif(grp_filters.intake_grouper is null,tce.fl_phys_abuse,iif(cnt_intk_grp_phys_abuse>0,1,0)) )>0
-						or (iif(grp_filters.intake_grouper is null,tce.fl_sexual_abuse,iif(cnt_intk_grp_sexual_abuse>0,1,0))) > 0
-						or  (iif(grp_filters.intake_grouper is null,tce.fl_neglect,iif(cnt_intk_grp_neglect>0,1,0))) > 0 , 1 , 0) [fl_any_legal]
-				, iif(grp_filters.intake_grouper is null,tce.fl_founded_phys_abuse,iif(cnt_intk_grp_founded_phys_abuse>0,1,0)) fl_founded_phys_abuse
-				, iif(grp_filters.intake_grouper is null,tce.fl_founded_sexual_abuse,iif(cnt_intk_grp_founded_sexual_abuse>0,1,0)) fl_founded_sexual_abuse
-				, iif(grp_filters.intake_grouper is null,tce.fl_founded_neglect,iif(cnt_intk_grp_founded_neglect>0,1,0)) fl_founded_neglect
-				, iif(grp_filters.intake_grouper is null,tce.fl_founded_any_legal,iif(cnt_intk_grp_founded_any_legal>0,1,0)) fl_founded_any_legal
+				,case when grp_filters.intake_grouper is null then tce.fl_phys_abuse else iif(grp_filters.cnt_intk_grp_phys_abuse>0,1,0) end fl_phys_abuse
+				,case when grp_filters.intake_grouper is null then tce.fl_sexual_abuse else iif(grp_filters.cnt_intk_grp_sexual_abuse>0,1,0) end fl_sexual_abuse
+				,case when grp_filters.intake_grouper is null then tce.fl_neglect else iif(grp_filters.cnt_intk_grp_neglect>0,1,0) end fl_neglect
+				,case
+					when grp_filters.intake_grouper is null then
+						case
+							when tce.fl_phys_abuse>0 or tce.fl_sexual_abuse>0 or tce.fl_neglect>0 then 1
+							else 0
+						end
+					else
+						case
+							when grp_filters.cnt_intk_grp_phys_abuse>0 or grp_filters.cnt_intk_grp_sexual_abuse>0 or grp_filters.cnt_intk_grp_neglect>0 then 1
+							else 0
+						end
+				end [fl_any_legal]
+				,case when grp_filters.intake_grouper is null then tce.fl_founded_phys_abuse else iif(cnt_intk_grp_founded_phys_abuse>0,1,0) end fl_founded_phys_abuse
+				,case when grp_filters.intake_grouper is null then tce.fl_founded_sexual_abuse else iif(cnt_intk_grp_founded_sexual_abuse>0,1,0) end fl_founded_sexual_abuse
+				,case when grp_filters.intake_grouper is null then tce.fl_founded_neglect else iif(cnt_intk_grp_founded_neglect>0,1,0) end fl_founded_neglect
+				,case when grp_filters.intake_grouper is null then tce.fl_founded_any_legal else iif(cnt_intk_grp_founded_any_legal>0,1,0) end fl_founded_any_legal
 				, 0 as fl_initref_cohort_date
 				,iif(grp_filters.intake_grouper is null,tce.cd_final_decision,grp_filters.grp_cd_final_decision) cd_final_decision
-				,iif(grp_filters.intake_grouper is not null,grp_filters.fl_hh_under_18,iif(hh_under_18_ng.id_intake_fact is not null,1,0)) hh_with_children_under_18
-				,iif(grp_filters.intake_grouper is not null,grp_filters.fl_hh_under_12,iif(hh_under_12_ng.id_intake_fact is not null,1,0)) hh_with_children_under_12
-				,iif(grp_filters.intake_grouper is not null,grp_filters.fl_hh_under_2,iif(hh_under_2_ng.id_intake_fact is not null,1,0)) hh_with_children_under_2
+				,case when grp_filters.intake_grouper is not null then grp_filters.fl_hh_under_18 when hh_under_18_ng.id_intake_fact is not null then 1 else 0 end hh_with_children_under_18
+				,case when grp_filters.intake_grouper is not null then grp_filters.fl_hh_under_12 when hh_under_12_ng.id_intake_fact is not null then 1 else 0 end hh_with_children_under_12
+				,case when grp_filters.intake_grouper is not null then grp_filters.fl_hh_under_2 when hh_under_2_ng.id_intake_fact is not null then 1 else 0 end hh_with_children_under_2
 				,DENSE_RANK() over (partition by coalesce(grp_filters.grp_id_case,tce.id_case) 
 																order by coalesce(grp_filters.rfrd_date,tce.rfrd_date)
 																				,coalesce(grp.intake_grouper,tce.id_intake_fact )asc) case_nth_order
@@ -116,10 +125,10 @@ CREATE  view [prtl].[vw_referrals_grp] as
 								, SUM(fl_founded_prior_neglect)as cnt_intk_grp_founded_prior_negelect
 								, SUM(fl_founded_prior_other_maltreatment) as cnt_intk_grp_founded_prior_other_maltreatment
 								, SUM(fl_founded_prior_any_legal) as cnt_intk_grp_founded_prior_any_legal
-								, IIF(SUM(IIF(hh_under_18.id_intake_fact is not null,1,0))>0,1,0) fl_hh_under_18
-								, IIF(SUM(IIF(hh_under_12.id_intake_fact is not null,1,0))>0,1,0) fl_hh_under_12
-								, IIF(SUM(IIF(hh_under_2.id_intake_fact is not null,1,0))>0,1,0) fl_hh_under_2
-								, IIF(SUM(iif(cd_final_decision=1,1,0)) > 0,1,2)  as grp_cd_final_decision
+								, MAX(IIF(hh_under_18.id_intake_fact is not null,1,0)) fl_hh_under_18
+								, MAX(IIF(hh_under_12.id_intake_fact is not null,1,0)) fl_hh_under_12
+								, MAX(IIF(hh_under_2.id_intake_fact is not null,1,0)) fl_hh_under_2
+								, MIN(iif(cd_final_decision=1,1,2))  as grp_cd_final_decision
 					 from base.tbl_intake_grouper grp
 					join base.tbl_intakes intk on grp.id_intake_fact=intk.id_intake_fact 
 					left join (select distinct id_intake_fact from base.tbl_household_children where age_at_referral_dt<18
