@@ -4,6 +4,14 @@
 
 
 
+
+
+
+
+
+
+
+
 GO
 GRANT VIEW DEFINITION
     ON SCHEMA::[base] TO [NEBULA2\POC_DBO];
