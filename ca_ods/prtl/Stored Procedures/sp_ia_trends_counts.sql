@@ -1,4 +1,4 @@
-ALTER PROCEDURE [prtl].[sp_ia_trends_counts](
+CREATE PROCEDURE [prtl].[sp_ia_trends_counts](
   @age_grouping_cd varchar(30)
 ,  @race_cd varchar(30)
 ,  @cd_county varchar(1000)
