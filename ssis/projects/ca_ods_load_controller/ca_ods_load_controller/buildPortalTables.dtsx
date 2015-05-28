@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="buildPortalTables"
   DTS:PackageType="5"
-  DTS:VersionBuild="180"
-  DTS:VersionGUID="{330060F5-B71B-416B-9D5E-C6452A534AAB}">
+  DTS:VersionBuild="184"
+  DTS:VersionGUID="{4FD806AA-3914-4691-978F-5F08039037F6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -32,7 +32,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\backup_portal_tables\20150513\ooh_dcfs_eps.txt">
+          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\backup_portal_tables\20150521\ooh_dcfs_eps.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -630,7 +630,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\backup_portal_tables\20150513\ooh_point_in_time_child.txt">
+          DTS:ConnectionString="\\poc2\pocshare\Data Portal\data\backup_portal_tables\20150521\ooh_point_in_time_child.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -979,7 +979,7 @@
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:Retain="True"
-          DTS:ConnectionString="Data Source=(local);Initial Catalog=CA_ODS_A;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-buildLocalTables-{C48A1D98-D798-4ED6-BF68-B323ABE4FB40}POC.dbCoreAdministrativeTables1;" />
+          DTS:ConnectionString="Data Source=(local);Initial Catalog=CA_ODS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-buildLocalTables-{C48A1D98-D798-4ED6-BF68-B323ABE4FB40}POC.dbCoreAdministrativeTables1;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -1005,7 +1005,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="dir">
       <DTS:VariableValue
-        DTS:DataType="8">\\poc2\pocshare\Data Portal\data\backup_portal_tables\20150513\</DTS:VariableValue>
+        DTS:DataType="8">\\poc2\pocshare\Data Portal\data\backup_portal_tables\20150521\</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -1016,7 +1016,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="email1">
       <DTS:VariableValue
-        DTS:DataType="8">geoheycap@hotmail.com</DTS:VariableValue>
+        DTS:DataType="8">schmitzr@uw.edu</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -1027,7 +1027,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="email2">
       <DTS:VariableValue
-        DTS:DataType="8">geoheycap@hotmail.com</DTS:VariableValue>
+        DTS:DataType="8">schmitzr@uw.edu</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""

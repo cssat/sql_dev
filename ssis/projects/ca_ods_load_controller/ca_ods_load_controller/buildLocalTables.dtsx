@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="buildLocalTables"
   DTS:PackageType="5"
-  DTS:VersionBuild="219"
-  DTS:VersionGUID="{1D843C19-E78E-47E5-9644-9BFE054FD5D0}">
+  DTS:VersionBuild="221"
+  DTS:VersionGUID="{AE51F502-CEBF-4548-BE8B-B66C0C8D0A43}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -31,7 +31,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150217\uncompressed\episode_payment_services.txt">
+          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150514\uncompressed\episode_payment_services.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -776,7 +776,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150217\uncompressed\placement_payment_services.txt">
+          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150514\uncompressed\placement_payment_services.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1236,7 +1236,7 @@
         DTS:Name="ServerName">@[$Project::sqlServerName]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=TEST!;Initial Catalog=CA_ODS_A;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=(local);Initial Catalog=CA_ODS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -1255,7 +1255,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150217\uncompressed\tbl_case_dim.txt">
+          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150514\uncompressed\tbl_case_dim.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1366,7 +1366,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150217\uncompressed\tbl_child_episodes.txt">
+          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150514\uncompressed\tbl_child_episodes.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2221,7 +2221,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150217\uncompressed\tbl_child_placement_settings.txt">
+          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150514\uncompressed\tbl_child_placement_settings.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2630,7 +2630,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150217\uncompressed\tbl_ihs_episodes.txt">
+          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150514\uncompressed\tbl_ihs_episodes.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -3043,7 +3043,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150217\uncompressed\tbl_ihs_services.txt">
+          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150514\uncompressed\tbl_ihs_services.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -3270,7 +3270,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150217\uncompressed\tbl_intakes.txt">
+          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150514\uncompressed\tbl_intakes.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -3982,7 +3982,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150217\uncompressed\WRK_nonDCFS_All.txt">
+          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150514\uncompressed\WRK_nonDCFS_All.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -4069,7 +4069,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150217\uncompressed\WRK_TRHEvents.txt">
+          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150514\uncompressed\WRK_TRHEvents.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -4188,7 +4188,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="dir">
       <DTS:VariableValue
-        DTS:DataType="8">\\poc2\pocshare\CA\Data\20150217\uncompressed\</DTS:VariableValue>
+        DTS:DataType="8">\\poc2\pocshare\CA\Data\20150514\uncompressed\</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -4210,7 +4210,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="email1">
       <DTS:VariableValue
-        DTS:DataType="8">geoheycap@hotmail.com</DTS:VariableValue>
+        DTS:DataType="8">schmitzr@uw.edu</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -4221,7 +4221,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="email2">
       <DTS:VariableValue
-        DTS:DataType="8">geoheycap@hotmail.com</DTS:VariableValue>
+        DTS:DataType="8">schmitzr@uw.edu</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
