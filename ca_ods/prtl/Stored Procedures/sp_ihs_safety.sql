@@ -10,7 +10,8 @@ CREATE PROCEDURE [prtl].[sp_ihs_safety](
 ,  @filter_allegation  varchar(30)
 , @filter_finding varchar(30) 
 , @filter_service_category  varchar(100)
-, @filter_service_budget varchar(100))
+, @filter_service_budget varchar(100)
+, @fl_return_results bit = 1)
 as
 set nocount on
 
@@ -557,6 +558,7 @@ insert into prtl.cache_qry_param_pbcs3
 
 end -- not in cache
 
+if @fl_return_results = 1
         SELECT  pbcs3.[month] as "Month"
                 , pbcs3.qry_type as   "qry_type"
                 , pbcs3.date_type

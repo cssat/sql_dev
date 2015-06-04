@@ -11,6 +11,7 @@ CREATE PROCEDURE [prtl].[sp_ihs_trends_counts](
 , @filter_finding varchar(30)
 , @filter_service_category  varchar(100)
 , @filter_service_budget varchar(100)
+, @fl_return_results bit = 1
  )
 as
  set nocount on
@@ -510,7 +511,7 @@ as
 											
 
 
-
+if @fl_return_results = 1
 									SELECT  
 								poc3ab.qry_type as   "qry_type_poc3"
 								, poc3ab.date_type

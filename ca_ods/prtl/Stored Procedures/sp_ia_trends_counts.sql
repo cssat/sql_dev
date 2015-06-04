@@ -5,7 +5,8 @@ CREATE PROCEDURE [prtl].[sp_ia_trends_counts](
 ,  @cd_reporter_type varchar(100) 
 ,  @filter_access_type varchar(30) 
 ,  @filter_allegation  varchar(30)
-, @filter_finding varchar(30) )
+, @filter_finding varchar(30) 
+, @fl_return_results bit = 1 )
 as
  set nocount on
 
@@ -460,6 +461,7 @@ as
 									where @qry_id=qry_id
 			end
 
+if @fl_return_results = 1
 select
 	a.qry_type_poc2
 	,a.date_type

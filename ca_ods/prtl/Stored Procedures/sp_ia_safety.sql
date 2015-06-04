@@ -7,7 +7,8 @@ CREATE PROCEDURE [prtl].[sp_ia_safety](
 ,  @cd_reporter_type varchar(100) 
 ,  @filter_access_type varchar(30) 
 ,  @filter_allegation  varchar(30)
-, @filter_finding varchar(30) )
+, @filter_finding varchar(30)
+, @fl_return_results bit = 1 )
 as
  set nocount on
 
@@ -475,7 +476,7 @@ as
 			end -- not in cache			
 						
 
-
+if @fl_return_results = 1
 	SELECT  	 pbcs2.month as "Months"
 							 ,pbcs2.qry_type   
 								, pbcs2.start_year  as "Year"
