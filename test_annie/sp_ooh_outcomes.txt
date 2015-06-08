@@ -4,7 +4,7 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_ooh_outcomes`( p_age_grouping_cd varchar(30)
+CREATE DEFINER=`test_annie`@`%` PROCEDURE `sp_ooh_outcomes`( p_age_grouping_cd varchar(30)
 ,  p_ethnicity_cd varchar(30)
 ,  p_gender_cd varchar(10)
 ,  p_init_cd_plcm_setng varchar(30)
@@ -75,6 +75,12 @@ from (
 	where find_in_set(f.cd_finding,p_filter_finding)>0
 
 	union
+
+    select max(e.min_filter_date) as 'db_min_filter_date'
+    from ref_filter_access_type e
+    where find_in_set(e.cd_access_type,p_filter_access_type)
+    
+    union
 
 	select cast('2000-01-01' as datetime) as 'db_min_filter_date'
 ) as a;
