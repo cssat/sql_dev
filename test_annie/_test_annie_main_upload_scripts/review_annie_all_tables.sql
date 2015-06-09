@@ -205,7 +205,7 @@ update prtl_tables_last_update
 
 
 
-
+/*
 truncate table cache_pbcs3_params;
 LOAD DATA INFILE '/data/pocweb/cache_pbcs3_params.txt'
 into table cache_pbcs3_params
@@ -263,7 +263,7 @@ insert_date,qry_id,start_year,int_hash_key);
 update prtl_tables_last_update
   set load_date=now(),row_count=(select count(*) from cache_pbcs3_aggr)
   where tbl_name='cache_pbcs3_aggr';
-
+*/
 
 
 
@@ -663,7 +663,7 @@ update prtl_tables_last_update
 
 
 
-
+/*
 truncate table cache_poc3ab_params;
 LOAD DATA INFILE '/data/pocweb/cache_poc3ab_params.txt'
 into table cache_poc3ab_params
@@ -718,7 +718,7 @@ analyze table cache_poc3ab_aggr;
  update prtl_tables_last_update
   set load_date=now(),row_count=(select count(*) from cache_poc3ab_aggr)
   where tbl_name='cache_poc3ab_aggr';
-  
+*/  
   
   
   
