@@ -1,7 +1,4 @@
-﻿
-
-
-CREATE PROCEDURE [prtl].[sp_ooh_flow_entries_counts](
+﻿CREATE PROCEDURE [prtl].[sp_ooh_flow_entries_counts](
    @date varchar(3000)
 ,  @age_grouping_cd varchar(30)
 ,  @race_cd varchar(30)
@@ -33,6 +30,7 @@ as
 	declare @var_row_cnt_param int;
 	declare @var_row_cnt_cache int;
 	declare @tblqryid table(qry_id int);
+	declare @minfilterdate datetime;
 
     declare @x1 float;
     declare @x2 float;
@@ -313,6 +311,36 @@ as
 			join prm_dep dep on dep.bin_dep_cd=cast(arrValue as int);
 
 			update statistics #dep;
+
+
+select @minfilterdate = max(a.db_min_filter_date)
+from (
+	select max(d.min_filter_date) as 'db_min_filter_date'
+	from ref_filter_dependency d
+	inner join #dep td on td.bin_dep_cd = d.bin_dep_cd
+
+	union
+
+	select max(a.min_filter_date) as 'db_min_filter_date'
+	from ref_filter_allegation a
+	inner join #algtn at on at.cd_allegation = a.cd_allegation
+
+	union
+
+	select max(f.min_filter_date) as 'db_min_filter_date'
+	from ref_filter_finding f
+	inner join #find ft on ft.cd_finding = f.cd_finding
+
+	union
+
+    select max(e.min_filter_date) as 'db_min_filter_date'
+    from ref_filter_access_type e
+    inner join #access_type et on et.cd_access_type = e.cd_access_type
+    
+    union
+
+	select cast('2000-01-01' as datetime) as 'db_min_filter_date'
+) as a;
 
 
 			-- print 'qry_id is ' + str(@qry_id)
@@ -793,7 +821,7 @@ as
 			join ref_filter_ihs_services ref_ihs on ref_ihs.bin_ihs_svc_cd=poc1ab.bin_ihs_svc_cd
             join vw_ref_dependency_lag ref_dep on ref_dep.bin_dep_cd=poc1ab.bin_dep_cd
                 and poc1ab.date_type=ref_dep.date_type  
-                and poc1ab.start_date between ref_dep.min_filter_date and ref_dep.cohort_max_filter_date
+                and poc1ab.start_date between @minfilterdate and ref_dep.cohort_max_filter_date
             join vw_los_lag ref_los 
             on poc1ab.bin_los_cd=ref_los.bin_los_cd
                 and poc1ab.date_type=ref_los.date_type

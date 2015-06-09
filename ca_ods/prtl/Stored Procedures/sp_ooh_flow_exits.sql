@@ -30,6 +30,7 @@ as
     declare @minmonthstart datetime;
 	declare @var_row_cnt_param int;
 	declare @var_row_cnt_cache int;
+	declare @minfilterdate datetime;
 
 	declare @tblqryid table(qry_id int);
     declare @x1 float;
@@ -280,6 +281,34 @@ as
 	update statistics #dep;
 
 
+select @minfilterdate = max(a.db_min_filter_date)
+from (
+	select max(d.min_filter_date) as 'db_min_filter_date'
+	from ref_filter_dependency d
+	inner join #dep td on td.bin_dep_cd = d.bin_dep_cd
+
+	union
+
+	select max(a.min_filter_date) as 'db_min_filter_date'
+	from ref_filter_allegation a
+	inner join #algtn at on at.cd_allegation = a.cd_allegation
+
+	union
+
+	select max(f.min_filter_date) as 'db_min_filter_date'
+	from ref_filter_finding f
+	inner join #find ft on ft.cd_finding = f.cd_finding
+
+	union
+
+    select max(e.min_filter_date) as 'db_min_filter_date'
+    from ref_filter_access_type e
+    inner join #access_type et on et.cd_access_type = e.cd_access_type
+    
+    union
+
+	select cast('2000-01-01' as datetime) as 'db_min_filter_date'
+) as a;
 		
     
 					---  load the demographic ,placement,location parameters --
@@ -753,7 +782,7 @@ as
         and ck.int_hash_key=poc1ab.int_hash_key
 			join ref_age_census_child_group  ref_age on ref_age.age_grouping_cd=poc1ab.age_grouping_cd
             join ref_filter_dependency ref_dep on ref_dep.bin_dep_cd=poc1ab.bin_dep_cd
-                        and poc1ab.start_date >= ref_dep.min_filter_date
+                        and poc1ab.start_date >= @minfilterdate
             join ref_filter_los ref_los on ref_los.bin_los_cd=poc1ab.bin_los_cd
 			join ref_lookup_gender ref_gdr on ref_gdr.[pk_gndr]=poc1ab.pk_gndr
 			join ref_lookup_ethnicity_census ref_eth on ref_eth.[cd_race_census] = poc1ab.cd_race

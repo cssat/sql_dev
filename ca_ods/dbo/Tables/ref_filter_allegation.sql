@@ -3,6 +3,7 @@
     [tx_allegation] VARCHAR (200) NULL,
     [cd_multiplier] NUMERIC (9)   NULL,
     [fl_name]       VARCHAR (100) NULL,
+    [min_filter_date] DATETIME NULL, 
     CONSTRAINT [PK_ref_filter_allegation] PRIMARY KEY CLUSTERED ([cd_allegation] ASC)
 );
 

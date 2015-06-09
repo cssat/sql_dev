@@ -49,6 +49,7 @@ declare @bin_dep_cd varchar(20)= '0'
     declare @maxdate datetime;
     declare @maxmonthstart datetime;
     declare @minmonthstart datetime;
+	declare @minfilterdate datetime;
 
 	declare @tblqryid table(qry_id int);
 
@@ -300,6 +301,34 @@ declare @bin_dep_cd varchar(20)= '0'
 			update statistics #dep;
 
 
+select @minfilterdate = max(a.db_min_filter_date)
+from (
+	select max(d.min_filter_date) as 'db_min_filter_date'
+	from ref_filter_dependency d
+	inner join #dep td on td.bin_dep_cd = d.bin_dep_cd
+
+	union
+
+	select max(a.min_filter_date) as 'db_min_filter_date'
+	from ref_filter_allegation a
+	inner join #algtn at on at.cd_allegation = a.cd_allegation
+
+	union
+
+	select max(f.min_filter_date) as 'db_min_filter_date'
+	from ref_filter_finding f
+	inner join #find ft on ft.cd_finding = f.cd_finding
+
+	union
+
+    select max(e.min_filter_date) as 'db_min_filter_date'
+    from ref_filter_access_type e
+    inner join #access_type et on et.cd_access_type = e.cd_access_type
+    
+    union
+
+	select cast('2000-01-01' as datetime) as 'db_min_filter_date'
+) as a;
 
 
 				---  load the demographic ,placement,location parameters --
@@ -871,7 +900,7 @@ declare @bin_dep_cd varchar(20)= '0'
             join [ref_lookup_cd_discharge_type_exits] toe on toe.cd_discharge_type=pbcp5.cd_discharge_type
  						join vw_ref_dependency_lag ref_dep on ref_dep.bin_dep_cd=pbcp5.bin_dep_cd 
 						and ref_dep.date_type=pbcp5.date_type 
-									and pbcp5.cohort_exit_year between min_filter_date and cohort_max_filter_date
+									and pbcp5.cohort_exit_year between @minfilterdate and cohort_max_filter_date
 						join ref_filter_los ref_los on ref_los.bin_los_cd=pbcp5.bin_los_cd
 						and  dateadd(dd,abs(ref_los.lag) ,dateadd(mm,9,dateadd(dd,-1,dateadd(yy,1,pbcp5.cohort_exit_year))))<= cutoff_date			
 			join [dbo].[ref_age_cdc_census_mix]  ref_age on ref_age.age_grouping_cd=pbcp5.age_grouping_cd
