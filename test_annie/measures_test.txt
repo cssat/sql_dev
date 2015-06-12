@@ -1,4 +1,5 @@
-create definer=`test_annie`@`%` procedure measures_test()
+DELIMITER $$
+CREATE DEFINER=`test_annie`@`%` PROCEDURE `measures_test`()
 begin
 	declare var_error_message varchar(2000);
 	declare var_current_proc varchar(100);
@@ -16,50 +17,50 @@ begin
 	set var_current_proc = 'sp_ia_safety';
 	call sp_ia_safety('0','0','0','0','0','0','0'); -- default in-cache -- all group 1 parameter sets are included
     
-	set var_current_proc = 'sp_ihs_trends_counts';
-	call sp_ihs_trends_counts('0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache -- all group 1 parameter sets are included
+-- 	set var_current_proc = 'sp_ihs_trends_counts';
+-- 	call sp_ihs_trends_counts('0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache -- all group 1 parameter sets are included
     
-	set var_current_proc = 'sp_ihs_trends_rates';
-	call sp_ihs_trends_rates('0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache -- all group 1 parameter sets are included
+-- 	set var_current_proc = 'sp_ihs_trends_rates';
+-- 	call sp_ihs_trends_rates('0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache -- all group 1 parameter sets are included
     
 	set var_current_proc = 'sp_ooh_pit_counts';
-	call sp_ooh_pit_counts('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+	call sp_ooh_pit_counts('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
     
 	set var_current_proc = 'sp_ooh_pit_rates';
-	call sp_ooh_pit_rates('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+	call sp_ooh_pit_rates('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
     
 	set var_current_proc = 'sp_ooh_flow_entries_counts';
-	call sp_ooh_flow_entries_counts('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+	call sp_ooh_flow_entries_counts('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
     
 	set var_current_proc = 'sp_ooh_flow_entries_rates';
-	call sp_ooh_flow_entries_rates('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+	call sp_ooh_flow_entries_rates('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
     
 	set var_current_proc = 'sp_ooh_flow_exits';
-	call sp_ooh_flow_exits('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+	call sp_ooh_flow_exits('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
     
 	set var_current_proc = 'sp_ooh_reentry';
-	call sp_ooh_reentry('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+	call sp_ooh_reentry('0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
     
 	set var_current_proc = 'sp_ooh_outcomes';
-	call sp_ooh_outcomes('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+	call sp_ooh_outcomes('0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
     
 	set var_current_proc = 'sp_ooh_outcomes_3m';
-	call sp_ooh_outcomes_3m('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+	call sp_ooh_outcomes_3m('0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
     
 	set var_current_proc = 'sp_ooh_outcomes_12m';
-	call sp_ooh_outcomes_12m('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+	call sp_ooh_outcomes_12m('0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
     
 	set var_current_proc = 'sp_ooh_outcomes_24m';
-	call sp_ooh_outcomes_24m('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+	call sp_ooh_outcomes_24m('0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
     
 	set var_current_proc = 'sp_ooh_wb_familysettings';
-	call sp_ooh_wb_familysettings('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+	call sp_ooh_wb_familysettings('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
     
 	set var_current_proc = 'sp_ooh_wb_siblings';
-	call sp_ooh_wb_siblings('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+	call sp_ooh_wb_siblings('0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
     
 	set var_current_proc = 'sp_ooh_wb_siblings_pvt';
-	call sp_ooh_wb_siblings_pvt('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
+	call sp_ooh_wb_siblings_pvt('0','0','0','0','0','0','0','0','0','0','0','0','0','0'); -- default in-cache
 
 	if var_error_message != 'The following procedures have errors: ' then
 		set var_error_message = reverse(substring(reverse(var_error_message) from 3));
@@ -70,4 +71,4 @@ begin
 	insert measures_test_log (execution_date, result_text)
 	values (var_execution_date, var_error_message);
 end$$
-delimiter ;
+DELIMITER ;

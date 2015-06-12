@@ -3,7 +3,6 @@
 -- Note: comments before and after the routine body will not be stored by the server
 -- --------------------------------------------------------------------------------
 DELIMITER $$
-
 CREATE DEFINER=`test_annie`@`%` PROCEDURE `sp_ooh_pit_counts`(p_date  varchar(3000)
 ,  p_age_grouping_cd varchar(30)
 ,  p_ethnicity_cd varchar(30)
@@ -18,8 +17,8 @@ CREATE DEFINER=`test_annie`@`%` PROCEDURE `sp_ooh_pit_counts`(p_date  varchar(30
 ,  p_filter_access_type varchar(30) 
 ,  p_filter_allegation  varchar(30)
 , p_filter_finding varchar(30)
-, p_filter_service_category  varchar(100)
-, p_filter_service_budget varchar(100)
+-- , p_filter_service_category  varchar(100)
+-- , p_filter_service_budget varchar(100)
 , p_bin_dep_cd varchar(20)
  )
 begin
@@ -27,8 +26,8 @@ begin
 
  
 declare flg_procedure_off int;
-
-
+declare p_filter_service_category varchar(100);
+declare p_filter_service_budget varchar(100);
 
 declare p_qry_id bigint;
 declare p_mindate datetime;
@@ -45,8 +44,6 @@ declare var_row_cnt_cache int;
 
 declare min_filter_date datetime;
 
-
-
 declare var_calling_procedure int;
 
 
@@ -56,6 +53,9 @@ declare var_calling_procedure int;
 set var_calling_procedure=19;
 set x1=rand();
 set x2=rand();
+set p_filter_service_category='0', p_filter_service_budget='0';
+
+ call sp_ooh_assign_desc(var_calling_procedure);  
 
 select max(a.db_min_filter_date) into min_filter_date
 from (
@@ -85,9 +85,6 @@ from (
 
 	select cast('2000-01-01' as datetime) as 'db_min_filter_date'
 ) as a;
-
- call sp_ooh_assign_desc(var_calling_procedure);  
-
 
 
 
@@ -405,7 +402,7 @@ if  var_row_cnt_param <> var_row_cnt_cache then
         end if;
         if trim(p_cd_reporter_type)<>'0' then
 	        set @incl=concat(@incl,'
-            + cast((rpt.cd_reporter_type * ',@mult_cd_reporter_type,') as decimal(22,0)) ');
+            + cast((rpt.cd_reporter_type * ',@mult_cd_reporter_type,')  as decimal(22,0)) ');
         end if;					
         if trim(p_filter_access_type)<>'0' then
 	        set @incl=concat(@incl,' 
@@ -727,10 +724,10 @@ end if; -- not all rows exist in cache
             , case poc1ab.cd_allegation  when 0  then @alg0 when 1  then @alg1 when 2  then @alg2 when 3  then @alg3 when 4  then @alg4 end as "Allegation"
             , poc1ab.cd_finding
             , case poc1ab.cd_finding  when 0  then @fnd0 when 1  then @fnd1 when 2  then @fnd2 when 3  then @fnd3 when 4  then @fnd4 end as "Finding"
-            , poc1ab.cd_subctgry_poc_frc as "service_type_cd"
-            , ref_srv.tx_subctgry_poc_frc as "Service Type"
-            , poc1ab.cd_budget_poc_frc as "budget_cd"
-            , ref_bud.tx_budget_poc_frc as "Budget"
+--            , poc1ab.cd_subctgry_poc_frc as "service_type_cd"
+--            , ref_srv.tx_subctgry_poc_frc as "Service Type"
+--            , poc1ab.cd_budget_poc_frc as "budget_cd"
+--            , ref_bud.tx_budget_poc_frc as "Budget"
              , case when (cnt_start_date) > 0 /* jitter all above 0 */ 
                     then 
                         case when (round(cnt_start_date + 2 * sqrt(-2 * log(poc1ab.x1)) 
@@ -756,10 +753,10 @@ end if; -- not all rows exist in cache
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=poc1ab.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=poc1ab.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=poc1ab.cd_access_type
-            join ref_lookup_service_category ref_srv on ref_srv.cd_subctgry_poc_frc=poc1ab.cd_subctgry_poc_frc
-				and poc1ab.start_date  >= min_service_date
-            join ref_lookup_service_budget ref_bud on ref_bud.cd_budget_poc_frc=poc1ab.cd_budget_poc_frc
-				and poc1ab.start_date  >= min_budget_date	
+--            join ref_lookup_service_category ref_srv on ref_srv.cd_subctgry_poc_frc=poc1ab.cd_subctgry_poc_frc
+-- 				and poc1ab.start_date  >= min_service_date
+--            join ref_lookup_service_budget ref_bud on ref_bud.cd_budget_poc_frc=poc1ab.cd_budget_poc_frc
+-- 				and poc1ab.start_date  >= min_budget_date	
       order by  poc1ab.bin_dep_cd 
                             ,poc1ab.qry_type
                             , poc1ab.date_type
@@ -776,8 +773,9 @@ end if; -- not all rows exist in cache
                             , poc1ab.cd_reporter_type
                             , poc1ab.cd_access_type
                             , poc1ab.cd_allegation
-                            , poc1ab.cd_finding
-                            , poc1ab.cd_subctgry_poc_frc 
-                            , poc1ab.cd_budget_poc_frc;  
+                            , poc1ab.cd_finding;
+--                            , poc1ab.cd_subctgry_poc_frc 
+--                            , poc1ab.cd_budget_poc_frc;  
      end if;--  end strored procedure on
-end
+end$$
+DELIMITER ;

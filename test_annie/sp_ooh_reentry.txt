@@ -3,7 +3,6 @@
 -- Note: comments before and after the routine body will not be stored by the server
 -- --------------------------------------------------------------------------------
 DELIMITER $$
-
 CREATE DEFINER=`test_annie`@`%` PROCEDURE `sp_ooh_reentry`(  p_age_grouping_cd varchar(30)
 ,  p_ethnicity_cd varchar(30)
 ,  p_gender_cd varchar(10)
@@ -17,13 +16,15 @@ CREATE DEFINER=`test_annie`@`%` PROCEDURE `sp_ooh_reentry`(  p_age_grouping_cd v
 ,  p_filter_access_type varchar(30) 
 ,  p_filter_allegation  varchar(30)
 , p_filter_finding varchar(30)
-, p_filter_service_category  varchar(100)
-, p_filter_service_budget varchar(100)
+-- , p_filter_service_category  varchar(100)
+-- , p_filter_service_budget varchar(100)
 , p_bin_dep_cd varchar(20)
  )
 begin
 
 declare flg_procedure_off int;
+declare p_filter_service_category varchar(100);
+declare p_filter_service_budget varchar(100);
 
 
 declare var_calling_procedure int;
@@ -42,8 +43,6 @@ declare var_row_cnt_cache int;
 
 declare min_filter_date datetime;
 
-
-
 declare unq_qry_id int;
 
 
@@ -54,6 +53,7 @@ set x1=rand();
 set x2=rand();
 
 set var_calling_procedure = 9;
+set p_filter_service_category='0', p_filter_service_budget='0';
 
 select max(a.db_min_filter_date) into min_filter_date
 from (
@@ -859,7 +859,7 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
          
         end if; --  all rows not in cache              
     
-            select    					  
+                select    					  
                   reentry_within_month as  "Months Since Exiting Out-of-Home Care"
                   ,pbcp5.start_year as "Cohort Entry Date"
                 , qry_type "qry_type_poc1_first_unique"
@@ -950,10 +950,10 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
                        when 3 then @fnd3
                        when 4 then @fnd4
                     end as "Finding"
-                            , pbcp5.cd_subctgry_poc_frc as "service_type_cd"
-                            , ref_srv.tx_subctgry_poc_frc as "Service Type"
-                            , pbcp5.cd_budget_poc_frc   "budget_cd"
-                            , ref_bud.tx_budget_poc_frc  "Budget"
+--                            , pbcp5.cd_subctgry_poc_frc as "service_type_cd"
+--                            , ref_srv.tx_subctgry_poc_frc as "Service Type"
+--                            , pbcp5.cd_budget_poc_frc   "budget_cd"
+--                            , ref_bud.tx_budget_poc_frc  "Budget"
                 , pbcp5.cd_discharge_type
                             , toe.type_of_exit_desc as "Discharge Type"
                 , reentry_rate as "Re-Entry Percent"
@@ -976,10 +976,10 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcp5.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcp5.cd_access_type
 			join ref_filter_ihs_services ihs on ihs.bin_ihs_svc_cd=pbcp5.bin_ihs_svc_cd and pbcp5.Cohort_Entry_date>=min_display_date
-            join ref_lookup_service_category ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
-             and cohort_entry_date>=min_service_date
-            join ref_lookup_service_budget ref_bud on ref_bud.cd_budget_poc_frc =pbcp5.cd_budget_poc_frc
-                   and cohort_entry_date>=min_budget_date
+--            join ref_lookup_service_category ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
+--             and cohort_entry_date>=min_service_date
+--            join ref_lookup_service_budget ref_bud on ref_bud.cd_budget_poc_frc =pbcp5.cd_budget_poc_frc
+--                   and cohort_entry_date>=min_budget_date
              where date_add(cohort_entry_date,INTERVAL (15 + pbcp5.reentry_within_month) MONTH) <= cutoff_date
             order by 
                 pbcp5.bin_dep_cd asc
@@ -998,9 +998,10 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
                     , pbcp5.cd_access_type
                     , pbcp5.cd_allegation
                     , pbcp5.cd_finding
-                    , pbcp5.cd_subctgry_poc_frc
-                    , pbcp5.cd_budget_poc_frc
+--                    , pbcp5.cd_subctgry_poc_frc
+--                    , pbcp5.cd_budget_poc_frc
             ,pbcp5.reentry_within_month asc
             ,pbcp5.cd_discharge_type asc;
      end if; -- stored procedure on
-END
+END$$
+DELIMITER ;

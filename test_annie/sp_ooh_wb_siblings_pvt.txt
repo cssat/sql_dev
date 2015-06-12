@@ -16,13 +16,15 @@ CREATE DEFINER=`test_annie`@`%` PROCEDURE `sp_ooh_wb_siblings_pvt`(  p_age_group
 ,  p_filter_access_type varchar(30) 
 ,  p_filter_allegation  varchar(30)
 , p_filter_finding varchar(30)
-, p_filter_service_category  varchar(100)
-, p_filter_service_budget varchar(100)
+-- , p_filter_service_category  varchar(100)
+-- , p_filter_service_budget varchar(100)
 , p_bin_dep_cd varchar(20)
  )
 begin
 
 declare flg_procedure_off int;
+declare p_filter_service_category varchar(100);
+declare p_filter_service_budget varchar(100);
 
 declare p_qry_id bigint;
 declare p_mindate datetime;
@@ -49,6 +51,7 @@ DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
 set x1=rand();
 set x2=rand();
 set var_calling_procedure=13;
+set p_filter_service_category='0', p_filter_service_budget='0';
 
 select max(a.db_min_filter_date) into min_filter_date
 from (
@@ -688,10 +691,10 @@ if  flg_procedure_off =0 then
                    when 3 then @fnd3
                    when 4 then @fnd4
                 end as "Finding"
-						, pbcw4.cd_subctgry_poc_frc as "service_type_cd"
-						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw4.cd_budget_poc_frc   "budget_cd"
-						, ref_bud.tx_budget_poc_frc  "Budget"
+-- 						, pbcw4.cd_subctgry_poc_frc as "service_type_cd"
+-- 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
+-- 						, pbcw4.cd_budget_poc_frc   "budget_cd"
+-- 						, ref_bud.tx_budget_poc_frc  "Budget"
             , kincare
             , case when kincare=1 then @kin1 else @kin0 end  as "Placement Type",
             1 "measure_nbr",
@@ -713,8 +716,8 @@ if  flg_procedure_off =0 then
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw4.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw4.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw4.cd_access_type
-            join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
-            join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
+--            join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
+--            join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
             join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
             where pbcw4.bin_sibling_group_size > 0 
             group by pbcw4.cohort_begin_year,
@@ -730,8 +733,8 @@ if  flg_procedure_off =0 then
                     pbcw4.cd_access_type,
                     pbcw4.cd_allegation,
                     pbcw4.cd_finding,
-                    pbcw4.cd_subctgry_poc_frc,
-                    pbcw4.cd_budget_poc_frc,
+--                    pbcw4.cd_subctgry_poc_frc,
+--                    pbcw4.cd_budget_poc_frc,
                     pbcw4.age_grouping_cd,
                     pbcw4.cd_race,
                     pbcw4.pk_gndr,
@@ -829,10 +832,10 @@ if  flg_procedure_off =0 then
                    when 3 then @fnd3
                    when 4 then @fnd4
                 end as "Finding"
-						, pbcw4.cd_subctgry_poc_frc as "service_type_cd"
-						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw4.cd_budget_poc_frc   "budget_cd"
-						, ref_bud.tx_budget_poc_frc  "Budget"
+-- 						, pbcw4.cd_subctgry_poc_frc as "service_type_cd"
+-- 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
+-- 						, pbcw4.cd_budget_poc_frc   "budget_cd"
+-- 						, ref_bud.tx_budget_poc_frc  "Budget"
             , kincare
             , case when kincare=1 then @kin1 else @kin0 end as "Placement Type",
             2 "measure_nbr",
@@ -854,8 +857,8 @@ if  flg_procedure_off =0 then
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw4.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw4.cd_access_type
 			join ref_filter_ihs_services ihs on ihs.bin_ihs_svc_cd=pbcw4.bin_ihs_svc_cd and pbcw4.cohort_entry_date>=min_display_date
-            join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
-            join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
+--            join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
+--            join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
             join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
             where pbcw4.bin_sibling_group_size > 0 
             group by pbcw4.cohort_begin_year,
@@ -871,8 +874,8 @@ if  flg_procedure_off =0 then
                     pbcw4.cd_access_type,
                     pbcw4.cd_allegation,
                     pbcw4.cd_finding,
-                    pbcw4.cd_subctgry_poc_frc,
-                    pbcw4.cd_budget_poc_frc,
+--                    pbcw4.cd_subctgry_poc_frc,
+--                    pbcw4.cd_budget_poc_frc,
                     pbcw4.age_grouping_cd,
                     pbcw4.cd_race,
                     pbcw4.pk_gndr,
@@ -971,10 +974,10 @@ if  flg_procedure_off =0 then
                    when 3 then @fnd3
                    when 4 then @fnd4
                 end as "Finding"
-						, pbcw4.cd_subctgry_poc_frc as "service_type_cd"
-						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, pbcw4.cd_budget_poc_frc   "budget_cd"
-						, ref_bud.tx_budget_poc_frc  "Budget"
+-- 						, pbcw4.cd_subctgry_poc_frc as "service_type_cd"
+-- 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
+-- 						, pbcw4.cd_budget_poc_frc   "budget_cd"
+-- 						, ref_bud.tx_budget_poc_frc  "Budget"
             , kincare
             , case when kincare=1 then @kin1 else @kin0 end as "Placement Type"
             ,3 "measure_nbr",
@@ -999,11 +1002,11 @@ if  flg_procedure_off =0 then
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw4.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw4.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw4.cd_access_type
-			join ref_filter_ihs_services ihs on ihs.bin_ihs_svc_cd=pbcw4.bin_ihs_svc_cd and pbcw4.cohort_entry_date>=min_display_date
-            join ref_lookup_service_category ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
-					and pbcw4.cohort_entry_date>=ref_srv.min_service_date 
-            join ref_lookup_service_budget ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
-					and pbcw4.cohort_entry_date>=ref_bud.min_budget_date 
+			join ref_filter_ihs_services ihs on ihs.bin_ihs_svc_cd=pbcw4.bin_ihs_svc_cd and pbcw4.cohort_entry_date>=min_display_date--
+--            join ref_lookup_service_category ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
+-- 					and pbcw4.cohort_entry_date>=ref_srv.min_service_date 
+--            join ref_lookup_service_budget ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
+-- 					and pbcw4.cohort_entry_date>=ref_bud.min_budget_date 
             join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
             where pbcw4.bin_sibling_group_size > 0 
             group by pbcw4.cohort_begin_year,
@@ -1019,8 +1022,8 @@ if  flg_procedure_off =0 then
                     pbcw4.cd_access_type,
                     pbcw4.cd_allegation,
                     pbcw4.cd_finding,
-                    pbcw4.cd_subctgry_poc_frc,
-                    pbcw4.cd_budget_poc_frc,
+--                    pbcw4.cd_subctgry_poc_frc,
+--                    pbcw4.cd_budget_poc_frc,
                     pbcw4.age_grouping_cd,
                     pbcw4.cd_race,
                     pbcw4.pk_gndr,
@@ -1058,10 +1061,10 @@ if  flg_procedure_off =0 then
 						, cd_allegation
 						, cd_finding
 						, "Finding"
-						, "service_type_cd"
-						, "Service Type"
-						, "budget_cd"
-						, "Budget"
+-- 						, "service_type_cd"
+-- 						, "Service Type"
+-- 						, "budget_cd"
+-- 						, "Budget"
             , kincare
             ,  "Placement Type";
  end if; -- turn procedure off

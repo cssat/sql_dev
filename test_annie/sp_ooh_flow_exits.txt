@@ -3,7 +3,6 @@
 -- Note: comments before and after the routine body will not be stored by the server
 -- --------------------------------------------------------------------------------
 DELIMITER $$
-
 CREATE DEFINER=`test_annie`@`%` PROCEDURE `sp_ooh_flow_exits`(p_date  varchar(3000)
 ,  p_age_grouping_cd varchar(30)
 ,  p_ethnicity_cd varchar(30)
@@ -18,8 +17,8 @@ CREATE DEFINER=`test_annie`@`%` PROCEDURE `sp_ooh_flow_exits`(p_date  varchar(30
 ,  p_filter_access_type varchar(30) 
 ,  p_filter_allegation  varchar(30)
 , p_filter_finding varchar(30)
-, p_filter_service_category  varchar(100)
-, p_filter_service_budget varchar(100)
+-- , p_filter_service_category  varchar(100)
+-- , p_filter_service_budget varchar(100)
 , p_bin_dep_cd varchar(20)
  )
 begin
@@ -28,6 +27,8 @@ begin
  
 declare flg_procedure_off int;
 declare intFoundPos integer;
+declare p_filter_service_category varchar(100);
+declare p_filter_service_budget varchar(100);
 
 declare strElement varchar(3000);
 declare strValues varchar(3000);
@@ -48,18 +49,15 @@ declare x2 float;
 declare var_row_cnt_param int;
 declare var_row_cnt_cache int;
 
-
 declare min_filter_date datetime;
 
-
-
 declare var_calling_procedure int;
-
 DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
 
 set var_calling_procedure=25;
 set x1=rand();
 set x2=rand();
+set p_filter_service_category='0', p_filter_service_budget='0';
 
 select max(a.db_min_filter_date) into min_filter_date
 from (
@@ -719,10 +717,10 @@ end if; -- not all rows exist in cache
                 , case poc1ab.cd_allegation  when 0  then @alg0 when 1  then @alg1 when 2  then @alg2 when 3  then @alg3 when 4  then @alg4 end as "Allegation"
                 , poc1ab.cd_finding
                 , case poc1ab.cd_finding  when 0  then @fnd0 when 1  then @fnd1 when 2  then @fnd2 when 3  then @fnd3 when 4  then @fnd4 end as "Finding"
-                , poc1ab.cd_subctgry_poc_frc as "service_type_cd"
-                , ref_srv.tx_subctgry_poc_frc as "Service Type"
-                , poc1ab.cd_budget_poc_frc as "budget_cd"
-                , ref_bud.tx_budget_poc_frc as "Budget"  
+--                , poc1ab.cd_subctgry_poc_frc as "service_type_cd"
+--                , ref_srv.tx_subctgry_poc_frc as "Service Type"
+--                , poc1ab.cd_budget_poc_frc as "budget_cd"
+--                , ref_bud.tx_budget_poc_frc as "Budget"  
                 , poc1ab.cd_discharge_type 
                 , dsch.discharge_type as "Outcome"
                  ,  case when (cnt_exits) > 0 /* jitter all above 0 */ 
@@ -747,12 +745,12 @@ end if; -- not all rows exist in cache
 			join ref_filter_ihs_services ihs on ihs.bin_ihs_svc_cd=poc1ab.bin_ihs_svc_cd and poc1ab.start_date>=min_display_date
              join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=poc1ab.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=poc1ab.cd_access_type
-            join ref_lookup_service_category ref_srv 
-                on ref_srv.cd_subctgry_poc_frc=poc1ab.cd_subctgry_poc_frc
-                    and poc1ab.start_date>=ref_srv.min_service_date
-            join ref_lookup_service_budget ref_bud 
-                on ref_bud.cd_budget_poc_frc=poc1ab.cd_budget_poc_frc
-                and poc1ab.start_date >=ref_bud.min_budget_date
+--            join ref_lookup_service_category ref_srv 
+--                on ref_srv.cd_subctgry_poc_frc=poc1ab.cd_subctgry_poc_frc
+--                    and poc1ab.start_date>=ref_srv.min_service_date
+--            join ref_lookup_service_budget ref_bud 
+--                on ref_bud.cd_budget_poc_frc=poc1ab.cd_budget_poc_frc
+--                and poc1ab.start_date >=ref_bud.min_budget_date
         join ref_lookup_cd_discharge_type_exits dsch on dsch.cd_discharge_type=poc1ab.cd_discharge_type
         order by  poc1ab.bin_dep_cd 
                             ,poc1ab.qry_type
@@ -771,7 +769,9 @@ end if; -- not all rows exist in cache
                             , poc1ab.cd_access_type
                             , poc1ab.cd_allegation
                             , poc1ab.cd_finding
-                            , poc1ab.cd_subctgry_poc_frc 
-                            , poc1ab.cd_budget_poc_frc,poc1ab.cd_discharge_type;  
+--                            , poc1ab.cd_subctgry_poc_frc 
+--                            , poc1ab.cd_budget_poc_frc
+							,poc1ab.cd_discharge_type;  
      end if; -- end all NOT ZEROES
- end
+ end$$
+DELIMITER ;

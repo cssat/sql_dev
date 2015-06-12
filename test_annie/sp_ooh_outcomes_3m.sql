@@ -3,7 +3,6 @@
 -- Note: comments before and after the routine body will not be stored by the server
 -- --------------------------------------------------------------------------------
 DELIMITER $$
-
 CREATE DEFINER=`test_annie`@`%` PROCEDURE `sp_ooh_outcomes_3m`( p_age_grouping_cd varchar(30)
 ,  p_ethnicity_cd varchar(30)
 ,  p_gender_cd varchar(10)
@@ -17,8 +16,8 @@ CREATE DEFINER=`test_annie`@`%` PROCEDURE `sp_ooh_outcomes_3m`( p_age_grouping_c
 ,  p_filter_access_type varchar(30) 
 ,  p_filter_allegation  varchar(30)
 , p_filter_finding varchar(30)
-, p_filter_service_category  varchar(100)
-, p_filter_service_budget varchar(100)
+-- , p_filter_service_category  varchar(100)
+-- , p_filter_service_budget varchar(100)
 , p_bin_dep_cd varchar(20)
  )
 begin
@@ -32,7 +31,8 @@ declare p_maxdate datetime;
 declare p_minmonthstart datetime;
 declare p_maxmonthstart datetime;
 declare var_calling_procedure int;
-
+declare p_filter_service_category varchar(100);
+declare p_filter_service_budget varchar(100);
 
 declare x1 float;
 declare x2 float;
@@ -40,10 +40,7 @@ declare x2 float;
 declare var_row_cnt_param int;
 declare var_row_cnt_cache int;
 
-
 declare min_filter_date datetime;
-
-
 
 declare unq_qry_id int;
 declare var_cutoff_date datetime;
@@ -55,6 +52,7 @@ set x1=rand();
 set x2=rand();
 
 set var_calling_procedure=23;
+set p_filter_service_category='0', p_filter_service_budget=0;
 
 select max(a.db_min_filter_date) into min_filter_date
 from (
@@ -970,10 +968,10 @@ select
         when 3 then @fnd3
         when 4 then @fnd4
     end as "Finding",
-    outcomes.cd_subctgry_poc_frc as "service_type_cd",
-    ref_srv.tx_subctgry_poc_frc as "Service Type",
-    outcomes.cd_budget_poc_frc "budget_cd",
-    ref_bud.tx_budget_poc_frc "Budget",
+--    outcomes.cd_subctgry_poc_frc as "service_type_cd",
+--    ref_srv.tx_subctgry_poc_frc as "Service Type",
+--    outcomes.cd_budget_poc_frc "budget_cd",
+--    ref_bud.tx_budget_poc_frc "Budget",
     outcomes.cd_discharge_type,
     toe.type_of_exit_desc as "Discharge",
     rate as "Percent"
@@ -1002,15 +1000,16 @@ join ref_filter_ihs_services ihs on ihs.bin_ihs_svc_cd=outcomes.bin_ihs_svc_cd a
     ref_filter_reporter_type ref_rpt ON ref_rpt.cd_reporter_type = outcomes.cd_reporter_type
         join
     ref_filter_access_type ref_acc ON ref_acc.cd_access_type = outcomes.cd_access_type
-        join
-    ref_lookup_service_category ref_srv ON ref_srv.cd_subctgry_poc_frc = outcomes.cd_subctgry_poc_frc
-			and outcomes.cohort_entry_date>=min_service_date
-        join
-    ref_lookup_service_budget ref_bud ON ref_bud.cd_budget_poc_frc = outcomes.cd_budget_poc_frc
-			and outcomes.cohort_entry_date>=min_budget_date
+--        join
+--    ref_lookup_service_category ref_srv ON ref_srv.cd_subctgry_poc_frc = outcomes.cd_subctgry_poc_frc
+-- 			and outcomes.cohort_entry_date>=min_service_date
+--        join
+--    ref_lookup_service_budget ref_bud ON ref_bud.cd_budget_poc_frc = outcomes.cd_budget_poc_frc
+-- 			and outcomes.cohort_entry_date>=min_budget_date
 where  outcomes.mnth=3
     and date_add(cohort_entry_date,
         INTERVAL (15 + outcomes.mnth) MONTH) <= cutoff_date
-order by outcomes.cohort_entry_date asc , qry_type , age_grouping_cd asc , gender_cd asc , ethnicity_cd asc , init_cd_plcm_setng asc , long_cd_plcm_setng asc , county_cd asc , outcomes.bin_dep_cd asc , outcomes.bin_los_cd asc , outcomes.bin_placement_cd asc , outcomes.bin_ihs_svc_cd asc , outcomes.cd_reporter_type , outcomes.cd_access_type , outcomes.cd_allegation , outcomes.cd_finding , outcomes.cd_subctgry_poc_frc , outcomes.cd_budget_poc_frc , outcomes.mnth asc , outcomes.cd_discharge_type asc;
+order by outcomes.cohort_entry_date asc , qry_type , age_grouping_cd asc , gender_cd asc , ethnicity_cd asc , init_cd_plcm_setng asc , long_cd_plcm_setng asc , county_cd asc , outcomes.bin_dep_cd asc , outcomes.bin_los_cd asc , outcomes.bin_placement_cd asc , outcomes.bin_ihs_svc_cd asc , outcomes.cd_reporter_type , outcomes.cd_access_type , outcomes.cd_allegation , outcomes.cd_finding , /*outcomes.cd_subctgry_poc_frc , outcomes.cd_budget_poc_frc , */outcomes.mnth asc , outcomes.cd_discharge_type asc;
 end if;
-end
+end$$
+DELIMITER ;
