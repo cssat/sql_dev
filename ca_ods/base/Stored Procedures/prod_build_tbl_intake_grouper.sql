@@ -58,7 +58,8 @@ alter table base.tbl_intake_grouper NOCHECK CONSTRAINT ALL;
 truncate table base.tbl_intake_grouper
 insert into base.tbl_intake_grouper(id_intake_fact, intake_grouper, id_case, intk_grp_seq_nbr)
 select distinct id_intake_fact
-	,intake_grouper,id_case 
+	,intake_grouper
+	,id_case 
 	,row_number() over (partition by intake_grouper order by rfrd_date)
 from #intakes
 
@@ -69,10 +70,9 @@ select distinct id_intake_fact
 	,row_number() over (partition by id_intake_fact order by rfrd_date)
 from base.tbl_intakes
 	join (select max(intake_grouper) as seed from base.tbl_intake_grouper) as s 
-		on s.seed=s.seed
+		on s.seed = s.seed
 where id_case > 0
 	and not exists (select id_intake_fact from #intakes as intk where intk.id_intake_fact = tbl_intakes.id_intake_fact)
-
 
 
 alter table base.tbl_intake_grouper CHECK CONSTRAINT ALL;
