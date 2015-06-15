@@ -18,8 +18,6 @@ order by id_case
 	,inv_ass_start
 	,intake_rank
 
-select * from #intakes
-
 update intk
 set fl_group_with_prior = 1
 from #intakes intk
