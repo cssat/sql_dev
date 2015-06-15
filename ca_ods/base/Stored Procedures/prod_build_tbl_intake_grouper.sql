@@ -21,11 +21,12 @@ order by id_case
 update intk
 set fl_group_with_prior = 1
 from #intakes as intk
-join #intakes pr_intk on pr_intk.case_sort = intk.case_sort - 1 
+	join #intakes pr_intk 
+		on pr_intk.case_sort = intk.case_sort - 1 
 		and intk.id_case = pr_intk.id_case
 where abs(datediff(dd, intk.inv_ass_start, pr_intk.inv_ass_start)) <= 2
 
-	
+	select * from #intakes
 	
 
 --alter table #intakes
