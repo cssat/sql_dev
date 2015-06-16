@@ -135,13 +135,13 @@ CREATE  view [prtl].[vw_referrals_grp] as
 								,max(iif(hh_under_12.id_intake_fact is not null, 1, 0)) as [fl_hh_under_12]
 								,max(iif(hh_under_2.id_intake_fact is not null, 1, 0)) as [fl_hh_under_2]
 								,min(iif(cd_final_decision = 1, 1, 2)) as [grp_cd_final_decision]
-					from base.tbl_intake_grouper as grp
+					from base.tbl_intake_grouper as [grp]
 					join base.tbl_intakes as [intk]
-						on grp.id_intake_fact=intk.id_intake_fact 
+						on grp.id_intake_fact = intk.id_intake_fact 
 					left join (select distinct id_intake_fact 
 								from base.tbl_household_children 
 								where age_at_referral_dt < 18) as [hh_under_18]
-								on hh_under_18.id_intake_fact=intk.id_intake_fact
+								on hh_under_18.id_intake_fact = intk.id_intake_fact
 					left join (select distinct id_intake_fact 
 								from base.tbl_household_children 
 								where age_at_referral_dt < 5) as [hh_under_12]

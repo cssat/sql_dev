@@ -43,9 +43,10 @@ begin
 	update intk
 	set intk.intake_grouper = pr_intk.intake_grouper
 	from #intakes intk
-	join #intakes pr_intk on intk.id_case = pr_intk.id_case
-			 and pr_intk.case_sort = intk.case_sort-1 
-			 and intk.fl_group_with_prior = 1
+	join #intakes as pr_intk 
+		on intk.id_case = pr_intk.id_case
+		and pr_intk.case_sort = intk.case_sort-1 
+		and intk.fl_group_with_prior = 1
 	where intk.intake_grouper <> pr_intk.intake_grouper 
 		and pr_intk.fl_ooh_after_this_referral <> 1
 	
