@@ -189,4 +189,74 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="bin_sibling_group_size" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="aeed143b-b01f-4b42-ba69-bef242a6e711" ChangeDateTime="06/16/2015 22:32:15">
+    <Property Name="ElementName" Value="[prtl].[cache_ooh_flow_entries_params].[bin_dep_cd]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[prtl].[cache_ooh_flow_entries_params]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="bin_dependency_cd" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4eb2761e-97eb-4c98-b11a-308f10ebd905" ChangeDateTime="06/16/2015 22:33:02">
+    <Property Name="ElementName" Value="[prtl].[param_sets_demog].[cd_race]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[prtl].[param_sets_demog]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="cd_race_census" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f1cb584b-d1ad-4522-a8be-fb3bd636b1ef" ChangeDateTime="06/16/2015 22:33:34">
+    <Property Name="ElementName" Value="[prtl].[cache_ooh_flow_entries_params].[pk_gndr]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[prtl].[cache_ooh_flow_entries_params]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="pk_gender" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="41d20d26-eb0e-4624-b785-828df7adfc84" ChangeDateTime="06/16/2015 22:33:53">
+    <Property Name="ElementName" Value="[prtl].[cache_ooh_flow_exits_params].[pk_gndr]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[prtl].[cache_ooh_flow_exits_params]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="pk_gender" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e9a1bab5-38b2-4f2a-81bf-7cd1ed3801ea" ChangeDateTime="06/16/2015 22:34:07">
+    <Property Name="ElementName" Value="[prtl].[cache_ooh_outcomes_params].[pk_gndr]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[prtl].[cache_ooh_outcomes_params]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="pk_gender" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7cafc02f-aed5-4598-ad29-bd2fc440256f" ChangeDateTime="06/16/2015 22:34:23">
+    <Property Name="ElementName" Value="[prtl].[cache_ooh_pit_params].[pk_gndr]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[prtl].[cache_ooh_pit_params]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="pk_gender" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a6076f3a-5c10-49b6-8af5-64303852db7b" ChangeDateTime="06/16/2015 22:34:39">
+    <Property Name="ElementName" Value="[prtl].[cache_ooh_reentry_params].[pk_gndr]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[prtl].[cache_ooh_reentry_params]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="pk_gender" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6f277f9c-7b8c-4420-8cce-248ec8e82ca7" ChangeDateTime="06/16/2015 22:51:13">
+    <Property Name="ElementName" Value="[prtl].[cache_ooh_wb_siblings_params].[pk_gndr]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[prtl].[cache_ooh_wb_siblings_params]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="pk_gender" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8eb16299-a704-4752-be51-f2833a877ffd" ChangeDateTime="06/16/2015 22:51:20">
+    <Property Name="ElementName" Value="[prtl].[cache_ooh_wb_siblings_params].[county_cd]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[prtl].[cache_ooh_wb_siblings_params]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="cd_county" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9ad61fc1-1d17-4a55-a7b3-160334c464e3" ChangeDateTime="06/16/2015 22:51:32">
+    <Property Name="ElementName" Value="[prtl].[cache_ooh_wb_siblings_params].[bin_dep_cd]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[prtl].[cache_ooh_wb_siblings_params]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="bin_dependency_cd" />
+  </Operation>
 </Operations>
