@@ -26,8 +26,6 @@ from #intakes as intk
 		and intk.id_case = pr_intk.id_case
 where abs(datediff(dd, intk.inv_ass_start, pr_intk.inv_ass_start)) <= 2
 
-	select * from #intakes
-	
 
 --alter table #intakes
 --alter column case_sort bigint not null
