@@ -67,7 +67,6 @@
     <Folder Include="prtl\Tables" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="ref\Tables\age_dim.sql" />
     <Build Include="Security\ref.sql" />
     <Build Include="Security\mp.sql" />
     <Build Include="mp\Tables\adult_readiness.sql" />
@@ -94,6 +93,31 @@
     <Build Include="prtl\Tables\param_sets_ia.sql" />
     <Build Include="prtl\Tables\param_sets_placement.sql" />
     <Build Include="prtl\Tables\param_sets_geog.sql" />
+    <Build Include="prtl\Tables\ooh_outcomes.sql" />
+    <Build Include="ref\Tables\lookup_age_grouping.sql" />
+    <Build Include="ref\Tables\lookup_dev_age_grouping.sql" />
+    <Build Include="ref\Tables\lookup_ethnicity_census.sql" />
+    <Build Include="ref\Tables\lookup_gender.sql" />
+    <Build Include="ref\Tables\lookup_county.sql" />
+    <Build Include="ref\Tables\lookup_region_three.sql" />
+    <Build Include="ref\Tables\lookup_region_six.sql" />
+    <Build Include="ref\Tables\filter_reporter_type.sql" />
+    <Build Include="ref\Tables\filter_access_type.sql" />
+    <Build Include="ref\Tables\filter_allegation.sql" />
+    <Build Include="ref\Tables\filter_finding.sql" />
+    <Build Include="prtl\Tables\param_sets_wellbeing.sql" />
+    <Build Include="ref\Tables\filter_ihs_services.sql" />
+    <Build Include="ref\Tables\filter_dependency.sql" />
+    <Build Include="ref\Tables\lookup_placement_setting.sql" />
+    <Build Include="ref\Tables\filter_los.sql" />
+    <Build Include="ref\Tables\filter_nbr_placement.sql" />
+    <Build Include="ref\Tables\filter_discharge_type.sql" />
+    <Build Include="ref\Tables\filter_kincare.sql" />
+    <Build Include="ref\Tables\lookup_sibling_groups.sql" />
+    <Build Include="prtl\Tables\ooh_reentry.sql" />
+    <Build Include="prtl\Tables\ia_safety.sql" />
+    <Build Include="prtl\Tables\ooh_flow_entries.sql" />
+    <Build Include="prtl\Tables\ooh_flow_exits.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="annie.refactorlog" />

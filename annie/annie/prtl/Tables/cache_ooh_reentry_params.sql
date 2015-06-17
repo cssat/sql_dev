@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [prtl].[cache_ooh_reentry_params]
 (
     [qry_id] INT NOT NULL IDENTITY(1,1) 
-        CONSTRAINT [pk_cache_ooh_reentry] PRIMARY KEY, 
+        CONSTRAINT [pk_cache_ooh_reentry_params] PRIMARY KEY, 
     [age_grouping_cd] VARCHAR(20) NOT NULL, 
     [cd_race_census] VARCHAR(30) NOT NULL, 
     [pk_gender] VARCHAR(10) NOT NULL, 
