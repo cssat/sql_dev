@@ -13,6 +13,8 @@
         CONSTRAINT [fk_cache_ooh_wb_siblings_aggr_demog_param_key] FOREIGN KEY REFERENCES [prtl].[param_sets_demog]([demog_param_key]), 
     [geog_param_key] INT NOT NULL 
         CONSTRAINT [fk_cache_ooh_wb_siblings_aggr_geog_param_key] FOREIGN KEY REFERENCES [prtl].[param_sets_geog]([geog_param_key]), 
+    [wb_param_key] INT NOT NULL 
+        CONSTRAINT [fk_cache_ooh_wb_siblings_aggr_wb_param_key] FOREIGN KEY REFERENCES [prtl].[param_sets_wellbeing]([wb_param_key]), 
     [all_together] DECIMAL(9, 2) NULL, 
     [some_together] DECIMAL(9, 2) NULL, 
     [none_together] DECIMAL(9, 2) NULL, 
@@ -29,6 +31,7 @@
         [plcm_param_key], 
         [ia_param_key], 
         [demog_param_key], 
-        [geog_param_key] 
+        [geog_param_key], 
+        [wb_param_key] 
     )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
 )

@@ -13,6 +13,8 @@
         CONSTRAINT [fk_cache_ooh_wb_family_settings_aggr_demog_param_key] FOREIGN KEY REFERENCES [prtl].[param_sets_demog]([demog_param_key]), 
     [geog_param_key] INT NOT NULL
         CONSTRAINT [fk_cache_ooh_wb_family_settings_aggr_geog_param_key] FOREIGN KEY REFERENCES [prtl].[param_sets_geog]([geog_param_key]), 
+    [wb_param_key] INT NOT NULL 
+        CONSTRAINT [fk_cache_ooh_wb_family_settings_aggr_wb_param_key] FOREIGN KEY REFERENCES [prtl].[param_sets_wellbeing]([wb_param_key]), 
     [family_setting_dcfs_percentage] DECIMAL(9, 2) NULL, 
     [family_setting_private_agency_percentage] DECIMAL(9, 2) NULL, 
 	[relative_percentage] DECIMAL(9, 2) NULL, 
@@ -30,6 +32,7 @@
         [plcm_param_key], 
         [ia_param_key], 
         [demog_param_key], 
-        [geog_param_key] 
+        [geog_param_key], 
+        [wb_param_key] 
     )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
 )

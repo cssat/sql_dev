@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[param_sets_wellbeing]
+﻿CREATE TABLE [prtl].[param_sets_wellbeing]
 (
     [wb_param_key] INT NOT NULL
         CONSTRAINT [pk_param_sets_wellbeing] PRIMARY KEY, 
