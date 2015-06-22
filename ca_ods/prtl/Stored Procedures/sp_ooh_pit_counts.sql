@@ -716,8 +716,8 @@ from (
 									, mtch.cd_race_census
 									, mtch.pk_gndr
 									, mtch.init_cd_plcm_setng
-									, mtch.init_cd_plcm_setng
-									, mtch.county_cd
+									, mtch.long_cd_plcm_setng
+									, cnty.cd_cnty
 
 
 		update cache_poc1ab_aggr
