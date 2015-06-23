@@ -539,4 +539,81 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="age_sib_group_cd" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="a7e4e4c4-8064-4793-95e4-8dfbed658771" ChangeDateTime="06/23/2015 21:44:11">
+    <Property Name="ElementName" Value="[prtl].[ooh_pit_measures].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[prtl].[ooh_pit_measures]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="start_date" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="244fb8a1-39a4-4eeb-9fdf-624ebbeee2d4" ChangeDateTime="06/23/2015 21:52:39">
+    <Property Name="ElementName" Value="[prtl].[ooh_pit_measures].[param_key_wellbeing]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[prtl].[ooh_pit_measures]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="param_key_wb" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a30f89e7-0a90-4103-9a98-85ecb799a2e6" ChangeDateTime="06/23/2015 21:52:49">
+    <Property Name="ElementName" Value="[prtl].[ooh_pit_measures].[param_key_placement]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[prtl].[ooh_pit_measures]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="param_key_plcm" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f033d379-2ef3-405c-b08c-8b0e2423708d" ChangeDateTime="06/23/2015 21:56:33">
+    <Property Name="ElementName" Value="[prtl].[ooh_pit_measures].[fl_poc1ab]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[prtl].[ooh_pit_measures]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="fl_ooh_pit" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="35b2e805-6331-4807-a248-8dde6b09c625" ChangeDateTime="06/23/2015 21:57:07">
+    <Property Name="ElementName" Value="[prtl].[ooh_pit_measures].[fl_w4]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[prtl].[ooh_pit_measures]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="fl_ooh_wb_siblings" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b62b30b5-489f-470d-af64-74dd78849bdb" ChangeDateTime="06/23/2015 21:57:16">
+    <Property Name="ElementName" Value="[prtl].[ooh_pit_measures].[fl_w3]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[prtl].[ooh_pit_measures]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="fl_ooh_wb_family_settings" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="42c96a82-4e6d-49fe-a6d8-173bdc37b5d8" ChangeDateTime="06/23/2015 21:57:46">
+    <Property Name="ElementName" Value="[prtl].[ooh_pit_measures].[param_key_demog]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[prtl].[ooh_pit_measures]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="demog_param_key" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="64f0d58d-ce29-486f-8ffc-bf2a1cbeeb25" ChangeDateTime="06/23/2015 21:57:53">
+    <Property Name="ElementName" Value="[prtl].[ooh_pit_measures].[param_key_ia]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[prtl].[ooh_pit_measures]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ia_param_key" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="807d51ad-0d4e-4163-bc36-20a11f69792b" ChangeDateTime="06/23/2015 21:58:10">
+    <Property Name="ElementName" Value="[prtl].[ooh_pit_measures].[param_key_geog]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[prtl].[ooh_pit_measures]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="geog_param_key" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e3b6fb87-5d0f-4860-9256-22c383d58bce" ChangeDateTime="06/23/2015 21:58:29">
+    <Property Name="ElementName" Value="[prtl].[ooh_pit_measures].[param_key_plcm]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[prtl].[ooh_pit_measures]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="plcm_param_key" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="63874cc5-4653-4393-9f7a-072bfc7abe9b" ChangeDateTime="06/23/2015 21:59:06">
+    <Property Name="ElementName" Value="[prtl].[ooh_pit_measures].[param_key_wb]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[prtl].[ooh_pit_measures]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="wb_param_key" />
+  </Operation>
 </Operations>

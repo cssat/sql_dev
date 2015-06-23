@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [prtl].[param_sets_wellbeing]
 (
-    [wb_param_key] INT NOT NULL
+    [wb_param_key] INT NOT NULL IDENTITY(1,1)
         CONSTRAINT [pk_param_sets_wellbeing] PRIMARY KEY, 
     [kincare] INT NOT NULL 
         CONSTRAINT [fk_param_sets_wellbeing_kincare] FOREIGN KEY REFERENCES [ref].[filter_kincare]([kincare]), 
