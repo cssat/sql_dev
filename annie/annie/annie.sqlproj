@@ -66,6 +66,7 @@
     <Folder Include="prtl" />
     <Folder Include="prtl\Tables" />
     <Folder Include="prtl\Stored Procedures" />
+    <Folder Include="ref\Views" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Security\ref.sql" />
@@ -96,7 +97,7 @@
     <Build Include="prtl\Tables\param_sets_geog.sql" />
     <Build Include="prtl\Tables\ooh_outcomes.sql" />
     <Build Include="ref\Tables\lookup_age_grouping.sql" />
-    <Build Include="ref\Tables\lookup_dev_age_grouping.sql" />
+    <Build Include="ref\Tables\lookup_age_dev.sql" />
     <Build Include="ref\Tables\lookup_ethnicity_census.sql" />
     <Build Include="ref\Tables\lookup_gender.sql" />
     <Build Include="ref\Tables\lookup_county.sql" />
@@ -120,6 +121,11 @@
     <Build Include="prtl\Tables\ooh_flow_entries.sql" />
     <Build Include="prtl\Tables\ooh_flow_exits.sql" />
     <Build Include="prtl\Tables\ia_trends.sql" />
+    <Build Include="ref\Views\vw_los_lag.sql" />
+    <Build Include="ref\Tables\last_dw_transfer.sql" />
+    <Build Include="ref\Views\vw_dependency_lag.sql" />
+    <Build Include="ref\Tables\lookup_age_census.sql" />
+    <Build Include="ref\Tables\lookup_age_sib_group.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="annie.refactorlog" />

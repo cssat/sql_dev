@@ -511,4 +511,32 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="qry_type" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="8484a9eb-8d1d-465f-968d-ced2ef0c3af7" ChangeDateTime="06/19/2015 20:56:55">
+    <Property Name="ElementName" Value="[dbo].[last_dw_transfer].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[last_dw_transfer]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="cutoff_date" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c8a42b92-4e3a-468c-9bd7-5ae9ac49dbc0" ChangeDateTime="06/19/2015 22:10:50">
+    <Property Name="ElementName" Value="[prtl].[param_sets_demog].[dev_age_grouping_cd]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[prtl].[param_sets_demog]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="age_dev_cd" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="021a7730-be50-4ea5-97e9-56680790defb" ChangeDateTime="06/19/2015 22:13:45">
+    <Property Name="ElementName" Value="[ref].[lookup_age_census].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[ref].[lookup_age_census]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="age_census_cd" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="631a64ff-92e9-41d4-bcfd-d6a69c170114" ChangeDateTime="06/19/2015 23:03:47">
+    <Property Name="ElementName" Value="[ref].[lookup_age_sib_group].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[ref].[lookup_age_sib_group]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="age_sib_group_cd" />
+  </Operation>
 </Operations>
