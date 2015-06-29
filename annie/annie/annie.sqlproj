@@ -67,6 +67,8 @@
     <Folder Include="prtl\Tables" />
     <Folder Include="prtl\Stored Procedures" />
     <Folder Include="ref\Views" />
+    <Folder Include="setup" />
+    <Folder Include="setup\Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Security\ref.sql" />
@@ -127,6 +129,15 @@
     <Build Include="ref\Tables\lookup_age_census.sql" />
     <Build Include="ref\Tables\lookup_age_sib_group.sql" />
     <Build Include="prtl\Tables\ooh_pit_measures.sql" />
+    <Build Include="Security\setup.sql" />
+    <Build Include="setup\Stored Procedures\populate_param_sets_demog.sql" />
+    <Build Include="setup\Stored Procedures\populate_param_sets_geog.sql" />
+    <Build Include="setup\Stored Procedures\populate_param_sets_ia.sql" />
+    <Build Include="setup\Stored Procedures\populate_param_sets_placement.sql" />
+    <Build Include="setup\Stored Procedures\populate_param_sets_wellbeing.sql" />
+    <Build Include="prtl\Stored Procedures\import_ia_safety.sql" />
+    <Build Include="prtl\Stored Procedures\build_cache_ia_safety_aggr.sql" />
+    <Build Include="prtl\Stored Procedures\sp_ia_safety.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="annie.refactorlog" />
