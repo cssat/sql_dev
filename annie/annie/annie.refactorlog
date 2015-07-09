@@ -728,4 +728,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="number" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="eb0fcb39-7da2-47d6-807a-29ea5574c715" ChangeDateTime="06/30/2015 21:20:43">
+    <Property Name="ElementName" Value="[prtl].[ia_trends].[ia_param_key]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[prtl].[ia_trends]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="cd_reporter_type" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b71de862-68eb-4ded-8604-e21aa3cd3901" ChangeDateTime="06/30/2015 23:02:43">
+    <Property Name="ElementName" Value="[dbo].[match_census_household_population].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[match_census_household_population]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="age_sib_group_cd" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="17dbe079-8381-4027-b39a-0d7fd0424f66" ChangeDateTime="07/08/2015 17:59:04">
+    <Property Name="ElementName" Value="[ref].[match_census_population_household].[cd_race_ethnicity]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[ref].[match_census_population_household]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="cd_race_census" />
+  </Operation>
 </Operations>

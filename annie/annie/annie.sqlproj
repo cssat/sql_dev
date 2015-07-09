@@ -69,6 +69,8 @@
     <Folder Include="ref\Views" />
     <Folder Include="setup" />
     <Folder Include="setup\Stored Procedures" />
+    <Folder Include="ref\Stored Procedures" />
+    <Folder Include="prtl\Functions" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Security\ref.sql" />
@@ -138,6 +140,35 @@
     <Build Include="prtl\Stored Procedures\import_ia_safety.sql" />
     <Build Include="prtl\Stored Procedures\build_cache_ia_safety_aggr.sql" />
     <Build Include="prtl\Stored Procedures\sp_ia_safety.sql" />
+    <Build Include="ref\Views\match_age_dev_cd.sql" />
+    <Build Include="ref\Views\match_age_grouping_cd.sql" />
+    <Build Include="ref\Views\match_age_sib_group_cd.sql" />
+    <Build Include="ref\Views\match_cd_access_type.sql" />
+    <Build Include="ref\Views\match_cd_age_census.sql" />
+    <Build Include="ref\Views\match_cd_county.sql" />
+    <Build Include="ref\Views\match_cd_race_census.sql" />
+    <Build Include="ref\Views\match_cd_region_six.sql" />
+    <Build Include="ref\Views\match_cd_region_three.sql" />
+    <Build Include="ref\Views\match_cd_reporter_type.sql" />
+    <Build Include="ref\Views\match_pk_gender.sql" />
+    <Build Include="ref\Tables\match_allegation.sql" />
+    <Build Include="ref\Tables\match_finding.sql" />
+    <Build Include="ref\Tables\numbers.sql" />
+    <Build Include="ref\Tables\match_census_population_household.sql" />
+    <Build Include="setup\Stored Procedures\populate_param_match_demog.sql" />
+    <Build Include="setup\Stored Procedures\populate_param_match_geog.sql" />
+    <Build Include="setup\Stored Procedures\populate_param_match_ia.sql" />
+    <Build Include="prtl\Tables\param_match_demog.sql" />
+    <Build Include="prtl\Tables\param_match_geog.sql" />
+    <Build Include="prtl\Tables\param_match_ia.sql" />
+    <Build Include="ref\Tables\lookup_max_date.sql" />
+    <Build Include="ref\Stored Procedures\import_match_census_population_household.sql" />
+    <Build Include="prtl\Functions\fn_ReturnStrTableFromList.sql" />
+    <Build Include="prtl\Functions\fnc_jitter.sql" />
+    <Build Include="prtl\Stored Procedures\build_cache_ia_trends_aggr.sql" />
+    <Build Include="prtl\Stored Procedures\sp_ia_trends_counts.sql" />
+    <Build Include="prtl\Stored Procedures\import_ia_trends.sql" />
+    <Build Include="prtl\Stored Procedures\sp_ia_trends_rates.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="annie.refactorlog" />

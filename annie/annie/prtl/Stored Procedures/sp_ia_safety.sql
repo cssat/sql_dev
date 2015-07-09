@@ -57,23 +57,27 @@ SELECT m.month [Months]
 	,m.qry_type
 	,m.start_year [Year]
 	,demog.age_sib_group_cd [age_grouping_cd]
-	,ref_age.age_sib_group [Age Grouping]
+	,age.age_sib_group [Age Grouping]
 	,demog.cd_race_census [ethnicity_cd]
-	,ref_eth.tx_race_census [Race/Ethnicity]
+	,eth.tx_race_census [Race/Ethnicity]
 	,geog.cd_county [county_cd]
-	,ref_cnty.county_desc [County]
+	,cnty.county_desc [County]
 	,ia.cd_reporter_type
-	,ref_rpt.tx_reporter_type [Reporter Desc]
+	,rpt.tx_reporter_type [Reporter Desc]
 	,ia.cd_access_type
-	,ref_acc.tx_access_type [Access type desc]
+	,acc.tx_access_type [Access type desc]
 	,ia.cd_allegation
-	,ref_alg.tx_allegation [Allegation]
+	,alg.tx_allegation [Allegation]
 	,ia.cd_finding
-	,ref_fnd.tx_finding [Finding]
-	,among_first_cmpt_rereferred [Among first referrals, percent that are re-referred]
+	,fnd.tx_finding [Finding]
+	,m.among_first_cmpt_rereferred [Among first referrals, percent that are re-referred]
 FROM prtl.cache_ia_safety_aggr m
 INNER JOIN (
-	SELECT ia.*
+	SELECT ia.ia_param_key
+        ,ia.cd_reporter_type
+        ,ia.cd_access_type
+        ,ia.cd_allegation
+        ,ia.cd_finding
 	FROM prtl.param_sets_ia ia
 	INNER JOIN @reporter_type rt ON rt.cd_reporter_type = ia.cd_reporter_type
 	INNER JOIN @access_type at ON at.cd_access_type = ia.cd_access_type
@@ -81,7 +85,9 @@ INNER JOIN (
 	INNER JOIN @finding f ON f.cd_finding = ia.cd_finding
 	) ia ON ia.ia_param_key = m.ia_param_key
 INNER JOIN (
-	SELECT demog.*
+	SELECT demog.demog_param_key
+        ,demog.age_sib_group_cd
+        ,demog.cd_race_census
 	FROM prtl.param_sets_demog demog
 	INNER JOIN @age a ON a.age_grouping_cd = demog.age_sib_group_cd
 	INNER JOIN @ethnicity e ON e.cd_race = demog.cd_race_census
@@ -91,19 +97,20 @@ INNER JOIN (
 		AND demog.pk_gender = 0
 	) demog ON demog.demog_param_key = m.demog_param_key
 INNER JOIN (
-	SELECT geog.*
+	SELECT geog.geog_param_key
+        ,geog.cd_county
 	FROM prtl.param_sets_geog geog
 	INNER JOIN @county c ON c.cd_county = geog.cd_county
 	WHERE geog.cd_region_three = 0
 		AND geog.cd_region_six = 0
 	) geog ON geog.geog_param_key = m.geog_param_key
-INNER JOIN ref.lookup_ethnicity_census ref_eth ON ref_eth.cd_race_census = demog.cd_race_census
-INNER JOIN ref.filter_allegation ref_alg ON ref_alg.cd_allegation = ia.cd_allegation
-INNER JOIN ref.filter_finding ref_fnd ON ref_fnd.cd_finding = ia.cd_finding
-INNER JOIN ref.lookup_age_sib_group ref_age ON ref_age.age_sib_group_cd = demog.age_sib_group_cd
-INNER JOIN ref.lookup_county ref_cnty ON ref_cnty.cd_county = geog.cd_county
-INNER JOIN ref.filter_reporter_type ref_rpt ON ref_rpt.cd_reporter_type = ia.cd_reporter_type
-INNER JOIN ref.filter_access_type ref_acc ON ref_acc.cd_access_type = ia.cd_access_type
+INNER JOIN ref.lookup_ethnicity_census eth ON eth.cd_race_census = demog.cd_race_census
+INNER JOIN ref.filter_allegation alg ON alg.cd_allegation = ia.cd_allegation
+INNER JOIN ref.filter_finding fnd ON fnd.cd_finding = ia.cd_finding
+INNER JOIN ref.lookup_age_sib_group age ON age.age_sib_group_cd = demog.age_sib_group_cd
+INNER JOIN ref.lookup_county cnty ON cnty.cd_county = geog.cd_county
+INNER JOIN ref.filter_reporter_type rpt ON rpt.cd_reporter_type = ia.cd_reporter_type
+INNER JOIN ref.filter_access_type acc ON acc.cd_access_type = ia.cd_access_type
 CROSS JOIN ref.last_dw_transfer dw
 WHERE DATEADD(MONTH, 12 + m.month, m.start_date) <= dw.cutoff_date
 ORDER BY m.qry_type

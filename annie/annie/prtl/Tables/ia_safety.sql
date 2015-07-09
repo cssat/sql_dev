@@ -38,3 +38,14 @@ GO
 CREATE NONCLUSTERED INDEX [idx_ia_safety_param_sets_geog] 
     ON [prtl].[ia_safety] ([county_cd])
 GO
+
+CREATE NONCLUSTERED INDEX [idx_ia_safety_aggr_insert]
+    ON [prtl].[ia_safety] ([cohort_begin_date],[qry_type],[cd_reporter_type],[filter_access_type],[filter_allegation],[filter_finding],[cohort_ref_count])
+INCLUDE ([date_type],[cd_sib_age_grp],[cd_race_census],[county_cd],[cnt_case],[nxt_ref_within_min_month])
+GO
+
+CREATE NONCLUSTERED INDEX [idx_ia_safety_aggr_insert_2]
+	ON [prtl].[ia_safety] ([cd_reporter_type],[filter_access_type],[filter_allegation],[filter_finding],[cohort_ref_count])
+INCLUDE ([cohort_begin_date],[qry_type],[cd_sib_age_grp],[cd_race_census],[county_cd],[cnt_case])
+GO
+

@@ -19,14 +19,24 @@
     [x2] FLOAT NOT NULL, 
     [insert_date] DATETIME NOT NULL, 
     [qry_id] INT NOT NULL, 
-    [start_year] INT NULL, 
-    CONSTRAINT [idx_cache_ia_safety_aggr] UNIQUE NONCLUSTERED (
-	    [qry_type], 
-		[date_type], 
-		[start_date], 
-		[ia_param_key], 
-		[demog_param_key], 
-		[geog_param_key], 
-		[month]
-	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+    [start_year] INT NULL
 )
+GO
+
+CREATE NONCLUSTERED INDEX [idx_cache_ia_safety_aggr] ON [prtl].[cache_ia_safety_aggr](
+	[qry_type], 
+	[date_type], 
+	[start_date], 
+	[ia_param_key], 
+	[demog_param_key], 
+	[geog_param_key], 
+	[month]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+GO
+
+CREATE NONCLUSTERED INDEX [idx_cache_ia_safety_aggr_param_sets] ON [prtl].[cache_ia_safety_aggr](
+    [ia_param_key],
+    [demog_param_key],
+    [geog_param_key]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+GO
