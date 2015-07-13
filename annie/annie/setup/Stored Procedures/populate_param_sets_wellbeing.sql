@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [setup].[populate_param_sets_wellbeing]
 AS
 IF (
-		SELECT count()
+		SELECT COUNT(*)
 		FROM prtl.param_sets_wellbeing
 		) = 0
 BEGIN

@@ -188,128 +188,104 @@ BEGIN
 			ORDER BY id
 			);
 
-	IF OBJECT_ID('tempDB..#families') IS NOT NULL
-		DROP TABLE #families
+	--IF OBJECT_ID('tempDB..#families') IS NOT NULL
+	--	DROP TABLE #families
 
-	CREATE TABLE #families (
-		cohort_begin_date DATETIME
-		,qry_type INT
-		,ia_param_key INT
-		,demog_param_key INT
-		,geog_param_key INT
-		,total_families INT
-		)
+	--CREATE TABLE #families (
+	--	cohort_begin_date DATETIME
+	--	,qry_type INT
+	--	,ia_param_key INT
+	--	,demog_param_key INT
+	--	,geog_param_key INT
+	--	,total_families INT
+	--	)
 
-	CREATE NONCLUSTERED INDEX [idx_families] ON #families (
-		cohort_begin_date
-		,qry_type
-		,ia_param_key
-		,demog_param_key
-		,geog_param_key
-		);
+	--CREATE NONCLUSTERED INDEX [idx_families] ON #families (
+	--	cohort_begin_date
+	--	,qry_type
+	--	,ia_param_key
+	--	,demog_param_key
+	--	,geog_param_key
+	--	);
 
-	IF OBJECT_ID('tempDB..#cache') IS NOT NULL
-		DROP TABLE #cache
+	--IF OBJECT_ID('tempDB..#cache') IS NOT NULL
+	--	DROP TABLE #cache
 
-	CREATE TABLE #cache (
-		qry_type INT
-		,date_type INT
-		,cohort_begin_date DATETIME
-		,ia_param_key INT
-		,demog_param_key INT
-		,geog_param_key INT
-		,Months INT
-		,cnt_case INT
-		)
+	--CREATE TABLE #cache (
+	--	qry_type INT
+	--	,date_type INT
+	--	,cohort_begin_date DATETIME
+	--	,ia_param_key INT
+	--	,demog_param_key INT
+	--	,geog_param_key INT
+	--	,Months INT
+	--	,cnt_case INT
+	--	)
 
-	CREATE NONCLUSTERED INDEX [idx_cache] ON #cache (
-		cohort_begin_date
-		,qry_type
-		,ia_param_key
-		,demog_param_key
-		,geog_param_key
-		);
+	--CREATE NONCLUSTERED INDEX [idx_cache] ON #cache (
+	--	cohort_begin_date
+	--	,qry_type
+	--	,ia_param_key
+	--	,demog_param_key
+	--	,geog_param_key
+	--	);
 
 	WHILE @id IS NOT NULL
 	BEGIN
-		TRUNCATE TABLE #families
+		--TRUNCATE TABLE #families
 
-		INSERT #families (
-			cohort_begin_date
-			,qry_type
-			,ia_param_key
-			,demog_param_key
-			,geog_param_key
-			,total_families
-			)
-		SELECT ia.cohort_begin_date
-			,ia.qry_type
-			,cache.ia_param_key
-			,cache.demog_param_key
-			,cache.geog_param_key
-			,SUM(ia.cnt_case)
-		FROM #not_in_cache_sets cache
-		INNER JOIN prtl.param_match_ia mia ON mia.ia_param_key = cache.ia_param_key
-		INNER JOIN prtl.param_match_demog md ON md.demog_param_key = cache.demog_param_key
-		INNER JOIN prtl.param_match_geog mg ON mg.geog_param_key = cache.geog_param_key
-		INNER JOIN prtl.ia_safety ia ON ia.cd_reporter_type = mia.cd_reporter_type AND ia.filter_access_type = mia.filter_access_type AND ia.filter_allegation = mia.filter_allegation AND ia.filter_finding = mia.filter_finding AND ia.cd_sib_age_grp = md.age_sib_group_cd AND ia.cd_race_census = md.cd_race_census AND ia.county_cd = mg.cd_county
-		WHERE cache.id = @id AND ia.cohort_ref_count = 1
-		GROUP BY ia.cohort_begin_date
-			,ia.qry_type
-			,cache.ia_param_key
-			,cache.demog_param_key
-			,cache.geog_param_key
-		ORDER BY ia.cohort_begin_date
-			,ia.qry_type
-			,cache.ia_param_key
-			,cache.demog_param_key
-			,cache.geog_param_key
-		OPTION (MAXDOP 8);
+		--INSERT #families (
+		--	cohort_begin_date
+		--	,qry_type
+		--	,ia_param_key
+		--	,demog_param_key
+		--	,geog_param_key
+		--	,total_families
+		--	)
+		--SELECT ia.cohort_begin_date
+		--	,ia.qry_type
+		--	,cache.ia_param_key
+		--	,cache.demog_param_key
+		--	,cache.geog_param_key
+		--	,SUM(ia.cnt_case)
+		--FROM #not_in_cache_sets cache
+		--INNER JOIN prtl.param_match_ia mia ON mia.ia_param_key = cache.ia_param_key
+		--INNER JOIN prtl.param_match_demog md ON md.demog_param_key = cache.demog_param_key
+		--INNER JOIN prtl.param_match_geog mg ON mg.geog_param_key = cache.geog_param_key
+		--INNER JOIN prtl.ia_safety ia ON ia.cd_reporter_type = mia.cd_reporter_type
+  --          AND ia.filter_access_type = mia.filter_access_type
+  --          AND ia.filter_allegation = mia.filter_allegation
+  --          AND ia.filter_finding = mia.filter_finding
+  --          AND ia.cd_sib_age_grp = md.age_sib_group_cd
+  --          AND ia.cd_race_census = md.cd_race_census
+  --          AND ia.county_cd = mg.cd_county
+		--WHERE cache.id = @id AND ia.cohort_ref_count = 1
+		--GROUP BY ia.cohort_begin_date
+		--	,ia.qry_type
+		--	,cache.ia_param_key
+		--	,cache.demog_param_key
+		--	,cache.geog_param_key
+		--ORDER BY ia.cohort_begin_date
+		--	,ia.qry_type
+		--	,cache.ia_param_key
+		--	,cache.demog_param_key
+		--	,cache.geog_param_key
+		--OPTION (MAXDOP 8);
 
-		UPDATE STATISTICS #families;
+		--UPDATE STATISTICS #families;
 
-		TRUNCATE TABLE #cache
+		--TRUNCATE TABLE #cache
 
-		INSERT #cache (
-			qry_type
-			,date_type
-			,cohort_begin_date
-			,ia_param_key
-			,demog_param_key
-			,geog_param_key
-			,Months
-			,cnt_case
-			)
-		SELECT ia.qry_type
-			,ia.date_type
-			,ia.cohort_begin_date
-			,cache.ia_param_key
-			,cache.demog_param_key
-			,cache.geog_param_key
-			,n.mnth [Months]
-			,SUM(ia.cnt_case) [cnt_case]
-		FROM #not_in_cache_sets cache
-		INNER JOIN prtl.param_match_ia mia ON mia.ia_param_key = cache.ia_param_key
-		INNER JOIN prtl.param_match_demog md ON md.demog_param_key = cache.demog_param_key
-		INNER JOIN prtl.param_match_geog mg ON mg.geog_param_key = cache.geog_param_key
-		INNER JOIN prtl.ia_safety ia ON ia.cd_reporter_type = mia.cd_reporter_type AND ia.filter_access_type = mia.filter_access_type AND ia.filter_allegation = mia.filter_allegation AND ia.filter_finding = mia.filter_finding AND ia.cd_sib_age_grp = md.age_sib_group_cd AND ia.cd_race_census = md.cd_race_census AND ia.county_cd = mg.cd_county AND ia.cohort_ref_count = 1 AND ia.cohort_begin_date BETWEEN @min_date AND @max_date
-		INNER JOIN (
-			SELECT DISTINCT number * 3 [mnth]
-			FROM ref.numbers
-			WHERE number BETWEEN 1 AND 16
-			) n ON n.mnth >= ia.nxt_ref_within_min_month
-		WHERE cache.id = @id
-		GROUP BY ia.qry_type
-			,ia.date_type
-			,ia.cohort_begin_date
-			,cache.ia_param_key
-			,cache.demog_param_key
-			,cache.geog_param_key
-			,n.mnth
-		OPTION (MAXDOP 8);
-
-		UPDATE STATISTICS #cache
-
+		--INSERT #cache (
+		--	qry_type
+		--	,date_type
+		--	,cohort_begin_date
+		--	,ia_param_key
+		--	,demog_param_key
+		--	,geog_param_key
+		--	,Months
+		--	,cnt_case
+		--	)
 		INSERT INTO prtl.cache_ia_safety_aggr (
 			qry_type
 			,date_type
@@ -327,32 +303,100 @@ BEGIN
 			,qry_id
 			,start_year
 			)
-		SELECT c.qry_type
-			,c.date_type
-			,c.cohort_begin_date
-			,c.ia_param_key
-			,c.demog_param_key
-			,c.geog_param_key
-			,c.Months [month]
-			,SUM(IIF(q.total_families > 0 AND c.Months IS NOT NULL, c.cnt_case, 0)) / (q.total_families * 1.0000) * 100 [among_first_cmpt_rereferred]
+		SELECT ia.qry_type
+			,ia.date_type
+			,ia.cohort_begin_date
+			,cache.ia_param_key
+			,cache.demog_param_key
+			,cache.geog_param_key
+			,n.mnth [Months]
+			,SUM(ia.cnt_case) [cnt_case]
+			,IIF(SUM(ia.cnt_case) OVER(PARTITION BY ia.qry_type, ia.cohort_begin_date, cache.ia_param_key, cache.demog_param_key, cache.geog_param_key) > 0, 
+                SUM(ia.cnt_case), 0) / (SUM(ia.cnt_case) OVER(PARTITION BY ia.qry_type, ia.cohort_begin_date, cache.ia_param_key, cache.demog_param_key, cache.geog_param_key) * 1.0000) * 100 [among_first_cmpt_rereferred]
 			,@min_month_start [min_start_date]
 			,@max_month_start [max_start_date]
 			,@x1 [x1]
 			,@x2 [x2]
 			,GETDATE() [insert_date]
 			,@qry_id [qry_id]
-			,YEAR(c.cohort_begin_date) [start_year]
-		FROM #cache c
-		INNER JOIN #families q ON q.cohort_begin_date = c.cohort_begin_date AND q.qry_type = c.qry_type AND q.ia_param_key = c.ia_param_key AND q.demog_param_key = c.demog_param_key AND q.geog_param_key = c.geog_param_key
-		GROUP BY c.qry_type
-			,c.date_type
-			,c.cohort_begin_date
-			,c.ia_param_key
-			,c.demog_param_key
-			,c.geog_param_key
-			,c.Months
-			,q.total_families
+			,YEAR(ia.cohort_begin_date) [start_year]
+		FROM #not_in_cache_sets cache
+		INNER JOIN prtl.param_match_ia mia ON mia.ia_param_key = cache.ia_param_key
+		INNER JOIN prtl.param_match_demog md ON md.demog_param_key = cache.demog_param_key
+		INNER JOIN prtl.param_match_geog mg ON mg.geog_param_key = cache.geog_param_key
+		INNER JOIN prtl.ia_safety ia ON ia.cd_reporter_type = mia.cd_reporter_type
+            AND ia.filter_access_type = mia.filter_access_type
+            AND ia.filter_allegation = mia.filter_allegation
+            AND ia.filter_finding = mia.filter_finding
+            AND ia.cd_sib_age_grp = md.age_sib_group_cd
+            AND ia.cd_race_census = md.cd_race_census
+            AND ia.county_cd = mg.cd_county
+            AND ia.cohort_ref_count = 1
+            AND ia.cohort_begin_date BETWEEN @min_date AND @max_date
+		INNER JOIN (
+			SELECT DISTINCT number * 3 [mnth]
+			FROM ref.numbers
+			WHERE number BETWEEN 1 AND 16
+			) n ON n.mnth >= ia.nxt_ref_within_min_month
+		WHERE cache.id = @id
+		GROUP BY ia.qry_type
+			,ia.date_type
+			,ia.cohort_begin_date
+			,cache.ia_param_key
+			,cache.demog_param_key
+			,cache.geog_param_key
+			,n.mnth
 		OPTION (MAXDOP 8);
+
+		--UPDATE STATISTICS #cache
+
+		--INSERT INTO prtl.cache_ia_safety_aggr (
+		--	qry_type
+		--	,date_type
+		--	,start_date
+		--	,ia_param_key
+		--	,demog_param_key
+		--	,geog_param_key
+		--	,month
+		--	,among_first_cmpt_rereferred
+		--	,min_start_date
+		--	,max_start_date
+		--	,x1
+		--	,x2
+		--	,insert_date
+		--	,qry_id
+		--	,start_year
+		--	)
+		--SELECT c.qry_type
+		--	,c.date_type
+		--	,c.cohort_begin_date
+		--	,c.ia_param_key
+		--	,c.demog_param_key
+		--	,c.geog_param_key
+		--	,c.Months [month]
+		--	,SUM(IIF(q.total_families > 0 AND c.Months IS NOT NULL, c.cnt_case, 0)) / (q.total_families * 1.0000) * 100 [among_first_cmpt_rereferred]
+		--	,@min_month_start [min_start_date]
+		--	,@max_month_start [max_start_date]
+		--	,@x1 [x1]
+		--	,@x2 [x2]
+		--	,GETDATE() [insert_date]
+		--	,@qry_id [qry_id]
+		--	,YEAR(c.cohort_begin_date) [start_year]
+		--FROM #cache c
+		--INNER JOIN #families q ON q.cohort_begin_date = c.cohort_begin_date
+  --          AND q.qry_type = c.qry_type
+  --          AND q.ia_param_key = c.ia_param_key
+  --          AND q.demog_param_key = c.demog_param_key
+  --          AND q.geog_param_key = c.geog_param_key
+		--GROUP BY c.qry_type
+		--	,c.date_type
+		--	,c.cohort_begin_date
+		--	,c.ia_param_key
+		--	,c.demog_param_key
+		--	,c.geog_param_key
+		--	,c.Months
+		--	,q.total_families
+		--OPTION (MAXDOP 8);
 
 		SET @id = (
 				SELECT TOP 1 id
