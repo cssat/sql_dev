@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [rodis]
+    AUTHORIZATION [NEBULA2\schmitzr];
+
