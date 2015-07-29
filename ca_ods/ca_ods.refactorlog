@@ -84,4 +84,88 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="lstfetmo" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="a774f3e0-fe8a-4204-b6d0-9eb871071982" ChangeDateTime="07/29/2015 19:12:31">
+    <Property Name="ElementName" Value="[rodis].[wh_entity_keys].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[rodis].[wh_entity_keys]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="entity_key" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="75baed12-2ae8-458c-b234-1dd7319e383b" ChangeDateTime="07/29/2015 19:15:32">
+    <Property Name="ElementName" Value="[dbo].[wh_table].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[wh_table]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="wh_table_id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="81a7dc89-b4c5-4e43-ac45-871bf8f6837f" ChangeDateTime="07/29/2015 19:18:09">
+    <Property Name="ElementName" Value="[rodis].[wh_table_type].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[rodis].[wh_table_type]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="wh_table_type_id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="771492ec-9edf-44ca-8c73-f6577b40cda5" ChangeDateTime="07/29/2015 19:23:57">
+    <Property Name="ElementName" Value="[rodis].[wh_column].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[rodis].[wh_column]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="wh_column_id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="204d9764-cdb4-4c68-ad04-8f0a681789c8" ChangeDateTime="07/29/2015 19:25:33">
+    <Property Name="ElementName" Value="[rodis].[wh_column_type].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[rodis].[wh_column_type]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="wh_column_type_id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="43afc41c-1a8c-41a3-a085-28a143ce2dc7" ChangeDateTime="07/29/2015 20:15:21">
+    <Property Name="ElementName" Value="[dbo].[wh_reference].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[wh_reference]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="wh_reference_id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7ffacc96-5d58-4196-aa39-f18f20bb5578" ChangeDateTime="07/29/2015 20:22:39">
+    <Property Name="ElementName" Value="[dbo].[wh_reference].[primary_wh_column_id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[wh_reference]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="pr_wh_column_id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="309baf38-eff8-44c7-a1c5-1d2336c6fcad" ChangeDateTime="07/29/2015 20:55:57">
+    <Property Name="ElementName" Value="[dbo].[wh_dimension].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[wh_dimension]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="wh_dimension_id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="30951311-d311-4716-aba7-ef472fe92869" ChangeDateTime="07/29/2015 20:57:45">
+    <Property Name="ElementName" Value="[rodis_wh].[wh_dim_attr].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[rodis_wh].[wh_dim_attr]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="wh_dim_attr_id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f40ec3ff-6e26-4197-baf1-a2f0fcfe035f" ChangeDateTime="07/29/2015 20:58:34">
+    <Property Name="ElementName" Value="[rodis_wh].[wh_dim_attr].[wh_table_id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[rodis_wh].[wh_dim_attr]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="wh_attribute_table_id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5c1bcd41-a469-4045-9d1f-6082bef899a9" ChangeDateTime="07/29/2015 22:01:21">
+    <Property Name="ElementName" Value="[rodis_wh].[wh_package].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[rodis_wh].[wh_package]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="wh_package_id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="aafdd6dd-1230-4a6d-879d-ef7014d29658" ChangeDateTime="07/29/2015 22:02:57">
+    <Property Name="ElementName" Value="[rodis_wh].[wh_table_order].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[rodis_wh].[wh_table_order]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="wh_table_order_id" />
+  </Operation>
 </Operations>
