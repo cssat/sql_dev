@@ -5,7 +5,8 @@
     [wh_package_id] INT NOT NULL 
         CONSTRAINT [fk_wh_table_order_wh_package_id] FOREIGN KEY REFERENCES [rodis_wh].[wh_package]([wh_package_id]), 
     [wh_table_id] INT NOT NULL 
-        CONSTRAINT [fk_wh_table_order_wh_table_id] FOREIGN KEY REFERENCES [rodis_wh].[wh_table]([wh_table_id])
+        CONSTRAINT [fk_wh_table_order_wh_table_id] FOREIGN KEY REFERENCES [rodis_wh].[wh_table]([wh_table_id]), 
+    [step_number] TINYINT NOT NULL
 )
 GO
 

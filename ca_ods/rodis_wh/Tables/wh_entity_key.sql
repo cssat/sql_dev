@@ -1,4 +1,4 @@
-﻿CREATE TABLE [rodis_wh].[wh_entity_keys]
+﻿CREATE TABLE [rodis_wh].[wh_entity_key]
 (
     [entity_key] BIGINT NOT NULL , 
     [wh_column_id] INT NOT NULL 
@@ -8,13 +8,13 @@
 )
 GO
 
-CREATE NONCLUSTERED INDEX [idx_wh_entity_keys] ON [rodis_wh].[wh_entity_keys](
+CREATE NONCLUSTERED INDEX [idx_wh_entity_key] ON [rodis_wh].[wh_entity_key](
     [entity_key], 
     [wh_column_id]
 )
 GO
 
-CREATE NONCLUSTERED INDEX [idx_wh_entity_keys_source_key] ON [rodis_wh].[wh_entity_keys](
+CREATE NONCLUSTERED INDEX [idx_wh_entity_key_source_key] ON [rodis_wh].[wh_entity_key](
     [source_key], 
     [wh_column_id]
 )

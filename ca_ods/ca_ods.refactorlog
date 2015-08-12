@@ -168,4 +168,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="wh_table_order_id" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="cb42ed9d-be2c-4413-a121-fb7b07d90d76" ChangeDateTime="07/30/2015 16:55:59">
+    <Property Name="ElementName" Value="[rodis_wh].[wh_data_type].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[rodis_wh].[wh_data_type]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="wh_data_type_id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="91c769f3-b04c-4da8-8715-eaa857004078" ChangeDateTime="08/04/2015 21:27:20">
+    <Property Name="ElementName" Value="[rodis_wh].[wh_reference].[pr_wh_column_id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[rodis_wh].[wh_reference]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="pr_wh_table_id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="226a1c64-8cdc-4b4c-a0dd-c586bc9f22e9" ChangeDateTime="08/04/2015 21:27:29">
+    <Property Name="ElementName" Value="[rodis_wh].[wh_reference].[ref_wh_column_id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[rodis_wh].[wh_reference]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ref_wh_table_id" />
+  </Operation>
 </Operations>

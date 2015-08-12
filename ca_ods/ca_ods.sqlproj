@@ -2827,14 +2827,14 @@
     <Build Include="Security\rodis_wh.sql" />
     <Build Include="rodis_wh\Tables\wh_column.sql" />
     <Build Include="rodis_wh\Tables\wh_column_type.sql" />
-    <Build Include="rodis_wh\Tables\wh_entity_keys.sql" />
+    <Build Include="rodis_wh\Tables\wh_entity_key.sql" />
     <Build Include="rodis_wh\Tables\wh_table.sql" />
     <Build Include="rodis_wh\Tables\wh_table_type.sql" />
     <Build Include="rodis_wh\Tables\wh_reference.sql" />
     <Build Include="rodis_wh\Tables\wh_dimension.sql" />
-    <Build Include="rodis_wh\Tables\wh_dim_attr.sql" />
     <Build Include="rodis_wh\Tables\wh_package.sql" />
     <Build Include="rodis_wh\Tables\wh_table_order.sql" />
+    <Build Include="rodis_wh\Tables\wh_data_type.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac">
