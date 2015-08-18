@@ -19,6 +19,11 @@ namespace WarehouseFramework.Metadata
 			get { return TableType.Id == 2; }
 		}
 
+		public string DbTableName
+		{
+			get { return String.Concat(Name, "_", TableType.TableNameEnding); }
+		}
+
 		public Table()
 			: this(0, String.Empty, new TableType(), new Dimension())
 		{ }
@@ -44,15 +49,15 @@ namespace WarehouseFramework.Metadata
 			return Columns.FirstOrDefault(p => p.isSourceKeyColumn);
 		}
 
-		public Dictionary<string, Reference> GetStarSchemaReferences()
+		public List<StarSchemaReference> GetStarSchemaReferences()
 		{
-			Dictionary<string, Reference> refList = new Dictionary<string, Reference>();
+			List<StarSchemaReference> refList = new List<StarSchemaReference>();
 
 			if (IsFactTable)
 			{
 				foreach (var item in References)
 				{
-					refList.Add(String.Empty, item);
+					refList.Add(new StarSchemaReference(String.Empty, item));
 					FindSubReferences(item, String.Empty, ref refList);
 				}
 			}
@@ -60,13 +65,14 @@ namespace WarehouseFramework.Metadata
 			return refList;
 		}
 
-		private void FindSubReferences(Reference reference, string prefix, ref Dictionary<string, Reference> refList)
+		private void FindSubReferences(Reference reference, string prefix, ref List<StarSchemaReference> refList)
 		{
 			foreach (var subRef in reference.GetPrimaryDimRefs())
 			{
 				string newPrefix = String.Concat(!String.IsNullOrEmpty(prefix) ? String.Concat(prefix, "_") : String.Empty, subRef.GetRefDimName());
-				refList.Add(newPrefix, subRef);
-				FindSubReferences(subRef, prefix, ref refList);
+				refList.Add(new StarSchemaReference(newPrefix, subRef));
+				newPrefix = String.Concat(newPrefix, !String.IsNullOrEmpty(subRef.ReferenceRole) ? String.Concat("_", subRef.ReferenceRole) : String.Empty);
+				FindSubReferences(subRef, newPrefix, ref refList);
 			}
 		}
 	}

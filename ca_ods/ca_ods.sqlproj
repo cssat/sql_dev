@@ -150,6 +150,7 @@
     <Folder Include="rodis\Tables\" />
     <Folder Include="rodis_wh" />
     <Folder Include="rodis_wh\Tables" />
+    <Folder Include="rodis_wh\Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\hire_pk_question_data_to_insert.sql">
@@ -2835,6 +2836,17 @@
     <Build Include="rodis_wh\Tables\wh_package.sql" />
     <Build Include="rodis_wh\Tables\wh_table_order.sql" />
     <Build Include="rodis_wh\Tables\wh_data_type.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_admission_source_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_admission_reason_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_discharge_status_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_facility_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_ecode_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_payment_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_hospital_admission_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_hospital_admission_fat.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_diagnosis_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_diagnosis_m2m_fat.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_procedure_m2m_fat.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac">

@@ -4,7 +4,7 @@ namespace WarehouseFramework.Metadata
 {
 	public class EntityKey
 	{
-		public Int64 WarehouseKey { get; set; }
+		public int WarehouseKey { get; set; }
 		public Column Column { get; set; }
 		public string SourceKey { get; set; }
 
@@ -12,7 +12,7 @@ namespace WarehouseFramework.Metadata
 			: this(0, new Column(), String.Empty)
 		{ }
 
-		public EntityKey(Int64 warehouseKey, Column column, string sourceKey)
+		public EntityKey(int warehouseKey, Column column, string sourceKey)
 		{
 			this.WarehouseKey = warehouseKey;
 			this.Column = column;

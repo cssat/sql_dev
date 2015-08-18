@@ -70,7 +70,7 @@ namespace WarehouseFramework
 		{
 			try
 			{
-				string query = "SELECT wh_data_type_id, wh_data_type_name FROM rodis_wh.wh_data_type";
+				string query = "SELECT wh_data_type_id, data_type_name FROM rodis_wh.wh_data_type";
 				SqlCommand command = new SqlCommand(query, connection);
 				SqlDataReader reader = command.ExecuteReader();
 
@@ -176,8 +176,9 @@ namespace WarehouseFramework
 					int id = reader.GetInt32(0);
 					string name = reader.GetString(1);
 					int tableTypeId = reader.GetInt32(2);
-					int dimensionId = reader.GetInt32(3);
-					Tables.Add(id, new Table(id, name, TableTypes[tableTypeId], Dimensions[dimensionId]));
+					int dimensionId = 0;
+					bool hasDimension = int.TryParse(reader.GetValue(3).ToString(), out dimensionId);
+					Tables.Add(id, new Table(id, name, TableTypes[tableTypeId], hasDimension ? Dimensions[dimensionId] : new Dimension()));
 				}
 
 				reader.Close();
@@ -193,7 +194,7 @@ namespace WarehouseFramework
 		{
 			try
 			{
-				string query = "SELECT wh_column_id, wh_column_name, wh_column_type_id, wh_table_id, wh_data_type_id, data_length, max_length FROM rodis_wh.wh_column";
+				string query = "SELECT wh_column_id, wh_column_name, wh_column_type_id, wh_table_id, wh_data_type_id, data_length, max_length, ordinal FROM rodis_wh.wh_column";
 				SqlCommand command = new SqlCommand(query, connection);
 				SqlDataReader reader = command.ExecuteReader();
 
@@ -206,7 +207,8 @@ namespace WarehouseFramework
 					int dataTypeId = reader.GetInt32(4);
 					int dataLength = reader.GetInt32(5);
 					bool isMaxLength = reader.GetBoolean(6);
-					Columns.Add(id, new Column(id, name, ColumnTypes[columnTypeId], Tables[tableId], DataTypes[dataTypeId], dataLength, isMaxLength));
+					int ordinal = reader.GetInt32(7);
+					Columns.Add(id, new Column(id, name, ColumnTypes[columnTypeId], Tables[tableId], DataTypes[dataTypeId], dataLength, isMaxLength, ordinal));
 				}
 
 				reader.Close();
@@ -231,7 +233,8 @@ namespace WarehouseFramework
 					int id = reader.GetInt32(0);
 					int primaryTableId = reader.GetInt32(1);
 					int referenceTableId = reader.GetInt32(2);
-					string role = reader.GetString(3);
+					object roleObject = reader.GetValue(3);
+					string role = roleObject == null ? String.Empty : roleObject.ToString();
 					bool isRequred = reader.GetBoolean(4);
 					References.Add(id, new Reference(id, Tables[primaryTableId], Tables[referenceTableId], role, isRequred));
 				}
@@ -306,7 +309,7 @@ namespace WarehouseFramework
 
 				while (reader.Read())
 				{
-					long entityKey = reader.GetInt64(0);
+					int entityKey = reader.GetInt32(0);
 					int columnId = reader.GetInt32(1);
 					string sourceKey = reader.GetString(2);
 					EntityKeys.Add(entityKey, new EntityKey(entityKey, Columns[columnId], sourceKey));
@@ -412,7 +415,13 @@ namespace WarehouseFramework
 			{
 				var newTableOrderTableIds = newTableOrders.Select(s => s.Table.Id);
 				var remainingTableIds = Tables.Values.Where(p => !newTableOrderTableIds.Contains(p.Id) && !p.IsFactTable).Select(s => s.Id);
-				var remainingReferencedTableIds = References.Values.Where(p => !newTableOrderTableIds.Contains(p.PrimaryTable.Id)).GroupBy(ks => ks.PrimaryTable.Id).Select(s => s.Key);
+				var remainingReferencedTableIds = new List<int>();
+				
+				if (step == 1)
+					remainingReferencedTableIds = References.Values.Where(p => !newTableOrderTableIds.Contains(p.ReferencingTable.Id) && !p.ReferencingTable.IsFactTable).Select(s => s.ReferencingTable.Id).Distinct().ToList();
+				else
+					remainingReferencedTableIds = References.Values.Where(p => !newTableOrderTableIds.Contains(p.PrimaryTable.Id) && !p.ReferencingTable.IsFactTable).Select(s => s.ReferencingTable.Id).Distinct().ToList();
+				
 				var tableSet = Tables.Values.Where(p => remainingTableIds.Contains(p.Id) && !remainingReferencedTableIds.Contains(p.Id));
 
 				foreach (var item in tableSet)
@@ -455,6 +464,11 @@ namespace WarehouseFramework
 				}
 			}
 
+			foreach (var item in Packages.Values.Where(p => p.IsDefault))
+			{
+				item.TableOrders = TableOrders.Values.Where(p => p.Package.Id == item.Id).ToList();
+			}
+
 			try
 			{
 				string query = "SELECT wh_table_order_id FROM rodis_wh.wh_table_order";
@@ -470,7 +484,7 @@ namespace WarehouseFramework
 				}
 
 				reader.Close();
-				command.CommandText = "SELECT wh_package_id FROM rodis_wh.wh_packages";
+				command.CommandText = "SELECT wh_package_id FROM rodis_wh.wh_package";
 				reader = command.ExecuteReader();
 
 				while (reader.Read())
@@ -519,7 +533,7 @@ namespace WarehouseFramework
 					}
 					else
 					{
-						query = String.Format("INSERT rodis_wh_wh_table_order(wh_table_order_id, wh_package_id, wh_table_id, step_number) VALUES ({0}, {1}, {2}, {3})",
+						query = String.Format("INSERT rodis_wh.wh_table_order(wh_table_order_id, wh_package_id, wh_table_id, step_number) VALUES ({0}, {1}, {2}, {3})",
 							item.Id, item.Package.Id, item.Table.Id, item.StepNumber);
 					}
 
@@ -538,7 +552,7 @@ namespace WarehouseFramework
 		{
 			try
 			{
-				string query = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'rodis_wh' AND (TABLE_NAME LIKE '%_att' OR TABLE_NAME LIKE '%_fat')";
+				string query = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'rodis_wh' AND (TABLE_NAME LIKE '%_att' OR TABLE_NAME LIKE '%_fat') AND TABLE_NAME NOT LIKE 'staging_%'";
 				SqlCommand command = new SqlCommand(query, connection);
 				SqlDataReader reader = command.ExecuteReader();
 				List<string> dbAttributeTables = new List<string>();
@@ -551,7 +565,7 @@ namespace WarehouseFramework
 
 				reader.Close();
 
-				foreach (var item in dbAttributeTables.OrderByDescending(ks => TableOrders.Values.Where(p => p.Package.IsDefault).FirstOrDefault(p => p.Table.Name == ks).StepNumber))
+				foreach (var item in dbAttributeTables.OrderByDescending(ks => Packages.Values.Where(p => p.IsDefault).SelectMany(s => s.TableOrders).FirstOrDefault(p => p.Table.DbTableName == ks).StepNumber))
 				{
 					command.CommandText = String.Format("DROP TABLE [rodis_wh].[{0}]", item);
 					command.ExecuteNonQuery();
@@ -559,23 +573,27 @@ namespace WarehouseFramework
 
 				foreach (var table in Tables.Values)
 				{
-					query = String.Format("CREATE TABLE [rodis_wh].[{0}_{1}](", table.Name, table.TableType.TableNameEnding);
+					query = String.Format("CREATE TABLE [rodis_wh].[{0}](", table.DbTableName);
 
-					foreach (var column in table.Columns.OrderBy(ks => ks.Id))
+					foreach (var column in table.Columns.OrderBy(ks => ks.Ordinal))
 					{
-						query = String.Concat(query, String.Format("\n\t[{0}] [{1}] {2}NULL", column.Name, column.DataType.Name, column.isAttributeColumn ? String.Empty : "NULL "));
+						query = String.Concat(query, String.Format("\n\t[{0}] {1} {2}NULL", column.Name, column.GetDbDataType(), column.isAttributeColumn ? String.Empty : "NOT "));
 
 						if (column.isKeyColumn)
 						{
-							query = String.Concat(query, String.Format("\n\t\tCONSTRAINT [pk_{0}] PRIMARY KEY", table.Name));
+							query = String.Concat(query, String.Format("\n\t\tCONSTRAINT [pk_{0}] PRIMARY KEY", table.DbTableName));
 						}
 
 						query = String.Concat(query, ",");
 					}
 
-					query = String.Concat(query.TrimEnd(','), "\n)\nGO");
-					query = String.Concat(query, String.Format("\n\nCREATE UNIQUE NONCLUSTERED INDEX [idx_{0}_{1}] ON [rodis_wh].[{0}] ([{1}])\nGO",
-						table.Name, table.GetSourceKeyColumn()));
+					query = String.Concat(query.TrimEnd(','), "\n)");
+
+					command.CommandText = query;
+					command.ExecuteNonQuery();
+					
+					query = String.Format("CREATE UNIQUE NONCLUSTERED INDEX [idx_{0}_{1}] ON [rodis_wh].[{0}] ([{1}])",
+						table.DbTableName, table.GetSourceKeyColumn().Name);
 
 					command.CommandText = query;
 					command.ExecuteNonQuery();
@@ -594,15 +612,22 @@ namespace WarehouseFramework
 			{
 				foreach (var item in References.Values)
 				{
-					string query = String.Format("ALTER TABLE [rodis_wh].[{0}] ADD [{1}] [{2}] NOT NULL\nGO",
-						item.ReferencingTable.Name, item.GetRefColumnName(), item.GetDbDataType());
-					query = String.Concat(query, String.Format("\n\nALTER TABLE [rodis_wh].[{0}] WITH CHECK ADD  CONSTRAINT [fk_{0}_{1}] FOREIGN KEY([{1}])\nREFERENCES [rodis_wh].[{2}] ([{3}])\nGO",
-						item.ReferencingTable.Name, item.GetRefColumnName(), item.PrimaryTable.Name, item.GetPrimaryColumnName()));
-					query = String.Concat(query, String.Format("\n\nALTER TABLE [rodis_wh].[{0}] CHECK CONSTRAINT [fk_{0}_{1}]\nGO",
-						item.ReferencingTable.Name, item.GetRefColumnName()));
-					query = String.Concat(query, String.Format("\n\nCREATE NONCLUSTERED INDEX [idx_{0}_{1}] ON [rodis_wh].[{0}] ([{1}])\nGO",
-						item.ReferencingTable.Name, item.GetRefColumnName()));
+					string query = String.Format("ALTER TABLE [rodis_wh].[{0}] ADD [{1}] {2} NOT NULL",
+						item.ReferencingTable.DbTableName, item.GetRefColumnName(), item.GetDbDataType());
 					SqlCommand command = new SqlCommand(query, connection);
+					command.ExecuteNonQuery();
+
+					query = String.Format("ALTER TABLE [rodis_wh].[{0}] WITH CHECK ADD  CONSTRAINT [fk_{0}_{1}] FOREIGN KEY([{1}])\nREFERENCES [rodis_wh].[{2}] ([{3}])",
+						item.ReferencingTable.DbTableName, item.GetRefColumnName(), item.PrimaryTable.DbTableName, item.GetPrimaryColumnName());
+					command.CommandText = query;
+					command.ExecuteNonQuery();
+
+					query = String.Format("ALTER TABLE [rodis_wh].[{0}] CHECK CONSTRAINT [fk_{0}_{1}]", item.ReferencingTable.DbTableName, item.GetRefColumnName());
+					command.CommandText = query;
+					command.ExecuteNonQuery();
+
+					query = String.Format("CREATE NONCLUSTERED INDEX [idx_{0}_{1}] ON [rodis_wh].[{0}] ([{1}])", item.ReferencingTable.DbTableName, item.GetRefColumnName());
+					command.CommandText = query;
 					command.ExecuteNonQuery();
 				}
 			}
@@ -642,15 +667,15 @@ namespace WarehouseFramework
 
 					foreach (var table in dim.Tables)
 					{
-						foreach (var column in table.Columns)
+						foreach (var column in table.Columns.OrderBy(ks => ks.Ordinal))
 						{
-							query = String.Concat(query, String.Format("\n\t[{0}] [{1}] {2}NULL,", column.Name, column.GetDbDataType(), column.isAttributeColumn ? String.Empty : "NULL "));
+							query = String.Concat(query, String.Format("\n\t[{0}] {1} {2}NULL,", column.Name, column.GetDbDataType(), column.isAttributeColumn ? String.Empty : "NOT "));
 						}
 					}
 
 					foreach (var item in dim.GetReferences())
 					{
-						query = String.Concat(query, String.Format("\n\t[{0}] [{1}] NOT NULL,", item.GetRefColumnName(), item.GetDbDataType()));
+						query = String.Concat(query, String.Format("\n\t[{0}] {1} NOT NULL,", item.GetRefColumnName(), item.GetDbDataType()));
 					}
 
 					query = String.Concat(query.TrimEnd(','), "\n)");
@@ -694,13 +719,13 @@ namespace WarehouseFramework
 
 					foreach (var column in table.Columns)
 					{
-						query = String.Concat(query, String.Format("\n\t[{0}] [{1}] {2}NULL", column.Name, column.GetDbDataType(), column.isAttributeColumn ? String.Empty : "NULL "));
+						query = String.Concat(query, String.Format("\n\t[{0}] {1} {2}NULL,", column.Name, column.GetDbDataType(), column.isAttributeColumn ? String.Empty : "NOT "));
 					}
 
 					foreach (var item in table.GetStarSchemaReferences())
 					{
-						query = String.Concat(query, String.Format("\n\t[{0}{1}] [{2}] NOT NULL",
-							String.IsNullOrEmpty(item.Key) ? String.Empty : String.Concat(item.Key, "_"), item.Value.GetRefColumnName(), item.Value.GetDbDataType()));
+						query = String.Concat(query, String.Format("\n\t[{0}{1}] {2} NOT NULL,",
+							String.IsNullOrEmpty(item.Prefix) ? String.Empty : String.Concat(item.Prefix, "_"), item.Reference.GetRefColumnName(), item.Reference.GetDbDataType()));
 					}
 
 					query = String.Concat(query.TrimEnd(','), "\n)");

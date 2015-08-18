@@ -11,6 +11,7 @@ namespace WarehouseFramework.Metadata
 		public DataType DataType { get; set; }
 		public int Length { get; set; }
 		public bool IsMax { get; set; }
+		public int Ordinal { get; set; }
 		
 		public bool isKeyColumn
 		{
@@ -28,10 +29,10 @@ namespace WarehouseFramework.Metadata
 		}
 
 		public Column()
-			: this(0, String.Empty, new ColumnType(), new Table(), new DataType(), 0, false)
+			: this(0, String.Empty, new ColumnType(), new Table(), new DataType(), 0, false, 0)
 		{ }
 
-		public Column(int id, string name, ColumnType columnType, Table table, DataType dataType, int length, bool isMax)
+		public Column(int id, string name, ColumnType columnType, Table table, DataType dataType, int length, bool isMax, int ordinal)
 		{
 			this.Id = id;
 			this.Name = name;
@@ -40,12 +41,13 @@ namespace WarehouseFramework.Metadata
 			this.DataType = dataType;
 			this.Length = length;
 			this.IsMax = isMax;
+			this.Ordinal = ordinal;
 		}
 
 		public string GetDbDataType()
 		{
 			string len = DataType.Id == 7 ? String.Format("({0})", IsMax ? "MAX" : Length.ToString()) : String.Empty;
-			return String.Concat(DataType.Name, len);
+			return String.Format("[{0}]{1}", DataType.Name, len);
 		}
 	}
 }
