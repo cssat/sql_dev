@@ -471,72 +471,24 @@ namespace WarehouseFramework
 
 			try
 			{
-				string query = "SELECT wh_table_order_id FROM rodis_wh.wh_table_order";
+				string query = "DELETE FROM rodis_wh.wh_table_order";
 				SqlCommand command = new SqlCommand(query, connection);
-				SqlDataReader reader = command.ExecuteReader();
-				List<int> dbTableOrderIds = new List<int>();
-				List<int> dbPackageIds = new List<int>();
-
-				while (reader.Read())
-				{
-					int id = reader.GetInt32(0);
-					dbTableOrderIds.Add(id);
-				}
-
-				reader.Close();
-				command.CommandText = "SELECT wh_package_id FROM rodis_wh.wh_package";
-				reader = command.ExecuteReader();
-
-				while (reader.Read())
-				{
-					int id = reader.GetInt32(0);
-					dbPackageIds.Add(id);
-				}
-
-				reader.Close();
-
-				foreach (var item in dbTableOrderIds.Where(p => !TableOrders.Values.Select(s => s.Id).Contains(p)))
-				{
-					command.CommandText = String.Format("DELETE FROM rodis_wh.wh_table_order WHERE wh_table_order_id = {0}", item);
-					command.ExecuteNonQuery();
-				}
-
-				foreach (var item in dbPackageIds.Where(p => !Packages.Values.Select(s => s.Id).Contains(p)))
-				{
-					command.CommandText = String.Format("DELETE FROM rodis_wh.wh_package WHERE wh_package_id = {0}", item);
-					command.ExecuteNonQuery();
-				}
+				command.ExecuteNonQuery();
+				command.CommandText = "DELETE FROM rodis_wh.wh_package";
+				command.ExecuteNonQuery();
 
 				foreach (var item in Packages.Values)
 				{
-					if (dbPackageIds.Contains(item.Id))
-					{
-						query = String.Format("UPDATE rodis_wh.wh_package SET wh_package_name = '{1}', is_default = {2} WHERE wh_package_id = {0}",
-							item.Id, item.Name, item.IsDefault ? 1 : 0);
-					}
-					else
-					{
-						query = String.Format("INSERT rodis_wh.wh_package(wh_package_id, wh_package_name, is_default) VALUES ({0}, '{1}', {2})",
-							item.Id, item.Name, item.IsDefault ? 1 : 0);
-					}
-
+					query = String.Format("INSERT rodis_wh.wh_package(wh_package_id, wh_package_name, is_default) VALUES ({0}, '{1}', {2})",
+						item.Id, item.Name, item.IsDefault ? 1 : 0);
 					command.CommandText = query;
 					command.ExecuteNonQuery();
 				}
 
 				foreach (var item in TableOrders.Values)
 				{
-					if (dbTableOrderIds.Contains(item.Id))
-					{
-						query = String.Format("UPDATE rodis_wh.wh_table_order SET wh_package_id = {1}, wh_table_id = {2}, step_number = {3} WHERE wh_table_order_id = {0}",
-							item.Id, item.Package.Id, item.Table.Id, item.StepNumber);
-					}
-					else
-					{
-						query = String.Format("INSERT rodis_wh.wh_table_order(wh_table_order_id, wh_package_id, wh_table_id, step_number) VALUES ({0}, {1}, {2}, {3})",
-							item.Id, item.Package.Id, item.Table.Id, item.StepNumber);
-					}
-
+					query = String.Format("INSERT rodis_wh.wh_table_order(wh_table_order_id, wh_package_id, wh_table_id, step_number) VALUES ({0}, {1}, {2}, {3})",
+						item.Id, item.Package.Id, item.Table.Id, item.StepNumber);
 					command.CommandText = query;
 					command.ExecuteNonQuery();
 				}

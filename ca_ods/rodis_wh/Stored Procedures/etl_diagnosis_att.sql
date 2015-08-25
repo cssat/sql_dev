@@ -282,8 +282,9 @@ WHEN NOT MATCHED
 UPDATE STATISTICS rodis_wh.diagnosis_att
 
 UPDATE r
-SET id_diagnosis = - 1
+SET id_diagnosis = k.entity_key
 FROM rodis_wh.diagnosis_m2m_fat r
+INNER JOIN rodis_wh.wh_entity_key k ON k.wh_column_id = @column_id AND k.source_key = '-1'
 WHERE NOT EXISTS (
 		SELECT *
 		FROM rodis_wh.staging_diagnosis_att p

@@ -106,8 +106,9 @@ WHEN NOT MATCHED
 UPDATE STATISTICS rodis_wh.ecode_att
 
 UPDATE r
-SET id_ecode = - 1
+SET id_ecode = k.entity_key
 FROM rodis_wh.hospital_admission_att r
+INNER JOIN rodis_wh.wh_entity_key k ON k.wh_column_id = @column_id AND k.source_key = '-1'
 WHERE NOT EXISTS (
 		SELECT *
 		FROM rodis_wh.staging_ecode_att p

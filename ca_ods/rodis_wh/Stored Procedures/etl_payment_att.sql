@@ -139,8 +139,9 @@ WHEN NOT MATCHED
 UPDATE STATISTICS rodis_wh.payment_att
 
 UPDATE r
-SET id_payment_primary = - 1
+SET id_payment_primary = k.entity_key
 FROM rodis_wh.hospital_admission_att r
+INNER JOIN rodis_wh.wh_entity_key k ON k.wh_column_id = @column_id AND k.source_key = '-1'
 WHERE NOT EXISTS (
 		SELECT *
 		FROM rodis_wh.staging_payment_att p
@@ -148,8 +149,9 @@ WHERE NOT EXISTS (
 		)
 
 UPDATE r
-SET id_payment_secondary = - 1
+SET id_payment_secondary = k.entity_key
 FROM rodis_wh.hospital_admission_att r
+INNER JOIN rodis_wh.wh_entity_key k ON k.wh_column_id = @column_id AND k.source_key = '-1'
 WHERE NOT EXISTS (
 		SELECT *
 		FROM rodis_wh.staging_payment_att p

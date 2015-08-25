@@ -106,8 +106,9 @@ WHEN NOT MATCHED
 UPDATE STATISTICS rodis_wh.discharge_status_att
 
 UPDATE r
-SET id_discharge_status = - 1
+SET id_discharge_status = k.entity_key
 FROM rodis_wh.hospital_admission_att r
+INNER JOIN rodis_wh.wh_entity_key k ON k.wh_column_id = @column_id AND k.source_key = '-1'
 WHERE NOT EXISTS (
 		SELECT *
 		FROM rodis_wh.staging_discharge_status_att p

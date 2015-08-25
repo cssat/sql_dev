@@ -25,42 +25,6 @@ CREATE TABLE rodis_wh.staging_hospital_admission_att(
 	,cd_payment_secondary VARCHAR(50) NULL
 )
 
-CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_id_hospital_admission ON rodis_wh.staging_hospital_admission_att (
-	id_hospital_admission
-	)
-
-CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_hospital_admission ON rodis_wh.staging_hospital_admission_att (
-	cd_hospital_admission
-	)
-
-CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_admission_source ON rodis_wh.staging_hospital_admission_att (
-	cd_admission_source
-	)
-
-CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_admission_reason ON rodis_wh.staging_hospital_admission_att (
-	cd_admission_reason
-	)
-
-CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_facility ON rodis_wh.staging_hospital_admission_att (
-	cd_facility
-	)
-
-CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_discharge_status ON rodis_wh.staging_hospital_admission_att (
-	cd_discharge_status
-	)
-
-CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_ecode ON rodis_wh.staging_hospital_admission_att (
-	cd_ecode
-	)
-
-CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_payment_primary ON rodis_wh.staging_hospital_admission_att (
-	cd_payment_primary
-	)
-
-CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_payment_secondary ON rodis_wh.staging_hospital_admission_att (
-	cd_payment_secondary
-	)
-
 INSERT rodis_wh.staging_hospital_admission_att (
 	cd_hospital_admission
 	,cd_child_admit_zip
@@ -178,6 +142,42 @@ SELECT CONVERT(VARCHAR(50), '-1') [cd_hospital_admission]
 ORDER BY 1
 
 UPDATE STATISTICS rodis_wh.staging_hospital_admission_att
+
+CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_id_hospital_admission ON rodis_wh.staging_hospital_admission_att (
+	id_hospital_admission
+	)
+
+CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_hospital_admission ON rodis_wh.staging_hospital_admission_att (
+	cd_hospital_admission
+	)
+
+CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_admission_source ON rodis_wh.staging_hospital_admission_att (
+	cd_admission_source
+	)
+
+CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_admission_reason ON rodis_wh.staging_hospital_admission_att (
+	cd_admission_reason
+	)
+
+CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_facility ON rodis_wh.staging_hospital_admission_att (
+	cd_facility
+	)
+
+CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_discharge_status ON rodis_wh.staging_hospital_admission_att (
+	cd_discharge_status
+	)
+
+CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_ecode ON rodis_wh.staging_hospital_admission_att (
+	cd_ecode
+	)
+
+CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_payment_primary ON rodis_wh.staging_hospital_admission_att (
+	cd_payment_primary
+	)
+
+CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_payment_secondary ON rodis_wh.staging_hospital_admission_att (
+	cd_payment_secondary
+	)
 
 DECLARE @table_id INT = (
 		SELECT wh_table_id
@@ -302,8 +302,9 @@ WHEN NOT MATCHED
 UPDATE STATISTICS rodis_wh.hospital_admission_att
 
 UPDATE r
-SET id_hospital_admission_child = - 1
+SET id_hospital_admission_child = k.entity_key
 FROM rodis_wh.birth_administration_att r
+INNER JOIN rodis_wh.wh_entity_key k ON k.wh_column_id = @column_id AND k.source_key = '-1'
 WHERE NOT EXISTS (
 		SELECT *
 		FROM rodis_wh.staging_hospital_admission_att p
@@ -311,8 +312,9 @@ WHERE NOT EXISTS (
 		)
 
 UPDATE r
-SET id_hospital_admission_maternal = - 1
+SET id_hospital_admission_maternal = k.entity_key
 FROM rodis_wh.birth_administration_att r
+INNER JOIN rodis_wh.wh_entity_key k ON k.wh_column_id = @column_id AND k.source_key = '-1'
 WHERE NOT EXISTS (
 		SELECT *
 		FROM rodis_wh.staging_hospital_admission_att p
@@ -320,8 +322,9 @@ WHERE NOT EXISTS (
 		)
 
 UPDATE r
-SET id_hospital_admission = - 1
+SET id_hospital_admission = k.entity_key
 FROM rodis_wh.hospital_admission_fat r
+INNER JOIN rodis_wh.wh_entity_key k ON k.wh_column_id = @column_id AND k.source_key = '-1'
 WHERE NOT EXISTS (
 		SELECT *
 		FROM rodis_wh.staging_hospital_admission_att p
@@ -329,8 +332,9 @@ WHERE NOT EXISTS (
 		)
 
 UPDATE r
-SET id_hospital_admission = - 1
+SET id_hospital_admission = k.entity_key
 FROM rodis_wh.diagnosis_m2m_fat r
+INNER JOIN rodis_wh.wh_entity_key k ON k.wh_column_id = @column_id AND k.source_key = '-1'
 WHERE NOT EXISTS (
 		SELECT *
 		FROM rodis_wh.staging_hospital_admission_att p
@@ -338,8 +342,9 @@ WHERE NOT EXISTS (
 		)
 
 UPDATE r
-SET id_hospital_admission = - 1
+SET id_hospital_admission = k.entity_key
 FROM rodis_wh.procedure_m2m_fat r
+INNER JOIN rodis_wh.wh_entity_key k ON k.wh_column_id = @column_id AND k.source_key = '-1'
 WHERE NOT EXISTS (
 		SELECT *
 		FROM rodis_wh.staging_hospital_admission_att p
