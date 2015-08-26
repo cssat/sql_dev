@@ -2905,6 +2905,11 @@
     <Build Include="rodis_wh\Stored Procedures\load_death_dim.sql" />
     <Build Include="rodis_wh\Stored Procedures\load_cause_of_death_dim.sql" />
     <Build Include="rodis_wh\Stored Procedures\load_cause_of_death_order_dim.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_hospital_admission_fact.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_diagnosis_m2m_fact.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_birth_fact.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_death_fact.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_cause_of_death_m2m_fact.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac">
