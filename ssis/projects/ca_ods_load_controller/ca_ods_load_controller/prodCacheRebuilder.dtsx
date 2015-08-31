@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="prodCacheRebuilder"
   DTS:PackageType="5"
-  DTS:VersionBuild="66"
-  DTS:VersionGUID="{C329EED7-814D-46BC-AC46-A519C23B5FC9}">
+  DTS:VersionBuild="70"
+  DTS:VersionGUID="{E161E362-67D3-45C8-9E5B-2EBBCEB64680}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -27,7 +27,7 @@
           <DTS:Password
             DTS:Name="password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAv19x0cJYw0+1tdBSDsLmXQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADFqw6ZZnmbDB3EKY0gvVSFAAAAAASAAACgAAAAEAAAACYnE3DEG0FTkSHpOZyJdi8YAAAAgqZxLFxSNqJOi1pUI76Gq2LLWBV2IErGFAAAAK3rkXCw3Vl9SygFzdVtn1h0Uytb</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAv19x0cJYw0+1tdBSDsLmXQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAD70u+NTNmkm2N2/LihpNB7AAAAAASAAACgAAAAEAAAAF26doMI8G0WSrB/CXb4ecIYAAAAZ2ZoLvjwmoLGbcO/FCY03iN0XdKIG9w9FAAAAMWsfHL005xodKiy0YGsJITLZ9HE</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -474,7 +474,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{AF3F1B3C-C885-487E-B33D-35D6F3C7CF94}"
-              SQLTask:SqlStatementSource="truncate prtl.cache_pbcs2_aggr; &#xA;truncate prtl.cache_qry_params_pbcs2; &#xA;truncate prtl.cache_pbcs2_params;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="truncate table prtl.cache_pbcs2_aggr; &#xA;truncate table prtl.cache_qry_param_pbcs2; &#xA;truncate table prtl.cache_pbcs2_params;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -699,7 +699,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{AF3F1B3C-C885-487E-B33D-35D6F3C7CF94}"
-              SQLTask:SqlStatementSource="truncate prtl.cache_poc2ab_aggr; &#xA;truncate prtl.cache_qry_params_poc2ab; &#xA;truncate prtl.cache_poc2ab_params;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="truncate table prtl.cache_poc2ab_aggr; &#xA;truncate table prtl.cache_qry_param_poc2ab; &#xA;truncate table prtl.cache_poc2ab_params;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -726,7 +726,6 @@
       DTS:refId="Package\build ihs_safety"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:Disabled="True"
       DTS:DTSID="{2C807C4F-8811-46B2-B1D8-C9487D8EB6D3}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -961,7 +960,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{AF3F1B3C-C885-487E-B33D-35D6F3C7CF94}"
-              SQLTask:SqlStatementSource="truncate prtl.cache_pbcs3_aggr; &#xA;truncate prtl.cache_qry_params_pbcs3; &#xA;truncate prtl.cache_pbcs3_params;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="truncate table prtl.cache_pbcs3_aggr; &#xA;truncate table prtl.cache_qry_param_pbcs3; &#xA;truncate table prtl.cache_pbcs3_params;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -1223,7 +1222,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{AF3F1B3C-C885-487E-B33D-35D6F3C7CF94}"
-              SQLTask:SqlStatementSource="truncate prtl.cache_poc3ab_aggr; &#xA;truncate prtl.cache_qry_params_poc3ab; &#xA;truncate prtl.cache_poc3ab_params;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="truncate table prtl.cache_poc3ab_aggr; &#xA;truncate table prtl.cache_qry_param_poc3ab; &#xA;truncate table prtl.cache_poc3ab_params;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -1532,7 +1531,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{AF3F1B3C-C885-487E-B33D-35D6F3C7CF94}"
-              SQLTask:SqlStatementSource="truncate prtl.cache_poc1ab_entries_aggr; &#xA;truncate prtl.cache_qry_params_poc1ab_entries; &#xA;truncate prtl.cache_poc1ab_entries_params;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="truncate table prtl.cache_poc1ab_entries_aggr; &#xA;truncate table prtl.cache_qry_param_poc1ab_entries; &#xA;truncate table prtl.cache_poc1ab_entries_params;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -1841,7 +1840,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{AF3F1B3C-C885-487E-B33D-35D6F3C7CF94}"
-              SQLTask:SqlStatementSource="truncate prtl.cache_poc1ab_exits_aggr; &#xA;truncate prtl.cache_qry_params_poc1ab_exits; &#xA;truncate prtl.cache_poc1ab_exits_params;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="truncate table prtl.cache_poc1ab_exits_aggr; &#xA;truncate table prtl.cache_qry_param_poc1ab_exits; &#xA;truncate table prtl.cache_poc1ab_exits_params;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -2150,7 +2149,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{AF3F1B3C-C885-487E-B33D-35D6F3C7CF94}"
-              SQLTask:SqlStatementSource="truncate prtl.cache_outcomes_aggr; &#xA;truncate prtl.cache_qry_params_outcomes; &#xA;truncate prtl.cache_outcomes_params;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="truncate table prtl.cache_outcomes_aggr; &#xA;truncate table prtl.cache_qry_param_outcomes; &#xA;truncate table prtl.cache_outcomes_params;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -2177,6 +2176,7 @@
       DTS:refId="Package\build ooh_pit"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
+      DTS:Disabled="True"
       DTS:DTSID="{28D25D93-F1E3-4C4F-9582-57886A904128}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -2459,7 +2459,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{AF3F1B3C-C885-487E-B33D-35D6F3C7CF94}"
-              SQLTask:SqlStatementSource="truncate prtl.cache_poc1ab_aggr; &#xA;truncate prtl.cache_qry_params_poc1ab; &#xA;truncate prtl.cache_poc1ab_params;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="truncate table prtl.cache_poc1ab_aggr; &#xA;truncate table prtl.cache_qry_param_poc1ab; &#xA;truncate table prtl.cache_poc1ab_params;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -2768,7 +2768,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{AF3F1B3C-C885-487E-B33D-35D6F3C7CF94}"
-              SQLTask:SqlStatementSource="truncate prtl.cache_pbcp5_aggr; &#xA;truncate prtl.cache_qry_params_pbcp5; &#xA;truncate prtl.cache_pbcp5_params;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="truncate table prtl.cache_pbcp5_aggr; &#xA;truncate table prtl.cache_qry_param_pbcp5; &#xA;truncate table prtl.cache_pbcp5_params;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -3077,7 +3077,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{AF3F1B3C-C885-487E-B33D-35D6F3C7CF94}"
-              SQLTask:SqlStatementSource="truncate prtl.cache_pbcw3_aggr; &#xA;truncate prtl.cache_qry_params_pbcw3; &#xA;truncate prtl.cache_pbcw3_params;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="truncate table prtl.cache_pbcw3_aggr; &#xA;truncate table prtl.cache_qry_param_pbcw3; &#xA;truncate table prtl.cache_pbcw3_params;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -3386,7 +3386,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{AF3F1B3C-C885-487E-B33D-35D6F3C7CF94}"
-              SQLTask:SqlStatementSource="truncate prtl.cache_pbcw4_aggr; &#xA;truncate prtl.cache_qry_params_pbcw4; &#xA;truncate prtl.cache_pbcw4_params;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="truncate table prtl.cache_pbcw4_aggr; &#xA;truncate table prtl.cache_qry_param_pbcw4; &#xA;truncate table prtl.cache_pbcw4_params;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>

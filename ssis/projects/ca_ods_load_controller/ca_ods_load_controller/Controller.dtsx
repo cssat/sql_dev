@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Controller"
   DTS:PackageType="5"
-  DTS:VersionBuild="105"
-  DTS:VersionGUID="{53BA5D27-8E84-412E-998C-AFF7BC6B1CCD}">
+  DTS:VersionBuild="114"
+  DTS:VersionGUID="{B18F61A8-ECFE-4F16-82A1-3F99D56C7163}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -42,7 +42,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="dir">
       <DTS:VariableValue
-        DTS:DataType="8">\\poc2\pocshare\CA\Data\20150514\uncompressed\</DTS:VariableValue>
+        DTS:DataType="8">\\poc2\pocshare\CA\Data\20150818\uncompressed\</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -1863,6 +1863,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       DTS:refId="Package\insert ca_file_location"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{f721aad0-d71d-4ddc-9bf7-e4bdd0a6a6b4}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
@@ -1898,7 +1899,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       DTS:refId="Package\Push To Annie (FTP)"
       DTS:CreationName="SSIS.ExecutePackageTask.3"
       DTS:Description="Execute Package Task"
-      DTS:Disabled="True"
       DTS:DTSID="{E253946F-58AD-4F32-A677-2D2163BD5C3D}"
       DTS:ExecutableType="SSIS.ExecutePackageTask.3"
       DTS:LocaleID="-1"
@@ -1916,6 +1916,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       DTS:refId="Package\truncate ca_file_location"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{9ba0e4f5-0ab0-4a54-9032-5811b837389b}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
@@ -2065,7 +2066,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           Id="Package\Import 4"
           TopLeft="525.046758232267,314.578463780814" />
         <NodeLayout
-          Size="183,42"
+          Size="181,42"
           Id="Package\insert ca_file_location"
           TopLeft="208.0267467009,315.551103891582" />
         <NodeLayout
@@ -2077,7 +2078,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           Id="Package\Push To Annie (FTP)"
           TopLeft="746.446318484916,312.461064037811" />
         <NodeLayout
-          Size="199,42"
+          Size="194,42"
           Id="Package\truncate ca_file_location"
           TopLeft="110.164178275313,222.750968309762" />
         <EdgeLayout
@@ -2150,30 +2151,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 10]"
-          TopLeft="328.693413367567,315.551103891582">
+          TopLeft="327.360080034233,315.551103891582">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-10.072758449756,-220.108246522325"
+              EndConnector="-8.73942511642264,-220.108246522325"
               Start="0,0"
-              End="-10.072758449756,-212.608246522325">
+              End="-8.73942511642264,-212.608246522325">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-105.496911103571" />
+                    End="0,-105.509915312356" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,-105.496911103571"
-                    Point2="0,-109.496911103571"
-                    Point3="-4,-109.496911103571" />
+                    Point1="0,-105.509915312356"
+                    Point2="0,-109.509915312356"
+                    Point3="-4,-109.509915312356" />
                   <mssgle:LineSegment
-                    End="-6.07275844975601,-109.496911103571" />
+                    End="-4.73942511642264,-109.509915312356" />
                   <mssgle:CubicBezierSegment
-                    Point1="-6.07275844975601,-109.496911103571"
-                    Point2="-10.072758449756,-109.496911103571"
-                    Point3="-10.072758449756,-113.496911103571" />
+                    Point1="-4.73942511642264,-109.509915312356"
+                    Point2="-8.73942511642264,-109.509915312356"
+                    Point3="-8.73942511642264,-113.509915312356" />
                   <mssgle:LineSegment
-                    End="-10.072758449756,-212.608246522325" />
+                    End="-8.73942511642264,-212.608246522325" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2380,9 +2381,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="62.4754573680208,40.646625111994"
+              EndConnector="59.9754573680208,40.646625111994"
               Start="0,0"
-              End="62.4754573680208,33.146625111994">
+              End="59.9754573680208,33.146625111994">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -2393,13 +2394,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                     Point2="0,20.323312555997"
                     Point3="4,20.323312555997" />
                   <mssgle:LineSegment
-                    End="58.4754573680208,20.323312555997" />
+                    End="55.9754573680208,20.323312555997" />
                   <mssgle:CubicBezierSegment
-                    Point1="58.4754573680208,20.323312555997"
-                    Point2="62.4754573680208,20.323312555997"
-                    Point3="62.4754573680208,24.323312555997" />
+                    Point1="55.9754573680208,20.323312555997"
+                    Point2="59.9754573680208,20.323312555997"
+                    Point3="59.9754573680208,24.323312555997" />
                   <mssgle:LineSegment
-                    End="62.4754573680208,33.146625111994" />
+                    End="59.9754573680208,33.146625111994" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2410,30 +2411,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 9]"
-          TopLeft="209.664178275313,264.750968309762">
+          TopLeft="207.164178275313,264.750968309762">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="60.6959017589204,50.8001355818199"
+              EndConnector="62.5292350922537,50.80013558182"
               Start="0,0"
-              End="60.6959017589204,43.3001355818199">
+              End="62.5292350922537,43.30013558182">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,26.2158986288398" />
+                    End="0,26.2130050612577" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,26.2158986288398"
-                    Point2="0,30.2158986288398"
-                    Point3="4,30.2158986288398" />
+                    Point1="0,26.2130050612577"
+                    Point2="0,30.2130050612577"
+                    Point3="4,30.2130050612577" />
                   <mssgle:LineSegment
-                    End="56.6959017589204,30.2158986288398" />
+                    End="58.5292350922537,30.2130050612577" />
                   <mssgle:CubicBezierSegment
-                    Point1="56.6959017589204,30.2158986288398"
-                    Point2="60.6959017589204,30.2158986288398"
-                    Point3="60.6959017589204,34.2158986288398" />
+                    Point1="58.5292350922537,30.2130050612577"
+                    Point2="62.5292350922537,30.2130050612577"
+                    Point3="62.5292350922537,34.2130050612577" />
                   <mssgle:LineSegment
-                    End="60.6959017589204,43.3001355818199" />
+                    End="62.5292350922537,43.30013558182" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

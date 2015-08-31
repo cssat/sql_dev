@@ -1,7 +1,7 @@
 use review_annie;
 
 truncate table cache_outcomes_params;
-LOAD DATA INFILE '/data/pocweb/cache_outcomes_params.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_outcomes_params.txt'
 into table cache_outcomes_params
 fields terminated by '|'
 (qry_ID, age_grouping_cd, cd_race_census, pk_gndr
@@ -18,7 +18,7 @@ fields terminated by '|'
 
 
  truncate table cache_qry_param_outcomes;
- LOAD DATA INFILE '/data/pocweb/cache_qry_param_outcomes.txt'
+ LOAD DATA INFILE '/data/pocweb/upload_files/cache_qry_param_outcomes.txt'
  into table cache_qry_param_outcomes
  fields terminated by '|'
  (int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd
@@ -33,7 +33,7 @@ fields terminated by '|'
   where tbl_name='cache_qry_param_outcomes';
  
  truncate table prtl_outcomes;
-LOAD DATA INFILE '/data/pocweb/prtl_outcomes.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/prtl_outcomes.txt'
 into table prtl_outcomes
 fields terminated by '|'
 LINES TERMINATED BY '\n' 
@@ -52,7 +52,7 @@ analyze table prtl_outcomes;
 
  
 truncate table cache_outcomes_aggr;
-LOAD DATA INFILE '/data/pocweb/cache_outcomes_aggr.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_outcomes_aggr.txt'
 into table cache_outcomes_aggr
 fields terminated by '|'
 (qry_type, date_type,cohort_entry_date, cd_discharge_type
@@ -78,7 +78,7 @@ analyze table cache_outcomes_aggr;
 
 
 truncate table cache_qry_param_pbcp5;
-LOAD DATA INFILE '/data/pocweb/cache_qry_param_pbcp5.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_qry_param_pbcp5.txt'
 into table cache_qry_param_pbcp5
 fields terminated by '|'
 (int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,cd_access_type
@@ -92,7 +92,7 @@ analyze table cache_qry_param_pbcp5;
   where tbl_name='cache_qry_param_pbcp5';
 
 truncate table cache_pbcp5_params;
-LOAD DATA INFILE '/data/pocweb/cache_pbcp5_params.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_pbcp5_params.txt'
 into table cache_pbcp5_params
 fields terminated by '|'
 ( qry_ID ,age_grouping_cd,cd_race_census,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd
@@ -105,7 +105,7 @@ analyze table cache_pbcp5_params;
   where tbl_name='cache_pbcp5_params';
 
 truncate table cache_pbcp5_aggr;
-LOAD DATA INFILE '/data/pocweb/cache_pbcp5_aggr.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_pbcp5_aggr.txt'
 into table cache_pbcp5_aggr
 fields terminated by '|'
 (qry_type,date_type,cohort_entry_date,cd_discharge_type,int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type
@@ -121,7 +121,7 @@ analyze table cache_pbcp5_aggr;
   where tbl_name='cache_pbcp5_aggr';
 
 truncate table prtl_pbcp5;
-LOAD DATA INFILE '/data/pocweb/prtl_pbcp5.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/prtl_pbcp5.txt'
 into table prtl_pbcp5
 FIELDS TERMINATED by '|'
 (cohort_exit_year,date_type,qry_type,cd_discharge_type,age_grouping_cd,
@@ -144,7 +144,7 @@ analyze table prtl_pbcp5;
 
 
 truncate table prtl_pbcs2;
-LOAD DATA INFILE '/data/pocweb/prtl_pbcs2.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/prtl_pbcs2.txt'
 into table prtl_pbcs2
 fields terminated by '|'
 (cohort_begin_date,date_type,qry_type,int_match_param_key,cd_sib_age_grp
@@ -162,7 +162,7 @@ update prtl_tables_last_update
 
 
 truncate table cache_pbcs2_params;
-LOAD DATA INFILE '/data/pocweb/cache_pbcs2_params.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_pbcs2_params.txt'
 into table cache_pbcs2_params
 fields terminated by '|'
 (qry_ID,age_grouping_cd,cd_race_census,cd_county,cd_reporter_type,filter_access_type
@@ -175,7 +175,7 @@ update prtl_tables_last_update
   where tbl_name='cache_pbcs2_params';
 
  truncate table cache_qry_param_pbcs2;
- LOAD DATA INFILE '/data/pocweb/cache_qry_param_pbcs2.txt'
+ LOAD DATA INFILE '/data/pocweb/upload_files/cache_qry_param_pbcs2.txt'
  into table cache_qry_param_pbcs2
  fields terminated by '|'
  (int_param_key,cd_sib_age_grp,cd_race,cd_county,cd_reporter_type,cd_access_type,cd_allegation,
@@ -187,7 +187,7 @@ update prtl_tables_last_update
   where tbl_name='cache_qry_param_pbcs2';
   
 truncate table cache_pbcs2_aggr;
-LOAD DATA INFILE '/data/pocweb/cache_pbcs2_aggr.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_pbcs2_aggr.txt'
 into table cache_pbcs2_aggr
 fields terminated by '|'
 (qry_type,date_type,start_date,int_param_key,cd_reporter_type,cd_access_type,cd_allegation,
@@ -207,7 +207,7 @@ update prtl_tables_last_update
 
 /*
 truncate table cache_pbcs3_params;
-LOAD DATA INFILE '/data/pocweb/cache_pbcs3_params.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_pbcs3_params.txt'
 into table cache_pbcs3_params
 fields terminated by '|'
 (qry_ID, cd_sib_age_grp, cd_race_census, cd_county, cd_reporter_type, bin_ihs_svc_cd, filter_access_type, filter_allegation, filter_finding, filter_srvc_type, 
@@ -220,7 +220,7 @@ update prtl_tables_last_update
   
   
  truncate table cache_qry_param_pbcs3;
- LOAD DATA INFILE '/data/pocweb/cache_qry_param_pbcs3.txt'
+ LOAD DATA INFILE '/data/pocweb/upload_files/cache_qry_param_pbcs3.txt'
  into table cache_qry_param_pbcs3
  fields terminated by '|'
  (int_param_key,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc
@@ -234,7 +234,7 @@ update prtl_tables_last_update
   
   
 truncate table prtl_pbcs3;
-LOAD DATA INFILE '/data/pocweb/prtl_pbcs3.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/prtl_pbcs3.txt'
 into table prtl_pbcs3
 fields terminated by '|'
 (cohort_begin_date,date_type,qry_type,cd_race_census,census_hispanic_latino_origin_cd,
@@ -251,7 +251,7 @@ update prtl_tables_last_update
   
   
 truncate table cache_pbcs3_aggr;
-LOAD DATA INFILE '/data/pocweb/cache_pbcs3_aggr.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_pbcs3_aggr.txt'
 into table cache_pbcs3_aggr
 fields terminated by '|'
 (qry_type,date_type,start_date,int_param_key,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,
@@ -273,7 +273,7 @@ update prtl_tables_last_update
 
 
 truncate table cache_qry_param_pbcw3;
-LOAD DATA INFILE '/data/pocweb/cache_qry_param_pbcw3.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_qry_param_pbcw3.txt'
 into table cache_qry_param_pbcw3
 fields terminated by '|'
 (int_param_key, bin_dep_cd,bin_los_cd, bin_placement_cd, bin_ihs_svc_cd, cd_reporter_type, cd_access_type, cd_allegation, cd_finding, cd_subctgry_poc_frc, 
@@ -286,7 +286,7 @@ analyze table cache_qry_param_pbcw3;
   where tbl_name='cache_qry_param_pbcw3';
 
 truncate table cache_pbcw3_params;
-LOAD DATA INFILE '/data/pocweb/cache_pbcw3_params.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_pbcw3_params.txt'
 into table cache_pbcw3_params
 fields terminated by '|'
 ( qry_ID, age_grouping_cd, cd_race_census, pk_gndr, init_cd_plcm_setng, long_cd_plcm_setng, county_cd, bin_los_cd, bin_placement_cd, bin_ihs_svc_cd, 
@@ -299,7 +299,7 @@ analyze table cache_pbcw3_params;
   where tbl_name='cache_pbcw3_params';
 
 truncate table cache_pbcw3_aggr;
-LOAD DATA INFILE '/data/pocweb/cache_pbcw3_aggr.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_pbcw3_aggr.txt'
 into table cache_pbcw3_aggr
 fields terminated by '|'
 (qry_type, date_type, cohort_entry_date, int_param_key, bin_dep_cd, bin_los_cd, bin_placement_cd, 
@@ -324,7 +324,7 @@ analyze table cache_pbcw3_aggr;
 
 
 truncate table cache_qry_param_pbcw4;
-LOAD DATA INFILE '/data/pocweb/cache_qry_param_pbcw4.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_qry_param_pbcw4.txt'
 into table cache_qry_param_pbcw4
 fields terminated by '|'
 (int_param_key, bin_dep_cd,bin_los_cd, bin_placement_cd, bin_ihs_svc_cd, cd_reporter_type
@@ -339,7 +339,7 @@ analyze table cache_qry_param_pbcw4;
   where tbl_name='cache_qry_param_pbcw4';
 
 truncate table cache_pbcw4_params;
-LOAD DATA INFILE '/data/pocweb/cache_pbcw4_params.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_pbcw4_params.txt'
 into table cache_pbcw4_params
 fields terminated by '|'
 ( qry_ID, age_grouping_cd, cd_race_census, pk_gndr, init_cd_plcm_setng, long_cd_plcm_setng, county_cd, bin_los_cd, bin_placement_cd, bin_ihs_svc_cd, 
@@ -353,7 +353,7 @@ analyze table cache_pbcw4_params;
 
 
 truncate table cache_pbcw4_aggr;
-LOAD DATA INFILE '/data/pocweb/cache_pbcw4_aggr.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_pbcw4_aggr.txt'
 into table cache_pbcw4_aggr
 fields terminated by '|'
 (qry_type,date_type,cohort_entry_date,int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,
@@ -372,7 +372,7 @@ analyze table cache_pbcw4_aggr;
 
 
 truncate table cache_poc1ab_params;
-LOAD DATA INFILE '/data/pocweb/cache_poc1ab_params.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_poc1ab_params.txt'
 into table cache_poc1ab_params
 fields terminated by '|'
 (qry_ID, age_grouping_cd, cd_race_census, pk_gndr, init_cd_plcm_setng, long_cd_plcm_setng, county_cd
@@ -391,7 +391,7 @@ fields terminated by '|'
 
 
  truncate table cache_qry_param_poc1ab;
- LOAD DATA INFILE '/data/pocweb/cache_qry_param_poc1ab.txt'
+ LOAD DATA INFILE '/data/pocweb/upload_files/cache_qry_param_poc1ab.txt'
  into table cache_qry_param_poc1ab
  fields terminated by '|'
  (qry_id,int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd
@@ -408,7 +408,7 @@ fields terminated by '|'
 
  
 truncate table cache_poc1ab_aggr;
-LOAD DATA INFILE '/data/pocweb/cache_poc1ab_aggr.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_poc1ab_aggr.txt'
 into table cache_poc1ab_aggr
 fields terminated by '|'
 (qry_type, date_type,start_date, int_param_key, bin_dep_cd
@@ -435,7 +435,7 @@ call create_prtl_poc1ab_ram_table;
 
 
 truncate table cache_poc1ab_entries_params;
-LOAD DATA INFILE '/data/pocweb/cache_poc1ab_entries_params.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_poc1ab_entries_params.txt'
 into table cache_poc1ab_entries_params
 fields terminated by '|'
 (qry_ID, age_grouping_cd, cd_race_census, pk_gndr, init_cd_plcm_setng, long_cd_plcm_setng, county_cd
@@ -451,7 +451,7 @@ fields terminated by '|'
 
 
  truncate table cache_qry_param_poc1ab_entries;
- LOAD DATA INFILE '/data/pocweb/cache_qry_param_poc1ab_entries.txt'
+ LOAD DATA INFILE '/data/pocweb/upload_files/cache_qry_param_poc1ab_entries.txt'
  into table cache_qry_param_poc1ab_entries
  fields terminated by '|'
  (qry_id,int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd
@@ -464,7 +464,7 @@ fields terminated by '|'
   where tbl_name='cache_qry_param_poc1ab_entries';
  
  truncate table prtl_poc1ab_entries;
-LOAD DATA INFILE '/data/pocweb/prtl_poc1ab_entries.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/prtl_poc1ab_entries.txt'
 into table prtl_poc1ab_entries
 fields terminated by ','
 LINES TERMINATED BY '\n' 
@@ -485,7 +485,7 @@ analyze table prtl_poc1ab_entries;
 
  
 truncate table cache_poc1ab_entries_aggr;
-LOAD DATA INFILE '/data/pocweb/cache_poc1ab_entries_aggr.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_poc1ab_entries_aggr.txt'
 into table cache_poc1ab_entries_aggr
 fields terminated by '|'
 (qry_type, date_type,start_date, int_param_key, bin_dep_cd
@@ -508,7 +508,7 @@ analyze table cache_poc1ab_entries_aggr;
 
 
 truncate table cache_poc1ab_exits_params;
-LOAD DATA INFILE '/data/pocweb/cache_poc1ab_exits_params.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_poc1ab_exits_params.txt'
 into table cache_poc1ab_exits_params
 fields terminated by '|'
 (qry_ID, age_grouping_cd, cd_race_census, pk_gndr, init_cd_plcm_setng, long_cd_plcm_setng, county_cd
@@ -524,7 +524,7 @@ fields terminated by '|'
 
 
  truncate table cache_qry_param_poc1ab_exits;
- LOAD DATA INFILE '/data/pocweb/cache_qry_param_poc1ab_exits.txt'
+ LOAD DATA INFILE '/data/pocweb/upload_files/cache_qry_param_poc1ab_exits.txt'
  into table cache_qry_param_poc1ab_exits
  fields terminated by '|'
  (qry_id,int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd
@@ -537,7 +537,7 @@ fields terminated by '|'
   where tbl_name='cache_qry_param_poc1ab_exits';
  
  truncate table prtl_poc1ab_exits;
-LOAD DATA INFILE '/data/pocweb/prtl_poc1ab_exits.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/prtl_poc1ab_exits.txt'
 into table prtl_poc1ab_exits
 fields terminated by '|'
 LINES TERMINATED BY '\n' 
@@ -557,7 +557,7 @@ analyze table prtl_poc1ab_exits;
 
  
 truncate table cache_poc1ab_exits_aggr;
-LOAD DATA INFILE '/data/pocweb/cache_poc1ab_exits_aggr.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_poc1ab_exits_aggr.txt'
 into table cache_poc1ab_exits_aggr
 fields terminated by '|'
 (qry_type, date_type,start_date, int_param_key, bin_dep_cd
@@ -585,7 +585,7 @@ analyze table cache_poc1ab_exits_aggr;
 
 
 truncate table cache_poc2ab_params;
-LOAD DATA INFILE '/data/pocweb/cache_poc2ab_params.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_poc2ab_params.txt'
 into table cache_poc2ab_params
 fields terminated by '|'
 (qry_ID,age_grouping_cd,cd_race_census,cd_county,cd_reporter_type,filter_access_type
@@ -602,7 +602,7 @@ SET autocommit=0;
 SET foreign_key_checks=0;  
 
  truncate table cache_qry_param_poc2ab;
- LOAD DATA INFILE '/data/pocweb/cache_qry_param_poc2ab.txt'
+ LOAD DATA INFILE '/data/pocweb/upload_files/cache_qry_param_poc2ab.txt'
  into table cache_qry_param_poc2ab
  fields terminated by '|'
  (qry_id,int_param_key,
@@ -624,7 +624,7 @@ update prtl_tables_last_update
   where tbl_name='cache_qry_param_poc2ab';
  
 truncate table prtl_poc2ab;
-LOAD DATA INFILE '/data/pocweb/prtl_poc2ab.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/prtl_poc2ab.txt'
 into table prtl_poc2ab
 fields terminated by '|'
 (qry_type,date_type,start_date,start_year,int_match_param_key
@@ -644,7 +644,7 @@ update prtl_tables_last_update
 SET autocommit=0;
 SET foreign_key_checks=0;  
  
-LOAD DATA INFILE '/data/pocweb/cache_poc2ab_aggr.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_poc2ab_aggr.txt'
 into table cache_poc2ab_aggr
 fields terminated by '|'
 (qry_type,date_type,start_date,int_param_key,cd_reporter_type,cd_access_type,cd_allegation
@@ -665,7 +665,7 @@ update prtl_tables_last_update
 
 /*
 truncate table cache_poc3ab_params;
-LOAD DATA INFILE '/data/pocweb/cache_poc3ab_params.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_poc3ab_params.txt'
 into table cache_poc3ab_params
 fields terminated by '|'
 (qry_ID, cd_sib_age_grp, cd_race_census, cd_county, cd_reporter_type, bin_ihs_svc_cd, filter_access_type, filter_allegation, filter_finding, filter_srvc_type, 
@@ -678,7 +678,7 @@ update prtl_tables_last_update
   where tbl_name='cache_poc3ab_params';
 
  truncate table cache_qry_param_poc3ab;
- LOAD DATA INFILE '/data/pocweb/cache_qry_param_poc3ab.txt'
+ LOAD DATA INFILE '/data/pocweb/upload_files/cache_qry_param_poc3ab.txt'
  into table cache_qry_param_poc3ab
  fields terminated by '|'
  (int_param_key,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc
@@ -690,7 +690,7 @@ update prtl_tables_last_update
   where tbl_name='cache_qry_param_poc3ab';
   
 truncate table prtl_poc3ab;
- LOAD DATA INFILE '/data/pocweb/prtl_poc3ab.txt'
+ LOAD DATA INFILE '/data/pocweb/upload_files/prtl_poc3ab.txt'
  into table prtl_poc3ab
  fields terminated by '|'
  (qry_type,date_type,start_date,start_year,int_match_param_key,
@@ -705,7 +705,7 @@ truncate table prtl_poc3ab;
 
  
 truncate table cache_poc3ab_aggr;
-LOAD DATA INFILE '/data/pocweb/cache_poc3ab_aggr.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/cache_poc3ab_aggr.txt'
 into table cache_poc3ab_aggr
 fields terminated by '|'
 ( qry_type, date_type,  start_date, int_param_key, bin_ihs_svc_cd, cd_reporter_type, cd_access_type, cd_allegation
@@ -725,7 +725,7 @@ analyze table cache_poc3ab_aggr;
   
 
 truncate table ref_match_srvc_type_category;
-LOAD DATA INFILE '/data/pocweb/ref_match_srvc_type_category.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/ref_match_srvc_type_category.txt'
 into table ref_match_srvc_type_category
 fields terminated by '|'
 (filter_srvc_type,fl_family_focused_services,fl_child_care,fl_therapeutic_services,fl_mh_services ,fl_receiving_care,fl_family_home_placements ,fl_behavioral_rehabiliation_services
@@ -739,7 +739,7 @@ analyze table ref_match_srvc_type_category;
   where tbl_name='ref_match_srvc_type_category';
 
 truncate table ref_match_srvc_type_budget;
-LOAD DATA INFILE '/data/pocweb/ref_match_srvc_type_budget.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/ref_match_srvc_type_budget.txt'
 into table ref_match_srvc_type_budget
 fields terminated by '|'
 (filter_service_budget,fl_budget_C12,fl_budget_C14,fl_budget_C15,fl_budget_C16,fl_budget_C18,fl_budget_C19,fl_uncat_svc,cd_budget_poc_frc);
@@ -751,7 +751,7 @@ analyze table ref_match_srvc_type_budget;
   where tbl_name='ref_match_srvc_type_budget';
 
 truncate table ref_match_allegation;
-LOAD DATA INFILE '/data/pocweb/ref_match_allegation.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/ref_match_allegation.txt'
 into table ref_match_allegation
 fields terminated by '|'
 (cd_allegation,filter_allegation,fl_phys_abuse,fl_sexual_abuse,fl_neglect,fl_any_legal);
@@ -762,7 +762,7 @@ analyze table ref_match_allegation;
   where tbl_name='ref_match_allegation';
 
 truncate table ref_match_finding;
-LOAD DATA INFILE '/data/pocweb/ref_match_finding.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/ref_match_finding.txt'
 into table ref_match_finding
 fields terminated by '|'
 (filter_finding,fl_founded_phys_abuse,fl_founded_sexual_abuse,fl_founded_neglect,fl_any_finding_legal,cd_finding);
@@ -779,7 +779,7 @@ analyze table ref_match_finding;
   
 
 truncate table ooh_point_in_time_measures;
-LOAD DATA INFILE '/data/pocweb/ooh_point_in_time_measures.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/ooh_point_in_time_measures.txt'
 into table ooh_point_in_time_measures
 fields terminated by ','
 LINES TERMINATED BY '\n' 
@@ -804,7 +804,7 @@ analyze table ooh_point_in_time_measures;
 
 
 truncate table ref_lookup_census_population;
-LOAD DATA INFILE '/data/pocweb/ref_lookup_census_population.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/ref_lookup_census_population.txt'
 into table ref_lookup_census_population
 fields terminated by '|'
 (source_census,county_cd,pk_gndr,cd_race,age_grouping_cd,measurement_year,pop_cnt);
@@ -820,7 +820,7 @@ analyze table ref_lookup_census_population;
 
 
 truncate table ref_lookup_census_population_poc2;
-LOAD DATA INFILE '/data/pocweb/ref_lookup_census_population_poc2.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/ref_lookup_census_population_poc2.txt'
 into table ref_lookup_census_population_poc2
 fields terminated by '|'
 (source_census,county_cd,cd_race,cd_sib_age_grp,measurement_year,pop_cnt);
@@ -839,7 +839,7 @@ drop table if exists bkp_ref_lookup_max_date ;
 create table bkp_ref_lookup_max_date as select * from ref_lookup_max_date;
 
 truncate table ref_lookup_max_date;
-LOAD DATA INFILE '/data/pocweb/ref_lookup_max_date.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/ref_lookup_max_date.txt'
 into table ref_lookup_max_date
 fields terminated by '|'
 (id,procedure_name,max_date_all,max_date_any,max_date_qtr,max_date_yr,min_date_any,is_current);
@@ -855,7 +855,7 @@ analyze table ref_lookup_max_date;
 
 
 truncate table ref_last_dw_transfer;
-LOAD DATA INFILE '/data/pocweb/ref_last_dw_transfer.txt'
+LOAD DATA INFILE '/data/pocweb/upload_files/ref_last_dw_transfer.txt'
 into table ref_last_dw_transfer
 fields terminated by '|'
 (cutoff_date);

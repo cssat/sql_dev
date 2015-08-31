@@ -24,7 +24,6 @@ CREATE PROCEDURE [prtl].[sp_ooh_pit_counts](
 , @filter_service_budget varchar(100)
 , @bin_dep_cd varchar(20)
 ,@fl_return_results smallint  -- 1 = yes; 0 = no (for loading cache tables set to 0)
-, @debug smallint = 0
 )
 as
  set nocount on
@@ -668,7 +667,7 @@ from (
 								, year(poc1ab.[start_date])
 								, 1
 							FROM prtl.ooh_point_in_time_measures  poc1ab
-							join #prmlocdem mtch on mtch.int_param_key=poc1ab.int_match_param_key_mix
+							join #prmlocdem mtch on mtch.int_match_param_key=poc1ab.int_match_param_key_mix
 							join #cnty cnty on cnty.match_code=poc1ab.county_cd
 							join #los los on los.match_code=poc1ab.max_bin_los_cd
 							join #nbrplc plc on plc.match_code=poc1ab.bin_placement_cd
