@@ -146,6 +146,11 @@
     <Folder Include="camis\Tables\" />
     <Folder Include="ui\Views\" />
     <Folder Include="scripts" />
+    <Folder Include="ref\Stored Procedures" />
+    <Folder Include="annual_report" />
+    <Folder Include="annual_report\Views" />
+    <Folder Include="annual_report\Tables" />
+    <Folder Include="annual_report\Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\hire_pk_question_data_to_insert.sql">
@@ -2700,6 +2705,32 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
+    <Build Include="ref\Tables\reporter_mandate_xwalk.sql" />
+    <Build Include="ref\Stored Procedures\build_reporter_mandate_xwalk.sql" />
+    <Build Include="Security\annual_report.sql" />
+    <Build Include="annual_report\Tables\ca_fc_afcars_extracts.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_sex.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_race.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_clindis.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_adoption.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_manrem.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_curplset.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_casegoal.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_family_structure.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_disreasn.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_placeout.sql" />
+    <Build Include="annual_report\Tables\ca_ncands_extracts.sql" />
+    <Build Include="annual_report\Tables\ref_ncands_living_arrangement.sql" />
+    <Build Include="annual_report\Tables\ref_ncands_ethnicity.sql" />
+    <Build Include="annual_report\Tables\ref_ncands_race.sql" />
+    <Build Include="annual_report\Tables\ref_ncands_sex.sql" />
+    <Build Include="annual_report\Tables\ref_ncands_notifs.sql" />
+    <Build Include="annual_report\Tables\ref_ncands_rptsrc.sql" />
+    <Build Include="annual_report\Tables\ref_ncands_rptdisp.sql" />
+    <Build Include="annual_report\Tables\ref_ncands_per_prnt.sql" />
+    <Build Include="annual_report\Tables\ref_ncands_per_rel.sql" />
+    <Build Include="annual_report\Tables\ref_ncands_mal.sql" />
+    <Build Include="annual_report\Tables\ref_ncands_mal_lev.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac">
