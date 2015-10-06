@@ -665,7 +665,7 @@ from (
 						update cache_poc1ab_exits_aggr
 						set fl_include_perCapita=0
 						from  prtl.cache_poc1ab_exits_aggr  
-						, dbCoreadministrativetables.dbo.ref_lookup_census_population  
+						, dbo.ref_lookup_census_population  
 						where ref_lookup_census_population.measurement_year=start_year
 						and ref_lookup_census_population.county_cd=cache_poc1ab_exits_aggr.county_cd and ref_lookup_census_population.pk_gndr=cache_poc1ab_exits_aggr.pk_gndr
 						and ref_lookup_census_population.cd_race=cache_poc1ab_exits_aggr.cd_race
