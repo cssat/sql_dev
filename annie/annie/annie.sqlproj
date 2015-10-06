@@ -90,8 +90,8 @@
     <Build Include="prtl\Tables\cache_ooh_pit_params.sql" />
     <Build Include="prtl\Tables\ooh_flow_entries_cache.sql" />
     <Build Include="prtl\Tables\ooh_flow_entries_params.sql" />
-    <Build Include="prtl\Tables\cache_ooh_flow_exits_aggr.sql" />
-    <Build Include="prtl\Tables\cache_ooh_flow_exits_params.sql" />
+    <Build Include="prtl\Tables\ooh_flow_exits_cache.sql" />
+    <Build Include="prtl\Tables\ooh_flow_exits_params.sql" />
     <Build Include="prtl\Tables\ia_trends_cache.sql" />
     <Build Include="prtl\Tables\ia_trends_params.sql" />
     <Build Include="prtl\Tables\param_sets_demog.sql" />
@@ -183,6 +183,14 @@
     <Build Include="ref\Views\match_bin_dependency_cd.sql" />
     <Build Include="prtl\Stored Procedures\log_query_ooh_flow_entries.sql" />
     <Build Include="prtl\Tables\ooh_flow_entries_cache_query.sql" />
+    <Build Include="prtl\Tables\ooh_flow_exits_cache_query.sql" />
+    <Build Include="prtl\Stored Procedures\import_ooh_flow_exits.sql" />
+    <Build Include="prtl\Stored Procedures\log_query_ooh_flow_exits.sql" />
+    <Build Include="ref\Views\match_cd_discharge_type.sql" />
+    <Build Include="prtl\Stored Procedures\sp_ooh_flow_entries_rates.sql" />
+    <Build Include="prtl\Stored Procedures\sp_ooh_flow_entries_counts.sql" />
+    <Build Include="prtl\Stored Procedures\build_ooh_flow_exits_cache.sql" />
+    <Build Include="prtl\Stored Procedures\sp_ooh_flow_exits.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="annie.refactorlog" />

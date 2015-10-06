@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [prtl].[build_ooh_flow_entries_cache]
+﻿CREATE PROCEDURE [prtl].[build_ooh_flow_exits_cache]
 	@age_grouping_cd VARCHAR(20)
 	,@pk_gender VARCHAR(10)
 	,@cd_race_census VARCHAR(30)
@@ -197,7 +197,7 @@ CROSS JOIN @finding f
 CROSS JOIN @bin_dependency bd
 WHERE NOT EXISTS (
 		SELECT *
-		FROM prtl.ooh_flow_entries_cache_query cq
+		FROM prtl.ooh_flow_exits_cache_query cq
 		WHERE cq.age_grouping_cd = a.age_grouping_cd
 			AND cq.pk_gender = g.pk_gender
 			AND cq.cd_race_census = rc.cd_race_census
@@ -218,7 +218,7 @@ SET @row_id = (SELECT TOP 1 row_id FROM @parameters ORDER BY row_id)
 
 WHILE @row_id IS NOT NULL
 BEGIN
-	INSERT prtl.ooh_flow_entries_cache (
+	INSERT prtl.ooh_flow_exits_cache (
 		qry_type
 		,date_type
 		,start_date
@@ -236,10 +236,11 @@ BEGIN
 		,cd_access_type
 		,cd_allegation
 		,cd_finding
-		,cnt_entries
+		,cd_discharge_type
+		,cnt_exits
 		,x1
 		,x2
-		,jit_entries
+		,jit_exits
 		)
 	SELECT
 		ooh.qry_type
@@ -259,10 +260,11 @@ BEGIN
 		,ooh.cd_access_type
 		,ooh.cd_allegation
 		,ooh.cd_finding
-		,ooh.cnt_entries
+		,ooh.cd_discharge_type
+		,ooh.cnt_exits
 		,ooh.x1
 		,ooh.x2
-		,prtl.fnc_jitter(ooh.cnt_entries, ooh.x1, ooh.x2) [jit_entries]
+		,prtl.fnc_jitter(ooh.cnt_exits, ooh.x1, ooh.x2) [jit_exits]
 	FROM (
 		SELECT ooh.qry_type
 			,ooh.date_type
@@ -281,7 +283,8 @@ BEGIN
 			,p.cd_access_type
 			,p.cd_allegation
 			,p.cd_finding
-			,ISNULL(SUM(ooh.cnt_entries), 0) [cnt_entries]
+			,mdt.cd_discharge_type
+			,ISNULL(SUM(ooh.cnt_exits), 0) [cnt_exits]
 			,RAND(CONVERT(VARBINARY, NEWID())) [x1]
 			,RAND(CONVERT(VARBINARY, NEWID())) [x2]
 		FROM @parameters p
@@ -299,7 +302,7 @@ BEGIN
 		INNER JOIN ref.match_cd_access_type mat ON mat.cd_access_type = p.cd_access_type
 		INNER JOIN ref.match_allegation ma ON ma.cd_allegation = p.cd_allegation
 		INNER JOIN ref.match_finding mf ON mf.cd_finding = p.cd_finding
-		INNER JOIN prtl.ooh_flow_entries ooh ON ooh.age_grouping_cd = mag.age_census_match_code
+		INNER JOIN prtl.ooh_flow_exits ooh ON ooh.age_grouping_cd = mag.age_census_match_code
 			AND ooh.pk_gndr = mg.pk_gender_match_code
 			AND ooh.cd_race = mrc.race_census_match_code
 			AND ooh.init_cd_plcm_setng = ips.placement_setting_match_code
@@ -313,6 +316,7 @@ BEGIN
 			AND ooh.filter_access_type = mat.filter_access_type
 			AND ooh.filter_allegation = ma.filter_allegation
 			AND ooh.filter_finding = mf.filter_finding
+		INNER JOIN ref.match_cd_discharge_type mdt ON mdt.discharge_type_match_code = ooh.cd_discharge_type
 		WHERE p.row_id = @row_id
 		GROUP BY ooh.qry_type
 			,ooh.date_type
@@ -331,39 +335,12 @@ BEGIN
 			,p.cd_access_type
 			,p.cd_allegation
 			,p.cd_finding
+			,mdt.cd_discharge_type
 		) ooh
 
-	UPDATE STATISTICS prtl.ooh_flow_entries_cache
+	UPDATE STATISTICS prtl.ooh_flow_exits_cache
 
-	UPDATE ooh
-	SET rate_entries = ROUND(ooh.jit_entries / (cp.population_count * 1.00) * 1000, 2)
-		,fl_include_perCapita = CONVERT(BIT, IIF(ooh.cnt_entries > cp.perCapita_threshold, 0, 1))
-	FROM prtl.ooh_flow_entries_cache ooh
-	INNER JOIN @parameters p ON p.row_id = @row_id
-		AND p.age_grouping_cd = ooh.age_grouping_cd
-		AND p.pk_gender = ooh.pk_gender
-		AND p.cd_race_census = ooh.cd_race_census
-		AND p.initial_cd_placement_setting = ooh.initial_cd_placement_setting
-		AND p.longest_cd_placement_setting = ooh.longest_cd_placement_setting
-		AND p.cd_county = ooh.cd_county
-		AND p.bin_dependency_cd = ooh.bin_dependency_cd
-		AND p.bin_los_cd = ooh.bin_los_cd
-		AND p.bin_placement_cd = ooh.bin_placement_cd
-		AND	p.bin_ihs_service_cd = ooh.bin_ihs_service_cd
-		AND p.cd_reporter_type = ooh.cd_reporter_type
-		AND p.cd_access_type = ooh.cd_access_type
-		AND p.cd_allegation = ooh.cd_allegation
-		AND p.cd_finding = ooh.cd_finding
-	INNER JOIN ref.match_census_population cp ON cp.measurement_year = YEAR(ooh.start_date)
-		AND cp.age_grouping_cd = ooh.age_grouping_cd
-		AND cp.pk_gender = ooh.pk_gender
-		AND cp.cd_race_census = ooh.cd_race_census
-		AND cp.cd_county = ooh.cd_county
-		AND cp.population_count != 0
-
-	UPDATE STATISTICS prtl.ooh_flow_entries_cache
-
-	INSERT prtl.ooh_flow_entries_cache_query (
+	INSERT prtl.ooh_flow_exits_cache_query (
 		age_grouping_cd
 		,pk_gender
 		,cd_race_census
@@ -397,7 +374,7 @@ BEGIN
 	FROM @parameters
 	WHERE row_id = @row_id
 
-	UPDATE STATISTICS prtl.ooh_flow_entries_cache_query
+	UPDATE STATISTICS prtl.ooh_flow_exits_cache_query
 
 	SET @row_id = (SELECT TOP 1 row_id FROM @parameters WHERE row_id > @row_id ORDER BY row_id)
 END
