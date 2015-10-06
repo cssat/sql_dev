@@ -1,5 +1,4 @@
-﻿CREATE TABLE [prtl].[ia_safety]
-(
+﻿CREATE TABLE [prtl].[ia_safety] (
     [cohort_begin_date] DATETIME NOT NULL, 
     [date_type] INT NOT NULL, 
     [qry_type] INT NOT NULL, 
@@ -23,29 +22,18 @@
 )
 GO
 
-CREATE NONCLUSTERED INDEX [idx_ia_safety] 
-    ON [prtl].[ia_safety] ([cohort_ref_count], [nxt_ref_within_min_month], [cohort_begin_date])
-GO
-
-CREATE NONCLUSTERED INDEX [idx_ia_safety_param_sets_ia] 
-    ON [prtl].[ia_safety] ([cd_reporter_type], [filter_access_type], [filter_allegation], [filter_finding])
-GO
-
-CREATE NONCLUSTERED INDEX [idx_ia_safety_param_sets_demog] 
-    ON [prtl].[ia_safety] ([cd_sib_age_grp], [cd_race_census])
-GO
-
-CREATE NONCLUSTERED INDEX [idx_ia_safety_param_sets_geog] 
-    ON [prtl].[ia_safety] ([county_cd])
-GO
-
-CREATE NONCLUSTERED INDEX [idx_ia_safety_aggr_insert]
-    ON [prtl].[ia_safety] ([cohort_begin_date],[qry_type],[cd_reporter_type],[filter_access_type],[filter_allegation],[filter_finding],[cohort_ref_count])
-INCLUDE ([date_type],[cd_sib_age_grp],[cd_race_census],[county_cd],[cnt_case],[nxt_ref_within_min_month])
-GO
-
-CREATE NONCLUSTERED INDEX [idx_ia_safety_aggr_insert_2]
-	ON [prtl].[ia_safety] ([cd_reporter_type],[filter_access_type],[filter_allegation],[filter_finding],[cohort_ref_count])
-INCLUDE ([cohort_begin_date],[qry_type],[cd_sib_age_grp],[cd_race_census],[county_cd],[cnt_case])
+CREATE NONCLUSTERED INDEX [idx_ia_safety] ON [prtl].[ia_safety] (
+	[cd_sib_age_grp]
+	,[cd_race_census]
+	,[county_cd]
+	,[cd_reporter_type]
+	,[filter_access_type]
+	,[filter_allegation]
+	,[filter_finding]
+	,[cohort_begin_date]
+	) INCLUDE (
+	[qry_type]
+	,[cnt_case]
+	)
 GO
 

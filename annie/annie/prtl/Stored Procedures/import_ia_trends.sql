@@ -36,4 +36,4 @@ SELECT qry_type
     ,cnt_closed
 FROM ca_ods.prtl.prtl_poc2ab
 
-UPDATE STATISTICS prtl.ia_safety
+UPDATE STATISTICS prtl.ia_trends

@@ -8,12 +8,14 @@ INSERT ref.match_census_population_household (
 	,cd_race_census
 	,cd_county
 	,population_count
+	,perCapita_threshold
 	)
 SELECT measurement_year
 	,cd_sib_age_grp
 	,cd_race
 	,county_cd
 	,pop_cnt
+	,pop_cnt * .35 [perCapita_threshold]
 FROM ca_ods.public_data.census_population_household
 
 UNION ALL
@@ -23,6 +25,7 @@ SELECT measurement_year
 	,cd_race
 	,county_cd
 	,SUM(pop_cnt) [pop_cnt]
+	,SUM(pop_cnt) * .35 [perCapita_threshold]
 FROM ca_ods.public_data.census_population_household
 GROUP BY measurement_year
 	,cd_race
@@ -35,6 +38,7 @@ SELECT measurement_year
 	,0 [cd_race]
 	,county_cd
 	,SUM(pop_cnt) [pop_cnt]
+	,SUM(pop_cnt) * .35 [perCapita_threshold]
 FROM ca_ods.public_data.census_population_household
 WHERE cd_race <= 8
 GROUP BY measurement_year
@@ -48,6 +52,7 @@ SELECT measurement_year
 	,cd_race
 	,0 [county_cd]
 	,SUM(pop_cnt) [pop_cnt]
+	,SUM(pop_cnt) * .35 [perCapita_threshold]
 FROM ca_ods.public_data.census_population_household
 GROUP BY measurement_year
 	,cd_sib_age_grp
@@ -60,6 +65,7 @@ SELECT measurement_year
 	,0 [cd_race]
 	,county_cd
 	,SUM(pop_cnt) [pop_cnt]
+	,SUM(pop_cnt) * .35 [perCapita_threshold]
 FROM ca_ods.public_data.census_population_household
 WHERE cd_race <= 8
 GROUP BY measurement_year
@@ -72,6 +78,7 @@ SELECT measurement_year
 	,cd_race
 	,0 [county_cd]
 	,SUM(pop_cnt) [pop_cnt]
+	,SUM(pop_cnt) * .35 [perCapita_threshold]
 FROM ca_ods.public_data.census_population_household
 GROUP BY measurement_year
 	,cd_race
@@ -83,6 +90,7 @@ SELECT measurement_year
 	,0 [cd_race]
 	,0 [county_cd]
 	,SUM(pop_cnt) [pop_cnt]
+	,SUM(pop_cnt) * .35 [perCapita_threshold]
 FROM ca_ods.public_data.census_population_household
 WHERE cd_race <= 8
 GROUP BY measurement_year
@@ -95,6 +103,7 @@ SELECT measurement_year
 	,0 [cd_race]
 	,0 [county_cd]
 	,SUM(pop_cnt) [pop_cnt]
+	,SUM(pop_cnt) * .35 [perCapita_threshold]
 FROM ca_ods.public_data.census_population_household
 WHERE cd_race <= 8
 GROUP BY measurement_year
