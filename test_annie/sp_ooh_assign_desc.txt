@@ -15,18 +15,9 @@ else
     set i=0;
 end if;
 
-if p_calling_procedure in (19,20,24,26) then
+if p_calling_procedure in (19,20,24,25,26) then
     while i <=4 do
         set @myqry=concat('select age_grouping into @age',i,' from ref_lookup_age_census where age_grouping_cd=',i);
-       
-        PREPARE stmt FROM @myqry;
-        EXECUTE stmt;
-        DEALLOCATE PREPARE stmt;
-        set i=i+1;
-    end while;
-elseif p_calling_procedure=25 then
-    while i <=6 do
-        set @myqry=concat('select developmental_age_tx into @age',i,' from vw_age_developmental_exits where developmental_age_cd=',i);
        
         PREPARE stmt FROM @myqry;
         EXECUTE stmt;

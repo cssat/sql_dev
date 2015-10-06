@@ -413,19 +413,19 @@ UNION ALL
 								  ,[fl_found_any_legal]
 								  , int_filter_service_category
 								  , filter_service_budget
-								  ,eps.exit_developmental_age_cd
+								  ,eps.exit_census_child_group_cd
 								  ,[cd_race_census]
 								  ,[census_hispanic_latino_origin_cd]
 								  ,[pk_gndr]
 								  ,[init_cd_plcm_setng]
 								  ,[long_cd_plcm_setng]
 								  ,exit_county_cd
-								  ,eps.exit_int_match_param_key_developmental
+								  ,eps.exit_int_match_param_key_census_child_group
 								 , eps.cd_discharge_type
 								  ,count(distinct id_removal_episode_fact)
 						  from prtl.ooh_dcfs_eps eps
 						  join #date dt on eps.federal_discharge_date between dt.begin_date and dt.end_date
-						  where  exit_developmental_age_cd is not null
+						  where  exit_census_child_group_cd is not null
 							  group by   dt.date_type
 								,dt.begin_date
 								  ,[bin_dep_cd]
@@ -448,14 +448,14 @@ UNION ALL
 								  ,[fl_found_any_legal]
 								  , int_filter_service_category
 								  , filter_service_budget
-								  ,eps.exit_developmental_age_cd
+								  ,eps.exit_census_child_group_cd
 								  ,[cd_race_census]
 								  ,[census_hispanic_latino_origin_cd]
 								  ,[pk_gndr]
 								  ,[init_cd_plcm_setng]
 								  ,[long_cd_plcm_setng]
 								  ,exit_county_cd
-								  ,exit_int_match_param_key_developmental
+								  ,exit_int_match_param_key_census_child_group
 								 , eps.cd_discharge_type
 					----  first entries -   EXITS
 				UNION ALL
@@ -482,20 +482,20 @@ UNION ALL
 								  ,[fl_found_any_legal]
 								  , int_filter_service_category
 								  , filter_service_budget
-								  ,eps.exit_developmental_age_cd
+								  ,eps.exit_census_child_group_cd
 								  ,[cd_race_census]
 								  ,[census_hispanic_latino_origin_cd]
 								  ,[pk_gndr]
 								  ,[init_cd_plcm_setng]
 								  ,[long_cd_plcm_setng]
 								  ,exit_county_cd
-								  ,exit_int_match_param_key_developmental
+								  ,exit_int_match_param_key_census_child_group
 								 , eps.cd_discharge_type
 								  ,count(distinct id_removal_episode_fact)
 						  from prtl.ooh_dcfs_eps eps
 						  join #date dt on eps.federal_discharge_date between dt.begin_date and dt.end_date
 						  where eps.removal_dt=eps.first_removal_dt
-						  and exit_developmental_age_cd  is not null
+						  and exit_census_child_group_cd  is not null
 						  group by   dt.begin_date
 								  ,dt.date_type
 								  ,[bin_dep_cd]
@@ -518,14 +518,14 @@ UNION ALL
 								  ,[fl_found_any_legal]
 								  , int_filter_service_category
 								  , filter_service_budget
-								  ,eps.exit_developmental_age_cd
+								  ,eps.exit_census_child_group_cd
 								  ,[cd_race_census]
 								  ,[census_hispanic_latino_origin_cd]
 								  ,[pk_gndr]
 								  ,[init_cd_plcm_setng]
 								  ,[long_cd_plcm_setng]
 								  ,exit_county_cd
-								  ,exit_int_match_param_key_developmental
+								  ,exit_int_match_param_key_census_child_group
 								 , eps.cd_discharge_type
 
 
@@ -555,14 +555,14 @@ UNION ALL
 								  ,  unq.fl_found_any_legal
 								  ,  unq.int_filter_service_category
 								  ,  unq.filter_service_budget
-								  ,  unq.exit_developmental_age_cd
+								  ,  unq.exit_census_child_group_cd
 								  ,  unq.cd_race_census
 								  ,  unq.census_hispanic_latino_origin_cd
 								  ,  unq.pk_gndr
 								  ,  unq.init_cd_plcm_setng
 								  ,  unq.long_cd_plcm_setng
 								  ,  unq.exit_county_cd
-								  ,  unq.exit_int_match_param_key_developmental
+								  ,  unq.exit_int_match_param_key_census_child_group
 								 , unq.cd_discharge_type
 								  ,count(distinct ae.id_prsn_child) as cnt_exits
 						  from prtl.ooh_dcfs_eps ae
@@ -576,7 +576,7 @@ UNION ALL
 										and unq.row_num=1 
 										and dt.begin_date=unq.begin_date
 										and dt.date_type=unq.date_type
-						  where unq.exit_developmental_age_cd   is not null
+						  where unq.exit_census_child_group_cd   is not null
 						  group by   unq.date_type
 									, unq.begin_date
 								  ,  unq.bin_dep_cd
@@ -600,16 +600,16 @@ UNION ALL
 								  ,  unq.fl_found_any_legal
 									  , unq.int_filter_service_category
 								  , unq.filter_service_budget
-								  ,  unq.exit_developmental_age_cd
+								  ,  unq.exit_census_child_group_cd
 								  ,  unq.cd_race_census
 								  ,  unq.census_hispanic_latino_origin_cd
 								  ,  unq.pk_gndr
 								  ,  unq.init_cd_plcm_setng
 								  ,  unq.long_cd_plcm_setng
 								  ,  unq.exit_county_cd
-								  ,  unq.exit_int_match_param_key_developmental
+								  ,  unq.exit_int_match_param_key_census_child_group
 								 , unq.cd_discharge_type
-								  order by [start_date],exit_int_match_param_key_developmental
+								  order by [start_date],exit_int_match_param_key_census_child_group
 		
 
 

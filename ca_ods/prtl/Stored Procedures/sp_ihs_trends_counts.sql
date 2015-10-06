@@ -27,10 +27,6 @@ as
 	declare @var_row_cnt_cache int;
 
 	declare @tblqryid table(qry_id int);
-    declare @x1 float;
-    declare @x2 float;
-    set @x1=dbo.RandFn();
-    set @x2=dbo.RandFn();
 
 
     -----------------------------------  set dates  -------------------------------------  		
@@ -347,8 +343,6 @@ as
 					 , cd_budget_poc_frc
 					 ,0 as in_cache
 					 ,@qry_id as qry_id
-					 ,RAND(cast(newid() as varbinary)) x1
-					 ,RAND(cast(newid() as varbinary)) x2
 				into #cachekeys
 				from (select distinct int_param_key from #prmlocdem) prm
 				cross join (select distinct cd_reporter_type from #rpt) rpt
@@ -419,14 +413,10 @@ as
 						, isnull(sum(prtl_poc3ab.cnt_start_date),0) as cnt_start_date
 						, isnull(sum(prtl_poc3ab.cnt_opened),0) as cnt_opened
 						, isnull(sum(prtl_poc3ab.cnt_closed),0) as cnt_closed
-						--, '2000-01-01' as minmonthstart
-						--, '2013-07-01' as maxmonthstart
-						--, null as x1
-						--, null   as x2
 						, @minmonthstart as minmonthstart
 						, @maxmonthstart as maxmonthstart
-						, che.x1
-						, che.x2
+						, rand(convert(varbinary, newid())) [x1]
+						, rand(convert(varbinary, newid())) [x2]
 						, getdate() as insert_date
 						,che.qry_id
 						,prtl_poc3ab.[start_year]
@@ -469,8 +459,6 @@ as
 							, srv.cd_subctgry_poc_frc
 							, bud.cd_budget_poc_frc 
 							, che.int_hash_key
-							,che.x1
-							,che.x2
 							,che.qry_id
 
 					

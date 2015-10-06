@@ -26,9 +26,6 @@ begin
     declare p_qry_id bigint;
 
 
-    declare x1 float;
-    declare x2 float;
-
     declare  flg_procedure_off int;
     declare var_row_cnt_param int;
     declare var_row_cnt_cache int;
@@ -44,9 +41,6 @@ begin
     if  flg_procedure_off =0 then    
     
         --  initialize variables
-        set x1=rand();
-        set x2=rand();
-            
         set var_calling_procedure=22;
             
 
@@ -261,8 +255,8 @@ if  var_row_cnt_param <> var_row_cnt_cache then
   					, coalesce(sum(prtl_poc3ab.cnt_closed),0) as cnt_closed');
 		set @incl=concat(@incl,char(13),', DATE',char(39), var_minmonthstart,char(39));
 		set @incl=concat(@incl,char(13),', DATE',char(39), var_maxmonthstart,char(39));
-		set @incl=concat(@incl,char(13),', ',char(39), x1,char(39));
-		set @incl=concat(@incl,char(13),', ',char(39), x2,char(39));    
+		set @incl=concat(@incl,char(13),', ',char(39), rand(),char(39));
+		set @incl=concat(@incl,char(13),', ',char(39), rand(),char(39));    
 		set @incl=concat(@incl,char(13),', DATE',char(39), now() ,char(39),' as insert_date'); 
 		set @incl=concat(@incl,char(13),', ck.qry_id',char(13),'
                                     ,prtl_poc3ab.start_year');

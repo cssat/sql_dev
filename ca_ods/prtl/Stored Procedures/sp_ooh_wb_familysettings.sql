@@ -33,10 +33,6 @@ as
 	declare @qry_type int;
 	declare @tblqryid table(qry_id int);
 	declare @minfilterdate datetime;
-    declare @x1 float;
-    declare @x2 float;
-    set @x1=dbo.RandFn();
-    set @x2=dbo.RandFn();
 
 
     -----------------------------------  set dates  -------------------------------------  		
@@ -541,8 +537,6 @@ from (
 					 ,cd_budget_poc_frc
 					 ,0 as in_cache
 					 ,@qry_id as qry_id
-					,RAND(cast(NEWID() as varbinary))  x1 
-					,RAND(cast(NEWID() as varbinary)) x2
 				into #cachekeys
 				from (select distinct int_param_key from #prmlocdem) prm
 				cross join (select distinct bin_los_cd from #los) los
@@ -630,8 +624,8 @@ INSERT INTO [prtl].[cache_pbcw3_aggr]
 				, round((sum(Group_Inst_Care_Cnt)* 1.0000)/(sum(cnt_child) * 1.0000) * 100,2)
 				, @minmonthstart as minmonthstart
 				, @maxmonthstart as maxmonthstart
-				, che.x1
-				, che.x2
+				, rand(convert(varbinary, newid())) [x1]
+				, rand(convert(varbinary, newid())) [x2]
 				, getdate() as insert_date
 				, che.qry_id
 				,year(prtl_pbcw3.start_date)
@@ -668,8 +662,6 @@ INSERT INTO [prtl].[cache_pbcw3_aggr]
 				,che.int_hash_key
 				,che.int_param_key
 				,che.qry_id
-				,che.x1
-				,che.x2
 				,dep.bin_dep_cd
 				,los.bin_los_cd
 				,plc.bin_placement_cd

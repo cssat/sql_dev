@@ -24,8 +24,6 @@ begin
     declare p_qry_id bigint;
 
     declare var_qry_cnt int;
-    declare x1 float;
-    declare x2 float;
 
     declare  flg_procedure_off int;
     declare var_row_cnt_param int;
@@ -37,8 +35,6 @@ begin
     set flg_procedure_off =0;
     
     if  flg_procedure_off =0 then    
-            set x1=rand();
-            set x2=rand();
             
 
         
@@ -385,8 +381,8 @@ end if;
         ');
     set @incl=concat(@incl,char(13),', DATE',char(39), p_minmonthstart,char(39));
 		set @incl=concat(@incl,char(13),', DATE',char(39), p_maxmonthstart,char(39));
-		set @incl=concat(@incl,char(13),', ',char(39), x1,char(39));
-		set @incl=concat(@incl,char(13),', ',char(39), x2,char(39));    
+		set @incl=concat(@incl,char(13),', ',char(39), rand(),char(39));
+		set @incl=concat(@incl,char(13),', ',char(39), rand(),char(39));    
 		set @incl=concat(@incl,char(13),', DATE',char(39), now() ,char(39),' as insert_date');           
        set @incl=concat(@incl,char(13),',cast((');
         if NOT (p_age_grouping_cd = '0' 

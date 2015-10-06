@@ -33,10 +33,6 @@ as
 	declare @minfilterdate datetime;
 
 	declare @tblqryid table(qry_id int);
-    declare @x1 float;
-    declare @x2 float;
-    set @x1=dbo.RandFn();
-    set @x2=dbo.RandFn();
 
 	if object_ID('tempDB..#dsch') is not null drop table #dsch;
 	create table #dsch(cd_discharge_type int ,match_code int)
@@ -127,7 +123,7 @@ as
 
 	insert into #age(age_grouping_cd,match_code)
 	select age_grouping_cd,match_code
-	from prm_age_developmental 
+	from prm_age_census 
 	join [dbo].[fn_ReturnStrTableFromList](@age_grouping_cd,0) 
 	on cast(arrValue as int)=age_grouping_cd;
 
@@ -521,8 +517,6 @@ from (
 					 ,cd_budget_poc_frc
 					 ,0 as in_cache
 					 ,@qry_id as qry_id
-					,RAND(cast(NEWID() as varbinary))  x1 
-					,RAND(cast(NEWID() as varbinary)) x2
 				into #cachekeys
 				from (select distinct int_param_key from #prmlocdem) prm
 				cross join (select distinct bin_los_cd from #los) los
@@ -609,8 +603,8 @@ from (
 								, che.int_hash_key
 								, @minmonthstart as minmonthstart
 								, @maxmonthstart as maxmonthstart
-								, che.x1
-								, che.x2
+								, rand(convert(varbinary, newid())) [x1]
+								, rand(convert(varbinary, newid())) [x2]
 								, getdate() as insert_date
 								, dsch.cd_discharge_type
 								, isnull(sum(prtl_poc1ab_exits.cnt_exits),0) as cnt_exits
@@ -667,8 +661,6 @@ from (
 									, dsch.cd_discharge_type
 									, che.int_hash_key
 									, che.qry_id
-									, che.x1
-									, che.x2
 
 						update cache_poc1ab_exits_aggr
 						set fl_include_perCapita=0

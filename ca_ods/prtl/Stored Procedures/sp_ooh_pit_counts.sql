@@ -72,11 +72,6 @@ as
 	declare @var_row_cnt_param int;
 	declare @var_row_cnt_cache int;
 	declare @minfilterdate datetime;
-    declare @x1 float;
-    declare @x2 float;
-
-    set @x1=dbo.RandFn();
-    set @x2=dbo.RandFn();
 
 
 			if OBJECT_ID('tempDB..#age') is not null drop table #age;
@@ -175,7 +170,7 @@ as
 
 		insert into #age(age_grouping_cd,match_code)
 		select age_grouping_cd,match_code
-		 from prm_age_cdc_census_mix 
+		 from prm_age_census 
 		 join [dbo].[fn_ReturnStrTableFromList](@age_grouping_cd,0) 
 			on cast(arrValue as int)=age_grouping_cd;
 
@@ -569,8 +564,6 @@ from (
 					 ,cd_budget_poc_frc
 					 ,0 as in_cache
 					 ,q.qry_id as qry_id
-					,RAND(cast(NEWID() as varbinary))  x1 
-					,RAND(cast(NEWID() as varbinary)) x2
 				into #cachekeys
 				from (select @qry_id  qry_id) q  
 				cross join (select distinct int_param_key from #prmlocdem) prm
@@ -660,15 +653,15 @@ from (
 								, isnull(sum(poc1ab.cnt_child_unique),0) as cnt_start_date
 								, @mindate as minmonthstart
 								, @maxdate as maxmonthstart
-								, che.x1
-								, che.x2
+								, rand(convert(varbinary, newid())) [x1]
+								, rand(convert(varbinary, newid())) [x2]
 								, getdate() as insert_date
 								, che.int_hash_key 
 								, che.qry_id 
 								, year(poc1ab.[start_date])
 								, 1
 							FROM prtl.ooh_point_in_time_measures  poc1ab
-							join #prmlocdem mtch on mtch.int_param_key=poc1ab.int_match_param_key_mix
+							join #prmlocdem mtch on mtch.int_param_key=poc1ab.int_match_param_key_census
 							join #cnty cnty on cnty.match_code=poc1ab.county_cd
 							join #los los on los.match_code=poc1ab.max_bin_los_cd
 							join #nbrplc plc on plc.match_code=poc1ab.bin_placement_cd
@@ -700,8 +693,6 @@ from (
 									,che.int_hash_key
 									,che.int_param_key
 									,che.qry_id
-									,che.x1
-									,che.x2
 									, dep.bin_dep_cd
 									, los.bin_los_cd
 									, plc.bin_placement_cd

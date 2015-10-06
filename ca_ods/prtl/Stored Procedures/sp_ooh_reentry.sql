@@ -544,8 +544,6 @@ from (
 					 ,cd_budget_poc_frc
 					 ,0 as in_cache
 					 ,@qry_id as qry_id
-					,RAND(cast(NEWID() as varbinary))  x1 
-					,RAND(cast(NEWID() as varbinary)) x2
 				into #cachekeys
 				from (select distinct int_param_key from #prmlocdem) prm
 				cross join (select distinct bin_dep_cd from #dep) dep
@@ -648,8 +646,8 @@ from (
 								, sum(prtl_pbcp5.discharge_count)/(tot_cohort.tot_episodes) * 100 as reentry_rate
 								, @minmonthstart as minmonthstart
 								, @maxmonthstart as maxmonthstart
-								, che.x1
-								, che.x2
+								, rand(convert(varbinary, newid())) [x1]
+								, rand(convert(varbinary, newid())) [x2]
 								, getdate() as insert_date
 								,che.qry_id as qry_id
 								,year(prtl_pbcp5.cohort_exit_year) as exit_year
@@ -722,8 +720,6 @@ from (
 									, tot_cohort.tot_episodes
 									, che.int_hash_key
 									,che.qry_id
-									, che.x1
-									, che.x2
 									, mnth 
 							order by  prtl_pbcp5.qry_type
 									,prtl_pbcp5.date_type 

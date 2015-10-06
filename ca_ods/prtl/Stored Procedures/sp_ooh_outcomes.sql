@@ -35,10 +35,6 @@ as
 	declare @minfilterdate datetime;
 	declare @qry_type int;
 	declare @tblqryid table(qry_id int);
-    declare @x1 float;
-    declare @x2 float;
-    set @x1=dbo.RandFn();
-    set @x2=dbo.RandFn();
 
 
 			select @mindate=min_date_any,@maxdate=max_date_any
@@ -538,8 +534,6 @@ from (
 					 ,cd_budget_poc_frc
 					 ,0 as in_cache
 					 ,@qry_id as qry_id
-					,RAND(cast(NEWID() as varbinary))  x1 
-					,RAND(cast(NEWID() as varbinary)) x2
 				into #cachekeys
 				from (select distinct int_param_key from #prmlocdem) prm
 				cross join (select distinct bin_dep_cd from #dep) dep
@@ -716,8 +710,8 @@ from (
 								, (sum(prtl_outcomes.discharge_count)/tot_cohort.tot_episodes) * 100 as rate
 								, @minmonthstart as minmonthstart
 								, @maxmonthstart as maxmonthstart
-								, che.x1
-								, che.x2
+								, rand(convert(varbinary, newid())) [x1]
+								, rand(convert(varbinary, newid())) [x2]
 								, getdate() as insert_date
 								,che.qry_id
 								,year(prtl_outcomes.cohort_entry_date) as cohort_entry_year
@@ -791,8 +785,6 @@ from (
 									, che.int_hash_key
 									, prtl_outcomes.mnth
 									, che.qry_id
-									, che.x1
-									, che.x2
 						--	commit tran t1;
 						--	set @start_year=@start_year + 1;
 						--end -- insert loop

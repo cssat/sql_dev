@@ -27,11 +27,6 @@ set nocount on
 	declare @var_row_cnt_cache int;
 	declare @tblqryid table(qry_id int);
 
-    declare @x1 float;
-    declare @x2 float;
-    set @x1=dbo.RandFn();
-    set @x2=dbo.RandFn();
-
     -----------------------------------  set dates  -------------------------------------  		
        select @minmonthstart=min_date_any ,@maxmonthstart=max_date_any ,@mindate=min_date_any,@maxdate=max_date_any
 	   FROM ref_lookup_max_date where procedure_name='sp_ihs_safety';
@@ -342,8 +337,6 @@ set nocount on
 					 , cd_budget_poc_frc
 					 ,0 as in_cache
 					 ,@qry_id as qry_id
-					,RAND(cast(NEWID() as varbinary))  x1 
-					,RAND(cast(NEWID() as varbinary)) x2
 				into #cachekeys
 				from (select distinct int_param_key from #prmlocdem) prm
 				cross join (select distinct cd_reporter_type from #rpt) rpt
@@ -431,8 +424,8 @@ set nocount on
 	, 100.00 - sum(IIF(s3_total.total_cases > 0 and  prtl_pbcs3.min_placed_within_month <=cal.mnth,([cnt_case] ),0))/(s3_total.total_cases * 1.00) * 100 [Not Placed]
 	, @minmonthstart as minmonthstart
 	, @maxmonthstart as maxmonthstart
-	, che.x1
-	, che.x2
+	, rand(convert(varbinary, newid())) [x1]
+	, rand(convert(varbinary, newid())) [x2]
 	, getdate() as insert_date
 	, @qry_id as qry_id
 	, year(prtl_pbcs3.cohort_begin_date) as cohort_year
@@ -490,8 +483,6 @@ group by [prtl_pbcs3].[cohort_begin_date]
 	, bud.cd_budget_poc_frc
 	  , cal.mnth 
 	  , che.int_hash_key
-	  , che.x1
-	  , che.x2
 	  ,s3_total.total_cases
 order by [prtl_pbcs3].[cohort_begin_date]
       ,[prtl_pbcs3].[date_type]

@@ -537,8 +537,6 @@ from (
 					 ,cd_budget_poc_frc
 					 ,0 as in_cache
 					 ,q.qry_id as qry_id
-					,RAND(cast(NEWID() as varbinary))  x1 
-					,RAND(cast(NEWID() as varbinary)) x2
 				into #cachekeys
 				from (select @qry_id qry_id) q  
 				cross join (select distinct int_param_key from #prmlocdem) prm
@@ -635,8 +633,8 @@ INSERT INTO [prtl].[cache_pbcw4_aggr]
 				, round(((sum(no_sib_together)/(sum(cnt_child)* 1.0000)) * 100),2) as None_Together
 				, @minmonthstart as minmonthstart
 				, @maxmonthstart as maxmonthstart
-				, che.x1
-				, che.x2
+				, rand(convert(varbinary, newid())) [x1]
+				, rand(convert(varbinary, newid())) [x2]
 				, getdate() as insert_date
 				, che.qry_id
 				, year(prtl_pbcw4.start_date)
@@ -677,8 +675,6 @@ INSERT INTO [prtl].[cache_pbcw4_aggr]
 				, che.int_hash_key
 				, che.int_param_key
 				, che.qry_id
-				, che.x1
-				, che.x2
 				, sib.bin_sibling_group_size
 				, dep.bin_dep_cd
 				, los.bin_los_cd

@@ -32,11 +32,6 @@ as
 	declare @tblqryid table(qry_id int);
 	declare @minfilterdate datetime;
 
-    declare @x1 float;
-    declare @x2 float;
-    set @x1=dbo.RandFn();
-    set @x2=dbo.RandFn();
-
 
     --alter table #dt add primary key(match_date);
     
@@ -159,7 +154,7 @@ as
 
 		insert into #age(age_grouping_cd,match_code)
 		select age_grouping_cd,match_code
-		 from prm_age_cdc_census_mix 
+		 from prm_age_census 
 		 join [dbo].[fn_ReturnStrTableFromList](@age_grouping_cd,0) 
 			on cast(arrValue as int)=age_grouping_cd;
 
@@ -557,8 +552,6 @@ from (
 					 ,cd_budget_poc_frc
 					 ,0 as in_cache
 					 ,@qry_id as qry_id
-					,RAND(cast(NEWID() as varbinary))  x1 
-					,RAND(cast(NEWID() as varbinary)) x2
 				into #cachekeys
 				from (select distinct int_param_key from #prmlocdem) prm
 				cross join (select distinct bin_los_cd from #los) los
@@ -646,8 +639,8 @@ from (
 								, isnull(sum(prtl_poc1ab_entries.cnt_entries),0) as cnt_entries
 								, @minmonthstart as minmonthstart
 								, @maxmonthstart as maxmonthstart
-								, che.x1
-								, che. x2
+								, rand(convert(varbinary, newid())) [x1]
+								, rand(convert(varbinary, newid())) [x2]
 								, getdate() as insert_date
 								, che.int_hash_key
 								,che.qry_id
@@ -701,8 +694,6 @@ from (
 									, bud.cd_budget_poc_frc 
 									, che.int_hash_key
 									, che.qry_id
-									, che.x1
-									, che.x2
 
 						update cache_poc1ab_entries_aggr
 						set fl_include_perCapita=0
