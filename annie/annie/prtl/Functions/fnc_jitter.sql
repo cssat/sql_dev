@@ -6,13 +6,14 @@
 RETURNS INT
 AS
 BEGIN
-	DECLARE @result INT;
+	DECLARE @result INT
+		,@jittered INT = ROUND(@value + 2 * SQRT(- 2 * LOG(@top)) * COS(2 * PI() * @bottom), 0) ;
 
 	SELECT @result = CASE 
-			WHEN @value > 0 AND ROUND(@value + 2 * SQRT(- 2 * LOG(@top)) * COS(2 * PI() * @bottom), 0) < 1
+			WHEN @value > 0 AND @jittered < 1
 				THEN 1
 			WHEN @value > 0
-				THEN ROUND(@value + 2 * SQRT(- 2 * LOG(@top)) * COS(2 * PI() * @bottom), 0)
+				THEN @jittered
 			ELSE @value
 			END;
 

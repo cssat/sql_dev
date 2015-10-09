@@ -1,4 +1,4 @@
-﻿CREATE TABLE [prtl].[ooh_flow_entries_cache] (
+﻿CREATE TABLE [prtl].[ooh_flow_exits_cache] (
 	[qry_type] TINYINT NOT NULL , 
     [date_type] TINYINT NOT NULL, 
     [start_date] DATE NOT NULL, 
@@ -16,16 +16,15 @@
 	[cd_access_type] TINYINT NOT NULL, 
 	[cd_allegation] TINYINT NOT NULL, 
 	[cd_finding] TINYINT NOT NULL, 
-    [cnt_entries] INT NOT NULL, 
+	[cd_discharge_type] TINYINT NOT NULL, 
+    [cnt_exits] INT NOT NULL, 
     [x1] FLOAT NOT NULL, 
     [x2] FLOAT NOT NULL, 
-    [jit_entries] INT NULL, 
-	[rate_entries] DECIMAL(9, 2) NULL, 
-	[fl_include_perCapita] BIT NOT NULL DEFAULT 1 
+    [jit_exits] INT NULL 
 )
 GO
 
-CREATE NONCLUSTERED INDEX [idx_ooh_flow_entries_cache] ON [prtl].[ooh_flow_entries_cache] (
+CREATE NONCLUSTERED INDEX [idx_ooh_flow_exits_cache] ON [prtl].[ooh_flow_exits_cache] (
 	[bin_dependency_cd]
 	,[age_grouping_cd]
 	,[pk_gender]
@@ -44,8 +43,7 @@ CREATE NONCLUSTERED INDEX [idx_ooh_flow_entries_cache] ON [prtl].[ooh_flow_entri
 	[qry_type]
 	,[date_type]
 	,[start_date]
-	,[jit_entries]
-	,[rate_entries]
-	,[fl_include_perCapita]
+	,[cd_discharge_type]
+	,[jit_exits]
 	)
 GO

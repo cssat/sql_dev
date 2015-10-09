@@ -1,7 +1,7 @@
-﻿CREATE TABLE [prtl].[ooh_flow_entries_cache] (
+﻿CREATE TABLE [prtl].[ooh_outcomes_cache] (
 	[qry_type] TINYINT NOT NULL , 
     [date_type] TINYINT NOT NULL, 
-    [start_date] DATE NOT NULL, 
+    [cohort_entry_date] DATE NOT NULL, 
 	[age_grouping_cd] TINYINT NOT NULL, 
 	[pk_gender] TINYINT NOT NULL, 
 	[cd_race_census] TINYINT NOT NULL, 
@@ -16,36 +16,35 @@
 	[cd_access_type] TINYINT NOT NULL, 
 	[cd_allegation] TINYINT NOT NULL, 
 	[cd_finding] TINYINT NOT NULL, 
-    [cnt_entries] INT NOT NULL, 
-    [x1] FLOAT NOT NULL, 
-    [x2] FLOAT NOT NULL, 
-    [jit_entries] INT NULL, 
-	[rate_entries] DECIMAL(9, 2) NULL, 
-	[fl_include_perCapita] BIT NOT NULL DEFAULT 1 
-)
+	[cd_discharge_type] TINYINT NOT NULL, 
+    [month] TINYINT NOT NULL, 
+	[discharge_count] INT NOT NULL, 
+	[cohort_count] INT NOT NULL, 
+    [rate] DECIMAL(9, 2) NULL 
+	)
 GO
 
-CREATE NONCLUSTERED INDEX [idx_ooh_flow_entries_cache] ON [prtl].[ooh_flow_entries_cache] (
-	[bin_dependency_cd]
-	,[age_grouping_cd]
-	,[pk_gender]
-	,[cd_race_census]
-	,[initial_cd_placement_setting]
-	,[longest_cd_placement_setting]
-	,[cd_county]
-	,[bin_los_cd]
-	,[bin_placement_cd]
-	,[bin_ihs_service_cd]
+CREATE NONCLUSTERED INDEX [idx_ooh_outcomes_cache] ON [prtl].[ooh_outcomes_cache] (
+	[cohort_entry_date] ASC
+	,[age_grouping_cd] ASC
+	,[pk_gender] ASC
+	,[cd_race_census] ASC
+	,[initial_cd_placement_setting] ASC
+	,[longest_cd_placement_setting] ASC
+	,[cd_county] ASC
+	,[bin_dependency_cd] ASC
+	,[bin_los_cd] ASC
+	,[bin_placement_cd] ASC
+	,[bin_ihs_service_cd] ASC
 	,[cd_reporter_type]
 	,[cd_access_type]
 	,[cd_allegation]
 	,[cd_finding]
+	,[month] ASC
 	) INCLUDE (
 	[qry_type]
 	,[date_type]
-	,[start_date]
-	,[jit_entries]
-	,[rate_entries]
-	,[fl_include_perCapita]
+	,[cd_discharge_type]
+	,[rate]
 	)
 GO

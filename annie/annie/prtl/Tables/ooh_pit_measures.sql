@@ -1,47 +1,111 @@
-﻿CREATE TABLE [prtl].[ooh_pit_measures]
-(
+﻿CREATE TABLE [prtl].[ooh_pit_measures] (
+    [qry_type] TINYINT NOT NULL, 
+    [date_type] TINYINT NOT NULL, 
     [start_date] DATE NOT NULL, 
-    [date_type] INT NOT NULL, 
-    [qry_type] INT NOT NULL, 
-    [plcm_param_key] INT NOT NULL 
-        CONSTRAINT [fk_ooh_pit_measures_plcm_param_key] FOREIGN KEY REFERENCES [prtl].[param_sets_placement]([plcm_param_key]), 
-    [ia_param_key] INT NOT NULL 
-        CONSTRAINT [fk_ooh_pit_measures_ia_param_key] FOREIGN KEY REFERENCES [prtl].[param_sets_ia]([ia_param_key]), 
-    [demog_param_key] INT NOT NULL 
-        CONSTRAINT [fk_ooh_pit_meausres_demog_param_key] FOREIGN KEY REFERENCES [prtl].[param_sets_demog]([demog_param_key]), 
-    [geog_param_key] INT NOT NULL
-        CONSTRAINT [fk_ooh_pit_measures_geog_param_key] FOREIGN KEY REFERENCES [prtl].[param_sets_geog]([geog_param_key]), 
-    [wb_param_key] INT NULL 
-        CONSTRAINT [fk_ooh_pit_measures_wb_param_key] FOREIGN KEY REFERENCES [prtl].[param_sets_wellbeing]([wb_param_key]), 
-    [family_setting_cnt] INT NULL, 
-    [family_setting_dcfs_cnt] INT NULL, 
-    [family_setting_private_agency_cnt] INT NULL, 
-    [relative_care] INT NULL, 
-    [group_inst_care_cnt] INT NULL, 
-    [all_sib_together] INT NULL, 
-    [some_sib_together] INT NULL, 
-    [no_sib_together] INT NULL, 
-    [cnt_child_unique] INT NULL, 
-    [cnt_child] INT NULL, 
-    [fl_ooh_wb_family_settings] INT NOT NULL, 
-    [fl_ooh_wb_siblings] INT NOT NULL, 
-    [fl_ooh_pit] INT NOT NULL 
+	[age_grouping_cd_mix] TINYINT NOT NULL, 
+	[age_grouping_cd_census] TINYINT NOT NULL, 
+	[pk_gndr] TINYINT NOT NULL, 
+	[cd_race] TINYINT NOT NULL, 
+	[census_hispanic_latino_origin_cd] TINYINT NOT NULL, 
+	[init_cd_plcm_setng] TINYINT NOT NULL, 
+	[long_cd_plcm_setng] TINYINT NOT NULL,
+	[county_cd] SMALLINT NOT NULL, 
+	[bin_dep_cd] TINYINT NOT NULL, 
+	[max_bin_los_cd] TINYINT NOT NULL, 
+	[bin_placement_cd] TINYINT NOT NULL, 
+	[bin_ihs_svc_cd] TINYINT NOT NULL, 
+	[cd_reporter_type] SMALLINT NOT NULL, 
+	[filter_access_type] INT NOT NULL, 
+	[filter_allegation] INT NOT NULL, 
+	[filter_finding] INT NOT NULL, 
+	[kincare] TINYINT NULL, 
+	[bin_sibling_group_size] TINYINT NULL, 
+    [fl_ooh_pit] BIT NOT NULL, 
+    [cnt_child_unique] TINYINT NULL, 
+    [fl_ooh_wb_family_settings] BIT NOT NULL, 
+    [family_setting_dcfs_cnt] TINYINT NULL, 
+    [family_setting_private_agency_cnt] TINYINT NULL, 
+    [relative_care] TINYINT NULL, 
+    [group_inst_care_cnt] TINYINT NULL, 
+    [fl_ooh_wb_siblings] BIT NOT NULL, 
+    [all_sib_together] TINYINT NULL, 
+    [some_sib_together] TINYINT NULL, 
+    [no_sib_together] TINYINT NULL 
 )
 GO
 
-CREATE NONCLUSTERED INDEX [idx_ooh_pit_measures] 
-    ON [prtl].[ooh_pit_measures] ([plcm_param_key], [ia_param_key], [demog_param_key], [geog_param_key], [wb_param_key])
-    INCLUDE ([fl_ooh_wb_family_settings], [fl_ooh_wb_siblings], [fl_ooh_pit])
+CREATE NONCLUSTERED INDEX [idx_ooh_pit_measures_pit] ON [prtl].[ooh_pit_measures] (
+	[age_grouping_cd_census]
+	,[pk_gndr]
+	,[cd_race]
+	,[init_cd_plcm_setng]
+	,[long_cd_plcm_setng]
+	,[county_cd]
+	,[bin_dep_cd]
+	,[max_bin_los_cd]
+	,[bin_placement_cd]
+	,[bin_ihs_svc_cd]
+	,[cd_reporter_type]
+	,[filter_access_type]
+	,[filter_allegation]
+	,[filter_finding]
+	) INCLUDE (
+	[qry_type]
+	,[date_type]
+	,[start_date]
+	,[cnt_child_unique]
+	) WHERE [fl_ooh_pit] = 1
 GO
 
-CREATE NONCLUSTERED INDEX [idx_ooh_pit_measures_fl_ooh_wb_family_settings]
-    ON [prtl].[ooh_pit_measures] ([fl_ooh_wb_family_settings])
+CREATE NONCLUSTERED INDEX [idx_ooh_pit_measures_wb_family_settings] ON [prtl].[ooh_pit_measures] (
+	[age_grouping_cd_mix]
+	,[pk_gndr]
+	,[cd_race]
+	,[init_cd_plcm_setng]
+	,[long_cd_plcm_setng]
+	,[county_cd]
+	,[bin_dep_cd]
+	,[max_bin_los_cd]
+	,[bin_placement_cd]
+	,[bin_ihs_svc_cd]
+	,[cd_reporter_type]
+	,[filter_access_type]
+	,[filter_allegation]
+	,[filter_finding]
+	) INCLUDE (
+	[qry_type]
+	,[date_type]
+	,[start_date]
+	,[family_setting_dcfs_cnt]
+	,[family_setting_private_agency_cnt]
+	,[relative_care]
+	,[group_inst_care_cnt]
+	) WHERE [fl_ooh_wb_family_settings] = 1
 GO
 
-CREATE NONCLUSTERED INDEX [idx_ooh_pit_measures_fl_ooh_wb_siblings]
-    ON [prtl].[ooh_pit_measures] ([fl_ooh_wb_siblings])
-GO
-
-CREATE NONCLUSTERED INDEX [idx_ooh_pit_measures_fl_ooh_pit]
-    ON [prtl].[ooh_pit_measures] ([fl_ooh_pit])
+CREATE NONCLUSTERED INDEX [idx_ooh_pit_measures_wb_siblings] ON [prtl].[ooh_pit_measures] (
+	[age_grouping_cd_mix]
+	,[pk_gndr]
+	,[cd_race]
+	,[init_cd_plcm_setng]
+	,[long_cd_plcm_setng]
+	,[county_cd]
+	,[bin_dep_cd]
+	,[max_bin_los_cd]
+	,[bin_placement_cd]
+	,[bin_ihs_svc_cd]
+	,[cd_reporter_type]
+	,[filter_access_type]
+	,[filter_allegation]
+	,[filter_finding]
+	,[kincare]
+	,[bin_sibling_group_size]
+	) INCLUDE (
+	[qry_type]
+	,[date_type]
+	,[start_date]
+	,[all_sib_together]
+	,[some_sib_together]
+	,[no_sib_together]
+	) WHERE [fl_ooh_wb_siblings] = 1
 GO
