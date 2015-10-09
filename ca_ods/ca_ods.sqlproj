@@ -2731,6 +2731,7 @@
     <Build Include="annual_report\Tables\ref_ncands_per_rel.sql" />
     <Build Include="annual_report\Tables\ref_ncands_mal.sql" />
     <Build Include="annual_report\Tables\ref_ncands_mal_lev.sql" />
+    <Build Include="dbo\Views\prm_region_6.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac">
