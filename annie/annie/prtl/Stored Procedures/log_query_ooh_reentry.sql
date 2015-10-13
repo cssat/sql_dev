@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [prtl].[log_query_ooh_wb_siblings]
+﻿CREATE PROCEDURE [prtl].[log_query_ooh_reentry]
 	@age_grouping_cd VARCHAR(20)
 	,@pk_gender VARCHAR(10)
 	,@cd_race_census VARCHAR(30)
@@ -18,16 +18,14 @@ DECLARE @qry_id INT
 	,@max_month_start DATETIME
 	,@min_month_start DATETIME
 
-DECLARE @tblqryid TABLE (qry_id INT);
-
 SELECT @min_month_start = min_date_any
 	,@max_month_start = max_date_any
 FROM ref.lookup_max_date
-WHERE id = 13; -- sp_ooh_wb_siblings
+WHERE id = 9; -- sp_ooh_reentry
 
 SET @qry_id = (
 		SELECT TOP 1 qry_id
-		FROM prtl.ooh_wb_siblings_params
+		FROM prtl.ooh_reentry_params
 		WHERE age_grouping_cd = @age_grouping_cd
 			AND pk_gender = @pk_gender
 			AND cd_race_census = @cd_race_census
@@ -47,7 +45,7 @@ SET @qry_id = (
 
 IF @qry_Id IS NULL
 BEGIN
-	INSERT INTO prtl.ooh_wb_siblings_params (
+	INSERT prtl.ooh_reentry_params (
 		age_grouping_cd
 		,pk_gender
 		,cd_race_census
@@ -67,8 +65,6 @@ BEGIN
 		,cnt_qry
 		,last_run_date
 		)
-	OUTPUT inserted.qry_id
-	INTO @tblqryid
 	SELECT @age_grouping_cd
 		,@pk_gender
 		,@cd_race_census
@@ -90,7 +86,7 @@ BEGIN
 END
 ELSE
 BEGIN
-	UPDATE prtl.ooh_wb_siblings_params
+	UPDATE prtl.ooh_reentry_params
 	SET cnt_qry = cnt_qry + 1
 		,last_run_date = GETDATE()
 	WHERE qry_id = @qry_id;

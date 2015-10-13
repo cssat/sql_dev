@@ -1,12 +1,12 @@
-﻿CREATE TABLE [prtl].[ooh_wb_family_settings_cache] (
+﻿CREATE TABLE [prtl].[ooh_reentry_cache] (
 	[qry_type] TINYINT NOT NULL, 
     [date_type] TINYINT NOT NULL, 
-    [cohort_entry_date] DATE NOT NULL, 
+    [cohort_exit_year] DATE NOT NULL, 
     [age_grouping_cd] TINYINT NOT NULL, 
     [pk_gender] TINYINT NOT NULL, 
     [cd_race_census] TINYINT NOT NULL, 
     [initial_cd_placement_setting] TINYINT NOT NULL, 
-    [longest_cd_placement_setting] TINYINT NOT NULL, 
+	[longest_cd_placement_setting] TINYINT NOT NULL, 
 	[cd_county] TINYINT NOT NULL, 
 	[bin_dependency_cd] TINYINT NOT NULL, 
 	[bin_los_cd] TINYINT NOT NULL, 
@@ -16,14 +16,14 @@
 	[cd_access_type] TINYINT NOT NULL, 
 	[cd_allegation] TINYINT NOT NULL, 
 	[cd_finding] TINYINT NOT NULL, 
-    [family_setting_dcfs_percentage] DECIMAL(9, 2) NULL, 
-    [family_setting_private_agency_percentage] DECIMAL(9, 2) NULL, 
-	[relative_percentage] DECIMAL(9, 2) NULL, 
-	[group_inst_care_percentage] DECIMAL(9, 2) NULL
+	[cd_discharge_type] TINYINT NOT NULL, 
+    [reentry_within_month] TINYINT NOT NULL, 
+	[reentry_count] INT NOT NULL, 
+	[total_count] INT NOT NULL, 
+    [reentry_rate] DECIMAL(9, 2) NULL 
 	)
 GO
-
-CREATE NONCLUSTERED INDEX [idx_ooh_wb_family_settings_cache] ON [prtl].[ooh_wb_family_settings_cache] (
+CREATE NONCLUSTERED INDEX [idx_ooh_reentry_cache] ON [prtl].[ooh_reentry_cache] (
 	[age_grouping_cd]
 	,[pk_gender]
 	,[cd_race_census]
@@ -38,13 +38,11 @@ CREATE NONCLUSTERED INDEX [idx_ooh_wb_family_settings_cache] ON [prtl].[ooh_wb_f
 	,[cd_access_type]
 	,[cd_allegation]
 	,[cd_finding]
-	,[date_type]
-	,[cohort_entry_date]
+	,[cohort_exit_year]
 	) INCLUDE (
 	[qry_type]
-	,[family_setting_dcfs_percentage]
-	,[family_setting_private_agency_percentage]
-	,[relative_percentage]
-	,[group_inst_care_percentage]
+	,[cd_discharge_type]
+	,[reentry_within_month]
+	,[reentry_rate]
 	)
 GO

@@ -369,9 +369,7 @@ INSERT prtl.ooh_wb_siblings_params (
 	,bin_dependency_cd
 	,min_start_date
 	,max_start_date
-	,cnt_qry_siblings
-	,cnt_qry_siblings_pvt
-	,cnt_qry_uncensored
+	,cnt_qry
 	,last_run_date
 	)
 SELECT age_grouping_cd
@@ -390,9 +388,7 @@ SELECT age_grouping_cd
 	,bin_dep_cd
 	,min_start_date
 	,max_start_date
-	,0 [cnt_qry_siblings]
-	,0 [cnt_qry_siblings_pvt]
-	,0 [cnt_qry_uncensored]
+	,0 [cnt_qry]
 	,last_run_date
 FROM ca_ods.prtl.cache_pbcw4_params
 ORDER BY qry_ID

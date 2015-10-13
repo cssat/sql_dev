@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [prtl].[sp_ooh_wb_siblings] (
+﻿CREATE PROCEDURE [prtl].[sp_ooh_reentry] (
 	@age_grouping_cd VARCHAR(20)
 	,@pk_gender VARCHAR(10)
 	,@cd_race_census VARCHAR(30)
@@ -15,7 +15,7 @@
 	,@bin_dependency_cd VARCHAR(20)
 	)
 AS
-EXEC prtl.log_query_ooh_wb_siblings @age_grouping_cd
+EXEC prtl.log_query_ooh_reentry @age_grouping_cd
 	,@pk_gender
 	,@cd_race_census
 	,@initial_cd_placement_setting
@@ -30,7 +30,7 @@ EXEC prtl.log_query_ooh_wb_siblings @age_grouping_cd
 	,@cd_finding
 	,@bin_dependency_cd
 
-EXEC prtl.build_ooh_wb_siblings_cache @age_grouping_cd
+EXEC prtl.build_ooh_reentry_cache @age_grouping_cd
 	,@pk_gender
 	,@cd_race_census
 	,@initial_cd_placement_setting
@@ -47,14 +47,6 @@ EXEC prtl.build_ooh_wb_siblings_cache @age_grouping_cd
 
 DECLARE @min_filter_date DATETIME = prtl.min_ooh_filter_date(@cd_access_type, @cd_allegation, @cd_finding, @bin_dependency_cd)
 DECLARE @cutoff_date DATETIME = (SELECT TOP 1 cutoff_date FROM ref.last_dw_transfer)
-DECLARE @min_date DATETIME
-	,@max_date DATETIME
-
-SELECT @min_date = min_date_any
-	,@max_date = max_date_any
-FROM ref.lookup_max_date
-WHERE id = 13 -- sp_ooh_wb_siblings
-
 DECLARE @age TABLE (age_grouping_cd TINYINT)
 DECLARE @gender TABLE (pk_gender TINYINT)
 DECLARE @race_census TABLE (cd_race_census TINYINT)
@@ -203,8 +195,9 @@ CROSS JOIN @allegation al
 CROSS JOIN @finding f
 CROSS JOIN @bin_dependency bd
 
-SELECT YEAR(m.cohort_entry_date) [Year]
-	,m.qry_type [qry_type_poc1_first_all]
+SELECT m.reentry_within_month [Months Since Exiting Out-of-Home Care]
+	,YEAR(m.cohort_exit_year) [Cohort Entry Date]
+	,m.qry_type [qry_type_poc1_first_unique]
 	,m.age_grouping_cd
 	,m.pk_gender
 	,m.cd_race_census
@@ -219,13 +212,9 @@ SELECT YEAR(m.cohort_entry_date) [Year]
 	,m.cd_access_type
 	,m.cd_allegation
 	,m.cd_finding
-	,m.kincare
-	,m.bin_sibling_group_size
-	,m.all_together [All Together]
-	,m.some_together [Some Together]
-	,m.none_together [None Together]
-	,IIF(m.cnt_cohort < 10, NULL, m.cnt_cohort) [Total Number of Siblings]
-FROM prtl.ooh_wb_siblings_cache m
+	,m.cd_discharge_type
+	,m.reentry_rate [Re-Entry Percent]
+FROM prtl.ooh_reentry_cache m
 INNER JOIN @parameters p ON p.age_grouping_cd = m.age_grouping_cd
 	AND p.pk_gender = m.pk_gender
 	AND p.cd_race_census = m.cd_race_census
@@ -242,16 +231,15 @@ INNER JOIN @parameters p ON p.age_grouping_cd = m.age_grouping_cd
 	AND p.cd_finding = m.cd_finding
 INNER JOIN ref.vw_dependency_lag dl ON dl.bin_dependency_cd = m.bin_dependency_cd
 	AND dl.date_type = m.date_type
-	AND m.cohort_entry_date BETWEEN @min_filter_date AND dl.cohort_max_filter_date
+	AND m.cohort_exit_year BETWEEN @min_filter_date AND dl.cohort_max_filter_date
 INNER JOIN ref.filter_los los ON los.bin_los_cd = m.bin_los_cd
-	AND IIF(m.bin_los_cd != 0, DATEADD(YEAR, 1, DATEADD(DAY, -1, DATEADD(DAY, ABS(los.lag_days), m.cohort_entry_date))), @cutoff_date) <= @cutoff_date
+	AND IIF(m.bin_los_cd != 0, DATEADD(YEAR, 1, DATEADD(DAY, -1, DATEADD(MONTH, 9, DATEADD(DAY, ABS(los.lag_days), m.cohort_exit_year)))), @cutoff_date) <= @cutoff_date
 INNER JOIN ref.filter_ihs_services ihs ON ihs.bin_ihs_service_cd = m.bin_ihs_service_cd
-	AND ihs.min_display_date <= m.cohort_entry_date
-WHERE m.cohort_entry_date BETWEEN @min_date AND @max_date
-ORDER BY m.kincare ASC
-	,m.bin_dependency_cd ASC
+	AND ihs.min_display_date <= m.cohort_exit_year
+WHERE DATEADD(MONTH, 15 + m.reentry_within_month, m.cohort_exit_year) < = @cutoff_date
+ORDER BY m.bin_dependency_cd ASC
 	,m.qry_type
-	,m.cohort_entry_date ASC
+	,m.cohort_exit_year ASC
 	,m.age_grouping_cd ASC
 	,m.pk_gender ASC
 	,m.cd_race_census ASC
@@ -265,4 +253,5 @@ ORDER BY m.kincare ASC
 	,m.cd_access_type
 	,m.cd_allegation
 	,m.cd_finding
-	,m.bin_sibling_group_size
+	,m.reentry_within_month ASC
+	,m.cd_discharge_type ASC

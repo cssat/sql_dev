@@ -1,6 +1,6 @@
-﻿CREATE TABLE [prtl].[ooh_wb_siblings_params] (
+﻿CREATE TABLE [prtl].[ooh_reentry_params] (
     [qry_id] INT NOT NULL IDENTITY(1,1) 
-        CONSTRAINT [pk_ooh_wb_siblings_params] PRIMARY KEY, 
+        CONSTRAINT [pk_ooh_reentry_params] PRIMARY KEY, 
     [age_grouping_cd] VARCHAR(20) NOT NULL, 
     [cd_race_census] VARCHAR(30) NOT NULL, 
     [pk_gender] VARCHAR(10) NOT NULL, 
@@ -19,7 +19,7 @@
     [max_start_date] DATETIME NOT NULL, 
     [cnt_qry] INT NOT NULL, 
     [last_run_date] DATETIME NOT NULL, 
-    CONSTRAINT [idx_ooh_wb_siblings_params] UNIQUE NONCLUSTERED ( 
+    CONSTRAINT [idx_ooh_reentry_params] UNIQUE NONCLUSTERED ( 
         [age_grouping_cd], 
         [cd_race_census], 
         [pk_gender], 
@@ -34,5 +34,5 @@
         [cd_allegation], 
         [cd_finding], 
         [bin_dependency_cd]
-		)
+	    )
 	)

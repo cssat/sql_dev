@@ -79,8 +79,8 @@
     <Build Include="Security\prtl.sql" />
     <Build Include="prtl\Tables\ooh_outcomes_cache.sql" />
     <Build Include="prtl\Tables\ooh_outcomes_params.sql" />
-    <Build Include="prtl\Tables\cache_ooh_reentry_aggr.sql" />
-    <Build Include="prtl\Tables\cache_ooh_reentry_params.sql" />
+    <Build Include="prtl\Tables\ooh_reentry_cache.sql" />
+    <Build Include="prtl\Tables\ooh_reentry_params.sql" />
     <Build Include="prtl\Tables\ia_safety_params.sql" />
     <Build Include="prtl\Tables\ooh_wb_family_settings_cache.sql" />
     <Build Include="prtl\Tables\ooh_wb_family_settings_params.sql" />
@@ -205,13 +205,18 @@
     <Build Include="prtl\Stored Procedures\sp_ooh_pit_counts.sql" />
     <Build Include="prtl\Stored Procedures\sp_ooh_pit_rates.sql" />
     <Build Include="prtl\Stored Procedures\log_query_ooh_wb_family_settings.sql" />
-    <Build Include="prtl\Stored Procedures\build_ooh_wb_family_settings.sql" />
+    <Build Include="prtl\Stored Procedures\build_ooh_wb_family_settings_cache.sql" />
     <Build Include="prtl\Stored Procedures\sp_ooh_wb_family_settings.sql" />
     <Build Include="prtl\Stored Procedures\log_query_ooh_wb_siblings.sql" />
     <Build Include="prtl\Stored Procedures\build_ooh_wb_siblings_cache.sql" />
     <Build Include="prtl\Stored Procedures\sp_ooh_wb_siblings.sql" />
     <Build Include="ref\Views\match_bin_sibling_group_size.sql" />
     <Build Include="ref\Views\match_kincare.sql" />
+    <Build Include="prtl\Tables\ooh_reentry_cache_query.sql" />
+    <Build Include="prtl\Stored Procedures\import_ooh_reentry.sql" />
+    <Build Include="prtl\Stored Procedures\log_query_ooh_reentry.sql" />
+    <Build Include="prtl\Stored Procedures\build_ooh_reentry_cache.sql" />
+    <Build Include="prtl\Stored Procedures\sp_ooh_reentry.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="annie.refactorlog" />
