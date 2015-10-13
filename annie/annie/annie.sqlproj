@@ -204,6 +204,14 @@
     <Build Include="prtl\Stored Procedures\build_ooh_pit_cache.sql" />
     <Build Include="prtl\Stored Procedures\sp_ooh_pit_counts.sql" />
     <Build Include="prtl\Stored Procedures\sp_ooh_pit_rates.sql" />
+    <Build Include="prtl\Stored Procedures\log_query_ooh_wb_family_settings.sql" />
+    <Build Include="prtl\Stored Procedures\build_ooh_wb_family_settings.sql" />
+    <Build Include="prtl\Stored Procedures\sp_ooh_wb_family_settings.sql" />
+    <Build Include="prtl\Stored Procedures\log_query_ooh_wb_siblings.sql" />
+    <Build Include="prtl\Stored Procedures\build_ooh_wb_siblings_cache.sql" />
+    <Build Include="prtl\Stored Procedures\sp_ooh_wb_siblings.sql" />
+    <Build Include="ref\Views\match_bin_sibling_group_size.sql" />
+    <Build Include="ref\Views\match_kincare.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="annie.refactorlog" />

@@ -24,6 +24,7 @@ INSERT prtl.ooh_pit_measures (
 	,filter_finding
 	,kincare
 	,bin_sibling_group_size
+	,cnt_child
 	,fl_ooh_pit
 	,cnt_child_unique
 	,fl_ooh_wb_family_settings
@@ -57,14 +58,15 @@ SELECT CONVERT(TINYINT, qry_type)
 	,filter_finding
 	,CONVERT(TINYINT, kincare)
 	,CONVERT(TINYINT, bin_sibling_group_size)
-	,CONVERT(BIT, fl_poc1ab)
+	,CONVERT(TINYINT, cnt_child)
+	,CONVERT(BIT, fl_poc1ab) [fl_ooh_pit]
 	,CONVERT(TINYINT, cnt_child_unique)
-	,CONVERT(BIT, fl_w3)
+	,CONVERT(BIT, fl_w3) [fl_ooh_wb_family_settings]
 	,CONVERT(TINYINT, family_setting_DCFS_cnt)
 	,CONVERT(TINYINT, family_setting_private_agency_cnt)
 	,CONVERT(TINYINT, relative_care)
 	,CONVERT(TINYINT, group_inst_care_cnt)
-	,CONVERT(BIT, fl_w4)
+	,CONVERT(BIT, fl_w4) [fl_ooh_wb_siblings]
 	,CONVERT(TINYINT, all_sib_together)
 	,CONVERT(TINYINT, some_sib_together)
 	,CONVERT(TINYINT, no_sib_together)

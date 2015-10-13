@@ -24,8 +24,7 @@
 GO
 
 CREATE NONCLUSTERED INDEX [idx_ooh_wb_family_settings_cache] ON [prtl].[ooh_wb_family_settings_cache] (
-	[cohort_entry_date]
-	,[age_grouping_cd]
+	[age_grouping_cd]
 	,[pk_gender]
 	,[cd_race_census]
 	,[initial_cd_placement_setting]
@@ -39,9 +38,10 @@ CREATE NONCLUSTERED INDEX [idx_ooh_wb_family_settings_cache] ON [prtl].[ooh_wb_f
 	,[cd_access_type]
 	,[cd_allegation]
 	,[cd_finding]
+	,[date_type]
+	,[cohort_entry_date]
 	) INCLUDE (
 	[qry_type]
-	,[date_type]
 	,[family_setting_dcfs_percentage]
 	,[family_setting_private_agency_percentage]
 	,[relative_percentage]

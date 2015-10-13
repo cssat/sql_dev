@@ -19,7 +19,6 @@
     [max_start_date] DATETIME NOT NULL, 
     [cnt_qry_siblings] INT NOT NULL, 
 	[cnt_qry_siblings_pvt] INT NOT NULL, 
-	[cnt_qry_uncensored] INT NOT NULL, 
     [last_run_date] DATETIME NOT NULL, 
     CONSTRAINT [idx_ooh_wb_siblings_params] UNIQUE NONCLUSTERED ( 
         [age_grouping_cd], 
