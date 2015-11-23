@@ -151,6 +151,11 @@
     <Folder Include="rodis_wh" />
     <Folder Include="rodis_wh\Tables" />
     <Folder Include="rodis_wh\Stored Procedures" />
+    <Folder Include="ref\Stored Procedures" />
+    <Folder Include="annual_report" />
+    <Folder Include="annual_report\Views" />
+    <Folder Include="annual_report\Tables" />
+    <Folder Include="annual_report\Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\hire_pk_question_data_to_insert.sql">
@@ -1181,10 +1186,6 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="dbo\Tables\ref_match_srvc_type_budget.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
     <Build Include="prtl\Tables\prtl_poc3ab.sql">
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
@@ -1449,10 +1450,6 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="dbo\Views\prm_budg.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
     <Build Include="dbo\Views\vw_origin_tbl_child_episodes_column.sql">
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
@@ -1645,10 +1642,6 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="dbo\Views\vw_service_codes_ihs_trends.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
     <Build Include="dbo\Views\vw_qa_rptPlacement_cd_discharge_type.sql">
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
@@ -1657,15 +1650,7 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="dbo\Views\vw_service_budget_codes_ihs_trends.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
     <Build Include="maps\Views\ia_population_regions.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
-    <Build Include="dbo\Views\vw_service_budget_codes_ihs_safety.sql">
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
@@ -2910,6 +2895,37 @@
     <Build Include="rodis_wh\Stored Procedures\load_birth_fact.sql" />
     <Build Include="rodis_wh\Stored Procedures\load_death_fact.sql" />
     <Build Include="rodis_wh\Stored Procedures\load_cause_of_death_m2m_fact.sql" />
+    <Build Include="ref\Tables\reporter_mandate_xwalk.sql" />
+    <Build Include="ref\Stored Procedures\build_reporter_mandate_xwalk.sql" />
+    <Build Include="Security\annual_report.sql" />
+    <Build Include="annual_report\Tables\ca_fc_afcars_extracts.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_sex.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_race.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_clindis.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_adoption.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_manrem.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_curplset.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_casegoal.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_family_structure.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_disreasn.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_placeout.sql" />
+    <Build Include="annual_report\Tables\ca_ncands_extracts.sql" />
+    <Build Include="annual_report\Tables\ref_ncands_living_arrangement.sql" />
+    <Build Include="annual_report\Tables\ref_ncands_ethnicity.sql" />
+    <Build Include="annual_report\Tables\ref_ncands_race.sql" />
+    <Build Include="annual_report\Tables\ref_ncands_sex.sql" />
+    <Build Include="annual_report\Tables\ref_ncands_notifs.sql" />
+    <Build Include="annual_report\Tables\ref_ncands_rptsrc.sql" />
+    <Build Include="annual_report\Tables\ref_ncands_rptdisp.sql" />
+    <Build Include="annual_report\Tables\ref_ncands_per_prnt.sql" />
+    <Build Include="annual_report\Tables\ref_ncands_per_rel.sql" />
+    <Build Include="annual_report\Tables\ref_ncands_mal.sql" />
+    <Build Include="annual_report\Tables\ref_ncands_mal_lev.sql" />
+    <Build Include="dbo\Views\prm_region_6.sql" />
+    <Build Include="prtl\Tables\ihs_query_history.sql" />
+    <Build Include="prtl\Tables\ia_query_history.sql" />
+    <Build Include="prtl\Tables\ooh_query_history.sql" />
+    <Build Include="dbo\Tables\ref_match_srvc_type_budget.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac">

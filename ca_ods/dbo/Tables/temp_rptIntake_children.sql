@@ -42,7 +42,6 @@
     [COUNTY]                   NVARCHAR (50)  NULL,
     [INTAKE_ZIP]               NVARCHAR (50)  NULL,
     [IA_WRKR_ID]               NVARCHAR (50)  NULL,
-    [WRKR_NAME]                NVARCHAR (50)  NULL,
     [IA_REGION]                NVARCHAR (50)  NULL,
     [IA_OFFICE]                NVARCHAR (50)  NULL,
     [IA_UNIT]                  NVARCHAR (50)  NULL,

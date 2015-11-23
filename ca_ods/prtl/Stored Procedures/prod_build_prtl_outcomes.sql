@@ -34,8 +34,6 @@ begin
 	, bin_dep_cd, max_bin_los_cd,  bin_placement_cd, cd_reporter_type, fl_cps_invs, fl_cfws
 	, fl_risk_only, fl_alternate_intervention, fl_frs,fl_far, fl_phys_abuse, fl_sexual_abuse, fl_neglect
 	, fl_any_legal, fl_founded_phys_abuse, fl_founded_sexual_abuse, fl_founded_neglect, fl_found_any_legal, bin_ihs_svc_cd
-	, int_filter_service_category filter_service_category
-	, filter_service_budget
 	, case when exit_within_month_mult3 = 3 or exit_within_month_mult3 is null then 1 else 0 end discharge_count
 	, exit_within_month_mult3 [exit_within_min_month_mult3] 
 	, cast(null as int) as row_num
@@ -91,8 +89,6 @@ create nonclustered index idx_fl_first_removal on #eps(fl_first_removal)
 	, bin_dep_cd, max_bin_los_cd,  bin_placement_cd, cd_reporter_type, fl_cps_invs, fl_cfws
 	, fl_risk_only, fl_alternate_intervention, fl_frs,fl_far, fl_phys_abuse, fl_sexual_abuse, fl_neglect
 	, fl_any_legal, fl_founded_phys_abuse, fl_founded_sexual_abuse, fl_founded_neglect, fl_found_any_legal, bin_ihs_svc_cd
-	, filter_service_category
-	, filter_service_budget
 	, case when n.mnth >=exit_within_min_month_mult3 and cd_discharge_type<> 0 then 1 
 			when n.mnth <=#eps.max_still_in_care_month  and cd_discharge_type=0 then 1 
 			when  exit_within_min_month_mult3 is null then 1 else 0 end as discharge_count
@@ -121,8 +117,6 @@ drop  index idx_fl_first_removal on #eps
 	, bin_dep_cd, max_bin_los_cd,  bin_placement_cd, cd_reporter_type, fl_cps_invs, fl_cfws
 	, fl_risk_only, fl_alternate_intervention, fl_frs,fl_far, fl_phys_abuse, fl_sexual_abuse, fl_neglect
 	, fl_any_legal, fl_founded_phys_abuse, fl_founded_sexual_abuse, fl_founded_neglect, fl_found_any_legal, bin_ihs_svc_cd
-	, filter_service_category
-	, filter_service_budget
 	-- still in care persons count as 1
 	, case when n.mnth <=max_still_in_care_month then 1 else 0 end [discharge_count]
 	, [exit_within_min_month_mult3] 
@@ -147,8 +141,6 @@ where cd_discharge_type <> 0
 	, bin_dep_cd, max_bin_los_cd,  bin_placement_cd, cd_reporter_type, fl_cps_invs, fl_cfws
 	, fl_risk_only, fl_alternate_intervention, fl_frs,fl_far, fl_phys_abuse, fl_sexual_abuse, fl_neglect
 	, fl_any_legal, fl_founded_phys_abuse, fl_founded_sexual_abuse, fl_founded_neglect, fl_found_any_legal, bin_ihs_svc_cd
-	, filter_service_category
-	, filter_service_budget
 	, discharge_count
 	, [exit_within_min_month_mult3] 
 	, row_num
@@ -164,7 +156,7 @@ where cd_discharge_type <> 0
 		,census_Hispanic_Latino_Origin_cd,init_cd_plcm_setng,long_cd_plcm_setng,Removal_County_Cd,int_match_param_key
 		,bin_dep_cd,max_bin_los_cd,bin_placement_cd
 		,cd_reporter_type,bin_ihs_svc_cd,filter_access_type,filter_allegation
-		,filter_finding,filter_service_category,filter_service_budget,mnth,discharge_count,cohort_count
+		,filter_finding,mnth,discharge_count,cohort_count
 		)
 		select 
 			cohort_entry_date
@@ -203,8 +195,6 @@ where cd_discharge_type <> 0
 				+ ([fl_founded_neglect] * (select cd_multiplier from ref_filter_finding where fl_name='fl_founded_neglect'))
 				+ ([fl_found_any_legal] * (select cd_multiplier from ref_filter_finding where fl_name='fl_any_finding_legal')) [filter_finding]
 			-- select * from [dbo].[ref_service_cd_subctgry_poc]
-			, filter_service_category
-			, filter_service_budget
 			, mnth
 			,sum(discharge_count) as discharge_count
 			,sum(cohort_count)		
@@ -240,8 +230,6 @@ where cd_discharge_type <> 0
 			,fl_founded_neglect
 			,fl_founded_sexual_abuse
 			,fl_founded_phys_abuse
-			, filter_service_category
-			, filter_service_budget
 			, mnth
 
 		ALTER TABLE prtl.prtl_outcomes CHECK CONSTRAINT ALL ;

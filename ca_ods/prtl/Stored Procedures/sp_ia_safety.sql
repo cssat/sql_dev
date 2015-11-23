@@ -1,5 +1,4 @@
-﻿
-CREATE PROCEDURE [prtl].[sp_ia_safety](
+﻿CREATE PROCEDURE [prtl].[sp_ia_safety](
    @date varchar(3000)
 ,  @age_grouping_cd varchar(30)
 ,  @race_cd varchar(30)
@@ -22,13 +21,8 @@ as
 	declare @tblqryid table(qry_id int);
 
 
-    declare @x1 float;
-    declare @x2 float;
-
 	declare @var_row_cnt_param int;
 	declare @var_row_cnt_cache int;
-    set @x1=dbo.RandFn();
-    set @x2=dbo.RandFn();
 
 
 
@@ -284,8 +278,6 @@ as
 					 ,cd_finding
 					 ,0 as in_cache
 					 ,@qry_id as qry_id
-					,RAND(cast(NEWID() as varbinary))  x1 
-					,RAND(cast(NEWID() as varbinary)) x2
 				into #cachekeys
 				from (select distinct int_param_key from #prmlocdem) prm
 				cross join (select distinct cd_reporter_type from #rpt) rpt
@@ -353,16 +345,16 @@ as
 												/(q.total_families * 1.0000 ) * 100 [rate]
 								, @minmonthstart as minmonthstart
 								, @maxmonthstart as maxmonthstart
-								,ck.x1  
-								, ck.x2
+								, rand(convert(varbinary, newid())) [x1]
+								, rand(convert(varbinary, newid())) [x2]
 								, getdate() as insert_date
 								, cast((mtch.int_param_key  * power(10.0,5)) as decimal(12,0))
 									+ cast((rpt.cd_reporter_type  * power(10.0,3)) as decimal(12,0))
 									+  cast((acc.cd_access_type  * power(10.0,2)) as decimal(12,0))
 									+  cast((alg.cd_allegation  * power(10.0,1)) as decimal(12,0))
 									+ fnd.cd_finding as s2_int_hash_key
-								,ck.qry_id
-								,year(s2.cohort_begin_date) as cohort_year
+								, ck.qry_id
+								, year(s2.cohort_begin_date) as cohort_year
 							into #mytemp
 							FROM prtl.prtl_pbcs2  S2
 									join #prmlocdem mtch on mtch.int_match_param_key=s2.int_match_param_key 
@@ -398,8 +390,9 @@ as
 								, mtch.age_grouping_cd 
 								, mtch.cd_race_census
 								, mtch.cd_cnty
-								,n.mnth ,q.total_families
-								,ck.x1,ck.x2,ck.qry_id
+								, n.mnth
+								, q.total_families
+								, ck.qry_id
 						order by s2.qry_type
 								, s2.date_type 
 								, s2.cohort_begin_date
@@ -411,7 +404,7 @@ as
 								, mtch.age_grouping_cd 
 								, mtch.cd_race_census
 								, mtch.cd_cnty
-								,n.mnth 
+								, n.mnth 
 
 									insert into prtl.cache_pbcs2_aggr 
 									([qry_type]

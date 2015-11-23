@@ -12,8 +12,6 @@
     [cd_access_type]       INT             NOT NULL,
     [cd_allegation]        INT             NOT NULL,
     [cd_finding]           INT             NOT NULL,
-    [cd_subctgry_poc_frc]  INT             NOT NULL,
-    [cd_budget_poc_frc]    INT             NOT NULL,
     [reentry_within_month] INT             NOT NULL,
     [reentry_rate]         NUMERIC (18, 4) NULL,
     [age_grouping_cd]      INT             NOT NULL,

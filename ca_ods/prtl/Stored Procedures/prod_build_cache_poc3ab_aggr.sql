@@ -15,8 +15,6 @@ declare @starttime datetime=getdate()
 			declare  @filter_access_type varchar(30) 
 			declare  @filter_allegation  varchar(100)
 			declare @filter_finding varchar(30)
-			declare  @filter_service_category  varchar(50)
-			declare  @filter_service_budget varchar(50)
 			declare @max_qry_id int
 
 		select @max_qry_id =max(qry_id) from prtl.ihs_params_backup
@@ -51,8 +49,6 @@ declare @starttime datetime=getdate()
 					  ,@filter_access_type=[filter_access_type]
 					  ,@filter_allegation=[filter_allegation]
 					  ,@filter_finding=[filter_finding]
-					  ,@filter_service_category=[filter_srvc_type]
-					  ,@filter_service_budget=[filter_budget]
 				FROM #params
 				where qry_ID=@loop
 
@@ -67,8 +63,6 @@ declare @starttime datetime=getdate()
 					,@filter_access_type
 					,@filter_allegation
 					,@filter_finding
-					,@filter_service_category
-					,@filter_service_budget;
 
 				set @loop=@loop + 1;
 			end ;

@@ -15,3 +15,7 @@ CREATE NONCLUSTERED INDEX [idx_param_match_ia]
     ON [prtl].[param_match_ia]([ia_param_key])
     INCLUDE ([cd_reporter_type], [filter_access_type], [filter_allegation], [filter_finding])
 GO
+
+CREATE NONCLUSTERED INDEX [idx_param_match_ia_aggr_insert]
+    ON [prtl].[param_match_ia]([ia_param_key], [cd_reporter_type], [filter_access_type], [filter_allegation], [filter_finding])
+GO

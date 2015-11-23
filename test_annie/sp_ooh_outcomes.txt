@@ -36,9 +36,6 @@ declare p_maxmonthstart datetime;
 declare var_calling_procedure int;
 
 
-declare x1 float;
-declare x2 float;
-
 declare var_row_cnt_param int;
 declare var_row_cnt_cache int;
 
@@ -52,9 +49,6 @@ declare var_cutoff_date datetime;
 
 DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
 
-
-set x1=rand();
-set x2=rand();
 
 set var_calling_procedure=23;
 set p_filter_service_category='0', p_filter_service_budget='0';
@@ -637,8 +631,8 @@ if  var_row_cnt_param <> var_row_cnt_cache then
         , (sum(outcomes.discharge_count)/tot_episodes.tot_episodes) * 100');
     set @incl=concat(@incl,char(13),', DATE',char(39), p_minmonthstart,char(39));
     set @incl=concat(@incl,char(13),', DATE',char(39), p_maxmonthstart,char(39));
-    set @incl=concat(@incl,char(13),', ',char(39), x1,char(39));
-    set @incl=concat(@incl,char(13),', ',char(39), x2,char(39));    
+    set @incl=concat(@incl,char(13),', ',char(39), rand(),char(39));
+    set @incl=concat(@incl,char(13),', ',char(39), rand(),char(39));    
     set @incl=concat(@incl,char(13),', DATE',char(39), now() ,char(39),' as insert_date'); 
      set @incl=concat(@incl,char(13),'   
 		,tot_episodes.qry_id
