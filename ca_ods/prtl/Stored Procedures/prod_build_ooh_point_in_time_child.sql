@@ -31,8 +31,6 @@ begin
 		set @int_startDate=(select convert(varchar(8),@startDate,112));
 		set @int_endDate=(select convert(varchar(8),@endDate,112));
 		
-		set @int_filter_service_category = 1
-		set @filter_service_budget=(select multiplier from dbo.ref_service_cd_budget_poc_frc where cd_budget_poc_frc=0 )
 
 		
 			if object_id('tempDB..#qtr') is not null drop table #qtr;
@@ -95,8 +93,6 @@ begin
 					,datediff(dd,eps.removal_dt,m.[quarter]) + 1  as dur_days
 					,cast(null as int) as int_match_param_key_census
 					,cast(null as int) as int_match_param_key_mix
-					,@int_filter_service_category [int_filter_service_category]
-					,@filter_service_budget [filter_service_budget]
 					, case 
 								when cd_plcm_setng in (1,2,4,5,18) then 1
 								when cd_plcm_setng in  (10,11,15) then 3
@@ -183,8 +179,6 @@ begin
 					,datediff(dd,eps.removal_dt,m.[year])  + 1 as dur_days
 					,cast(null as int) as int_match_param_key_census
 					,cast(null as int) as int_match_param_key_mix
-					,@int_filter_service_category [int_filter_service_category]
-					,@filter_service_budget [filter_service_budget]
 					, case 
 								when cd_plcm_setng in (1,2,4,5,18) then 1
 								when cd_plcm_setng in  (10,11,15) then 3
@@ -266,8 +260,6 @@ begin
 					,datediff(dd,eps.removal_dt,m.[quarter]) + 1  as dur_days
 					,cast(null as int) as int_match_param_key_census
 					,cast(null as int) as int_match_param_key_mix
-					,@int_filter_service_category [int_filter_service_category]
-					,@filter_service_budget [filter_service_budget]
 					, case 
 								when cd_plcm_setng in (1,2,4,5,18) then 1
 								when cd_plcm_setng in  (10,11,15) then 3
@@ -351,8 +343,6 @@ begin
 					,datediff(dd,eps.removal_dt,m.[year])  + 1 as dur_days
 					,cast(null as int) as int_match_param_key_census
 					,cast(null as int) as int_match_param_key_mix
-					,@int_filter_service_category [int_filter_service_category]
-					,@filter_service_budget [filter_service_budget]
 					, case 
 								when cd_plcm_setng in (1,2,4,5,18) then 1
 								when cd_plcm_setng in  (10,11,15) then 3
@@ -472,7 +462,7 @@ begin
 										else case when pe.end_date < point_in_time_date
 												then pe.end_date
 												else point_in_time_date
-												end  end)) + 1 desc) row_num
+												end  end)) + 1 desc, pe.id_placement_fact desc) row_num
 		from base.rptPlacement_Events pe
 		join (select distinct point_in_time_date, id_removal_episode_fact
 					from #kids) kds on kds.id_removal_episode_fact=pe.id_removal_episode_fact
@@ -484,33 +474,6 @@ begin
 		--  where kds.id_removal_episode_fact=75307 order by kds.point_in_time_date;
 		
 		
-		--  update service & budget codes
-		update kids
-		--set kids.int_filter_service_category=qry.filter_service_category_todate
-		--		,kids.filter_service_budget=qry.filter_service_budget_todate
-				set kids.int_filter_service_category=xw.int_filter_service_category
-				,kids.filter_service_budget=qry.filter_service_budget_todate
-		--  select qry.filter_service_budget_todate,qry.filter_service_category_todate,kids.*
-		from #kids kids
-		join (
-				select  max(pps.filter_service_category_todate) over
-								(partition by  kids.point_in_time_date,pps.id_placement_fact
-									order by pps.svc_begin_date desc) [filter_service_category_todate]
-							,max(pps.filter_service_budget_todate) over
-								(partition by  point_in_time_date,pps.id_placement_fact
-									order by pps.svc_begin_date desc) filter_service_budget_todate
-				,kids.id_removal_episode_fact,kids.point_in_time_date,kids.date_type,kids.qry_type
-				from #kids kids
-				join base.placement_payment_services pps
-					on kids.id_placement_fact=pps.id_placement_fact
-					and point_in_time_date between svc_begin_date and svc_end_date 
-					) qry on qry.point_in_time_date=kids.point_in_time_date
-					and qry.date_type=kids.date_type
-					and qry.id_removal_episode_fact=kids.id_removal_episode_fact
-					and qry.qry_type=kids.qry_type
-		join ref_service_category_flag_xwalk xw on xw.filter_service_category=qry.filter_service_category_todate;
-
-
 
 		update #kids
 		set int_match_param_key_census=	 cast(power(10.0,8) + 
@@ -582,8 +545,6 @@ begin
            ,[dur_days]
            ,[int_match_param_key_census]
            ,[int_match_param_key_mix]
-           ,[int_filter_service_category]
-           ,[filter_service_budget]
            ,[plctypc]
            ,[plctypc_desc]
            ,[qualevt_w3w4]
@@ -623,8 +584,6 @@ begin
            ,[dur_days]
            ,[int_match_param_key_census]
            ,[int_match_param_key_mix]
-           ,[int_filter_service_category]
-           ,[filter_service_budget]
            ,[plctypc]
            ,[plctypc_desc]
            ,[qualevt]

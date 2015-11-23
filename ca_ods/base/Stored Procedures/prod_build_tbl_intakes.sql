@@ -173,7 +173,7 @@ begin
 		left join dbo.intake_type_dim itd
 					on itd.id_intake_type_dim = inf.id_intake_type_dim
 		left join dbo.intake_attribute_dim iad on iad.id_intake_attribute_dim=inf.id_intake_attribute_dim
-		left join [dbCoreAdministrativeTables].[geog].[zip_boundaries_wa] zb2 on  zb2.zip=ca.intake_zip 
+		left join [geog].[zip_boundaries_wa] zb2 on  zb2.zip=ca.intake_zip 
 		left join ref_lookup_county cnty on cnty.countyfips=zb2.countyfips
 		left join  ( -- safety assessment worker office
 					select    saf.id_intake_fact

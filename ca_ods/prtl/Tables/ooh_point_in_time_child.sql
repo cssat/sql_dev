@@ -30,8 +30,6 @@
     [dur_days]                         INT        NULL,
     [int_match_param_key_census]       INT        NOT NULL,
     [int_match_param_key_mix]          INT        NOT NULL,
-    [int_filter_service_category]      INT        NOT NULL,
-    [filter_service_budget]            INT        NOT NULL,
     [plctypc]                          INT        NULL,
     [plctypc_desc]                     CHAR (200) NULL,
     [qualevt_w3w4]                     INT        NULL,
@@ -52,7 +50,7 @@ CREATE NONCLUSTERED INDEX [idx_pbcw4_1]
 GO
 CREATE NONCLUSTERED INDEX [idx_id_removal_episode_fact]
     ON [prtl].[ooh_point_in_time_child]([id_removal_episode_fact] ASC)
-    INCLUDE([id_prsn_child], [point_in_time_date], [id_placement_fact], [date_type], [qry_type], [cd_reporter_type], [filter_access_type], [census_Hispanic_Latino_Origin_cd], [init_cd_plcm_setng], [bin_dep_cd], [bin_placement_cd], [max_bin_los_cd], [bin_ihs_svc_cd], [int_match_param_key_census], [int_match_param_key_mix], [filter_allegation], [filter_finding], [pk_gndr], [cd_race_census], [qualevt_w3w4], [kinmark], [long_cd_plcm_setng], [pit_county_cd], [age_grouping_cd_census], [age_grouping_cd_mix], [tempevt], [fl_out_trial_return_home], [int_filter_service_category], [filter_service_budget], [plctypc], [plctypc_desc]);
+    INCLUDE([id_prsn_child], [point_in_time_date], [id_placement_fact], [date_type], [qry_type], [cd_reporter_type], [filter_access_type], [census_Hispanic_Latino_Origin_cd], [init_cd_plcm_setng], [bin_dep_cd], [bin_placement_cd], [max_bin_los_cd], [bin_ihs_svc_cd], [int_match_param_key_census], [int_match_param_key_mix], [filter_allegation], [filter_finding], [pk_gndr], [cd_race_census], [qualevt_w3w4], [kinmark], [long_cd_plcm_setng], [pit_county_cd], [age_grouping_cd_census], [age_grouping_cd_mix], [tempevt], [fl_out_trial_return_home], [plctypc], [plctypc_desc]);
 
 
 GO

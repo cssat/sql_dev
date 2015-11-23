@@ -30,7 +30,7 @@ BEGIN
     
     call sp_ooh_assign_param_multiplier;
 
-    if var_calling_procedure in (19,20,24,26) then
+    if var_calling_procedure in (19,20,24,25,26) then
         insert into tblprm (int_param_key)
         select cast(@int_param_key + (age_grouping_cd * cast(@mult_age_grouping_cd/@mult_int_param_key as unsigned)) 
             + (cd_race * cast(@mult_cd_race_census/@mult_int_param_key as unsigned))
@@ -45,21 +45,6 @@ BEGIN
             cross join (select distinct placement_cd as long_cd_plcm_setng from ref_lookup_placement where find_in_set(placement_cd,p_long_cd_plcm_setng) > 0) lpl
             cross join (select distinct County_Cd as cd_cnty from ref_lookup_county_all where find_in_set(county_cd,p_county_cd) > 0) cnty;
 
-    elseif var_calling_procedure=25 then
-    
-            insert into tblprm (int_param_key)
-              select cast(@int_param_key + (age_grouping_cd * cast(@mult_age_grouping_cd/@mult_int_param_key as unsigned)) 
-            + (cd_race * cast(@mult_cd_race_census/@mult_int_param_key as unsigned))
-            + (pk_gndr* cast(@mult_pk_gndr/@mult_int_param_key as unsigned))
-            + (init_cd_plcm_setng * cast(@mult_init_cd_plcm_setng/@mult_int_param_key as unsigned))
-            + (long_cd_plcm_setng * cast(@mult_long_cd_plcm_setng/@mult_int_param_key as unsigned))
-            + cd_cnty as unsigned) int_param_key
-            from (select distinct developmental_age_cd `age_grouping_cd` from vw_age_developmental_exits where find_in_set(developmental_age_cd,p_age_grouping_cd)>0)age
-            cross join (select cd_race_census as cd_race from ref_lookup_ethnicity_census where find_in_set(cd_race_census,p_ethnicity_cd) > 0) eth
-            cross join (select distinct pk_gndr from ref_lookup_gender where find_in_set(pk_gndr,p_gender_cd) > 0) gdr
-            cross join (select distinct placement_cd as init_cd_plcm_setng from ref_lookup_placement where find_in_set(placement_cd,p_init_cd_plcm_setng) > 0) fpl
-            cross join (select distinct placement_cd as long_cd_plcm_setng from ref_lookup_placement where find_in_set(placement_cd,p_long_cd_plcm_setng) > 0) lpl
-            cross join (select distinct County_Cd as cd_cnty from ref_lookup_county_all where find_in_set(county_cd,p_county_cd) > 0) cnty;
     else
       
           insert into tblprm (int_param_key)

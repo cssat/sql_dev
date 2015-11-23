@@ -42,12 +42,9 @@ BEGIN
       
 -- age
 
-    if p_calling_procedure in (19,20,24,26) then
+    if p_calling_procedure in (19,20,24,25,26) then
         insert into tblage(age_grouping_cd,match_code)
         select * from prm_age_census where find_in_set(age_grouping_cd,p_age_grouping_cd)>0;
-    elseif p_calling_procedure = 25 then
-        insert into tblage(age_grouping_cd,match_code)
-        select * from prm_age_developmental where find_in_set(age_grouping_cd,p_age_grouping_cd)>0;
     else
         insert into tblage(age_grouping_cd,match_code)
         select * from prm_age_cdc_census_mix where find_in_set(age_grouping_cd,p_age_grouping_cd)>0;

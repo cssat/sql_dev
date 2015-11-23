@@ -18,13 +18,8 @@ as
 	declare @tblqryid table(qry_id int);
 
 
-    declare @x1 float;
-    declare @x2 float;
-
 	declare @var_row_cnt_param int;
 	declare @var_row_cnt_cache int;
-    --set @x1=dbo.RandFn();
-    --set @x2=dbo.RandFn();
 
 
 
@@ -288,8 +283,6 @@ as
 					 ,cd_finding
 					 ,0 as in_cache
 					 ,@qry_id as qry_id
-					,RAND(cast(NEWID() as varbinary))  x1 
-					,RAND(cast(NEWID() as varbinary)) x2
 				into #cachekeys
 				from (select distinct int_param_key from #prmlocdem) prm
 				cross join (select distinct cd_reporter_type from #rpt) rpt
@@ -354,14 +347,10 @@ as
 								, isnull(sum(prtl_poc2ab.cnt_start_date),0) as cnt_start_date
 								, isnull(sum(prtl_poc2ab.cnt_opened),0) as cnt_opened
 								, isnull(sum(prtl_poc2ab.cnt_closed),0) as cnt_closed
-								--, '2000-01-01' as minmonthstart
-								--, '2013-07-01' as maxmonthstart
-								--, null as x1
-								--, null   as x2
 								, @minmonthstart as minmonthstart
 								, @maxmonthstart as maxmonthstart
-								, ck.x1  
-								, ck.x2
+								, rand(convert(varbinary, newid())) [x1]
+								, rand(convert(varbinary, newid())) [x2]
 								, getdate() as insert_date
 								, cast((mtch.int_param_key  * power(10.0,5)) as decimal(12,0))
 									+ cast((rpt.cd_reporter_type  * power(10.0,3)) as decimal(12,0))
@@ -396,8 +385,6 @@ as
 									, acc.cd_access_type
 									, alg.cd_allegation
 									, fnd.cd_finding
-									, ck.x1
-									, ck.x2
 									, ck.qry_id;
 		
 						update cache_poc2ab_aggr

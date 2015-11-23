@@ -10,7 +10,26 @@
 )
 GO
 
-CREATE NONCLUSTERED INDEX [idx_param_match_geog] 
-    ON [prtl].[param_match_geog] ([geog_param_key])
-    INCLUDE ([cd_county], [cd_region_three], [cd_region_six])
+CREATE NONCLUSTERED INDEX [idx_param_match_geog] ON [prtl].[param_match_geog] (
+    [geog_param_key]
+    )
+INCLUDE (
+    [cd_county], 
+    [cd_region_three], 
+    [cd_region_six]
+)
+GO
+
+CREATE NONCLUSTERED INDEX [idx_param_match_geog_cd_region_three] ON [prtl].[param_match_geog] (
+    [geog_param_key], 
+    [cd_county], 
+    [cd_region_three]
+)
+GO
+
+CREATE NONCLUSTERED INDEX [idx_param_match_geog_cd_region_six] ON [prtl].[param_match_geog] (
+    [geog_param_key], 
+    [cd_county], 
+    [cd_region_six]
+)
 GO

@@ -43,8 +43,6 @@ declare p_maxmonthstart datetime;
 
 declare var_qry_cnt int;
 declare var_match_unq_qry_id int;
-declare x1 float;
-declare x2 float;
 declare var_row_cnt_param int;
 declare var_row_cnt_cache int;
 
@@ -59,10 +57,6 @@ set var_calling_procedure=19;
 set p_filter_service_category='0', p_filter_service_budget='0';
 
 
-
-
-set x1=rand();
-set x2=rand();
 
 
 select max(a.db_min_filter_date) into min_filter_date
@@ -368,8 +362,8 @@ if  var_row_cnt_param <> var_row_cnt_cache then
   					, coalesce(sum(prtl_poc1ab_entries.cnt_entries),0) as cnt_entries');
 		set @incl=concat(@incl,char(13),', DATE',char(39), p_minmonthstart,char(39));
 		set @incl=concat(@incl,char(13),', DATE',char(39), p_maxmonthstart,char(39));
-		set @incl=concat(@incl,char(13),', ',char(39), x1,char(39));
-		set @incl=concat(@incl,char(13),', ',char(39), x2,char(39));    
+		set @incl=concat(@incl,char(13),', ',char(39), rand(),char(39));
+		set @incl=concat(@incl,char(13),', ',char(39), rand(),char(39));    
 		set @incl=concat(@incl,char(13),', DATE',char(39), now() ,char(39),' as insert_date'); 
 		set @incl=concat(@incl,char(13),', ck.qry_id', char(13),'
             , prtl_poc1ab_entries.start_year');

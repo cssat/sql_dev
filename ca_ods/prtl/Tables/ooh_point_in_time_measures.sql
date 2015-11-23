@@ -20,8 +20,6 @@
     [filter_access_type]                INT      NOT NULL,
     [filter_allegation]                 INT      NOT NULL,
     [filter_finding]                    INT      NOT NULL,
-    [filter_service_category]           INT      NOT NULL,
-    [filter_service_budget]             INT      NOT NULL,
     [kincare]                           INT      NULL,
     [bin_sibling_group_size]            INT      NULL,
     [family_setting_cnt]                INT      NULL,
@@ -55,17 +53,17 @@
 GO
 CREATE NONCLUSTERED INDEX [idx_fl_w3]
     ON [prtl].[ooh_point_in_time_measures]([fl_w3] ASC)
-    INCLUDE([start_date], [date_type], [qry_type], [age_grouping_cd_mix], [age_grouping_cd_census], [cnt_child], [family_setting_cnt], [family_setting_DCFS_cnt], [family_setting_private_agency_cnt], [relative_care], [group_inst_care_cnt], [cnt_child_unique], [bin_ihs_svc_cd], [filter_access_type], [filter_allegation], [filter_finding], [filter_service_category], [filter_service_budget], [int_match_param_key_mix], [int_match_param_key_census], [bin_dep_cd], [max_bin_los_cd], [bin_placement_cd], [cd_reporter_type], [pk_gndr], [cd_race], [census_hispanic_latino_origin_cd], [init_cd_plcm_setng], [long_cd_plcm_setng], [county_cd]);
+    INCLUDE([start_date], [date_type], [qry_type], [age_grouping_cd_mix], [age_grouping_cd_census], [cnt_child], [family_setting_cnt], [family_setting_DCFS_cnt], [family_setting_private_agency_cnt], [relative_care], [group_inst_care_cnt], [cnt_child_unique], [bin_ihs_svc_cd], [filter_access_type], [filter_allegation], [filter_finding], [int_match_param_key_mix], [int_match_param_key_census], [bin_dep_cd], [max_bin_los_cd], [bin_placement_cd], [cd_reporter_type], [pk_gndr], [cd_race], [census_hispanic_latino_origin_cd], [init_cd_plcm_setng], [long_cd_plcm_setng], [county_cd]);
 
 
 GO
 CREATE NONCLUSTERED INDEX [idx_fl_w4]
     ON [prtl].[ooh_point_in_time_measures]([fl_w4] ASC)
-    INCLUDE([start_date], [date_type], [qry_type], [age_grouping_cd_mix], [age_grouping_cd_census], [cnt_child], [all_sib_together], [some_sib_together], [no_sib_together], [kincare], [bin_sibling_group_size], [cnt_child_unique], [bin_ihs_svc_cd], [filter_access_type], [filter_allegation], [filter_finding], [filter_service_category], [filter_service_budget], [int_match_param_key_mix], [int_match_param_key_census], [bin_dep_cd], [max_bin_los_cd], [bin_placement_cd], [cd_reporter_type], [pk_gndr], [cd_race], [census_hispanic_latino_origin_cd], [init_cd_plcm_setng], [long_cd_plcm_setng], [county_cd]);
+    INCLUDE([start_date], [date_type], [qry_type], [age_grouping_cd_mix], [age_grouping_cd_census], [cnt_child], [all_sib_together], [some_sib_together], [no_sib_together], [kincare], [bin_sibling_group_size], [cnt_child_unique], [bin_ihs_svc_cd], [filter_access_type], [filter_allegation], [filter_finding], [int_match_param_key_mix], [int_match_param_key_census], [bin_dep_cd], [max_bin_los_cd], [bin_placement_cd], [cd_reporter_type], [pk_gndr], [cd_race], [census_hispanic_latino_origin_cd], [init_cd_plcm_setng], [long_cd_plcm_setng], [county_cd]);
 
 
 GO
 CREATE NONCLUSTERED INDEX [idx_fl_poc1ab]
     ON [prtl].[ooh_point_in_time_measures]([fl_poc1ab] ASC)
-    INCLUDE([start_date], [date_type], [qry_type], [age_grouping_cd_mix], [age_grouping_cd_census], [cnt_child_unique], [cnt_child], [bin_ihs_svc_cd], [filter_access_type], [filter_allegation], [filter_finding], [filter_service_category], [filter_service_budget], [int_match_param_key_mix], [int_match_param_key_census], [bin_dep_cd], [max_bin_los_cd], [bin_placement_cd], [cd_reporter_type], [pk_gndr], [cd_race], [census_hispanic_latino_origin_cd], [init_cd_plcm_setng], [long_cd_plcm_setng], [county_cd]);
+    INCLUDE([start_date], [date_type], [qry_type], [age_grouping_cd_mix], [age_grouping_cd_census], [cnt_child_unique], [cnt_child], [bin_ihs_svc_cd], [filter_access_type], [filter_allegation], [filter_finding], [int_match_param_key_mix], [int_match_param_key_census], [bin_dep_cd], [max_bin_los_cd], [bin_placement_cd], [cd_reporter_type], [pk_gndr], [cd_race], [census_hispanic_latino_origin_cd], [init_cd_plcm_setng], [long_cd_plcm_setng], [county_cd]);
 

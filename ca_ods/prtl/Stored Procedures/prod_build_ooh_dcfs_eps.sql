@@ -103,8 +103,6 @@ begin
 					, iif( si.[cnt_intk_grp_founded_neglect]  > 0 , 1 , 0 )  [fl_founded_neglect]
 					, iif( si.[cnt_intk_grp_founded_any_legal]  > 0 , 1 , 0 ) [fl_found_any_legal]
 					, (rpt.bin_ihs_svc_cd) as bin_ihs_svc_cd
-					, rpt.int_filter_service_category
-					, rpt.filter_service_budget
 --					, (coalesce(nondcfs.CUST_BEGIN,'12/31/9999')) as nonDCFS_Cust_Begin
 --					, cast(nondcfs.CUST_End as datetime) as nonDCFS_Cust_End
 					, 1 as prsn_cnt
@@ -416,8 +414,6 @@ begin
       , ae.fl_founded_neglect
       , ae.fl_found_any_legal
       , ae.bin_ihs_svc_cd
-      , ae.int_filter_service_category
-      , ae.filter_service_budget
       , ae.prsn_cnt
       , ae.exit_within_month_mult3
       , ae.nxt_reentry_within_min_month_mult3
@@ -500,8 +496,6 @@ begin
 				, ae.fl_founded_neglect
 				, ae.fl_found_any_legal
 				, ae.bin_ihs_svc_cd
-				, ae.int_filter_service_category
-				, ae.filter_service_budget
 				, ae.prsn_cnt
 				, ae.exit_within_month_mult3
 				, ae.nxt_reentry_within_min_month_mult3
@@ -553,7 +547,7 @@ begin
 
 	CREATE NONCLUSTERED INDEX  idx_discharge_dt
 ON #dcfs_alleps ([federal_discharge_date])
-INCLUDE ([cohort_entry_year],[cohort_entry_month],[cohort_exit_year],[cohort_exit_month],[child],[birthdate],[id_removal_episode_fact],[discharge_type],[cd_discharge_type],[first_removal_dt],[fl_first_removal],[removal_dt],[orig_removal_dt],[orig_federal_discharge_date],[last_placement_discharge_date],[entry_cdc_census_mix_age_cd],[entry_census_child_group_cd],[entry_developmental_age_cd],[exit_cdc_census_mix_age_cd],[exit_census_child_group_cd],[exit_developmental_age_cd],[last_plcm_exit_census_mix_age_cd],[last_plcm_exit_census_child_group_cd],[last_plcm_exit_census_developmental],[fl_exit_over_17],[pk_gndr],[cd_race_census],[census_Hispanic_Latino_Origin_cd],[init_cd_plcm_setng],[long_cd_plcm_setng],[removal_county_cd],[exit_county_cd],[entry_int_match_param_key_cdc_census_mix],[exit_int_match_param_key_cdc_census_mix],[entry_int_match_param_key_census_child_group],[exit_int_match_param_key_census_child_group],[entry_int_match_param_key_developmental],[exit_int_match_param_key_developmental],[plcm_exit_int_match_param_key_cdc_census_mix],[plcm_exit_int_match_param_key_census_child_group],[plcm_exit_int_match_param_key_developmental],[bin_dep_cd],[max_bin_los_cd],[bin_placement_cd],[cd_reporter_type],[fl_cps_invs],[fl_cfws],[fl_risk_only],[fl_alternate_intervention],[fl_frs],[fl_dlr],[fl_far],[fl_phys_abuse],[fl_sexual_abuse],[fl_neglect],[fl_any_legal],[fl_founded_phys_abuse],[fl_founded_sexual_abuse],[fl_founded_neglect],[fl_found_any_legal],[bin_ihs_svc_cd],[int_filter_service_category],[filter_service_budget],[prsn_cnt],[exit_within_month_mult3],[nxt_reentry_within_min_month_mult3],[fl_nondcfs_eps],[fl_nondcfs_within_eps],[fl_nondcfs_overlap_eps],[dependency_dt],[fl_dep_exist],[fl_reentry],[next_reentry_date],[child_eps_rank_asc],[child_eps_rank_desc])
+INCLUDE ([cohort_entry_year],[cohort_entry_month],[cohort_exit_year],[cohort_exit_month],[child],[birthdate],[id_removal_episode_fact],[discharge_type],[cd_discharge_type],[first_removal_dt],[fl_first_removal],[removal_dt],[orig_removal_dt],[orig_federal_discharge_date],[last_placement_discharge_date],[entry_cdc_census_mix_age_cd],[entry_census_child_group_cd],[entry_developmental_age_cd],[exit_cdc_census_mix_age_cd],[exit_census_child_group_cd],[exit_developmental_age_cd],[last_plcm_exit_census_mix_age_cd],[last_plcm_exit_census_child_group_cd],[last_plcm_exit_census_developmental],[fl_exit_over_17],[pk_gndr],[cd_race_census],[census_Hispanic_Latino_Origin_cd],[init_cd_plcm_setng],[long_cd_plcm_setng],[removal_county_cd],[exit_county_cd],[entry_int_match_param_key_cdc_census_mix],[exit_int_match_param_key_cdc_census_mix],[entry_int_match_param_key_census_child_group],[exit_int_match_param_key_census_child_group],[entry_int_match_param_key_developmental],[exit_int_match_param_key_developmental],[plcm_exit_int_match_param_key_cdc_census_mix],[plcm_exit_int_match_param_key_census_child_group],[plcm_exit_int_match_param_key_developmental],[bin_dep_cd],[max_bin_los_cd],[bin_placement_cd],[cd_reporter_type],[fl_cps_invs],[fl_cfws],[fl_risk_only],[fl_alternate_intervention],[fl_frs],[fl_dlr],[fl_far],[fl_phys_abuse],[fl_sexual_abuse],[fl_neglect],[fl_any_legal],[fl_founded_phys_abuse],[fl_founded_sexual_abuse],[fl_founded_neglect],[fl_found_any_legal],[bin_ihs_svc_cd],[prsn_cnt],[exit_within_month_mult3],[nxt_reentry_within_min_month_mult3],[fl_nondcfs_eps],[fl_nondcfs_within_eps],[fl_nondcfs_overlap_eps],[dependency_dt],[fl_dep_exist],[fl_reentry],[next_reentry_date],[child_eps_rank_asc],[child_eps_rank_desc])
 
 create nonclustered index idx_age_mo_discharge_dt
 on #age([age_mo],[federal_discharge_date])
@@ -874,8 +868,6 @@ CREATE NONCLUSTERED INDEX idx_tmp_33 on #dcfs_alleps (id_removal_episode_fact,[r
       ,[fl_founded_neglect]
       ,[fl_found_any_legal]
       ,[bin_ihs_svc_cd]
-      ,[int_filter_service_category]
-      ,[filter_service_budget]
       ,[prsn_cnt]
       ,[exit_within_month_mult3]
       ,[nxt_reentry_within_min_month_mult3]

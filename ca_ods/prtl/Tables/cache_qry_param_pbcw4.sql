@@ -8,8 +8,6 @@
     [cd_access_type]      INT          NOT NULL,
     [cd_allegation]       INT          NOT NULL,
     [cd_finding]          INT          NOT NULL,
-    [cd_subctgry_poc_frc] INT          NOT NULL,
-    [cd_budget_poc_frc]   INT          NOT NULL,
     [age_grouping_cd]     INT          NOT NULL,
     [cd_race]             INT          NOT NULL,
     [pk_gndr]             INT          NOT NULL,

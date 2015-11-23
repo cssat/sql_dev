@@ -8,8 +8,6 @@
     [cd_access_type]       INT          NOT NULL,
     [cd_allegation]        INT          NOT NULL,
     [cd_finding]           INT          NOT NULL,
-    [cd_service_type]      INT          NOT NULL,
-    [cd_budget_type]       INT          NOT NULL,
     [cd_sib_age_grp]       INT          NOT NULL,
     [cd_race_census]       INT          NOT NULL,
     [cd_county]            INT          NOT NULL,

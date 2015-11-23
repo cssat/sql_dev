@@ -151,6 +151,18 @@
     [discharge_qtr]                      DATETIME       NULL,
     [first_setting]                      VARCHAR (200)  NULL,
     [first_relative]                     INT            NULL,
+    [fl_extended_foster_care]            INT            NULL, 
+    [tx_placement_care_auth_last]        VARCHAR(200)   NULL, 
+    [cd_placement_care_auth_last]        INT            NULL, 
+    [cd_multirace]                       INT            NULL, 
+    [cd_setting_drvd]                    VARCHAR(50)    NULL, 
+    [cd_subctgry]                        INT            NULL, 
+    [cd_current_service]                 INT            NULL, 
+    [cd_exit_reason]                     INT            NULL, 
+    [cd_lgl_stat]                        INT            NULL, 
+    [cd_plcm_dsch_rsn]                   INT            NULL, 
+    [cd_tribe_name]                      INT            NULL, 
+    [cd_dsch_rsn]                        INT            NULL, 
     CONSTRAINT [PK_rptPlacement] PRIMARY KEY CLUSTERED ([id_removal_episode_fact] ASC)
 );
 

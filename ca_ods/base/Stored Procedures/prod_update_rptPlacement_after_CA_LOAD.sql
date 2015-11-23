@@ -199,11 +199,16 @@ as
 
 
 		update base.rptPlacement
-		set cd_race_census = pd.cd_race_census, census_Hispanic_Latino_Origin_cd=pd.census_Hispanic_Latino_Origin_cd,cd_gndr=pd.CD_GNDR,pk_gndr=g.pk_gndr
+		set cd_race_census = pd.cd_race_census, census_Hispanic_Latino_Origin_cd=pd.census_Hispanic_Latino_Origin_cd
 		from PEOPLE_DIM pd 
-		left join ref_lookup_gender g on g.cd_gndr=pd.cd_gndr
 		where
 		pd.id_prsn=rptPlacement.child and pd.IS_CURRENT=1
+
+
+		update rpt
+		set pk_gndr=g.pk_gndr
+		from base.rptPlacement rpt
+		left join ref_lookup_gender g on g.cd_gndr=rpt.cd_gndr
 
 
 		update rpt

@@ -36,9 +36,6 @@ declare p_maxmonthstart datetime;
 
 
 
-declare x1 float;
-declare x2 float;
-
 declare var_row_cnt_param int;
 declare var_row_cnt_cache int;
 declare unq_qry_id int;
@@ -49,9 +46,6 @@ declare var_calling_procedure int;
 
 
 DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
-
-set x1=rand();
-set x2=rand();
 
 set var_calling_procedure=12;
 set p_filter_service_category='0', p_filter_service_budget='0';
@@ -370,8 +364,8 @@ if  var_row_cnt_param <> var_row_cnt_cache then
         set @incl=concat(@incl,' as minmonthstart');
 				set @incl=concat(@incl,', DATE',char(39));
         set @incl=concat(@incl,p_maxmonthstart,char(39),' as maxmonthstart');
-				set @incl=concat(@incl, ',',char(39),x1,char(39));
-				set @incl=concat(@incl, ',',char(39),x2,char(39));
+				set @incl=concat(@incl, ',',char(39),rand(),char(39));
+				set @incl=concat(@incl, ',',char(39),rand(),char(39));
 				set @incl=concat(@incl, ', DATE',char(39), now(),char(39),' as insert_date');
 				set @incl=concat(@incl, ', che.qry_id ',char(13));
 				set @incl=concat(@incl, ', year(prtl_pbcw3.start_date)
@@ -390,8 +384,8 @@ if  var_row_cnt_param <> var_row_cnt_cache then
         set @incl=concat(@incl,' as minmonthstart');
 				set @incl=concat(@incl,', DATE',char(39));
         set @incl=concat(@incl,p_maxmonthstart,char(39),' as maxmonthstart');
-				set @incl=concat(@incl, ',',char(39),x1,char(39));
-				set @incl=concat(@incl, ',',char(39),x2,char(39));
+				set @incl=concat(@incl, ',',char(39),rand(),char(39));
+				set @incl=concat(@incl, ',',char(39),rand(),char(39));
 				set @incl=concat(@incl, ', DATE',char(39), now(),char(39),' as insert_date');
 				set @incl=concat(@incl, ',',char(39),@qry_id,char(39));
 				set @incl=concat(@incl, ',year(prtl_pbcw3.start_date)
