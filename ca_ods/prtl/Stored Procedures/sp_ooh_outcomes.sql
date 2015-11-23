@@ -15,8 +15,6 @@ CREATE PROCEDURE [prtl].[sp_ooh_outcomes](
 ,  @filter_access_type varchar(30) 
 ,  @filter_allegation  varchar(30)
 ,  @filter_finding varchar(30)
-,  @filter_service_category  varchar(100)
-,  @filter_service_budget varchar(100)
 ,  @bin_dep_cd  varchar(20)
 ,  @fl_return_results smallint  -- 1 = yes; 0 = no (for loading cache tables set to 0)
 ,  @debug smallint = 0
@@ -106,16 +104,6 @@ as
 			if OBJECT_ID('tempDB..#find') is not null drop table #find
 			create table #find(cd_finding int,filter_finding  decimal(18,0),match_code decimal(18,0) ,primary key(cd_finding,match_code));
 			create index idx_finding on #find(match_code)
-
-			-- service type flags	
-			if object_ID('tempDB..#srvc') is not null drop table #srvc
-			create table #srvc(cd_subctgry_poc_frc int, filter_srvc_type decimal(18,0),match_code decimal(18,0) ,primary key(cd_subctgry_poc_frc,match_code));
-			create index idx_srvc on #srvc(match_code)
-			-- budget type flags
-
-			if object_ID('tempDB..#budg') is not null drop table #budg
-				create table #budg(cd_budget_poc_frc int,filter_budget decimal(18,0),match_code decimal(18,0),primary key(cd_budget_poc_frc,match_code))
-				create index idx_budg on #budg(match_code)
 
 
   			if object_ID('tempDB..#dep') is not null drop table #dep
@@ -255,32 +243,6 @@ as
 			on cast(sel.arrValue as int)= fnd.cd_finding
 				
 			update statistics #find					
-
-		-----------------------------------  services ---------------------------------------
-		--  prm_srvc		 @filter_service_category
-		
-			insert into #srvc(cd_subctgry_poc_frc,filter_srvc_type,match_code)
-			select srvc.cd_subctgry_poc_frc,srvc.match_code,srvc.match_code
-			from prm_srvc srvc				
-			join dbo.fn_ReturnStrTableFromList(@filter_service_category,0) sel
-			on cast(sel.arrValue as int)=srvc.cd_subctgry_poc_frc
-
-					
-
-				update statistics #srvc					
-
-		-----------------------------------  budget ---------------------------------------
-
-	--   @filter_service_budget;
-			insert into #budg(cd_budget_poc_frc,filter_budget,match_code)
-			select cd_budget_poc_frc,match_code,match_code
-			from prm_budg bud
-			join dbo.fn_ReturnStrTableFromList(@filter_service_budget,0) sel
-			on cast(sel.arrValue as int)=bud.cd_budget_poc_frc		
-
-
-
-				update statistics #budg
 
 		-----------------------------------  dependency ---------------------------------------
 			insert into #dep(bin_dep_cd ,match_code)
@@ -437,8 +399,6 @@ from (
 				and filter_access_type=left(@filter_access_type,30)
 				and filter_allegation=left(@filter_allegation,30)
 				and filter_finding=left(@filter_finding,30)
-				and filter_srvc_type=left(@filter_service_category,50)
-				and filter_budget=left(@filter_service_budget,50)
 				order by qry_ID desc
 				);  
 
@@ -465,8 +425,6 @@ from (
 					,[filter_access_type]
 					,[filter_allegation]
 					,[filter_finding]
-					,[filter_srvc_type]
-					,[filter_budget]
 					,bin_dep_cd
 					, min_start_date
 					, max_start_date
@@ -489,8 +447,6 @@ from (
 					,@filter_access_type
 					,@filter_allegation
 					,@filter_finding
-					,@filter_service_category
-					,@filter_service_budget
 					,@bin_dep_cd
 					,@minmonthstart
 					,@maxmonthstart
@@ -510,17 +466,15 @@ from (
 			-- see if results are in cache as a subset of previously run query
 		if OBJECT_ID('tempDB..#cachekeys') is not null drop table #cachekeys;
 
-		   select	(int_param_key	* power(10.0,13)) + 
-					(bin_dep_cd	* power(10.0,12)) +
-					(bin_los_cd	* power(10.0,11)) +
-					(bin_placement_cd	* power(10.0,10)) +
-					(bin_ihs_svc_cd	* power(10.0,9)) +
-					(cd_reporter_type	* power(10.0,7)) +
-					(cd_access_type	* power(10.0,6)) +
-					(cd_allegation	* power(10.0,5)) +
-					(cd_finding	* power(10.0,4)) +
-					(cd_subctgry_poc_frc	* power(10.0,2)) +
-					(cd_budget_poc_frc	* power(10.0,0)) as int_hash_key
+		   select	(int_param_key	* power(10.0,9)) + 
+					(bin_dep_cd	* power(10.0,8)) +
+					(bin_los_cd	* power(10.0,7)) +
+					(bin_placement_cd	* power(10.0,6)) +
+					(bin_ihs_svc_cd	* power(10.0,5)) +
+					(cd_reporter_type	* power(10.0,3)) +
+					(cd_access_type	* power(10.0,2)) +
+					(cd_allegation	* 10.0) +
+					cd_finding as int_hash_key
 					 ,int_param_key
 					 ,bin_dep_cd
 					 ,bin_los_cd
@@ -530,8 +484,6 @@ from (
 					 ,cd_access_type
 					 ,cd_allegation
 					 ,cd_finding
-					 ,cd_subctgry_poc_frc
-					 ,cd_budget_poc_frc
 					 ,0 as in_cache
 					 ,@qry_id as qry_id
 				into #cachekeys
@@ -544,12 +496,10 @@ from (
 				cross join (select distinct cd_access_type from #access_type) acc
 				cross join (select distinct cd_allegation from #algtn) alg
 				cross join (select distinct cd_finding from #find) fnd
-				cross join (select distinct cd_subctgry_poc_frc from #srvc) srvc
-				cross join (select distinct cd_budget_poc_frc from #budg) budg
 
 			create index idx_int_hash_key on #cachekeys(int_hash_key,in_cache);
 			create index idx_qryid_params on #cachekeys(qry_id,int_hash_key);
-			create index  idx_params on #cachekeys(int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation	,cd_finding,cd_budget_poc_frc,cd_subctgry_poc_frc,in_cache);                   
+			create index  idx_params on #cachekeys(int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,in_cache);                   
 			
 			
 			update cache
@@ -577,8 +527,6 @@ from (
 								,acc.cd_access_type
 								,alg.cd_allegation
 								,fnd.cd_finding
-								,srv.cd_subctgry_poc_frc
-								,bud.cd_budget_poc_frc
 								,cast(sum(cohort_count) * 1.0000 as decimal(9,4))  as tot_episodes
 						into #total
 						from prtl.prtl_outcomes 
@@ -592,8 +540,6 @@ from (
 						join #access_type acc on acc.match_code=prtl_outcomes.filter_access_type
 						join #algtn alg on alg.match_code=prtl_outcomes.filter_allegation
 						join #find fnd on fnd.match_code=prtl_outcomes.filter_finding
-						join #srvc srv on srv.match_code=prtl_outcomes.filter_service_category
-						join #budg bud on bud.match_code=prtl_outcomes.filter_service_budget
 						group by 	prtl_outcomes.Cohort_Entry_date
 								,prtl_outcomes.date_type
 								,prtl_outcomes.qry_type
@@ -606,8 +552,6 @@ from (
 								,acc.cd_access_type
 								,alg.cd_allegation
 								,fnd.cd_finding
-								,srv.cd_subctgry_poc_frc
-								,bud.cd_budget_poc_frc
 																
 					create index idx_total1 on #total(int_param_key);
 
@@ -661,16 +605,6 @@ from (
 							select * into debug.ooh_outcomes_find 
 							from #find;
 
-							IF OBJECT_ID (N'debug.ooh_outcomes_srvc', N'U') IS NOT NULL
-								DROP TABLE debug.ooh_outcomes_srvc;
-							select * into debug.ooh_outcomes_srvc
-							from #srvc;
-
-							IF OBJECT_ID (N'debug.ooh_outcomes_budg', N'U') IS NOT NULL
-								DROP TABLE debug.ooh_outcomes_budg;
-							select * into debug.ooh_outcomes_budg
-							from #budg;
-
 							IF OBJECT_ID (N'debug.ooh_outcomes_total', N'U') IS NOT NULL
 								DROP TABLE debug.ooh_outcomes_total;
 							select * into debug.ooh_outcomes_total
@@ -698,8 +632,6 @@ from (
 								, acc.cd_access_type
 								, alg.cd_allegation
 								, fnd.cd_finding
-								, srv.cd_subctgry_poc_frc
-								, bud.cd_budget_poc_frc
 								, mtch.age_grouping_cd 
 								, mtch.cd_race_census
 								, mtch.pk_gndr
@@ -730,8 +662,6 @@ from (
 								join #access_type acc on acc.match_code=prtl_outcomes.filter_access_type
 								join #algtn alg on alg.match_code=prtl_outcomes.filter_allegation
 								join #find fnd on fnd.match_code=prtl_outcomes.filter_finding
-								join #srvc srv on srv.match_code=prtl_outcomes.filter_service_category
-								join #budg bud on bud.match_code=prtl_outcomes.filter_service_budget
 								join #total  tot_cohort 
 									on tot_cohort.cohort_entry_date=prtl_outcomes.cohort_entry_date
 										and tot_cohort.qry_type=prtl_outcomes.qry_type
@@ -744,8 +674,6 @@ from (
 										and tot_cohort.cd_allegation=alg.cd_allegation
 										and tot_cohort.cd_finding=fnd.cd_finding
 										and tot_cohort.cd_reporter_type=rpt.cd_reporter_type
-										and tot_cohort.cd_subctgry_poc_frc=srv.cd_subctgry_poc_frc
-										and tot_cohort.cd_budget_poc_frc=bud.cd_budget_poc_frc
 										and tot_cohort.int_param_key=mtch.int_param_key
 							 join #cachekeys che on che.int_param_key = mtch.int_param_key
 													and che.bin_dep_cd=dep.bin_dep_cd
@@ -756,8 +684,6 @@ from (
 													and che.cd_allegation=alg.cd_allegation
 													and che.cd_finding=fnd.cd_finding
 													and che.cd_access_type=acc.cd_access_type
-													and che.cd_budget_poc_frc=bud.cd_budget_poc_frc
-													and che.cd_subctgry_poc_frc=srv.cd_subctgry_poc_frc
 													and che.in_cache=0
 							group by  prtl_outcomes.qry_type
 									,prtl_outcomes.date_type 
@@ -779,8 +705,6 @@ from (
 									, acc.cd_access_type
 									, alg.cd_allegation
 									, fnd.cd_finding
-									, srv.cd_subctgry_poc_frc
-									, bud.cd_budget_poc_frc 
 									, tot_cohort.tot_episodes
 									, che.int_hash_key
 									, prtl_outcomes.mnth
@@ -803,8 +727,6 @@ from (
 								,[cd_access_type]
 								,[cd_allegation]
 								,[cd_finding]
-								,[cd_subctgry_poc_frc]
-								,[cd_budget_poc_frc]
 								,[age_grouping_cd]
 								,[cd_race]
 								,[pk_gndr]
@@ -838,8 +760,6 @@ from (
 								   ,[cd_access_type]
 								   ,[cd_allegation]
 								   ,[cd_finding]
-								   ,[cd_subctgry_poc_frc]
-								   ,[cd_budget_poc_frc]
 								   ,[age_grouping_cd]
 								   ,[cd_race]
 								   ,[pk_gndr]
@@ -857,8 +777,6 @@ from (
 								   ,[cd_access_type]
 								   ,[cd_allegation]
 								   ,[cd_finding]
-								   ,[cd_subctgry_poc_frc]
-								   ,[cd_budget_poc_frc]
 								   ,[age_grouping_cd]
 								   ,[cd_race_census]
 								   ,[pk_gndr]
@@ -913,10 +831,6 @@ from (
 						, ref_alg.tx_allegation as "Allegation" 
 						, outcomes.[cd_finding]
 						, ref_fnd.tx_finding as "Finding"
-						, outcomes.[cd_subctgry_poc_frc] as "Service Type Cd"
-						, ref_srv.tx_subctgry_poc_frc as "Service Type"
-						, outcomes.[cd_budget_poc_frc]as [Budget Cd]
-						, ref_bud.tx_budget_poc_frc as [Budget]
 						,outcomes.[month]
 						, outcomes.[cd_discharge_type]
 						, dsch.discharge_type as "Discharge Type"
@@ -945,8 +859,6 @@ from (
 						join ref_filter_access_type ref_acc on ref_acc.cd_access_type=outcomes.cd_access_type
 						join ref_filter_allegation ref_alg on ref_alg.cd_allegation=outcomes.cd_allegation
 						join ref_filter_finding ref_fnd on ref_fnd.cd_finding=outcomes.cd_finding
-						join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=outcomes.cd_subctgry_poc_frc
-						join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=outcomes.cd_budget_poc_frc
 			where dateadd(mm,12 + outcomes.[month],cohort_entry_date) <= cutoff_date
 			 order by outcomes.start_year
 				,qry_type
@@ -964,8 +876,6 @@ from (
                     , outcomes.cd_access_type
                     , outcomes.cd_allegation
                     , outcomes.cd_finding
-                    , outcomes.cd_subctgry_poc_frc
-                    , outcomes.cd_budget_poc_frc
 					, outcomes.[month]
             ,outcomes.cd_discharge_type asc; 					
 				

@@ -1181,10 +1181,6 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="dbo\Tables\ref_match_srvc_type_budget.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
     <Build Include="prtl\Tables\prtl_poc3ab.sql">
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
@@ -1449,10 +1445,6 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="dbo\Views\prm_budg.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
     <Build Include="dbo\Views\vw_origin_tbl_child_episodes_column.sql">
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
@@ -1645,10 +1637,6 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="dbo\Views\vw_service_codes_ihs_trends.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
     <Build Include="dbo\Views\vw_qa_rptPlacement_cd_discharge_type.sql">
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
@@ -1657,15 +1645,7 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="dbo\Views\vw_service_budget_codes_ihs_trends.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
     <Build Include="maps\Views\ia_population_regions.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
-    <Build Include="dbo\Views\vw_service_budget_codes_ihs_safety.sql">
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
@@ -2732,6 +2712,10 @@
     <Build Include="annual_report\Tables\ref_ncands_mal.sql" />
     <Build Include="annual_report\Tables\ref_ncands_mal_lev.sql" />
     <Build Include="dbo\Views\prm_region_6.sql" />
+    <Build Include="prtl\Tables\ihs_query_history.sql" />
+    <Build Include="prtl\Tables\ia_query_history.sql" />
+    <Build Include="prtl\Tables\ooh_query_history.sql" />
+    <Build Include="dbo\Tables\ref_match_srvc_type_budget.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac">
@@ -2745,5 +2729,8 @@
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="scripts\Script.PreDeployment1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="ca_ods.refactorlog" />
   </ItemGroup>
 </Project>

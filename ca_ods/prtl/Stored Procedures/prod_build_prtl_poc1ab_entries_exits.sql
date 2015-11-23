@@ -59,8 +59,6 @@ begin
 									[fl_founded_sexual_abuse] [int] NOT NULL,
 									[fl_founded_neglect] [int] NOT NULL,
 									[fl_found_any_legal] [int] NOT NULL,
-								    filter_service_category [int],
-									filter_service_budget [int],
 									age_grouping_cd int  NULL,
 									[cd_race] [int] NULL,
 									[census_hispanic_latino_origin_cd] [int] NULL,
@@ -92,8 +90,6 @@ begin
 								  ,[fl_founded_sexual_abuse]
 								  ,[fl_founded_neglect]
 								  ,[fl_found_any_legal]
-								  , filter_service_category
-								  , filter_service_budget
 								  , age_grouping_cd
 								  ,[cd_race]
 								  ,[census_hispanic_latino_origin_cd]
@@ -128,8 +124,6 @@ begin
 								  ,[fl_founded_sexual_abuse]
 								  ,[fl_founded_neglect]
 								  ,[fl_found_any_legal]
-								  , int_filter_service_category
-								  , filter_service_budget
 								  ,eps.entry_census_child_group_cd
 								  ,cd_race_census
 								  ,[census_hispanic_latino_origin_cd]
@@ -161,8 +155,6 @@ begin
 								  ,[fl_founded_sexual_abuse]
 								  ,[fl_founded_neglect]
 								  ,[fl_found_any_legal]
-								  , int_filter_service_category
-								  , filter_service_budget
 								  ,eps.entry_census_child_group_cd
 								  ,cd_race_census
 								  ,[census_hispanic_latino_origin_cd]
@@ -195,8 +187,6 @@ begin
 								  ,[fl_founded_sexual_abuse]
 								  ,[fl_founded_neglect]
 								  ,[fl_found_any_legal]
-								  , int_filter_service_category
-								  , filter_service_budget
 								  ,eps.entry_census_child_group_cd
 								  ,cd_race_census
 								  ,[census_hispanic_latino_origin_cd]
@@ -229,8 +219,6 @@ begin
 								  ,[fl_founded_sexual_abuse]
 								  ,[fl_founded_neglect]
 								  ,[fl_found_any_legal]
-								  , int_filter_service_category
-								  , filter_service_budget
 								  ,eps.entry_census_child_group_cd
 								  ,cd_race_census
 								  ,[census_hispanic_latino_origin_cd]
@@ -263,8 +251,6 @@ UNION ALL
 								  ,  unq.fl_founded_sexual_abuse
 								  ,  unq.fl_founded_neglect
 								  ,  unq.fl_found_any_legal
-								  , unq.int_filter_service_category
-								  , unq.filter_service_budget
 								  ,  unq.entry_census_child_group_cd
 								  ,  unq.cd_race_census
 								  ,  unq.census_hispanic_latino_origin_cd
@@ -306,8 +292,6 @@ UNION ALL
 								  ,  unq.fl_founded_sexual_abuse
 								  ,  unq.fl_founded_neglect
 								  ,  unq.fl_found_any_legal
-								  , unq.int_filter_service_category
-								  , unq.filter_service_budget
 								  ,  unq.entry_census_child_group_cd
 								  ,  unq.cd_race_census
 								  ,  unq.census_hispanic_latino_origin_cd
@@ -346,8 +330,6 @@ UNION ALL
 									[fl_founded_sexual_abuse] [int] NOT NULL,
 									[fl_founded_neglect] [int] NOT NULL,
 									[fl_found_any_legal] [int] NOT NULL,
-									filter_service_category int not null,
-									filter_service_budget int not null,
 									age_grouping_cd int  NULL,
 									cd_race [int] NULL,
 									[census_hispanic_latino_origin_cd] [int] NULL,
@@ -379,8 +361,6 @@ UNION ALL
 								  ,[fl_founded_sexual_abuse]
 								  ,[fl_founded_neglect]
 								  ,[fl_found_any_legal]
-								  , filter_service_category
-								  , filter_service_budget
 								  ,age_grouping_cd
 								  ,cd_race
 								  ,[census_hispanic_latino_origin_cd]
@@ -411,8 +391,6 @@ UNION ALL
 								  ,[fl_founded_sexual_abuse]
 								  ,[fl_founded_neglect]
 								  ,[fl_found_any_legal]
-								  , int_filter_service_category
-								  , filter_service_budget
 								  ,eps.exit_census_child_group_cd
 								  ,[cd_race_census]
 								  ,[census_hispanic_latino_origin_cd]
@@ -446,8 +424,6 @@ UNION ALL
 								  ,[fl_founded_sexual_abuse]
 								  ,[fl_founded_neglect]
 								  ,[fl_found_any_legal]
-								  , int_filter_service_category
-								  , filter_service_budget
 								  ,eps.exit_census_child_group_cd
 								  ,[cd_race_census]
 								  ,[census_hispanic_latino_origin_cd]
@@ -480,8 +456,6 @@ UNION ALL
 								  ,[fl_founded_sexual_abuse]
 								  ,[fl_founded_neglect]
 								  ,[fl_found_any_legal]
-								  , int_filter_service_category
-								  , filter_service_budget
 								  ,eps.exit_census_child_group_cd
 								  ,[cd_race_census]
 								  ,[census_hispanic_latino_origin_cd]
@@ -516,8 +490,6 @@ UNION ALL
 								  ,[fl_founded_sexual_abuse]
 								  ,[fl_founded_neglect]
 								  ,[fl_found_any_legal]
-								  , int_filter_service_category
-								  , filter_service_budget
 								  ,eps.exit_census_child_group_cd
 								  ,[cd_race_census]
 								  ,[census_hispanic_latino_origin_cd]
@@ -553,8 +525,6 @@ UNION ALL
 								  ,  unq.fl_founded_sexual_abuse
 								  ,  unq.fl_founded_neglect
 								  ,  unq.fl_found_any_legal
-								  ,  unq.int_filter_service_category
-								  ,  unq.filter_service_budget
 								  ,  unq.exit_census_child_group_cd
 								  ,  unq.cd_race_census
 								  ,  unq.census_hispanic_latino_origin_cd
@@ -598,8 +568,6 @@ UNION ALL
 								  ,  unq.fl_founded_sexual_abuse
 								  ,  unq.fl_founded_neglect
 								  ,  unq.fl_found_any_legal
-									  , unq.int_filter_service_category
-								  , unq.filter_service_budget
 								  ,  unq.exit_census_child_group_cd
 								  ,  unq.cd_race_census
 								  ,  unq.census_hispanic_latino_origin_cd
@@ -640,8 +608,6 @@ UNION ALL
 					,filter_access_type
 					, filter_allegation
 					, filter_finding
-					, filter_service_category
-					, filter_service_budget
 					,age_grouping_cd
 					,[cd_race]
 					,[census_hispanic_latino_origin_cd]
@@ -683,8 +649,6 @@ UNION ALL
 					  + (fl_founded_sexual_abuse *  (select cd_multiplier from ref_filter_finding where fl_name='fl_founded_sexual_abuse')) 
 					  +  (fl_founded_neglect *   (select cd_multiplier from ref_filter_finding where fl_name='fl_founded_neglect')) 
 					  + (fl_found_any_legal * (select cd_multiplier from ref_filter_finding where fl_name='fl_any_finding_legal')) ) [filter_finding] 
-				   ,filter_service_category
-				   ,filter_service_budget
 				   ,age_grouping_cd
 				   ,[cd_race]
 				   ,[census_hispanic_latino_origin_cd]
@@ -712,8 +676,6 @@ UNION ALL
 					,filter_access_type
 					, filter_allegation
 					, filter_finding
-					, filter_service_category
-					, filter_service_budget
 					,age_grouping_cd
 					,cd_race
 					,census_hispanic_latino_origin_cd
@@ -753,8 +715,6 @@ UNION ALL
 					  + (fl_founded_sexual_abuse *  (select cd_multiplier from ref_filter_finding where fl_name='fl_founded_sexual_abuse')) 
 					  +  (fl_founded_neglect *   (select cd_multiplier from ref_filter_finding where fl_name='fl_founded_neglect')) 
 					  + (fl_found_any_legal * (select cd_multiplier from ref_filter_finding where fl_name='fl_any_finding_legal')) ) [filter_finding] 
-				   ,filter_service_category
-				   ,filter_service_budget
 				   ,age_grouping_cd
 				   ,cd_race
 				   ,census_hispanic_latino_origin_cd

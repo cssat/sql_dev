@@ -55,8 +55,6 @@
     [fl_founded_neglect]                           INT           NOT NULL,
     [fl_found_any_legal]                           INT           NOT NULL,
     [bin_ihs_svc_cd]                               INT           NULL,
-    [int_filter_service_category]                  INT           NULL,
-    [filter_service_budget]                        INT           NULL,
     [prsn_cnt]                                     INT           NOT NULL,
     [exit_within_month_mult3]                      INT           NULL,
     [nxt_reentry_within_min_month_mult3]           INT           NULL,
@@ -77,7 +75,7 @@
 GO
 CREATE NONCLUSTERED INDEX [idx_age_census_child_age_grp_federal_discharge_date_in]
     ON [prtl].[ooh_dcfs_eps]([exit_census_child_group_cd] ASC, [federal_discharge_date] ASC)
-    INCLUDE([cohort_entry_year], [cohort_entry_month], [cohort_exit_year], [cohort_exit_month], [discharge_type], [cd_discharge_type], [first_removal_dt], [orig_federal_discharge_date], [last_placement_discharge_date], [entry_cdc_census_mix_age_cd], [id_prsn_child], [birth_dt], [id_removal_episode_fact], [cd_race_census], [census_Hispanic_Latino_Origin_cd], [init_cd_plcm_setng], [fl_first_removal], [removal_dt], [orig_removal_dt], [entry_int_match_param_key_cdc_census_mix], [entry_int_match_param_key_census_child_group], [exit_int_match_param_key_cdc_census_mix], [entry_census_child_group_cd], [exit_cdc_census_mix_age_cd], [pk_gndr], [bin_placement_cd], [cd_reporter_type], [fl_cps_invs], [long_cd_plcm_setng], [Removal_County_Cd], [exit_county_cd], [fl_frs], [fl_phys_abuse], [fl_sexual_abuse], [exit_int_match_param_key_census_child_group], [bin_dep_cd], [max_bin_los_cd], [fl_founded_sexual_abuse], [fl_founded_neglect], [fl_found_any_legal], [fl_cfws], [fl_risk_only], [fl_alternate_intervention], [prsn_cnt], [exit_within_month_mult3], [nxt_reentry_within_min_month_mult3], [fl_neglect], [fl_any_legal], [fl_founded_phys_abuse], [dependency_dt], [fl_dep_exist], [fl_reentry], [bin_ihs_svc_cd], [int_filter_service_category], [filter_service_budget], [next_reentry_date], [child_eps_rank_asc], [child_eps_rank_desc], [fl_nondcfs_eps], [fl_nondcfs_within_eps], [fl_nondcfs_overlap_eps]);
+    INCLUDE([cohort_entry_year], [cohort_entry_month], [cohort_exit_year], [cohort_exit_month], [discharge_type], [cd_discharge_type], [first_removal_dt], [orig_federal_discharge_date], [last_placement_discharge_date], [entry_cdc_census_mix_age_cd], [id_prsn_child], [birth_dt], [id_removal_episode_fact], [cd_race_census], [census_Hispanic_Latino_Origin_cd], [init_cd_plcm_setng], [fl_first_removal], [removal_dt], [orig_removal_dt], [entry_int_match_param_key_cdc_census_mix], [entry_int_match_param_key_census_child_group], [exit_int_match_param_key_cdc_census_mix], [entry_census_child_group_cd], [exit_cdc_census_mix_age_cd], [pk_gndr], [bin_placement_cd], [cd_reporter_type], [fl_cps_invs], [long_cd_plcm_setng], [Removal_County_Cd], [exit_county_cd], [fl_frs], [fl_phys_abuse], [fl_sexual_abuse], [exit_int_match_param_key_census_child_group], [bin_dep_cd], [max_bin_los_cd], [fl_founded_sexual_abuse], [fl_founded_neglect], [fl_found_any_legal], [fl_cfws], [fl_risk_only], [fl_alternate_intervention], [prsn_cnt], [exit_within_month_mult3], [nxt_reentry_within_min_month_mult3], [fl_neglect], [fl_any_legal], [fl_founded_phys_abuse], [dependency_dt], [fl_dep_exist], [fl_reentry], [bin_ihs_svc_cd], [next_reentry_date], [child_eps_rank_asc], [child_eps_rank_desc], [fl_nondcfs_eps], [fl_nondcfs_within_eps], [fl_nondcfs_overlap_eps]);
 
 
 GO

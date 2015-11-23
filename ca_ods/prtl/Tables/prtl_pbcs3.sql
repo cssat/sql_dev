@@ -12,17 +12,14 @@
     [filter_access_type]               INT      NOT NULL,
     [filter_allegation]                INT      NOT NULL,
     [filter_finding]                   INT      NOT NULL,
-    [filter_service_type]              INT      NOT NULL,
-    [filter_budget_type]               INT      NOT NULL,
     [min_placed_within_month]          INT      NOT NULL,
     [cnt_case]                         INT      NULL,
-    CONSTRAINT [PK_prtl_pbcs3] PRIMARY KEY CLUSTERED ([cohort_begin_date] ASC, [date_type] ASC, [qry_type] ASC, [int_match_param_key] ASC, [cd_reporter] ASC, [bin_ihs_svc_cd] ASC, [filter_access_type] ASC, [filter_allegation] ASC, [filter_finding] ASC, [filter_service_type] ASC, [filter_budget_type] ASC, [min_placed_within_month] ASC),
+    CONSTRAINT [PK_prtl_pbcs3] PRIMARY KEY CLUSTERED ([cohort_begin_date] ASC, [date_type] ASC, [qry_type] ASC, [int_match_param_key] ASC, [cd_reporter] ASC, [bin_ihs_svc_cd] ASC, [filter_access_type] ASC, [filter_allegation] ASC, [filter_finding] ASC, [min_placed_within_month] ASC),
     CONSTRAINT [prtl_pbcs3_bin_ihs_svc_cd_FK] FOREIGN KEY ([bin_ihs_svc_cd]) REFERENCES [dbo].[ref_filter_ihs_services] ([bin_ihs_svc_cd]),
     CONSTRAINT [prtl_pbcs3_cd_race_FK] FOREIGN KEY ([cd_race_census]) REFERENCES [dbo].[ref_lookup_ethnicity_census] ([cd_race_census]),
     CONSTRAINT [prtl_pbcs3_cd_reporter_type_FK] FOREIGN KEY ([cd_reporter]) REFERENCES [dbo].[ref_filter_reporter_type] ([cd_reporter_type]),
     CONSTRAINT [prtl_pbcs3_cd_sib_age_grpr_FK] FOREIGN KEY ([cd_sib_age_grp]) REFERENCES [dbo].[ref_lookup_sib_age_grp] ([cd_sib_age_grp]),
     CONSTRAINT [prtl_pbcs3_county_cd_FK] FOREIGN KEY ([county_cd]) REFERENCES [dbo].[ref_lookup_county] ([county_cd]),
-    CONSTRAINT [prtl_pbcs3_filter_service_category_FK] FOREIGN KEY ([filter_service_type]) REFERENCES [dbo].[ref_service_category_flag_xwalk] ([int_filter_service_category]),
     CONSTRAINT [prtl_pbcs3_origin_cd_FK] FOREIGN KEY ([census_hispanic_latino_origin_cd]) REFERENCES [dbo].[ref_lookup_hispanic_latino_census] ([census_hispanic_latino_origin_cd])
 );
 

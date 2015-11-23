@@ -9,8 +9,6 @@ CREATE PROCEDURE [prtl].[sp_cache_poc3ab_counts_insert_only](
 ,  @filter_access_type varchar(30) 
 ,  @filter_allegation  varchar(30)
 , @filter_finding varchar(30)
-, @filter_service_category  varchar(100)
-, @filter_service_budget varchar(100)
  )
 as
  set nocount on
@@ -73,16 +71,6 @@ as
 			if OBJECT_ID('tempDB..#find') is not null drop table #find
 			create table #find(cd_finding int,match_code int ,primary key(cd_finding,match_code));
 			create index idx_finding on #find(match_code)
-
-			-- service type flags	
-			if object_ID('tempDB..#srvc') is not null drop table #srvc
-			create table #srvc(cd_subctgry_poc_frc int, match_code decimal(18,0) ,primary key(cd_subctgry_poc_frc,match_code));
-			create index idx_srvc on #srvc(match_code)
-			-- budget type flags
-
-			if object_ID('tempDB..#budg') is not null drop table #budg
-				create table #budg(cd_budget_poc_frc int,match_code decimal(9,0),primary key(cd_budget_poc_frc,match_code))
-				create index idx_budg on #budg(match_code)
 
 		
 		------------------------------------------------  AGE
@@ -167,31 +155,7 @@ as
 
 	update statistics #ihs
 
-		-----------------------------------  services ---------------------------------------
-	--  prm_srvc		 @filter_service_category
-		
-	insert into #srvc(cd_subctgry_poc_frc,match_code)
-	select srvc.cd_subctgry_poc_frc,srvc.match_code
-	from prm_srvc srvc				
-	join dbo.fn_ReturnStrTableFromList(@filter_service_category,0) sel
-	on cast(sel.arrValue as int)=srvc.cd_subctgry_poc_frc
 
-					
-
-	update statistics #srvc					
-
-	-----------------------------------  budget ---------------------------------------
-
-	--   @filter_service_budget;
-	insert into #budg(cd_budget_poc_frc,match_code)
-	select cd_budget_poc_frc,match_code
-	from prm_budg bud
-	join dbo.fn_ReturnStrTableFromList(@filter_service_budget,0) sel
-	on cast(sel.arrValue as int)=bud.cd_budget_poc_frc		
-
-
-
-	update statistics #budg
 
 				---  load the demographic ,placement,location parameters --
 					if object_ID('tempDB..#prmlocdem') is not null drop table #prmlocdem
@@ -267,8 +231,6 @@ as
 					and filter_access_type=left(@filter_access_type,30)
 					and filter_allegation=left(@filter_allegation,30)
 					and filter_finding=left(@filter_finding,30)
-					and filter_srvc_type=left(@filter_service_category,100)
-					and filter_budget=left(@filter_service_budget,100)
 		order by qry_ID desc
 		);  
 
@@ -286,8 +248,6 @@ as
 					,[filter_access_type]
 					,[filter_allegation]
 					,[filter_finding]
-					,[filter_srvc_type]
-					,[filter_budget]
 					,[min_start_date]
 					,[max_start_date]
 					,[cnt_qry]
@@ -304,8 +264,6 @@ as
 					,@filter_access_type
 					,@filter_allegation
 					,@filter_finding
-					,@filter_service_category
-					,@filter_service_budget
 					,@minmonthstart
 					,@maxmonthstart
 					,1
@@ -328,21 +286,18 @@ as
 			-- if so get that qry_id
 			if OBJECT_ID('tempDB..#cachekeys') is not null drop table #cachekeys;
 
-		   select (cast((int_param_key  * power(10.0,10)) as decimal(22,0))
-			+ cast((rpt.cd_reporter_type  * power(10.0,8)) as decimal(22,0))
-			+ cast((ihs.bin_ihs_svc_cd * power(10.0, 7)) as decimal(22,0))
-			+  cast((acc.cd_access_type  * power(10.0,6)) as decimal(22,0))
-			+  cast((alg.cd_allegation  * power(10.0,5)) as decimal(22,0))
-			+  cast((fnd.cd_finding  * power(10.0,4)) as decimal(22,0)) 
-			+  cast((cd_subctgry_poc_frc * power(10.0,2))as decimal(22,0))  +  [cd_budget_poc_frc] ) as int_hash_key
+		   select (cast((int_param_key  * power(10.0,6)) as decimal(22,0))
+			+ cast((rpt.cd_reporter_type  * power(10.0,4)) as decimal(22,0))
+			+ cast((ihs.bin_ihs_svc_cd * power(10.0, 3)) as decimal(22,0))
+			+  cast((acc.cd_access_type  * power(10.0,2)) as decimal(22,0))
+			+  cast((alg.cd_allegation  * 10.0) as decimal(22,0))
+			+  fnd.cd_finding ) as int_hash_key
 					 ,int_param_key
 					 ,cd_reporter_type
 					 , bin_ihs_svc_cd
 					 ,cd_access_type
 					 ,cd_allegation
 					 ,cd_finding
-					 , cd_subctgry_poc_frc
-					 , cd_budget_poc_frc
 					 ,0 as in_cache
 					 ,@qry_id as qry_id
 					 ,RAND(cast(newid() as varbinary)) x1
@@ -354,8 +309,6 @@ as
 				cross join (select distinct cd_access_type from #access_type) acc
 				cross join (select distinct cd_allegation from #algtn) alg
 				cross join (select distinct cd_finding from #find) fnd
-				cross join (select distinct cd_subctgry_poc_frc from #srvc) srvc
-				cross join (select distinct cd_budget_poc_frc from #budg) budg;
 
 
 			update cache
@@ -366,7 +319,7 @@ as
 
 			create index idx_int_hash_key on #cachekeys(int_hash_key,in_cache);
 			create index idx_qryid_params on #cachekeys(qry_id,int_hash_key);
-			create index  idx_params on #cachekeys(int_param_key,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation	,cd_finding,cd_budget_poc_frc,cd_subctgry_poc_frc,in_cache);                   
+			create index  idx_params on #cachekeys(int_param_key,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,in_cache);
 
 			select @var_row_cnt_param=count(*),@var_row_cnt_cache=sum(in_cache) from #cachekeys;
 
@@ -383,8 +336,6 @@ as
 					,[cd_access_type]
 					,[cd_allegation]
 					,[cd_finding]
-					,cd_service_type
-					,cd_budget_type
 					,cd_sib_age_grp
 					,cd_race_census
 					,cd_county
@@ -409,8 +360,6 @@ as
 						, acc.cd_access_type
 						, alg.cd_allegation
 						, fnd.cd_finding
-						, srv.cd_subctgry_poc_frc
-						, bud.cd_budget_poc_frc
 						, mtch.age_grouping_cd 
 						, mtch.cd_race_census
 						, mtch.cd_cnty
@@ -437,16 +386,12 @@ as
 						join #access_type acc on acc.match_code=prtl_poc3ab.filter_access_type
 						join #algtn alg on alg.match_code=prtl_poc3ab.filter_allegation
 						join #find fnd on fnd.match_code=prtl_poc3ab.filter_finding
-						join #srvc srv on srv.match_code=prtl_poc3ab.filter_service_category
-						join #budg bud on bud.match_code=prtl_poc3ab.filter_service_budget
 						join #cachekeys che on che.int_param_key = mtch.int_param_key
 									and che.bin_ihs_svc_cd=ihs.bin_ihs_svc_cd
 										and che.cd_reporter_type=rpt.cd_reporter_type
 									and che.cd_allegation=alg.cd_allegation
 									and che.cd_finding=fnd.cd_finding
 									and che.cd_access_type=acc.cd_access_type
-									and che.cd_budget_poc_frc=bud.cd_budget_poc_frc
-									and che.cd_subctgry_poc_frc=srv.cd_subctgry_poc_frc
 						and che.in_cache=0
 					where prtl_poc3ab.start_date between @minmonthstart and @maxmonthstart
 					group by  prtl_poc3ab.qry_type
@@ -462,8 +407,6 @@ as
 							, acc.cd_access_type
 							, alg.cd_allegation
 							, fnd.cd_finding
-							, srv.cd_subctgry_poc_frc
-							, bud.cd_budget_poc_frc 
 							, che.int_hash_key
 							,che.qry_id
 							,che.x1
@@ -490,8 +433,6 @@ as
 								   ,[cd_access_type]
 								   ,[cd_allegation]
 								   ,[cd_finding]
-								   ,[cd_subctgry_poc_frc]
-								   ,[cd_budget_poc_frc]
 								   ,q.age_grouping_cd
 								   ,q.[cd_race_census]
 								   ,q.cd_cnty
@@ -533,10 +474,6 @@ update statistics prtl.cache_poc3ab_aggr
 						--		, ref_alg.tx_allegation as [Allegation]
 						--		, poc3ab.cd_finding
 						--		, ref_fnd.tx_finding as [Finding]
-						--		, poc3ab.cd_service_type as [Service Type Cd]
-						--		, ref_srv.tx_subctgry_poc_frc as [Service Type]
-						--		, poc3ab.cd_budget_type as [Budget Cd]
-						--		, ref_bud.tx_budget_poc_frc as [Budget]
 						--		, case when (cnt_start_date) > 0 /* jitter all above 0 */ 
 						--				then 
 						--					case when (round(cnt_start_date + 2 * sqrt(-2 * log(poc3ab.x1)) * cos(2*pi()*poc3ab.x2),0) ) <1
@@ -625,8 +562,6 @@ update statistics prtl.cache_poc3ab_aggr
 						--join ref_filter_access_type ref_acc on ref_acc.cd_access_type=poc3ab.cd_access_type
 						--join ref_filter_allegation ref_alg on ref_alg.cd_allegation=poc3ab.cd_allegation
 						--join ref_filter_finding ref_fnd on ref_fnd.cd_finding=poc3ab.cd_finding
-						--join ref_service_cd_subctgry_poc ref_srv on ref_srv.cd_subctgry_poc_frc=poc3ab.cd_service_type
-						--join ref_service_cd_budget_poc_frc ref_bud on ref_bud.cd_budget_poc_frc=poc3ab.cd_budget_type
       --      where poc3ab.start_date   between @mindate and @maxdate;
 			
 

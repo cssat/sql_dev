@@ -147,9 +147,3 @@
 	,[inciddt] DATE NULL
 	)
 GO
-
-CREATE UNIQUE NONCLUSTERED INDEX [idx_pk_ca_ncands_extracts] ON [annual_report].[ca_ncands_extracts] (
-	[rptid]
-	,[chid]
-	)
-GO

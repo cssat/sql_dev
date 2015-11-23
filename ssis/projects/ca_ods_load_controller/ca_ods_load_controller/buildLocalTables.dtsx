@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="buildLocalTables"
   DTS:PackageType="5"
-  DTS:VersionBuild="221"
-  DTS:VersionGUID="{AE51F502-CEBF-4548-BE8B-B66C0C8D0A43}">
+  DTS:VersionBuild="224"
+  DTS:VersionGUID="{967E270C-CF30-46CD-A291-35C28C51A8B3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -31,7 +31,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150514\uncompressed\episode_payment_services.txt">
+          DTS:ConnectionString="P:\CA\Data\20151110\uncompressed\episode_payment_services.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -776,7 +776,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150514\uncompressed\placement_payment_services.txt">
+          DTS:ConnectionString="P:\CA\Data\20151110\uncompressed\placement_payment_services.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1236,7 +1236,7 @@
         DTS:Name="ServerName">@[$Project::sqlServerName]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=(local);Initial Catalog=CA_ODS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=poc2;Initial Catalog=CA_ODS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -1255,7 +1255,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150514\uncompressed\tbl_case_dim.txt">
+          DTS:ConnectionString="P:\CA\Data\20151110\uncompressed\tbl_case_dim.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1366,7 +1366,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150514\uncompressed\tbl_child_episodes.txt">
+          DTS:ConnectionString="P:\CA\Data\20151110\uncompressed\tbl_child_episodes.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2221,7 +2221,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150514\uncompressed\tbl_child_placement_settings.txt">
+          DTS:ConnectionString="P:\CA\Data\20151110\uncompressed\tbl_child_placement_settings.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2630,7 +2630,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150514\uncompressed\tbl_ihs_episodes.txt">
+          DTS:ConnectionString="P:\CA\Data\20151110\uncompressed\tbl_ihs_episodes.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -3043,7 +3043,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150514\uncompressed\tbl_ihs_services.txt">
+          DTS:ConnectionString="P:\CA\Data\20151110\uncompressed\tbl_ihs_services.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -3270,7 +3270,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150514\uncompressed\tbl_intakes.txt">
+          DTS:ConnectionString="P:\CA\Data\20151110\uncompressed\tbl_intakes.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -3982,7 +3982,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150514\uncompressed\WRK_nonDCFS_All.txt">
+          DTS:ConnectionString="P:\CA\Data\20151110\uncompressed\WRK_nonDCFS_All.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -4069,7 +4069,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20150514\uncompressed\WRK_TRHEvents.txt">
+          DTS:ConnectionString="P:\CA\Data\20151110\uncompressed\WRK_TRHEvents.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -4188,7 +4188,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="dir">
       <DTS:VariableValue
-        DTS:DataType="8">\\poc2\pocshare\CA\Data\20150514\uncompressed\</DTS:VariableValue>
+        DTS:DataType="8">P:\CA\Data\20151110\uncompressed\</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -4199,7 +4199,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="dirpath">
       <DTS:VariableValue
-        DTS:DataType="8">\\poc2\pocshare\Data Portal\data\backup_base_tables\</DTS:VariableValue>
+        DTS:DataType="8">P:\Data Portal\data\backup_base_tables\</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -4674,6 +4674,7 @@
       DTS:refId="Package\build match service budget"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{6CC64EE1-803B-4CD0-B88B-6DAA9D9F318B}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
@@ -4691,6 +4692,7 @@
       DTS:refId="Package\build match service category"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{48D3357C-7949-4925-BD44-D738A27DF94A}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"

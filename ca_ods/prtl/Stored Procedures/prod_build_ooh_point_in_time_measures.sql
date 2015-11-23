@@ -21,8 +21,6 @@ begin
 								, evt.filter_access_type 
 								, evt.filter_allegation 
 								, evt.filter_finding 
-								, evt.int_filter_service_category [filter_service_category]
-								, evt.filter_service_budget
 								, evt.age_grouping_cd_census
 								, evt.age_grouping_cd_mix
 								, evt.cd_race_census [cd_race]
@@ -76,7 +74,6 @@ begin
 						ON #evt ([date_type],[qry_type])
 						INCLUDE ([start_date],[bin_dep_cd],[max_bin_los_cd],[bin_placement_cd],[bin_ihs_svc_cd]
 						,[cd_reporter_type],filter_access_type,filter_allegation,filter_finding
-						,filter_service_category,filter_service_budget
 						, [int_match_param_key],int_match_param_key_mix,[id_prsn_child])
 
 				create nonclustered index idx_evt_id_placement_fact on #evt([id_placement_fact])
@@ -276,8 +273,6 @@ begin
 			, filter_access_type
 			,filter_allegation
 			,filter_finding
-			, filter_service_category
-			, filter_service_budget
 			,  coalesce(kincare,0) kincare
 			, coalesce(iif(bin_sibling_group_size > 4 , 4 , bin_sibling_group_size ),0) [bin_sibling_group_size]
 			, sum(Fl_Family_Setting) as family_setting_cnt
@@ -315,8 +310,6 @@ begin
 			, filter_access_type
 			,filter_allegation
 			,filter_finding
-			, filter_service_category
-			, filter_service_budget
 			, coalesce(kincare,0)
 			, coalesce(iif(bin_sibling_group_size > 4 , 4 , bin_sibling_group_size ),0)
 			, iif(qualEvent=1 and bin_sibling_group_size > 0 and date_type=2,1,0)

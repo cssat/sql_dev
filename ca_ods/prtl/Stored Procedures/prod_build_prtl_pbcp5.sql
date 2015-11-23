@@ -28,8 +28,6 @@ begin
 				, bin_dep_cd, max_bin_los_cd,  bin_placement_cd, cd_reporter_type, fl_cps_invs, fl_cfws
 				, fl_risk_only, fl_alternate_intervention, fl_frs,fl_far, fl_phys_abuse, fl_sexual_abuse, fl_neglect
 				, fl_any_legal, fl_founded_phys_abuse, fl_founded_sexual_abuse, fl_founded_neglect, fl_found_any_legal, bin_ihs_svc_cd
-				, tce.int_filter_service_category filter_service_category
-				, filter_service_budget
 				, case when nxt_reentry_within_min_month_mult3 = 3 
 					then 1 else 0 end prsn_cnt
 				, exit_within_month_mult3 [exit_within_min_month_mult3]
@@ -156,8 +154,6 @@ where adp.nxt_reentry_within_min_month_mult3 is not null
 		, bin_dep_cd, max_bin_los_cd,  bin_placement_cd, cd_reporter_type, fl_cps_invs, fl_cfws
 		, fl_risk_only, fl_alternate_intervention, fl_frs,fl_far, fl_phys_abuse, fl_sexual_abuse, fl_neglect
 		, fl_any_legal, fl_founded_phys_abuse, fl_founded_sexual_abuse, fl_founded_neglect, fl_found_any_legal, bin_ihs_svc_cd
-		, filter_service_category
-		, filter_service_budget
 		, case when nxt_reentry_within_min_month_mult3 <= n.mnth then 1 else 0 end prsn_cnt
 		, exit_within_min_month_mult3
 		, nxt_reentry_within_min_month_mult3
@@ -181,8 +177,6 @@ where adp.nxt_reentry_within_min_month_mult3 is not null
 	, bin_dep_cd, max_bin_los_cd,  bin_placement_cd, cd_reporter_type, fl_cps_invs, fl_cfws
 	, fl_risk_only, fl_alternate_intervention, fl_frs,fl_far, fl_phys_abuse, fl_sexual_abuse, fl_neglect
 	, fl_any_legal, fl_founded_phys_abuse, fl_founded_sexual_abuse, fl_founded_neglect, fl_found_any_legal, bin_ihs_svc_cd
-	, filter_service_category
-	, filter_service_budget
 	, prsn_cnt,exit_within_min_month_mult3
 	, nxt_reentry_within_min_month_mult3
 	, mnth
@@ -231,8 +225,6 @@ where adp.nxt_reentry_within_min_month_mult3 is not null
 				+ ([fl_found_any_legal] * (select cd_multiplier from ref_filter_finding where fl_name='fl_any_finding_legal')) [filter_finding]
 			,null as filter_alg_fnd
 			-- select * from [dbo].[ref_service_cd_subctgry_poc]
-			, filter_service_category
-			, filter_service_budget
 			,mnth
 			,sum(prsn_cnt) as prsn_cnt
 			,sum(cohort_count) cohort_count
@@ -271,8 +263,6 @@ where adp.nxt_reentry_within_min_month_mult3 is not null
 			,fl_founded_sexual_abuse
 			,fl_founded_phys_abuse
 			-- select * from [dbo].[ref_service_cd_subctgry_poc]
-			, filter_service_category
-			, filter_service_budget
 			, mnth
 	
  
@@ -301,8 +291,6 @@ where adp.nxt_reentry_within_min_month_mult3 is not null
 				, filter_access_type
 				,  filter_allegation
 				, filter_finding
-				, filter_service_category
-				, filter_service_budget
 				, mnth
 				, discharge_count
 				, cohort_count
@@ -327,8 +315,6 @@ where adp.nxt_reentry_within_min_month_mult3 is not null
 				, filter_access_type
 				, filter_allegation
 				, filter_finding
-				, filter_service_category
-				, filter_service_budget
 				, mnth
 				,prsn_cnt
 				,cohort_count
@@ -358,8 +344,6 @@ SELECT [cohort_exit_year]
       ,[filter_access_type]
       ,[filter_allegation]
       ,[filter_finding]
-      ,[filter_service_category]
-      ,[filter_service_budget]
       ,[mnth]
 	  ,count(*)
 	  from #prtl_pbcp5
@@ -377,8 +361,6 @@ SELECT [cohort_exit_year]
       ,[filter_access_type]
       ,[filter_allegation]
       ,[filter_finding]
-      ,[filter_service_category]
-      ,[filter_service_budget]
       ,[mnth]
 	  having count(*) > 1
 
@@ -396,7 +378,5 @@ SELECT [cohort_exit_year]
       and [filter_access_type]=100100
       and [filter_allegation]    =10000
       and [filter_finding]=10000
-      and [filter_service_category]=10000000000000000
-      and [filter_service_budget]=10000000
       and [mnth]=6
 	  ****/

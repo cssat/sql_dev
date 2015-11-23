@@ -82,9 +82,3 @@
 	,[fcmnpay] INT NULL
 	)
 GO
-
-CREATE UNIQUE NONCLUSTERED INDEX [idx_pk_ca_fc_afcars_extracts] ON [annual_report].[ca_fc_afcars_extracts] (
-	[repdat]
-	,[recnumbr]
-	)
-GO
