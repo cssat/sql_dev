@@ -146,6 +146,11 @@
     <Folder Include="camis\Tables\" />
     <Folder Include="ui\Views\" />
     <Folder Include="scripts" />
+    <Folder Include="rodis\" />
+    <Folder Include="rodis\Tables\" />
+    <Folder Include="rodis_wh" />
+    <Folder Include="rodis_wh\Tables" />
+    <Folder Include="rodis_wh\Stored Procedures" />
     <Folder Include="ref\Stored Procedures" />
     <Folder Include="annual_report" />
     <Folder Include="annual_report\Views" />
@@ -2685,6 +2690,211 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
+    <Build Include="rodis\Tables\ref_delivpay.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_payid.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_parent_race.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_csection.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_hisp.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_herpes.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_diabetes.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_maristat.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_inftrans.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_momtrans.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_bi.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_attend.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_sex.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_postbirth_admin.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_zipcode_counties.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_occ.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_nat_am_tribes.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_res.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_country.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_hosp.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_birst.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_cnty.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_racsum.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_benefit.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_prebirth_admin.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_admty.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_payid1.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_momedu.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\ref_Momedu03.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Security\rodis.sql" />
+    <Build Include="rodis\Tables\bab_read.sql" />
+    <Build Include="rodis\Tables\bab_died.sql" />
+    <Build Include="rodis\Tables\berd.sql" />
+    <Build Include="Security\rodis_wh.sql" />
+    <Build Include="rodis_wh\Tables\wh_column.sql" />
+    <Build Include="rodis_wh\Tables\wh_column_type.sql" />
+    <Build Include="rodis_wh\Tables\wh_entity_key.sql" />
+    <Build Include="rodis_wh\Tables\wh_table.sql" />
+    <Build Include="rodis_wh\Tables\wh_table_type.sql" />
+    <Build Include="rodis_wh\Tables\wh_reference.sql" />
+    <Build Include="rodis_wh\Tables\wh_dimension.sql" />
+    <Build Include="rodis_wh\Tables\wh_package.sql" />
+    <Build Include="rodis_wh\Tables\wh_table_order.sql" />
+    <Build Include="rodis_wh\Tables\wh_data_type.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_admission_source_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_admission_reason_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_discharge_status_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_facility_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_ecode_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_payment_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_hospital_admission_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_hospital_admission_fat.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_diagnosis_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_diagnosis_m2m_fat.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_procedure_m2m_fat.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_education_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_country_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_state_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_county_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_city_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_race_census_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_ethnicity_census_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_occupation_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_tribe_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_birth_familial_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_birth_child_condition_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_kotelchuck_index_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_maternal_behavior_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_dysfunctional_uterine_bleed_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_maternal_condition_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_fetal_or_infant_death_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_maternal_history_att.sql" />
+    <Build Include="rodis_wh\etl_csection_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_maternal_procedure_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_certifier_type_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_maternal_transfer_type_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_facility_type_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_child_sex_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_birth_child_procedure_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_birth_administration_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_birth_fat.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_place_of_death_type_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_armed_forces_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_attendent_type_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_place_of_death_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_marital_status_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_ucode_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_death_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_death_fat.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_cause_of_death_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_diagnosis_order_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_procedure_order_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_cause_of_death_order_att.sql" />
+    <Build Include="rodis_wh\Stored Procedures\etl_cause_of_death_m2m_fat.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_hospital_admission_dim.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_payment_dim.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_diagnosis_dim.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_diagnosis_order_dim.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_procedure_dim.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_procedure_order_dim.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_birth_administration_dim.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_birth_familial_dim.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_location_dim.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_education_dim.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_birth_child_condition_dim.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_birth_child_procedure_dim.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_maternal_behavior_dim.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_maternal_condition_dim.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_maternal_history_dim.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_maternal_procedure_dim.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_death_dim.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_cause_of_death_dim.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_cause_of_death_order_dim.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_hospital_admission_fact.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_diagnosis_m2m_fact.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_birth_fact.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_death_fact.sql" />
+    <Build Include="rodis_wh\Stored Procedures\load_cause_of_death_m2m_fact.sql" />
     <Build Include="ref\Tables\reporter_mandate_xwalk.sql" />
     <Build Include="ref\Stored Procedures\build_reporter_mandate_xwalk.sql" />
     <Build Include="Security\annual_report.sql" />
