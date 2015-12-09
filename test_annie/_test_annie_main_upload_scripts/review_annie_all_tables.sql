@@ -8,7 +8,7 @@ fields terminated by '|'
 , init_cd_plcm_setng, long_cd_plcm_setng, county_cd
 , bin_los_cd, bin_placement_cd, bin_ihs_svc_cd 
  ,cd_reporter_type, filter_access_type, filter_allegation
- , filter_finding, filter_srvc_type, filter_budget, bin_dep_cd
+ ,filter_finding, bin_dep_cd
  ,min_start_date, max_start_date, cnt_qry, last_run_date);
 
   analyze table cache_outcomes_params;
@@ -23,8 +23,7 @@ fields terminated by '|'
  fields terminated by '|'
  (int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd
  ,cd_reporter_type,cd_access_type,cd_allegation,cd_finding
- ,cd_subctgry_poc_frc,cd_budget_poc_frc,
- age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng
+ ,age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng
  ,long_cd_plcm_setng,county_cd,qry_id,int_hash_key);
  
  analyze table cache_qry_param_outcomes;
@@ -42,7 +41,7 @@ LINES TERMINATED BY '\n'
 ,removal_county_cd,int_match_param_key,bin_dep_cd,max_bin_los_cd
 ,bin_placement_cd,cd_reporter_type,bin_ihs_svc_cd
 ,filter_access_type,filter_allegation,filter_finding,
-filter_service_type,filter_budget_type,mnth,discharge_count,cohort_count);
+mnth,discharge_count,cohort_count);
 
 
 analyze table prtl_outcomes;
@@ -59,8 +58,7 @@ fields terminated by '|'
 , int_param_key, bin_dep_cd
 , bin_los_cd, bin_placement_cd, bin_ihs_svc_cd, 
 cd_reporter_type, cd_access_type, cd_allegation
-, cd_finding, cd_subctgry_poc_frc, cd_budget_poc_frc
-,  age_grouping_cd, cd_race, pk_gndr, 
+, cd_finding, age_grouping_cd, cd_race, pk_gndr, 
 init_cd_plcm_setng, long_cd_plcm_setng, county_cd
 , mnth,rate, min_start_date, 
 max_start_date, x1, x2, insert_date
@@ -82,7 +80,7 @@ LOAD DATA INFILE '/data/pocweb/upload_files/cache_qry_param_pbcp5.txt'
 into table cache_qry_param_pbcp5
 fields terminated by '|'
 (int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,cd_access_type
- ,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc,age_grouping_cd,cd_race
+ ,cd_allegation,cd_finding,age_grouping_cd,cd_race
 ,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,qry_id,int_hash_key);
 
 analyze table cache_qry_param_pbcp5;
@@ -97,7 +95,7 @@ into table cache_pbcp5_params
 fields terminated by '|'
 ( qry_ID ,age_grouping_cd,cd_race_census,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd
       ,bin_los_cd ,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,filter_access_type,filter_allegation
-      ,filter_finding,filter_srvc_type,filter_budget,bin_dep_cd,min_start_date,max_start_date,cnt_qry,last_run_date);
+      ,filter_finding,bin_dep_cd,min_start_date,max_start_date,cnt_qry,last_run_date);
 
 analyze table cache_pbcp5_params;
   update prtl_tables_last_update
@@ -109,7 +107,7 @@ LOAD DATA INFILE '/data/pocweb/upload_files/cache_pbcp5_aggr.txt'
 into table cache_pbcp5_aggr
 fields terminated by '|'
 (qry_type,date_type,cohort_entry_date,cd_discharge_type,int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type
-,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc,age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng
+,cd_access_type,cd_allegation,cd_finding,age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng
 ,county_cd
 ,reentry_within_month,reentry_rate
 ,min_start_date,max_start_date,x1,x2,insert_date,qry_id,start_year,int_hash_key);
@@ -128,8 +126,7 @@ FIELDS TERMINATED by '|'
 pk_gndr,cd_race_census,census_hispanic_latino_origin_cd
 ,init_cd_plcm_setng,long_cd_plcm_setng,exit_county_cd,int_match_param_key,bin_dep_cd
 ,max_bin_los_cd,bin_placement_cd,cd_reporter_type
-,bin_ihs_svc_cd,filter_access_type,filter_allegation,filter_finding,filter_service_category
-,filter_service_budget,mnth
+,bin_ihs_svc_cd,filter_access_type,filter_allegation,filter_finding,mnth
 ,discharge_count
 ,cohort_count);
 analyze table prtl_pbcp5;
@@ -210,8 +207,8 @@ truncate table cache_pbcs3_params;
 LOAD DATA INFILE '/data/pocweb/upload_files/cache_pbcs3_params.txt'
 into table cache_pbcs3_params
 fields terminated by '|'
-(qry_ID, cd_sib_age_grp, cd_race_census, cd_county, cd_reporter_type, bin_ihs_svc_cd, filter_access_type, filter_allegation, filter_finding, filter_srvc_type, 
-                         filter_budget, min_start_date, max_start_date, cnt_qry, last_run_date);
+(qry_ID, cd_sib_age_grp, cd_race_census, cd_county, cd_reporter_type, bin_ihs_svc_cd, filter_access_type, filter_allegation, filter_finding, 
+                         min_start_date, max_start_date, cnt_qry, last_run_date);
 						 
 analyze table cache_pbcs3_params;
 update prtl_tables_last_update
@@ -223,7 +220,7 @@ update prtl_tables_last_update
  LOAD DATA INFILE '/data/pocweb/upload_files/cache_qry_param_pbcs3.txt'
  into table cache_qry_param_pbcs3
  fields terminated by '|'
- (int_param_key,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc
+ (int_param_key,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding
  ,age_grouping_cd,cd_race,cd_county,qry_id,int_hash_key);
  
  
@@ -239,10 +236,7 @@ into table prtl_pbcs3
 fields terminated by '|'
 (cohort_begin_date,date_type,qry_type,cd_race_census,census_hispanic_latino_origin_cd,
 county_cd,cd_sib_age_grp,int_match_param_key,cd_reporter_type,bin_ihs_svc_cd,
-filter_access_type,
-filter_allegation,filter_finding,
-filter_service_type,
-filter_budget_type,min_placed_within_month,cnt_case);
+filter_access_type,filter_allegation,filter_finding,min_placed_within_month,cnt_case);
 
  analyze table prtl_pbcs3;
 update prtl_tables_last_update
@@ -255,7 +249,7 @@ LOAD DATA INFILE '/data/pocweb/upload_files/cache_pbcs3_aggr.txt'
 into table cache_pbcs3_aggr
 fields terminated by '|'
 (qry_type,date_type,start_date,int_param_key,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,
-cd_allegation,cd_finding,cd_service_type,cd_budget_type,cd_sib_age_grp,cd_race_census,
+cd_allegation,cd_finding,cd_sib_age_grp,cd_race_census,
 cd_county,month,placed,not_placed,min_start_date,max_start_date,x1,x2,
 insert_date,qry_id,start_year,int_hash_key);
 
@@ -276,8 +270,8 @@ truncate table cache_qry_param_pbcw3;
 LOAD DATA INFILE '/data/pocweb/upload_files/cache_qry_param_pbcw3.txt'
 into table cache_qry_param_pbcw3
 fields terminated by '|'
-(int_param_key, bin_dep_cd,bin_los_cd, bin_placement_cd, bin_ihs_svc_cd, cd_reporter_type, cd_access_type, cd_allegation, cd_finding, cd_subctgry_poc_frc, 
-cd_budget_poc_frc, age_grouping_cd, cd_race, pk_gndr, init_cd_plcm_setng, long_cd_plcm_setng, county_cd, qry_id, int_hash_key);
+(int_param_key, bin_dep_cd,bin_los_cd, bin_placement_cd, bin_ihs_svc_cd, cd_reporter_type, cd_access_type, cd_allegation, cd_finding, 
+age_grouping_cd, cd_race, pk_gndr, init_cd_plcm_setng, long_cd_plcm_setng, county_cd, qry_id, int_hash_key);
 
 analyze table cache_qry_param_pbcw3;
 
@@ -290,8 +284,7 @@ LOAD DATA INFILE '/data/pocweb/upload_files/cache_pbcw3_params.txt'
 into table cache_pbcw3_params
 fields terminated by '|'
 ( qry_ID, age_grouping_cd, cd_race_census, pk_gndr, init_cd_plcm_setng, long_cd_plcm_setng, county_cd, bin_los_cd, bin_placement_cd, bin_ihs_svc_cd, 
- cd_reporter_type, filter_access_type, filter_allegation, filter_finding, filter_srvc_type, filter_budget,bin_dep_cd, min_start_date, 
- max_start_date, cnt_qry,last_run_date);
+ cd_reporter_type, filter_access_type, filter_allegation, filter_finding, bin_dep_cd, min_start_date, max_start_date, cnt_qry,last_run_date);
 
 analyze table cache_pbcw3_params;
   update prtl_tables_last_update
@@ -303,8 +296,7 @@ LOAD DATA INFILE '/data/pocweb/upload_files/cache_pbcw3_aggr.txt'
 into table cache_pbcw3_aggr
 fields terminated by '|'
 (qry_type, date_type, cohort_entry_date, int_param_key, bin_dep_cd, bin_los_cd, bin_placement_cd, 
-bin_ihs_svc_cd, cd_reporter_type, cd_access_type, cd_allegation, cd_finding, cd_subctgry_poc_frc, cd_budget_poc_frc
-, age_grouping_cd, cd_race, pk_gndr, 
+bin_ihs_svc_cd, cd_reporter_type, cd_access_type, cd_allegation, cd_finding, age_grouping_cd, cd_race, pk_gndr, 
 init_cd_plcm_setng, long_cd_plcm_setng, county_cd, family_setting_dcfs_prcntg, family_setting_private_agency_prcntg
 , relative_prcntg, group_inst_care_prcntg, 
 min_start_date,  max_start_date, x1, x2, insert_date, qry_id, cohort_begin_year, int_hash_key);
@@ -328,8 +320,7 @@ LOAD DATA INFILE '/data/pocweb/upload_files/cache_qry_param_pbcw4.txt'
 into table cache_qry_param_pbcw4
 fields terminated by '|'
 (int_param_key, bin_dep_cd,bin_los_cd, bin_placement_cd, bin_ihs_svc_cd, cd_reporter_type
-, cd_access_type, cd_allegation, cd_finding, cd_subctgry_poc_frc, 
-cd_budget_poc_frc, age_grouping_cd, cd_race, pk_gndr, init_cd_plcm_setng, long_cd_plcm_setng
+, cd_access_type, cd_allegation, cd_finding, age_grouping_cd, cd_race, pk_gndr, init_cd_plcm_setng, long_cd_plcm_setng
 , county_cd, qry_id, int_hash_key);
 
 analyze table cache_qry_param_pbcw4;
@@ -343,8 +334,7 @@ LOAD DATA INFILE '/data/pocweb/upload_files/cache_pbcw4_params.txt'
 into table cache_pbcw4_params
 fields terminated by '|'
 ( qry_ID, age_grouping_cd, cd_race_census, pk_gndr, init_cd_plcm_setng, long_cd_plcm_setng, county_cd, bin_los_cd, bin_placement_cd, bin_ihs_svc_cd, 
- cd_reporter_type, filter_access_type, filter_allegation, filter_finding, filter_srvc_type, filter_budget, bin_dep_cd, min_start_date, 
- max_start_date, cnt_qry,last_run_date);
+ cd_reporter_type, filter_access_type, filter_allegation, filter_finding, bin_dep_cd, min_start_date, max_start_date, cnt_qry,last_run_date);
 
 analyze table cache_pbcw4_params;
   update prtl_tables_last_update
@@ -357,7 +347,7 @@ LOAD DATA INFILE '/data/pocweb/upload_files/cache_pbcw4_aggr.txt'
 into table cache_pbcw4_aggr
 fields terminated by '|'
 (qry_type,date_type,cohort_entry_date,int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,
-cd_subctgry_poc_frc,cd_budget_poc_frc,age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,kincare,bin_sibling_group_size,all_together,
+age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,kincare,bin_sibling_group_size,all_together,
 some_together,none_together,min_start_date,max_start_date,x1,x2,insert_date,qry_id,cohort_begin_year,int_hash_key,cnt_cohort);
 
 analyze table cache_pbcw4_aggr;
@@ -378,7 +368,7 @@ fields terminated by '|'
 (qry_ID, age_grouping_cd, cd_race_census, pk_gndr, init_cd_plcm_setng, long_cd_plcm_setng, county_cd
 , bin_los_cd, bin_placement_cd, bin_ihs_svc_cd 
  ,cd_reporter_type, filter_access_type, filter_allegation
- , filter_finding, filter_srvc_type, filter_budget, bin_dep_cd
+ , filter_finding, bin_dep_cd
  ,min_start_date, max_start_date, cnt_qry, last_run_date);
 
   analyze table cache_poc1ab_params;
@@ -395,7 +385,7 @@ fields terminated by '|'
  into table cache_qry_param_poc1ab
  fields terminated by '|'
  (qry_id,int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd
- ,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc,
+ ,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,
  age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,int_hash_key);
  
  analyze table cache_qry_param_poc1ab;
@@ -414,8 +404,7 @@ fields terminated by '|'
 (qry_type, date_type,start_date, int_param_key, bin_dep_cd
 , bin_los_cd, bin_placement_cd, bin_ihs_svc_cd, 
 cd_reporter_type, cd_access_type, cd_allegation
-, cd_finding, cd_subctgry_poc_frc, cd_budget_poc_frc
-,  age_grouping_cd, cd_race, pk_gndr, 
+, cd_finding, age_grouping_cd, cd_race, pk_gndr, 
 init_cd_plcm_setng, long_cd_plcm_setng, county_cd
 , cnt_start_date, min_start_date, 
 max_start_date, x1, x2, insert_date,int_hash_key,qry_id,start_year,fl_include_perCapita);
@@ -439,10 +428,8 @@ LOAD DATA INFILE '/data/pocweb/upload_files/cache_poc1ab_entries_params.txt'
 into table cache_poc1ab_entries_params
 fields terminated by '|'
 (qry_ID, age_grouping_cd, cd_race_census, pk_gndr, init_cd_plcm_setng, long_cd_plcm_setng, county_cd
-, bin_los_cd, bin_placement_cd, bin_ihs_svc_cd 
- ,cd_reporter_type, filter_access_type, filter_allegation
- , filter_finding, filter_srvc_type, filter_budget, bin_dep_cd
- ,min_start_date, max_start_date, cnt_qry, last_run_date);
+, bin_los_cd, bin_placement_cd, bin_ihs_svc_cd, cd_reporter_type, filter_access_type, filter_allegation
+ , filter_finding, bin_dep_cd, min_start_date, max_start_date, cnt_qry, last_run_date);
 
   analyze table cache_poc1ab_entries_params;
   update prtl_tables_last_update
@@ -455,7 +442,7 @@ fields terminated by '|'
  into table cache_qry_param_poc1ab_entries
  fields terminated by '|'
  (qry_id,int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd
- ,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc,
+ ,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,
  age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,int_hash_key);
  
  analyze table cache_qry_param_poc1ab_entries;
@@ -474,11 +461,10 @@ LINES TERMINATED BY '\n'
 ,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng
 ,county_cd,int_match_param_key,cnt_entries
 ,filter_allegation,filter_finding,
-filter_service_category,filter_service_budget,filter_access_type,start_year);
+filter_access_type,start_year);
 
 
 analyze table prtl_poc1ab_entries;
- analyze table cache_qry_param_poc1ab_entries;
   update prtl_tables_last_update
   set load_date=now(),row_count=(select count(*) from prtl_poc1ab_entries)
   where tbl_name='prtl_poc1ab_entries';
@@ -491,8 +477,7 @@ fields terminated by '|'
 (qry_type, date_type,start_date, int_param_key, bin_dep_cd
 , bin_los_cd, bin_placement_cd, bin_ihs_svc_cd, 
 cd_reporter_type, cd_access_type, cd_allegation
-, cd_finding, cd_subctgry_poc_frc, cd_budget_poc_frc
-,  age_grouping_cd, cd_race, pk_gndr, 
+, cd_finding, age_grouping_cd, cd_race, pk_gndr, 
 init_cd_plcm_setng, long_cd_plcm_setng, county_cd
 , cnt_entries, min_start_date, 
 max_start_date, x1, x2, insert_date,int_hash_key,qry_id,start_year,fl_include_perCapita);
@@ -514,7 +499,7 @@ fields terminated by '|'
 (qry_ID, age_grouping_cd, cd_race_census, pk_gndr, init_cd_plcm_setng, long_cd_plcm_setng, county_cd
 , bin_los_cd, bin_placement_cd, bin_ihs_svc_cd 
  ,cd_reporter_type, filter_access_type, filter_allegation
- , filter_finding, filter_srvc_type, filter_budget, bin_dep_cd
+ , filter_finding, bin_dep_cd
  ,min_start_date, max_start_date, cnt_qry, last_run_date);
 
   analyze table cache_poc1ab_exits_params;
@@ -528,7 +513,7 @@ fields terminated by '|'
  into table cache_qry_param_poc1ab_exits
  fields terminated by '|'
  (qry_id,int_param_key,bin_dep_cd,bin_los_cd,bin_placement_cd,bin_ihs_svc_cd
- ,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc,
+ ,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,
  age_grouping_cd,cd_race,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng,county_cd,int_hash_key);
  
  analyze table cache_qry_param_poc1ab_exits;
@@ -547,7 +532,7 @@ LINES TERMINATED BY '\n'
 ,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng
 ,county_cd,int_match_param_key
 ,filter_allegation,filter_finding,
-filter_service_category,filter_service_budget,filter_access_type,start_year,cd_discharge_type,cnt_exits);
+filter_access_type,start_year,cd_discharge_type,cnt_exits);
 
 
 analyze table prtl_poc1ab_exits;
@@ -563,8 +548,7 @@ fields terminated by '|'
 (qry_type, date_type,start_date, int_param_key, bin_dep_cd
 , bin_los_cd, bin_placement_cd, bin_ihs_svc_cd, 
 cd_reporter_type, cd_access_type, cd_allegation
-, cd_finding, cd_subctgry_poc_frc, cd_budget_poc_frc
-,  age_grouping_cd, cd_race, pk_gndr, 
+, cd_finding, age_grouping_cd, cd_race, pk_gndr, 
 init_cd_plcm_setng, long_cd_plcm_setng, county_cd
 , min_start_date, 
 max_start_date, x1, x2, insert_date,qry_id,start_year
@@ -668,8 +652,8 @@ truncate table cache_poc3ab_params;
 LOAD DATA INFILE '/data/pocweb/upload_files/cache_poc3ab_params.txt'
 into table cache_poc3ab_params
 fields terminated by '|'
-(qry_ID, cd_sib_age_grp, cd_race_census, cd_county, cd_reporter_type, bin_ihs_svc_cd, filter_access_type, filter_allegation, filter_finding, filter_srvc_type, 
-                         filter_budget, min_start_date, max_start_date, cnt_qry, last_run_date);
+(qry_ID, cd_sib_age_grp, cd_race_census, cd_county, cd_reporter_type, bin_ihs_svc_cd, filter_access_type, filter_allegation, filter_finding, 
+                         min_start_date, max_start_date, cnt_qry, last_run_date);
 						 
 
 analyze table cache_poc3ab_params;
@@ -681,7 +665,7 @@ update prtl_tables_last_update
  LOAD DATA INFILE '/data/pocweb/upload_files/cache_qry_param_poc3ab.txt'
  into table cache_qry_param_poc3ab
  fields terminated by '|'
- (int_param_key,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding,cd_subctgry_poc_frc,cd_budget_poc_frc
+ (int_param_key,bin_ihs_svc_cd,cd_reporter_type,cd_access_type,cd_allegation,cd_finding
  ,cd_sib_age_grp,cd_race,cd_county,qry_id,int_hash_key);
  
  analyze table cache_qry_param_poc3ab;
@@ -695,8 +679,7 @@ truncate table prtl_poc3ab;
  fields terminated by '|'
  (qry_type,date_type,start_date,start_year,int_match_param_key,
  bin_ihs_svc_cd,cd_reporter_type,filter_access_type,filter_allegation,
- filter_finding,filter_service_type,filter_budget_type,
- cd_sib_age_group,cd_race_census,census_hispanic_latino_origin_cd,
+ filter_finding,cd_sib_age_group,cd_race_census,census_hispanic_latino_origin_cd,
  county_cd,cnt_start_date,cnt_opened,cnt_closed);
  analyze table prtl_poc3ab;
  update prtl_tables_last_update
@@ -709,7 +692,7 @@ LOAD DATA INFILE '/data/pocweb/upload_files/cache_poc3ab_aggr.txt'
 into table cache_poc3ab_aggr
 fields terminated by '|'
 ( qry_type, date_type,  start_date, int_param_key, bin_ihs_svc_cd, cd_reporter_type, cd_access_type, cd_allegation
- ,cd_finding, cd_service_type, cd_budget_type, cd_sib_age_grp, cd_race_census, cd_county, cnt_start_date, cnt_opened, cnt_closed,min_start_date,  max_start_date, x1, x2, insert_date
+ ,cd_finding, cd_sib_age_grp, cd_race_census, cd_county, cnt_start_date, cnt_opened, cnt_closed,min_start_date,  max_start_date, x1, x2, insert_date
 , qry_id, start_year,int_hash_key);
 
 
@@ -718,7 +701,7 @@ analyze table cache_poc3ab_aggr;
  update prtl_tables_last_update
   set load_date=now(),row_count=(select count(*) from cache_poc3ab_aggr)
   where tbl_name='cache_poc3ab_aggr';
-*/  
+  
   
   
   
@@ -749,7 +732,7 @@ analyze table ref_match_srvc_type_budget;
   update prtl_tables_last_update
   set load_date=now(),row_count=(select count(*) from ref_match_srvc_type_budget)
   where tbl_name='ref_match_srvc_type_budget';
-
+*/
 truncate table ref_match_allegation;
 LOAD DATA INFILE '/data/pocweb/upload_files/ref_match_allegation.txt'
 into table ref_match_allegation
@@ -788,7 +771,7 @@ LINES TERMINATED BY '\n'
 ,cd_race,census_hispanic_latino_origin_cd
 ,pk_gndr,init_cd_plcm_setng,long_cd_plcm_setng
 ,county_cd,filter_allegation,filter_finding,
-filter_service_category,filter_service_budget,filter_access_type,age_grouping_cd_mix,age_grouping_cd_census,int_match_param_key_mix,int_match_param_key_census,kincare,bin_sibling_group_size,family_setting_cnt,
+filter_access_type,age_grouping_cd_mix,age_grouping_cd_census,int_match_param_key_mix,int_match_param_key_census,kincare,bin_sibling_group_size,family_setting_cnt,
 family_setting_DCFS_cnt,family_setting_private_agency_cnt,relative_care,group_inst_care_cnt,all_sib_together,some_sib_together,no_sib_together,cnt_child_unique,cnt_child,fl_w3,fl_w4,fl_poc1ab);
 
 

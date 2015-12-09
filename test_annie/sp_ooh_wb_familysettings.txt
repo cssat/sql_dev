@@ -17,16 +17,12 @@ CREATE DEFINER=`test_annie`@`%` PROCEDURE `sp_ooh_wb_familysettings`(p_date  var
 ,  p_filter_access_type varchar(30) 
 ,  p_filter_allegation  varchar(30)
 , p_filter_finding varchar(30)
--- , p_filter_service_category  varchar(100)
--- , p_filter_service_budget varchar(100)
 , p_bin_dep_cd varchar(20)
  )
 begin
 
 
 declare flg_procedure_off int;
-declare p_filter_service_category varchar(100);
-declare p_filter_service_budget varchar(100);
 
 declare p_qry_id bigint;
 declare p_mindate datetime;
@@ -48,7 +44,6 @@ declare var_calling_procedure int;
 DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
 
 set var_calling_procedure=12;
-set p_filter_service_category='0', p_filter_service_budget='0';
 
 select max(a.db_min_filter_date) into min_filter_date
 from (
@@ -116,8 +111,6 @@ if  flg_procedure_off =0 then
                 and filter_access_type=left(p_filter_access_type,30)
                 and filter_allegation=left(p_filter_allegation,30)
                 and filter_finding=left(p_filter_finding,30)
-                and filter_srvc_type=left(p_filter_service_category,50)
-                and filter_budget=left(p_filter_service_budget,50)
                 and bin_dep_cd=left(p_bin_dep_cd,20)
            order by qry_ID  limit 1);
            
@@ -143,8 +136,6 @@ if  flg_procedure_off =0 then
                     ,filter_access_type
                     ,filter_allegation
                     ,filter_finding
-                    ,filter_srvc_type
-                    ,filter_budget
                     ,bin_dep_cd
                     ,min_start_date
                     ,max_start_date
@@ -166,8 +157,6 @@ if  flg_procedure_off =0 then
                     ,p_filter_access_type
                     ,p_filter_allegation
                     ,p_filter_finding
-                    ,p_filter_service_category
-                    ,p_filter_service_budget
                     ,p_bin_dep_cd
                     ,p_minmonthstart
                     ,p_maxmonthstart
@@ -198,8 +187,6 @@ if  flg_procedure_off =0 then
         ,  p_filter_access_type 
         ,  p_filter_allegation  
         , p_filter_finding 
-        , p_filter_service_category  
-        , p_filter_service_budget
         , p_bin_dep_cd
         , var_calling_procedure
         , coalesce(p_qry_id,@qry_ID));
@@ -232,8 +219,6 @@ if  var_row_cnt_param <> var_row_cnt_cache then
         ,  p_filter_access_type 
         ,  p_filter_allegation  
         , p_filter_finding 
-        , p_filter_service_category  
-        , p_filter_service_budget
         , p_bin_dep_cd
         , 0  -- p_is_perCapita
         , 1  -- p_load_paramkey_tbl
@@ -257,8 +242,6 @@ if  var_row_cnt_param <> var_row_cnt_cache then
            ,cd_access_type
            ,cd_allegation
            ,cd_finding
-           ,cd_subctgry_poc_frc
-           ,cd_budget_poc_frc
            ,age_grouping_cd
            ,cd_race
            ,pk_gndr
@@ -333,16 +316,6 @@ if  var_row_cnt_param <> var_row_cnt_cache then
         else
         set @incl=concat(@incl,', fnd.cd_finding');
         end if;	        
-        if trim(p_filter_service_category) = '0'  then
-        set @incl=concat(@incl,', 0');
-        else
-        set @incl=concat(@incl,', srv.cd_subctgry_poc_frc');
-        end if;	        
-        if trim(p_filter_service_budget) ='0' then
-        set @incl=concat(@incl,', 0');
-        else
-        set @incl=concat(@incl,', bud.cd_budget_poc_frc ');
-        end if;	
        if NOT(trim(p_age_grouping_cd) ='0' 
             and trim(p_gender_cd) ='0'
             and trim(p_ethnicity_cd)='0'
@@ -416,12 +389,6 @@ if  var_row_cnt_param <> var_row_cnt_cache then
         if trim(p_filter_finding)<> '0' then
              set  @incl=concat(@incl,'  join tblfnd fnd on fnd.match_code=prtl_pbcw3.filter_finding');
         end if;
-        if trim(p_filter_service_category) <> '0' then
-             set  @incl=concat(@incl,' join tblsrvc srv on srv.match_code=prtl_pbcw3.filter_service_category');
-        end if;
-        if trim(p_filter_service_budget) <> '0' then
-            set  @incl=concat(@incl,' join tblbudg bud on bud.match_code=prtl_pbcw3.filter_service_budget');
-        end if;
         if NOT(trim(p_age_grouping_cd) ='0' 
             and trim(p_gender_cd) ='0'
             and trim(p_ethnicity_cd)='0'
@@ -491,20 +458,6 @@ if  var_row_cnt_param <> var_row_cnt_cache then
         else
          set  @incl=concat(@incl,'0');
         end if;
-        set @incl=concat(@incl,'
-                 and che.cd_subctgry_poc_frc=');
-        if trim(p_filter_service_category) <> '0' then
-             set  @incl=concat(@incl,'srv.cd_subctgry_poc_frc');
-        else
-            set  @incl=concat(@incl,'0');
-        end if;
-				set @incl=concat(@incl,'
-                and che.cd_budget_poc_frc=');
-        if trim(p_filter_service_budget) <> '0' then
-            set  @incl=concat(@incl,'bud.cd_budget_poc_frc ');
-        else
-             set  @incl=concat(@incl,'0');
-        end if;
 				set @incl=concat(@incl,'
                 and che.in_cache=0
 			where fl_w3=1
@@ -551,12 +504,6 @@ if  var_row_cnt_param <> var_row_cnt_cache then
         if trim(p_filter_finding)<> '0' then
             set  @incl=concat(@incl,', fnd.cd_finding');
         end if;
-        if trim(p_filter_service_category) <> '0' then
-             set  @incl=concat(@incl,', srv.cd_subctgry_poc_frc');
-        end if;
-        if trim(p_filter_service_budget) <> '0' then
-            set  @incl=concat(@incl,', bud.cd_budget_poc_frc ');
-        end if;                   
         set @incl=concat(@incl,'
 					, che.int_hash_key
           ,  che.qry_id');
@@ -578,8 +525,6 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 								   ,cd_access_type
 								   ,cd_allegation
 								   ,cd_finding
-								   ,cd_subctgry_poc_frc
-								   ,cd_budget_poc_frc
 								   ,age_grouping_cd
 								   ,cd_race
 								   ,pk_gndr
@@ -597,8 +542,6 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 								   ,cd_access_type
 								   ,cd_allegation
 								   ,cd_finding
-								   ,cd_subctgry_poc_frc
-								   ,cd_budget_poc_frc
 								   ,age_grouping_cd
 								   ,cd_race_census
 								   ,pk_gndr
@@ -701,10 +644,6 @@ end if; -- all not in cache
                    when 3 then @fnd3
                    when 4 then @fnd4
                 end as "Finding"
--- 						, pbcw3.cd_subctgry_poc_frc as "service_type_cd"
--- 			, ref_srv.tx_subctgry_poc_frc as "Service Type"
--- 			, pbcw3.cd_budget_poc_frc   "budget_cd"
--- 			, ref_bud.tx_budget_poc_frc  "Budget"
             , family_setting_dcfs_prcntg as "Family Setting (State Foster Home)"
             , family_setting_private_agency_prcntg as "Family Setting (Private Foster Home)"
             , relative_prcntg  as "Family Setting (Kin Placement)"
@@ -725,10 +664,6 @@ end if; -- all not in cache
 			join ref_filter_ihs_services ihs on ihs.bin_ihs_svc_cd=pbcw3.bin_ihs_svc_cd and pbcw3.cohort_entry_date>=min_display_date
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw3.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw3.cd_access_type
---             join ref_lookup_service_category ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw3.cd_subctgry_poc_frc
--- 				and pbcw3.cohort_entry_date >=ref_srv.min_service_date
---            join ref_lookup_service_budget ref_bud on ref_bud.cd_budget_poc_frc=pbcw3.cd_budget_poc_frc
--- 				and pbcw3.cohort_entry_date  >=ref_bud.min_budget_date
            order by   pbcw3.bin_dep_cd asc
             ,qry_type
                 ,pbcw3.cohort_entry_date asc
@@ -745,8 +680,6 @@ end if; -- all not in cache
                     , pbcw3.cd_access_type
                     , pbcw3.cd_allegation
                     , pbcw3.cd_finding;
---                    , pbcw3.cd_subctgry_poc_frc
---                    , pbcw3.cd_budget_poc_frc;
     end if;
 END$$
 DELIMITER ;

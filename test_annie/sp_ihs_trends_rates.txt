@@ -13,8 +13,6 @@ CREATE DEFINER=`test_annie`@`localhost` PROCEDURE `sp_ihs_trends_rates`(p_date v
 , p_filter_access_type varchar(30) 
 , p_filter_allegation  varchar(30)
 , p_filter_finding varchar(30)
-, p_filter_service_category  varchar(100)
-, p_filter_service_budget varchar(100)
 )
 begin
  -- procedure begins here
@@ -64,8 +62,6 @@ begin
         ,  p_filter_access_type 
         ,  p_filter_allegation  
         ,  p_filter_finding 
-        ,  p_filter_service_category  
-        ,  p_filter_service_budget
         ,  1 -- load perCapita
         ,  0 -- load tblprmlocdem
         ,  p_mindate
@@ -84,8 +80,6 @@ begin
             and filter_access_type=left(p_filter_access_type,30)
             and filter_allegation=left(p_filter_allegation,30)
             and filter_finding=left(p_filter_finding,30)
-            and filter_srvc_type=left(p_filter_service_category,50)
-            and filter_budget=left(p_filter_service_budget,50)
         order by qry_ID  limit 1);
                 
       
@@ -103,8 +97,6 @@ begin
             , filter_access_type
             , filter_allegation
             , filter_finding
-            , filter_srvc_type
-            , filter_budget
             , min_start_date
             , max_start_date
             , cnt_qry
@@ -120,8 +112,6 @@ begin
                 ,p_filter_access_type
                 ,p_filter_allegation
                 ,p_filter_finding
-                ,p_filter_service_category
-                ,p_filter_service_budget
                 ,var_minmonthstart
                 ,var_maxmonthstart
                 ,1
@@ -141,8 +131,6 @@ begin
                 ,p_filter_access_type
                 ,p_filter_allegation
                 ,p_filter_finding
-                ,p_filter_service_category
-                ,p_filter_service_budget
                 , var_calling_procedure
                 , coalesce(p_qry_id,@qry_ID));
 
@@ -180,8 +168,6 @@ if  var_row_cnt_param <> var_row_cnt_cache then
                     ,cd_access_type
                     ,cd_allegation
                     ,cd_finding
-                    ,cd_service_type
-                    ,cd_budget_type
                     ,cd_sib_age_grp
                     ,cd_race_census
                     ,cd_county
@@ -233,16 +219,6 @@ if  var_row_cnt_param <> var_row_cnt_cache then
         else
         set @incl=concat(@incl,char(13),', fnd.cd_finding');
         end if;	        
-        if trim(p_filter_service_category) = '0'  then
-        set @incl=concat(@incl,', 0 as cd_subctgry_poc_frc');
-        else
-        set @incl=concat(@incl,', srv.cd_subctgry_poc_frc');
-        end if;	        
-        if trim(p_filter_service_budget) ='0' then
-        set @incl=concat(@incl,', 0 as cd_budget_poc_frc');
-        else
-        set @incl=concat(@incl,', bud.cd_budget_poc_frc ');
-        end if;
        if NOT (p_age_grouping_cd = '0' 
             and p_ethnicity_cd = '0' 
             and p_cd_county = '0' ) then
@@ -295,53 +271,37 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 	        set @incl=concat(@incl,char(13),'
 			join tblfnd fnd on fnd.match_code=prtl_poc3ab.filter_finding');
         end if;	        
-        if trim(p_filter_service_category) <> '0' then
-	        set @incl=concat(@incl,char(13),'
-			join tblsrvc srv on srv.match_code=prtl_poc3ab.filter_service_type');
-        end if;	        
-        if trim(p_filter_service_budget) <> '0' then
-	        set @incl=concat(@incl,char(13),'
-			join tblbudg bud on bud.match_code=prtl_poc3ab.filter_budget_type ');
-        end if;	
        set @incl=concat(@incl,char(13),'join cachekeys ck on 
          ck.int_hash_key=');
      if NOT (p_age_grouping_cd = '0' 
             and p_ethnicity_cd = '0' 
             and p_cd_county = '0' ) then
          set    @incl= concat(@incl,char(13),'
-             cast(( mtch.int_param_key * power(10.0,10) ) as decimal(22,0))  ');
+             cast(( mtch.int_param_key * power(10.0,6) ) as decimal(18,0))  ');
         else
-            set @incl=concat(@incl,char(13),' cast((',@int_param_key,' * power(10.0,10) ) as decimal(22,0))');
+            set @incl=concat(@incl,char(13),' cast((',@int_param_key,' * power(10.0,6) ) as decimal(18,0))');
         end if;
        if trim(p_cd_reporter_type)<>'0' then
 	        set @incl=concat(@incl,'
-            + cast((rpt.cd_reporter_type * power(10.0,8) ) as decimal(22,0)) ');
+            + cast((rpt.cd_reporter_type * power(10.0,4) ) as decimal(18,0)) ');
         end if;					
         if trim(p_bin_ihs_svc_cd)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast( (ihs.bin_ihs_svc_cd * power(10.0,7) ) as decimal(22,0))');
+            + cast( (ihs.bin_ihs_svc_cd * power(10.0,3) ) as decimal(18,0))');
         end if;
        if trim(p_filter_access_type)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast((acc.cd_access_type * power(10.0,6)) as decimal(22,0))');
+            + cast((acc.cd_access_type * power(10.0,2)) as decimal(18,0))');
         end if;					
 
         if trim(p_filter_allegation) <> '0' then
 	        set @incl=concat(@incl,' 
-            + cast( (alg.cd_allegation * power(10.0,5)) as decimal(22,0))');
+            + cast( (alg.cd_allegation * 10.0) as decimal(18,0))');
         end if;	       
         if trim(p_filter_finding) <> '0' then
 	        set @incl=concat(@incl,'
-            + cast( (fnd.cd_finding * power(10.0,4)) as decimal(22,0))');
+            + fnd.cd_finding ');
         end if;	        
-        if trim(p_filter_service_category) <> '0' then
-	        set @incl=concat(@incl,'
-            + cast((srv.cd_subctgry_poc_frc * power(10,2)) as decimal(22,0))');
-        end if;	        
-        if trim(p_filter_service_budget) <> '0' then
-	        set @incl=concat(@incl,'
-            +  bud.cd_budget_poc_frc ');
-        end if;	
         set @incl=concat(@incl,char(13),' and ck.in_cache=0');
        
          
@@ -378,14 +338,6 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 	        set @incl=concat(@incl,char(13),'
 			, fnd.cd_finding');
         end if;	        
-        if trim(p_filter_service_category) <> '0' then
-	        set @incl=concat(@incl,char(13),'
-			, srv.cd_subctgry_poc_frc');
-        end if;	        
-        if trim(p_filter_service_budget) <> '0' then
-	        set @incl=concat(@incl,char(13),'
-			, bud.cd_budget_poc_frc ');
-        end if;	
          if NOT (p_age_grouping_cd = '0' 
             and p_ethnicity_cd = '0' 
             and p_cd_county = '0' ) then
@@ -423,8 +375,6 @@ if  var_row_cnt_param <> var_row_cnt_cache then
                     cd_access_type,
                     cd_allegation,
                     cd_finding,
-                    cd_subctgry_poc_frc,
-                    cd_budget_poc_frc,
                     cd_sib_age_grp,
                     cd_race,
                     cd_county,
@@ -437,8 +387,6 @@ if  var_row_cnt_param <> var_row_cnt_cache then
 								   ,cd_access_type
 								   ,cd_allegation
 								   ,cd_finding
-								   ,cd_subctgry_poc_frc
-								   ,cd_budget_poc_frc
 								   ,cd_sib_age_grp
 								   ,cd_race_census
 								   ,cd_county
@@ -476,10 +424,6 @@ if  var_row_cnt_param <> var_row_cnt_cache then
                 , case poc3ab.cd_allegation  when 0  then @alg0 when 1  then @alg1 when 2  then @alg2 when 3  then @alg3 when 4  then @alg4 end as "Allegation"
                 , poc3ab.cd_finding
                 , case poc3ab.cd_finding  when 0  then @fnd0 when 1  then @fnd1 when 2  then @fnd2 when 3  then @fnd3 when 4  then @fnd4 end as "Finding"
-                , poc3ab.cd_service_type as "service_type_cd"
-                , ref_srv.tx_subctgry_poc_frc as "Service Type"
-                , poc3ab.cd_budget_type as "budget_cd"
-                , ref_bud.tx_budget_poc_frc as "Budget"
                 , round((case when (cnt_start_date) > 0 /* jitter all above 0 */ 
                         then 
                             case when (round(cnt_start_date + 2 * sqrt(-2 * log(poc3ab.x1)) 
@@ -571,10 +515,6 @@ if  var_row_cnt_param <> var_row_cnt_cache then
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=poc3ab.cd_county
              join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=poc3ab.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=poc3ab.cd_access_type
-            join ref_lookup_service_category ref_srv on ref_srv.cd_subctgry_poc_frc=poc3ab.cd_service_type
-             and start_date>=min_service_date
-            join ref_lookup_service_budget ref_bud on ref_bud.cd_budget_poc_frc =poc3ab.cd_budget_type
-                   and start_date>=min_budget_date
             where poc3ab.start_date 
             between p_mindate and p_maxdate and fl_include_perCapita=1
             order by qry_type,date_type,start_date
@@ -586,8 +526,6 @@ if  var_row_cnt_param <> var_row_cnt_cache then
                             , poc3ab.cd_access_type
                             , poc3ab.cd_allegation
                             , poc3ab.cd_finding
-                            , poc3ab.cd_service_type
-                            , poc3ab.cd_budget_type 
 ; 
       end if; -- turn procedure off
     end

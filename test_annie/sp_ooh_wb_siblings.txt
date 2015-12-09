@@ -16,15 +16,11 @@ CREATE DEFINER=`test_annie`@`%` PROCEDURE `sp_ooh_wb_siblings`(  p_age_grouping_
 ,  p_filter_access_type varchar(30) 
 ,  p_filter_allegation  varchar(30)
 , p_filter_finding varchar(30)
--- , p_filter_service_category  varchar(100)
--- , p_filter_service_budget varchar(100)
 , p_bin_dep_cd varchar(20)
  )
 begin
 
 declare flg_procedure_off int;
-declare p_filter_service_category varchar(100);
-declare p_filter_service_budget varchar(100);
 
 declare p_qry_id bigint;
 declare p_mindate datetime;
@@ -46,7 +42,6 @@ declare unq_qry_id int;
 DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
 
 set var_calling_procedure=13;
-set p_filter_service_category='0', p_filter_service_budget='0';
 
 select max(a.db_min_filter_date) into min_filter_date
 from (
@@ -107,8 +102,6 @@ if  flg_procedure_off =0 then
                 and filter_access_type=left(p_filter_access_type,30)
                 and filter_allegation=left(p_filter_allegation,30)
                 and filter_finding=left(p_filter_finding,30)
-                and filter_srvc_type=left(p_filter_service_category,50)
-                and filter_budget=left(p_filter_service_budget,50)
                 and bin_dep_cd=left(p_bin_dep_cd,20)
            order by qry_ID  limit 1);
            
@@ -133,8 +126,6 @@ if  flg_procedure_off =0 then
                     ,filter_access_type
                     ,filter_allegation
                     ,filter_finding
-                    ,filter_srvc_type
-                    ,filter_budget
                     ,bin_dep_cd
                     ,min_start_date
                     ,max_start_date
@@ -156,8 +147,6 @@ if  flg_procedure_off =0 then
                 ,p_filter_access_type
                 ,p_filter_allegation
                 ,p_filter_finding
-                ,p_filter_service_category
-                ,p_filter_service_budget
                 ,p_bin_dep_cd
                 ,p_minmonthstart
                 ,p_maxmonthstart
@@ -186,8 +175,6 @@ if  flg_procedure_off =0 then
         ,  p_filter_access_type 
         ,  p_filter_allegation  
         , p_filter_finding 
-        , p_filter_service_category  
-        , p_filter_service_budget
         , p_bin_dep_cd
         , var_calling_procedure
         , coalesce(p_qry_id,@qry_ID));
@@ -218,8 +205,6 @@ if  flg_procedure_off =0 then
         ,  p_filter_access_type 
         ,  p_filter_allegation  
         , p_filter_finding 
-        , p_filter_service_category  
-        , p_filter_service_budget
         , p_bin_dep_cd
         , 0  -- p_is_perCapita
         , 1  -- p_load_paramkey_tbl
@@ -243,8 +228,6 @@ if  flg_procedure_off =0 then
            ,cd_access_type
            ,cd_allegation
            ,cd_finding
-           ,cd_subctgry_poc_frc
-           ,cd_budget_poc_frc
            ,age_grouping_cd
            ,cd_race
            ,pk_gndr
@@ -320,16 +303,6 @@ if  flg_procedure_off =0 then
         else
         set @incl=concat(@incl,', fnd.cd_finding');
         end if;	        
-        if trim(p_filter_service_category) = '0'  then
-        set @incl=concat(@incl,', 0');
-        else
-        set @incl=concat(@incl,', srv.cd_subctgry_poc_frc');
-        end if;	        
-        if trim(p_filter_service_budget) ='0' then
-        set @incl=concat(@incl,', 0');
-        else
-        set @incl=concat(@incl,', bud.cd_budget_poc_frc ');
-        end if;	
        if NOT(trim(p_age_grouping_cd) ='0' 
             and trim(p_gender_cd) ='0'
             and trim(p_ethnicity_cd)='0'
@@ -415,14 +388,6 @@ if  flg_procedure_off =0 then
              set  @incl=concat(@incl,'  
 			 join tblfnd fnd on fnd.match_code=prtl_pbcw4.filter_finding');
         end if;
-        if trim(p_filter_service_category) <> '0' then
-             set  @incl=concat(@incl,' 
-			 join tblsrvc srv on srv.match_code=prtl_pbcw4.filter_service_category');
-        end if;
-        if trim(p_filter_service_budget) <> '0' then
-            set  @incl=concat(@incl,' 
-			join tblbudg bud on bud.match_code=prtl_pbcw4.filter_service_budget');
-        end if;
 		set  @incl=concat(@incl,' 
 		join prm_sib sib on sib.match_code=prtl_pbcw4.bin_sibling_group_size');
 		set  @incl=concat(@incl,' 
@@ -435,52 +400,44 @@ if  flg_procedure_off =0 then
             and trim(p_long_cd_plcm_setng)='0' 
             and trim(p_county_cd) = '0'  )  then
             set @incl=concat(@incl,'      
-            cast((cast(mtch.int_param_key as decimal(22,0)) *  cast(',@mult_int_param_key,' as decimal(22,0))) as decimal(22,0))');
+            cast((cast(mtch.int_param_key as decimal(18,0)) *  cast(',@mult_int_param_key,' as decimal(18,0))) as decimal(18,0))');
         else
             set @incl=concat(@incl,'
-            cast((',@constant,' ) as decimal(22,0))');
+            cast((',@constant,' ) as decimal(18,0))');
 		end if;
 		if trim(p_bin_dep_cd)<>'0' then
 			set @incl=concat(@incl,' 
-			+ cast((dep.bin_dep_cd * ',@mult_bin_dep_cd,' )as decimal(22,0)) ');
+			+ cast((dep.bin_dep_cd * ',@mult_bin_dep_cd,' )as decimal(18,0)) ');
 		end if;	
         if trim(p_bin_los_cd)<>'0' then
                 set @incl=concat(@incl,' 
-            + cast((los.bin_los_cd * ',@mult_bin_los_cd,' )as decimal(22,0)) ');
+            + cast((los.bin_los_cd * ',@mult_bin_los_cd,' )as decimal(18,0)) ');
         end if;
         if trim(p_bin_placement_cd)<>'0' then
 		    set @incl=concat(@incl,' 
-            + cast((plc.bin_placement_cd * ',@mult_bin_placement_cd,' )as decimal(22,0))');
+            + cast((plc.bin_placement_cd * ',@mult_bin_placement_cd,' )as decimal(18,0))');
         end if;   
         if trim(p_bin_ihs_svc_cd)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast( (ihs.bin_ihs_svc_cd * ',@mult_bin_ihs_svc_cd,' ) as decimal(22,0))');
+            + cast( (ihs.bin_ihs_svc_cd * ',@mult_bin_ihs_svc_cd,' ) as decimal(18,0))');
         end if;
         if trim(p_cd_reporter_type)<>'0' then
 	        set @incl=concat(@incl,'
-            + cast((rpt.cd_reporter_type * ',@mult_cd_reporter_type,' ) as decimal(22,0)) ');
+            + cast((rpt.cd_reporter_type * ',@mult_cd_reporter_type,' ) as decimal(18,0)) ');
         end if;					
         if trim(p_filter_access_type)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast((acc.cd_access_type * ',@mult_cd_access_type,') as decimal(22,0))');
+            + cast((acc.cd_access_type * ',@mult_cd_access_type,') as decimal(18,0))');
         end if;					
 
         if trim(p_filter_allegation) <> '0' then
 	        set @incl=concat(@incl,' 
-            + cast( (alg.cd_allegation * ',@mult_cd_allegation,') as decimal(22,0))');
+            + cast( (alg.cd_allegation * ',@mult_cd_allegation,') as decimal(18,0))');
         end if;	       
         if trim(p_filter_finding) <> '0' then
 	        set @incl=concat(@incl,'
-            + cast( (fnd.cd_finding * ',@mult_cd_finding,') as decimal(22,0))');
+            + cast( (fnd.cd_finding * ',@mult_cd_finding,') as decimal(18,0))');
         end if;	        
-        if trim(p_filter_service_category) <> '0' then
-	        set @incl=concat(@incl,'
-            + cast((srv.cd_subctgry_poc_frc * ',@mult_cd_subctgry_poc_frc,') as decimal(22,0))');
-        end if;	        
-        if trim(p_filter_service_budget) <> '0' then
-	        set @incl=concat(@incl,'
-            +  bud.cd_budget_poc_frc * ',@mult_cd_budget_poc_frc);
-        end if;	
     				set @incl=concat(@incl,'
                 and che.in_cache=0
 		where fl_w4=1
@@ -529,12 +486,6 @@ if  flg_procedure_off =0 then
         if trim(p_filter_finding)<> '0' then
             set  @incl=concat(@incl,', fnd.cd_finding');
         end if;
-        if trim(p_filter_service_category) <> '0' then
-             set  @incl=concat(@incl,', srv.cd_subctgry_poc_frc');
-        end if;
-        if trim(p_filter_service_budget) <> '0' then
-            set  @incl=concat(@incl,', bud.cd_budget_poc_frc ');
-        end if;                   
         set @incl=concat(@incl,'
 					, che.int_hash_key
           , che.qry_id');
@@ -554,8 +505,6 @@ if  flg_procedure_off =0 then
 								   ,cd_access_type
 								   ,cd_allegation
 								   ,cd_finding
-								   ,cd_subctgry_poc_frc
-								   ,cd_budget_poc_frc
 								   ,age_grouping_cd
 								   ,cd_race
 								   ,pk_gndr
@@ -573,8 +522,6 @@ if  flg_procedure_off =0 then
 								   ,cd_access_type
 								   ,cd_allegation
 								   ,cd_finding
-								   ,cd_subctgry_poc_frc
-								   ,cd_budget_poc_frc
 								   ,age_grouping_cd
 								   ,cd_race_census
 								   ,pk_gndr
@@ -677,10 +624,6 @@ if  flg_procedure_off =0 then
                    when 3 then @fnd3
                    when 4 then @fnd4
                 end as "Finding"
--- 						, pbcw4.cd_subctgry_poc_frc as "service_type_cd"
--- 						, ref_srv.tx_subctgry_poc_frc as "Service Type"
--- 						, pbcw4.cd_budget_poc_frc   "budget_cd"
--- 						, ref_bud.tx_budget_poc_frc  "Budget"
             , kincare
             , case when kincare=1 then @kin1 else @kin0 end as "Placement Type"
             , pbcw4.bin_sibling_group_size
@@ -706,10 +649,6 @@ if  flg_procedure_off =0 then
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=pbcw4.county_cd
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcw4.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcw4.cd_access_type
---            join ref_lookup_service_category ref_srv on ref_srv.cd_subctgry_poc_frc=pbcw4.cd_subctgry_poc_frc
--- 					and pbcw4.cohort_entry_date>=ref_srv.min_service_date 
---            join ref_lookup_service_budget ref_bud on ref_bud.cd_budget_poc_frc=pbcw4.cd_budget_poc_frc
--- 					and pbcw4.cohort_entry_date>=ref_bud.min_budget_date 
 			join ref_filter_ihs_services ihs on ihs.bin_ihs_svc_cd=pbcw4.bin_ihs_svc_cd and pbcw4.cohort_entry_date>=min_display_date
             join ref_lookup_sibling_groups ref_sib on ref_sib.bin_sibling_group_size=pbcw4.bin_sibling_group_size
             where pbcw4.cohort_entry_date between p_mindate and p_maxdate
@@ -730,8 +669,6 @@ if  flg_procedure_off =0 then
                     , pbcw4.cd_access_type
                     , pbcw4.cd_allegation
                     , pbcw4.cd_finding
---                    , pbcw4.cd_subctgry_poc_frc
---                    , pbcw4.cd_budget_poc_frc
                     , pbcw4.bin_sibling_group_size;  
  end if; -- turn procedure off
 END$$
