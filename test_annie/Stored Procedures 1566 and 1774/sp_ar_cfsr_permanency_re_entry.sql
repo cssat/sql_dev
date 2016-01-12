@@ -20,4 +20,3 @@ WHERE cd_discharge != 2
 END$$
 DELIMITER ;
 
-CALL `test_annie`.`sp_ar_cfsr_permanency_re_entry`('0');
