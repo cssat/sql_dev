@@ -17,8 +17,6 @@ CREATE DEFINER=`test_annie`@`%` PROCEDURE `sp_ooh_flow_entries_rates`(p_date  va
 ,  p_filter_access_type varchar(30) 
 ,  p_filter_allegation  varchar(30)
 , p_filter_finding varchar(30)
--- , p_filter_service_category  varchar(100)
--- , p_filter_service_budget varchar(100)
 , p_bin_dep_cd varchar(20)
  )
 begin
@@ -26,8 +24,6 @@ begin
 
  
 declare flg_procedure_off int;
-declare p_filter_service_category varchar(100);
-declare p_filter_service_budget varchar(100);
 
 declare p_qry_id bigint;
 declare p_mindate datetime;
@@ -47,7 +43,6 @@ declare var_calling_procedure int;
 DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
 
 set var_calling_procedure=26;
-set p_filter_service_category='0', p_filter_service_budget='0';
 
 select max(a.db_min_filter_date) into min_filter_date
 from (
@@ -110,8 +105,6 @@ if  flg_procedure_off =0 then
         ,  p_filter_access_type 
         ,  p_filter_allegation  
         , p_filter_finding 
-        , p_filter_service_category  
-        , p_filter_service_budget
         , p_bin_dep_cd
         , 1
         , 0
@@ -135,8 +128,6 @@ if  flg_procedure_off =0 then
                 and filter_access_type=left(p_filter_access_type,30)
                 and filter_allegation=left(p_filter_allegation,30)
                 and filter_finding=left(p_filter_finding,30)
-                and filter_srvc_type=left(p_filter_service_category,50)
-                and filter_budget=left(p_filter_service_budget,50)
                 and bin_dep_cd=left(p_bin_dep_cd,20)
            order by qry_ID  limit 1;
   
@@ -160,8 +151,6 @@ if  flg_procedure_off =0 then
                 ,filter_access_type
                 ,filter_allegation
                 ,filter_finding
-                ,filter_srvc_type
-                ,filter_budget
                 ,bin_dep_cd
                 ,min_start_date
                 ,max_start_date
@@ -183,8 +172,6 @@ if  flg_procedure_off =0 then
                 ,p_filter_access_type
                 ,p_filter_allegation
                 ,p_filter_finding
-                ,p_filter_service_category
-                ,p_filter_service_budget
                 ,p_bin_dep_cd
                 ,p_minmonthstart
                 ,p_maxmonthstart
@@ -211,8 +198,6 @@ if  flg_procedure_off =0 then
         ,  p_filter_access_type 
         ,  p_filter_allegation  
         , p_filter_finding 
-        , p_filter_service_category  
-        , p_filter_service_budget
         , p_bin_dep_cd
         , var_calling_procedure
         , coalesce(p_qry_id,@qry_ID));
@@ -253,8 +238,6 @@ if  flg_procedure_off =0 then
                 ,cd_access_type
                 ,cd_allegation
                 ,cd_finding
-                ,cd_subctgry_poc_frc
-                ,cd_budget_poc_frc
                 ,age_grouping_cd
                 ,cd_race
                 ,pk_gndr
@@ -327,16 +310,6 @@ if  flg_procedure_off =0 then
         else
         set @incl=concat(@incl,char(13),', fnd.cd_finding');
         end if;	        
-        if trim(p_filter_service_category) = '0'  then
-        set @incl=concat(@incl,', 0 as cd_subctgry_poc_frc');
-        else
-        set @incl=concat(@incl,', srv.cd_subctgry_poc_frc');
-        end if;	        
-        if trim(p_filter_service_budget) ='0' then
-        set @incl=concat(@incl,', 0 as cd_budget_poc_frc');
-        else
-        set @incl=concat(@incl,', bud.cd_budget_poc_frc ');
-        end if;
   		if NOT(trim(p_age_grouping_cd) ='0' 
             and trim(p_gender_cd) ='0'
             and trim(p_ethnicity_cd)='0'
@@ -375,52 +348,44 @@ if  flg_procedure_off =0 then
             and trim(p_long_cd_plcm_setng)='0' 
             and trim(p_county_cd) = '0'  )  then
 			set @incl=concat(@incl,'
-            ,cast(mtch.int_param_key as decimal(22,0)) *  cast(',@mult_int_param_key,' as decimal(22,0))');
+            ,cast(mtch.int_param_key as decimal(18,0)) *  cast(',@mult_int_param_key,' as decimal(18,0))');
 		else
 			set @incl=concat(@incl,'
-            ,cast((',@constant,')  as decimal(22,0))');
+            ,cast((',@constant,')  as decimal(18,0))');
 		end if;
 		if trim(p_bin_dep_cd)<>'0' then
 			set @incl=concat(@incl,'
-						+ cast(dep.bin_dep_cd as decimal(22,0)) * ',@mult_bin_dep_cd);
+						+ cast(dep.bin_dep_cd as decimal(18,0)) * ',@mult_bin_dep_cd);
 		end if;
 		if trim(p_bin_los_cd)<>'0' then
 			set @incl=concat(@incl,' 
-            + cast(los.bin_los_cd as decimal(22,0))  * ',@mult_bin_los_cd);
+            + cast(los.bin_los_cd as decimal(18,0))  * ',@mult_bin_los_cd);
         end if;
         if trim(p_bin_placement_cd)<>'0' then
 		    set @incl=concat(@incl,' 
-            + cast(plc.bin_placement_cd as decimal(22,0)) * ',@mult_bin_placement_cd);
+            + cast(plc.bin_placement_cd as decimal(18,0)) * ',@mult_bin_placement_cd);
         end if;   
         if trim(p_bin_ihs_svc_cd)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast(ihs.bin_ihs_svc_cd  as decimal(22,0)) * ',@mult_bin_ihs_svc_cd);
+            + cast(ihs.bin_ihs_svc_cd  as decimal(18,0)) * ',@mult_bin_ihs_svc_cd);
         end if;
         if trim(p_cd_reporter_type)<>'0' then
 	        set @incl=concat(@incl,'
-            + cast(rpt.cd_reporter_type  as decimal(22,0)) * ',@mult_cd_reporter_type);
+            + cast(rpt.cd_reporter_type  as decimal(18,0)) * ',@mult_cd_reporter_type);
         end if;					
         if trim(p_filter_access_type)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast(acc.cd_access_type as decimal(22,0)) * ',@mult_cd_access_type);
+            + cast(acc.cd_access_type as decimal(18,0)) * ',@mult_cd_access_type);
         end if;					
 
         if trim(p_filter_allegation) <> '0' then
 	        set @incl=concat(@incl,' 
-            + cast(alg.cd_allegation  as decimal(22,0)) * ',@mult_cd_allegation);
+            + cast(alg.cd_allegation  as decimal(18,0)) * ',@mult_cd_allegation);
         end if;	       
         if trim(p_filter_finding) <> '0' then
 	        set @incl=concat(@incl,'
-            + cast(fnd.cd_finding  as decimal(22,0)) * ',@mult_cd_finding);
+            + cast(fnd.cd_finding  as decimal(18,0)) * ',@mult_cd_finding);
         end if;	        
-        if trim(p_filter_service_category) <> '0' then
-	        set @incl=concat(@incl,'
-            + cast(srv.cd_subctgry_poc_frc  as decimal(22,0)) * ',@mult_cd_subctgry_poc_frc);
-        end if;	        
-        if trim(p_filter_service_budget) <> '0' then
-	        set @incl=concat(@incl,'
-            +  cast(bud.cd_budget_poc_frc as decimal(22,0)) * ',@mult_cd_budget_poc_frc);
-        end if;	
 		set @incl=concat(@incl,char(13),'
   			FROM prtl_poc1ab_entries prtl_poc1ab_entries  ');
 		if NOT(trim(p_age_grouping_cd) ='0' 
@@ -467,14 +432,6 @@ if  flg_procedure_off =0 then
 	        set @incl=concat(@incl,char(13),'
 			join tblfnd fnd on fnd.match_code=prtl_poc1ab_entries.filter_finding');
         end if;	        
-        if trim(p_filter_service_category) <> '0' then
-	        set @incl=concat(@incl,char(13),'
-			join tblsrvc srv on srv.match_code=prtl_poc1ab_entries.filter_service_category');
-        end if;	        
-        if trim(p_filter_service_budget) <> '0' then
-	        set @incl=concat(@incl,char(13),'
-			join tblbudg bud on bud.match_code=prtl_poc1ab_entries.filter_service_budget ');
-        end if;	
        set @incl=concat(@incl,char(13),'
      join cachekeys ck on ck.int_hash_key=');
        if NOT(trim(p_age_grouping_cd) ='0' 
@@ -484,52 +441,44 @@ if  flg_procedure_off =0 then
             and trim(p_long_cd_plcm_setng)='0' 
             and trim(p_county_cd) = '0'  )  then
 			set @incl=concat(@incl,'
-            cast(mtch.int_param_key as decimal(22,0)) *  cast(',@mult_int_param_key,' as decimal(22,0))');
+            cast(mtch.int_param_key as decimal(18,0)) *  cast(',@mult_int_param_key,' as decimal(18,0))');
 		else
 			set @incl=concat(@incl,'
-            cast((',@constant,')  as decimal(22,0))');
+            cast((',@constant,')  as decimal(18,0))');
 		end if;
 		if trim(p_bin_dep_cd)<>'0' then
 			set @incl=concat(@incl,'
-						+ cast(dep.bin_dep_cd as decimal(22,0)) * ',@mult_bin_dep_cd);
+						+ cast(dep.bin_dep_cd as decimal(18,0)) * ',@mult_bin_dep_cd);
 		end if;
 		if trim(p_bin_los_cd)<>'0' then
 			set @incl=concat(@incl,' 
-            + cast(los.bin_los_cd as decimal(22,0))  * ',@mult_bin_los_cd);
+            + cast(los.bin_los_cd as decimal(18,0))  * ',@mult_bin_los_cd);
         end if;
         if trim(p_bin_placement_cd)<>'0' then
 		    set @incl=concat(@incl,' 
-            + cast(plc.bin_placement_cd as decimal(22,0)) * ',@mult_bin_placement_cd);
+            + cast(plc.bin_placement_cd as decimal(18,0)) * ',@mult_bin_placement_cd);
         end if;   
         if trim(p_bin_ihs_svc_cd)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast(ihs.bin_ihs_svc_cd  as decimal(22,0)) * ',@mult_bin_ihs_svc_cd);
+            + cast(ihs.bin_ihs_svc_cd  as decimal(18,0)) * ',@mult_bin_ihs_svc_cd);
         end if;
         if trim(p_cd_reporter_type)<>'0' then
 	        set @incl=concat(@incl,'
-            + cast(rpt.cd_reporter_type  as decimal(22,0)) * ',@mult_cd_reporter_type);
+            + cast(rpt.cd_reporter_type  as decimal(18,0)) * ',@mult_cd_reporter_type);
         end if;					
         if trim(p_filter_access_type)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast(acc.cd_access_type as decimal(22,0)) * ',@mult_cd_access_type);
+            + cast(acc.cd_access_type as decimal(18,0)) * ',@mult_cd_access_type);
         end if;					
 
         if trim(p_filter_allegation) <> '0' then
 	        set @incl=concat(@incl,' 
-            + cast(alg.cd_allegation  as decimal(22,0)) * ',@mult_cd_allegation);
+            + cast(alg.cd_allegation  as decimal(18,0)) * ',@mult_cd_allegation);
         end if;	       
         if trim(p_filter_finding) <> '0' then
 	        set @incl=concat(@incl,'
-            + cast(fnd.cd_finding  as decimal(22,0)) * ',@mult_cd_finding);
+            + cast(fnd.cd_finding  as decimal(18,0)) * ',@mult_cd_finding);
         end if;	        
-        if trim(p_filter_service_category) <> '0' then
-	        set @incl=concat(@incl,'
-            + cast(srv.cd_subctgry_poc_frc  as decimal(22,0)) * ',@mult_cd_subctgry_poc_frc);
-        end if;	        
-        if trim(p_filter_service_budget) <> '0' then
-	        set @incl=concat(@incl,'
-            +  cast(bud.cd_budget_poc_frc as decimal(22,0)) * ',@mult_cd_budget_poc_frc);
-        end if;	
         set @incl=concat(@incl,char(13),' and ck.in_cache=0',char(13));        
 		set @incl=concat(@incl,char(13),'
          			group by  prtl_poc1ab_entries.qry_type
@@ -584,14 +533,6 @@ if NOT(trim(p_age_grouping_cd) ='0'
 	        set @incl=concat(@incl,char(13),'
 			, fnd.cd_finding');
         end if;	        
-        if trim(p_filter_service_category) <> '0' then
-	        set @incl=concat(@incl,char(13),'
-			, srv.cd_subctgry_poc_frc');
-        end if;	        
-        if trim(p_filter_service_budget) <> '0' then
-	        set @incl=concat(@incl,char(13),'
-			, bud.cd_budget_poc_frc ');
-        end if;	
         set @incl=concat(@incl,', ck.qry_id;',char(13));
         
 
@@ -624,8 +565,6 @@ if NOT(trim(p_age_grouping_cd) ='0'
 								   ,cd_access_type
 								   ,cd_allegation
 								   ,cd_finding
-								   ,cd_subctgry_poc_frc
-								   ,cd_budget_poc_frc
 								   ,age_grouping_cd
 								   ,cd_race
 								   ,pk_gndr
@@ -643,8 +582,6 @@ if NOT(trim(p_age_grouping_cd) ='0'
 								   ,cd_access_type
 								   ,cd_allegation
 								   ,cd_finding
-								   ,cd_subctgry_poc_frc
-								   ,cd_budget_poc_frc
 								   ,age_grouping_cd
 								   ,cd_race_census
 								   ,pk_gndr
@@ -721,10 +658,6 @@ end if; -- not all rows exist in cache
                             , case poc1ab.cd_allegation  when 0  then @alg0 when 1  then @alg1 when 2  then @alg2 when 3  then @alg3 when 4  then @alg4 end as "Allegation"
                             , poc1ab.cd_finding
                             , case poc1ab.cd_finding  when 0  then @fnd0 when 1  then @fnd1 when 2  then @fnd2 when 3  then @fnd3 when 4  then @fnd4 end as "Finding"
---                            , poc1ab.cd_subctgry_poc_frc as "service_type_cd"
---                            , ref_srv.tx_subctgry_poc_frc as "Service Type"
---                            , poc1ab.cd_budget_poc_frc as "budget_cd"
---                            , ref_bud.tx_budget_poc_frc as "Budget"
                             , round((case when (cnt_entries) > 0 /* jitter all above 0 */ 
                                     then 
                                         case when (round(cnt_entries + 2 * sqrt(-2 * log(poc1ab.x1)) 
@@ -755,12 +688,6 @@ end if; -- not all rows exist in cache
             join ref_lookup_county ref_cnty on ref_cnty.county_cd=poc1ab.county_cd
              join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=poc1ab.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=poc1ab.cd_access_type
---            join ref_lookup_service_category ref_srv 
--- 					on ref_srv.cd_subctgry_poc_frc=poc1ab.cd_subctgry_poc_frc
--- 					and poc1ab.start_date >=ref_srv.min_service_date
---            join ref_lookup_service_budget ref_bud 
--- 					on ref_bud.cd_budget_poc_frc=poc1ab.cd_budget_poc_frc
--- 					and poc1ab.start_date >=ref_bud.min_budget_date
 		where fl_include_perCapita=1
 
       order by  poc1ab.bin_dep_cd 
@@ -780,8 +707,6 @@ end if; -- not all rows exist in cache
                             , poc1ab.cd_access_type
                             , poc1ab.cd_allegation
                             , poc1ab.cd_finding;
---                            , poc1ab.cd_subctgry_poc_frc 
---                            , poc1ab.cd_budget_poc_frc;  
  end if;--  end strored procedure on
 end$$
 DELIMITER ;

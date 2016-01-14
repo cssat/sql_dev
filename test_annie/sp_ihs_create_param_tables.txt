@@ -53,20 +53,5 @@ BEGIN
 
         DROP TEMPORARY TABLE IF EXISTS tblfnd;
         create temporary table tblfnd(cd_finding int,filter_finding decimal(18,0),match_code decimal(18,0),primary key(match_code,cd_finding),index using btree(match_code))engine = memory;
-  
-        
-        
-        DROP TEMPORARY TABLE IF EXISTS tblsrvc;
-        create temporary table tblsrvc(cd_subctgry_poc_frc int
-        ,filter_srvc_type decimal(18,0),match_code decimal(21,0)
-        ,primary key(cd_subctgry_poc_frc,match_code) 
-        ,index using btree(match_code))engine = memory;
-      
-
-        DROP TEMPORARY TABLE IF EXISTS tblbudg;
-        create temporary table tblbudg(cd_budget_poc_frc int,filter_budget decimal(18,0)
-        ,match_code decimal(18,0)
-        ,primary key(cd_budget_poc_frc,match_code)
-        ,index using btree(match_code))engine = memory;
-     
+       
 END

@@ -81,7 +81,11 @@
     [cd_epsd_type]                 INT           NULL,
     [cd_end_rsn]                   INT           NULL,
     [derived_county]               INT           NULL,
-    [id_provider_dim_caregiver]    INT           NULL
+    [id_provider_dim_caregiver]    INT           NULL, 
+    [tx_multi_race_ethnicity]      VARCHAR(200)  NULL, 
+    [cd_multi_race_ethnicity]      INT           NULL, 
+    [removal_qtr]                  DATETIME      NULL, 
+    [discharge_qtr]                DATETIME      NULL
 );
 
 

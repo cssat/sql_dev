@@ -16,15 +16,11 @@ CREATE DEFINER=`test_annie`@`%` PROCEDURE `sp_ooh_reentry`(  p_age_grouping_cd v
 ,  p_filter_access_type varchar(30) 
 ,  p_filter_allegation  varchar(30)
 , p_filter_finding varchar(30)
--- , p_filter_service_category  varchar(100)
--- , p_filter_service_budget varchar(100)
 , p_bin_dep_cd varchar(20)
  )
 begin
 
 declare flg_procedure_off int;
-declare p_filter_service_category varchar(100);
-declare p_filter_service_budget varchar(100);
 
 
 declare var_calling_procedure int;
@@ -47,7 +43,6 @@ declare unq_qry_id int;
 DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
 
 set var_calling_procedure = 9;
-set p_filter_service_category='0', p_filter_service_budget='0';
 
 select max(a.db_min_filter_date) into min_filter_date
 from (
@@ -115,8 +110,6 @@ if  flg_procedure_off =0 then
                 and filter_access_type=left(p_filter_access_type,30)
                 and filter_allegation=left(p_filter_allegation,30)
                 and filter_finding=left(p_filter_finding,30)
-                and filter_srvc_type=left(p_filter_service_category,50)
-                and filter_budget=left(p_filter_service_budget,50)
                 and bin_dep_cd=left(p_bin_dep_cd,20)
            order by qry_ID  limit 1);
            
@@ -141,8 +134,6 @@ if  flg_procedure_off =0 then
                     ,filter_access_type
                     ,filter_allegation
                     ,filter_finding
-                    ,filter_srvc_type
-                    ,filter_budget
                     ,bin_dep_cd
                     ,min_start_date
                     ,max_start_date
@@ -164,8 +155,6 @@ if  flg_procedure_off =0 then
                     ,p_filter_access_type
                     ,p_filter_allegation
                     ,p_filter_finding
-                    ,p_filter_service_category
-                    ,p_filter_service_budget
                     ,p_bin_dep_cd
                     ,p_minmonthstart
                     ,p_maxmonthstart
@@ -195,8 +184,6 @@ if  flg_procedure_off =0 then
         ,  p_filter_access_type 
         ,  p_filter_allegation  
         , p_filter_finding 
-        , p_filter_service_category  
-        , p_filter_service_budget
         , p_bin_dep_cd
         , var_calling_procedure
         , coalesce(p_qry_id,@qry_ID));
@@ -226,8 +213,6 @@ if  flg_procedure_off =0 then
                 ,  p_filter_access_type 
                 ,  p_filter_allegation  
                 , p_filter_finding 
-                , p_filter_service_category  
-                , p_filter_service_budget
                 , p_bin_dep_cd
                 , 0
                 , 1
@@ -296,18 +281,7 @@ if  flg_procedure_off =0 then
         else
         set @myqry=concat(@myqry,', fnd.cd_finding');
         end if;	        
-        if trim(p_filter_service_category) = '0'  then
-        set @myqry=concat(@myqry,', 0 as cd_subctgry_poc_frc');
-        else
-        set @myqry=concat(@myqry,', srv.cd_subctgry_poc_frc');
-        end if;	        
-        if trim(p_filter_service_budget) ='0' then
-        set @myqry=concat(@myqry,', 0 as cd_budget_poc_frc
-						,cast(sum(cohort_count) * 1.0000 as decimal(9,4))  as tot_episodes');
-        else
-        set @myqry=concat(@myqry,', bud.cd_budget_poc_frc * ',@mult_cd_budget_poc_frc,' 
-						,cast(sum(cohort_count) * 1.0000 as decimal(9,4))  as tot_episodes');
-        end if;	
+        set @myqry=concat(@myqry,',cast(sum(cohort_count) * 1.0000 as decimal(9,4))  as tot_episodes');
 		
 		set @myqry=concat(@myqry,', che.int_hash_key as int_hash_key',char(13),'
 				, che.qry_id ',char(13),'
@@ -356,14 +330,6 @@ if  flg_procedure_off =0 then
 	        set @myqry=concat(@myqry,char(13),'
 			join tblfnd fnd on fnd.match_code=pocm.filter_finding');
         end if;	        
-        if trim(p_filter_service_category) <> '0' then
-	        set @myqry=concat(@myqry,char(13),'
-			join tblsrvc srv on srv.match_code=pocm.filter_service_category',char(10));
-        end if;	        
-        if trim(p_filter_service_budget) <> '0' then
-	        set @myqry=concat(@myqry,char(13),'
-			join tblbudg bud on bud.match_code=pocm.filter_service_budget ',char(10));
-        end if;	
 		set @myqry=concat(@myqry,'   join cachekeys che on che.int_hash_key=');
 		if NOT(trim(p_age_grouping_cd) ='0' 
             and trim(p_gender_cd) ='0'
@@ -372,52 +338,44 @@ if  flg_procedure_off =0 then
             and trim(p_long_cd_plcm_setng)='0' 
             and trim(p_county_cd) = '0'  )  then
 			set @myqry=concat(@myqry,'
-            cast((cast(mtch.int_param_key as decimal(22,0)) * cast(',@mult_int_param_key,' as decimal(22,0)) ) as decimal(22,0))');
+            cast((cast(mtch.int_param_key as decimal(18,0)) * cast(',@mult_int_param_key,' as decimal(18,0)) ) as decimal(18,0))');
 		else
 			set @myqry=concat(@myqry,'
-            cast((cast(',@int_param_key,'  as decimal(22,0)) * cast(',@mult_int_param_key,' as decimal(22,0)) ) as decimal(22,0))');
+            cast((cast(',@int_param_key,'  as decimal(18,0)) * cast(',@mult_int_param_key,' as decimal(18,0)) ) as decimal(18,0))');
 		end if;
 		if trim(p_bin_dep_cd)<>'0' then
 			set @myqry=concat(@myqry,' 
-            + cast((dep.bin_dep_cd * ',@mult_bin_dep_cd,' ) as decimal(22,0)) ');
+            + cast((dep.bin_dep_cd * ',@mult_bin_dep_cd,' ) as decimal(18,0)) ');
         end if;
        if trim(p_bin_los_cd)<>'0' then
 			set @myqry=concat(@myqry,' 
-            + cast((los.bin_los_cd * ',@mult_bin_los_cd,' )as decimal(22,0)) ');
+            + cast((los.bin_los_cd * ',@mult_bin_los_cd,' )as decimal(18,0)) ');
         end if;
         if trim(p_bin_placement_cd)<>'0' then
 		    set @myqry=concat(@myqry,' 
-            + cast((plc.bin_placement_cd * ',@mult_bin_placement_cd,' )as decimal(22,0))');
+            + cast((plc.bin_placement_cd * ',@mult_bin_placement_cd,' )as decimal(18,0))');
         end if;   
         if trim(p_bin_ihs_svc_cd)<>'0' then
 	        set @myqry=concat(@myqry,' 
-            + cast( (ihs.bin_ihs_svc_cd * ',@mult_bin_ihs_svc_cd,' ) as decimal(22,0))');
+            + cast( (ihs.bin_ihs_svc_cd * ',@mult_bin_ihs_svc_cd,' ) as decimal(18,0))');
         end if;
         if trim(p_cd_reporter_type)<>'0' then
 	        set @myqry=concat(@myqry,'
-            + cast((rpt.cd_reporter_type * ',@mult_cd_reporter_type,' ) as decimal(22,0)) ');
+            + cast((rpt.cd_reporter_type * ',@mult_cd_reporter_type,' ) as decimal(18,0)) ');
         end if;					
         if trim(p_filter_access_type)<>'0' then
 	        set @myqry=concat(@myqry,' 
-            + cast((acc.cd_access_type * ',@mult_cd_access_type,') as decimal(22,0))');
+            + cast((acc.cd_access_type * ',@mult_cd_access_type,') as decimal(18,0))');
         end if;					
 
         if trim(p_filter_allegation) <> '0' then
 	        set @myqry=concat(@myqry,' 
-            + cast( (alg.cd_allegation * ',@mult_cd_allegation,') as decimal(22,0))');
+            + cast( (alg.cd_allegation * ',@mult_cd_allegation,') as decimal(18,0))');
         end if;	       
         if trim(p_filter_finding) <> '0' then
 	        set @myqry=concat(@myqry,'
-            + cast( (fnd.cd_finding * ',@mult_cd_finding,') as decimal(22,0))');
+            + cast( (fnd.cd_finding * ',@mult_cd_finding,') as decimal(18,0))');
         end if;	        
-        if trim(p_filter_service_category) <> '0' then
-	        set @myqry=concat(@myqry,'
-            + cast((srv.cd_subctgry_poc_frc * ',@mult_cd_subctgry_poc_frc,') as decimal(22,0))');
-        end if;	        
-        if trim(p_filter_service_budget) <> '0' then
-	        set @myqry=concat(@myqry,'
-            +  bud.cd_budget_poc_frc * ',@mult_cd_budget_poc_frc);
-        end if;	
 		set @myqry=concat(@myqry,' and che.in_cache=0  ',char(10),'
 		group by pocm.cohort_exit_year
             ,pocm.date_type
@@ -467,14 +425,6 @@ if  flg_procedure_off =0 then
 	        set @myqry=concat(@myqry,'
 			, fnd.cd_finding');
         end if;	        
-        if trim(p_filter_service_category) <> '0' then
-	        set @myqry=concat(@myqry,'
-			, srv.cd_subctgry_poc_frc');
-        end if;	        
-        if trim(p_filter_service_budget) <> '0' then
-	        set @myqry=concat(@myqry,'
-			, bud.cd_budget_poc_frc * ',@mult_cd_budget_poc_frc,' ');
-        end if;	
         set @myqry=concat(@myqry,';',char(13));
          
 		drop temporary table if exists mycode_total;
@@ -498,8 +448,6 @@ if  flg_procedure_off =0 then
 								,cd_access_type
 								,cd_allegation
 								,cd_finding
-								,cd_subctgry_poc_frc
-								,cd_budget_poc_frc
 								,age_grouping_cd
 								,cd_race
 								,pk_gndr
@@ -572,16 +520,6 @@ if  flg_procedure_off =0 then
         else
         set @incl=concat(@incl,', fnd.cd_finding');
         end if;	        
-        if trim(p_filter_service_category) = '0'  then
-        set @incl=concat(@incl,', 0 as cd_subctgry_poc_frc');
-        else
-        set @incl=concat(@incl,', srv.cd_subctgry_poc_frc');
-        end if;	        
-        if trim(p_filter_service_budget) ='0' then
-        set @incl=concat(@incl,', 0 as cd_budget_poc_frc');
-        else
-        set @incl=concat(@incl,', bud.cd_budget_poc_frc * ',@mult_cd_budget_poc_frc,'');
-        end if;	
     if NOT(trim(p_age_grouping_cd) ='0' 
             and trim(p_gender_cd) ='0'
             and trim(p_ethnicity_cd)='0'
@@ -662,14 +600,6 @@ if  flg_procedure_off =0 then
 	        set @incl=concat(@incl,char(13),'
 			join tblfnd fnd on fnd.match_code=pbcp5.filter_finding');
         end if;	        
-        if trim(p_filter_service_category) <> '0' then
-	        set @incl=concat(@incl,char(13),'
-			join tblsrvc srv on srv.match_code=pbcp5.filter_service_category');
-        end if;	        
-        if trim(p_filter_service_budget) <> '0' then
-	        set @incl=concat(@incl,char(13),'
-			join tblbudg bud on bud.match_code=pbcp5.filter_service_budget ');
-        end if;	
 	  set @incl=concat(@incl,char(13),'
      join tot_episodes  
     on tot_episodes.int_hash_key=');
@@ -680,52 +610,44 @@ if  flg_procedure_off =0 then
             and trim(p_long_cd_plcm_setng)='0' 
             and trim(p_county_cd) = '0'  )  then
 			set @incl=concat(@incl,'
-            cast((cast(mtch.int_param_key as decimal(22,0)) * cast(',@mult_int_param_key,' as decimal(22,0)) ) as decimal(22,0))');
+            cast((cast(mtch.int_param_key as decimal(18,0)) * cast(',@mult_int_param_key,' as decimal(18,0)) ) as decimal(18,0))');
 		else
 			set @incl=concat(@incl,'
-            cast((cast(',@int_param_key,' as decimal(22,0)) * cast(',@mult_int_param_key,' as decimal(22,0)) ) as decimal(22,0))');
+            cast((cast(',@int_param_key,' as decimal(18,0)) * cast(',@mult_int_param_key,' as decimal(18,0)) ) as decimal(18,0))');
 		end if;
 		if trim(p_bin_dep_cd)<>'0' then
 			set @incl=concat(@incl,' 
-            + cast((dep.bin_dep_cd * ',@mult_bin_dep_cd,' )as decimal(22,0)) ');
+            + cast((dep.bin_dep_cd * ',@mult_bin_dep_cd,' )as decimal(18,0)) ');
         end if;
 		if trim(p_bin_los_cd)<>'0' then
 			set @incl=concat(@incl,' 
-            + cast((los.bin_los_cd * ',@mult_bin_los_cd,' )as decimal(22,0)) ');
+            + cast((los.bin_los_cd * ',@mult_bin_los_cd,' )as decimal(18,0)) ');
         end if;
         if trim(p_bin_placement_cd)<>'0' then
 		    set @incl=concat(@incl,' 
-            + cast((plc.bin_placement_cd * ',@mult_bin_placement_cd,' )as decimal(22,0))');
+            + cast((plc.bin_placement_cd * ',@mult_bin_placement_cd,' )as decimal(18,0))');
         end if;   
         if trim(p_bin_ihs_svc_cd)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast( (ihs.bin_ihs_svc_cd * ',@mult_bin_ihs_svc_cd,' ) as decimal(22,0))');
+            + cast( (ihs.bin_ihs_svc_cd * ',@mult_bin_ihs_svc_cd,' ) as decimal(18,0))');
         end if;
         if trim(p_cd_reporter_type)<>'0' then
 	        set @incl=concat(@incl,'
-            + cast((rpt.cd_reporter_type * ',@mult_cd_reporter_type,' ) as decimal(22,0)) ');
+            + cast((rpt.cd_reporter_type * ',@mult_cd_reporter_type,' ) as decimal(18,0)) ');
         end if;					
         if trim(p_filter_access_type)<>'0' then
 	        set @incl=concat(@incl,' 
-            + cast((acc.cd_access_type * ',@mult_cd_access_type,') as decimal(22,0))');
+            + cast((acc.cd_access_type * ',@mult_cd_access_type,') as decimal(18,0))');
         end if;					
 
         if trim(p_filter_allegation) <> '0' then
 	        set @incl=concat(@incl,' 
-            + cast( (alg.cd_allegation * ',@mult_cd_allegation,') as decimal(22,0))');
+            + cast( (alg.cd_allegation * ',@mult_cd_allegation,') as decimal(18,0))');
         end if;	       
         if trim(p_filter_finding) <> '0' then
 	        set @incl=concat(@incl,'
-            + cast( (fnd.cd_finding * ',@mult_cd_finding,') as decimal(22,0))');
+            + cast( (fnd.cd_finding * ',@mult_cd_finding,') as decimal(18,0))');
         end if;	        
-        if trim(p_filter_service_category) <> '0' then
-	        set @incl=concat(@incl,'
-            + cast((srv.cd_subctgry_poc_frc * ',@mult_cd_subctgry_poc_frc,') as decimal(22,0))');
-        end if;	        
-        if trim(p_filter_service_budget) <> '0' then
-	        set @incl=concat(@incl,'
-            +  bud.cd_budget_poc_frc * ',@mult_cd_budget_poc_frc,' ');
-        end if;	
     set @incl=concat(@incl,char(13),'
     and tot_episodes.cohort_exit_year=pbcp5.cohort_exit_year
     and tot_episodes.qry_type=pbcp5.qry_type
@@ -790,14 +712,6 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
 	        set @incl=concat(@incl,'
 			, fnd.cd_finding');
         end if;	        
-        if trim(p_filter_service_category) <> '0' then
-	        set @incl=concat(@incl,'
-			, srv.cd_subctgry_poc_frc');
-        end if;	        
-        if trim(p_filter_service_budget) <> '0' then
-	        set @incl=concat(@incl,'
-			, bud.cd_budget_poc_frc * ',@mult_cd_budget_poc_frc,' ');
-        end if;	
        set @incl=concat(@incl,' 
         , tot_episodes.tot_episodes;');  
         
@@ -818,8 +732,6 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
 								   ,cd_access_type
 								   ,cd_allegation
 								   ,cd_finding
-								   ,cd_subctgry_poc_frc
-								   ,cd_budget_poc_frc
 								   ,age_grouping_cd
 								   ,cd_race
 								   ,pk_gndr
@@ -837,8 +749,6 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
 								   ,cd_access_type
 								   ,cd_allegation
 								   ,cd_finding
-								   ,cd_subctgry_poc_frc
-								   ,cd_budget_poc_frc
 								   ,age_grouping_cd
 								   ,cd_race_census
 								   ,pk_gndr
@@ -944,10 +854,6 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
                        when 3 then @fnd3
                        when 4 then @fnd4
                     end as "Finding"
---                            , pbcp5.cd_subctgry_poc_frc as "service_type_cd"
---                            , ref_srv.tx_subctgry_poc_frc as "Service Type"
---                            , pbcp5.cd_budget_poc_frc   "budget_cd"
---                            , ref_bud.tx_budget_poc_frc  "Budget"
                 , pbcp5.cd_discharge_type
                             , toe.type_of_exit_desc as "Discharge Type"
                 , reentry_rate as "Re-Entry Percent"
@@ -970,10 +876,6 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
             join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=pbcp5.cd_reporter_type
             join ref_filter_access_type ref_acc on ref_acc.cd_access_type=pbcp5.cd_access_type
 			join ref_filter_ihs_services ihs on ihs.bin_ihs_svc_cd=pbcp5.bin_ihs_svc_cd and pbcp5.Cohort_Entry_date>=min_display_date
---            join ref_lookup_service_category ref_srv on ref_srv.cd_subctgry_poc_frc=pbcp5.cd_subctgry_poc_frc
---             and cohort_entry_date>=min_service_date
---            join ref_lookup_service_budget ref_bud on ref_bud.cd_budget_poc_frc =pbcp5.cd_budget_poc_frc
---                   and cohort_entry_date>=min_budget_date
              where date_add(cohort_entry_date,INTERVAL (15 + pbcp5.reentry_within_month) MONTH) <= cutoff_date
             order by 
                 pbcp5.bin_dep_cd asc
@@ -992,8 +894,6 @@ set @incl=concat(@incl,char(13),'where pbcp5.cohort_exit_year
                     , pbcp5.cd_access_type
                     , pbcp5.cd_allegation
                     , pbcp5.cd_finding
---                    , pbcp5.cd_subctgry_poc_frc
---                    , pbcp5.cd_budget_poc_frc
             ,pbcp5.reentry_within_month asc
             ,pbcp5.cd_discharge_type asc;
      end if; -- stored procedure on

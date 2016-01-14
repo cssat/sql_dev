@@ -81,17 +81,6 @@ BEGIN
         create temporary table tblfnd(cd_finding int,match_code decimal(18,0)
         ,primary key(match_code,cd_finding) ,index using btree(match_code) ) engine = memory;
 
-        DROP TEMPORARY TABLE IF EXISTS tblsrvc;
-        create temporary table tblsrvc(cd_subctgry_poc_frc int
-        ,match_code decimal(21,0),primary key(cd_subctgry_poc_frc,match_code) 
-        ,index using btree(match_code) ) engine = memory;
-        
-        
-        DROP TEMPORARY TABLE IF EXISTS tblbudg;
-        create temporary table tblbudg(cd_budget_poc_frc int
-        ,match_code decimal(18,0),primary key(cd_budget_poc_frc,match_code)
-         ,index using btree(match_code) ) engine = memory;
-       
         DROP TEMPORARY TABLE IF EXISTS tbldep;
         create temporary table tbldep(bin_dep_cd int,match_code int
         ,primary key(bin_dep_cd,match_code)

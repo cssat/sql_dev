@@ -156,6 +156,7 @@
     <Folder Include="annual_report\Views" />
     <Folder Include="annual_report\Tables" />
     <Folder Include="annual_report\Stored Procedures" />
+    <Folder Include="rodis\Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\hire_pk_question_data_to_insert.sql">
@@ -2926,6 +2927,11 @@
     <Build Include="prtl\Tables\ia_query_history.sql" />
     <Build Include="prtl\Tables\ooh_query_history.sql" />
     <Build Include="dbo\Tables\ref_match_srvc_type_budget.sql" />
+    <Build Include="Security\retention.sql" />
+    <Build Include="rodis\Tables\birth_child_intake_placement.sql" />
+    <Build Include="rodis\Tables\birth_child_intake_removal.sql" />
+    <Build Include="rodis\Stored Procedures\load_birth_intake_child_placement.sql" />
+    <Build Include="rodis\Stored Procedures\load_birth_intake_child_removal.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac">

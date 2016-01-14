@@ -10,7 +10,7 @@ SELECT 'drop old backup' as useage, CONCAT('DROP TABLE IF EXISTS ', GROUP_CONCAT
 FROM information_schema.TABLES a
 WHERE a.table_schema = @var_destination_schema and a.table_type = 'BASE TABLE' and (a.table_name like 'cache%' or a.table_name like 'ref_match%' or a.table_name like 'prtl%'
 	or a.table_name like 'ref_lookup_census%' or a.table_name = 'ref_last_dw_transfer' or a.table_name = 'ref_lookup_max_date' or a.table_name = 'ooh_point_in_time_measures')
-    and a.table_name not in ('prtl_labels', 'prtl_college_enrollment', 'prtl_dropout', 'prtl_lit3_perc', 'prtl_post_secondary_completion')
+    and a.table_name not in ('prtl_labels', 'prtl_college_enrollment', 'prtl_dropout', 'prtl_lit3_perc', 'prtl_post_secondary_completion', 'ref_match_srvc_type_budget', 'ref_match_srvc_type_category')
     and exists(select * from information_schema.tables r where r.table_name = a.table_name and r.table_schema = @var_source_schema and r.table_type = 'BASE TABLE')
 GROUP BY a.table_schema
 UNION ALL
@@ -19,7 +19,7 @@ SELECT 'backup' as useage, CONCAT('RENAME TABLE ', GROUP_CONCAT(a.table_schema, 
 FROM information_schema.TABLES a
 WHERE a.table_schema = @var_destination_schema and a.table_type = 'BASE TABLE' and (a.table_name like 'cache%' or a.table_name like 'ref_match%' or a.table_name like 'prtl%'
 	or a.table_name like 'ref_lookup_census%' or a.table_name = 'ref_last_dw_transfer' or a.table_name = 'ref_lookup_max_date' or a.table_name = 'ooh_point_in_time_measures')
-    and a.table_name not in ('prtl_labels', 'prtl_college_enrollment', 'prtl_dropout', 'prtl_lit3_perc', 'prtl_post_secondary_completion')
+    and a.table_name not in ('prtl_labels', 'prtl_college_enrollment', 'prtl_dropout', 'prtl_lit3_perc', 'prtl_post_secondary_completion', 'ref_match_srvc_type_budget', 'ref_match_srvc_type_category')
     and exists(select * from information_schema.tables r where r.table_name = a.table_name and r.table_schema = @var_source_schema and r.table_type = 'BASE TABLE')
 GROUP BY a.table_schema
 UNION ALL
@@ -28,7 +28,7 @@ SELECT 'transfer' as useage, CONCAT('RENAME TABLE ', GROUP_CONCAT(r.table_schema
 FROM information_schema.TABLES r
 WHERE r.table_schema = @var_source_schema and r.table_type = 'BASE TABLE' and (r.table_name like 'cache%' or r.table_name like 'ref_match%' or r.table_name like 'prtl%'
 	or r.table_name like 'ref_lookup_census%' or r.table_name = 'ref_last_dw_transfer' or r.table_name = 'ref_lookup_max_date' or r.table_name = 'ooh_point_in_time_measures')
-    and r.table_name not in ('prtl_labels', 'prtl_college_enrollment', 'prtl_dropout', 'prtl_lit3_perc', 'prtl_post_secondary_completion')
+    and r.table_name not in ('prtl_labels', 'prtl_college_enrollment', 'prtl_dropout', 'prtl_lit3_perc', 'prtl_post_secondary_completion', 'ref_match_srvc_type_budget', 'ref_match_srvc_type_category')
     and exists(select * from information_schema.tables a where a.table_name = r.table_name and a.table_schema = @var_destination_schema and a.table_type = 'BASE TABLE')
 GROUP BY r.table_schema
 UNION ALL
@@ -37,7 +37,7 @@ SELECT 'rollback transfer' as useage, CONCAT('RENAME TABLE ', GROUP_CONCAT(a.tab
 FROM information_schema.TABLES a
 WHERE a.table_schema = @var_destination_schema and a.table_type = 'BASE TABLE' and (a.table_name like 'cache%' or a.table_name like 'ref_match%' or a.table_name like 'prtl%'
 	or a.table_name like 'ref_lookup_census%' or a.table_name = 'ref_last_dw_transfer' or a.table_name = 'ref_lookup_max_date' or a.table_name = 'ooh_point_in_time_measures')
-    and a.table_name not in ('prtl_labels', 'prtl_college_enrollment', 'prtl_dropout', 'prtl_lit3_perc', 'prtl_post_secondary_completion')
+    and a.table_name not in ('prtl_labels', 'prtl_college_enrollment', 'prtl_dropout', 'prtl_lit3_perc', 'prtl_post_secondary_completion', 'ref_match_srvc_type_budget', 'ref_match_srvc_type_category')
     and exists(select * from information_schema.tables r where r.table_name = a.table_name and r.table_schema = @var_source_schema and r.table_type = 'BASE TABLE')
 GROUP BY a.table_schema
 UNION ALL
@@ -46,5 +46,5 @@ SELECT 'restore backup' as useage, CONCAT('RENAME TABLE ', GROUP_CONCAT(@var_bac
 FROM information_schema.TABLES
 WHERE table_schema = @var_destination_schema and table_type = 'BASE TABLE' and (table_name like 'cache%' or table_name like 'ref_match%' or table_name like 'prtl%'
 	or table_name like 'ref_lookup_census%' or table_name = 'ref_last_dw_transfer' or table_name = 'ref_lookup_max_date' or table_name = 'ooh_point_in_time_measures')
-    and table_name not in ('prtl_labels', 'prtl_college_enrollment', 'prtl_dropout', 'prtl_lit3_perc', 'prtl_post_secondary_completion')
+    and table_name not in ('prtl_labels', 'prtl_college_enrollment', 'prtl_dropout', 'prtl_lit3_perc', 'prtl_post_secondary_completion', 'ref_match_srvc_type_budget', 'ref_match_srvc_type_category')
 GROUP BY table_schema;

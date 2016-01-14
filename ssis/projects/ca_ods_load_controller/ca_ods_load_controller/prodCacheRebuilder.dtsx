@@ -899,7 +899,6 @@
       DTS:refId="Package\build ihs_safety"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:Disabled="True"
       DTS:DTSID="{2C807C4F-8811-46B2-B1D8-C9487D8EB6D3}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -2838,6 +2837,7 @@
       DTS:refId="Package\build ooh_pit"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
+      DTS:Disabled="True"
       DTS:DTSID="{28D25D93-F1E3-4C4F-9582-57886A904128}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -4624,9 +4624,9 @@
             </SQLTask:SqlTaskData>
           </DTS:ObjectData>
         </DTS:Executable>
-      </DTS:Executables>
-      <DTS:PrecedenceConstraints>
-        <DTS:PrecedenceConstraint
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
           DTS:refId="Package\take ia query history snapshot.PrecedenceConstraints[Constraint]"
           DTS:CreationName=""
           DTS:DTSID="{9E0CC87C-8D06-4E4D-86DD-D52C5A6B2B6D}"
