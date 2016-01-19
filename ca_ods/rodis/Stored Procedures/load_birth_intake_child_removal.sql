@@ -2,19 +2,16 @@
 AS
 /* 
 Script to create rodis.birth_child_intake_removal (BCIR).
-
-12-1-2015 
+1-6-16
 */
 
 /*
 DESCRIPTION
-
 The purpose of this script is to create a table where each row is a 
 unique record of a birth-child-intake-removal, coupled with
 record variables identified as useful to POC analysis projects
 (especially replications of work by Emily Putnam-Hornstein and
 other analyses of child risk over time).
-
 The table draws from both WA birth records and WA child welfare
 data and constitutes a full outer join between that data. In other
 words, every child with a Washington (WA) birth record and/or 
@@ -23,10 +20,8 @@ Washington Child Adminstration (CA) record is included.
 
 /*
 SCRIPT OVERVIEW
-
 The first major step in creating BCIR is getting all of the unique 
 child-intake-removal events available in the CA data.
-
 There are three sources of data for these CA records:
 - base.rptIntake_children: This is supposed to be all
 	unique child-intake events but often misses children
@@ -45,18 +40,15 @@ There are three sources of data for these CA records:
 	also a source of some intake records not included
     in either base.rptIntake_children or 
     base.tbl_household_children.
-
 Later, we will expand this to be all birth-child-intake-removal
 events by joining to:
 - rodis_wh.birth_fact: This is the fact table for the POC
     WA birth record data warehouse. It should have a record
     for every child born in WA from 1999 to the last
     time the data was updated.
-
 Once these tables are joined, every birth-child-intake-removal
 ID combination should be unique - in other words those
 columns should be usable as a composite primary key.
-
 We will enforce that primary key logic and then gather
 the variables we want associated with each record from
 both CA data and birth record data.
@@ -220,11 +212,9 @@ FULL OUTER JOIN rodis_wh.birth_fact AS bf
 
 /*
 TRANSITION
-
 This completes our birth-child-intake-removal record creation.
 Now we need to flesh out the records with the variables we
 want to work with.
-
 We will initially focus on building variables describing when
 our key events (birth, intake, removal) occurred. Then we will
 build variables desribe CA events and child birth context 
@@ -305,7 +295,7 @@ SELECT
     CASE
         WHEN has_ca_record = 'no'
         THEN NULL
-	    ELSE DENSE_RANK() OVER(PARTITION BY id_child, id_birth ORDER BY intake_date)
+	    ELSE DENSE_RANK() OVER(PARTITION BY id_child, id_birth ORDER BY intake_date, id_intake)
     END
     ) AS intake_order,
     (
@@ -324,7 +314,7 @@ SELECT
                     THEN 1
                     ELSE 0
                 END,
-            removal_date ASC
+            removal_date, id_removal ASC
             ) 
     END
     ) AS removal_order,
@@ -334,7 +324,7 @@ SELECT
         THEN NULL
         ELSE DENSE_RANK() OVER(
             PARTITION BY id_child, id_birth 
-            ORDER BY intake_date, id_intake, removal_date
+            ORDER BY intake_date, id_intake, removal_date, id_removal
         ) 
     END
     ) AS intake_removal_order
@@ -358,8 +348,8 @@ SELECT
      t.*,
      -- For our first step, we simply add a flag to indicate whether
      -- the record is associated with a new intake.
-     IIF(ISNULL(intake_date, 0) 
-        <> ISNULL(lag(intake_date, 1) 
+     IIF(ISNULL(id_intake, 0) 
+        <> ISNULL(lag(id_intake, 1) 
             OVER(PARTITION BY id_birth, id_child 
             -- We order by intake_removal_order to make sure we
             -- correctly break any ties that occur when there are
@@ -367,8 +357,8 @@ SELECT
             ORDER BY intake_order, intake_removal_order), 0), 
      1, 0) AS new_intake,
      -- Or a new removal.
-     IIF(ISNULL(removal_date, 0) 
-        <> ISNULL(lag(removal_date, 1) 
+     IIF(ISNULL(id_removal, 0) 
+        <> ISNULL(lag(id_removal, 1) 
             OVER(PARTITION BY id_birth, id_child 
             ORDER BY removal_order, intake_removal_order), 0), 
      1, 0) AS new_removal
@@ -461,7 +451,7 @@ SELECT
         PARTITION BY id_birth, id_child
         ORDER BY intake_removal_order
     ) AS previous_removal_date,
-        t.intake_order,
+    t.intake_order,
     t.removal_order,
     t.intake_removal_order,
     t.cumulative_intakes,
@@ -576,40 +566,29 @@ SELECT
         -- a condition.
 		WHEN t.has_birth_record = 'no'
 		THEN NULL
-		WHEN (
-				IIF(bccd.fl_anencephaly = 9
-					OR bccd.fl_anencephaly = 0
-					OR bccd.fl_anencephaly IS NULL,
-					0, 1) +
-				IIF(bccd.fl_chromosome_anomaly = 9
-					OR bccd.fl_chromosome_anomaly = 0
-					OR bccd.fl_chromosome_anomaly IS NULL,
-					0, 1) +
-				IIF(bccd.fl_orofacial_cleft = 9
-					OR bccd.fl_orofacial_cleft = 0
-					OR bccd.fl_orofacial_cleft IS NULL,
-					0, 1) +
-				IIF(bccd.fl_diaphragmic_hernia = 9
-					OR bccd.fl_diaphragmic_hernia = 0
-					OR bccd.fl_diaphragmic_hernia IS NULL,
-					0, 1) +
-				IIF(bccd.fl_downs_syndrome = 9
-					OR bccd.fl_downs_syndrome = 0
-					OR bccd.fl_downs_syndrome IS NULL,
-					0, 1) +
-				IIF(bccd.fl_heart_malformations = 9
-					OR bccd.fl_heart_malformations = 0
-					OR bccd.fl_heart_malformations IS NULL,
-					0, 1) +
-				IIF(bccd.fl_omphalocele = 9
-					OR bccd.fl_omphalocele = 0
-					OR bccd.fl_omphalocele IS NULL,
-					0, 1) +
-				IIF(bccd.fl_spinabifida = 9
-					OR bccd.fl_spinabifida = 0
-					OR bccd.fl_spinabifida IS NULL,
-					0, 1)
-			) > 0
+		WHEN bccd.fl_anencephaly NOT IN (9,0)
+			AND bccd.fl_anencephaly IS NOT NULL
+		THEN 'yes'
+		WHEN bccd.fl_chromosome_anomaly NOT IN (9,0)
+			AND bccd.fl_chromosome_anomaly IS NOT NULL
+		THEN 'yes'
+		WHEN bccd.fl_orofacial_cleft NOT IN (9,0)
+			AND bccd.fl_orofacial_cleft IS NOT NULL
+		THEN 'yes'
+		WHEN bccd.fl_diaphragmic_hernia NOT IN (9,0)
+			AND bccd.fl_diaphragmic_hernia IS NOT NULL
+		THEN 'yes'
+		WHEN bccd.fl_downs_syndrome NOT IN (9,0)
+			AND bccd.fl_downs_syndrome IS NOT NULL
+		THEN 'yes'
+		WHEN bccd.fl_heart_malformations NOT IN (9,0)
+			AND bccd.fl_heart_malformations IS NOT NULL
+		THEN 'yes'
+		WHEN bccd.fl_omphalocele NOT IN (9,0)
+			AND bccd.fl_omphalocele IS NOT NULL
+		THEN 'yes'
+		WHEN bccd.fl_spinabifida NOT IN (9,0)
+			AND bccd.fl_spinabifida IS NOT NULL
 		THEN 'yes'
 		ELSE 'none recorded'
 	END
@@ -1532,12 +1511,10 @@ FROM #t23 AS t
 
 /*
 TRANSITION
-
 This completes our table building. However, we have a tricky filtering issue
 that would have been irritating to resolve at earlier stages of our table
 building. Specifically, we have some child-intakes that occur within a week
 of each other.
-
 We will only consider an intake unique if there are no intakes within a 
 week of it, it is associated with a service, or - if no services - it
 is the earliest conflicting intake.
@@ -1682,7 +1659,7 @@ SELECT
     CASE
         WHEN has_ca_record = 'no'
         THEN NULL
-	    ELSE DENSE_RANK() OVER(PARTITION BY id_child, id_birth ORDER BY intake_date)
+	    ELSE DENSE_RANK() OVER(PARTITION BY id_child, id_birth ORDER BY intake_date, id_intake)
     END
     ) AS new_intake_order,
     (
@@ -1701,7 +1678,7 @@ SELECT
                     THEN 1
                     ELSE 0
                 END,
-            removal_date ASC
+            removal_date, id_removal ASC
             ) 
     END
     ) AS new_removal_order,
@@ -1711,7 +1688,7 @@ SELECT
         THEN NULL
         ELSE DENSE_RANK() OVER(
             PARTITION BY id_child, id_birth 
-            ORDER BY intake_date, id_intake, removal_date
+            ORDER BY intake_date, id_intake, removal_date, id_removal
         ) 
     END
     ) AS new_intake_removal_order
@@ -1725,8 +1702,8 @@ SELECT
      t.*,
      -- For our first step, we simply add a flag to indicate whether
      -- the record is associated with a new intake.
-     IIF(ISNULL(intake_date, 0) 
-        <> ISNULL(lag(intake_date, 1) 
+     IIF(ISNULL(id_intake, 0) 
+        <> ISNULL(lag(id_intake, 1) 
             OVER(PARTITION BY id_birth, id_child 
             -- We order by intake_removal_order to make sure we
             -- correctly break any ties that occur when there are
@@ -1734,8 +1711,8 @@ SELECT
             ORDER BY new_intake_order, new_intake_removal_order), 0), 
      1, 0) AS new_intake,
      -- Or a new removal.
-     IIF(ISNULL(removal_date, 0) 
-        <> ISNULL(lag(removal_date, 1) 
+     IIF(ISNULL(id_removal, 0) 
+        <> ISNULL(lag(id_removal, 1) 
             OVER(PARTITION BY id_birth, id_child 
             ORDER BY new_removal_order, new_intake_removal_order), 0), 
      1, 0) AS new_removal
@@ -1946,7 +1923,7 @@ SELECT
 INTO #t30
 FROM #t29 AS t
 
--- At long last, we define our permanent target table.
+-- At long last, we repopulate our permanent target table.
 TRUNCATE TABLE rodis.birth_child_intake_removal
 
 INSERT rodis.birth_child_intake_removal (
