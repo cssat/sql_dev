@@ -42,3 +42,26 @@ CREATE NONCLUSTERED INDEX [idx_ooh_flow_entries] ON [prtl].[ooh_flow_entries] (
 	,[cnt_entries]
 	)
 GO
+
+CREATE NONCLUSTERED INDEX [idx_ooh_flow_entries_county_cd] ON [prtl].[ooh_flow_entries] (
+	[county_cd]
+	) INCLUDE (
+	[qry_type]
+	,[date_type]
+	,[start_date]
+	,[bin_dep_cd]
+	,[age_grouping_cd]
+	,[pk_gndr]
+	,[cd_race]
+	,[init_cd_plcm_setng]
+	,[long_cd_plcm_setng]
+	,[max_bin_los_cd]
+	,[bin_placement_cd]
+	,[bin_ihs_svc_cd]
+	,[cd_reporter_type]
+	,[filter_access_type]
+	,[filter_allegation]
+	,[filter_finding]
+	,[cnt_entries]
+	)
+GO

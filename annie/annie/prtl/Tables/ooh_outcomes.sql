@@ -48,3 +48,29 @@ CREATE NONCLUSTERED INDEX [idx_ooh_outcomes] ON [prtl].[ooh_outcomes] (
 	,[cohort_count]
 	)
 GO
+
+CREATE NONCLUSTERED INDEX [idx_ooh_outcomes_Removal_County_Cd] ON [prtl].[ooh_outcomes] (
+	[Removal_County_Cd]
+	) INCLUDE (
+	[cohort_entry_date]
+	,[qry_type]
+	,[date_type]
+	,[age_grouping_cd]
+	,[pk_gndr]
+	,[cd_race_census]
+	,[init_cd_plcm_setng]
+	,[long_cd_plcm_setng]
+	,[bin_dep_cd]
+	,[max_bin_los_cd]
+	,[bin_placement_cd]
+	,[bin_ihs_svc_cd]
+	,[cd_reporter_type]
+	,[filter_access_type]
+	,[filter_allegation]
+	,[filter_finding]
+	,[cd_discharge_type]
+	,[mnth]
+	,[discharge_count]
+	,[cohort_count]
+	)
+GO

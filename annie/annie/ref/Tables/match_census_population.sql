@@ -20,5 +20,28 @@ CREATE UNIQUE NONCLUSTERED INDEX [idx_match_census_population] ON [ref].[match_c
 	[population_count]
 	,[perCapita_threshold]
 	)
-WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+GO
+
+CREATE NONCLUSTERED INDEX [idx_match_census_population_population_count] ON [ref].[match_census_population] (
+	[population_count]
+	) INCLUDE (
+	[measurement_year]
+	,[age_grouping_cd]
+	,[pk_gender]
+	,[cd_race_census]
+	,[cd_county]
+	,[perCapita_threshold]
+	)
+GO
+
+CREATE NONCLUSTERED INDEX [idx_match_census_population2] ON [ref].[match_census_population] (
+	[age_grouping_cd]
+	,[pk_gender]
+	,[cd_race_census]
+	,[cd_county]
+	) INCLUDE (
+	[measurement_year]
+	,[population_count]
+	,[perCapita_threshold]
+	)
 GO

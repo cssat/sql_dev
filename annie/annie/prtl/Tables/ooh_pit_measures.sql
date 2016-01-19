@@ -59,6 +59,30 @@ CREATE NONCLUSTERED INDEX [idx_ooh_pit_measures_pit] ON [prtl].[ooh_pit_measures
 	)
 GO
 
+CREATE NONCLUSTERED INDEX [idx_ooh_pit_measures_fl_ooh_pit] ON [prtl].[ooh_pit_measures] (
+	[county_cd]
+	,[cd_reporter_type]
+	,[fl_ooh_pit]
+	) INCLUDE (
+	[qry_type]
+	,[date_type]
+	,[start_date]
+	,[age_grouping_cd_census]
+	,[pk_gndr]
+	,[cd_race]
+	,[init_cd_plcm_setng]
+	,[long_cd_plcm_setng]
+	,[bin_dep_cd]
+	,[max_bin_los_cd]
+	,[bin_placement_cd]
+	,[bin_ihs_svc_cd]
+	,[filter_access_type]
+	,[filter_allegation]
+	,[filter_finding]
+	,[cnt_child_unique]
+	)
+GO
+
 CREATE NONCLUSTERED INDEX [idx_ooh_pit_measures_wb_family_settings] ON [prtl].[ooh_pit_measures] (
 	[county_cd]
 	,[fl_ooh_wb_family_settings]
@@ -87,6 +111,34 @@ CREATE NONCLUSTERED INDEX [idx_ooh_pit_measures_wb_family_settings] ON [prtl].[o
 	)
 GO
 
+CREATE NONCLUSTERED INDEX [idx_ooh_pit_measures_wb_family_settings_2] ON [prtl].[ooh_pit_measures] (
+	[age_grouping_cd_mix]
+	,[fl_ooh_wb_family_settings]
+	) INCLUDE (
+	[qry_type]
+	,[date_type]
+	,[start_date]
+	,[pk_gndr]
+	,[cd_race]
+	,[init_cd_plcm_setng]
+	,[long_cd_plcm_setng]
+	,[county_cd]
+	,[bin_dep_cd]
+	,[max_bin_los_cd]
+	,[bin_placement_cd]
+	,[bin_ihs_svc_cd]
+	,[cd_reporter_type]
+	,[filter_access_type]
+	,[filter_allegation]
+	,[filter_finding]
+	,[cnt_child]
+	,[family_setting_dcfs_cnt]
+	,[family_setting_private_agency_cnt]
+	,[relative_care]
+	,[group_inst_care_cnt]
+	)
+GO
+
 CREATE NONCLUSTERED INDEX [idx_ooh_pit_measures_wb_siblings] ON [prtl].[ooh_pit_measures] (
 	[county_cd]
 	,[fl_ooh_wb_siblings]
@@ -99,6 +151,35 @@ CREATE NONCLUSTERED INDEX [idx_ooh_pit_measures_wb_siblings] ON [prtl].[ooh_pit_
 	,[cd_race]
 	,[init_cd_plcm_setng]
 	,[long_cd_plcm_setng]
+	,[bin_dep_cd]
+	,[max_bin_los_cd]
+	,[bin_placement_cd]
+	,[bin_ihs_svc_cd]
+	,[cd_reporter_type]
+	,[filter_access_type]
+	,[filter_allegation]
+	,[filter_finding]
+	,[kincare]
+	,[bin_sibling_group_size]
+	,[cnt_child]
+	,[all_sib_together]
+	,[some_sib_together]
+	,[no_sib_together]
+	)
+GO
+
+CREATE NONCLUSTERED INDEX [idx_ooh_pit_measures_wb_siblings_2] ON [prtl].[ooh_pit_measures] (
+	[fl_ooh_wb_siblings]
+	) INCLUDE (
+	[qry_type]
+	,[date_type]
+	,[start_date]
+	,[age_grouping_cd_mix]
+	,[pk_gndr]
+	,[cd_race]
+	,[init_cd_plcm_setng]
+	,[long_cd_plcm_setng]
+	,[county_cd]
 	,[bin_dep_cd]
 	,[max_bin_los_cd]
 	,[bin_placement_cd]

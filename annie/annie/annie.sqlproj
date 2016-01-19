@@ -139,16 +139,9 @@
     <Build Include="prtl\Stored Procedures\import_ia_safety.sql" />
     <Build Include="prtl\Stored Procedures\sp_ia_safety.sql" />
     <Build Include="ref\Views\match_age_dev_cd.sql" />
-    <Build Include="ref\Views\match_age_grouping_cd.sql" />
     <Build Include="ref\Views\match_age_sib_group_cd.sql" />
-    <Build Include="ref\Views\match_cd_access_type.sql" />
-    <Build Include="ref\Views\match_cd_age_census.sql" />
-    <Build Include="ref\Views\match_cd_county.sql" />
-    <Build Include="ref\Views\match_cd_race_census.sql" />
     <Build Include="ref\Views\match_cd_region_six.sql" />
     <Build Include="ref\Views\match_cd_region_three.sql" />
-    <Build Include="ref\Views\match_cd_reporter_type.sql" />
-    <Build Include="ref\Views\match_pk_gender.sql" />
     <Build Include="ref\Tables\match_allegation.sql" />
     <Build Include="ref\Tables\match_finding.sql" />
     <Build Include="ref\Tables\numbers.sql" />
@@ -176,11 +169,6 @@
     <Build Include="ref\Tables\match_census_population.sql" />
     <Build Include="prtl\Stored Procedures\import_ooh_flow_entries.sql" />
     <Build Include="prtl\Stored Procedures\build_ooh_flow_entries_cache.sql" />
-    <Build Include="ref\Views\match_cd_placement_setting.sql" />
-    <Build Include="ref\Views\match_bin_los_cd.sql" />
-    <Build Include="ref\Views\match_bin_placement_cd.sql" />
-    <Build Include="ref\Views\match_bin_ihs_service_cd.sql" />
-    <Build Include="ref\Views\match_bin_dependency_cd.sql" />
     <Build Include="prtl\Stored Procedures\log_query_ooh_flow_entries.sql" />
     <Build Include="prtl\Tables\ooh_flow_entries_cache_query.sql" />
     <Build Include="prtl\Tables\ooh_flow_exits_cache_query.sql" />
@@ -217,6 +205,18 @@
     <Build Include="prtl\Stored Procedures\log_query_ooh_reentry.sql" />
     <Build Include="prtl\Stored Procedures\build_ooh_reentry_cache.sql" />
     <Build Include="prtl\Stored Procedures\sp_ooh_reentry.sql" />
+    <Build Include="ref\Tables\match_age_census_cd.sql" />
+    <Build Include="ref\Tables\match_age_grouping_cd.sql" />
+    <Build Include="ref\Tables\match_pk_gender.sql" />
+    <Build Include="ref\Tables\match_cd_race_census.sql" />
+    <Build Include="ref\Tables\match_cd_placement_setting.sql" />
+    <Build Include="ref\Tables\match_cd_county.sql" />
+    <Build Include="ref\Tables\match_bin_dependency_cd.sql" />
+    <Build Include="ref\Tables\match_bin_los_cd.sql" />
+    <Build Include="ref\Tables\match_bin_placement_cd.sql" />
+    <Build Include="ref\Tables\match_bin_ihs_service_cd.sql" />
+    <Build Include="ref\Tables\match_cd_reporter_type.sql" />
+    <Build Include="ref\Tables\match_cd_access_type.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="annie.refactorlog" />
