@@ -2932,6 +2932,8 @@
     <Build Include="rodis\Tables\birth_child_intake_removal.sql" />
     <Build Include="rodis\Stored Procedures\load_birth_intake_child_placement.sql" />
     <Build Include="rodis\Stored Procedures\load_birth_intake_child_removal.sql" />
+    <Build Include="rodis\Tables\xwalk_icd_9_to_10.sql" />
+    <Build Include="rodis\Tables\ICD9_injury_codes.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac">
