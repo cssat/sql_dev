@@ -29,7 +29,7 @@ begin
 		, max_date_yr=@max_date_yr
 		, max_date_qtr=dateadd(mm,-9,@max_date_Qtr)
 		,max_date_all=dateadd(yy,-4,DATEFROMPARTS(year(@max_date_Qtr),1,1))
-		where  [procedure_name] in ('sp_ooh_outcomes'	,'sp_ooh_reentry'	,'sp_ia_safety','sp_ihs_safety');
+		where  [procedure_name] in ('sp_ooh_outcomes','sp_ooh_reentry','sp_ia_safety','sp_ihs_safety');
 										
 
 	
@@ -38,7 +38,7 @@ begin
 		set max_date_all=@max_date_qtr_pit
 		, max_date_any=@max_date_qtr_pit
 		, max_date_qtr=@max_date_qtr_pit
-		, max_date_yr=@max_date_yr
+		, max_date_yr=@max_date_yr_pit
 		where [procedure_name] in ('sp_ooh_wb_familysettings','sp_ooh_wb_siblings','sp_ooh_pit_counts','sp_ooh_pit_rates','sp_ooh_wb_siblings_pvt');
 		
 										
@@ -47,15 +47,15 @@ begin
 		, max_date_any=@max_date_Qtr
 		, max_date_qtr=@max_date_Qtr
 		, max_date_yr=@max_date_yr
-		where [procedure_name] in ('sp_poc3_perCapita','sp_ihs_trends_counts','sp_ooh_flow_entries_counts','sp_ooh_flow_exits','sp_ooh_flow_entries_rates','sp_poc2_perCapita','sp_ihs_trends_rates');	
+		where [procedure_name] in ('sp_poc3_perCapita','sp_ihs_trends_counts','sp_ooh_flow_entries_counts','sp_ooh_flow_exits','sp_ooh_flow_entries_rates','sp_poc2_perCapita','sp_ihs_trends_rates','sp_ia_trends_counts','sp_ia_trends_rates');	
 
 		
-		update ref_lookup_max_date
-		set max_date_all=dateadd(mm,-3,@max_date_Qtr)
-		, max_date_any=dateadd(mm,-3,@max_date_Qtr)
-		, max_date_qtr=dateadd(mm,-3,@max_date_Qtr)
-		, max_date_yr=dateadd(yy,-1,datefromparts(year(@max_date_yr),1,1))
-		where [procedure_name] in ('sp_ia_trends_counts','sp_ia_trends_rates');
+		--update ref_lookup_max_date
+		--set max_date_all=dateadd(mm,-3,@max_date_Qtr)
+		--, max_date_any=dateadd(mm,-3,@max_date_Qtr)
+		--, max_date_qtr=dateadd(mm,-3,@max_date_Qtr)
+		--, max_date_yr=dateadd(yy,-1,datefromparts(year(@max_date_yr),1,1))
+		--where [procedure_name] in ('sp_ia_trends_counts','sp_ia_trends_rates');
 
 		
 		

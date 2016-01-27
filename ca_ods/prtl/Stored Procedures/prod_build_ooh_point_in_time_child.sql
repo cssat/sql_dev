@@ -23,10 +23,10 @@ begin
 
 		-- initialize variables
 		set @startDate='2000-01-01'
-		select @cutoff_date=cutoff_date from dbo.ref_Last_DW_Transfer
-		set @endDate=(select dateadd(dd,-1,[MONTH]) from dbo.CALENDAR_DIM where calendar_date=@cutoff_date)	
+		set @cutoff_date=(select cutoff_date from dbo.ref_Last_DW_Transfer)
 		set @last_qtr_end=(select [quarter] from dbo.CALENDAR_DIM where calendar_date=@cutoff_date)	
 		set @last_year_end=(select [year] from dbo.CALENDAR_DIM where calendar_date=@cutoff_date)	
+		set @endDate=(select max(max_last_end) from (select @last_qtr_end [max_last_end] union all select @last_year_end [max_last_end]) x)	
 				--first pull all episodes into a temp table to clean up dirty data
 		set @int_startDate=(select convert(varchar(8),@startDate,112));
 		set @int_endDate=(select convert(varchar(8),@endDate,112));

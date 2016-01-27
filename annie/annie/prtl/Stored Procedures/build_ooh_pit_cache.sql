@@ -299,7 +299,8 @@ BEGIN
 		INNER JOIN ref.match_cd_access_type mat ON mat.cd_access_type = p.cd_access_type
 		INNER JOIN ref.match_allegation ma ON ma.cd_allegation = p.cd_allegation
 		INNER JOIN ref.match_finding mf ON mf.cd_finding = p.cd_finding
-		INNER JOIN prtl.ooh_pit_measures ooh ON ooh.age_grouping_cd_census = mag.age_census_match_code
+		INNER JOIN prtl.ooh_pit_measures ooh ON ooh.fl_ooh_pit = 1
+			AND ooh.age_grouping_cd_census = mag.age_census_match_code
 			AND ooh.pk_gndr = mg.pk_gender_match_code
 			AND ooh.cd_race = mrc.race_census_match_code
 			AND ooh.init_cd_plcm_setng = ips.placement_setting_match_code
@@ -313,7 +314,6 @@ BEGIN
 			AND ooh.filter_access_type = mat.filter_access_type
 			AND ooh.filter_allegation = ma.filter_allegation
 			AND ooh.filter_finding = mf.filter_finding
-			AND ooh.fl_ooh_pit = 1
 		WHERE p.row_id = @row_id
 		GROUP BY ooh.qry_type
 			,ooh.date_type

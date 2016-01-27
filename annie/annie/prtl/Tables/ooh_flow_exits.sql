@@ -43,3 +43,27 @@ CREATE NONCLUSTERED INDEX [idx_ooh_flow_exits] ON [prtl].[ooh_flow_exits] (
 	,[cnt_exits]
 	)
 GO
+
+CREATE NONCLUSTERED INDEX [idx_ooh_flow_exits_county_cd] ON [prtl].[ooh_flow_exits] (
+	[county_cd]
+	) INCLUDE (
+	[qry_type]
+	,[date_type]
+	,[start_date]
+	,[age_grouping_cd]
+	,[pk_gndr]
+	,[cd_race]
+	,[init_cd_plcm_setng]
+	,[long_cd_plcm_setng]
+	,[bin_dep_cd]
+	,[max_bin_los_cd]
+	,[bin_placement_cd]
+	,[bin_ihs_svc_cd]
+	,[cd_reporter_type]
+	,[filter_access_type]
+	,[filter_allegation]
+	,[filter_finding]
+	,[cd_discharge_type]
+	,[cnt_exits]
+	)
+GO

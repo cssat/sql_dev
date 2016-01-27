@@ -44,6 +44,7 @@ CREATE NONCLUSTERED INDEX [idx_ooh_pit_cache] ON [prtl].[ooh_pit_cache] (
 	,[start_date]
 	) INCLUDE (
 	[qry_type]
+	,[cnt_start_date]
 	,[jit_start_date]
 	,[rate_start_date]
 	,[fl_include_perCapita]

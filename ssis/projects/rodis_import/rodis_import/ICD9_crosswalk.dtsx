@@ -1,0 +1,586 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/19/2016 10:55:40 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MXL2230QJY"
+  DTS:CreatorName="NEBULA2\briwais"
+  DTS:Description="SSIS Package Description"
+  DTS:DTSID="{9D1AC107-E7DE-4BEE-BF92-DE3E44F01872}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.6020.0"
+  DTS:LocaleID="1033"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="ICD9_crosswalk"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{3CA0A3C9-2882-42AB-8CAF-34C3EBEB325D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ca_ods]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{3A8E4024-E3AE-44D0-B932-706ABB7E8FB6}"
+      DTS:ObjectName="ca_ods">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=POC2;Initial Catalog=CA_ODS;Provider=SQLNCLI11;Integrated Security=SSPI;Auto Translate=false;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[icd_9_crosswalk.csv]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{BAA9C195-32B8-4525-A493-BB74D6339A61}"
+      DTS:ObjectName="icd_9_crosswalk.csv">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\poc2\pocshare\rodis\icd_9_crosswalk.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ICD_9_code"
+              DTS:DTSID="{0EB43D43-EEED-418D-B5A5-C693F419C3E0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="EPH_intentional"
+              DTS:DTSID="{4154983E-B645-4FCB-B4CC-0AD77C07CF4B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="EPH_unintentional"
+              DTS:DTSID="{07AF6EAB-CA61-4B5E-B0DB-F68E8D01A84D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="EPH_undetermined"
+              DTS:DTSID="{910A9597-7049-44F6-8627-AC1B667CAF4A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="EPH_all_injury"
+              DTS:DTSID="{0176F290-8C76-4B21-9A2F-424CFF80C50E}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Import icd_9_crosswalk"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{7173FF1D-0823-4051-B5BB-7420E825D23A}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import icd_9_crosswalk"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          defaultBufferSize="3145728"
+          version="1">
+          <components>
+            <component
+              refId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Destination - ICD9_injury_codes"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[rodis].[ICD9_injury_codes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ca_ods]"
+                  connectionManagerRefId="Package.ConnectionManagers[ca_ods]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Inputs[Destination Input].Columns[ICD_9_code]"
+                      cachedDataType="i4"
+                      cachedName="ICD_9_code"
+                      externalMetadataColumnId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Inputs[Destination Input].ExternalColumns[ICD_9_code]"
+                      lineageId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].Columns[ICD_9_code]" />
+                    <inputColumn
+                      refId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Inputs[Destination Input].Columns[EPH_intentional]"
+                      cachedDataType="i2"
+                      cachedName="EPH_intentional"
+                      externalMetadataColumnId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Inputs[Destination Input].ExternalColumns[EPH_intentional]"
+                      lineageId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].Columns[EPH_intentional]" />
+                    <inputColumn
+                      refId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Inputs[Destination Input].Columns[EPH_unintentional]"
+                      cachedDataType="i2"
+                      cachedName="EPH_unintentional"
+                      externalMetadataColumnId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Inputs[Destination Input].ExternalColumns[EPH_unintentional]"
+                      lineageId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].Columns[EPH_unintentional]" />
+                    <inputColumn
+                      refId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Inputs[Destination Input].Columns[EPH_undetermined]"
+                      cachedDataType="i2"
+                      cachedName="EPH_undetermined"
+                      externalMetadataColumnId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Inputs[Destination Input].ExternalColumns[EPH_undetermined]"
+                      lineageId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].Columns[EPH_undetermined]" />
+                    <inputColumn
+                      refId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Inputs[Destination Input].Columns[EPH_all_injury]"
+                      cachedDataType="i2"
+                      cachedName="EPH_all_injury"
+                      externalMetadataColumnId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Inputs[Destination Input].ExternalColumns[EPH_all_injury]"
+                      lineageId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].Columns[EPH_all_injury]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Inputs[Destination Input].ExternalColumns[ICD_9_code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ICD_9_code" />
+                    <externalMetadataColumn
+                      refId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Inputs[Destination Input].ExternalColumns[EPH_intentional]"
+                      dataType="i2"
+                      name="EPH_intentional" />
+                    <externalMetadataColumn
+                      refId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Inputs[Destination Input].ExternalColumns[EPH_unintentional]"
+                      dataType="i2"
+                      name="EPH_unintentional" />
+                    <externalMetadataColumn
+                      refId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Inputs[Destination Input].ExternalColumns[EPH_undetermined]"
+                      dataType="i2"
+                      name="EPH_undetermined" />
+                    <externalMetadataColumn
+                      refId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Inputs[Destination Input].ExternalColumns[EPH_all_injury]"
+                      dataType="i2"
+                      name="EPH_all_injury" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv"
+              componentClassID="{D23FD76B-F51D-420F-BBCB-19CBF6AC1AB4}"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="Source - icd_9_crosswalk_csv"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[icd_9_crosswalk.csv]"
+                  connectionManagerRefId="Package.ConnectionManagers[icd_9_crosswalk.csv]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].Columns[ICD_9_code]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].ExternalColumns[ICD_9_code]"
+                      lineageId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].Columns[ICD_9_code]"
+                      name="ICD_9_code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].Columns[EPH_intentional]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].ExternalColumns[EPH_intentional]"
+                      lineageId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].Columns[EPH_intentional]"
+                      name="EPH_intentional"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].Columns[EPH_unintentional]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].ExternalColumns[EPH_unintentional]"
+                      lineageId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].Columns[EPH_unintentional]"
+                      name="EPH_unintentional"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].Columns[EPH_undetermined]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].ExternalColumns[EPH_undetermined]"
+                      lineageId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].Columns[EPH_undetermined]"
+                      name="EPH_undetermined"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].Columns[EPH_all_injury]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].ExternalColumns[EPH_all_injury]"
+                      lineageId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].Columns[EPH_all_injury]"
+                      name="EPH_all_injury"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].ExternalColumns[ICD_9_code]"
+                      dataType="i4"
+                      name="ICD_9_code" />
+                    <externalMetadataColumn
+                      refId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].ExternalColumns[EPH_intentional]"
+                      dataType="i2"
+                      name="EPH_intentional" />
+                    <externalMetadataColumn
+                      refId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].ExternalColumns[EPH_unintentional]"
+                      dataType="i2"
+                      name="EPH_unintentional" />
+                    <externalMetadataColumn
+                      refId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].ExternalColumns[EPH_undetermined]"
+                      dataType="i2"
+                      name="EPH_undetermined" />
+                    <externalMetadataColumn
+                      refId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output].ExternalColumns[EPH_all_injury]"
+                      dataType="i2"
+                      name="EPH_all_injury" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Import icd_9_crosswalk.Paths[Flat File Source Output]"
+              endId="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes.Inputs[Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate ICD9_injury_codes"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:DTSID="{0C2BD7DF-80F5-4B5F-859F-85DC6F9D185A}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate ICD9_injury_codes"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3A8E4024-E3AE-44D0-B932-706ABB7E8FB6}"
+          SQLTask:SqlStatementSource="IF OBJECT_ID('rodis.ICD9_injury_codes') IS NOT NULL&#xA;TRUNCATE TABLE rodis.ICD9_injury_codes&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[{EFFF0323-50E5-4723-B246-E326E12A6F57\}]"
+      DTS:CreationName=""
+      DTS:DTSID="{EFFF0323-50E5-4723-B246-E326E12A6F57}"
+      DTS:From="Package\Truncate ICD9_injury_codes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="{EFFF0323-50E5-4723-B246-E326E12A6F57}"
+      DTS:To="Package\Import icd_9_crosswalk" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Import icd_9_crosswalk"
+          TopLeft="44.5,106.5" />
+        <NodeLayout
+          Size="213,42"
+          Id="Package\Truncate ICD9_injury_codes"
+          TopLeft="25.5,7.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[{EFFF0323-50E5-4723-B246-E326E12A6F57\}]"
+          TopLeft="135.75,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57"
+              Start="0,0"
+              End="0,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Import icd_9_crosswalk">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="218,42"
+          Id="Package\Import icd_9_crosswalk\Source - icd_9_crosswalk_csv"
+          TopLeft="12,5.5" />
+        <NodeLayout
+          Size="231,42"
+          Id="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes"
+          TopLeft="5.50000000000003,124.5" />
+        <EdgeLayout
+          Id="Package\Import icd_9_crosswalk.Paths[Flat File Source Output]"
+          TopLeft="121,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,77"
+              Start="0,0"
+              End="0,69.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,69.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import icd_9_crosswalk\Destination - ICD9_injury_codes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

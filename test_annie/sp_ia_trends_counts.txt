@@ -431,73 +431,71 @@ SELECT
                         end
                     else (poc2ab.cnt_opened) 
             end as  "Opened Investigations & Assessments"
-        ,(case when
-            (
-                (case when poc2ab.cnt_start_date > 0 /* jitter all above 0 */  
-                    then 
-                        case when round(poc2ab.cnt_start_date + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0)  < 1
-                        then 1
-                        else round(poc2ab.cnt_start_date + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0) 
-                        end
-                    else poc2ab.cnt_start_date
-                    end)		
-                + --  opened
-                (case when (poc2ab.cnt_opened) > 0 /* jitter all above 0 */  
-                    then 
-                        case when round((poc2ab.cnt_opened) + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0)  < 1
-                        then 1
-                        else round((poc2ab.cnt_opened) + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0) 
-                        end
-                    else (poc2ab.cnt_opened) 
-                end))
-                <  --  closed
-                (case when (poc2ab.cnt_closed) > 0 /* jitter all above 0 */  
-                    then 
-                        case when round(poc2ab.cnt_closed + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0)  < 1
-                        then 1
-                        else round(poc2ab.cnt_closed + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0) 
-                        end
-                    else (poc2ab.cnt_closed) 
-                        end)
-        then -- use first day plus opened
-            (
-                (case when poc2ab.cnt_start_date > 0 /* jitter all above 0 */  
-                    then 
-                        case when round(poc2ab.cnt_start_date + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0)  < 1
-                        then 1
-                        else round(poc2ab.cnt_start_date + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0) 
-                        end
-                    else poc2ab.cnt_start_date
-                    end)		
-                + --  opened
-                (case when (poc2ab.cnt_opened) > 0 /* jitter all above 0 */  
-                    then 
-                        case when round((poc2ab.cnt_opened) + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0)  < 1
-                        then 1
-                        else round((poc2ab.cnt_opened) + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0) 
-                        end
-                    else (poc2ab.cnt_opened) 
-                end))
-        else -- use exits
-                    (case when (poc2ab.cnt_closed) > 0 /* jitter all above 0 */  
-                    then 
-                        case when round(poc2ab.cnt_closed + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0)  < 1
-                        then 1
-                        else round(poc2ab.cnt_closed + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0) 
-                        end
-                    else (poc2ab.cnt_closed) 
-                        end)
-        end) as  "Closed Investigations & Assessments"
-    from cache_poc2ab_aggr poc2ab
-   join cachekeys ck on ck.qry_id=poc2ab.qry_id
-   and ck.int_hash_key=poc2ab.int_all_param_key
+--        ,(case when
+--            (
+--                (case when poc2ab.cnt_start_date > 0 /* jitter all above 0 */  
+--                    then 
+--                        case when round(poc2ab.cnt_start_date + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0)  < 1
+--                        then 1
+--                        else round(poc2ab.cnt_start_date + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0) 
+--                        end
+--                    else poc2ab.cnt_start_date
+--                    end)		
+--                + --  opened
+--                (case when (poc2ab.cnt_opened) > 0 /* jitter all above 0 */  
+--                    then 
+--                        case when round((poc2ab.cnt_opened) + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0)  < 1
+--                        then 1
+--                        else round((poc2ab.cnt_opened) + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0) 
+--                        end
+--                    else (poc2ab.cnt_opened) 
+--                end))
+--                <  --  closed
+--                (case when (poc2ab.cnt_closed) > 0 /* jitter all above 0 */  
+--                    then 
+--                        case when round(poc2ab.cnt_closed + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0)  < 1
+--                        then 1
+--                        else round(poc2ab.cnt_closed + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0) 
+--                        end
+--                    else (poc2ab.cnt_closed) 
+--                        end)
+--        then -- use first day plus opened
+--            (
+--                (case when poc2ab.cnt_start_date > 0 /* jitter all above 0 */  
+--                    then 
+--                        case when round(poc2ab.cnt_start_date + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0)  < 1
+--                        then 1
+--                        else round(poc2ab.cnt_start_date + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0) 
+--                        end
+--                    else poc2ab.cnt_start_date
+--                    end)		
+--                + --  opened
+--                (case when (poc2ab.cnt_opened) > 0 /* jitter all above 0 */  
+--                    then 
+--                        case when round((poc2ab.cnt_opened) + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0)  < 1
+--                        then 1
+--                        else round((poc2ab.cnt_opened) + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0) 
+--                        end
+--                    else (poc2ab.cnt_opened) 
+--                end))
+--        else -- use exits
+--                    (case when (poc2ab.cnt_closed) > 0 /* jitter all above 0 */  
+--                    then 
+--                        case when round(poc2ab.cnt_closed + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0)  < 1
+--                        then 1
+--                        else round(poc2ab.cnt_closed + (2 * sqrt(-2 * log(poc2ab.x1)) * cos(2*pi()*poc2ab.x2)),0) 
+--                        end
+--                    else (poc2ab.cnt_closed) 
+--                        end)
+--        end) as  "Closed Investigations & Assessments"
+   from cache_poc2ab_aggr poc2ab
+   join cachekeys ck on ck.qry_id=poc2ab.qry_id and ck.int_hash_key=poc2ab.int_all_param_key
    join ref_lookup_sib_age_grp ref_age on ref_age.cd_sib_age_grp=poc2ab.cd_sib_age_grp
-            join ref_lookup_county_all ref_cnty on ref_cnty.county_cd=poc2ab.cd_county
-            join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=poc2ab.cd_reporter_type
-            join ref_filter_access_type ref_acc on ref_acc.cd_access_type=poc2ab.cd_access_type
-            where poc2ab.start_date 
-            between p_mindate and case when poc2ab.date_type = 2 then p_maxdateyear else p_maxdate end
-            order by qry_type,date_type,start_date,poc2ab.cd_sib_age_grp 
+   join ref_lookup_county_all ref_cnty on ref_cnty.county_cd=poc2ab.cd_county
+   join ref_filter_reporter_type ref_rpt on ref_rpt.cd_reporter_type=poc2ab.cd_reporter_type
+   join ref_filter_access_type ref_acc on ref_acc.cd_access_type=poc2ab.cd_access_type
+   where poc2ab.start_date between p_mindate and case when poc2ab.date_type = 2 then p_maxdateyear else p_maxdate end
+   order by qry_type,date_type,start_date,poc2ab.cd_sib_age_grp 
             ,poc2ab.cd_race
             ,poc2ab.cd_county
             ,poc2ab.cd_reporter_type
