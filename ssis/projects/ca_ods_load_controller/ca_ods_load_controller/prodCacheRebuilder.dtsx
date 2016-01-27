@@ -7,12 +7,12 @@
   DTS:CreatorName="NEBULA2\schmitzr"
   DTS:DTSID="{41FCDD82-90EC-41C8-836D-2D252BA6D474}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="11.0.5058.0"
+  DTS:LastModifiedProductVersion="11.0.6020.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="prodCacheRebuilder"
   DTS:PackageType="5"
-  DTS:VersionBuild="127"
-  DTS:VersionGUID="{485CD52D-AB57-40B8-BBA2-71016BE2F683}">
+  DTS:VersionBuild="139"
+  DTS:VersionGUID="{03DAD98C-68E6-49D9-BAF5-1E5DBF77ED12}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -27,7 +27,7 @@
           <DTS:Password
             DTS:Name="password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ5ilx/FcoUyXVl0NvOaI8AAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAC2HazQN4NpnUqjsNVXWMoSAAAAAASAAACgAAAAEAAAAHIskTWG4ene5Hd8jZKw1nwYAAAAA9K++AxPKIuXh3MXMH+UHirRCgtO+m++FAAAAGAmUvHRPddft1BtChqnhs02Cu6/</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqpVdp1Q3+UeTJQQiFJCvmwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAB6Wz5B0b5bbCWDGuSK+11+AAAAAASAAACgAAAAEAAAAKIB6AYLUZb8deTSiEi+1ecYAAAAgvB1FBDF/2RQFrD69pSdlC6Bikty3imQFAAAABlqDdeuiBKikOnW9iyOssd/Q/90</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -899,6 +899,7 @@
       DTS:refId="Package\build ihs_safety"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
+      DTS:Disabled="True"
       DTS:DTSID="{2C807C4F-8811-46B2-B1D8-C9487D8EB6D3}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -2837,7 +2838,6 @@
       DTS:refId="Package\build ooh_pit"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:Disabled="True"
       DTS:DTSID="{28D25D93-F1E3-4C4F-9582-57886A904128}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -4624,9 +4624,9 @@
             </SQLTask:SqlTaskData>
           </DTS:ObjectData>
         </DTS:Executable>
-  </DTS:Executables>
-  <DTS:PrecedenceConstraints>
-    <DTS:PrecedenceConstraint
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
           DTS:refId="Package\take ia query history snapshot.PrecedenceConstraints[Constraint]"
           DTS:CreationName=""
           DTS:DTSID="{9E0CC87C-8D06-4E4D-86DD-D52C5A6B2B6D}"

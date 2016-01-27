@@ -7,12 +7,12 @@
   DTS:CreatorName="NEBULA2\messej"
   DTS:DTSID="{6170B723-D340-4FCF-8B21-5E48A464FB39}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="11.0.5058.0"
+  DTS:LastModifiedProductVersion="11.0.6020.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="buildPortalTables"
   DTS:PackageType="5"
-  DTS:VersionBuild="189"
-  DTS:VersionGUID="{70606B0E-6C2E-4927-90E5-EA02EF6FB32D}">
+  DTS:VersionBuild="193"
+  DTS:VersionGUID="{763CF822-8EC7-4009-8DFF-5C1BECC5F4A0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -32,7 +32,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="P:\Data Portal\data\backup_portal_tables\20151120\ooh_dcfs_eps.txt">
+          DTS:ConnectionString="P:\Data Portal\data\backup_portal_tables\20160125\ooh_dcfs_eps.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -614,7 +614,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="P:\Data Portal\data\backup_portal_tables\20151120\ooh_point_in_time_child.txt">
+          DTS:ConnectionString="P:\Data Portal\data\backup_portal_tables\20160125\ooh_point_in_time_child.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -972,7 +972,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="dir">
       <DTS:VariableValue
-        DTS:DataType="8">P:\Data Portal\data\backup_portal_tables\20151120\</DTS:VariableValue>
+        DTS:DataType="8">P:\Data Portal\data\backup_portal_tables\20160125\</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -5185,11 +5185,11 @@
         <NodeLayout
           Size="180,44"
           Id="Package\build PRTL_POC1AB"
-          TopLeft="30.5,472.646254176319" />
+          TopLeft="30.5,473.646254176319" />
         <NodeLayout
           Size="162,42"
           Id="Package\build PRTL_POC2"
-          TopLeft="40.462264150943,573.400971157451" />
+          TopLeft="40.462264150943,574.400971157451" />
         <NodeLayout
           Size="162,42"
           Id="Package\build PRTL_POC3"
@@ -5292,14 +5292,14 @@
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,75.716981132075"
+              EndConnector="0,76.716981132075"
               Start="0,0"
-              End="0,68.216981132075">
+              End="0,69.216981132075">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,68.216981132075" />
+                    End="0,69.216981132075" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5310,7 +5310,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 19]"
-          TopLeft="120.981132075472,516.646254176319">
+          TopLeft="120.981132075472,517.646254176319">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -5332,18 +5332,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="121.191641082757,615.400971157451">
+          TopLeft="121.191641082757,616.400971157451">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,47.5154906955701"
+              EndConnector="0,46.5154906955701"
               Start="0,0"
-              End="0,40.0154906955701">
+              End="0,39.0154906955701">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,40.0154906955701" />
+                    End="0,39.0154906955701" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5422,7 +5422,7 @@
     design-time-name="Package\drop oof_dcfs_eps">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="152,42"
           Id="Package\drop oof_dcfs_eps\OLE DB Source"
@@ -5462,7 +5462,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5485,15 +5487,15 @@
     design-time-name="Package\drop ooh_point_in_time_child">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="152,42"
-          Id="Package\drop ooh_point_in_time_child\OLE DB Source"
-          TopLeft="192,249" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="174,42"
           Id="Package\drop ooh_point_in_time_child\Flat File Destination"
           TopLeft="249,463" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\drop ooh_point_in_time_child\OLE DB Source"
+          TopLeft="192,249" />
         <EdgeLayout
           Id="Package\drop ooh_point_in_time_child.Paths[OLE DB Source Output]"
           TopLeft="268,291">
@@ -5525,7 +5527,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
