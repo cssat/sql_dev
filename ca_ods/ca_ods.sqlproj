@@ -2928,12 +2928,14 @@
     <Build Include="prtl\Tables\ooh_query_history.sql" />
     <Build Include="dbo\Tables\ref_match_srvc_type_budget.sql" />
     <Build Include="Security\retention.sql" />
-    <Build Include="rodis\Tables\birth_child_intake_placement.sql" />
     <Build Include="rodis\Tables\birth_child_intake_removal.sql" />
-    <Build Include="rodis\Stored Procedures\load_birth_intake_child_placement.sql" />
     <Build Include="rodis\Stored Procedures\load_birth_intake_child_removal.sql" />
-    <Build Include="rodis\Tables\xwalk_icd_9_to_10.sql" />
-    <Build Include="rodis\Tables\ICD9_injury_codes.sql" />
+    <Build Include="rodis\Stored Procedures\load_birth_child_hospital.sql" />
+    <Build Include="rodis\Tables\birth_child_hospital.sql" />
+    <Build Include="rodis\Tables\birth_child_death.sql" />
+    <Build Include="rodis\Stored Procedures\load_birth_child_death.sql" />
+    <Build Include="rodis\Stored Procedures\load_xwalk_icd_10_to_eph.sql" />
+    <Build Include="rodis\Tables\xwalk_icd_10_to_eph.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac">
