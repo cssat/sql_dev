@@ -1,11 +1,16 @@
-﻿
-create function [dbo].[lessorDate](@date1 as datetime,@date2 as datetime)
-returns datetime
-as
-begin
-	declare @myDate datetime;
-	if @date1 <=@date2  set @myDate= @date1
-	else set @myDate= @date2;
-	
-	return @myDate;
-end
+﻿CREATE FUNCTION [dbo].[lessorDate] (
+	@date1 AS DATETIME
+	,@date2 AS DATETIME
+	)
+RETURNS DATETIME
+AS
+BEGIN
+	DECLARE @myDate DATETIME;
+
+	IF @date1 <= @date2
+		SET @myDate = @date1
+	ELSE
+		SET @myDate = @date2;
+
+	RETURN @myDate;
+END

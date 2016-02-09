@@ -1,7 +1,4 @@
-﻿
-----    exec prtl.prod_build_rate_referrals_order_specific @debug = 0
-
-CREATE procedure [prtl].[prod_build_rate_referrals_order_specific] (@debug smallint = 0)
+﻿CREATE procedure [prtl].[prod_build_rate_referrals_order_specific] (@debug smallint = 0)
 as
 
 	if OBJECT_ID('tempDB..#referrals') is not null drop table #referrals;
@@ -123,18 +120,17 @@ order by refC.county_cd,mnth.[MONTH],n.nth_order
 --select * from prtl.rate_referrals_order_specific order by county_cd,start_date,nth_order
 
 
-	IF @debug = 1
-	begin
-		IF OBJECT_ID (N'debug.referrals_nthOrderAtRiskHH', N'U') IS NOT NULL
-			DROP TABLE debug.referrals_nthOrderAtRiskHH;
+	--IF @debug = 1
+	--begin
+	--	IF OBJECT_ID (N'debug.referrals_nthOrderAtRiskHH', N'U') IS NOT NULL
+	--		DROP TABLE debug.referrals_nthOrderAtRiskHH;
 
-		select * into debug.referrals_nthOrderAtRiskHH 
-		from #nthOrderAtRiskHH;
+	--	select * into debug.referrals_nthOrderAtRiskHH 
+	--	from #nthOrderAtRiskHH;
 
-		IF OBJECT_ID (N'debug.referrals_referrals', N'U') IS NOT NULL
-			DROP TABLE debug.referrals_referrals;
+	--	IF OBJECT_ID (N'debug.referrals_referrals', N'U') IS NOT NULL
+	--		DROP TABLE debug.referrals_referrals;
 
-		select * into debug.referrals_referrals 
-		from #referrals;
-	end
-
+	--	select * into debug.referrals_referrals 
+	--	from #referrals;
+	--end

@@ -1,5 +1,4 @@
-﻿
-CREATE PROCEDURE [base].[prod_build_tbls_ihs_episode_services](@permission_key datetime, @debug smallint = 0)
+﻿CREATE PROCEDURE [base].[prod_build_tbls_ihs_episode_services](@permission_key datetime, @debug smallint = 0)
 as 
 
 if @permission_key=(select cutoff_date from ref_last_DW_transfer)
@@ -245,8 +244,8 @@ begin
 	  order by af.ID_CASE,inf.id_intake_fact,[ihs_begin_date],[ihs_end_date]
 
 
-	  if object_id('debug.ih_assgn_all_1') is not null drop table debug.ih_assgn_all_1;
-	  if @debug = 1 select * into debug.ih_assgn_all_1 from #ih_assgn_all
+	  --if object_id('debug.ih_assgn_all_1') is not null drop table debug.ih_assgn_all_1;
+	  --if @debug = 1 select * into debug.ih_assgn_all_1 from #ih_assgn_all
 
 
 	  -- only want one intake per assignment
@@ -263,8 +262,8 @@ begin
 			and q.ID_INTAKE_FACT <> ih.ID_INTAKE_FACT
 			and q.row_num=1
 
-		if object_id('debug.ih_assgn_all_2') is not null drop table debug.ih_assgn_all_2;
-		if @debug = 1 select * into debug.ih_assgn_all_2 from #ih_assgn_all
+		--if object_id('debug.ih_assgn_all_2') is not null drop table debug.ih_assgn_all_2;
+		--if @debug = 1 select * into debug.ih_assgn_all_2 from #ih_assgn_all
 
 
 	  -- BEGIN DELETE THOSE WITH OVERLAPPING OUT OF HOME CARE ------------------------------------------------------
@@ -281,8 +280,8 @@ begin
 		-- and state_custody_start_date < ihs_end_date
 
 
-		if object_id('debug.ih_assgn_all_3') is not null drop table debug.ih_assgn_all_3;
-		if @debug = 1 select * into debug.ih_assgn_all_3 from #ih_assgn_all
+		--if object_id('debug.ih_assgn_all_3') is not null drop table debug.ih_assgn_all_3;
+		--if @debug = 1 select * into debug.ih_assgn_all_3 from #ih_assgn_all
 
 		delete ihs
 		--select id_prsn_child,ihs.ihs_begin_date,ihs.ihs_end_date,tce.state_custody_start_date,tce.federal_discharge_date
@@ -292,8 +291,8 @@ begin
 		and isnull(tce.federal_discharge_date,'12/31/3999') >=ihs.ihs_begin_date 
 
 
-		if object_id('debug.ih_assgn_all_4') is not null drop table debug.ih_assgn_all_4;
-		if @debug = 1 select * into debug.ih_assgn_all_4 from #ih_assgn_all
+		--if object_id('debug.ih_assgn_all_4') is not null drop table debug.ih_assgn_all_4;
+		--if @debug = 1 select * into debug.ih_assgn_all_4 from #ih_assgn_all
 				
 		update ihs
 		set ihs_end_date=state_custody_start_date
@@ -308,8 +307,8 @@ begin
 		-- and state_custody_start_date < ihs_end_date
 
 
-		if object_id('debug.ih_assgn_all_5') is not null drop table debug.ih_assgn_all_5;
-		if @debug = 1 select * into debug.ih_assgn_all_5 from #ih_assgn_all
+		--if object_id('debug.ih_assgn_all_5') is not null drop table debug.ih_assgn_all_5;
+		--if @debug = 1 select * into debug.ih_assgn_all_5 from #ih_assgn_all
 
 		delete ihs
 		from #ih_assgn_all ihs  
@@ -1032,8 +1031,8 @@ join (
 			,pay.srvc_dt_begin ) q on q.id_case = ihall.id_case and q.srvc_dt_begin=ihall.srvc_dt_begin
 
 
-		if object_id('debug.ihs_pay_srvc_all_12') is not null drop table debug.ihs_pay_srvc_all_12;
-		if @debug = 1 select * into debug.ihs_pay_srvc_all_12 from #ihs_pay_srvc_all
+		--if object_id('debug.ihs_pay_srvc_all_12') is not null drop table debug.ihs_pay_srvc_all_12;
+		--if @debug = 1 select * into debug.ihs_pay_srvc_all_12 from #ihs_pay_srvc_all
 
 
 		update IHALL
@@ -1052,8 +1051,8 @@ join (
 		and q.srvc_dt_end=ihall.srvc_dt_end
 
  	
-		if object_id('debug.ihs_pay_srvc_all_13') is not null drop table debug.ihs_pay_srvc_all_13;
-		if @debug = 1 select * into debug.ihs_pay_srvc_all_13 from #ihs_pay_srvc_all
+		--if object_id('debug.ihs_pay_srvc_all_13') is not null drop table debug.ihs_pay_srvc_all_13;
+		--if @debug = 1 select * into debug.ihs_pay_srvc_all_13 from #ihs_pay_srvc_all
 	
 /***************************************************  FINAL TABLE **************************************************************/
 
@@ -1079,8 +1078,8 @@ join (
 				alter table #tbl_ihs_episodes
 				add primary key (id_case,ihs_begin_date)
 
-				if object_id('debug.tbl_ihs_episodes_1') is not null drop table debug.tbl_ihs_episodes_1; 		
-				if @debug = 1 select * into debug.tbl_ihs_episodes_1 from #tbl_ihs_episodes 
+				--if object_id('debug.tbl_ihs_episodes_1') is not null drop table debug.tbl_ihs_episodes_1; 		
+				--if @debug = 1 select * into debug.tbl_ihs_episodes_1 from #tbl_ihs_episodes 
 
 
 				CREATE NONCLUSTERED INDEX idx_temp_case_id_inc_dates
@@ -1321,8 +1320,8 @@ join (
 				and srvc_dt_end >=ihs.ihs_begin_date
 			where eps.id_case is null and ihs.id_case is not null
 
-			if object_id('debug.ihs_pay_srvc_all_14') is not null drop table debug.ihs_pay_srvc_all_14;
-			if @debug = 1 select * into debug.ihs_pay_srvc_all_14 from #ihs_pay_srvc_all
+			--if object_id('debug.ihs_pay_srvc_all_14') is not null drop table debug.ihs_pay_srvc_all_14;
+			--if @debug = 1 select * into debug.ihs_pay_srvc_all_14 from #ihs_pay_srvc_all
 
 
 			if object_id('tempDB..#tbl_both') is not null drop table #tbl_both;
@@ -1404,8 +1403,8 @@ join (
 				) X
 				group by id_case, NewStartDateGroup ) qry
 
-			if object_id('debug.tbl_both_1') is not null drop table debug.tbl_both_1;
-			if @debug = 1 select * into debug.tbl_both_1 from #tbl_both
+			--if object_id('debug.tbl_both_1') is not null drop table debug.tbl_both_1;
+			--if @debug = 1 select * into debug.tbl_both_1 from #tbl_both
 		
 
 			update bth
@@ -1434,8 +1433,8 @@ join (
 			join #tmp_eps ihs on bth.id_case=ihs.id_case
 					and ihs.ihs_begin_date = bth.ihs_begin_date 
 
-			if object_id('debug.tbl_both_2') is not null drop table debug.tbl_both_2;
-			if @debug = 1 select * into debug.tbl_both_2 from #tbl_both
+			--if object_id('debug.tbl_both_2') is not null drop table debug.tbl_both_2;
+			--if @debug = 1 select * into debug.tbl_both_2 from #tbl_both
 
 			update bth
 			set 		
@@ -1461,8 +1460,8 @@ join (
 			and bth.ihs_end_date=q.ihs_end_date
 
 
-			if object_id('debug.tbl_both_3') is not null drop table debug.tbl_both_3;
-			if @debug = 1 select * into debug.tbl_both_3 from #tbl_both
+			--if object_id('debug.tbl_both_3') is not null drop table debug.tbl_both_3;
+			--if @debug = 1 select * into debug.tbl_both_3 from #tbl_both
 
 
 			update bth
@@ -1478,8 +1477,8 @@ join (
 			join #tmp_srvc srvc on srvc.id_case=bth.id_case and srvc.srvc_dt_begin=bth.ihs_begin_date
 			where bth.ID_INTAKE_FACT is null
 
-			if object_id('debug.tbl_both_4') is not null drop table debug.tbl_both_4;
-			if @debug = 1 select * into debug.tbl_both_4 from #tbl_both
+			--if object_id('debug.tbl_both_4') is not null drop table debug.tbl_both_4;
+			--if @debug = 1 select * into debug.tbl_both_4 from #tbl_both
 		
 
 			update bth
@@ -1554,15 +1553,15 @@ join (
 		and q.ihs_end_date=bth.ihs_end_date
 
 
-		if object_id('debug.tbl_both_5') is not null drop table debug.tbl_both_5;
-		if @debug = 1 select * into debug.tbl_both_5 from #tbl_both
+		--if object_id('debug.tbl_both_5') is not null drop table debug.tbl_both_5;
+		--if @debug = 1 select * into debug.tbl_both_5 from #tbl_both
 
 
 		insert into #tbl_ihs_episodes
 		select * from #tbl_both
 
-		if object_id('debug.tbl_ihs_episodes_5') is not null drop table debug.tbl_ihs_episodes_5; 		
-		if @debug = 1 select * into debug.tbl_ihs_episodes_5 from #tbl_ihs_episodes 
+		--if object_id('debug.tbl_ihs_episodes_5') is not null drop table debug.tbl_ihs_episodes_5; 		
+		--if @debug = 1 select * into debug.tbl_ihs_episodes_5 from #tbl_ihs_episodes 
 
 			--select * from #ihs_pay_srvc_all pay
 			--left join #tbl_ihs_episodes eps on pay.id_case=eps.id_case
@@ -1577,8 +1576,8 @@ join (
 			join (select row_number()  over (partition by id_case order by ihs_begin_date,ihs_end_date) as row_num,*
 					from #tbl_ihs_episodes) q on q.id_case=eps.id_case and q.ihs_begin_date=eps.ihs_begin_date and q.id_table_origin=eps.id_table_origin and q.max_id_table_origin=eps.max_id_table_origin
 
-		if object_id('debug.tbl_ihs_episodes_6') is not null drop table debug.tbl_ihs_episodes_6; 		
-		if @debug = 1 select * into debug.tbl_ihs_episodes_6 from #tbl_ihs_episodes 
+		--if object_id('debug.tbl_ihs_episodes_6') is not null drop table debug.tbl_ihs_episodes_6; 		
+		--if @debug = 1 select * into debug.tbl_ihs_episodes_6 from #tbl_ihs_episodes 
 
 			update eps
 			set id_ihs_episode=q.row_num
@@ -1589,8 +1588,8 @@ join (
 					and q.id_table_origin=eps.id_table_origin 
 					and q.max_id_table_origin=eps.max_id_table_origin
 
-		if object_id('debug.tbl_ihs_episodes_7') is not null drop table debug.tbl_ihs_episodes_7; 		
-		if @debug = 1 select * into debug.tbl_ihs_episodes_7 from #tbl_ihs_episodes 
+		--if object_id('debug.tbl_ihs_episodes_7') is not null drop table debug.tbl_ihs_episodes_7; 		
+		--if @debug = 1 select * into debug.tbl_ihs_episodes_7 from #tbl_ihs_episodes 
 
 			update dtl
 			set id_ihs_episode = null
@@ -1603,8 +1602,8 @@ join (
 				and dtl.srvc_dt_begin between eps.ihs_begin_date and eps.ihs_end_date
 				and dtl.srvc_dt_end between eps.ihs_begin_date and eps.ihs_end_date
 
-		if object_id('debug.ihs_pay_srvc_all_14') is not null drop table debug.ihs_pay_srvc_all_14;
-		if @debug = 1 select * into debug.ihs_pay_srvc_all_14 from #ihs_pay_srvc_all
+		--if object_id('debug.ihs_pay_srvc_all_14') is not null drop table debug.ihs_pay_srvc_all_14;
+		--if @debug = 1 select * into debug.ihs_pay_srvc_all_14 from #ihs_pay_srvc_all
 
 		--only want detail rolling up to 1 episode (double check)
 			update dtl
@@ -1627,8 +1626,8 @@ join (
 				on eps.dtl_id_payment_fact=dtl.dtl_id_payment_fact
 			where row_num=1 and dtl.id_ihs_episode is null
 
-		if object_id('debug.ihs_pay_srvc_all_15') is not null drop table debug.ihs_pay_srvc_all_15;
-		if @debug = 1 select * into debug.ihs_pay_srvc_all_15 from #ihs_pay_srvc_all
+		--if object_id('debug.ihs_pay_srvc_all_15') is not null drop table debug.ihs_pay_srvc_all_15;
+		--if @debug = 1 select * into debug.ihs_pay_srvc_all_15 from #ihs_pay_srvc_all
 
 		
 		CREATE NONCLUSTERED INDEX  idx_id_ihs_episodes
@@ -1664,8 +1663,8 @@ join (
 				) q on q.id_ihs_episode=ihs.id_ihs_episode
 						and q.row_sort=1
 
-		if object_id('debug.tbl_ihs_episodes_8') is not null drop table debug.tbl_ihs_episodes_8; 		
-		if @debug = 1 select * into debug.tbl_ihs_episodes_8 from #tbl_ihs_episodes 
+		--if object_id('debug.tbl_ihs_episodes_8') is not null drop table debug.tbl_ihs_episodes_8; 		
+		--if @debug = 1 select * into debug.tbl_ihs_episodes_8 from #tbl_ihs_episodes 
 		
 
 
@@ -1700,8 +1699,8 @@ join (
 			   from #tbl_ihs_episodes
 			   group by id_case) q on q.id_case=eps.id_case
 
-		if object_id('debug.tbl_ihs_episodes_9') is not null drop table debug.tbl_ihs_episodes_9; 		
-		if @debug = 1 select * into debug.tbl_ihs_episodes_9 from #tbl_ihs_episodes 
+		--if object_id('debug.tbl_ihs_episodes_9') is not null drop table debug.tbl_ihs_episodes_9; 		
+		--if @debug = 1 select * into debug.tbl_ihs_episodes_9 from #tbl_ihs_episodes 
 
 		update eps
 		set cd_sib_age_grp=intk.cd_sib_age_grp
@@ -1755,8 +1754,8 @@ join (
 
 
 		 		
-		if object_id('debug.tbl_ihs_episodes_10') is not null drop table debug.tbl_ihs_episodes_10; 		
-		if @debug = 1 select * into debug.tbl_ihs_episodes_10 from #tbl_ihs_episodes 
+		--if object_id('debug.tbl_ihs_episodes_10') is not null drop table debug.tbl_ihs_episodes_10; 		
+		--if @debug = 1 select * into debug.tbl_ihs_episodes_10 from #tbl_ihs_episodes 
 
 
 		if object_ID(N'base.tbl_ihs_episodes',N'U') is not null  truncate table base.tbl_ihs_episodes;
@@ -2173,23 +2172,19 @@ where procedure_nm='prod_build_tbls_ihs_episode_services'
 
 
 
-if object_id('debug.eps') is not null drop table debug.eps;
-if @debug = 1 select * into debug.eps from #eps 
+--if object_id('debug.eps') is not null drop table debug.eps;
+--if @debug = 1 select * into debug.eps from #eps 
 
-if object_id('debug.ihs_intk') is not null drop table debug.ihs_intk;
-if @debug = 1 select * into debug.ihs_intk from #ihs_intk 
+--if object_id('debug.ihs_intk') is not null drop table debug.ihs_intk;
+--if @debug = 1 select * into debug.ihs_intk from #ihs_intk 
 
-if object_id('debug.cps') is not null drop table debug.cps;
-if @debug = 1 select * into debug.cps from #cps 
+--if object_id('debug.cps') is not null drop table debug.cps;
+--if @debug = 1 select * into debug.cps from #cps 
 
-if object_id('debug.ih_tmp') is not null drop table debug.ih_tmp;
-if @debug = 1 select * into debug.ih_tmp from #ih_tmp 
+--if object_id('debug.ih_tmp') is not null drop table debug.ih_tmp;
+--if @debug = 1 select * into debug.ih_tmp from #ih_tmp 
 
-if object_id('debug.ihs') is not null drop table debug.ihs;
-if @debug = 1 select * into debug.ihs from #ihs
+--if object_id('debug.ihs') is not null drop table debug.ihs;
+--if @debug = 1 select * into debug.ihs from #ihs
 	
 end
-
-
-
-

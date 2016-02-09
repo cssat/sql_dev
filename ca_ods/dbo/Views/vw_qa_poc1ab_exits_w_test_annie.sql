@@ -21,8 +21,6 @@ sum(int_match_param_key) [sum_int_match_param_key],
 sum(filter_access_type) [sum_filter_access_type],
 sum(filter_allegation) [sum_filter_allegation],
 sum(filter_finding) [sum_filter_finding],
-sum(filter_service_category) [sum_filter_service_category],
-sum(filter_service_budget) [sum_filter_service_budget],
 sum(cd_discharge_type) [sum_cd_discharge_type],
 sum(cnt_exits) [sum_cnt_exits]
 FROM prtl.prtl_poc1ab_exits

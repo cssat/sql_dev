@@ -1,6 +1,4 @@
-﻿
-
-CREATE procedure [prtl].[sp_refresh_table_p_los_1] 
+﻿CREATE procedure [prtl].[sp_refresh_table_p_los_1] 
 as
 set nocount on
 declare @surv_data surv_table;
@@ -114,9 +112,10 @@ select  state_fiscal_year,filtername ,filtercode,dur_days,num,n_i,q_i,s_i,1.0000
 declare @endtime datetime;
 set @endtime=getdate();
 
-  update [CA_ODS].[prtl].[prtl_tables_last_update]
+  update [prtl].[prtl_tables_last_update]
 set last_build_date=getdate(),
-	row_count=(select count(*) from prtl.p_los_1),load_time_mins=dbo.fnc_datediff_mis(@starttime,@endtime)
+	row_count=(select count(*) from prtl.p_los_1),
+	load_time_mins=dbo.fnc_datediff_mis(@starttime,@endtime)
 	where [tbl_id]=53;
 
 

@@ -1,6 +1,4 @@
-﻿
-
-CREATE PROCEDURE [prtl].[sp_ooh_outcomes](
+﻿CREATE PROCEDURE [prtl].[sp_ooh_outcomes](
    @date varchar(3000)
 ,  @age_grouping_cd varchar(30)
 ,  @race_cd varchar(30)
@@ -558,63 +556,63 @@ from (
 
 
 
-					if @debug = 1
-						begin
-							IF OBJECT_ID (N'debug.ooh_outcomes_prmlocdem', N'U') IS NOT NULL
-								DROP TABLE debug.ooh_outcomes_prmlocdem;
-							select * into debug.ooh_outcomes_prmlocdem
-							from #prmlocdem;
+					--if @debug = 1
+					--	begin
+					--		IF OBJECT_ID (N'debug.ooh_outcomes_prmlocdem', N'U') IS NOT NULL
+					--			DROP TABLE debug.ooh_outcomes_prmlocdem;
+					--		select * into debug.ooh_outcomes_prmlocdem
+					--		from #prmlocdem;
 
-							IF OBJECT_ID (N'debug.ooh_outcomes_dep', N'U') IS NOT NULL
-								DROP TABLE debug.ooh_outcomes_dep;
-							select * into debug.ooh_outcomes_dep 
-							from #dep;
+					--		IF OBJECT_ID (N'debug.ooh_outcomes_dep', N'U') IS NOT NULL
+					--			DROP TABLE debug.ooh_outcomes_dep;
+					--		select * into debug.ooh_outcomes_dep 
+					--		from #dep;
 
-							IF OBJECT_ID (N'debug.ooh_outcomes_los', N'U') IS NOT NULL
-								DROP TABLE debug.ooh_outcomes_los;
-							select * into debug.ooh_outcomes_los
-							from #los;
+					--		IF OBJECT_ID (N'debug.ooh_outcomes_los', N'U') IS NOT NULL
+					--			DROP TABLE debug.ooh_outcomes_los;
+					--		select * into debug.ooh_outcomes_los
+					--		from #los;
 
-							IF OBJECT_ID (N'debug.ooh_outcomes_nbrplc', N'U') IS NOT NULL
-								DROP TABLE debug.ooh_outcomes_nbrplc;
-							select * into debug.ooh_outcomes_nbrplc 
-							from #nbrplc;
+					--		IF OBJECT_ID (N'debug.ooh_outcomes_nbrplc', N'U') IS NOT NULL
+					--			DROP TABLE debug.ooh_outcomes_nbrplc;
+					--		select * into debug.ooh_outcomes_nbrplc 
+					--		from #nbrplc;
 
-							IF OBJECT_ID (N'debug.ooh_outcomes_ihs', N'U') IS NOT NULL
-								DROP TABLE debug.ooh_outcomes_ihs;
-							select * into debug.ooh_outcomes_ihs
-							from #ihs;
+					--		IF OBJECT_ID (N'debug.ooh_outcomes_ihs', N'U') IS NOT NULL
+					--			DROP TABLE debug.ooh_outcomes_ihs;
+					--		select * into debug.ooh_outcomes_ihs
+					--		from #ihs;
 
-							IF OBJECT_ID (N'debug.ooh_outcomes_rpt', N'U') IS NOT NULL
-								DROP TABLE debug.ooh_outcomes_rpt;
-							select * into debug.ooh_outcomes_rpt
-							from #rpt;
+					--		IF OBJECT_ID (N'debug.ooh_outcomes_rpt', N'U') IS NOT NULL
+					--			DROP TABLE debug.ooh_outcomes_rpt;
+					--		select * into debug.ooh_outcomes_rpt
+					--		from #rpt;
 
-							IF OBJECT_ID (N'debug.ooh_outcomes_access_type', N'U') IS NOT NULL
-								DROP TABLE debug.ooh_outcomes_access_type;
-							select * into debug.ooh_outcomes_access_type
-							from #access_type;
+					--		IF OBJECT_ID (N'debug.ooh_outcomes_access_type', N'U') IS NOT NULL
+					--			DROP TABLE debug.ooh_outcomes_access_type;
+					--		select * into debug.ooh_outcomes_access_type
+					--		from #access_type;
 
-							IF OBJECT_ID (N'debug.ooh_outcomes_algtn', N'U') IS NOT NULL
-								DROP TABLE debug.ooh_outcomes_algtn;
-							select * into debug.ooh_outcomes_algtn
-							from #algtn;
+					--		IF OBJECT_ID (N'debug.ooh_outcomes_algtn', N'U') IS NOT NULL
+					--			DROP TABLE debug.ooh_outcomes_algtn;
+					--		select * into debug.ooh_outcomes_algtn
+					--		from #algtn;
 
-							IF OBJECT_ID (N'debug.ooh_outcomes_find', N'U') IS NOT NULL
-								DROP TABLE debug.ooh_outcomes_find;
-							select * into debug.ooh_outcomes_find 
-							from #find;
+					--		IF OBJECT_ID (N'debug.ooh_outcomes_find', N'U') IS NOT NULL
+					--			DROP TABLE debug.ooh_outcomes_find;
+					--		select * into debug.ooh_outcomes_find 
+					--		from #find;
 
-							IF OBJECT_ID (N'debug.ooh_outcomes_total', N'U') IS NOT NULL
-								DROP TABLE debug.ooh_outcomes_total;
-							select * into debug.ooh_outcomes_total
-							from #total;
+					--		IF OBJECT_ID (N'debug.ooh_outcomes_total', N'U') IS NOT NULL
+					--			DROP TABLE debug.ooh_outcomes_total;
+					--		select * into debug.ooh_outcomes_total
+					--		from #total;
 
-							IF OBJECT_ID (N'debug.ooh_outcomes_cachekeys', N'U') IS NOT NULL
-								DROP TABLE debug.ooh_outcomes_cachekeys;
-							select * into debug.ooh_outcomes_cachekeys
-							from #cachekeys;
-						end
+					--		IF OBJECT_ID (N'debug.ooh_outcomes_cachekeys', N'U') IS NOT NULL
+					--			DROP TABLE debug.ooh_outcomes_cachekeys;
+					--		select * into debug.ooh_outcomes_cachekeys
+					--		from #cachekeys;
+					--	end
 
 
 
@@ -878,9 +876,3 @@ from (
                     , outcomes.cd_finding
 					, outcomes.[month]
             ,outcomes.cd_discharge_type asc; 					
-				
-
-				
-
-
-
