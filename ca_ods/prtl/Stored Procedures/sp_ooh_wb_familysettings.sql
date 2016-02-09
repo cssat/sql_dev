@@ -1,7 +1,4 @@
-﻿
-
-
-CREATE PROCEDURE [prtl].[sp_ooh_wb_familysettings](
+﻿CREATE PROCEDURE [prtl].[sp_ooh_wb_familysettings](
    @date varchar(3000)
 ,  @age_grouping_cd varchar(30)
 ,  @race_cd varchar(30)
@@ -726,7 +723,7 @@ INSERT INTO [prtl].[cache_pbcw3_aggr]
             ,qry_type
                 ,date_type
                 ,Cohort_Entry_date asc
-                ,age_grouping_cd asc
+                ,pbcw3.age_grouping_cd asc
                     ,gender_cd asc
                     ,ethnicity_cd asc
                     ,init_cd_plcm_setng asc

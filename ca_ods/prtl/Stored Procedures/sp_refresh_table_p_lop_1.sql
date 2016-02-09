@@ -129,9 +129,8 @@ from @results
   
 declare @endtime datetime=getdate();  
 
-  update [CA_ODS].[prtl].[prtl_tables_last_update]
+  update [prtl].[prtl_tables_last_update]
 set last_build_date=getdate(),
-	row_count=(select count(*) from prtl.p_lop_1),load_time_mins=dbo.fnc_datediff_mis(@starttime,@endtime)
+	row_count=(select count(*) from prtl.p_lop_1),
+	load_time_mins=dbo.fnc_datediff_mis(@starttime,@endtime)
 	where [tbl_id]=52;
-
- 

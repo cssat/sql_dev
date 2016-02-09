@@ -1,0 +1,7 @@
+﻿CREATE TABLE [public_data].[median_rent_2013] (
+	[GEO id] VARCHAR(50) NULL
+	,[GEO id2] VARCHAR(50) NULL
+	,[GEO display-label] VARCHAR(50) NULL
+	,[HD01_VD01] VARCHAR(50) NULL
+	,[HD02_VD01] VARCHAR(50) NULL
+	)

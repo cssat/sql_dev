@@ -1,5 +1,4 @@
-﻿
-CREATE procedure [base].[prod_update_rptPlacement_with_intakes] (@permission_key datetime, @debug smallint = 0)
+﻿CREATE procedure [base].[prod_update_rptPlacement_with_intakes] (@permission_key datetime, @debug smallint = 0)
 as
 if @permission_key = (select cutoff_date from dbo.ref_Last_DW_Transfer) 
 begin
@@ -33,16 +32,16 @@ begin
 			and fl_alternate_intervention=0 and fl_reopen_case=0 and fl_dlr=0
 			and inv_ass_start between dateadd(dd,-365,removal_dt) and dateadd(dd,10,removal_dt)
 						
-			if object_id('debug.episodes_1') is not null drop table debug.episodes_1;
-			if @debug = 1 select * into debug.episodes_1 from #episodes
+			--if object_id('debug.episodes_1') is not null drop table debug.episodes_1;
+			--if @debug = 1 select * into debug.episodes_1 from #episodes
 
 
 	--		select * from #episodes eps where exists(select * from #episodes mult where mult.row_num > 1  and mult.id_removal_episode_fact=eps.id_removal_episode_fact)
 
 			delete from #episodes where row_num > 1
 
-			if object_id('debug.episodes_2') is not null drop table debug.episodes_2;
-			if @debug = 1 select * into debug.episodes_2 from #episodes
+			--if object_id('debug.episodes_2') is not null drop table debug.episodes_2;
+			--if @debug = 1 select * into debug.episodes_2 from #episodes
 					
 			CREATE INDEX idx_child on #episodes (child) INCLUDE (id_case_tce)
 			CREATE INDEX idx_id_case_tce on #episodes (id_case_tce)
@@ -83,8 +82,8 @@ begin
 					and q.row_num=1 
 					and (eps.id_intake_fact is null or (eps.id_intake_fact is not null and  abs(datediff(dd,q.inv_ass_start,eps.removal_dt))<  abs(datediff(dd,eps.inv_ass_start,eps.removal_dt))));
 
-			if object_id('debug.episodes_3') is not null drop table debug.episodes_3;
-			if @debug = 1 select * into debug.episodes_3 from #episodes				
+			--if object_id('debug.episodes_3') is not null drop table debug.episodes_3;
+			--if @debug = 1 select * into debug.episodes_3 from #episodes				
 						
 			-- use crosswalk of cases identified with this child matching to TBL_INTAKES as in prior query but matching on crosswalk case identified
 			-- for the child 
@@ -116,8 +115,8 @@ begin
 					) qry on qry.ID_REMOVAL_EPISODE_FACT=eps.ID_REMOVAL_EPISODE_FACT and qry.row_num=1
 			where eps.ID_INTAKE_FACT is null or abs(datediff(dd,qry.inv_ass_start ,eps.removal_dt)) < abs(datediff(dd,eps.inv_ass_start ,eps.removal_dt))
 
-			if object_id('debug.episodes_4') is not null drop table debug.episodes_4;
-			if @debug = 1 select * into debug.episodes_4 from #episodes
+			--if object_id('debug.episodes_4') is not null drop table debug.episodes_4;
+			--if @debug = 1 select * into debug.episodes_4 from #episodes
 			
 						
 		-- look at intake participants .... using logic to identify children associated with the intake
@@ -223,8 +222,8 @@ begin
 			where eps.id_intake_fact is null 
 
 
-			if object_id('debug.episodes_5') is not null drop table debug.episodes_5;
-			if @debug = 1 select * into debug.episodes_5 from #episodes
+			--if object_id('debug.episodes_5') is not null drop table debug.episodes_5;
+			--if @debug = 1 select * into debug.episodes_5 from #episodes
 
 
 			--look at allegation_fact OK for ARS ********************************************************************************************************
@@ -259,8 +258,8 @@ begin
 			 ) qry on qry.id_removal_episode_fact=eps.id_removal_episode_fact and qry.row_num=1
 			where eps.id_intake_fact is null
 
-			if object_id('debug.episodes_6') is not null drop table debug.episodes_6;
-			if @debug = 1 select * into debug.episodes_6 from #episodes
+			--if object_id('debug.episodes_6') is not null drop table debug.episodes_6;
+			--if @debug = 1 select * into debug.episodes_6 from #episodes
 
 
 			update eps
@@ -282,8 +281,8 @@ begin
 			 ) qry on qry.ID_REMOVAL_EPISODE_FACT=eps.ID_REMOVAL_EPISODE_FACT and qry.row_num=1
 			where eps.ID_INTAKE_FACT is null
 
-			if object_id('debug.episodes_7') is not null drop table debug.episodes_7;
-			if @debug = 1 select * into debug.episodes_7 from #episodes
+			--if object_id('debug.episodes_7') is not null drop table debug.episodes_7;
+			--if @debug = 1 select * into debug.episodes_7 from #episodes
 
 
 			-- look at reopened cases ********************************************************************************************************
@@ -306,8 +305,8 @@ begin
 					) qry on qry.ID_REMOVAL_EPISODE_FACT=eps.ID_REMOVAL_EPISODE_FACT and qry.row_num=1
 			where eps.ID_INTAKE_FACT is null
 
-			if object_id('debug.episodes_8') is not null drop table debug.episodes_8;
-			if @debug = 1 select * into debug.episodes_8 from #episodes
+			--if object_id('debug.episodes_8') is not null drop table debug.episodes_8;
+			--if @debug = 1 select * into debug.episodes_8 from #episodes
 
 
 			--look at those kids in tbl_child_episodes with multiple ID_CASE  and fl_reopen_case=1
@@ -334,8 +333,8 @@ begin
 					) qry on qry.ID_REMOVAL_EPISODE_FACT=eps.ID_REMOVAL_EPISODE_FACT and qry.row_num=1
 			where eps.ID_INTAKE_FACT is null
 
-			if object_id('debug.episodes_9') is not null drop table debug.episodes_9;
-			if @debug = 1 select * into debug.episodes_9 from #episodes
+			--if object_id('debug.episodes_9') is not null drop table debug.episodes_9;
+			--if @debug = 1 select * into debug.episodes_9 from #episodes
 
 						
 			if object_ID('tempDB..#siblings') is not null drop table #siblings;
@@ -391,8 +390,8 @@ begin
 			where eps.ID_INTAKE_FACT is not null and epsib.ID_INTAKE_FACT is null 
 			and eps.inv_ass_start between dateadd(dd,-365,epsib.removal_dt) and dateadd(dd,10,epsib.removal_dt)
 
-			if object_id('debug.episodes_10') is not null drop table debug.episodes_10;
-			if @debug = 1 select * into debug.episodes_10 from #episodes
+			--if object_id('debug.episodes_10') is not null drop table debug.episodes_10;
+			--if @debug = 1 select * into debug.episodes_10 from #episodes
 
 
 			update base.rptPlacement

@@ -1,7 +1,4 @@
-﻿
-
-
-CREATE PROCEDURE [prtl].[sp_ooh_reentry](
+﻿CREATE PROCEDURE [prtl].[sp_ooh_reentry](
    @date varchar(3000)
 ,  @age_grouping_cd varchar(30)
 ,  @race_cd varchar(30)
@@ -839,7 +836,7 @@ from (
                 ,qry_type
                 ,pbcp5.date_type
                 ,cohort_exit_year asc
-                ,age_grouping_cd asc
+                ,pbcp5.age_grouping_cd asc
                     ,gender_cd asc
                     ,ethnicity_cd asc
                     ,init_cd_plcm_setng asc
@@ -854,5 +851,3 @@ from (
                     , pbcp5.cd_finding
             ,pbcp5.reentry_within_month asc
             ,pbcp5.cd_discharge_type asc;
-				
-

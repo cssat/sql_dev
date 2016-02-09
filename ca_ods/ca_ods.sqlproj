@@ -157,6 +157,12 @@
     <Folder Include="annual_report\Tables" />
     <Folder Include="annual_report\Stored Procedures" />
     <Folder Include="rodis\Stored Procedures" />
+    <Folder Include="kids_count" />
+    <Folder Include="kids_count\Tables" />
+    <Folder Include="oliver" />
+    <Folder Include="oliver\Tables" />
+    <Folder Include="retention" />
+    <Folder Include="retention\Tables" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\hire_pk_question_data_to_insert.sql">
@@ -2286,10 +2292,6 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="poc_survey\Tables\derived_tbl_burnout_study.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
     <Build Include="ospi\Tables\temp_thru_6.sql">
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
@@ -2666,10 +2668,6 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="dbo\Functions\comb_cnty.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
     <Build Include="dbo\Functions\NumbersTable.sql">
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
@@ -2936,12 +2934,96 @@
     <Build Include="rodis\Stored Procedures\load_birth_child_death.sql" />
     <Build Include="rodis\Stored Procedures\load_xwalk_icd_10_to_eph.sql" />
     <Build Include="rodis\Tables\xwalk_icd_10_to_eph.sql" />
+    <Build Include="annual_report\Tables\ca_afcars_source_data.sql" />
+    <Build Include="annual_report\Tables\cfsr_age_category.sql" />
+    <Build Include="annual_report\Tables\cfsr_perm_entries_reentry.sql" />
+    <Build Include="annual_report\Tables\cfsr_permanency.sql" />
+    <Build Include="annual_report\Tables\cfsr_permanency_placement_mobility.sql" />
+    <Build Include="annual_report\Tables\cfsr_safety.sql" />
+    <Build Include="annual_report\Tables\cfsr_safety_maltreatment_in_care.sql" />
+    <Build Include="annual_report\Tables\non_cfsr_permanency.sql" />
+    <Build Include="annual_report\Tables\non_cfsr_safety.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_adopt_assist.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_condition_for_special_needs.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_ethnicity.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_living_arrangement.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_mal.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_mal_lev.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_notifs.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_per_prnt.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_per_rel.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_place_by.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_rptdisp.sql" />
+    <Build Include="annual_report\Tables\ref_afcars_rptsrc.sql" />
+    <Build Include="annual_report\Views\age_category.sql" />
+    <Build Include="annual_report\Views\disreasn_view.sql" />
+    <Build Include="dbo\Tables\dat_ref.sql" />
+    <Build Include="dbo\Tables\POC_Table_Counts.sql" />
+    <Build Include="dbo\Tables\ref_lookup_cb_race.sql" />
+    <Build Include="dbo\Tables\ref_xwalk_district_county.sql" />
+    <Build Include="base\Tables\rptIntake_Subjects.sql" />
+    <Build Include="dbo\Tables\OUTCOME_DIM.sql" />
+    <Build Include="dbo\Tables\PROVIDER_ACTIVITY_DIM.sql" />
+    <Build Include="dbo\Tables\PROVIDER_ACTIVITY_FACT.sql" />
+    <Build Include="public_data\Tables\prison_census.sql" />
+    <Build Include="geog\Tables\Crosswalk_ZipstoPrimarySchoolAttendanceZones.sql" />
+    <Build Include="geog\Tables\MAPONICS_CURRENT_ZIP_BOUNDARIES.sql" />
+    <Build Include="geog\Tables\SABS_1314_WASHINGTON_ASSIGNED.sql" />
+    <Build Include="geog\Tables\SABS_1314_WASHINGTON_ASSIGNED_WGS.sql" />
+    <Build Include="Security\kids_count.sql" />
+    <Build Include="kids_count\Tables\adult_pop_state_race.sql" />
+    <Build Include="kids_count\Tables\child_pop_state_race.sql" />
+    <Build Include="kids_count\Tables\fc_count_state_race.sql" />
+    <Build Include="ndacan\Tables\afcars_foster_care_00_13_spss.sql" />
+    <Build Include="ndacan\Tables\cfsr_source_afcars.sql" />
+    <Build Include="ndacan\Tables\national_cfsr_permanency.sql" />
+    <Build Include="ndacan\Tables\nytd_services_2011_truncated.sql" />
+    <Build Include="Security\oliver.sql" />
+    <Build Include="oliver\Tables\PROVIDER_DIM.sql" />
+    <Build Include="oliver\Tables\rpt_first_visits.sql" />
+    <Build Include="oliver\Tables\rpt_visit_referral_cnts.sql" />
+    <Build Include="oliver\Tables\VISITATION_FACT.sql" />
+    <Build Include="oliver\Tables\VISITATION_REFERRAL_FACT.sql" />
+    <Build Include="ospi\Tables\fed_to_state_id_xwalk.sql" />
+    <Build Include="ospi\Tables\jm_tbl_nntx_risk.sql" />
+    <Build Include="ospi\Tables\school_year_dim.sql" />
+    <Build Include="poc_survey\Tables\tbl_burnout_study.sql" />
+    <Build Include="public_data\Tables\avg_temp.sql" />
+    <Build Include="public_data\Tables\census_population_gt_backup.sql" />
+    <Build Include="public_data\Tables\food_assistance.sql" />
+    <Build Include="public_data\Tables\free_lunch_county_2013.sql" />
+    <Build Include="public_data\Tables\mb_census_population.sql" />
+    <Build Include="public_data\Tables\median_rent_2011.sql" />
+    <Build Include="public_data\Tables\median_rent_2013.sql" />
+    <Build Include="public_data\Tables\perc_fc_pop_over18.sql" />
+    <Build Include="public_data\Tables\ssdi_benefits.sql" />
+    <Build Include="public_data\Tables\state_min_wage.sql" />
+    <Build Include="public_data\Tables\tanf_2012.sql" />
+    <Build Include="retention\Tables\cwtap.sql" />
+    <Build Include="retention\Tables\exits.sql" />
+    <Build Include="retention\Tables\hires.sql" />
+    <Build Include="retention\Tables\promotions.sql" />
+    <Build Include="rodis\Tables\child_intake_placement.sql" />
+    <Build Include="rodis\Tables\portal_xwalk_race_eth.sql" />
+    <Build Include="rodis\Tables\sub_exposed_inf.sql" />
+    <Build Include="rodis\Tables\portal_xwalk_ref_cnty.sql" />
+    <Build Include="dbo\Views\vw_qa_prtl_access_type.sql" />
+    <Build Include="dbo\Views\vw_qa_test_annie_pbcw4.sql" />
+    <Build Include="dbo\Functions\lessorDate3.sql" />
+    <Build Include="dbo\Functions\lessorDate4.sql" />
+    <Build Include="dbo\Functions\greatorDate.sql" />
+    <Build Include="base\Stored Procedures\prod_build_placement_care_days_mobility.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac">
       <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac</HintPath>
       <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
       <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
+    </ArtifactReference>
+    <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\msdb.dacpac">
+      <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\msdb.dacpac</HintPath>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+      <DatabaseVariableLiteralValue>msdb</DatabaseVariableLiteralValue>
     </ArtifactReference>
   </ItemGroup>
   <ItemGroup>
