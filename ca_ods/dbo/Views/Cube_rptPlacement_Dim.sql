@@ -1,11 +1,4 @@
-﻿
-
-
-
-
-
-
-CREATE VIEW [dbo].[Cube_rptPlacement_Dim]
+﻿CREATE VIEW [dbo].[Cube_rptPlacement_Dim]
 AS
 SELECT
 	RP.id_placement_fact
@@ -22,14 +15,17 @@ SELECT
 		CONVERT(INT, CONVERT(VARCHAR, ROD.cd_office_collapse) + CONVERT(VARCHAR, ABS(ISNULL(RLC.cd_region, RP.cd_region)))),
 		ROD.cd_office_collapse
 	) [cd_office_collapse]
-	,IIF(ROD.cd_office_collapse = -99,
-		ROD.tx_office_collapse + ' - ' + IIF(ISNULL(RLC.cd_region, RP.cd_region) = 0, 'Failed', ISNULL(RLC.tx_region, RP.tx_region)),
-		ROD.tx_office_collapse
-		) [tx_office_collapse]
+	,CASE
+		WHEN ROD.cd_office_collapse = -99
+			THEN ROD.tx_office_collapse + ' - ' + CASE
+				WHEN ISNULL(RLC.cd_region, RP.cd_region) = 0
+					THEN 'Failed'
+				ELSE ISNULL(RLC.tx_region, RP.tx_region)
+				END
+		ELSE ROD.tx_office_collapse
+		END [tx_office_collapse]
 	,RP.cd_county
 	,RP.tx_county
-	,ISNULL(IIF(RP.cd_county = 41, -89, CONVERT(INT, RCC.court_cd)), -99) [court_cd]
-	,ISNULL(IIF(RP.cd_county = 41, 'CONVERSION', RCC.court), 'Unknown') [court]
 	,IIF(RP.cd_cnty = 41, -99, ISNULL(RP.cd_cnty, -99)) [cd_removal_county]
 	,IIF(RP.cd_cnty = 41, 'Unknown', ISNULL(RMVLLC.tx_county, 'Unknown')) [tx_removal_county]
 	,IIF(RP.cd_cnty = 40, -99, ISNULL(RMVLLC.cd_region, 11)) [cd_removal_region]
@@ -54,8 +50,6 @@ SELECT
 	) [worker_office_collapse]
 	,IIF(RP.worker_county = 'Failed', -999, RP.cd_worker_county) [cd_worker_county]
 	,RP.worker_county
-	,ISNULL(IIF(RP.cd_worker_county = 41, -89, CONVERT(INT, WRCC.court_cd)), -99) [cd_worker_court]
-	,ISNULL(IIF(RP.cd_worker_county = 41, 'CONVERSION', WRCC.court), 'Unknown') [worker_court]
 	,RP.episode_los_grp
 	,ISNULL(RP.placement_los_grp, 'Unspecified') [placement_los_grp]
 	,RP.removal_dt
@@ -66,20 +60,20 @@ SELECT
 	,ISNULL(RP.last_end_rsn, '-') [last_end_rsn]
 	,RP.id_prvd_org_caregiver
 	,RP.discharge_dt
-	,IIF(DATEADD(YEAR, 18, RP.birthdate) < RLDT.cutoff_date AND DATEADD(YEAR, 18, RP.birthdate) < RP.discharge_dt, DATEADD(YEAR, 18, RP.birthdate), RP.discharge_dt) [discharge_dt_force_18]
+	,dbo.lessorDate3(DATEADD(YEAR, 18, RP.birthdate), RP.discharge_dt, RLDT.cutoff_date) [discharge_dt_force_18]
 	,RP.id_calendar_dim_afcars_end
 	,RP.cd_epsd_type
 	,RP.tx_epsd_type
 	,RP.birthdate
 	,RP.[18bday]
 	,ISNULL(RP.child_age, -99) [child_age]
-	,IIF(dbo.fnc_datediff_mos(RP.birthdate, IIF(DATEADD(YEAR, 18, RP.birthdate) < RP.discharge_dt, DATEADD(YEAR, 18, RP.birthdate), RP.discharge_dt)) < -12
-		,-99
-		,IIF(dbo.fnc_datediff_mos(RP.birthdate, IIF(DATEADD(YEAR, 18, RP.birthdate) < RP.discharge_dt, DATEADD(YEAR, 18, RP.birthdate), RP.discharge_dt)) < 0
-			,0
-			,ISNULL(dbo.fnc_datediff_mos(RP.birthdate, IIF(DATEADD(YEAR, 18, RP.birthdate) < RP.discharge_dt, DATEADD(YEAR, 18, RP.birthdate), RP.discharge_dt)), -99)
-		)
-	) [age_at_exit_mos]
+	,CASE
+		WHEN dbo.fnc_datediff_mos(RP.birthdate, dbo.lessorDate(DATEADD(YEAR, 18, RP.birthdate), RP.discharge_dt)) < -12
+			THEN -99
+		WHEN dbo.fnc_datediff_mos(RP.birthdate, dbo.lessorDate(DATEADD(YEAR, 18, RP.birthdate), RP.discharge_dt)) < 0
+			THEN 0
+		ELSE ISNULL(dbo.fnc_datediff_mos(RP.birthdate, dbo.lessorDate(DATEADD(YEAR, 18, RP.birthdate), RP.discharge_dt)), -99)
+		END [age_at_exit_mos]
 	,RP.tx_braam_race
 	,RP.setting
 	,RP.tx_subctgry
@@ -116,14 +110,17 @@ SELECT
 		CONVERT(INT, CONVERT(VARCHAR, PWROD.cd_office_collapse) + CONVERT(VARCHAR, ABS(ISNULL(PWRLC.cd_region, RP.placement_worker_region_cd)))),
 		PWROD.cd_office_collapse
 	) [placement_worker_office_collapse_cd]
-	,IIF(PWROD.cd_office_collapse = -99,
-		PWROD.tx_office_collapse + ' - ' + IIF(ISNULL(PWRLC.cd_region, RP.placement_worker_region_cd) = 0, 'Failed', ISNULL(PWRLC.tx_region, RP.placement_worker_region)),
-		PWROD.tx_office_collapse
-	) [placement_worker_office_collapse]
+	,CASE 
+		WHEN PWROD.cd_office_collapse = -99
+			THEN PWROD.tx_office_collapse + ' - ' + CASE
+				WHEN ISNULL(PWRLC.cd_region, RP.placement_worker_region_cd) = 0
+					THEN 'Failed'
+				ELSE ISNULL(PWRLC.tx_region, RP.placement_worker_region)
+				END
+		ELSE PWROD.tx_office_collapse
+		END [placement_worker_office_collapse]
 	,RP.placement_worker_county_cd
 	,ISNULL(RP.placement_worker_county, '-') [placement_worker_county]
-	,ISNULL(IIF(RP.placement_worker_county_cd = 41, -89, CONVERT(INT, PWRCC.court_cd)), -99) [placement_worker_court_cd]
-	,ISNULL(IIF(RP.placement_worker_county_cd = 41, 'CONVERSION', PWRCC.court), 'Unknown') [placement_worker_court]
 	,RP.placement_worker_unit
 	,RP.placement_workerint_level
 	,RP.placement_workerint_reason
@@ -337,12 +334,6 @@ LEFT JOIN (
 		,tx_office_collapse
 ) PWROD ON
 	PWROD.cd_office = RP.placement_worker_office_cd
-LEFT JOIN dbCoreAdministrativeTables.dbo.ref_county_court_xwalk RCC ON
-	RCC.county_cd = RP.cd_county
-LEFT JOIN dbCoreAdministrativeTables.dbo.ref_county_court_xwalk WRCC ON
-	WRCC.county_cd = RP.cd_worker_county
-LEFT JOIN dbCoreAdministrativeTables.dbo.ref_county_court_xwalk PWRCC ON
-	PWRCC.county_cd = RP.placement_worker_county_cd
 LEFT JOIN (
 	SELECT
 		RPE.id_removal_episode_fact
@@ -421,11 +412,3 @@ WHERE NOT EXISTS(
 		AND (CD.ID_CALENDAR_DIM = RP.id_calendar_dim_begin
 			OR CD.ID_CALENDAR_DIM = RP.id_calendar_dim_afcars_end)
 )
-
-
-
-
-
-
-
-

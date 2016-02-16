@@ -136,7 +136,7 @@ INNER JOIN rodis_wh.wh_entity_key k ON k.source_key = a.cd_maternal_history AND 
 UPDATE a
 SET id_fetal_or_infant_death = k.id_fetal_or_infant_death
 FROM rodis_wh.staging_maternal_history_att a
-INNER JOIN rodis_wh.staging_fetal_or_infant_death_att k ON k.id_fetal_or_infant_death = ISNULL(a.cd_fetal_or_infant_death, '-1')
+INNER JOIN rodis_wh.staging_fetal_or_infant_death_att k ON k.cd_fetal_or_infant_death = ISNULL(a.cd_fetal_or_infant_death, '-1')
 
 UPDATE STATISTICS rodis_wh.staging_maternal_history_att
 

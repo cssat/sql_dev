@@ -104,7 +104,7 @@ INNER JOIN rodis_wh.wh_entity_key k ON k.source_key = a.cd_death_fact AND k.wh_c
 UPDATE a
 SET id_death = k.id_death
 FROM rodis_wh.staging_death_fat a
-INNER JOIN rodis_wh.staging_death_att k ON k.cd_armed_forces = ISNULL(a.id_death, '-1')
+INNER JOIN rodis_wh.staging_death_att k ON k.cd_death = ISNULL(a.cd_death, '-1')
 
 UPDATE STATISTICS rodis_wh.staging_death_fat
 

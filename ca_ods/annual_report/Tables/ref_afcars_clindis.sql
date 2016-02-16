@@ -1,4 +1,6 @@
 ﻿CREATE TABLE [annual_report].[ref_afcars_clindis] (
-	[cd_clindis] TINYINT NULL
-	,[tx_clindis] VARCHAR(20) NULL
-	)
+    [cd_clindis] FLOAT (53)    NULL,
+    [tx_clindis] VARCHAR (255) NULL
+);
+
+

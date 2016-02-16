@@ -1,0 +1,80 @@
+﻿CREATE SCHEMA [base]
+    AUTHORIZATION [dbo];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GO
+GRANT VIEW DEFINITION
+    ON SCHEMA::[base] TO [NEBULA2\POC_DBO];
+
+
+GO
+GRANT TAKE OWNERSHIP
+    ON SCHEMA::[base] TO [NEBULA2\POC_DBO];
+
+
+GO
+GRANT SELECT
+    ON SCHEMA::[base] TO [NEBULA2\POC_DBO];
+
+
+GO
+GRANT SELECT
+    ON SCHEMA::[base] TO [NEBULA2\POC_CA];
+
+
+GO
+GRANT REFERENCES
+    ON SCHEMA::[base] TO [NEBULA2\POC_CA];
+
+
+GO
+GRANT EXECUTE
+    ON SCHEMA::[base] TO [NEBULA2\POC_DBO];
+
+
+GO
+GRANT CONTROL
+    ON SCHEMA::[base] TO [NEBULA2\POC_DBO];
+
+
+GO
+DENY UPDATE
+    ON SCHEMA::[base] TO [NETID\uw_poc_no_irb];
+
+
+GO
+DENY TAKE OWNERSHIP
+    ON SCHEMA::[base] TO [NETID\uw_poc_no_irb];
+
+
+GO
+DENY SELECT
+    ON SCHEMA::[base] TO [NETID\uw_poc_no_irb];
+
+
+GO
+DENY EXECUTE
+    ON SCHEMA::[base] TO [NETID\uw_poc_no_irb];
+
+
+GO
+DENY DELETE
+    ON SCHEMA::[base] TO [NETID\uw_poc_no_irb];
+
+
+GO
+DENY ALTER
+    ON SCHEMA::[base] TO [NETID\uw_poc_no_irb];
+

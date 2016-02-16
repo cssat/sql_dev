@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [NETID\rebbe]
+    AUTHORIZATION [NETID\rebbe];
+

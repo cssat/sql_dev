@@ -1,8 +1,4 @@
-﻿
-
-
-
-CREATE VIEW [dbo].[Cube_rptPlacement_Fact]
+﻿CREATE VIEW [dbo].[Cube_rptPlacement_Fact]
 AS
 SELECT
 	RP.id_placement_fact
@@ -291,10 +287,8 @@ WHERE NOT EXISTS(
 		AND (CD.ID_CALENDAR_DIM = RP.id_calendar_dim_begin
 			OR CD.ID_CALENDAR_DIM = RP.id_calendar_dim_afcars_end)
 )
-
-
-
-
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'Cube_rptPlacement_Fact';
 
 
 GO
@@ -406,8 +400,4 @@ Begin DesignProperties =
    End
 End
 ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'Cube_rptPlacement_Fact';
-
-
-GO
-EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'Cube_rptPlacement_Fact';
 

@@ -22,6 +22,7 @@ CREATE PROCEDURE [prtl].[sp_ooh_pit_counts](
 , @filter_finding varchar(30)
 , @bin_dep_cd varchar(20)
 ,@fl_return_results smallint  -- 1 = yes; 0 = no (for loading cache tables set to 0)
+, @debug smallint = 0
 )
 as
  set nocount on

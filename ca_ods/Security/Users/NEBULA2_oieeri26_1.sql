@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [NEBULA2\oieeri26]
+    AUTHORIZATION [NEBULA2\oieeri26];
+

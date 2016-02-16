@@ -1,5 +1,4 @@
-﻿
-CREATE VIEW [dbo].[cube_prtl_poc1ab_time]
+﻿CREATE VIEW [dbo].[cube_prtl_poc1ab_time]
 AS
 
 
@@ -15,8 +14,3 @@ FROM dbo.cube_prtl_poc1ab_fact
 , dbo.CALENDAR_DIM CD,cte_maxdate
 where [CALENDAR_DATE] between min_date_any and max_date_any
 and start_date=CALENDAR_DATE
-
-
-
-
-

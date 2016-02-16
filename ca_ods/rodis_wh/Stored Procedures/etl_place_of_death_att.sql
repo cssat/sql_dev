@@ -111,7 +111,7 @@ WHEN MATCHED
 		SET tx_place_of_death = source.tx_place_of_death
 			,id_place_of_death_type = source.id_place_of_death_type
 
-WHEN NOT MATCHED
+WHEN NOT MATCHED BY TARGET
 	THEN
 		INSERT (
 			id_place_of_death

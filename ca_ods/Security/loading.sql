@@ -1,3 +1,0 @@
-﻿CREATE SCHEMA [loading]
-    AUTHORIZATION [NEBULA2\POC_DBO];
-

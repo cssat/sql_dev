@@ -1,0 +1,3 @@
+﻿CREATE USER [NETID\rebbe] FOR LOGIN [NETID\rebbe]
+    WITH DEFAULT_SCHEMA = [NETID\rebbe];
+

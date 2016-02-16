@@ -1,4 +1,6 @@
 ﻿CREATE TABLE [annual_report].[ref_afcars_placeout] (
-	[cd_placeout] TINYINT NULL
-	,[tx_placeout] VARCHAR(40) NULL
-	)
+    [cd_placeout] FLOAT (53)    NULL,
+    [tx_placeout] VARCHAR (255) NULL
+);
+
+

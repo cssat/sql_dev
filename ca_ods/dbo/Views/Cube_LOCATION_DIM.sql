@@ -1,11 +1,4 @@
-﻿
-
-
-
-
-
-
-CREATE VIEW [dbo].[Cube_LOCATION_DIM]
+﻿CREATE VIEW [dbo].[Cube_LOCATION_DIM]
 AS
 SELECT
 	LD.ID_LOCATION_DIM
@@ -26,8 +19,6 @@ SELECT
 	,IIF(OD.cd_office_collapse = -99, OD.tx_office_collapse + ' - ' + IIF(ISNULL(RLC.cd_region, LD.CD_REGION) = 0, 'Failed', ISNULL(RLC.tx_region, LD.TX_REGION)), OD.tx_office_collapse) [tx_office_collapse]
 	,IIF(LD.ID_LOCATION_DIM = -1, -999, IIF(LD.CD_CNTY = 41, -99, LD.CD_CNTY)) [CD_CNTY]
 	,IIF(LD.CD_CNTY = 41, 'Unknown', LD.TX_CNTY) [TX_CNTY]
-	,ISNULL(IIF(LD.CD_CNTY = 41, -89, CONVERT(INT, RCC.court_cd)), -99) [court_cd]
-	,ISNULL(IIF(LD.CD_CNTY = 41, 'CONVERSION', RCC.court), 'Unknown') [court]
 	,ISNULL(RLC.cd_region, LD.CD_REGION) [cd_region]
 	,IIF(ISNULL(RLC.cd_region, LD.CD_REGION) = 0, 'Failed', ISNULL(RLC.tx_region, LD.TX_REGION)) [tx_region]
 	,ISNULL(RLC.old_region_cd, LD.CD_REGION) [old_region_cd]
@@ -55,8 +46,6 @@ LEFT JOIN (
 		,LD.TX_REGION
 ) RLC ON
 	RLC.county_cd = LD.CD_CNTY
-LEFT JOIN dbCoreAdministrativeTables.dbo.ref_county_court_xwalk RCC ON
-	RCC.county_cd = LD.CD_CNTY
 LEFT JOIN (
 	SELECT
 		cd_office
@@ -70,10 +59,3 @@ LEFT JOIN (
 ) OD ON
 	OD.cd_office = LD.CD_OFFICE
 WHERE LD.CD_LCTN IS NOT NULL
-
-
-
-
-
-
-

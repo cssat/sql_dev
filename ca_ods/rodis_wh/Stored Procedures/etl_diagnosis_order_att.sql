@@ -6,7 +6,7 @@ IF OBJECT_ID('rodis_wh.staging_diagnosis_order_att') IS NOT NULL
 CREATE TABLE rodis_wh.staging_diagnosis_order_att(
 	id_diagnosis_order INT NULL
 	,cd_diagnosis_order VARCHAR(50) NULL
-	,diagnosis_order TINYINT NULL
+	,diagnosis_order VARCHAR(50) NULL
 )
 
 CREATE NONCLUSTERED INDEX idx_staging_diagnosis_order_att_id_diagnosis_order ON rodis_wh.staging_diagnosis_order_att (
