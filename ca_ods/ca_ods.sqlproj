@@ -163,6 +163,10 @@
     <Folder Include="oliver\Tables" />
     <Folder Include="retention" />
     <Folder Include="retention\Tables" />
+    <Folder Include="NEBULA2_mienkoja\" />
+    <Folder Include="NEBULA2_mienkoja\Tables\" />
+    <Folder Include="Security\Schemas" />
+    <Folder Include="Security\Users" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\hire_pk_question_data_to_insert.sql">
@@ -1397,10 +1401,6 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <None Include="dbo\Views\vw_select_from_error_tables.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </None>
     <Build Include="dbo\Views\prm_plc.sql">
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
@@ -1665,8 +1665,6 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="Security\NEBULA2_POC_DBO.sql" />
-    <Build Include="Security\NEBULA2_POC_CA.sql" />
     <Build Include="Security\RoleMemberships.sql" />
     <Build Include="dbo\Functions\IntDate_to_CalDate.sql">
       <AnsiNulls>On</AnsiNulls>
@@ -2101,16 +2099,6 @@
     <Build Include="dbo\User Defined Types\prm_bud.sql" />
     <Build Include="dbo\User Defined Types\prm_dep.sql" />
     <Build Include="dbo\User Defined Types\surv_table.sql" />
-    <Build Include="Security\aoc.sql" />
-    <Build Include="Security\base.sql" />
-    <Build Include="Security\debug.sql" />
-    <Build Include="Security\loading.sql" />
-    <Build Include="Security\maps.sql" />
-    <Build Include="Security\obsolete.sql" />
-    <Build Include="Security\prtl.sql" />
-    <Build Include="Security\public_data.sql" />
-    <Build Include="Security\R.sql" />
-    <Build Include="Security\ref.sql" />
     <Build Include="ExtendedProperties.sql" />
     <Build Include="ref\Tables\zip_school_xwalk_usa.sql">
       <AnsiNulls>On</AnsiNulls>
@@ -2673,12 +2661,6 @@
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="dbo\User Defined Types\risk_table.sql" />
-    <Build Include="Security\ui.sql" />
-    <Build Include="Security\poc_survey.sql" />
-    <Build Include="Security\ospi.sql" />
-    <Build Include="Security\ndacan.sql" />
-    <Build Include="Security\geog.sql" />
-    <Build Include="Security\camis.sql" />
     <Build Include="Security\Permissions.sql" />
     <Build Include="ndacan\Tables\NYTD_Services_2011_2012_truncated.sql">
       <AnsiNulls>On</AnsiNulls>
@@ -2805,11 +2787,9 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="Security\rodis.sql" />
     <Build Include="rodis\Tables\bab_read.sql" />
     <Build Include="rodis\Tables\bab_died.sql" />
     <Build Include="rodis\Tables\berd.sql" />
-    <Build Include="Security\rodis_wh.sql" />
     <Build Include="rodis_wh\Tables\wh_column.sql" />
     <Build Include="rodis_wh\Tables\wh_column_type.sql" />
     <Build Include="rodis_wh\Tables\wh_entity_key.sql" />
@@ -2896,7 +2876,6 @@
     <Build Include="rodis_wh\Stored Procedures\load_cause_of_death_m2m_fact.sql" />
     <Build Include="ref\Tables\reporter_mandate_xwalk.sql" />
     <Build Include="ref\Stored Procedures\build_reporter_mandate_xwalk.sql" />
-    <Build Include="Security\annual_report.sql" />
     <Build Include="annual_report\Tables\ca_fc_afcars_extracts.sql" />
     <Build Include="annual_report\Tables\ref_afcars_sex.sql" />
     <Build Include="annual_report\Tables\ref_afcars_race.sql" />
@@ -2925,7 +2904,6 @@
     <Build Include="prtl\Tables\ia_query_history.sql" />
     <Build Include="prtl\Tables\ooh_query_history.sql" />
     <Build Include="dbo\Tables\ref_match_srvc_type_budget.sql" />
-    <Build Include="Security\retention.sql" />
     <Build Include="rodis\Tables\birth_child_intake_removal.sql" />
     <Build Include="rodis\Stored Procedures\load_birth_intake_child_removal.sql" />
     <Build Include="rodis\Stored Procedures\load_birth_child_hospital.sql" />
@@ -2970,7 +2948,6 @@
     <Build Include="geog\Tables\MAPONICS_CURRENT_ZIP_BOUNDARIES.sql" />
     <Build Include="geog\Tables\SABS_1314_WASHINGTON_ASSIGNED.sql" />
     <Build Include="geog\Tables\SABS_1314_WASHINGTON_ASSIGNED_WGS.sql" />
-    <Build Include="Security\kids_count.sql" />
     <Build Include="kids_count\Tables\adult_pop_state_race.sql" />
     <Build Include="kids_count\Tables\child_pop_state_race.sql" />
     <Build Include="kids_count\Tables\fc_count_state_race.sql" />
@@ -2978,7 +2955,6 @@
     <Build Include="ndacan\Tables\cfsr_source_afcars.sql" />
     <Build Include="ndacan\Tables\national_cfsr_permanency.sql" />
     <Build Include="ndacan\Tables\nytd_services_2011_truncated.sql" />
-    <Build Include="Security\oliver.sql" />
     <Build Include="oliver\Tables\PROVIDER_DIM.sql" />
     <Build Include="oliver\Tables\rpt_first_visits.sql" />
     <Build Include="oliver\Tables\rpt_visit_referral_cnts.sql" />
@@ -3013,6 +2989,668 @@
     <Build Include="dbo\Functions\lessorDate4.sql" />
     <Build Include="dbo\Functions\greatorDate.sql" />
     <Build Include="base\Stored Procedures\prod_build_placement_care_days_mobility.sql" />
+    <Build Include="base\Tables\placement_care_days_otr.sql" />
+    <Build Include="base\Stored Procedures\prod_build_placement_care_days_otr.sql" />
+    <Build Include="rodis_wh\Tables\ucode_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\tribe_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\state_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_ucode_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_tribe_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_state_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_race_census_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_procedure_order_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_procedure_m2m_fat.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_procedure_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_place_of_death_type_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_place_of_death_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_payment_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_occupation_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_maternal_transfer_type_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_maternal_procedure_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_maternal_history_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_maternal_condition_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_maternal_behavior_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_marital_status_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_kotelchuck_index_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_hospital_admission_fat.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_hospital_admission_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_fetal_or_infant_death_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_facility_type_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_facility_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_ethnicity_census_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_education_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_ecode_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_dysfunctional_uterine_bleed_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_discharge_status_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_diagnosis_order_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_diagnosis_m2m_fat.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_diagnosis_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_death_fat.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_death_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_csection_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_county_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_country_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_city_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_child_sex_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_certifier_type_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_cause_of_death_order_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_cause_of_death_m2m_fat.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_cause_of_death_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_birth_fat.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_birth_familial_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_birth_child_procedure_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_birth_child_condition_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_birth_administration_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_attendent_type_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_armed_forces_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_admission_source_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\staging_admission_reason_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\race_census_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\procedure_order_dim.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\procedure_order_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\procedure_m2m_fat.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\procedure_m2m_fact.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\procedure_dim.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\procedure_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\place_of_death_type_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\place_of_death_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\payment_dim.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\payment_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\occupation_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\maternal_transfer_type_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\maternal_procedure_dim.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\maternal_procedure_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\maternal_history_dim.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\maternal_history_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\maternal_condition_dim.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\maternal_condition_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\maternal_behavior_dim.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\maternal_behavior_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\marital_status_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\location_dim.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\kotelchuck_index_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\hospital_admission_fat.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\hospital_admission_fact.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\hospital_admission_dim.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\hospital_admission_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\fetal_or_infant_death_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\facility_type_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\facility_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\ethnicity_census_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\education_dim.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\education_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\ecode_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\dysfunctional_uterine_bleed_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\discharge_status_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\diagnosis_order_dim.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\diagnosis_order_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\diagnosis_m2m_fat.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\diagnosis_m2m_fact.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\diagnosis_dim.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\diagnosis_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\death_fat.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\death_fact.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\death_dim.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\death_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\csection_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\county_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\country_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\city_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\child_sex_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\certifier_type_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\cause_of_death_order_dim.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\cause_of_death_order_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\cause_of_death_m2m_fat.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\cause_of_death_m2m_fact.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\cause_of_death_dim.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\cause_of_death_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\birth_fat.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\birth_familial_dim.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\birth_familial_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\birth_fact.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\birth_child_procedure_dim.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\birth_child_procedure_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\birth_child_condition_dim.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\birth_child_condition_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\birth_administration_dim.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\birth_administration_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\attendent_type_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\armed_forces_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\admission_source_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Tables\admission_reason_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis\Tables\death_rollup.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="NEBULA2_mienkoja\Tables\tableA.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="NEBULA2_mienkoja\Tables\tableB.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Views\Cube_WORKER_DIM.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Views\Cube_rptPlacement_Fact.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Views\Cube_rptPlacement_Events_Fact.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Views\Cube_rptPlacement_Events_Dim.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Views\Cube_rptPlacement_Dim.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Views\cube_prtl_poc1ab_time.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Views\cube_prtl_poc1ab_fact.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Views\cube_prtl_poc1ab_dim.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Views\Cube_PROVIDER_DIM.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Views\Cube_PEOPLE_DIM.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Views\Cube_LOCATION_DIM.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Views\Cube_CALENDAR_DIM.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Views\Cube_age_dim.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\udf_GetNumeric.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Stored Procedures\load_procedure_m2m_fact.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="rodis_wh\Stored Procedures\etl_procedure_att.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="prtl\Stored Procedures\prod_build_order_specific_placement_rate.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\load_create_error_tables_1.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\dispro_state_ssdi.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\dispro_state_diai.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\dispro_region_ssdi.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\dispro_region_diai.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\build_dispro_data.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Security\Schemas\annual_report.sql" />
+    <Build Include="Security\Schemas\aoc.sql" />
+    <Build Include="Security\Schemas\base.sql" />
+    <Build Include="Security\Schemas\camis.sql" />
+    <Build Include="Security\Schemas\debug.sql" />
+    <Build Include="Security\Schemas\doj.sql" />
+    <Build Include="Security\Schemas\fosa_cpa.sql" />
+    <Build Include="Security\Schemas\geog.sql" />
+    <Build Include="Security\Schemas\kids_count.sql" />
+    <Build Include="Security\Schemas\loading.sql" />
+    <Build Include="Security\Schemas\lookup.sql" />
+    <Build Include="Security\Schemas\maps.sql" />
+    <Build Include="Security\Schemas\ndacan.sql" />
+    <Build Include="Security\Users\NEBULA2_geohey.sql" />
+    <Build Include="Security\Users\NEBULA2_mienkoja.sql" />
+    <Build Include="Security\Users\NEBULA2_mienkoja_1.sql" />
+    <Build Include="Security\Users\NEBULA2_oieeri26.sql" />
+    <Build Include="Security\Users\NEBULA2_oieeri26_1.sql" />
+    <Build Include="Security\Users\NEBULA2_POC_CA.sql" />
+    <Build Include="Security\Users\NEBULA2_POC_DBO.sql" />
+    <Build Include="Security\Users\NEBULA2_schmitzr.sql" />
+    <Build Include="Security\Users\NETID_lu315.sql" />
+    <Build Include="Security\Users\NETID_mbenn13.sql" />
+    <Build Include="Security\Users\NETID_mbenn13_1.sql" />
+    <Build Include="Security\Users\NETID_mienkoja.sql" />
+    <Build Include="Security\Users\NETID_mienkoja_1.sql" />
+    <Build Include="Security\Users\NETID_rebbe.sql" />
+    <Build Include="Security\Users\NETID_rebbe_1.sql" />
+    <Build Include="Security\Users\NETID_schmitzr.sql" />
+    <Build Include="Security\Users\NETID_schmitzr_1.sql" />
+    <Build Include="Security\Users\NETID_u_nebula_poc_dbo.sql" />
+    <Build Include="Security\Users\NETID_UW_POC.sql" />
+    <Build Include="Security\Users\NETID_uw_poc_db_admin.sql" />
+    <Build Include="Security\Users\NETID_UW_POC_DBO.sql" />
+    <Build Include="Security\Users\NETID_uw_poc_no_irb.sql" />
+    <Build Include="Security\Users\NETID_wendych.sql" />
+    <Build Include="Security\Schemas\obsolete.sql" />
+    <Build Include="Security\Schemas\oliver.sql" />
+    <Build Include="Security\Schemas\ospi.sql" />
+    <Build Include="Security\Schemas\poc_survey.sql" />
+    <Build Include="Security\Schemas\prtl.sql" />
+    <Build Include="Security\Schemas\public_data.sql" />
+    <Build Include="Security\Schemas\R.sql" />
+    <Build Include="Security\Schemas\ref.sql" />
+    <Build Include="Security\Schemas\retention.sql" />
+    <Build Include="Security\Schemas\rodis.sql" />
+    <Build Include="Security\Schemas\rodis_wh.sql" />
+    <Build Include="Security\Schemas\ui.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac">

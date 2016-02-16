@@ -23,6 +23,22 @@ CREATE TABLE rodis_wh.staging_birth_familial_att(
 	,cd_education VARCHAR(50) NULL
 )
 
+;WITH dup_city AS (
+	SELECT momres [city]
+	FROM rodis.berd
+	WHERE momres IS NOT NULL
+	GROUP BY momres
+	HAVING COUNT(DISTINCT mcnty) != 1
+
+	UNION
+
+	SELECT d_injcity [city]
+	FROM rodis.bab_died
+	WHERE d_injcity IS NOT NULL
+	GROUP BY d_injcity
+	HAVING COUNT(DISTINCT d_injcnty) != 1
+	)
+
 INSERT rodis_wh.staging_birth_familial_att (
 	cd_birth_familial
 	,cd_birth_zip
@@ -41,11 +57,16 @@ SELECT CONVERT(VARCHAR(50), b.bc_uni) + 'C' [cd_birth_familial]
 	,CONVERT(VARCHAR(50), b.trib_res) [cd_tribe]
 	,CONVERT(VARCHAR(50), -1) [cd_occupation]
 	,CONVERT(VARCHAR(50), -1) [cd_city_current]
-	,CONVERT(VARCHAR(50), b.bres) [cd_city_birth]
+	,CASE
+		WHEN d.city IS NOT NULL
+			THEN CONVERT(VARCHAR(50), b.bres) + '-' + CONVERT(VARCHAR(50), b.bcnty)
+		ELSE CONVERT(VARCHAR(50), b.bres)
+		END [cd_city_birth]
 	,CONVERT(VARCHAR(50), -1) [cd_education]
 FROM rodis.berd b
+LEFT JOIN dup_city d ON d.city = b.bres
 
-UNION
+UNION ALL
 
 SELECT CONVERT(VARCHAR(50), b.bc_uni) + 'M' [cd_birth_familial]
 	,b.geozip [cd_birth_zip]
@@ -53,7 +74,11 @@ SELECT CONVERT(VARCHAR(50), b.bc_uni) + 'M' [cd_birth_familial]
 	,CONVERT(VARCHAR(50), b.momhisp) [cd_ethnicity_census]
 	,CONVERT(VARCHAR(50), b.trib_res) [cd_tribe]
 	,CONVERT(VARCHAR(50), b.momocc) [cd_occupation]
-	,CONVERT(VARCHAR(50), b.momres) [cd_city_current]
+	,CASE
+		WHEN d.city IS NOT NULL
+			THEN CONVERT(VARCHAR(50), b.momres) + '-' + CONVERT(VARCHAR(50), b.mcnty)
+		ELSE CONVERT(VARCHAR(50), b.momres)
+		END [cd_city_current]
 	,'-1--1-' + CASE
 		WHEN b.mombirst IN (89, 99) -- Other Foreign, Unknown
 			THEN CONVERT(VARCHAR(50), b.mombirst) + '-' + CONVERT(VARCHAR(50), b.mcountry)
@@ -61,8 +86,9 @@ SELECT CONVERT(VARCHAR(50), b.bc_uni) + 'M' [cd_birth_familial]
 		END [cd_city_birth]
 	,CONVERT(VARCHAR(50), ISNULL(b.momedu, b.momle8ed)) [cd_education]
 FROM rodis.berd b
+LEFT JOIN dup_city d ON d.city = b.momres
 
-UNION
+UNION ALL
 
 SELECT CONVERT(VARCHAR(50), b.bc_uni) + 'P' [cd_birth_familial]
 	,b.geozip [cd_birth_zip]
@@ -79,7 +105,7 @@ SELECT CONVERT(VARCHAR(50), b.bc_uni) + 'P' [cd_birth_familial]
 	,CONVERT(VARCHAR(50), ISNULL(b.dadedu, b.dadle8ed)) [cd_education]
 FROM rodis.berd b
 
-UNION
+UNION ALL
 
 SELECT '-1' [cd_birth_familial]
 	,CONVERT(INT, NULL) [cd_birth_zip]

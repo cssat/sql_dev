@@ -1,11 +1,4 @@
-﻿
-
-
-
-
-
-
-CREATE VIEW [dbo].[Cube_PEOPLE_DIM]
+﻿CREATE VIEW [dbo].[Cube_PEOPLE_DIM]
 AS
 
 SELECT
@@ -70,10 +63,3 @@ SELECT
 	,PD.tx_race_census
 	,PD.census_Hispanic_Latino_Origin_cd
 FROM dbo.PEOPLE_DIM PD
-
-
-
-
-
-
-

@@ -50,7 +50,7 @@ INSERT rodis_wh.staging_maternal_condition_att (
 	,fl_syphillis
 	,cd_dysfunctional_uterine_bleed
 	)
-SELECT CONVERT(VARCHAR(50), bc_uni) [cd_maternal_condition]
+SELECT DISTINCT CONVERT(VARCHAR(50), bc_uni) [cd_maternal_condition]
 	,rupmem [fl_amniorrhexis]
 	,minfect [fl_any_maternal_infection]
 	,hyper [fl_chronic_hypertension]

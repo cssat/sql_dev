@@ -14,7 +14,7 @@ INSERT rodis_wh.staging_dysfunctional_uterine_bleed_att (
 	,tx_dysfunctional_uterine_bleed
 	)
 SELECT DISTINCT CONVERT(VARCHAR(50), trimest) [cd_dysfunctional_uterine_bleed]
-	,CONVERT(VARCHAR(50), trimest) + ' - Undefined' [tx_dysfunctional_uterine_bleed]
+	,CONVERT(VARCHAR(50), trimest) + ' - Undefined' [tx_dysfunctiona_uterine_bleed]
 FROM rodis.berd
 WHERE trimest IS NOT NULL
 

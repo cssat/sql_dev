@@ -1,8 +1,4 @@
-﻿
-
-
-
-CREATE VIEW [dbo].[Cube_age_dim]
+﻿CREATE VIEW [dbo].[Cube_age_dim]
 AS
 
 SELECT
@@ -43,7 +39,3 @@ SELECT
 	,'OMIT' [cdc_age_tx]
 	,-99 [cdc_census_mix_age_cd]
 	,'OMIT' [cdc_census_mix_age_tx]
-
-
-
-

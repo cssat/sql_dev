@@ -8,9 +8,13 @@
     [filter_access_type] VARCHAR (30)  NOT NULL,
     [filter_allegation]  VARCHAR (30)  NOT NULL,
     [filter_finding]     VARCHAR (30)  NOT NULL,
+    [filter_srvc_type]   VARCHAR (50)  NOT NULL,
+    [filter_budget]      VARCHAR (50)  NOT NULL,
     [min_start_date]     DATETIME      NOT NULL,
     [max_start_date]     DATETIME      NOT NULL,
     [cnt_qry]            INT           NOT NULL,
     [last_run_date]      DATETIME      NOT NULL
 );
+
+
 

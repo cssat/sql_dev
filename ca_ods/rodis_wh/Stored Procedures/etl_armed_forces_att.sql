@@ -79,7 +79,7 @@ WHEN MATCHED
 		UPDATE
 		SET tx_armed_forces = source.tx_armed_forces
 
-WHEN NOT MATCHED
+WHEN NOT MATCHED BY TARGET
 	THEN
 		INSERT (
 			id_armed_forces

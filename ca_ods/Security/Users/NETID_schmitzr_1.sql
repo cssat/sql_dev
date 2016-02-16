@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [NETID\schmitzr]
+    AUTHORIZATION [NETID\schmitzr];
+

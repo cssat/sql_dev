@@ -1,0 +1,3 @@
+﻿CREATE USER [NETID\mbenn13] FOR LOGIN [NETID\mbenn13]
+    WITH DEFAULT_SCHEMA = [NETID\mbenn13];
+

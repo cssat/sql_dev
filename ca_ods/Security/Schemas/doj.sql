@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [doj]
+    AUTHORIZATION [NEBULA2\mienkoja];
+

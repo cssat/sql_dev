@@ -79,7 +79,7 @@ WHEN MATCHED
 		UPDATE
 		SET tx_attendent_type = source.tx_attendent_type
 
-WHEN NOT MATCHED
+WHEN NOT MATCHED BY TARGET
 	THEN
 		INSERT (
 			id_attendent_type

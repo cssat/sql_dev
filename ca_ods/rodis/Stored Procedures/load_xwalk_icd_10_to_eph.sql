@@ -122,7 +122,7 @@ TRUNCATE TABLE rodis.xwalk_icd_10_to_eph
 				AND cc.numbers >= 85
 				THEN 1
 			WHEN cc.letters = 'Y'
-				AND cc.numbers < 10
+				AND cc.numbers <= 9
 				THEN 1
 			WHEN cc.icd_10_head = 'Y871'
 				THEN 1
@@ -131,6 +131,8 @@ TRUNCATE TABLE rodis.xwalk_icd_10_to_eph
 		,CASE 
 			WHEN cc.letters = 'V'
 				AND cc.numbers >= 1
+				THEN 1
+            WHEN cc.letters = 'W'
 				THEN 1
 			WHEN cc.letters = 'X'
 				AND cc.numbers <= 59

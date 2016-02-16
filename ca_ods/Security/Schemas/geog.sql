@@ -1,0 +1,5 @@
+﻿CREATE SCHEMA [geog]
+    AUTHORIZATION [NEBULA2\POC_DBO];
+
+
+

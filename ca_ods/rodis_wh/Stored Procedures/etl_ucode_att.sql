@@ -79,7 +79,7 @@ WHEN MATCHED
 		UPDATE
 		SET tx_ucode = source.tx_ucode
 
-WHEN NOT MATCHED
+WHEN NOT MATCHED BY TARGET
 	THEN
 		INSERT (
 			id_ucode

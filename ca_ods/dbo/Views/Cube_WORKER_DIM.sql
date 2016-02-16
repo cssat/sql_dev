@@ -1,8 +1,4 @@
-﻿
-
-
-
-CREATE VIEW [dbo].[Cube_WORKER_DIM]
+﻿CREATE VIEW [dbo].[Cube_WORKER_DIM]
 AS
 
 SELECT
@@ -23,8 +19,3 @@ SELECT
 	,WD.DT_BRTH
 	,WD.ID_CYCLE
 FROM dbo.WORKER_DIM WD
-
-
-
-
-

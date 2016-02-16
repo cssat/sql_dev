@@ -25,6 +25,42 @@ CREATE TABLE rodis_wh.staging_hospital_admission_att(
 	,cd_payment_secondary VARCHAR(50) NULL
 )
 
+CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_id_hospital_admission ON rodis_wh.staging_hospital_admission_att (
+	id_hospital_admission
+	)
+
+CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_hospital_admission ON rodis_wh.staging_hospital_admission_att (
+	cd_hospital_admission
+	)
+
+CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_admission_source ON rodis_wh.staging_hospital_admission_att (
+	cd_admission_source
+	)
+
+CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_admission_reason ON rodis_wh.staging_hospital_admission_att (
+	cd_admission_reason
+	)
+
+CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_facility ON rodis_wh.staging_hospital_admission_att (
+	cd_facility
+	)
+
+CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_discharge_status ON rodis_wh.staging_hospital_admission_att (
+	cd_discharge_status
+	)
+
+CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_ecode ON rodis_wh.staging_hospital_admission_att (
+	cd_ecode
+	)
+
+CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_payment_primary ON rodis_wh.staging_hospital_admission_att (
+	cd_payment_primary
+	)
+
+CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_payment_secondary ON rodis_wh.staging_hospital_admission_att (
+	cd_payment_secondary
+	)
+
 INSERT rodis_wh.staging_hospital_admission_att (
 	cd_hospital_admission
 	,cd_child_admit_zip
@@ -142,42 +178,6 @@ SELECT CONVERT(VARCHAR(50), '-1') [cd_hospital_admission]
 ORDER BY 1
 
 UPDATE STATISTICS rodis_wh.staging_hospital_admission_att
-
-CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_id_hospital_admission ON rodis_wh.staging_hospital_admission_att (
-	id_hospital_admission
-	)
-
-CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_hospital_admission ON rodis_wh.staging_hospital_admission_att (
-	cd_hospital_admission
-	)
-
-CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_admission_source ON rodis_wh.staging_hospital_admission_att (
-	cd_admission_source
-	)
-
-CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_admission_reason ON rodis_wh.staging_hospital_admission_att (
-	cd_admission_reason
-	)
-
-CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_facility ON rodis_wh.staging_hospital_admission_att (
-	cd_facility
-	)
-
-CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_discharge_status ON rodis_wh.staging_hospital_admission_att (
-	cd_discharge_status
-	)
-
-CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_ecode ON rodis_wh.staging_hospital_admission_att (
-	cd_ecode
-	)
-
-CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_payment_primary ON rodis_wh.staging_hospital_admission_att (
-	cd_payment_primary
-	)
-
-CREATE NONCLUSTERED INDEX idx_staging_hospital_admission_att_cd_payment_secondary ON rodis_wh.staging_hospital_admission_att (
-	cd_payment_secondary
-	)
 
 DECLARE @table_id INT = (
 		SELECT wh_table_id

@@ -1,0 +1,5 @@
+﻿CREATE SCHEMA [debug]
+    AUTHORIZATION [NEBULA2\geohey];
+
+
+

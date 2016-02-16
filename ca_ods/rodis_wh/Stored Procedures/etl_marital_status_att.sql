@@ -79,7 +79,7 @@ WHEN MATCHED
 		UPDATE
 		SET tx_marital_status = source.tx_marital_status
 
-WHEN NOT MATCHED
+WHEN NOT MATCHED BY TARGET
 	THEN
 		INSERT (
 			id_marital_status

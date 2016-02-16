@@ -12,9 +12,11 @@
     [removal]                 INT           NULL,
     [removal_60day]           INT           NULL,
     [removal_2yr]             INT           NULL,
-    [reun_within_1yr]         INT           NULL,
+    [not_reun_within_1yr]     INT           NULL,
     [kin_not_1st_placement]   INT           NULL,
     [initial_instability]     INT           NULL,
     [ongoing_instability]     INT           NULL
 );
+
+
 

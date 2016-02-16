@@ -1,0 +1,3 @@
+﻿CREATE USER [NEBULA2\geohey] FOR LOGIN [NEBULA2\geohey]
+    WITH DEFAULT_SCHEMA = [NEBULA2\geohey];
+

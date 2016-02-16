@@ -40,7 +40,7 @@ INSERT rodis_wh.staging_maternal_behavior_att (
 	,fl_chlamydia
 	,cd_kotelchuck_index
 	)
-SELECT CONVERT(VARCHAR(50), bc_uni) [cd_maternal_behavior]
+SELECT DISTINCT CONVERT(VARCHAR(50), bc_uni) [cd_maternal_behavior]
 	,maristat [fl_married]
 	,breastfd [fl_breast_feeding]
 	,cigs_1st [qt_cigs_tri1]
@@ -57,7 +57,7 @@ SELECT CONVERT(VARCHAR(50), bc_uni) [cd_maternal_behavior]
 	,CONVERT(VARCHAR(50), moindex4) [cd_kotelchuck_index]
 FROM rodis.berd
 
-UNION ALL
+UNION
 
 SELECT CONVERT(VARCHAR(50), -1) [cd_maternal_behavior]
 	,CONVERT(TINYINT, NULL) [fl_married]

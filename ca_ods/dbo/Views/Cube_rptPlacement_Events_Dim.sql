@@ -1,7 +1,4 @@
-﻿
-
-
-CREATE VIEW [dbo].[Cube_rptPlacement_Events_Dim]
+﻿CREATE VIEW [dbo].[Cube_rptPlacement_Events_Dim]
 AS
 SELECT
 	RPE.id_removal_episode_fact
@@ -135,6 +132,3 @@ WHERE NOT EXISTS(
 				OR CD.ID_CALENDAR_DIM = RP.id_calendar_dim_afcars_end)
 	WHERE RP.id_removal_episode_fact = RPE.id_removal_episode_fact
 )
-
-
-

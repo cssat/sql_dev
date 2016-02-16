@@ -384,7 +384,7 @@ WHEN MATCHED
 			,id_education = source.id_education
 			,id_birth_administration = source.id_birth_administration
 			,id_hospital_admission_last = source.id_hospital_admission_last
-WHEN NOT MATCHED
+WHEN NOT MATCHED BY TARGET
 	THEN
 		INSERT (
 			id_death

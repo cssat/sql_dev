@@ -1,0 +1,3 @@
+﻿CREATE USER [NEBULA2\mienkoja] FOR LOGIN [NEBULA2\mienkoja]
+    WITH DEFAULT_SCHEMA = [NEBULA2\mienkoja];
+

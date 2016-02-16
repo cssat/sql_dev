@@ -10,6 +10,52 @@ ALTER ROLE [db_datawriter] ADD MEMBER [NEBULA2\POC_DBO];
 
 
 GO
+
+
+
+GO
+
+
+
+GO
+
+
+
+GO
+
+
+
+GO
+ALTER ROLE [db_denydatawriter] ADD MEMBER [NETID\uw_poc_no_irb];
+
+
+
+
+GO
+ALTER ROLE [db_ddladmin] ADD MEMBER [NETID\UW_POC_DBO];
+
+
+
+
+GO
+ALTER ROLE [db_datawriter] ADD MEMBER [NETID\UW_POC_DBO];
+
+
+
+
+GO
+
+
+
+GO
+
+
+
+GO
+
+
+
+GO
 ALTER ROLE [db_owner] ADD MEMBER [NETID\u_nebula_poc_dbo];
 
 
@@ -23,18 +69,6 @@ ALTER ROLE [db_owner] ADD MEMBER [NETID\uw_poc_db_admin];
 
 GO
 ALTER ROLE [db_owner] ADD MEMBER [NEBULA2\schmitzr];
-
-
-GO
-ALTER ROLE [db_denydatawriter] ADD MEMBER [NETID\uw_poc_no_irb];
-
-
-GO
-ALTER ROLE [db_ddladmin] ADD MEMBER [NETID\UW_POC_DBO];
-
-
-GO
-ALTER ROLE [db_datawriter] ADD MEMBER [NETID\UW_POC_DBO];
 
 
 GO

@@ -1,4 +1,6 @@
 ﻿CREATE TABLE [annual_report].[ref_afcars_adoption] (
-	[cd_adoption] TINYINT NULL
-	,[tx_adoption] VARCHAR(30) NULL
-	)
+    [cd_adoption] FLOAT (53)    NULL,
+    [tx_adoption] VARCHAR (255) NULL
+);
+
+

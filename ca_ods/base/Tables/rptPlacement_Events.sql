@@ -81,12 +81,14 @@
     [cd_epsd_type]                 INT           NULL,
     [cd_end_rsn]                   INT           NULL,
     [derived_county]               INT           NULL,
-    [id_provider_dim_caregiver]    INT           NULL, 
-    [tx_multi_race_ethnicity]      VARCHAR(200)  NULL, 
-    [cd_multi_race_ethnicity]      INT           NULL, 
-    [removal_qtr]                  DATETIME      NULL, 
+    [id_provider_dim_caregiver]    INT           NULL,
+    [tx_multi_race_ethnicity]      VARCHAR (200) NULL,
+    [cd_multi_race_ethnicity]      INT           NULL,
+    [removal_qtr]                  DATETIME      NULL,
     [discharge_qtr]                DATETIME      NULL
 );
+
+
 
 
 GO
@@ -140,4 +142,10 @@ GO
 CREATE NONCLUSTERED INDEX [idx_cd_end_rsn_rptPlacement_Events]
     ON [base].[rptPlacement_Events]([cd_end_rsn] ASC)
     INCLUDE([id_removal_episode_fact], [birthdate], [removal_dt], [discharge_dt], [id_placement_fact]);
+
+
+GO
+GRANT CONTROL
+    ON OBJECT::[base].[rptPlacement_Events] TO [NEBULA2\POC_DBO]
+    AS [dbo];
 
