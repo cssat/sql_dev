@@ -47,7 +47,7 @@ begin
 		, max_date_any=@max_date_Qtr
 		, max_date_qtr=@max_date_Qtr
 		, max_date_yr=@max_date_yr
-		where [procedure_name] in ('sp_poc3_perCapita','sp_ihs_trends_counts','sp_ooh_flow_entries_counts','sp_ooh_flow_exits','sp_ooh_flow_entries_rates','sp_poc2_perCapita','sp_ihs_trends_rates','sp_ia_trends_counts','sp_ia_trends_rates');	
+		where [procedure_name] in ('sp_ihs_trends_counts','sp_ihs_trends_rates','sp_ooh_flow_entries_counts','sp_ooh_flow_exits','sp_ooh_flow_entries_rates','sp_ia_trends_counts','sp_ia_trends_rates');	
 
 		
 		--update ref_lookup_max_date
