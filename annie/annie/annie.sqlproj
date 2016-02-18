@@ -67,16 +67,13 @@
     <Folder Include="prtl\Tables" />
     <Folder Include="prtl\Stored Procedures" />
     <Folder Include="ref\Views" />
-    <Folder Include="setup" />
-    <Folder Include="setup\Stored Procedures" />
     <Folder Include="ref\Stored Procedures" />
     <Folder Include="prtl\Functions" />
+    <Folder Include="Security\Schemas" />
+    <Folder Include="Security\Users" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Security\ref.sql" />
-    <Build Include="Security\mp.sql" />
     <Build Include="mp\Tables\adult_readiness.sql" />
-    <Build Include="Security\prtl.sql" />
     <Build Include="prtl\Tables\ooh_outcomes_cache.sql" />
     <Build Include="prtl\Tables\ooh_outcomes_params.sql" />
     <Build Include="prtl\Tables\ooh_reentry_cache.sql" />
@@ -130,12 +127,6 @@
     <Build Include="ref\Tables\lookup_age_census.sql" />
     <Build Include="ref\Tables\lookup_age_sib_group.sql" />
     <Build Include="prtl\Tables\ooh_pit_measures.sql" />
-    <Build Include="Security\setup.sql" />
-    <Build Include="setup\Stored Procedures\populate_param_sets_demog.sql" />
-    <Build Include="setup\Stored Procedures\populate_param_sets_geog.sql" />
-    <Build Include="setup\Stored Procedures\populate_param_sets_ia.sql" />
-    <Build Include="setup\Stored Procedures\populate_param_sets_placement.sql" />
-    <Build Include="setup\Stored Procedures\populate_param_sets_wellbeing.sql" />
     <Build Include="prtl\Stored Procedures\import_ia_safety.sql" />
     <Build Include="prtl\Stored Procedures\sp_ia_safety.sql" />
     <Build Include="ref\Views\match_age_dev_cd.sql" />
@@ -146,9 +137,6 @@
     <Build Include="ref\Tables\match_finding.sql" />
     <Build Include="ref\Tables\numbers.sql" />
     <Build Include="ref\Tables\match_census_population_household.sql" />
-    <Build Include="setup\Stored Procedures\populate_param_match_demog.sql" />
-    <Build Include="setup\Stored Procedures\populate_param_match_geog.sql" />
-    <Build Include="setup\Stored Procedures\populate_param_match_ia.sql" />
     <Build Include="prtl\Tables\param_match_demog.sql" />
     <Build Include="prtl\Tables\param_match_geog.sql" />
     <Build Include="prtl\Tables\param_match_ia.sql" />
@@ -219,6 +207,17 @@
     <Build Include="ref\Tables\match_cd_access_type.sql" />
     <Build Include="ref\Stored Procedures\import_lookup_max_date.sql" />
     <Build Include="ref\Stored Procedures\import_last_dw_transfer.sql" />
+    <Build Include="prtl\Functions\min_ooh_filter_date.sql" />
+    <Build Include="Security\Schemas\mp.sql" />
+    <Build Include="Security\Schemas\prtl.sql" />
+    <Build Include="Security\Schemas\ref.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="Security\Users\NETID_wendych.sql" />
+    <Build Include="Security\Users\NEBULA2_POC_DBO.sql" />
+    <Build Include="Security\Users\NETID_lu315.sql" />
+    <Build Include="Security\Users\NETID_u_nebula_poc_dbo.sql" />
+    <Build Include="Security\Users\NETID_uw_poc_db_admin.sql" />
+    <Build Include="Security\Users\NETID_UW_POC_DBO.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="annie.refactorlog" />
@@ -226,6 +225,22 @@
   <ItemGroup>
     <None Include="annie.publish.xml" />
     <None Include="dev_annie.publish.xml" />
-    <None Include="prtl\Functions\min_ooh_filter_date.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ArtifactReference Include="bin\Debug\ca_ods.dacpac">
+      <HintPath>bin\Debug\ca_ods.dacpac</HintPath>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+      <DatabaseVariableLiteralValue>ca_ods</DatabaseVariableLiteralValue>
+    </ArtifactReference>
+    <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac">
+      <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac</HintPath>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+      <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
+    </ArtifactReference>
+    <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\msdb.dacpac">
+      <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\msdb.dacpac</HintPath>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+      <DatabaseVariableLiteralValue>msdb</DatabaseVariableLiteralValue>
+    </ArtifactReference>
   </ItemGroup>
 </Project>

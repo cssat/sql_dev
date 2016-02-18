@@ -1,4 +1,5 @@
-﻿CREATE PROCEDURE [prtl].[build_ooh_pit_cache]
+﻿
+CREATE PROCEDURE [prtl].[build_ooh_pit_cache]
 	@age_grouping_cd VARCHAR(20)
 	,@pk_gender VARCHAR(10)
 	,@cd_race_census VARCHAR(30)
@@ -15,9 +16,9 @@
 	,@bin_dependency_cd VARCHAR(20)
 AS
 /*
-DECLARE @age_grouping_cd VARCHAR(20) = '0'
-	,@pk_gender VARCHAR(10) = '0'
-	,@cd_race_census VARCHAR(30) = '0'
+DECLARE @age_grouping_cd VARCHAR(20) = '1'
+	,@pk_gender VARCHAR(10) = '1'
+	,@cd_race_census VARCHAR(30) = '2'
 	,@initial_cd_placement_setting VARCHAR(50) = '0'
 	,@longest_cd_placement_setting VARCHAR(50) = '0'
 	,@cd_county VARCHAR(200) = '0'

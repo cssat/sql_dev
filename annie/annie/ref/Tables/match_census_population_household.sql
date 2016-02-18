@@ -1,12 +1,13 @@
-﻿CREATE TABLE [ref].[match_census_population_household]
-(
-    [measurement_year] INT NOT NULL,
-    [age_sib_group_cd] INT NOT NULL, 
-    [cd_race_census] INT NOT NULL, 
-    [cd_county] INT NOT NULL, 
-    [population_count] INT NOT NULL, 
-    [perCapita_threshold] INT NOT NULL
-)
+﻿CREATE TABLE [ref].[match_census_population_household] (
+    [measurement_year]    INT        NOT NULL,
+    [age_sib_group_cd]    INT        NOT NULL,
+    [cd_race_census]      INT        NOT NULL,
+    [cd_county]           INT        NOT NULL,
+    [population_count]    INT        NOT NULL,
+    [perCapita_threshold] FLOAT (53) NOT NULL
+);
+
+
 GO
 
 CREATE UNIQUE NONCLUSTERED INDEX [idx_match_census_population_household] ON [ref].[match_census_population_household] (
