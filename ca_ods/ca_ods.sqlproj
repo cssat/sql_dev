@@ -3653,6 +3653,9 @@
     <Build Include="Security\Schemas\ui.sql" />
     <Build Include="annual_report\Views\cfsr_permanency_exits.sql" />
     <Build Include="annual_report\Stored Procedures\sp_ar_cfsr_permanency_exits.sql" />
+    <Build Include="annual_report\Stored Procedures\sp_ar_cfsr_maltreatment_care.sql" />
+    <Build Include="annual_report\Stored Procedures\sp_ar_cfsr_recurrence.sql" />
+    <Build Include="annual_report\Stored Procedures\sp_ar_adoption.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac">
