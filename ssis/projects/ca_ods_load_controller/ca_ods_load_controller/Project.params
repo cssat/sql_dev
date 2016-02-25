@@ -16,7 +16,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">poc2</SSIS:Property>
+        SSIS:Name="Value">localhost</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>
@@ -58,7 +58,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">P:\Data Portal\data\files for test_annie\</SSIS:Property>
+        SSIS:Name="Value">\\poc2\pocshare\Data Portal\data\files for test_annie\</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>
@@ -79,7 +79,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">P:\Data Portal\data\backup_base_tables\</SSIS:Property>
+        SSIS:Name="Value">\\poc2\pocshare\Data Portal\data\backup_base_tables\</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>
@@ -100,7 +100,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">P:\Data Portal\data\backup_portal_tables\</SSIS:Property>
+        SSIS:Name="Value">\\poc2\pocshare\Data Portal\data\backup_portal_tables\</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>
@@ -121,7 +121,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">P:\CA\Data\20151110\uncompressed\</SSIS:Property>
+        SSIS:Name="Value">\\poc2\pocshare\CA\Data\20151110\uncompressed\</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>
@@ -164,91 +164,6 @@
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
         SSIS:Name="Value">schmitzr@uw.edu</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="DataType">18</SSIS:Property>
-    </SSIS:Properties>
-  </SSIS:Parameter>
-  <SSIS:Parameter
-    SSIS:Name="ftpPassword">
-    <SSIS:Properties>
-      <SSIS:Property
-        SSIS:Name="ID">{a0c25bd5-2f14-4b2f-9b51-5946f2c6a9dc}</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="CreationName"></SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="Description"></SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="Required">0</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="Sensitive">1</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="Value"
-        SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqpVdp1Q3+UeTJQQiFJCvmwAAAAACAAAAAAADZgAAwAAAABAAAABLcgDqF7KB8o1N/GHGQ9wIAAAAAASAAACgAAAAEAAAAFO+qMJrvFmKd7Z+VHv+IU94AAAAUlnjXRQEgJ/mPE1Mb7xZ3gjYD53Mf24SNWixDjQvLsOamX2Jte0Jecp8RAuW2vHYLUydG0MxWnNpAm45Tu0+F/PIrYk4G1ZFRsBkZQ4F8+6L8ReuwUx9yfRnn8TNuBDAfAxsDojJN6ka+xZlxLNlbVygFDQ4ReU4FAAAAH/MU+TyL2+I4vodogM77H+PKA75</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="DataType">18</SSIS:Property>
-    </SSIS:Properties>
-  </SSIS:Parameter>
-  <SSIS:Parameter
-    SSIS:Name="ftpSite">
-    <SSIS:Properties>
-      <SSIS:Property
-        SSIS:Name="ID">{b820a3e4-7e73-4e65-a38e-3de91c512104}</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="CreationName"></SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="Description"></SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="Required">0</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="Sensitive">0</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="Value">pocweb.cac.washington.edu</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="DataType">18</SSIS:Property>
-    </SSIS:Properties>
-  </SSIS:Parameter>
-  <SSIS:Parameter
-    SSIS:Name="ftpUserName">
-    <SSIS:Properties>
-      <SSIS:Property
-        SSIS:Name="ID">{682fe7da-8336-4006-9057-18ee58410035}</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="CreationName"></SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="Description"></SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="Required">0</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="Sensitive">0</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="Value">schmitzr</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="DataType">18</SSIS:Property>
-    </SSIS:Properties>
-  </SSIS:Parameter>
-  <SSIS:Parameter
-    SSIS:Name="RemoteFTPDirectory">
-    <SSIS:Properties>
-      <SSIS:Property
-        SSIS:Name="ID">{13799d50-78b8-4b58-848e-c1439645f463}</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="CreationName"></SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="Description"></SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="Required">0</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="Sensitive">0</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="Value">/data/pocweb</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>
