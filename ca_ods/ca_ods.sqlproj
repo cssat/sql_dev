@@ -3656,6 +3656,11 @@
     <Build Include="annual_report\Stored Procedures\sp_ar_cfsr_maltreatment_care.sql" />
     <Build Include="annual_report\Stored Procedures\sp_ar_cfsr_recurrence.sql" />
     <Build Include="annual_report\Stored Procedures\sp_ar_adoption.sql" />
+    <Build Include="annual_report\Stored Procedures\sp_ar_cfsr_mobility.sql" />
+    <Build Include="annual_report\Stored Procedures\sp_ar_cfsr_permanency_re_entry.sql" />
+    <Build Include="annual_report\Stored Procedures\sp_ar_placements.sql" />
+    <Build Include="annual_report\Stored Procedures\sp_ar_reports.sql" />
+    <Build Include="annual_report\Stored Procedures\sp_ar_screened_in.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac">
