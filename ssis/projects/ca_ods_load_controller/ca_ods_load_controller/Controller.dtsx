@@ -7,12 +7,12 @@
   DTS:CreatorName="NEBULA2\wire01696"
   DTS:DTSID="{BF887EAF-9813-4051-92F9-173E39917038}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LastModifiedProductVersion="11.0.6020.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="Controller"
   DTS:PackageType="5"
-  DTS:VersionBuild="135"
-  DTS:VersionGUID="{A35AE842-6E51-42B5-9ED0-C9571C0BB48E}">
+  DTS:VersionBuild="141"
+  DTS:VersionGUID="{F37D45A6-3493-493B-BA89-513B9067D6A1}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -42,7 +42,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="dir">
       <DTS:VariableValue
-        DTS:DataType="8">P:\CA\Data\20151110\uncompressed\</DTS:VariableValue>
+        DTS:DataType="8">\\172.22.238.154\pocshare\CA\Data\20160824\uncompressed\</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -53,7 +53,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="email1">
       <DTS:VariableValue
-        DTS:DataType="8">schmitzr@uw.edu</DTS:VariableValue>
+        DTS:DataType="8">oieeri26@uw.edu</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -64,7 +64,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="email2">
       <DTS:VariableValue
-        DTS:DataType="8">schmitzr@uw.edu</DTS:VariableValue>
+        DTS:DataType="8">oieeri26@uw.edu</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -93,6 +93,7 @@
       DTS:refId="Package\Base Tables"
       DTS:CreationName="SSIS.ExecutePackageTask.3"
       DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
       DTS:DTSID="{02FBA5E1-45F3-4B01-9847-355112C9DF3B}"
       DTS:ExecutableType="SSIS.ExecutePackageTask.3"
       DTS:LocaleID="-1"
@@ -110,6 +111,7 @@
       DTS:refId="Package\Cache"
       DTS:CreationName="SSIS.ExecutePackageTask.3"
       DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
       DTS:DTSID="{B9E4B2C1-E67F-49C3-8E2C-CD7AE41AEB73}"
       DTS:ExecutableType="SSIS.ExecutePackageTask.3"
       DTS:LocaleID="-1"
@@ -144,6 +146,7 @@
       DTS:refId="Package\Import 2"
       DTS:CreationName="SSIS.ExecutePackageTask.3"
       DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
       DTS:DTSID="{0CE2CD69-5613-4C00-A310-6F5BABAA70F3}"
       DTS:ExecutableType="SSIS.ExecutePackageTask.3"
       DTS:LocaleID="-1"
@@ -161,6 +164,7 @@
       DTS:refId="Package\Import 3"
       DTS:CreationName="SSIS.ExecutePackageTask.3"
       DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
       DTS:DTSID="{0B887961-58FB-4DCB-936B-B5E8F31020BE}"
       DTS:ExecutableType="SSIS.ExecutePackageTask.3"
       DTS:LocaleID="-1"
@@ -178,6 +182,7 @@
       DTS:refId="Package\Import 4"
       DTS:CreationName="SSIS.ExecutePackageTask.3"
       DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
       DTS:DTSID="{189D6058-0AC8-4CF4-BADE-4A0F440BE9BB}"
       DTS:ExecutableType="SSIS.ExecutePackageTask.3"
       DTS:LocaleID="-1"
@@ -195,6 +200,7 @@
       DTS:refId="Package\Portal"
       DTS:CreationName="SSIS.ExecutePackageTask.3"
       DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
       DTS:DTSID="{163DEB28-982B-4007-8655-C1E076EBD323}"
       DTS:ExecutableType="SSIS.ExecutePackageTask.3"
       DTS:LocaleID="-1"
@@ -212,6 +218,7 @@
       DTS:refId="Package\Push To Annie (FTP)"
       DTS:CreationName="SSIS.ExecutePackageTask.3"
       DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
       DTS:DTSID="{E253946F-58AD-4F32-A677-2D2163BD5C3D}"
       DTS:ExecutableType="SSIS.ExecutePackageTask.3"
       DTS:LocaleID="-1"
@@ -305,7 +312,7 @@
           Id="Package\Cache"
           TopLeft="461.388347648004,223.65234940332" />
         <NodeLayout
-          Size="120,42"
+          Size="122,42"
           Id="Package\Import 1"
           TopLeft="64.953988251144,54.4428573692574" />
         <NodeLayout
@@ -330,30 +337,30 @@
           TopLeft="534.446318484916,312.461064037811" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="143.620654917811,96.4428573692574">
+          TopLeft="125.953988251144,96.4428573692574">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="44.0107166448074,44.7063274370146"
+              EndConnector="61.677383311474,44.7063274370146"
               Start="0,0"
-              End="44.0107166448074,37.2063274370146">
+              End="61.677383311474,37.2063274370146">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,14.2354756650981" />
+                    End="0,18.3531637185073" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,14.2354756650981"
-                    Point2="0,18.2354756650981"
-                    Point3="4,18.2354756650981" />
+                    Point1="0,18.3531637185073"
+                    Point2="0,22.3531637185073"
+                    Point3="4,22.3531637185073" />
                   <mssgle:LineSegment
-                    End="40.0107166448074,18.2354756650981" />
+                    End="57.677383311474,22.3531637185073" />
                   <mssgle:CubicBezierSegment
-                    Point1="40.0107166448074,18.2354756650981"
-                    Point2="44.0107166448074,18.2354756650981"
-                    Point3="44.0107166448074,22.2354756650981" />
+                    Point1="57.677383311474,22.3531637185073"
+                    Point2="61.677383311474,22.3531637185073"
+                    Point3="61.677383311474,26.3531637185073" />
                   <mssgle:LineSegment
-                    End="44.0107166448074,37.2063274370146" />
+                    End="61.677383311474,37.2063274370146" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
