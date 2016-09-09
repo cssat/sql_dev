@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Controller"
   DTS:PackageType="5"
-  DTS:VersionBuild="144"
-  DTS:VersionGUID="{168C5A83-9602-47BB-9F64-EBFB88B1D824}">
+  DTS:VersionBuild="146"
+  DTS:VersionGUID="{CBB54678-DDC5-4D55-97EA-1B263AE7167D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -42,7 +42,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="dir">
       <DTS:VariableValue
-        DTS:DataType="8">\\172.22.238.154\pocshare\CA\Data\20160824\uncompressed\</DTS:VariableValue>
+        DTS:DataType="8">\\172.22.238.154\pocshare\CA\Data\20160908\uncompressed\</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -93,7 +93,6 @@
       DTS:refId="Package\Base Tables"
       DTS:CreationName="SSIS.ExecutePackageTask.3"
       DTS:Description="Execute Package Task"
-      DTS:Disabled="True"
       DTS:DTSID="{02FBA5E1-45F3-4B01-9847-355112C9DF3B}"
       DTS:ExecutableType="SSIS.ExecutePackageTask.3"
       DTS:LocaleID="-1"
@@ -129,7 +128,6 @@
       DTS:refId="Package\Import 1"
       DTS:CreationName="SSIS.ExecutePackageTask.3"
       DTS:Description="Execute Package Task"
-      DTS:Disabled="True"
       DTS:DTSID="{334D81DE-B941-430C-9462-25FB416D16DD}"
       DTS:ExecutableType="SSIS.ExecutePackageTask.3"
       DTS:LocaleID="-1"
@@ -147,7 +145,6 @@
       DTS:refId="Package\Import 2"
       DTS:CreationName="SSIS.ExecutePackageTask.3"
       DTS:Description="Execute Package Task"
-      DTS:Disabled="True"
       DTS:DTSID="{0CE2CD69-5613-4C00-A310-6F5BABAA70F3}"
       DTS:ExecutableType="SSIS.ExecutePackageTask.3"
       DTS:LocaleID="-1"
