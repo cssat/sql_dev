@@ -11,23 +11,23 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="prodCacheRebuilder"
   DTS:PackageType="5"
-  DTS:VersionBuild="139"
-  DTS:VersionGUID="{03DAD98C-68E6-49D9-BAF5-1E5DBF77ED12}">
+  DTS:VersionBuild="141"
+  DTS:VersionGUID="{2EFB4555-06D3-48E3-822C-B6F9B1FE0486}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[annie]"
-      DTS:CreationName="ADO.NET:MySql.Data.MySqlClient.MySqlConnection, MySql.Data, Version=6.7.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d"
+      DTS:CreationName="ADO.NET:MySql.Data.MySqlClient.MySqlConnection, MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d"
       DTS:DTSID="{CA133618-95A8-4960-860E-D37F840705DB}"
       DTS:ObjectName="annie">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="server=pocweb.cac.washington.edu;user id=annie;database=annie;port=3306;persistsecurityinfo=True;">
+          DTS:ConnectionString="server=pocweb.cac.washington.edu;user id=test_annie;database=test_annie;port=3306;">
           <DTS:Password
             DTS:Name="password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqpVdp1Q3+UeTJQQiFJCvmwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAB6Wz5B0b5bbCWDGuSK+11+AAAAAASAAACgAAAAEAAAAKIB6AYLUZb8deTSiEi+1ecYAAAAgvB1FBDF/2RQFrD69pSdlC6Bikty3imQFAAAABlqDdeuiBKikOnW9iyOssd/Q/90</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA2RHXRVq750OADabWicyXHQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADA7w0Kt659yM8XHmV2JS73AAAAAASAAACgAAAAEAAAANTDoOnqQY0189dEPxuLUakYAAAA6+tXEgOvz4DCIDPG8kH16ohXml3woIGFFAAAAGQKi1aGJ3EsZaudJW4EpW1b9zMp</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -42,7 +42,7 @@
         DTS:Name="ServerName">@[$Project::sqlServerName]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=poc2;Initial Catalog=CA_ODS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=CA_ODS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
