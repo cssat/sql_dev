@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Controller"
   DTS:PackageType="5"
-  DTS:VersionBuild="153"
-  DTS:VersionGUID="{D9ED2766-6E2B-4103-B74B-842EE4AF9FE0}">
+  DTS:VersionBuild="159"
+  DTS:VersionGUID="{42196C02-4061-421D-9D03-1AEFAC742620}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -93,6 +93,7 @@
       DTS:refId="Package\Base Tables"
       DTS:CreationName="SSIS.ExecutePackageTask.3"
       DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
       DTS:DTSID="{02FBA5E1-45F3-4B01-9847-355112C9DF3B}"
       DTS:ExecutableType="SSIS.ExecutePackageTask.3"
       DTS:LocaleID="-1"
@@ -199,6 +200,7 @@
       DTS:refId="Package\Portal"
       DTS:CreationName="SSIS.ExecutePackageTask.3"
       DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
       DTS:DTSID="{163DEB28-982B-4007-8655-C1E076EBD323}"
       DTS:ExecutableType="SSIS.ExecutePackageTask.3"
       DTS:LocaleID="-1"
