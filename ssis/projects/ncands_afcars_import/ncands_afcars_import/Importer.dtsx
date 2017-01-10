@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Importer"
   DTS:PackageType="5"
-  DTS:VersionBuild="30"
-  DTS:VersionGUID="{EF1CC568-E6CF-4D4E-B469-386D4E41270B}">
+  DTS:VersionBuild="31"
+  DTS:VersionGUID="{F74CC0C6-EFFC-4603-8AF5-C5B06C3FE881}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1904,7 +1904,7 @@
         DTS:Name="ServerName">@[$Project::dbServer]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=POC2;Initial Catalog=CA_ODS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=CA_ODS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -5537,13 +5537,13 @@
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Expression"
-                              name="Expression">[TRIM](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[pedrevdt]}) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[pedrevdt]},7,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[pedrevdt]},5,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[pedrevdt]},1,4)</property>
+                              name="Expression">[TRIM](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[pedrevdt]}) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[pedrevdt]},1,4) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[pedrevdt]},5,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[pedrevdt]},7,2)</property>
                             <property
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Friendly Expression"
                               expressionType="Notify"
-                              name="FriendlyExpression">TRIM(pedrevdt) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : SUBSTRING(pedrevdt,7,2) + "/" + SUBSTRING(pedrevdt,5,2) + "/" + SUBSTRING(pedrevdt,1,4)</property>
+                              name="FriendlyExpression">TRIM(pedrevdt) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : SUBSTRING(pedrevdt,1,4) + "/" + SUBSTRING(pedrevdt,5,2) + "/" + SUBSTRING(pedrevdt,7,2)</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
@@ -5562,13 +5562,13 @@
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Expression"
-                              name="Expression">[TRIM](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dob]}) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dob]},7,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dob]},5,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dob]},1,4)</property>
+                              name="Expression">[TRIM](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dob]}) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dob]},1,4) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dob]},5,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dob]},7,2)</property>
                             <property
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Friendly Expression"
                               expressionType="Notify"
-                              name="FriendlyExpression">TRIM(dob) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : SUBSTRING(dob,7,2) + "/" + SUBSTRING(dob,5,2) + "/" + SUBSTRING(dob,1,4)</property>
+                              name="FriendlyExpression">TRIM(dob) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : SUBSTRING(dob,1,4) + "/" + SUBSTRING(dob,5,2) + "/" + SUBSTRING(dob,7,2)</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
@@ -6037,13 +6037,13 @@
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Expression"
-                              name="Expression">[TRIM](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dlstfcdt]}) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dlstfcdt]},7,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dlstfcdt]},5,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dlstfcdt]},1,4)</property>
+                              name="Expression">[TRIM](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dlstfcdt]}) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dlstfcdt]},1,4) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dlstfcdt]},5,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dlstfcdt]},7,2)</property>
                             <property
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Friendly Expression"
                               expressionType="Notify"
-                              name="FriendlyExpression">TRIM(dlstfcdt) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : SUBSTRING(dlstfcdt,7,2) + "/" + SUBSTRING(dlstfcdt,5,2) + "/" + SUBSTRING(dlstfcdt,1,4)</property>
+                              name="FriendlyExpression">TRIM(dlstfcdt) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : SUBSTRING(dlstfcdt,1,4) + "/" + SUBSTRING(dlstfcdt,5,2) + "/" + SUBSTRING(dlstfcdt,7,2)</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
@@ -6062,13 +6062,13 @@
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Expression"
-                              name="Expression">[TRIM](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[latremdt]}) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[latremdt]},7,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[latremdt]},5,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[latremdt]},1,4)</property>
+                              name="Expression">[TRIM](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[latremdt]}) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[latremdt]},1,4) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[latremdt]},5,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[latremdt]},7,2)</property>
                             <property
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Friendly Expression"
                               expressionType="Notify"
-                              name="FriendlyExpression">TRIM(latremdt) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : SUBSTRING(latremdt,7,2) + "/" + SUBSTRING(latremdt,5,2) + "/" + SUBSTRING(latremdt,1,4)</property>
+                              name="FriendlyExpression">TRIM(latremdt) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : SUBSTRING(latremdt,1,4) + "/" + SUBSTRING(latremdt,5,2) + "/" + SUBSTRING(latremdt,7,2)</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
@@ -6087,13 +6087,13 @@
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Expression"
-                              name="Expression">[TRIM](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[remtrndt]}) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[remtrndt]},7,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[remtrndt]},5,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[remtrndt]},1,4)</property>
+                              name="Expression">[TRIM](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[remtrndt]}) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[remtrndt]},1,4) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[remtrndt]},5,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[remtrndt]},7,2)</property>
                             <property
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Friendly Expression"
                               expressionType="Notify"
-                              name="FriendlyExpression">TRIM(remtrndt) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : SUBSTRING(remtrndt,7,2) + "/" + SUBSTRING(remtrndt,5,2) + "/" + SUBSTRING(remtrndt,1,4)</property>
+                              name="FriendlyExpression">TRIM(remtrndt) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : SUBSTRING(remtrndt,1,4) + "/" + SUBSTRING(remtrndt,5,2) + "/" + SUBSTRING(remtrndt,7,2)</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
@@ -6112,13 +6112,13 @@
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Expression"
-                              name="Expression">[TRIM](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[cursetdt]}) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[cursetdt]},7,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[cursetdt]},5,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[cursetdt]},1,4)</property>
+                              name="Expression">[TRIM](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[cursetdt]}) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[cursetdt]},1,4) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[cursetdt]},5,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[cursetdt]},7,2)</property>
                             <property
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Friendly Expression"
                               expressionType="Notify"
-                              name="FriendlyExpression">TRIM(cursetdt) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : SUBSTRING(cursetdt,7,2) + "/" + SUBSTRING(cursetdt,5,2) + "/" + SUBSTRING(cursetdt,1,4)</property>
+                              name="FriendlyExpression">TRIM(cursetdt) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : SUBSTRING(cursetdt,1,4) + "/" + SUBSTRING(cursetdt,5,2) + "/" + SUBSTRING(cursetdt,7,2)</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
@@ -6712,13 +6712,13 @@
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Expression"
-                              name="Expression">[TRIM](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[tprdaddt]}) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[tprdaddt]},7,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[tprdaddt]},5,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[tprdaddt]},1,4)</property>
+                              name="Expression">[TRIM](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[tprdaddt]}) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[tprdaddt]},1,4) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[tprdaddt]},5,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[tprdaddt]},7,2)</property>
                             <property
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Friendly Expression"
                               expressionType="Notify"
-                              name="FriendlyExpression">TRIM(tprdaddt) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : SUBSTRING(tprdaddt,7,2) + "/" + SUBSTRING(tprdaddt,5,2) + "/" + SUBSTRING(tprdaddt,1,4)</property>
+                              name="FriendlyExpression">TRIM(tprdaddt) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : SUBSTRING(tprdaddt,1,4) + "/" + SUBSTRING(tprdaddt,5,2) + "/" + SUBSTRING(tprdaddt,7,2)</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
@@ -6737,13 +6737,13 @@
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Expression"
-                              name="Expression">[TRIM](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[tprmomdt]}) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[tprmomdt]},7,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[tprmomdt]},5,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[tprmomdt]},1,4)</property>
+                              name="Expression">[TRIM](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[tprmomdt]}) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[tprmomdt]},1,4) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[tprmomdt]},5,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[tprmomdt]},7,2)</property>
                             <property
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Friendly Expression"
                               expressionType="Notify"
-                              name="FriendlyExpression">TRIM(tprmomdt) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : SUBSTRING(tprmomdt,7,2) + "/" + SUBSTRING(tprmomdt,5,2) + "/" + SUBSTRING(tprmomdt,1,4)</property>
+                              name="FriendlyExpression">TRIM(tprmomdt) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : SUBSTRING(tprmomdt,1,4) + "/" + SUBSTRING(tprmomdt,5,2) + "/" + SUBSTRING(tprmomdt,7,2)</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
@@ -7187,13 +7187,13 @@
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Expression"
-                              name="Expression">[TRIM](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dodfcdt]}) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dodfcdt]},7,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dodfcdt]},5,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dodfcdt]},1,4)</property>
+                              name="Expression">[TRIM](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dodfcdt]}) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dodfcdt]},1,4) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dodfcdt]},5,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dodfcdt]},7,2)</property>
                             <property
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Friendly Expression"
                               expressionType="Notify"
-                              name="FriendlyExpression">TRIM(dodfcdt) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : SUBSTRING(dodfcdt,7,2) + "/" + SUBSTRING(dodfcdt,5,2) + "/" + SUBSTRING(dodfcdt,1,4)</property>
+                              name="FriendlyExpression">TRIM(dodfcdt) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : SUBSTRING(dodfcdt,1,4) + "/" + SUBSTRING(dodfcdt,5,2) + "/" + SUBSTRING(dodfcdt,7,2)</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
@@ -7212,13 +7212,13 @@
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Expression"
-                              name="Expression">[TRIM](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dodtrndt]}) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dodtrndt]},7,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dodtrndt]},5,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dodtrndt]},1,4)</property>
+                              name="Expression">[TRIM](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dodtrndt]}) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dodtrndt]},1,4) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dodtrndt]},5,2) + "/" + [SUBSTRING](#{Package\Import AFCARS child data\Import AFCARS child file\AFCARS child file source.Outputs[Flat File Source Output].Columns[dodtrndt]},7,2)</property>
                             <property
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Friendly Expression"
                               expressionType="Notify"
-                              name="FriendlyExpression">TRIM(dodtrndt) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : SUBSTRING(dodtrndt,7,2) + "/" + SUBSTRING(dodtrndt,5,2) + "/" + SUBSTRING(dodtrndt,1,4)</property>
+                              name="FriendlyExpression">TRIM(dodtrndt) == "" ? (dt_str,10,1252)NULL(dt_str,10,1252) : SUBSTRING(dodtrndt,1,4) + "/" + SUBSTRING(dodtrndt,5,2) + "/" + SUBSTRING(dodtrndt,7,2)</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
