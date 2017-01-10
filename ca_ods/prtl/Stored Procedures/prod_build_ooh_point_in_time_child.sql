@@ -99,12 +99,12 @@ begin
 								when cd_plcm_setng in (3,6,7,8,9,14,16,-99,12,13,17,19)  or cd_plcm_setng is null  then 4
 							end [plctypc]
 					,case 
-						when cd_plcm_setng in (1,2,4,5,18) then cast('Family Setting (State Licensed Home)' as varchar(100))
-						when cd_plcm_setng in  (10,11,15) then cast('Family Setting (Relative Placement)'as varchar(100))
+						when cd_plcm_setng in (1,4,5,18) then cast('Family Setting (State Licensed Home)' as varchar(100))
+						when cd_plcm_setng in  (2,10,11,15) then cast('Family Setting (Relative Placement)'as varchar(100))
 						when cd_plcm_setng in (3,6,7,8,9,14,16,-99,12,13,17,19)   or cd_plcm_setng is null   then cast('Non-Family Setting (Group Home or Other Institution)' as varchar(100))
 					end [plctypc_desc]
 					, case when cd_plcm_setng in (2,5,10,11,15) and cd_epsd_type=1 then 1 else 0 end [qualevt]
-					, case  when cd_plcm_setng in(10,11,15) and cd_epsd_type=1 then 1 else 0 end [kinmark]
+					, case  when cd_plcm_setng in(2, 10,11,15) and cd_epsd_type=1 then 1 else 0 end [kinmark]
 					, case when cd_plcm_setng between 1 and 18 then 0 else 1 end as tempevt
 					, cd_plcm_setng
 					, prtl_cd_plcm_setng
@@ -180,17 +180,17 @@ begin
 					,cast(null as int) as int_match_param_key_census
 					,cast(null as int) as int_match_param_key_mix
 					, case 
-								when cd_plcm_setng in (1,2,4,5,18) then 1
-								when cd_plcm_setng in  (10,11,15) then 3
+								when cd_plcm_setng in (1,4,5,18) then 1
+								when cd_plcm_setng in  (2,10,11,15) then 3
 								when cd_plcm_setng in (3,6,7,8,9,14,16,-99,12,13,17,19)  or cd_plcm_setng is null  then 4
 							end [plctypc]
 					,case 
-						when cd_plcm_setng in (1,2,4,5,18) then cast('Family Setting (State Licensed Home)' as varchar(100))
-						when cd_plcm_setng in  (10,11,15) then cast('Family Setting (Relative Placement)'as varchar(100))
+						when cd_plcm_setng in (1,4,5,18) then cast('Family Setting (State Licensed Home)' as varchar(100))
+						when cd_plcm_setng in  (2,10,11,15) then cast('Family Setting (Relative Placement)'as varchar(100))
 						when cd_plcm_setng in (3,6,7,8,9,14,16,-99,12,13,17,19)   or cd_plcm_setng is null   then cast('Non-Family Setting (Group Home or Other Institution)' as varchar(100))
 					end [plctypc_desc]
 					, case when cd_plcm_setng in (2,5,10,11,15) and cd_epsd_type=1 then 1 else 0 end [qualevt]
-					, case  when cd_plcm_setng in(10,11,15) and cd_epsd_type=1 then 1 else 0 end [kinmark]
+					, case  when cd_plcm_setng in(2,10,11,15) and cd_epsd_type=1 then 1 else 0 end [kinmark]
 					, case when cd_plcm_setng between 1 and 18 then 0 else 1 end as tempevt
 					, cd_plcm_setng
 					, prtl_cd_plcm_setng
@@ -261,17 +261,17 @@ begin
 					,cast(null as int) as int_match_param_key_census
 					,cast(null as int) as int_match_param_key_mix
 					, case 
-								when cd_plcm_setng in (1,2,4,5,18) then 1
-								when cd_plcm_setng in  (10,11,15) then 3
+								when cd_plcm_setng in (1,4,5,18) then 1
+								when cd_plcm_setng in  (2,10,11,15) then 3
 								when cd_plcm_setng in (3,6,7,8,9,14,16,-99,12,13,17,19)  or cd_plcm_setng is null  then 4
 							end [plctypc]
 					,case 
 						when cd_plcm_setng in (1,2,4,5,18) then cast('Family Setting (State Licensed Home)' as varchar(100))
-						when cd_plcm_setng in  (10,11,15) then cast('Family Setting (Relative Placement)'as varchar(100))
+						when cd_plcm_setng in  (2, 10,11,15) then cast('Family Setting (Relative Placement)'as varchar(100))
 						when cd_plcm_setng in (3,6,7,8,9,14,16,-99,12,13,17,19)   or cd_plcm_setng is null   then cast('Non-Family Setting (Group Home or Other Institution)' as varchar(100))
 					end [plctypc_desc]
 					, case when cd_plcm_setng in (2,5,10,11,15) and cd_epsd_type=1 then 1 else 0 end [qualevt]
-					, case  when cd_plcm_setng in(10,11,15) and cd_epsd_type=1 then 1 else 0 end [kinmark]
+					, case  when cd_plcm_setng in(2,10,11,15) and cd_epsd_type=1 then 1 else 0 end [kinmark]
 					, case when cd_plcm_setng between 1 and 18 then 0 else 1 end as tempevt
 					, cd_plcm_setng
 					, prtl_cd_plcm_setng
@@ -344,17 +344,17 @@ begin
 					,cast(null as int) as int_match_param_key_census
 					,cast(null as int) as int_match_param_key_mix
 					, case 
-								when cd_plcm_setng in (1,2,4,5,18) then 1
-								when cd_plcm_setng in  (10,11,15) then 3
+								when cd_plcm_setng in (1,4,5,18) then 1
+								when cd_plcm_setng in  (2,10,11,15) then 3
 								when cd_plcm_setng in (3,6,7,8,9,14,16,-99,12,13,17,19)  or cd_plcm_setng is null  then 4
 							end [plctypc]
 					,case 
-						when cd_plcm_setng in (1,2,4,5,18) then cast('Family Setting (State Licensed Home)' as varchar(100))
-						when cd_plcm_setng in  (10,11,15) then cast('Family Setting (Relative Placement)'as varchar(100))
+						when cd_plcm_setng in (1,4,5,18) then cast('Family Setting (State Licensed Home)' as varchar(100))
+						when cd_plcm_setng in  (2,10,11,15) then cast('Family Setting (Relative Placement)'as varchar(100))
 						when cd_plcm_setng in (3,6,7,8,9,14,16,-99,12,13,17,19)   or cd_plcm_setng is null   then cast('Non-Family Setting (Group Home or Other Institution)' as varchar(100))
 					end [plctypc_desc]
 					, case when cd_plcm_setng in (2,5,10,11,15) and cd_epsd_type=1 then 1 else 0 end [qualevt]
-					, case  when cd_plcm_setng in(10,11,15) and cd_epsd_type=1 then 1 else 0 end [kinmark]
+					, case  when cd_plcm_setng in(2,10,11,15) and cd_epsd_type=1 then 1 else 0 end [kinmark]
 					, case when cd_plcm_setng between 1 and 18 then 0 else 1 end as tempevt
 					, cd_plcm_setng
 					, prtl_cd_plcm_setng
@@ -604,7 +604,7 @@ begin
 	
 	drop table #kids;
 		end
-	else
-		begin
-			print 'NEED PERMISSION KEY TO RUN THIS PROCEDURE'
-		end
+	--else
+	--	begin
+	--		print 'NEED PERMISSION KEY TO RUN THIS PROCEDURE'
+	--	end

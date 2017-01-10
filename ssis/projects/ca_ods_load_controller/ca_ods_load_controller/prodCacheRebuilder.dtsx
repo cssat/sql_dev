@@ -11,23 +11,23 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="prodCacheRebuilder"
   DTS:PackageType="5"
-  DTS:VersionBuild="139"
-  DTS:VersionGUID="{03DAD98C-68E6-49D9-BAF5-1E5DBF77ED12}">
+  DTS:VersionBuild="149"
+  DTS:VersionGUID="{88BD9D7D-2129-45DF-9FDE-B79ADE758F00}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[annie]"
-      DTS:CreationName="ADO.NET:MySql.Data.MySqlClient.MySqlConnection, MySql.Data, Version=6.7.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d"
+      DTS:CreationName="ADO.NET:MySql.Data.MySqlClient.MySqlConnection, MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d"
       DTS:DTSID="{CA133618-95A8-4960-860E-D37F840705DB}"
       DTS:ObjectName="annie">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="server=pocweb.cac.washington.edu;user id=annie;database=annie;port=3306;persistsecurityinfo=True;">
+          DTS:ConnectionString="server=pocweb.cac.washington.edu;user id=annie;database=annie;port=3306;">
           <DTS:Password
             DTS:Name="password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqpVdp1Q3+UeTJQQiFJCvmwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAB6Wz5B0b5bbCWDGuSK+11+AAAAAASAAACgAAAAEAAAAKIB6AYLUZb8deTSiEi+1ecYAAAAgvB1FBDF/2RQFrD69pSdlC6Bikty3imQFAAAABlqDdeuiBKikOnW9iyOssd/Q/90</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA2RHXRVq750OADabWicyXHQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACSApNN6waSxiupnCsfbLz9AAAAAASAAACgAAAAEAAAADkpoZdNrS5gX4dORAl5VYYYAAAAJo8QfjZ0lSe+kQZWs/msSJ+w4kbm0p/ZFAAAAMf8tAw2hB53O9Arc6VBbtgCpuQL</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>

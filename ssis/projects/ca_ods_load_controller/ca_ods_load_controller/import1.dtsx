@@ -8,12 +8,12 @@
   DTS:CreatorName="NEBULA2\messej"
   DTS:DTSID="{1251A490-76B8-450E-AF1E-73835661C6AE}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LastModifiedProductVersion="11.0.6020.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="import1"
   DTS:PackageType="5"
-  DTS:VersionBuild="271"
-  DTS:VersionGUID="{5020DF87-BED7-47BC-BBBA-3ECC5153685F}">
+  DTS:VersionBuild="290"
+  DTS:VersionGUID="{53864813-B9A2-4748-8E1C-E1CCD2D04FC9}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -34,7 +34,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20151110\uncompressed\ABUSE_FACT.txt">
+          DTS:ConnectionString="\\172.22.238.154\pocshare\CA\Data\20160915\uncompressed\ABUSE_FACT.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -43,7 +43,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="ID_ABUSE_FACT"
-              DTS:DTSID="{B998F5B9-4EA0-4930-9E56-F7CDF34A4AC3}"
+              DTS:DTSID="{60596990-9E71-4C62-A214-45229D2B995A}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -52,7 +52,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="ID_CPS"
-              DTS:DTSID="{AB3F7FC2-245F-4A7C-AFA1-455B7F0B82A4}"
+              DTS:DTSID="{11EAD89E-4D9A-46F1-B4E1-2DC0B125E562}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -61,7 +61,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="ID_PRSN_VCTM"
-              DTS:DTSID="{2BEF5F1C-1D6F-4FDE-8209-88F8C2D64146}"
+              DTS:DTSID="{0E294CF4-89BB-4957-9B75-F722E770873D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -70,7 +70,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="ID_CALENDAR_DIM_FOUNDED"
-              DTS:DTSID="{705D98FE-97B4-44D6-93CA-213B990E3038}"
+              DTS:DTSID="{B7ADEA59-0B9E-4814-8E15-3E1AD93E2616}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -79,7 +79,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="ID_CALENDAR_DIM_INCIDENT"
-              DTS:DTSID="{CF4237FC-D6BB-4F6B-86B1-1AA5599AD665}"
+              DTS:DTSID="{239F485B-FF2E-4047-9BF0-2B1CC4DC93DC}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -88,7 +88,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="ID_CALENDAR_DIM_REFERRED"
-              DTS:DTSID="{FE4F4E5D-E4B1-455C-B7BA-74366AFAA64A}"
+              DTS:DTSID="{0202790E-EEB9-4850-BF8E-C397876ECDDA}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -97,7 +97,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="ID_CASE_DIM"
-              DTS:DTSID="{70F599FF-5579-4C53-B7B7-4D651EC6DC1D}"
+              DTS:DTSID="{D006A2AD-2EC0-4011-8723-E1BEA14B4853}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -106,7 +106,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="ID_LOCATION_DIM_INCIDENT"
-              DTS:DTSID="{92CA2622-3A21-498E-A5B3-B8A11D54A5C0}"
+              DTS:DTSID="{F1E61704-F7D0-4D0A-8662-E744BC630A45}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -115,7 +115,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="ID_LOCATION_DIM_INTAKE_WORKER"
-              DTS:DTSID="{55864516-13B3-4F00-82D8-13805C413460}"
+              DTS:DTSID="{5B14A58D-851D-4A35-A757-7A94C9C618C1}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -124,7 +124,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="ID_LOCATION_DIM_INVESTIGATION_WORKER"
-              DTS:DTSID="{701A6DD8-2055-4B78-A20F-76908C1085A2}"
+              DTS:DTSID="{8F48D23F-D9BE-466D-A628-20419F279D03}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -133,7 +133,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="ID_LOCATION_DIM_PRIMARY_WORKER"
-              DTS:DTSID="{C89BF32D-8454-462D-AF84-9142371A2D01}"
+              DTS:DTSID="{54B3E75E-60ED-4A1D-AD22-A2FAED391B26}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -142,7 +142,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="ID_PEOPLE_DIM_VICTIM"
-              DTS:DTSID="{E1FA448E-0915-42B6-BEED-E88B10CC7A32}"
+              DTS:DTSID="{9F03AE9A-B6BD-463A-A6E3-C60FFFC066E6}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -151,7 +151,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="ID_PLACEMENT_TYPE_DIM"
-              DTS:DTSID="{C0EE0B24-C977-472C-9B4D-D67871FC93ED}"
+              DTS:DTSID="{B92BC9ED-ED8C-4F3C-BEB4-E5C7070B1B14}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -160,7 +160,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="ID_PROVIDER_DIM"
-              DTS:DTSID="{C72A423D-5950-455D-A8A3-66B83B4805B0}"
+              DTS:DTSID="{A74925DB-5585-4583-ACA4-2A3C2E861AEF}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -169,7 +169,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="ID_WORKER_DIM_PRIMARY"
-              DTS:DTSID="{0A8CEB67-2024-4B9D-B0CE-D9ECB12F0357}"
+              DTS:DTSID="{EAF2B178-5904-4462-AC48-70A0182FA91F}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -178,7 +178,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="CHILD_AGE"
-              DTS:DTSID="{7AE63F2E-FF6B-4CA0-954A-A7CA8AE7F8B4}"
+              DTS:DTSID="{11A2F1FD-2699-4C51-9581-29188F96C2C0}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -187,7 +187,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="FL_EXPUNGED"
-              DTS:DTSID="{D2DDBBDA-2694-446B-A353-DE4BB19AA459}"
+              DTS:DTSID="{902486DD-B1E4-4F06-A484-FEA7BD54679A}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -196,7 +196,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="ID_CASE"
-              DTS:DTSID="{3D1BA519-FBA1-4784-81B0-5099A536CB3F}"
+              DTS:DTSID="{7F5AC3B0-F6EF-4038-B48E-37D7B0B3D1E9}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -205,7 +205,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="ID_PRVD_ORG"
-              DTS:DTSID="{B31EC85F-A700-45C6-9DED-E6947FDF3CC7}"
+              DTS:DTSID="{64EC9E9D-582F-4C0E-9467-078608C6E182}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -228,7 +228,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20151110\uncompressed\ABUSE_TYPE_DIM.txt">
+          DTS:ConnectionString="\\172.22.238.154\pocshare\CA\Data\20160915\uncompressed\ABUSE_TYPE_DIM.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -314,7 +314,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20151110\uncompressed\ADOPTION_FACT.txt">
+          DTS:ConnectionString="\\172.22.238.154\pocshare\CA\Data\20160915\uncompressed\ADOPTION_FACT.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -463,7 +463,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20151110\uncompressed\ADOPTION_STATUS_DIM.txt">
+          DTS:ConnectionString="\\172.22.238.154\pocshare\CA\Data\20160915\uncompressed\ADOPTION_STATUS_DIM.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -549,7 +549,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20151110\uncompressed\AGREEMENT_DIM.txt">
+          DTS:ConnectionString="\\172.22.238.154\pocshare\CA\Data\20160915\uncompressed\AGREEMENT_DIM.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -671,7 +671,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20151110\uncompressed\ALLEGATION_FACT.txt">
+          DTS:ConnectionString="\\172.22.238.154\pocshare\CA\Data\20160915\uncompressed\ALLEGATION_FACT.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -865,7 +865,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20151110\uncompressed\ASSIGNMENT_ATTRIBUTE_DIM.txt">
+          DTS:ConnectionString="\\172.22.238.154\pocshare\CA\Data\20160915\uncompressed\ASSIGNMENT_ATTRIBUTE_DIM.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1005,7 +1005,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20151110\uncompressed\ASSIGNMENT_FACT.txt">
+          DTS:ConnectionString="\\172.22.238.154\pocshare\CA\Data\20160915\uncompressed\ASSIGNMENT_FACT.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1163,7 +1163,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20151110\uncompressed\AUTHORIZATION_DIM.txt">
+          DTS:ConnectionString="\\172.22.238.154\pocshare\CA\Data\20160915\uncompressed\AUTHORIZATION_DIM.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1249,7 +1249,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20151110\uncompressed\AUTHORIZATION_FACT.txt">
+          DTS:ConnectionString="\\172.22.238.154\pocshare\CA\Data\20160915\uncompressed\AUTHORIZATION_FACT.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1542,7 +1542,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20151110\uncompressed\CALENDAR_DIM.txt">
+          DTS:ConnectionString="\\172.22.238.154\pocshare\CA\Data\20160915\uncompressed\CALENDAR_DIM.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2456,7 +2456,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\poc2\pocshare\CA\Data\20151110\uncompressed\CASE_DIM.txt">
+          DTS:ConnectionString="\\172.22.238.154\pocshare\CA\Data\20160915\uncompressed\CASE_DIM.txt">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -2641,7 +2641,7 @@
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:FileUsageType="1"
-          DTS:ConnectionString="\\poc2\pocshare\CA data transfer files\SSIS\deployed packages\log files\log_pkg_import.txt" />
+          DTS:ConnectionString="\\172.22.238.154\pocshare\CA\SSIS\log files\log_pkg_import.txt" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -2655,7 +2655,7 @@
         DTS:Name="ServerName">@[$Project::sqlServerName]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=localhost;Initial Catalog=CA_ODS;Integrated Security=True;Application Name=SSIS-import-{ABB87184-5D10-4F2E-83DC-6C3F64FB4D98}POC.dbCoreAdministrativeTables;" />
+          DTS:ConnectionString="Data Source=poc2;Initial Catalog=CA_ODS;Integrated Security=True;Application Name=SSIS-import-{ABB87184-5D10-4F2E-83DC-6C3F64FB4D98}POC.dbCoreAdministrativeTables;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -2670,7 +2670,7 @@
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:Retain="True"
-          DTS:ConnectionString="Data Source=localhost;Initial Catalog=CA_ODS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-import-{35537598-BDC5-403D-913F-39F00F10F40B}POC.dbCoreAdministrativeTables1;" />
+          DTS:ConnectionString="Data Source=poc2;Initial Catalog=CA_ODS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-import-{35537598-BDC5-403D-913F-39F00F10F40B}POC.dbCoreAdministrativeTables1;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -2716,7 +2716,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="dir">
       <DTS:VariableValue
-        DTS:DataType="8">\\poc2\pocshare\CA\Data\20151110\uncompressed\</DTS:VariableValue>
+        DTS:DataType="8">\\172.22.238.154\pocshare\CA\Data\20160915\uncompressed\</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -2727,7 +2727,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="email1">
       <DTS:VariableValue
-        DTS:DataType="8">schmitzr@uw.edu</DTS:VariableValue>
+        DTS:DataType="8">oieeri26@uw.edu</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -2738,7 +2738,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="email2">
       <DTS:VariableValue
-        DTS:DataType="8">schmitzr@uw.edu</DTS:VariableValue>
+        DTS:DataType="8">oieeri26@uw.edu</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -7814,6 +7814,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       DTS:CreationName="SSIS.Pipeline.3"
       DTS:DelayValidation="True"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{24D379FD-EE6A-454B-A6B2-B8DF1EDA9F0F}"
       DTS:ExecutableType="SSIS.Pipeline.3"
       DTS:LocaleID="-1"
@@ -7961,6 +7962,75 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyVersion("1.0.0.0")> 
 <Assembly: AssemblyFileVersion("1.0.0.0")> ]]></ProjectItem>
+                  <ProjectItem
+                    Name="ScriptMain.vb"
+                    Encoding="UTF8"><![CDATA[' Microsoft SQL Server Integration Services Script Task
+' Write scripts using Microsoft Visual Basic 2008.
+' The ScriptMain is the entry point class of the script.
+
+Imports System
+Imports System.Data
+Imports System.Math
+Imports Microsoft.SqlServer.Dts.Runtime
+Imports System.Net.Mail
+Imports System.Net
+
+
+<Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute> _
+<System.CLSCompliantAttribute(False)> _
+Partial Public Class ScriptMain
+	Inherits Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+
+	Enum ScriptResults
+		Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success
+		Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+	End Enum
+	
+
+	' The execution engine calls this method when the task executes.
+	' To access the object model, use the Dts property. Connections, variables, events,
+	' and logging features are available as members of the Dts property as shown in the following examples.
+	'
+	' To reference a variable, call Dts.Variables("MyCaseSensitiveVariableName").Value
+	' To post a log entry, call Dts.Log("This is my log text", 999, Nothing)
+	' To fire an event, call Dts.Events.FireInformation(99, "test", "hit the help message", "", 0, True)
+	'
+	' To use the connections collection use something like the following:
+	' ConnectionManager cm = Dts.Connections.Add("OLEDB")
+	' cm.ConnectionString = "Data Source=localhost;Initial Catalog=AdventureWorks;Provider=SQLNCLI10;Integrated Security=SSPI;Auto Translate=False;"
+	'
+	' Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
+	' 
+	' To open Help, press F1.
+
+	Public Sub Main()
+        Dim myHtmlMessage As MailMessage
+
+        Dim mySmtpClient As SmtpClient
+
+        'Dim vars As Variables
+
+        Dim mailAuthentication As System.Net.NetworkCredential
+
+        mailAuthentication = New System.Net.NetworkCredential(Dts.Variables("Username").Value.ToString(), Dts.Variables("Password").Value.ToString())
+
+        myHtmlMessage = New MailMessage(Dts.Variables("From").Value.ToString(), Dts.Variables("To").Value.ToString(), Dts.Variables("Subject").Value.ToString(), Dts.Variables("Body").Value.ToString())
+
+        mySmtpClient = New SmtpClient(Dts.Variables("SMTPServer").Value.ToString())
+
+        'mySmtpClient.UseDefaultCredentials = False
+
+        mySmtpClient.Credentials = mailAuthentication
+
+        mySmtpClient.EnableSsl = True
+
+        mySmtpClient.Send(myHtmlMessage)
+
+
+        Dts.TaskResult = ScriptResults.Success
+	End Sub
+
+End Class]]></ProjectItem>
                   <ProjectItem
                     Name="st_ec089c774e0240eb9082fab07af8134f.vbproj"
                     Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="utf-16"?>
@@ -8191,75 +8261,6 @@ End Class]]></ProjectItem>
 		<msb:Project Include="st_ec089c774e0240eb9082fab07af8134f.vbproj"/>
 	</msb:ItemGroup>
 </c:Project>]]></ProjectItem>
-                  <ProjectItem
-                    Name="ScriptMain.vb"
-                    Encoding="UTF8"><![CDATA[' Microsoft SQL Server Integration Services Script Task
-' Write scripts using Microsoft Visual Basic 2008.
-' The ScriptMain is the entry point class of the script.
-
-Imports System
-Imports System.Data
-Imports System.Math
-Imports Microsoft.SqlServer.Dts.Runtime
-Imports System.Net.Mail
-Imports System.Net
-
-
-<Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute> _
-<System.CLSCompliantAttribute(False)> _
-Partial Public Class ScriptMain
-	Inherits Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
-
-	Enum ScriptResults
-		Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success
-		Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
-	End Enum
-	
-
-	' The execution engine calls this method when the task executes.
-	' To access the object model, use the Dts property. Connections, variables, events,
-	' and logging features are available as members of the Dts property as shown in the following examples.
-	'
-	' To reference a variable, call Dts.Variables("MyCaseSensitiveVariableName").Value
-	' To post a log entry, call Dts.Log("This is my log text", 999, Nothing)
-	' To fire an event, call Dts.Events.FireInformation(99, "test", "hit the help message", "", 0, True)
-	'
-	' To use the connections collection use something like the following:
-	' ConnectionManager cm = Dts.Connections.Add("OLEDB")
-	' cm.ConnectionString = "Data Source=localhost;Initial Catalog=AdventureWorks;Provider=SQLNCLI10;Integrated Security=SSPI;Auto Translate=False;"
-	'
-	' Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
-	' 
-	' To open Help, press F1.
-
-	Public Sub Main()
-        Dim myHtmlMessage As MailMessage
-
-        Dim mySmtpClient As SmtpClient
-
-        'Dim vars As Variables
-
-        Dim mailAuthentication As System.Net.NetworkCredential
-
-        mailAuthentication = New System.Net.NetworkCredential(Dts.Variables("Username").Value.ToString(), Dts.Variables("Password").Value.ToString())
-
-        myHtmlMessage = New MailMessage(Dts.Variables("From").Value.ToString(), Dts.Variables("To").Value.ToString(), Dts.Variables("Subject").Value.ToString(), Dts.Variables("Body").Value.ToString())
-
-        mySmtpClient = New SmtpClient(Dts.Variables("SMTPServer").Value.ToString())
-
-        'mySmtpClient.UseDefaultCredentials = False
-
-        mySmtpClient.Credentials = mailAuthentication
-
-        mySmtpClient.EnableSsl = True
-
-        mySmtpClient.Send(myHtmlMessage)
-
-
-        Dts.TaskResult = ScriptResults.Success
-	End Sub
-
-End Class]]></ProjectItem>
                   <ProjectItem
                     Name="My Project\Resources.resx"
                     Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -10782,6 +10783,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       DTS:CreationName="SSIS.Pipeline.3"
       DTS:DelayValidation="True"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{D68AFE78-7BAE-4268-B2D8-847266506F7D}"
       DTS:ExecutableType="SSIS.Pipeline.3"
       DTS:LocaleID="-1"
@@ -12462,6 +12464,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       DTS:CreationName="SSIS.Pipeline.3"
       DTS:DelayValidation="True"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{23339E33-20ED-4FE9-A90C-901FE9A95D42}"
       DTS:ExecutableType="SSIS.Pipeline.3"
       DTS:LocaleID="-1"
@@ -18971,6 +18974,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       DTS:CreationName="SSIS.Pipeline.3"
       DTS:DelayValidation="True"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{2541656F-772D-44D4-B52E-70A442422CD6}"
       DTS:ExecutableType="SSIS.Pipeline.3"
       DTS:LocaleID="-1"
@@ -22220,6 +22224,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       DTS:CreationName="SSIS.Pipeline.3"
       DTS:DelayValidation="True"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{0DD81C38-E5AC-45A5-9C3F-CFF7EA2C70B9}"
       DTS:ExecutableType="SSIS.Pipeline.3"
       DTS:LocaleID="-1"
@@ -41008,7 +41013,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Send Email"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables>
         <DTS:Variable
           DTS:CreationName=""
@@ -41101,188 +41106,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           VSTAMinorVersion="0"
           Language="VisualBasic"
           ReadOnlyVariables="User::Body,User::CC,User::CC2,User::From,User::Password,User::SMTPServer,User::Subject,User::To,User::Username">
-          <ProjectItem
-            Name="ScriptMain.vb"
-            Encoding="UTF8"><![CDATA[' Microsoft SQL Server Integration Services Script Task
-' Write scripts using Microsoft Visual Basic 2008.
-' The ScriptMain is the entry point class of the script.
-
-Imports System
-Imports System.Data
-Imports System.Math
-Imports Microsoft.SqlServer.Dts.Runtime
-Imports System.Net.Mail
-Imports System.Net
-
-
-<Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute> _
-<System.CLSCompliantAttribute(False)> _
-Partial Public Class ScriptMain
-	Inherits Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
-
-	Enum ScriptResults
-		Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success
-		Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
-	End Enum
-	
-
-	' The execution engine calls this method when the task executes.
-	' To access the object model, use the Dts property. Connections, variables, events,
-	' and logging features are available as members of the Dts property as shown in the following examples.
-	'
-	' To reference a variable, call Dts.Variables("MyCaseSensitiveVariableName").Value
-	' To post a log entry, call Dts.Log("This is my log text", 999, Nothing)
-	' To fire an event, call Dts.Events.FireInformation(99, "test", "hit the help message", "", 0, True)
-	'
-	' To use the connections collection use something like the following:
-	' ConnectionManager cm = Dts.Connections.Add("OLEDB")
-	' cm.ConnectionString = "Data Source=localhost;Initial Catalog=AdventureWorks;Provider=SQLNCLI10;Integrated Security=SSPI;Auto Translate=False;"
-	'
-	' Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
-	' 
-	' To open Help, press F1.
-
-	Public Sub Main()
-        Dim myHtmlMessage As MailMessage
-
-        Dim mySmtpClient As SmtpClient
-
-        'Dim vars As Variables
-
-        Dim mailAuthentication As System.Net.NetworkCredential
-
-        mailAuthentication = New System.Net.NetworkCredential(Dts.Variables("Username").Value.ToString(), Dts.Variables("Password").Value.ToString())
-
-
-        myHtmlMessage = New MailMessage(Dts.Variables("From").Value.ToString(), Dts.Variables("To").Value.ToString(), Dts.Variables("Subject").Value.ToString(), Dts.Variables("Body").Value.ToString())
-        'Dts.Variables("CC").Value.ToString()
-        myHtmlMessage.To.Add(Dts.Variables("CC").Value.ToString())
-        myHtmlMessage.To.Add(Dts.Variables("CC2").Value.ToString())
-
-
-        mySmtpClient = New SmtpClient(Dts.Variables("SMTPServer").Value.ToString())
-
-        'mySmtpClient.UseDefaultCredentials = False
-
-        mySmtpClient.Credentials = mailAuthentication
-
-        mySmtpClient.EnableSsl = True
-
-        mySmtpClient.Send(myHtmlMessage)
-
-
-        Dts.TaskResult = ScriptResults.Success
-	End Sub
-
-End Class]]></ProjectItem>
-          <ProjectItem
-            Name="My Project\Settings.settings"
-            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)" GeneratedClassNamespace="$safeprojectname" GeneratedClassName="MySettings">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
-          <ProjectItem
-            Name="My Project\AssemblyInfo.vb"
-            Encoding="UTF8"><![CDATA[Imports System
-Imports System.Reflection
-Imports System.Runtime.InteropServices
-
-' General Information about an assembly is controlled through the following 
-' set of attributes. Change these attribute values to modify the information
-' associated with an assembly.
-
-' Review the values of the assembly attributes
-
-<Assembly: AssemblyTitle("ST_1a16b4e3834e4f568bb38048e0a375ab.vbproj")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("UW")> 
-<Assembly: AssemblyProduct("ST_1a16b4e3834e4f568bb38048e0a375ab.vbproj")> 
-<Assembly: AssemblyCopyright("Copyright @ UW 2012")> 
-<Assembly: AssemblyTrademark("")> 
-<Assembly: CLSCompliant(True)> 
-
-<Assembly: ComVisible(False)> 
-
-'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("e5b5adaa-2cde-453b-98f7-1327aefd8256")> 
-
-' Version information for an assembly consists of the following four values:
-'
-'      Major Version
-'      Minor Version 
-'      Build Number
-'      Revision
-'
-' You can specify all the values or you can default the Build and Revision Numbers 
-' by using the '*' as shown below:
-' <Assembly: AssemblyVersion("1.0.*")>
-
-<Assembly: AssemblyVersion("1.0.0.0")> 
-<Assembly: AssemblyFileVersion("1.0.0.0")> ]]></ProjectItem>
-          <ProjectItem
-            Name="My Project\Settings.Designer.vb"
-            Encoding="UTF8"><![CDATA['------------------------------------------------------------------------------
-' <autogenerated>
-'     This code was generated by a tool.
-'
-'     Changes to this file may cause incorrect behavior and will be lost if
-'     the code is regenerated.
-' </autogenerated>
-'------------------------------------------------------------------------------
-
-Option Strict Off
-Option Explicit On
-
-
-
-Partial Friend NotInheritable Class MySettings
-    Inherits System.Configuration.ApplicationSettingsBase
-
-    Private Shared m_Value As MySettings
-
-    Private Shared m_SyncObject As Object = New Object
-
-    <System.Diagnostics.DebuggerNonUserCode()> _
-    Public Shared ReadOnly Property Value() As MySettings
-        Get
-            If (MySettings.m_Value Is Nothing) Then
-                System.Threading.Monitor.Enter(MySettings.m_SyncObject)
-                If (MySettings.m_Value Is Nothing) Then
-                    Try
-                        MySettings.m_Value = New MySettings
-                    Finally
-                        System.Threading.Monitor.Exit(MySettings.m_SyncObject)
-                    End Try
-                End If
-            End If
-            Return MySettings.m_Value
-        End Get
-    End Property
-End Class]]></ProjectItem>
-          <ProjectItem
-            Name="Project"
-            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
-<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
-	<msb:PropertyGroup>
-		<msb:ProjectId>{F32BAB67-CCB2-4AFA-B2C4-4488A4FF0D02}</msb:ProjectId>
-		<msb:NoContent>Reference;Import;Folder</msb:NoContent>
-		<msb:Language>msBuild</msb:Language>
-		<msb:DisplayName>st_6986f58843b04a90aef0a5ecbeb79708</msb:DisplayName>
-		<msb:CodeName>st_6986f58843b04a90aef0a5ecbeb79708</msb:CodeName>
-	</msb:PropertyGroup>
-	<msb:ItemGroup>
-		<msb:File Include="My Project\Settings.Designer.vb"/>
-		<msb:File Include="My Project\Resources.Designer.vb"/>
-		<msb:File Include="My Project\AssemblyInfo.vb"/>
-		<msb:File Include="My Project\Resources.resx"/>
-		<msb:File Include="My Project\Settings.settings"/>
-		<msb:File Include="ScriptMain.vb"/>
-		<msb:Project Include="st_6986f58843b04a90aef0a5ecbeb79708.vbproj"/>
-	</msb:ItemGroup>
-</c:Project>]]></ProjectItem>
           <ProjectItem
             Name="st_6986f58843b04a90aef0a5ecbeb79708.vbproj"
             Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="utf-16"?>
@@ -41443,6 +41266,188 @@ End Class]]></ProjectItem>
     <TargetFrameworkProfile></TargetFrameworkProfile>
   </PropertyGroup>
 </Project>]]></ProjectItem>
+          <ProjectItem
+            Name="My Project\AssemblyInfo.vb"
+            Encoding="UTF8"><![CDATA[Imports System
+Imports System.Reflection
+Imports System.Runtime.InteropServices
+
+' General Information about an assembly is controlled through the following 
+' set of attributes. Change these attribute values to modify the information
+' associated with an assembly.
+
+' Review the values of the assembly attributes
+
+<Assembly: AssemblyTitle("ST_1a16b4e3834e4f568bb38048e0a375ab.vbproj")> 
+<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyCompany("UW")> 
+<Assembly: AssemblyProduct("ST_1a16b4e3834e4f568bb38048e0a375ab.vbproj")> 
+<Assembly: AssemblyCopyright("Copyright @ UW 2012")> 
+<Assembly: AssemblyTrademark("")> 
+<Assembly: CLSCompliant(True)> 
+
+<Assembly: ComVisible(False)> 
+
+'The following GUID is for the ID of the typelib if this project is exposed to COM
+<Assembly: Guid("e5b5adaa-2cde-453b-98f7-1327aefd8256")> 
+
+' Version information for an assembly consists of the following four values:
+'
+'      Major Version
+'      Minor Version 
+'      Build Number
+'      Revision
+'
+' You can specify all the values or you can default the Build and Revision Numbers 
+' by using the '*' as shown below:
+' <Assembly: AssemblyVersion("1.0.*")>
+
+<Assembly: AssemblyVersion("1.0.0.0")> 
+<Assembly: AssemblyFileVersion("1.0.0.0")> ]]></ProjectItem>
+          <ProjectItem
+            Name="ScriptMain.vb"
+            Encoding="UTF8"><![CDATA[' Microsoft SQL Server Integration Services Script Task
+' Write scripts using Microsoft Visual Basic 2008.
+' The ScriptMain is the entry point class of the script.
+
+Imports System
+Imports System.Data
+Imports System.Math
+Imports Microsoft.SqlServer.Dts.Runtime
+Imports System.Net.Mail
+Imports System.Net
+
+
+<Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute> _
+<System.CLSCompliantAttribute(False)> _
+Partial Public Class ScriptMain
+	Inherits Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+
+	Enum ScriptResults
+		Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success
+		Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+	End Enum
+	
+
+	' The execution engine calls this method when the task executes.
+	' To access the object model, use the Dts property. Connections, variables, events,
+	' and logging features are available as members of the Dts property as shown in the following examples.
+	'
+	' To reference a variable, call Dts.Variables("MyCaseSensitiveVariableName").Value
+	' To post a log entry, call Dts.Log("This is my log text", 999, Nothing)
+	' To fire an event, call Dts.Events.FireInformation(99, "test", "hit the help message", "", 0, True)
+	'
+	' To use the connections collection use something like the following:
+	' ConnectionManager cm = Dts.Connections.Add("OLEDB")
+	' cm.ConnectionString = "Data Source=localhost;Initial Catalog=AdventureWorks;Provider=SQLNCLI10;Integrated Security=SSPI;Auto Translate=False;"
+	'
+	' Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
+	' 
+	' To open Help, press F1.
+
+	Public Sub Main()
+        Dim myHtmlMessage As MailMessage
+
+        Dim mySmtpClient As SmtpClient
+
+        'Dim vars As Variables
+
+        Dim mailAuthentication As System.Net.NetworkCredential
+
+        mailAuthentication = New System.Net.NetworkCredential(Dts.Variables("Username").Value.ToString(), Dts.Variables("Password").Value.ToString())
+
+
+        myHtmlMessage = New MailMessage(Dts.Variables("From").Value.ToString(), Dts.Variables("To").Value.ToString(), Dts.Variables("Subject").Value.ToString(), Dts.Variables("Body").Value.ToString())
+        'Dts.Variables("CC").Value.ToString()
+        myHtmlMessage.To.Add(Dts.Variables("CC").Value.ToString())
+        myHtmlMessage.To.Add(Dts.Variables("CC2").Value.ToString())
+
+
+        mySmtpClient = New SmtpClient(Dts.Variables("SMTPServer").Value.ToString())
+
+        'mySmtpClient.UseDefaultCredentials = False
+
+        mySmtpClient.Credentials = mailAuthentication
+
+        mySmtpClient.EnableSsl = True
+
+        mySmtpClient.Send(myHtmlMessage)
+
+
+        Dts.TaskResult = ScriptResults.Success
+	End Sub
+
+End Class]]></ProjectItem>
+          <ProjectItem
+            Name="My Project\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)" GeneratedClassNamespace="$safeprojectname" GeneratedClassName="MySettings">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+          <ProjectItem
+            Name="My Project\Settings.Designer.vb"
+            Encoding="UTF8"><![CDATA['------------------------------------------------------------------------------
+' <autogenerated>
+'     This code was generated by a tool.
+'
+'     Changes to this file may cause incorrect behavior and will be lost if
+'     the code is regenerated.
+' </autogenerated>
+'------------------------------------------------------------------------------
+
+Option Strict Off
+Option Explicit On
+
+
+
+Partial Friend NotInheritable Class MySettings
+    Inherits System.Configuration.ApplicationSettingsBase
+
+    Private Shared m_Value As MySettings
+
+    Private Shared m_SyncObject As Object = New Object
+
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Public Shared ReadOnly Property Value() As MySettings
+        Get
+            If (MySettings.m_Value Is Nothing) Then
+                System.Threading.Monitor.Enter(MySettings.m_SyncObject)
+                If (MySettings.m_Value Is Nothing) Then
+                    Try
+                        MySettings.m_Value = New MySettings
+                    Finally
+                        System.Threading.Monitor.Exit(MySettings.m_SyncObject)
+                    End Try
+                End If
+            End If
+            Return MySettings.m_Value
+        End Get
+    End Property
+End Class]]></ProjectItem>
+          <ProjectItem
+            Name="Project"
+            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:ProjectId>{F32BAB67-CCB2-4AFA-B2C4-4488A4FF0D02}</msb:ProjectId>
+		<msb:NoContent>Reference;Import;Folder</msb:NoContent>
+		<msb:Language>msBuild</msb:Language>
+		<msb:DisplayName>st_6986f58843b04a90aef0a5ecbeb79708</msb:DisplayName>
+		<msb:CodeName>st_6986f58843b04a90aef0a5ecbeb79708</msb:CodeName>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:File Include="My Project\Settings.Designer.vb"/>
+		<msb:File Include="My Project\Resources.Designer.vb"/>
+		<msb:File Include="My Project\AssemblyInfo.vb"/>
+		<msb:File Include="My Project\Resources.resx"/>
+		<msb:File Include="My Project\Settings.settings"/>
+		<msb:File Include="ScriptMain.vb"/>
+		<msb:Project Include="st_6986f58843b04a90aef0a5ecbeb79708.vbproj"/>
+	</msb:ItemGroup>
+</c:Project>]]></ProjectItem>
           <ProjectItem
             Name="My Project\Resources.resx"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -42009,7 +42014,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       DTS:LocaleID="-1"
       DTS:ObjectName="truncate case dim"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:LoggingOptions
         DTS:FilterKind="0" />
@@ -42047,7 +42052,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       DTS:LocaleID="-1"
       DTS:ObjectName="update calendar_dim"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -42065,7 +42070,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       DTS:LocaleID="-1"
       DTS:ObjectName="update statistics all"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:LoggingOptions
         DTS:FilterKind="0" />
@@ -42480,13 +42485,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
         <NodeLayout
           Size="171,42"
           Id="Package\Create Error Tables"
-          TopLeft="268.952830188679,252.78727241631" />
+          TopLeft="268.952830188679,251.78727241631" />
         <NodeLayout
           Size="229,44"
           Id="Package\import ALLEGATION_FACT"
           TopLeft="296.990566037736,995.8438761899" />
         <NodeLayout
-          Size="183,42"
+          Size="181,42"
           Id="Package\Remove Foreign Keys"
           TopLeft="259,165.098593171027" />
         <NodeLayout
@@ -42885,30 +42890,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 20]"
-          TopLeft="354.452830188679,294.78727241631">
+          TopLeft="354.452830188679,293.78727241631">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-196.452830188679,95.0754716981126"
+              EndConnector="-196.452830188679,96.075471698113"
               Start="0,0"
-              End="-196.452830188679,87.5754716981126">
+              End="-196.452830188679,88.575471698113">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,43.5377358490563" />
+                    End="0,44.0377358490565" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,43.5377358490563"
-                    Point2="0,47.5377358490563"
-                    Point3="-4,47.5377358490563" />
+                    Point1="0,44.0377358490565"
+                    Point2="0,48.0377358490565"
+                    Point3="-4,48.0377358490565" />
                   <mssgle:LineSegment
-                    End="-192.452830188679,47.5377358490563" />
+                    End="-192.452830188679,48.0377358490565" />
                   <mssgle:CubicBezierSegment
-                    Point1="-192.452830188679,47.5377358490563"
-                    Point2="-196.452830188679,47.5377358490563"
-                    Point3="-196.452830188679,51.5377358490563" />
+                    Point1="-192.452830188679,48.0377358490565"
+                    Point2="-196.452830188679,48.0377358490565"
+                    Point3="-196.452830188679,52.0377358490565" />
                   <mssgle:LineSegment
-                    End="-196.452830188679,87.5754716981126" />
+                    End="-196.452830188679,88.575471698113" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -42941,18 +42946,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 23]"
-          TopLeft="352.476415094339,207.098593171027">
+          TopLeft="351.976415094339,207.098593171027">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,45.688679245283"
+              EndConnector="0,44.688679245283"
               Start="0,0"
-              End="0,38.188679245283">
+              End="0,37.188679245283">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,38.188679245283" />
+                    End="0,37.188679245283" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -43330,7 +43335,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="NaN,NaN"
+          Size="133,42"
           Id="Package.EventHandlers[OnError]\Send email"
           TopLeft="NaN,NaN" />
       </GraphLayout>
@@ -43433,7 +43438,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-73.20890625,8.05207104952854,146.4178125,11.43359375"
+              BoundingBox="-73.20890625,8.05207104952855,146.4178125,11.43359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -43468,7 +43473,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -43526,7 +43533,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -43572,7 +43581,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
