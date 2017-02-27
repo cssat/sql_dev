@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Controller"
   DTS:PackageType="5"
-  DTS:VersionBuild="161"
-  DTS:VersionGUID="{4AF73C6D-86F7-4CDD-9AFF-D0199BDAFDA5}">
+  DTS:VersionBuild="166"
+  DTS:VersionGUID="{16DEDEF2-520A-4357-97C1-E90859E35A07}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -28,7 +28,7 @@
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:Retain="True"
-          DTS:ConnectionString="Data Source=poc2;Initial Catalog=CA_ODS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-import-{35537598-BDC5-403D-913F-39F00F10F40B}POC.dbCoreAdministrativeTables1;" />
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=CA_ODS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-import-{35537598-BDC5-403D-913F-39F00F10F40B}POC.dbCoreAdministrativeTables1;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -42,7 +42,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="dir">
       <DTS:VariableValue
-        DTS:DataType="8">\\172.22.238.154\pocshare\CA\Data\20161101\uncompressed\</DTS:VariableValue>
+        DTS:DataType="8">\\172.22.238.154\pocshare\CA\Data\20170214\uncompressed\</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
