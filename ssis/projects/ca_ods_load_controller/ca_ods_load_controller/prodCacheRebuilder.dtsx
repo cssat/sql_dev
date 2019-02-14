@@ -7,12 +7,12 @@
   DTS:CreatorName="NEBULA2\schmitzr"
   DTS:DTSID="{41FCDD82-90EC-41C8-836D-2D252BA6D474}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="11.0.6020.0"
+  DTS:LastModifiedProductVersion="11.0.7462.6"
   DTS:LocaleID="1033"
   DTS:ObjectName="prodCacheRebuilder"
   DTS:PackageType="5"
-  DTS:VersionBuild="149"
-  DTS:VersionGUID="{88BD9D7D-2129-45DF-9FDE-B79ADE758F00}">
+  DTS:VersionBuild="151"
+  DTS:VersionGUID="{EDC43D43-2723-4AA3-A5C0-445FFC2CAF45}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -27,7 +27,7 @@
           <DTS:Password
             DTS:Name="password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA2RHXRVq750OADabWicyXHQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACSApNN6waSxiupnCsfbLz9AAAAAASAAACgAAAAEAAAADkpoZdNrS5gX4dORAl5VYYYAAAAJo8QfjZ0lSe+kQZWs/msSJ+w4kbm0p/ZFAAAAMf8tAw2hB53O9Arc6VBbtgCpuQL</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXsmqHpKL0mh/KS3s5jgpwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACoi+dJjE+ZWq3QtA4zA8z3AAAAAASAAACgAAAAEAAAAI3wFhrdvdrp6Z/AlZPWekAYAAAAQQ0S5vpJVbRhk9PBZrZcM5qUXjtRBCjcFAAAAFsr4vnhwUs2glD1bQR6mEoPQ9Hr</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -5058,11 +5058,11 @@
       <GraphLayout
         Capacity="256" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="214,42"
+          Size="214.4,41.6"
           Id="Package\build ia_safety\build ca_ods cache_pbcs2_aggr\execute ca_ods sp_ia_safety"
           TopLeft="22,31" />
         <NodeLayout
-          Size="230,42"
+          Size="230.4,41.6"
           Id="Package\build ia_safety\build ca_ods cache_pbcs2_aggr\preserve ia_safety cache history"
           TopLeft="21,103" />
         <EdgeLayout
@@ -5090,16 +5090,16 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="290,200"
-          Size="290,243"
+          PanelSize="289.6,200"
+          Size="289.6,243.2"
           Id="Package\build ia_safety\build ca_ods cache_pbcs2_aggr"
           TopLeft="6.5,190" />
         <NodeLayout
-          Size="248,42"
+          Size="248,41.6"
           Id="Package\build ia_safety\retrieve annie cache_pbcs2_params"
           TopLeft="26.5,22" />
         <NodeLayout
-          Size="200,42"
+          Size="200,41.6"
           Id="Package\build ia_safety\truncate cache_pbcs2"
           TopLeft="50.5,103" />
         <EdgeLayout
@@ -5150,15 +5150,15 @@
           HeaderHeight="43"
           IsExpanded="True"
           PanelSize="300,488"
-          Size="300,531"
+          Size="300,531.2"
           Id="Package\build ia_safety"
           TopLeft="819,14" />
         <NodeLayout
-          Size="252,42"
+          Size="252,41.6"
           Id="Package\build ia_trends\build ca_ods cache_poc2ab_aggr\execute ca_ods sp_ia_trends_counts"
           TopLeft="21,31" />
         <NodeLayout
-          Size="232,42"
+          Size="232,41.6"
           Id="Package\build ia_trends\build ca_ods cache_poc2ab_aggr\preserve ia_trends cache history"
           TopLeft="28,112" />
         <EdgeLayout
@@ -5186,16 +5186,16 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="279,209"
-          Size="279,252"
+          PanelSize="279.2,208.8"
+          Size="279.2,252"
           Id="Package\build ia_trends\build ca_ods cache_poc2ab_aggr"
           TopLeft="3.5,197" />
         <NodeLayout
-          Size="254,42"
+          Size="254.4,41.6"
           Id="Package\build ia_trends\retrieve annie cache_poc2ab_params"
           TopLeft="18.5,23" />
         <NodeLayout
-          Size="200,42"
+          Size="200,41.6"
           Id="Package\build ia_trends\truncate cache_poc2ab"
           TopLeft="41.5,110" />
         <EdgeLayout
@@ -5246,15 +5246,15 @@
           HeaderHeight="43"
           IsExpanded="True"
           PanelSize="288,504"
-          Size="288,547"
+          Size="288,547.2"
           Id="Package\build ia_trends"
           TopLeft="36,1988" />
         <NodeLayout
-          Size="219,42"
+          Size="219.2,41.6"
           Id="Package\build ihs_safety\build ca_ods cache_pbcs3_aggr\execute ca_ods sp_ihs_safety"
           TopLeft="22,32" />
         <NodeLayout
-          Size="235,42"
+          Size="235.2,41.6"
           Id="Package\build ihs_safety\build ca_ods cache_pbcs3_aggr\preserve ihs_safety cache history"
           TopLeft="18,110" />
         <EdgeLayout
@@ -5282,16 +5282,16 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="269,207"
-          Size="269,250"
+          PanelSize="268.8,207.2"
+          Size="268.8,249.6"
           Id="Package\build ihs_safety\build ca_ods cache_pbcs3_aggr"
           TopLeft="4.5,187" />
         <NodeLayout
-          Size="248,42"
+          Size="248,41.6"
           Id="Package\build ihs_safety\retrieve annie cache_pbcs3_params"
           TopLeft="8.5,22" />
         <NodeLayout
-          Size="181,42"
+          Size="180.8,41.6"
           Id="Package\build ihs_safety\truncate cache_pbcs3"
           TopLeft="32.5,106" />
         <EdgeLayout
@@ -5366,15 +5366,15 @@
           HeaderHeight="43"
           IsExpanded="True"
           PanelSize="280,492"
-          Size="280,535"
+          Size="280,535.2"
           Id="Package\build ihs_safety"
           TopLeft="35,668" />
         <NodeLayout
-          Size="257,42"
+          Size="256.8,41.6"
           Id="Package\build ihs_trends\build ca_ods cache_poc3ab_aggr\execute ca_ods sp_ihs_trends_counts"
           TopLeft="7,29" />
         <NodeLayout
-          Size="237,42"
+          Size="236.8,41.6"
           Id="Package\build ihs_trends\build ca_ods cache_poc3ab_aggr\preserve ihs_trends cache history"
           TopLeft="18,109" />
         <EdgeLayout
@@ -5402,16 +5402,16 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="269,202"
-          Size="269,245"
+          PanelSize="268.8,201.6"
+          Size="268.8,244.8"
           Id="Package\build ihs_trends\build ca_ods cache_poc3ab_aggr"
           TopLeft="5.5,195" />
         <NodeLayout
-          Size="254,42"
+          Size="254.4,41.6"
           Id="Package\build ihs_trends\retrieve annie cache_poc3ab_params"
           TopLeft="8.5,22" />
         <NodeLayout
-          Size="200,42"
+          Size="200,41.6"
           Id="Package\build ihs_trends\truncate cache_poc3ab"
           TopLeft="38.5,105" />
         <EdgeLayout
@@ -5461,16 +5461,16 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="280,495"
-          Size="280,538"
+          PanelSize="280,495.2"
+          Size="280,537.6"
           Id="Package\build ihs_trends"
           TopLeft="433,1992" />
         <NodeLayout
-          Size="289,42"
+          Size="288.8,41.6"
           Id="Package\build ooh_flow_entries\build ca_ods cache_poc1ab_entries_aggr\execute ca_ods sp_ooh_flow_entries_counts"
           TopLeft="10,31" />
         <NodeLayout
-          Size="269,42"
+          Size="268.8,41.6"
           Id="Package\build ooh_flow_entries\build ca_ods cache_poc1ab_entries_aggr\preserve ooh_flow_entries cache history"
           TopLeft="20,110" />
         <EdgeLayout
@@ -5498,16 +5498,16 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="304,207"
-          Size="304,250"
+          PanelSize="304,207.2"
+          Size="304,249.6"
           Id="Package\build ooh_flow_entries\build ca_ods cache_poc1ab_entries_aggr"
           TopLeft="6.5,188" />
         <NodeLayout
-          Size="292,42"
+          Size="292,41.6"
           Id="Package\build ooh_flow_entries\retrieve annie cache_poc1ab_entries_params"
           TopLeft="8.5,22" />
         <NodeLayout
-          Size="234,42"
+          Size="233.6,41.6"
           Id="Package\build ooh_flow_entries\truncate cache_poc1ab_entries"
           TopLeft="40.5,106" />
         <EdgeLayout
@@ -5557,16 +5557,16 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="314,493"
-          Size="314,536"
+          PanelSize="313.6,492.8"
+          Size="313.6,536"
           Id="Package\build ooh_flow_entries"
           TopLeft="428,1324" />
         <NodeLayout
-          Size="242,42"
+          Size="241.6,41.6"
           Id="Package\build ooh_flow_exits\build ca_ods cache_poc1ab_exits_aggr\execute ca_ods sp_ooh_flow_exits"
           TopLeft="19,30" />
         <NodeLayout
-          Size="259,42"
+          Size="259.2,41.6"
           Id="Package\build ooh_flow_exits\build ca_ods cache_poc1ab_exits_aggr\preserve ooh_flow_exits cache history"
           TopLeft="17,108" />
         <EdgeLayout
@@ -5594,16 +5594,16 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="296,205"
+          PanelSize="296,204.8"
           Size="296,248"
           Id="Package\build ooh_flow_exits\build ca_ods cache_poc1ab_exits_aggr"
           TopLeft="13.5,188" />
         <NodeLayout
-          Size="282,42"
+          Size="281.6,41.6"
           Id="Package\build ooh_flow_exits\retrieve annie cache_poc1ab_exits_params"
           TopLeft="15.5,22" />
         <NodeLayout
-          Size="216,42"
+          Size="216,41.6"
           Id="Package\build ooh_flow_exits\truncate cache_poc1ab_exits"
           TopLeft="54.5,106" />
         <EdgeLayout
@@ -5653,16 +5653,16 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="314,491"
-          Size="314,534"
+          PanelSize="313.6,491.2"
+          Size="313.6,534.4"
           Id="Package\build ooh_flow_exits"
           TopLeft="839,1323" />
         <NodeLayout
-          Size="240,42"
+          Size="240,41.6"
           Id="Package\build ooh_outcomes\build ca_ods cache_outcomes_aggr\execute ca_ods sp_ooh_outcomes"
           TopLeft="22,31" />
         <NodeLayout
-          Size="257,42"
+          Size="256.8,41.6"
           Id="Package\build ooh_outcomes\build ca_ods cache_outcomes_aggr\preserve ooh_outcomes cache history"
           TopLeft="26,114" />
         <EdgeLayout
@@ -5702,16 +5702,16 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="320,211"
-          Size="320,254"
+          PanelSize="320,211.2"
+          Size="320,254.4"
           Id="Package\build ooh_outcomes\build ca_ods cache_outcomes_aggr"
           TopLeft="5.5,184" />
         <NodeLayout
-          Size="266,42"
+          Size="265.6,41.6"
           Id="Package\build ooh_outcomes\retrieve annie cache_outcomes_params"
           TopLeft="8.5,22" />
         <NodeLayout
-          Size="200,42"
+          Size="200,41.6"
           Id="Package\build ooh_outcomes\truncate cache_outcomes"
           TopLeft="38.5,104.053299492386" />
         <EdgeLayout
@@ -5773,16 +5773,16 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="330,493"
-          Size="330,536"
+          PanelSize="329.6,492.8"
+          Size="329.6,536"
           Id="Package\build ooh_outcomes"
           TopLeft="40,15" />
         <NodeLayout
-          Size="244,42"
+          Size="244,41.6"
           Id="Package\build ooh_pit\build ca_ods cache_poc1ab_aggr\execute ca_ods sp_ooh_pit_counts"
           TopLeft="13,31" />
         <NodeLayout
-          Size="223,42"
+          Size="223.2,41.6"
           Id="Package\build ooh_pit\build ca_ods cache_poc1ab_aggr\preserve ooh_pit cache history"
           TopLeft="20,110" />
         <EdgeLayout
@@ -5810,16 +5810,16 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="269,202"
-          Size="269,245"
+          PanelSize="268.8,201.6"
+          Size="268.8,244.8"
           Id="Package\build ooh_pit\build ca_ods cache_poc1ab_aggr"
           TopLeft="4.5,197" />
         <NodeLayout
-          Size="254,42"
+          Size="254.4,41.6"
           Id="Package\build ooh_pit\retrieve annie cache_poc1ab_params"
           TopLeft="8.5,22" />
         <NodeLayout
-          Size="200,42"
+          Size="200,41.6"
           Id="Package\build ooh_pit\truncate cache_poc1ab"
           TopLeft="35.5,108" />
         <EdgeLayout
@@ -5869,16 +5869,16 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="280,497"
+          PanelSize="280,496.8"
           Size="280,540"
           Id="Package\build ooh_pit"
           TopLeft="39,1320" />
         <NodeLayout
-          Size="229,42"
+          Size="228.8,41.6"
           Id="Package\build ooh_reentry\build ca_ods cache_pbcp5_aggr\execute ca_ods sp_ooh_reentry"
           TopLeft="22,31" />
         <NodeLayout
-          Size="245,42"
+          Size="244.8,41.6"
           Id="Package\build ooh_reentry\build ca_ods cache_pbcp5_aggr\preserve ooh_reentry cache history"
           TopLeft="19,111" />
         <EdgeLayout
@@ -5906,16 +5906,16 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="269,208"
-          Size="269,251"
+          PanelSize="268.8,208"
+          Size="268.8,251.2"
           Id="Package\build ooh_reentry\build ca_ods cache_pbcp5_aggr"
           TopLeft="4.5,183" />
         <NodeLayout
-          Size="249,42"
+          Size="248.8,41.6"
           Id="Package\build ooh_reentry\retrieve annie cache_pbcp5_params"
           TopLeft="8.5,22" />
         <NodeLayout
-          Size="183,42"
+          Size="183.2,41.6"
           Id="Package\build ooh_reentry\truncate cache_pbcp5"
           TopLeft="46.5,105" />
         <EdgeLayout
@@ -5965,16 +5965,16 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="280,489"
+          PanelSize="280,488.8"
           Size="280,532"
           Id="Package\build ooh_reentry"
           TopLeft="453,13" />
         <NodeLayout
-          Size="279,42"
+          Size="279.2,41.6"
           Id="Package\build ooh_wb_family_settings\build ca_ods cache_pbcw3_aggr\execute ca_ods sp_ooh_wb_familysettings"
           TopLeft="34,30" />
         <NodeLayout
-          Size="302,42"
+          Size="302.4,41.6"
           Id="Package\build ooh_wb_family_settings\build ca_ods cache_pbcw3_aggr\preserve ooh_wb_family_settings cache history"
           TopLeft="28,109" />
         <EdgeLayout
@@ -6002,16 +6002,16 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="347,201"
-          Size="347,244"
+          PanelSize="347.2,200.8"
+          Size="347.2,244"
           Id="Package\build ooh_wb_family_settings\build ca_ods cache_pbcw3_aggr"
           TopLeft="6.5,180" />
         <NodeLayout
-          Size="251,42"
+          Size="251.2,41.6"
           Id="Package\build ooh_wb_family_settings\retrieve annie cache_pbcw3_params"
           TopLeft="35.5,22" />
         <NodeLayout
-          Size="185,42"
+          Size="184.8,41.6"
           Id="Package\build ooh_wb_family_settings\truncate cache_pbcw3"
           TopLeft="59.5,101" />
         <EdgeLayout
@@ -6073,16 +6073,16 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="358,479"
-          Size="358,522"
+          PanelSize="358.4,479.2"
+          Size="358.4,521.6"
           Id="Package\build ooh_wb_family_settings"
           TopLeft="399,670" />
         <NodeLayout
-          Size="249,42"
+          Size="248.8,41.6"
           Id="Package\build ooh_wb_siblings\build ca_ods cache_pbcw4_aggr\execute ca_ods sp_ooh_wb_siblings"
           TopLeft="30,28" />
         <NodeLayout
-          Size="266,42"
+          Size="265.6,41.6"
           Id="Package\build ooh_wb_siblings\build ca_ods cache_pbcw4_aggr\preserve ooh_wb_siblings cache history"
           TopLeft="21,109" />
         <EdgeLayout
@@ -6110,16 +6110,16 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="296,206"
-          Size="296,249"
+          PanelSize="296,206.4"
+          Size="296,248.8"
           Id="Package\build ooh_wb_siblings\build ca_ods cache_pbcw4_aggr"
           TopLeft="5.5,180" />
         <NodeLayout
-          Size="251,42"
+          Size="251.2,41.6"
           Id="Package\build ooh_wb_siblings\retrieve annie cache_pbcw4_params"
           TopLeft="17.5,22" />
         <NodeLayout
-          Size="200,42"
+          Size="200,41.6"
           Id="Package\build ooh_wb_siblings\truncate cache_pbcw4"
           TopLeft="42.5,101" />
         <EdgeLayout
@@ -6181,16 +6181,16 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="306,484"
-          Size="306,527"
+          PanelSize="305.6,484"
+          Size="305.6,527.2"
           Id="Package\build ooh_wb_siblings"
           TopLeft="826,673" />
         <NodeLayout
-          Size="204,42"
+          Size="204,41.6"
           Id="Package\take ia query history snapshot\snapshot ia_safety queries"
           TopLeft="28,26" />
         <NodeLayout
-          Size="206,42"
+          Size="206.4,41.6"
           Id="Package\take ia query history snapshot\snapshot ia_trends queries"
           TopLeft="28,104" />
         <EdgeLayout
@@ -6218,16 +6218,16 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="265,201"
-          Size="265,244"
+          PanelSize="264.8,200.8"
+          Size="264.8,244"
           Id="Package\take ia query history snapshot"
           TopLeft="851,2290" />
         <NodeLayout
-          Size="209,42"
+          Size="208.8,41.6"
           Id="Package\take ihs query history snapshot\snapshot ihs_safety queries"
           TopLeft="28,26" />
         <NodeLayout
-          Size="211,42"
+          Size="211.2,41.6"
           Id="Package\take ihs query history snapshot\snapshot ihs_trends queries"
           TopLeft="28,101" />
         <EdgeLayout
@@ -6255,36 +6255,36 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="265,198"
-          Size="265,241"
+          PanelSize="264.8,198.4"
+          Size="264.8,240.8"
           Id="Package\take ihs query history snapshot"
           TopLeft="852,1989" />
         <NodeLayout
-          Size="243,42"
+          Size="243.2,41.6"
           Id="Package\take ooh query history snapshot\snapshot ooh_flow_entries queries"
           TopLeft="48,381" />
         <NodeLayout
-          Size="232,42"
+          Size="232,41.6"
           Id="Package\take ooh query history snapshot\snapshot ooh_flow_exits queries"
           TopLeft="53,466" />
         <NodeLayout
-          Size="231,42"
+          Size="231.2,41.6"
           Id="Package\take ooh query history snapshot\snapshot ooh_outcomes queries"
           TopLeft="44,30" />
         <NodeLayout
-          Size="197,42"
+          Size="196.8,41.6"
           Id="Package\take ooh query history snapshot\snapshot ooh_pit queries"
           TopLeft="64,555" />
         <NodeLayout
-          Size="219,42"
+          Size="219.2,41.6"
           Id="Package\take ooh query history snapshot\snapshot ooh_reentry queries"
           TopLeft="56,118" />
         <NodeLayout
-          Size="276,42"
+          Size="276,41.6"
           Id="Package\take ooh query history snapshot\snapshot ooh_wb_family_settings queries"
           TopLeft="32,203" />
         <NodeLayout
-          Size="240,42"
+          Size="240,41.6"
           Id="Package\take ooh query history snapshot\snapshot ooh_wb_siblings queries"
           TopLeft="52,293" />
         <EdgeLayout
@@ -6422,8 +6422,8 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="314,652"
-          Size="314,695"
+          PanelSize="313.6,652"
+          Size="313.6,695.2"
           Id="Package\take ooh query history snapshot"
           TopLeft="73,2689" />
         <EdgeLayout
